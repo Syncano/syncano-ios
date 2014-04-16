@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
 
-  s.name         = "syncano-ios-library"
+  s.name         = "syncano-ios"
   s.version      = "3.1.1beta"
   s.summary      = "Library for http://syncano.com API"
 
-  s.homepage     = "http://syncano.com"
+  s.homepage     = "http://www.syncano.com"
   s.license      = 'MIT'
   s.author       = 'Syncano Inc.'
 
