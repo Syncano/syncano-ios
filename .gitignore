@@ -1,0 +1,32 @@
+# OS X
+.DS_Store
+
+# Build
+Build
+build
+DerivedData
+
+# Generated appledoc files
+*-Docs
+appledoc.log
+
+# Temp
+*~.nib
+*.swp
+
+# SVN
+.svn
+
+# XCode
+*.mode1v3
+*.mode2v3
+*.pbxuser
+*.perspectivev3
+*.xcuserdatad
+xcshareddata/
+
+# CocoaPods
+Pods
+
+# Others
+.uispec.app
