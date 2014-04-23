@@ -82,48 +82,36 @@
  Start session for API key
  
  @param params Parameters for starting API key
- 
- @return Response for starting API key
  */
 - (void)apikeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params callback:(void (^)(SyncanoResponse_APIKeys_StartSession *response))callback;
 /**
  Create new API key
  
  @param params Parameters of new API key
- 
- @return Response for creation of new API key
  */
 - (void)apikeyNew:(SyncanoParameters_APIKeys_New *)params callback:(void (^)(SyncanoResponse_APIKeys_New *response))callback;
 /**
  Get API key list
  
  @param params API key list parameters
- 
- @return Response for API key list
  */
 - (void)apikeyGet:(SyncanoParameters_APIKeys_Get *)params callback:(void (^)(SyncanoResponse_APIKeys_Get *response))callback;
 /**
  Get one API key
  
  @param params Single API key getter parameters
- 
- @return Response for single API key
  */
 - (void)apikeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params callback:(void (^)(SyncanoResponse_APIKeys_GetOne *response))callback;
 /**
  Update existing API key
  
  @param params Update API key parameters
- 
- @return Reponse to existing API key update
  */
 - (void)apikeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params callback:(void (^)(SyncanoResponse_APIKeys_UpdateDescription *response))callback;
 /**
  Delete existing API key
  
  @param params Delete API key parameters
- 
- @return Reponse to existing API key deletion
  */
 - (void)apikeyDelete:(SyncanoParameters_APIKeys_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
 

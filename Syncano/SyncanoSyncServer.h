@@ -100,7 +100,7 @@ typedef void (^SyncanoSyncServerAddedCallback)(SyncanoData *addedData);
  @param connectionOpenCallback   Block to call when connection was opened.
  @param connectionClosedCallback Block to call when connection was closed.
  @param messageReceivedCallback  Block to call when received message from Sync Server.
- @param historyReceivedCallback
+ @param historyReceivedCallback  Block to call when received message history from Sync Server.
  @param syncServerErrorCallback  Block to call when received error from Sync Server.
  @param deletedCallback          Block to call when Sync Server notifies about deleted object(s).
  @param changedCallback          Block to call when Sync Server notifies about changed object(s).

@@ -17,6 +17,4 @@ extern NSString *const SYNCANO_PARAMETERS_KEY_METHOD_NAME;
 
 - (NSString *)methodName;
 
-- (void)prepareParametersDictionary;
-
 @end

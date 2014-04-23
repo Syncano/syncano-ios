@@ -296,6 +296,8 @@ extern NSString * const kSyncanoParametersDataObjectsStateRejected;
 
 @property (strong)    NSDictionary *additional;
 
+- (void)prepareParametersDictionary;
+
 @end
 
 /**

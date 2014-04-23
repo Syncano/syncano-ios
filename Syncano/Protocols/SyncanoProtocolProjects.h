@@ -77,40 +77,30 @@
  Create new project
  
  @param params Parameters of new project
- 
- @return Response for creation of new project
  */
 - (void)projectNew:(SyncanoParameters_Projects_New *)params callback:(void (^)(SyncanoResponse_Projects_New *response))callback;
 /**
  Get project list
  
  @param params Project list parameters
- 
- @return Response for project list
  */
 - (void)projectGet:(SyncanoParameters_Projects_Get *)params callback:(void (^)(SyncanoResponse_Projects_Get *response))callback;
 /**
  Get one project
  
  @param params Single project getter parameters
- 
- @return Response for single project
  */
 - (void)projectGetOne:(SyncanoParameters_Projects_GetOne *)params callback:(void (^)(SyncanoResponse_Projects_GetOne *response))callback;
 /**
  Update existing project
  
  @param params Update project parameters
- 
- @return Reponse to existing project update
  */
 - (void)projectUpdate:(SyncanoParameters_Projects_Update *)params callback:(void (^)(SyncanoResponse_Projects_Update *response))callback;
 /**
  Delete existing project
  
  @param params Delete project parameters
- 
- @return Reponse to existing project deletion
  */
 - (void)projectDelete:(SyncanoParameters_Projects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
 

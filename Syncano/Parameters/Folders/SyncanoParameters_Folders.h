@@ -94,7 +94,7 @@
 /**
  Current folder name.
  */
-@property (strong, nonatomic) NSString *name;
+@property (strong) NSString *name;
 /**
  New source id, can be used for mapping folders to external source.
  */

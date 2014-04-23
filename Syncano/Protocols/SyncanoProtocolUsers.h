@@ -93,56 +93,42 @@
  Create new user
  
  @param params Parameters of new user
- 
- @return Response for creation of new user
  */
 - (void)userNew:(SyncanoParameters_Users_New *)params callback:(void (^)(SyncanoResponse_Users_New *response))callback;
 /**
  Get all users list
  
  @param params User list parameters
- 
- @return Response for user list
  */
 - (void)userGetAll:(SyncanoParameters_Users_GetAll *)params callback:(void (^)(SyncanoResponse_Users_GetAll *response))callback;
 /**
  Get user list
  
  @param params user list parameters
- 
- @return Response for user list
  */
 - (void)userGet:(SyncanoParameters_Users_Get *)params callback:(void (^)(SyncanoResponse_Users_Get *response))callback;
 /**
  Get one user
  
  @param params Single user getter parameters
- 
- @return Response for single user
  */
 - (void)userGetOne:(SyncanoParameters_Users_GetOne *)params callback:(void (^)(SyncanoResponse_Users_GetOne *response))callback;
 /**
  Update existing user
  
  @param params Update user parameters
- 
- @return Reponse to existing user update
  */
 - (void)userUpdate:(SyncanoParameters_Users_Update *)params callback:(void (^)(SyncanoResponse_Users_Update *response))callback;
 /**
  Count existing users
  
  @param params Count users parameters
- 
- @return Reponse to existing user count request
  */
 - (void)userCount:(SyncanoParameters_Users_Count *)params callback:(void (^)(SyncanoResponse_Users_Count *response))callback;
 /**
  Delete existing user
  
  @param params Delete user parameters
- 
- @return Reponse to existing user deletion
  */
 - (void)userDelete:(SyncanoParameters_Users_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
 

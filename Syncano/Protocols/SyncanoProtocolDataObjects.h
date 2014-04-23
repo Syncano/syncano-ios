@@ -117,80 +117,60 @@
  Create new data object
  
  @param params Parameters of new data object
- 
- @return Response for creation of new data object
  */
 - (void)dataNew:(SyncanoParameters_DataObjects_New *)params callback:(void (^)(SyncanoResponse_DataObjects_New *response))callback;
 /**
  Get data object list
  
  @param params Data object list parameters
- 
- @return Response for data object list
  */
 - (void)dataGet:(SyncanoParameters_DataObjects_Get *)params callback:(void (^)(SyncanoResponse_DataObjects_Get *response))callback;
 /**
  Get one data object
  
  @param params Single data object getter parameters
- 
- @return Response for single data object
  */
 - (void)dataGetOne:(SyncanoParameters_DataObjects_GetOne *)params callback:(void (^)(SyncanoResponse_DataObjects_GetOne *response))callback;
 /**
  Update existing data object
  
  @param params Update data object parameters
- 
- @return Reponse to existing data object update
  */
 - (void)dataUpdate:(SyncanoParameters_DataObjects_Update *)params callback:(void (^)(SyncanoResponse_DataObjects_Update *response))callback;
 /**
  Move existing data object
  
  @param params Move data object parameters
- 
- @return Reponse to existing data object move
  */
 - (void)dataMove:(SyncanoParameters_DataObjects_Move *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
  Copy existing data object
  
  @param params Copy data object parameters
- 
- @return Reponse to existing data object copy
  */
 - (void)dataCopy:(SyncanoParameters_DataObjects_Copy *)params callback:(void (^)(SyncanoResponse_DataObjects_Copy *response))callback;
 /**
  Add parent to existing data object
  
  @param params Add parent to data object parameters
- 
- @return Reponse to existing data object parent addition
  */
 - (void)dataAddParent:(SyncanoParameters_DataObjects_AddParent *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
  Remove parent to existing data object
  
  @param params Remove parent to data object parameters
- 
- @return Reponse to existing data object parent removal
  */
 - (void)dataRemoveParent:(SyncanoParameters_DataObjects_RemoveParent *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
  Delete existing data object
  
  @param params Delete data object parameters
- 
- @return Reponse to existing data object deletion
  */
 - (void)dataDelete:(SyncanoParameters_DataObjects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
  Count existing data objects
  
  @param params Count data objects parameters
- 
- @return Reponse to existing data object count request
  */
 - (void)dataCount:(SyncanoParameters_DataObjects_Count *)params callback:(void (^)(SyncanoResponse_DataObjects_Count *response))callback;
 

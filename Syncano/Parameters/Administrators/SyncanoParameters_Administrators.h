@@ -56,7 +56,7 @@
 - (SyncanoParameters_Administrators_GetOne*)initWithAdminId:(NSString*)adminId;
 /**
  
- @param email of administrator
+ @param adminEmail Email of administrator
  
  @return SyncanoParameters object with required field initialized
  */
@@ -120,7 +120,7 @@
 - (SyncanoParameters_Administrators_Delete*)initWithAdminId:(NSString*)adminId;
 /**
  
- @param Email of administrator
+ @param adminEmail Email of administrator
  
  @return SyncanoParameters object with required field initialized
  */

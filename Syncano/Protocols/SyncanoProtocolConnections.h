@@ -32,24 +32,18 @@
  Get connection list
  
  @param params Connection list parameters
- 
- @return Response for connection list
  */
 - (void)connectionGet:(SyncanoParameters_Connections_Get *)params callback:(void (^)(SyncanoResponse_Connections_Get *response))callback;
 /**
  Get all connections list
  
  @param params connection list parameters
- 
- @return Response for connection list
  */
 - (void)connectionGetAll:(SyncanoParameters_Connections_Get_All *)params callback:(void (^)(SyncanoResponse_Connections_Get_All *response))callback;
 /**
  Update existing connection
  
  @param params Update connection parameters
- 
- @return Reponse to existing connection update
  */
 - (void)connectionUpdate:(SyncanoParameters_Connections_Update *)params callback:(void (^)(SyncanoResponse_Connections_Update *response))callback;
 

@@ -26,7 +26,15 @@ NSString * const kSyncanoParametersOrderByUpdatedAt = @"updated_at";
 NSString * const kSyncanoParametersFilterText = @"text";
 NSString * const kSyncanoParametersFilterImage = @"image";
 
-@interface SyncanoParameters ()
+// private protocol to avoid warnings on checking respondsToSelector:@selector(image)
+@protocol ImageSelectorProtocol <NSObject>
+
+@optional
+- (UIImage *)image;
+
+@end
+
+@interface SyncanoParameters () <ImageSelectorProtocol>
 
 @end
 
@@ -82,6 +90,10 @@ NSString * const kSyncanoParametersFilterImage = @"image";
             
             SEL selector  = NSSelectorFromString(selectorString);
             
+            // selector not existing is an exceptional situation (NSException-exceptional, in fact)
+            // considering that exception gets raised anyway, we can care less about possible leak
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             if ([self respondsToSelector:selector]) {
                 if (![self performSelector:selector]) {
                     [NSException raise:@"Wrong value" format:@"parameter %@ in %@ class cannot be nil", selectorString, NSStringFromClass(self.class)];
@@ -89,6 +101,7 @@ NSString * const kSyncanoParametersFilterImage = @"image";
             } else {
                 [NSException raise:@"Wrong validate parameter" format:@"%@ does not respond to %@, check implementation", NSStringFromClass(self.class), selectorString];
             }
+#pragma clang diagnostic pop
         }];
     }
 }

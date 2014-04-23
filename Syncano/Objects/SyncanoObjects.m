@@ -11,11 +11,6 @@
 #import <Mantle/MTLValueTransformer.h>
 #import <objc/runtime.h>
 
-@interface SyncanoObject ()
-
-- (BOOL)isKeyDate:(NSString *)key;
-- (Class)classForKey:(NSString *)key;
-@end
 
 @implementation SyncanoObject
 

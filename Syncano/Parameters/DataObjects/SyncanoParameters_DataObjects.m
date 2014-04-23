@@ -341,7 +341,6 @@ NSString * const kSyncanoParametersDataObjectsStateRejected = @"rejected";
 }
 
 - (void)prepareParametersDictionary {
-	[super prepareParametersDictionary];
 	[self.parameters removeObjectForKey:@"additional"];
 	for (id key in self.additional) {
 		[self.parameters setObject:self.additional[key] forKey:key];

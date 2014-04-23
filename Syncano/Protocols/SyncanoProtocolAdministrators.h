@@ -74,40 +74,30 @@
  Create new administrator
  
  @param params Parameters of new administrator
- 
- @return Response for creation of new administrator
  */
 - (void)adminNew:(SyncanoParameters_Administrators_New *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
  Get administrator list
  
  @param params administrator list parameters
- 
- @return Response for administrator list
  */
 - (void)adminGet:(SyncanoParameters_Administrators_Get *)params callback:(void (^)(SyncanoResponse_Administrators_Get *response))callback;
 /**
  Get one administrator
  
  @param params Single administrator getter parameters
- 
- @return Response for single administrator
  */
 - (void)adminGetOne:(SyncanoParameters_Administrators_GetOne *)params callback:(void (^)(SyncanoResponse_Administrators_GetOne *response))callback;
 /**
  Update existing administrator
  
  @param params Update administrator parameters
- 
- @return Reponse to existing administrator update
  */
 - (void)adminUpdate:(SyncanoParameters_Administrators_Update *)params callback:(void (^)(SyncanoResponse_Administrators_Update *response))callback;
 /**
  Delete existing administrator
  
  @param params Delete administrator parameters
- 
- @return Reponse to existing administrator deletion
  */
 - (void)adminDelete:(SyncanoParameters_Administrators_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
 

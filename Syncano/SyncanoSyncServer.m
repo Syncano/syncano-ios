@@ -670,10 +670,10 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	}];
 }
 
-- (void)connectionUpdate:(SyncanoParameters_Connections_Update *)params callback:(void (^)(SyncanoResponse_Connections_Get *response))callback {
+- (void)connectionUpdate:(SyncanoParameters_Connections_Update *)params callback:(void (^)(SyncanoResponse_Connections_Update *response))callback {
 	[self sendRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
-	        callback((SyncanoResponse_Connections_Get *)response);
+	        callback((SyncanoResponse_Connections_Update *)response);
 		}
 	}];
 }

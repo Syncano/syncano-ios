@@ -38,40 +38,30 @@
  Create new folder
  
  @param params Parameters of new folder
- 
- @return Response for creation of new folder
  */
 - (void)folderNew:(SyncanoParameters_Folders_New *)params callback:(void (^)(SyncanoResponse_Folders_New *response))callback;
 /**
  Get folder list
  
  @param params Folder list parameters
- 
- @return Response for folder list
  */
 - (void)folderGet:(SyncanoParameters_Folders_Get *)params callback:(void (^)(SyncanoResponse_Folders_Get *response))callback;
 /**
  Get one folder
  
  @param params Single folder getter parameters
- 
- @return Response for single folder
  */
 - (void)folderGetOne:(SyncanoParameters_Folders_GetOne *)params callback:(void (^)(SyncanoResponse_Folders_GetOne *response))callback;
 /**
  Update existing folder
  
  @param params Update folder parameters
- 
- @return Reponse to existing folder update
  */
 - (void)folderUpdate:(SyncanoParameters_Folders_Update *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
  Delete existing folder
  
  @param params Delete folder parameters
- 
- @return Reponse to existing folder deletion
  */
 - (void)folderDelete:(SyncanoParameters_Folders_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
 

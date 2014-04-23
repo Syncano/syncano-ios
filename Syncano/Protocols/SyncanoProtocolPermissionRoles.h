@@ -42,8 +42,6 @@
  List of permission roles
  
  @param params Parameters for role list request
- 
- @return Reponse to role list request
  */
 - (void)roleGet:(SyncanoParameters_PermissionRoles_Get *)params callback:(void (^)(SyncanoResponse_PermissionRoles_Get *response))callback;
 @end
