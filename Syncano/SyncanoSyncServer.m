@@ -206,17 +206,105 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	return response;
 }
 
+#pragma mark - Notifying Throught Delegate Or Callback
+
+- (void)notifyAboutConnectionOpened {
+	if (self.connectionOpenCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+		    self.connectionOpenCallback();
+		    [self dequeRequest];
+		});
+	}
+	if ([self.delegate respondsToSelector:@selector(syncServerConnectionOpened:)]) {
+		[self.delegate syncServerConnectionOpened:self];
+	}
+}
+
+- (void)notifyAboutConnectionClosed:(NSError *)error {
+	if (self.connectionClosedCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+		    self.connectionClosedCallback(error);
+		});
+	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:connectionClosedWithError:)]) {
+		[self.delegate syncServer:self connectionClosedWithError:error];
+	}
+}
+
+- (void)notifyAboutMessageReceived:(NSDictionary *)json {
+	if (self.messageReceivedCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+		    self.messageReceivedCallback(json);
+		});
+	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:messageReceived:)]) {
+		[self.delegate syncServer:self messageReceived:json];
+	}
+}
+
+- (void)notifyAboutHistoryReceived:(NSDictionary *)history isLastOne:(BOOL)isLastOne {
+	if (self.historyReceivedCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+		    self.historyReceivedCallback(history, isLastOne);
+		});
+	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:historyReceived:isLastHistoryItem:)]) {
+		[self.delegate syncServer:self historyReceived:history isLastHistoryItem:isLastOne];
+	}
+}
+
+- (void)notifyAboutSyncServerError:(NSString *)error {
+	if (self.syncServerErrorCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+		    self.syncServerErrorCallback(error);
+		});
+	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:errorReceived:)]) {
+		[self.delegate syncServer:self errorReceived:error];
+	}
+}
+
+- (void)notifyAboutDeletedObjects:(NSArray *)targets {
+	if (self.deletedCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+		    self.deletedCallback(targets);
+		});
+	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:notificationDeleted:)]) {
+		[self.delegate syncServer:self notificationDeleted:targets];
+	}
+}
+
+- (void)notifyAboutChangedObjects:(NSArray *)changesArray {
+	if (self.changedCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+		    self.changedCallback(changesArray);
+		});
+	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:notificationChanged:)]) {
+		[self.delegate syncServer:self notificationChanged:changesArray];
+	}
+}
+
+- (void)notifyAboutAddedObject:(SyncanoData *)data {
+	if (self.addedCallback) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+		    self.addedCallback(data);
+		});
+	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:notificationAdded:)]) {
+		[self.delegate syncServer:self notificationAdded:data];
+	}
+}
+
+#pragma mark - Processing Messages From Syncano
+
 - (void)processAuthMessage:(NSDictionary *)json {
 	SyncanoAuth *auth = [SyncanoAuth objectFromJSON:json];
 	self.uuid = auth.uuid;
 	SyncanoDebugClassLog(@"Auth: %@", auth);
 	if ([auth OK]) {
-		if (self.connectionOpenCallback) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-			    self.connectionOpenCallback();
-			    [self dequeRequest];
-			});
-		}
+		[self notifyAboutConnectionOpened];
 	}
 }
 
@@ -229,11 +317,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)processErrorMessage:(NSDictionary *)json {
 	SyncanoError *error = [SyncanoError objectFromJSON:json];
 	SyncanoDebugClassLog(@"Error: %@", error);
-	if (self.syncServerErrorCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.syncServerErrorCallback(error.error);
-		});
-	}
+	[self notifyAboutSyncServerError:error.error];
 }
 
 - (void)processCallresponseMessage:(NSDictionary *)json {
@@ -251,19 +335,11 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)processHistoryMessage:(NSDictionary *)json {
 	id history = json;
 	BOOL isLastOne = [json[@"type"] isEqualToString:@"done"] && [json[@"object"] isEqualToString:@"history"];
-	if (self.historyReceivedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.historyReceivedCallback(history, isLastOne);
-		});
-	}
+	[self notifyAboutHistoryReceived:history isLastOne:isLastOne];
 }
 
 - (void)processGenerealMessage:(NSDictionary *)json {
-	if (self.messageReceivedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.messageReceivedCallback(json);
-		});
-	}
+	[self notifyAboutMessageReceived:json];
 }
 
 - (void)processChangedMessage:(NSDictionary *)json {
@@ -279,21 +355,13 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 		[changesArray addObject:targetChange];
 	}
 	SyncanoDebugClassLog(@"Changed JSON: %@", json);
-	if (self.changedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.changedCallback(changesArray);
-		});
-	}
+	[self notifyAboutChangedObjects:changesArray];
 }
 
 - (void)processAddedMessage:(NSDictionary *)json {
 	NSDictionary *dataJSON = json[@"data"];
 	SyncanoData *data = [SyncanoData objectFromJSON:dataJSON];
-	if (self.addedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.addedCallback(data);
-		});
-	}
+	[self notifyAboutAddedObject:data];
 }
 
 - (void)processDeletedMessage:(NSDictionary *)json {
@@ -301,11 +369,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	if ([targets isKindOfClass:[NSArray class]] == NO) {
 		targets = @[targets];
 	}
-	if (self.deletedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.deletedCallback(targets);
-		});
-	}
+	[self notifyAboutDeletedObjects:targets];
 }
 
 #pragma mark - Reading Raw Data From Syncano
@@ -453,6 +517,11 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	return self;
 }
 
+- (BOOL)connect:(NSError **)errorPointer {
+	BOOL success = [self.socket connectToHost:kSyncanoSyncServerHost onPort:kSyncanoSyncServerPort withTimeout:kSyncanoSyncServerDefaultTimeout error:errorPointer];
+	return success;
+}
+
 - (BOOL)        connect:(NSError **)errorPointer
          connectionOpen:(SyncanoSyncServerConnectionOpenCallback)connectionOpenCallback
        connectionClosed:(SyncanoSyncServerConnectionClosedCallback)connectionClosedCallback
@@ -473,8 +542,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	self.deletedCallback = deletedCallback;
 	self.changedCallback = changedCallback;
 	self.addedCallback = addedCallback;
-	BOOL success = [self.socket connectToHost:kSyncanoSyncServerHost onPort:kSyncanoSyncServerPort withTimeout:kSyncanoSyncServerDefaultTimeout error:errorPointer];
-	return success;
+	return [self connect:errorPointer];
 }
 
 - (void)closeConnection {
@@ -636,11 +704,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
  **/
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err {
-	if (self.connectionClosedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.connectionClosedCallback(err);
-		});
-	}
+	[self notifyAboutConnectionClosed:err];
 }
 
 /**
