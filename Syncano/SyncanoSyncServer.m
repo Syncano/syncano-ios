@@ -16,6 +16,8 @@
 NSString *const kSyncanoSyncServerHost = @"api.syncano.com";
 NSString *const kSyncanoSyncServerPeerName = @"*.syncano.com";
 
+NSString *const kSyncanoSyncServerTerminalCharacter = @"}\n";
+
 //NSString *const kSyncanoSyncServerHost = @"api.syncanoengine.com";
 //NSString *const kSyncanoSyncServerPeerName = @"*.syncanoengine.com";
 
@@ -23,7 +25,7 @@ NSInteger const kSyncanoSyncServerPort = 8200;
 NSTimeInterval const kSyncanoSyncServerDefaultTimeout = 10;
 NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
-@interface HYDCallback : NSObject
+@interface SYNCallback : NSObject
 @property (strong)    dispatch_queue_t callbackQueue;
 @property (strong)    SyncanoSyncServerCallback callback;
 @property (strong)    SyncanoSyncServerBatchCallback batchCallback;
@@ -32,7 +34,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)runCallbackWithObject:(id)object;
 @end
 
-@implementation HYDCallback
+@implementation SYNCallback
 - (void)runCallbackWithObject:(id)object {
 	dispatch_queue_t queue = self.callbackQueue;
 	if (!queue) {
@@ -52,13 +54,32 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 @end
 
-@interface HYDQueuedRequest : NSObject
+@interface SYNQueuedRequest : NSObject
 @property (strong)    SyncanoParameters *parameters;
 @property (strong)    SyncanoSyncServerCallback callback;
 @property (strong)    SyncanoSyncServerBatchCallback batchCallback;
+- (SYNQueuedRequest *)initWithParams:(SyncanoParameters *)params
+                            callback:(SyncanoSyncServerCallback)callback
+                       batchCallback:(SyncanoSyncServerBatchCallback)batchCallback;
 @end
 
-@implementation HYDQueuedRequest
+@implementation SYNQueuedRequest
+- (id)init {
+	return [self initWithParams:nil callback:NULL batchCallback:NULL];
+}
+
+- (id)initWithParams:(SyncanoParameters *)params
+            callback:(SyncanoSyncServerCallback)callback
+       batchCallback:(SyncanoSyncServerBatchCallback)batchCallback {
+	self = [super init];
+	if (self) {
+		self.parameters = params;
+		self.callback = callback;
+		self.batchCallback = batchCallback;
+	}
+	return self;
+}
+
 @end
 
 #pragma mark - Private Interface
@@ -76,6 +97,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 @property (strong, nonatomic)  NSMutableDictionary *callbacksForId;
 @property (strong, nonatomic)  NSMutableArray *requestsQueue;
+
+@property (strong, nonatomic)  NSMutableData *unprocessedData;
 
 @property (strong)    SyncanoSyncServerConnectionOpenCallback connectionOpenCallback;
 @property (strong)    SyncanoSyncServerConnectionClosedCallback connectionClosedCallback;
@@ -215,7 +238,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 - (void)processCallresponseMessage:(NSDictionary *)json {
 	NSNumber *messageId = json[@"message_id"];
-	HYDCallback *syncanoCallback = self.callbacksForId[messageId];
+	SYNCallback *syncanoCallback = self.callbacksForId[messageId];
 	[self.callbacksForId removeObjectForKey:messageId];
 	SyncanoResponse *response = [self responseForClass:syncanoCallback.responseClass fromJSON:json];
 	SyncanoDebugClassLog(@"Callresponse id: %@", messageId);
@@ -285,8 +308,16 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	}
 }
 
+#pragma mark - Reading Raw Data From Syncano
+
 - (void)readDataFromSocket {
-	[self.socket readDataToData:[@"}\n" dataUsingEncoding : NSUTF8StringEncoding] withTimeout:-1 tag:0];
+	/*
+	   ASYNC SOCKET DOES NOT HANDLE PROPERLY READING TO DATA WHEN INCOMING
+	   DATA IS FLOWING IN IN PACKETS AND ONE PACKET DOES NOT CONTAIN TERMINAL DATA
+
+	   [self.socket readDataToData:[@"}\n" dataUsingEncoding : NSUTF8StringEncoding] withTimeout:-1 tag:0];
+	 */
+	[self.socket readDataWithTimeout:-1 tag:0];
 }
 
 - (void)receivedData:(NSData *)data tag:(long)tag {
@@ -322,18 +353,40 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	}
 }
 
+- (NSRange)rangeOfTerminalDataInData:(NSData *)data {
+	NSData *dataToFind = [kSyncanoSyncServerTerminalCharacter dataUsingEncoding:NSUTF8StringEncoding];
+	NSRange rangeOfData = [data rangeOfData:dataToFind options:0 range:NSMakeRange(0, data.length)];
+	return rangeOfData;
+}
+
+- (void)processUnprocessedData {
+	NSRange rangeOfData = [self rangeOfTerminalDataInData:self.unprocessedData];
+	BOOL isTerminalCharacterFoundInUnprocessedData = (rangeOfData.location != NSNotFound);
+	if (isTerminalCharacterFoundInUnprocessedData) {
+		NSData *dataUpToTerminalCharacterFound = [self.unprocessedData subdataWithRange:NSMakeRange(0, rangeOfData.location + rangeOfData.length)];
+		NSData *dataAfterTerminalCharacter = [self.unprocessedData subdataWithRange:NSMakeRange((rangeOfData.location + rangeOfData.length), (self.unprocessedData.length - (rangeOfData.location + rangeOfData.length)))];
+		[self receivedData:dataUpToTerminalCharacterFound tag:0];
+		self.unprocessedData = [dataAfterTerminalCharacter mutableCopy];
+		[self processUnprocessedData];
+	}
+}
+
+- (void)processNewIncomingData:(NSData *)incomingData {
+	[self.unprocessedData appendData:incomingData];
+	[self processUnprocessedData];
+}
+
+#pragma mark - Queueing Mechanism
+
 - (void)queueRequest:(SyncanoParameters *)parameters callback:(SyncanoSyncServerCallback)callback {
-	HYDQueuedRequest *queuedRequest = [[HYDQueuedRequest alloc] init];
-	queuedRequest.parameters = parameters;
-	queuedRequest.callback = callback;
+	SYNQueuedRequest *queuedRequest = [[SYNQueuedRequest alloc] initWithParams:parameters callback:callback batchCallback:NULL];
 	[self.requestsQueue addObject:queuedRequest];
 }
 
 - (void)dequeRequest {
 	if (self.requestsQueue.count > 0) {
-		HYDQueuedRequest *queuedRequest = self.requestsQueue[0];
+		SYNQueuedRequest *queuedRequest = self.requestsQueue[0];
 		[self.requestsQueue removeObjectAtIndex:0];
-		//        [self sendRequest:queuedRequest.parameters callback:queuedRequest.callback];
 		[self prepareParametersAndSend:queuedRequest.parameters callback:queuedRequest.callback];
 	}
 }
@@ -436,7 +489,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	NSNumber *messageId = @(++self.messageId);
 	NSDictionary *jsonToSend = [parameters syncServerDictionaryForMessageId:messageId];
 	NSData *dataToSend = [self dataFromJSON:jsonToSend];
-	HYDCallback *syncanoCallback = [[HYDCallback alloc] init];
+	SYNCallback *syncanoCallback = [[SYNCallback alloc] init];
 	syncanoCallback.responseClass = [[parameters responseFromJSON:nil] class];
 	syncanoCallback.callback = callback;
 	syncanoCallback.callbackQueue = dispatch_get_main_queue();
@@ -508,7 +561,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	SyncanoDebugClassLog(@"DidReadData, tag: %ld", tag);
 	NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	SyncanoDebugClassLog(@"DidReadString: %@", (string.length > 20) ? [string substringToIndex:20] : string);
-	[self receivedData:data tag:tag];
+	[self processNewIncomingData:data];
 }
 
 /**
