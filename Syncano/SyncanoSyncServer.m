@@ -87,7 +87,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 @interface SyncanoSyncServer () <GCDAsyncSocketDelegate>
 @property (strong, readwrite)  NSString *domain;
-@property (strong, readwrite)  NSString *api_key;
+@property (strong, readwrite)  NSString *apiKey;
 @property (strong, readwrite)  NSString *uuid;
 
 @property (strong, readwrite)  NSDate *lastPingTimestamp;
@@ -141,12 +141,12 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 /*----------------------------------------------------------------------------*/
 
 - (BOOL)loginClient {
-	BOOL areAllRequiredParametersGiven = (self.api_key && self.domain);
+	BOOL areAllRequiredParametersGiven = (self.apiKey && self.domain);
 	if (self.isClientLoggedIn || areAllRequiredParametersGiven == NO) {
 		return NO;
 	}
 	NSMutableDictionary *loginDict = [@{
-	                                      @"api_key":self.api_key,
+	                                      @"api_key":self.apiKey,
 	                                      @"instance":self.domain
 									  } mutableCopy];
 	if (self.name.length > 0) {
@@ -155,11 +155,11 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	if (self.state.length > 0) {
 		[loginDict setObject:self.state forKey:@"state"];
 	}
-	if (self.since_id) {
-		[loginDict setObject:self.since_id forKey:@"since_id"];
+	if (self.sinceId) {
+		[loginDict setObject:self.sinceId forKey:@"since_id"];
 	}
-	else if (self.since_time) {
-		NSString *dateText = [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:self.since_time];
+	else if (self.sinceTime) {
+		NSString *dateText = [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:self.sinceTime];
 		[loginDict setObject:dateText forKey:@"since_time"];
 	}
 	NSData *dataToSend = [self dataFromJSON:loginDict];
@@ -397,8 +397,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 + (void)initialize {
 }
 
-+ (SyncanoSyncServer *)syncanoSyncServerForDomain:(NSString *)domain api_key:(NSString *)api_key {
-	SyncanoSyncServer *syncanoSyncServer = [[self alloc] initWithDomain:domain api_key:api_key];
++ (SyncanoSyncServer *)syncanoSyncServerForDomain:(NSString *)domain apiKey:(NSString *)apiKey {
+	SyncanoSyncServer *syncanoSyncServer = [[self alloc] initWithDomain:domain apiKey:apiKey];
 	return syncanoSyncServer;
 }
 
@@ -444,10 +444,10 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	return self;
 }
 
-- (SyncanoSyncServer *)initWithDomain:(NSString *)domain api_key:(NSString *)api_key {
+- (SyncanoSyncServer *)initWithDomain:(NSString *)domain apiKey:(NSString *)apiKey {
 	self = [super init];
 	if (self) {
-		self.api_key = api_key;
+		self.apiKey = apiKey;
 		self.domain = domain;
 	}
 	return self;

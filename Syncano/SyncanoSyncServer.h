@@ -60,38 +60,38 @@ typedef void (^SyncanoSyncServerAddedCallback)(SyncanoData *addedData);
 @property (strong, nonatomic)  NSString *state;
 
 /**
- By passing `since_id` you will get history items that have greater id than specified.
+   By passing `sinceId` you will get history items that have greater id than specified.
 
- @warning Has to be set before [connect:](connect:connectionOpen:connectionClosed:messageReceived:historyReceived:syncServerError:notificationDeleted:notificationChanged:notificationAdded:) method is called to affect the connection.
+   @warning Has to be set before [connect:](connect:connectionOpen:connectionClosed:messageReceived:historyReceived:syncServerError:notificationDeleted:notificationChanged:notificationAdded:) method is called to affect the connection.
  */
-@property (strong, nonatomic) NSNumber *since_id;
+@property (strong, nonatomic) NSNumber *sinceId;
 
 /**
- By passing `since_time` you will get history items that occurred after specified time.
+   By passing `sinceTime` you will get history items that occurred after specified time.
 
- @warning Has to be set before [connect:](connect:connectionOpen:connectionClosed:messageReceived:historyReceived:syncServerError:notificationDeleted:notificationChanged:notificationAdded:) method is called to affect the connection.
+   @warning Has to be set before [connect:](connect:connectionOpen:connectionClosed:messageReceived:historyReceived:syncServerError:notificationDeleted:notificationChanged:notificationAdded:) method is called to affect the connection.
  */
-@property (strong, nonatomic) NSDate *since_time;
-
-/**
- Creates SyncanoSyncServer object in given domain with passed credentials. You should store it and use as a shared object in your application.
- 
- @param domain   Your subdomain in Syncano
- @param api_key  API Key of used instance
- 
- @return SyncanoSyncServer object, configured to communicate with your subdomain instance using given credentials.
- */
-+ (SyncanoSyncServer *)syncanoSyncServerForDomain:(NSString *)domain api_key:(NSString *)api_key;
+@property (strong, nonatomic) NSDate *sinceTime;
 
 /**
- Initializes SyncanoSyncServer object in given domain with passed credentials. You should store it and used as a shared object in your application.
- 
- @param domain   Your subdomain in Syncano
- @param api_key  API Key of used instance
- 
- @return SyncanoSyncServer initialized object, configured to communicate with your subdomain instance using given credentials.
+   Creates SyncanoSyncServer object in given domain with passed credentials. You should store it and use as a shared object in your application.
+
+   @param domain   Your subdomain in Syncano
+   @param apiKey  API Key of used instance
+
+   @return SyncanoSyncServer object, configured to communicate with your subdomain instance using given credentials.
  */
-- (SyncanoSyncServer *)initWithDomain:(NSString *)domain api_key:(NSString *)api_key;
++ (SyncanoSyncServer *)syncanoSyncServerForDomain:(NSString *)domain apiKey:(NSString *)apiKey;
+
+/**
+   Initializes SyncanoSyncServer object in given domain with passed credentials. You should store it and used as a shared object in your application.
+
+   @param domain   Your subdomain in Syncano
+   @param apiKey  API Key of used instance
+
+   @return SyncanoSyncServer initialized object, configured to communicate with your subdomain instance using given credentials.
+ */
+- (SyncanoSyncServer *)initWithDomain:(NSString *)domain apiKey:(NSString *)apiKey;
 
 /**
  Connects to Syncano Sync Server using credentials passed when creating this Sync Server object.
