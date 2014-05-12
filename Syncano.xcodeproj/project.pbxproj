@@ -22,12 +22,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		15C1F3DD19213140005E4EC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C1F3DC19213140005E4EC4 /* UIKit.framework */; };
 		97F8EC4AE2134AED9C970E62 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFEF72E1379411185D85EDA /* libPods.a */; };
 		BE98F69818D6F59C001EC84E /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = BE98F69718D6F59C001EC84E /* server.der */; };
 		BEE157CA18D2F33900FFCB6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D0729186863B00020A116 /* Foundation.framework */; };
 		BEE157D718D2F33900FFCB6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D0737186863B00020A116 /* XCTest.framework */; };
 		BEE157D818D2F33900FFCB6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D0729186863B00020A116 /* Foundation.framework */; };
-		BEE157D918D2F33A00FFCB6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D073A186863B00020A116 /* UIKit.framework */; };
 		BEE157DC18D2F33A00FFCB6B /* libsyncano-ios-library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE157C918D2F33900FFCB6B /* libsyncano-ios-library.a */; };
 		BEE157E218D2F33A00FFCB6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEE157E018D2F33A00FFCB6B /* InfoPlist.strings */; };
 		BEE157E418D2F33A00FFCB6B /* syncano_ios_libraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE157E318D2F33A00FFCB6B /* syncano_ios_libraryTests.m */; };
@@ -103,7 +103,6 @@
 		151E697A18D22CB90034BBEB /* SyncanoResponse_Connections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse_Connections.m; path = Responses/Identities/SyncanoResponse_Connections.m; sourceTree = "<group>"; };
 		152D0729186863B00020A116 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		152D0737186863B00020A116 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		152D073A186863B00020A116 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		152D07511868641F0020A116 /* Syncano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Syncano.h; path = ../Syncano/Syncano.h; sourceTree = "<group>"; };
 		152D07521868641F0020A116 /* Syncano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Syncano.m; path = ../Syncano/Syncano.m; sourceTree = "<group>"; };
 		152D0757186864B20020A116 /* SyncanoParametersListing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoParametersListing.h; path = Parameters/SyncanoParametersListing.h; sourceTree = "<group>"; };
@@ -155,6 +154,7 @@
 		15AEA8CE18D0AF930046A35D /* SyncanoResponse_APIKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse_APIKeys.m; path = Responses/APIKeys/SyncanoResponse_APIKeys.m; sourceTree = "<group>"; };
 		15AEA8D118D0AFA70046A35D /* SyncanoResponse_PermissionRoles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse_PermissionRoles.h; path = Responses/PermissionRoles/SyncanoResponse_PermissionRoles.h; sourceTree = "<group>"; };
 		15AEA8D218D0AFA70046A35D /* SyncanoResponse_PermissionRoles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse_PermissionRoles.m; path = Responses/PermissionRoles/SyncanoResponse_PermissionRoles.m; sourceTree = "<group>"; };
+		15C1F3DC19213140005E4EC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		15F55CD5187EBFBA001BC840 /* SyncanoResponse_Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_Projects.h; sourceTree = "<group>"; };
 		15F55CD6187EBFBA001BC840 /* SyncanoResponse_Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_Projects.m; sourceTree = "<group>"; };
 		15F55CD9187EC11E001BC840 /* SyncanoResponse_Collections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_Collections.h; sourceTree = "<group>"; };
@@ -177,7 +177,6 @@
 		BEE157DF18D2F33A00FFCB6B /* syncano-ios-libraryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "syncano-ios-libraryTests-Info.plist"; sourceTree = "<group>"; };
 		BEE157E118D2F33A00FFCB6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BEE157E318D2F33A00FFCB6B /* syncano_ios_libraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = syncano_ios_libraryTests.m; sourceTree = "<group>"; };
-		BEE1580918D2F5D000FFCB6B /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Release-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		BEEB211118D23F5C00CAA197 /* SyncanoProtocolPermissionRoles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolPermissionRoles.h; path = Protocols/SyncanoProtocolPermissionRoles.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +185,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15C1F3DD19213140005E4EC4 /* UIKit.framework in Frameworks */,
 				BEE157CA18D2F33900FFCB6B /* Foundation.framework in Frameworks */,
 				97F8EC4AE2134AED9C970E62 /* libPods.a in Frameworks */,
 			);
@@ -196,7 +196,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE157D718D2F33900FFCB6B /* XCTest.framework in Frameworks */,
-				BEE157D918D2F33A00FFCB6B /* UIKit.framework in Frameworks */,
 				BEE157D818D2F33900FFCB6B /* Foundation.framework in Frameworks */,
 				BEE157DC18D2F33A00FFCB6B /* libsyncano-ios-library.a in Frameworks */,
 			);
@@ -247,10 +246,9 @@
 		152D0728186863B00020A116 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BEE1580918D2F5D000FFCB6B /* libPods.a */,
+				15C1F3DC19213140005E4EC4 /* UIKit.framework */,
 				152D0729186863B00020A116 /* Foundation.framework */,
 				152D0737186863B00020A116 /* XCTest.framework */,
-				152D073A186863B00020A116 /* UIKit.framework */,
 				4CFEF72E1379411185D85EDA /* libPods.a */,
 			);
 			name = Frameworks;
