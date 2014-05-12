@@ -86,3 +86,7 @@ params.dataId = @“123456”; // set if you want to download one particular obj
 ```
 
 We also offer synchronous connections if you’d like to manage threading yourself. You can use the exact same methods to connect with Syncano using TCP socket - just use SyncanoSyncServer class object instead of Syncano class.
+
+## License
+
+Syncano's iOS Library (syncano-ios) is available under the MIT license. See the LICENSE file for more info.
