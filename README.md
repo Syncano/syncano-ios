@@ -43,7 +43,7 @@ To remove external library just remove line with this library in 'Podfile', save
 
 ### Import Syncano header
 
-```objective-c
+```smalltalk
 /// Used for REST connection
 #import <Syncano/Syncano.h>
 ```
@@ -51,14 +51,14 @@ To remove external library just remove line with this library in 'Podfile', save
 ### Create main Syncano object 
 (This will be used to send requests to your instance of Syncano.):
 
-```objective-c
+```smalltalk
 Syncano *syncano = [Syncano syncanoForDomain:@“YOUR-SYNCANO-DOMAIN” apiKey:@“YOUR-API-KEY-123456”];
 ```
 
 ### Send data to Syncano 
 (Use a project ID and collection ID from your admin GUI, i.e. YourDomain.syncano.com, for the below. You can use the “default” values or create your own.):
 
-```objective-c
+```smalltalk
 NSString *textToSend = @“Some sample text”;
 UIImage *imageToSend = [UIImage imageNamed:@“sampleImage.png”];
 
@@ -75,7 +75,7 @@ params.image = imageToSend;
 
 ### Download data from Syncano:
 
-```objective-c
+```smalltalk
 ///Describe what you want to download by using parameters
 SyncanoParameters_DataObjects_Get *params = [[SyncanoParameters_DataObjects_Get alloc] initWithProjectId:@“PROJECT_ID” collectionId:@“COLLECTION_ID”];
 params.dataId = @“123456”; // set if you want to download one particular object. Leave empty if you want to download all objects from that collection
