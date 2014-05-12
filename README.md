@@ -72,7 +72,7 @@ params.image = imageToSend;
 
 ### Download data from Syncano:
 
-```objective-c
+```c
 ///Describe what you want to download by using parameters
 SyncanoParameters_DataObjects_Get *params = [[SyncanoParameters_DataObjects_Get alloc] initWithProjectId:@“PROJECT_ID” collectionId:@“COLLECTION_ID”];
 params.dataId = @“123456”; // set if you want to download one particular object. Leave empty if you want to download all objects from that collection
