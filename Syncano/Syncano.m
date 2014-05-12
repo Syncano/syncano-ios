@@ -58,7 +58,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	NSMutableArray *multicallParameters = [NSMutableArray arrayWithCapacity:batchParameters.count];
 	for (int i = 0; i < batchParameters.count; ++i) {
 		SyncanoParameters *parameters = batchParameters[i];
-        [self addAPIKeyToParameters:parameters];
+		[self addAPIKeyToParameters:parameters];
 		NSDictionary *postParams = [parameters jsonRPCPostDictionaryForJsonRPCId:@(0)];
 		[multicallParameters addObject:postParams];
 	}
@@ -90,13 +90,13 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (AFHTTPRequestOperationManager *)operationManager {
 	if (_operationManager == nil) {
 		_operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[self fullDomain]]];
-        
-        AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
-        securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
-        securityPolicy.validatesCertificateChain = NO;
-        securityPolicy.pinnedCertificates = @[ [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]] ];
-        
-        _operationManager.securityPolicy = securityPolicy;
+
+		AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
+		securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
+		securityPolicy.validatesCertificateChain = NO;
+		securityPolicy.pinnedCertificates = @[[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]]];
+
+		_operationManager.securityPolicy = securityPolicy;
 	}
 	return _operationManager;
 }
@@ -104,12 +104,12 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (AFHTTPRequestOperationManager *)synchronousOperationManager {
 	if (_synchronousOperationManager == nil) {
 		_synchronousOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[self fullDomain]]];
-        
-        AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
-        securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
-        securityPolicy.validatesCertificateChain = NO;
-        securityPolicy.pinnedCertificates = @[ [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]] ];
-        _synchronousOperationManager.securityPolicy = securityPolicy;
+
+		AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
+		securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
+		securityPolicy.validatesCertificateChain = NO;
+		securityPolicy.pinnedCertificates = @[[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]]];
+		_synchronousOperationManager.securityPolicy = securityPolicy;
 	}
 	return _synchronousOperationManager;
 }
@@ -164,6 +164,45 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return self;
 }
 
+#pragma mark - Downloading images from given URL
+
+- (void)downloadImageFromURL:(NSString *)url
+         useSynchronousQueue:(BOOL)useSynchronousQueue
+                    callback:(void (^)(UIImage *image))callback {
+	AFHTTPRequestOperationManager *operationManager = useSynchronousQueue ? self.synchronousOperationManager : self.operationManager;
+	AFHTTPRequestOperation *requestOperation = [operationManager HTTPRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]] success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+	    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, useSynchronousQueue);
+	    UIImage *image = responseObject;
+	    if (callback) {
+	        callback(image);
+		}
+	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+	    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, useSynchronousQueue);
+	    if (callback) {
+	        callback(nil);
+		}
+	}];
+	requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+	[requestOperation start];
+}
+
+- (UIImage *)downloadImageFromURL:(NSString *)url {
+	__block UIImage *imageResponse = nil;
+	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+	[self downloadImageFromURL:url useSynchronousQueue:YES callback: ^(UIImage *image) {
+	    imageResponse = image;
+	    dispatch_semaphore_signal(semaphore);
+	}];
+	while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
+		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
+	}
+	return imageResponse;
+}
+
+- (void)downloadImageFromURL:(NSString *)url callback:(void (^)(UIImage *image))callback {
+	[self downloadImageFromURL:url useSynchronousQueue:NO callback:callback];
+}
+
 #pragma mark - Single Requests
 /*----------------------------------------------------------------------------*/
 
@@ -181,25 +220,24 @@ NSString *const multicallParamsKey = @"paramsKey";
 }
 
 - (void)sendAsyncRequest:(SyncanoParameters *)params callback:(SyncanoCallback)callback {
-    [self sendRequest:params synchronous:NO callback:callback];
+	[self sendRequest:params synchronous:NO callback:callback];
 }
 
 - (void)sendRequest:(SyncanoParameters *)params synchronous:(BOOL)synchronous callback:(SyncanoCallback)callback {
-    [self addAPIKeyToParameters:params];
-    
-    AFHTTPRequestOperationManager * operationManager = synchronous ? self.synchronousOperationManager : self.operationManager;
+	[self addAPIKeyToParameters:params];
+
+	AFHTTPRequestOperationManager *operationManager = synchronous ? self.synchronousOperationManager : self.operationManager;
 	operationManager.requestSerializer = self.requestSerializer;
 	AFHTTPRequestOperation *request = [operationManager POST:kSyncanoModuleJSONRPC parameters:[params jsonRPCPostDictionaryForJsonRPCId:@(0)] success: ^(AFHTTPRequestOperation *operation, id responseObject) {
-        SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
+	    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
 
 	    if (callback) {
 	        SyncanoResponse *response = [params responseFromJSON:responseObject];
 	        callback(response);
 		}
-        
 	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-        SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
-        
+	    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
+
 	    if (callback) {
 	        SyncanoResponse *response = [params responseFromJSON:nil];
 	        response.error = error;
@@ -540,6 +578,14 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return (SyncanoResponse_DataObjects_Count *)[self sendRequest:params];
 }
 
+- (UIImage *)downloadImageFull:(SyncanoImage *)imageInfo {
+	return [self downloadImageFromURL:imageInfo.image];
+}
+
+- (UIImage *)downloadImageThumbnail:(SyncanoImage *)imageInfo {
+	return [self downloadImageFromURL:imageInfo.thumbnail];
+}
+
 #pragma mark - Asynchronized
 
 - (void)dataNew:(SyncanoParameters_DataObjects_New *)params callback:(void (^)(SyncanoResponse_DataObjects_New *response))callback {
@@ -620,6 +666,14 @@ NSString *const multicallParamsKey = @"paramsKey";
 	        callback((SyncanoResponse_DataObjects_Count *)response);
 		}
 	}];
+}
+
+- (void)downloadImageFull:(SyncanoImage *)imageInfo callback:(void (^)(UIImage *))callback {
+	[self downloadImageFromURL:imageInfo.image callback:callback];
+}
+
+- (void)downloadImageThumbnail:(SyncanoImage *)imageInfo callback:(void (^)(UIImage *))callback {
+	[self downloadImageFromURL:imageInfo.thumbnail callback:callback];
 }
 
 #pragma mark protocol SyncanoProtocolUsers
