@@ -167,29 +167,26 @@ NSString *const multicallParamsKey = @"paramsKey";
 #pragma mark - Downloading images from given URL
 
 - (void)downloadImageFromURL:(NSString *)url
-         useSynchronousQueue:(BOOL)useSynchronousQueue
                     callback:(void (^)(UIImage *image))callback {
-	AFHTTPRequestOperationManager *operationManager = useSynchronousQueue ? self.synchronousOperationManager : self.operationManager;
-	AFHTTPRequestOperation *requestOperation = [operationManager HTTPRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]] success: ^(AFHTTPRequestOperation *operation, id responseObject) {
-	    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, useSynchronousQueue);
+	AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+	requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+	[requestOperation setCompletionBlockWithSuccess: ^(AFHTTPRequestOperation *operation, id responseObject) {
 	    UIImage *image = responseObject;
 	    if (callback) {
 	        callback(image);
 		}
 	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-	    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, useSynchronousQueue);
 	    if (callback) {
 	        callback(nil);
 		}
 	}];
-	requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
 	[requestOperation start];
 }
 
 - (UIImage *)downloadImageFromURL:(NSString *)url {
 	__block UIImage *imageResponse = nil;
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-	[self downloadImageFromURL:url useSynchronousQueue:YES callback: ^(UIImage *image) {
+	[self downloadImageFromURL:url callback: ^(UIImage *image) {
 	    imageResponse = image;
 	    dispatch_semaphore_signal(semaphore);
 	}];
@@ -197,10 +194,6 @@ NSString *const multicallParamsKey = @"paramsKey";
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
 	}
 	return imageResponse;
-}
-
-- (void)downloadImageFromURL:(NSString *)url callback:(void (^)(UIImage *image))callback {
-	[self downloadImageFromURL:url useSynchronousQueue:NO callback:callback];
 }
 
 #pragma mark - Single Requests
