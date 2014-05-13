@@ -18,11 +18,15 @@ We are using CocoaPods for external libraries dependencies and their installatio
  
 To install CocoaPods on your Mac type: 
 
-	$ [sudo] gem install cocoapods
+```bash
+$ [sudo] gem install cocoapods
+```
 
 To install libraries used by `syncano-ios` execute command in the same directory as 'Podfile' file:
 
-	$ pod install
+```bash
+$ pod install
+```
 
 To compile the library you should use `syncano-ios.xcworkspace` not `.xcodeproj`!
 
@@ -54,18 +58,24 @@ Unzip previously downloaded files, drag the `.xcodeproject` files to your projec
 
 If you use CocoaPods, after adding our library to your Podfile, type the following into your terminal:
 
-	$ pod install
+```bash
+$ pod install
+```
 
 ## Modification
 ------------
 
 To add external library dependency, edit 'Podfile' in main directory and type:
 
-	pod 'library name' 
+```bash
+pod 'library name' 
+```
 
 To remove external library, remove line with this library in 'Podfile', save it and execute command:
 
-	$ pod install
+```bash
+$ pod install
+```
 
 Documentation and further information on CocoaPods available: http://cocoapods.org/
 
