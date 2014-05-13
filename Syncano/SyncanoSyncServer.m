@@ -497,6 +497,13 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	return _requestsQueue;
 }
 
+- (NSMutableData *)unprocessedData {
+	if (_unprocessedData == nil) {
+		_unprocessedData = [NSMutableData data];
+	}
+	return _unprocessedData;
+}
+
 #pragma mark - Public Methods
 /*----------------------------------------------------------------------------*/
 
