@@ -1,7 +1,4 @@
 # Syncano iOS Library
----
-
-# Building from source
 
 ## Build Library
 -------------
@@ -41,44 +38,55 @@ To remove external library just remove line with this library in 'Podfile', save
 ## Getting started
 ---
 
-##### Import Syncano header
+### Import Syncano header
 
-	/// Used for REST connection
-	#import <Syncano/Syncano.h>
+```objective-c
+/// Used for REST connection
+#import <Syncano/Syncano.h>
+```
 
-##### Create main Syncano object 
+### Create main Syncano object 
 (This will be used to send requests to your instance of Syncano.):
 
-	Syncano *syncano = [Syncano syncanoForDomain:@“YOUR-SYNCANO-DOMAIN” apiKey:@“YOUR-API-KEY-123456”];
+```objective-c
+Syncano *syncano = [Syncano syncanoForDomain:@“YOUR-SYNCANO-DOMAIN” apiKey:@“YOUR-API-KEY-123456”];
+```
 
-##### Send data to Syncano 
+### Send data to Syncano 
 (Use a project ID and collection ID from your admin GUI, i.e. YourDomain.syncano.com, for the below. You can use the “default” values or create your own.):
 
-	NSString *textToSend = @“Some sample text”;
-	UIImage *imageToSend = [UIImage imageNamed:@“sampleImage.png”];
+```objective-c
+NSString *textToSend = @“Some sample text”;
+UIImage *imageToSend = [UIImage imageNamed:@“sampleImage.png”];
 
-	SyncanoParameters_DataObjects_New *params = [[SyncanoParameters_DataObjects_New alloc] initWithProjectId:@“PROJECT_ID” collectionId:@“COLLECTION_ID” state:@"pending"];
-	params.text = textToSend;
-	params.image = imageToSend;
+SyncanoParameters_DataObjects_New *params = [[SyncanoParameters_DataObjects_New alloc] initWithProjectId:@“PROJECT_ID” collectionId:@“COLLECTION_ID” state:@"pending"];
+params.text = textToSend;
+params.image = imageToSend;
 
-	///For an asynchronous connection, enter the below and work with the returned response
-	[syncano dataNew:params callback:^(SyncanoResponse_DataObjects_New *response) {
-		if (response.isResponseOK) {
-		}
+///For an asynchronous connection, enter the below and work with the returned response
+[syncano dataNew:params callback:^(SyncanoResponse_DataObjects_New *response) {
+	if (response.isResponseOK) {
 	}
+}
+```
 
-##### Download data from Syncano:
+### Download data from Syncano:
 
-	///Describe what you want to download by using parameters
-	SyncanoParameters_DataObjects_Get *params = [[SyncanoParameters_DataObjects_Get alloc] initWithProjectId:@“PROJECT_ID” collectionId:@“COLLECTION_ID”];
-	params.dataId = @“123456”; // set if you want to download one particular object. Leave empty if you want to download all objects from that collection
+```objective-c
+///Describe what you want to download by using parameters
+SyncanoParameters_DataObjects_Get *params = [[SyncanoParameters_DataObjects_Get alloc] initWithProjectId:@“PROJECT_ID” collectionId:@“COLLECTION_ID”];
+params.dataId = @“123456”; // set if you want to download one particular object. Leave empty if you want to download all objects from that collection
 
-	///For an asynchronous connection, enter the below and work with the returned response
+///For an asynchronous connection, enter the below and work with the returned response
 	[syncano dataGet:params callback:^(SyncanoResponse_DataObjects_Get *response) {
-		if (response.isResponseOK) {
-			SyncanoData *data = response.data;
-		}
+	if (response.isResponseOK) {
+		SyncanoData *data = response.data;
 	}
+}
+```
 
 We also offer synchronous connections if you’d like to manage threading yourself. You can use the exact same methods to connect with Syncano using TCP socket - just use SyncanoSyncServer class object instead of Syncano class.
 
+## License
+
+Syncano's iOS Library (syncano-ios) is available under the MIT license. See the LICENSE file for more info.
