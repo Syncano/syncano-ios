@@ -11,16 +11,14 @@
 #import <Mantle/MTLValueTransformer.h>
 #import <objc/runtime.h>
 
-
 @implementation SyncanoObject
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{};
 }
 
-
 + (instancetype)objectFromJSON:(NSDictionary *)json {
-    return [MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:json error:nil];
+	return [MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:json error:nil];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
@@ -61,27 +59,27 @@
 }
 
 + (NSValueTransformer *)createdAtJSONTransformer {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
-    }];
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock: ^(NSString *str) {
+	    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
+	} reverseBlock: ^(NSDate *date) {
+	    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
+	}];
 }
 
 + (NSValueTransformer *)updatedAtJSONTransformer {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
-    }];
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock: ^(NSString *str) {
+	    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
+	} reverseBlock: ^(NSDate *date) {
+	    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
+	}];
 }
 
 + (NSValueTransformer *)sinceTimeJSONTransformer {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
-        return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
-    } reverseBlock:^(NSDate *date) {
-        return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
-    }];
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock: ^(NSString *str) {
+	    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
+	} reverseBlock: ^(NSDate *date) {
+	    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
+	}];
 }
 
 @end
@@ -89,22 +87,21 @@
 @implementation SyncanoClient : SyncanoObject
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
-    
-    self = [super initWithDictionary:dictionaryValue error:error];
-    if (self) {
-        if ([dictionaryValue objectForKey:@"role"]) {
-            self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue objectForKey:@"role"] error:nil];
-        }
-    }
-    return self;
+	self = [super initWithDictionary:dictionaryValue error:error];
+	if (self) {
+		if ([dictionaryValue objectForKey:@"role"]) {
+			self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue objectForKey:@"role"] error:nil];
+		}
+	}
+	return self;
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"descriptionString" : @"description",
-             @"apiKey" : @"api_key",
-             };
+			   @"uid" : @"id",
+			   @"descriptionString" : @"description",
+			   @"apiKey" : @"api_key",
+	};
 }
 
 @end
@@ -113,13 +110,13 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"apiClientId" : @"api_client_id",
-             @"uuid" : @"uuid",
-             @"name" : @"name",
-             @"state" : @"state",
-             @"source" : @"source"
-             };
+			   @"uid" : @"id",
+			   @"apiClientId" : @"api_client_id",
+			   @"uuid" : @"uuid",
+			   @"name" : @"name",
+			   @"state" : @"state",
+			   @"source" : @"source"
+	};
 }
 
 @end
@@ -128,10 +125,10 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"name" : @"name",
-             @"descriptionString" : @"description"
-             };
+			   @"uid" : @"id",
+			   @"name" : @"name",
+			   @"descriptionString" : @"description"
+	};
 }
 
 @end
@@ -140,15 +137,15 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"status" : @"status",
-             @"name" : @"name",
-             @"descriptionString" : @"description",
-             @"key" : @"key",
-             @"startDate" : @"start_date",
-             @"endDate" : @"end_date",
-             @"tags" : @"tags"
-             };
+			   @"uid" : @"id",
+			   @"status" : @"status",
+			   @"name" : @"name",
+			   @"descriptionString" : @"description",
+			   @"key" : @"key",
+			   @"startDate" : @"start_date",
+			   @"endDate" : @"end_date",
+			   @"tags" : @"tags"
+	};
 }
 
 @end
@@ -157,11 +154,11 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"isCustom" : @"is_custom",
-             @"name" : @"name",
-             @"sourceId" : @"source_id"
-             };
+			   @"uid" : @"id",
+			   @"isCustom" : @"is_custom",
+			   @"name" : @"name",
+			   @"sourceId" : @"source_id"
+	};
 }
 
 @end
@@ -170,13 +167,13 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"image" : @"image",
-             @"imageWidth" : @"image_width",
-             @"imageHeight" : @"image_height",
-             @"thumbnail" : @"thumbnail",
-             @"thumbnailWidth" : @"thumbnail_width",
-             @"thumbnailHeight" : @"thumbnail_height"
-             };
+			   @"image" : @"image",
+			   @"imageWidth" : @"image_width",
+			   @"imageHeight" : @"image_height",
+			   @"thumbnail" : @"thumbnail",
+			   @"thumbnailWidth" : @"thumbnail_width",
+			   @"thumbnailHeight" : @"thumbnail_height"
+	};
 }
 
 @end
@@ -185,14 +182,14 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"image" : @"image",
-             @"imageWidth" : @"image_width",
-             @"imageHeight" : @"image_height",
-             @"thumbnail" : @"thumbnail",
-             @"thumbnailWidth" : @"thumbnail_width",
-             @"thumbnailHeight" : @"thumbnail_height",
-             @"sourceUrl" : @"source_url"
-             };
+			   @"image" : @"image",
+			   @"imageWidth" : @"image_width",
+			   @"imageHeight" : @"image_height",
+			   @"thumbnail" : @"thumbnail",
+			   @"thumbnailWidth" : @"thumbnail_width",
+			   @"thumbnailHeight" : @"thumbnail_height",
+			   @"sourceUrl" : @"source_url"
+	};
 }
 
 @end
@@ -200,26 +197,25 @@
 @implementation SyncanoUser : SyncanoObject
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
-    
-    self = [super initWithDictionary:dictionaryValue error:error];
-    if (self) {
-        if ([dictionaryValue objectForKey:@"avatar"]) {
-            self.avatar = [MTLJSONAdapter modelOfClass:[SyncanoAvatar class] fromJSONDictionary:[dictionaryValue objectForKey:@"avatar"] error:nil];
-        }
-    }
-    return self;
+	self = [super initWithDictionary:dictionaryValue error:error];
+	if (self) {
+		if ([dictionaryValue objectForKey:@"avatar"]) {
+			self.avatar = [MTLJSONAdapter modelOfClass:[SyncanoAvatar class] fromJSONDictionary:[dictionaryValue objectForKey:@"avatar"] error:nil];
+		}
+	}
+	return self;
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"name" : @"name",
-             @"nick" : @"nick"
-             };
+			   @"uid" : @"id",
+			   @"name" : @"name",
+			   @"nick" : @"nick"
+	};
 }
 
 - (NSString *)displayedName {
-    return self.nick ? self.nick : self.name;
+	return self.nick ? self.nick : self.name;
 }
 
 @end
@@ -228,45 +224,44 @@
 
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
-    
-    self = [super initWithDictionary:dictionaryValue error:error];
-    if (self) {
-        if ([dictionaryValue objectForKey:@"user"]) {
-            self.user = [MTLJSONAdapter modelOfClass:[SyncanoUser class] fromJSONDictionary:[dictionaryValue objectForKey:@"user"] error:nil];
-        }
-        
-        if ([dictionaryValue objectForKey:@"image"]) {
-            self.image = [MTLJSONAdapter modelOfClass:[SyncanoImage class] fromJSONDictionary:[dictionaryValue objectForKey:@"image"] error:nil];
-        }
-        
-        if ([dictionaryValue objectForKey:@"children"]) {
-            NSMutableArray * children = [[NSMutableArray alloc] init];
-            
-            for (NSDictionary * child in [dictionaryValue objectForKey:@"children"]) {
-                [children addObject:[MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:child error:nil]];
-            }
-            self.children = children;
-        }
-    }
-    return self;
+	self = [super initWithDictionary:dictionaryValue error:error];
+	if (self) {
+		if ([dictionaryValue objectForKey:@"user"]) {
+			self.user = [MTLJSONAdapter modelOfClass:[SyncanoUser class] fromJSONDictionary:[dictionaryValue objectForKey:@"user"] error:nil];
+		}
+
+		if ([dictionaryValue objectForKey:@"image"]) {
+			self.image = [MTLJSONAdapter modelOfClass:[SyncanoImage class] fromJSONDictionary:[dictionaryValue objectForKey:@"image"] error:nil];
+		}
+
+		if ([dictionaryValue objectForKey:@"children"]) {
+			NSMutableArray *children = [[NSMutableArray alloc] init];
+
+			for (NSDictionary *child in[dictionaryValue objectForKey:@"children"]) {
+				[children addObject:[MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:child error:nil]];
+			}
+			self.children = children;
+		}
+	}
+	return self;
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"parentId" : @"parent_id",
-             @"createdAt" : @"created_at",
-             @"updatedAt" : @"updated_at",
-             @"folder" : @"folder",
-             @"state" : @"state",
-             @"key" : @"key",
-             @"title" : @"title",
-             @"text" : @"text",
-             @"link" : @"link",
-             @"sourceUrl" : @"source_url",
-             @"additional" : @"additional",
-             @"childrenCount" : @"children_count"
-             };
+			   @"uid" : @"id",
+			   @"parentId" : @"parent_id",
+			   @"createdAt" : @"created_at",
+			   @"updatedAt" : @"updated_at",
+			   @"folder" : @"folder",
+			   @"state" : @"state",
+			   @"key" : @"key",
+			   @"title" : @"title",
+			   @"text" : @"text",
+			   @"link" : @"link",
+			   @"sourceUrl" : @"source_url",
+			   @"additional" : @"additional",
+			   @"childrenCount" : @"children_count"
+	};
 }
 
 @end
@@ -389,9 +384,10 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"type" : @"type"
-             };
+			   @"uid" : @"id",
+			   @"type" : @"type",
+			   @"context" : @"context"
+	};
 }
 
 @end
@@ -400,9 +396,9 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"name" : @"name"
-             };
+			   @"uid" : @"id",
+			   @"name" : @"name"
+	};
 }
 
 @end
@@ -410,24 +406,23 @@
 @implementation SyncanoAdmin
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
-    
-    self = [super initWithDictionary:dictionaryValue error:error];
-    if (self) {
-        if ([dictionaryValue objectForKey:@"role"]) {
-            self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue objectForKey:@"role"] error:nil];
-        }
-    }
-    return self;
+	self = [super initWithDictionary:dictionaryValue error:error];
+	if (self) {
+		if ([dictionaryValue objectForKey:@"role"]) {
+			self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue objectForKey:@"role"] error:nil];
+		}
+	}
+	return self;
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-             @"uid" : @"id",
-             @"email" : @"email",
-             @"firstName" : @"first_name",
-             @"lastName" : @"last_name",
-             @"lastLogin" : @"last_login",
-             };
+			   @"uid" : @"id",
+			   @"email" : @"email",
+			   @"firstName" : @"first_name",
+			   @"lastName" : @"last_name",
+			   @"lastLogin" : @"last_login",
+	};
 }
 
 @end

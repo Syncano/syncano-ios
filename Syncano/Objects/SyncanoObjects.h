@@ -12,38 +12,38 @@
 #import "SyncanoDateFormatter.h"
 
 /**
- Informs about kind of change in SyncanoDataChange object
+   Informs about kind of change in SyncanoDataChange object
  */
 typedef NS_ENUM (NSUInteger, SyncanoChange) {
 	/**
-	 No changes were made in Data object.
+	   No changes were made in Data object.
 	 */
 	SyncanoChange_NO_CHANGE = 0,
 	/**
-	 Changes in object parameters were made.
+	   Changes in object parameters were made.
 	 */
 	SyncanoChange_REPLACE = 1,
 	/**
-	 Some of object parameters were removed.
+	   Some of object parameters were removed.
 	 */
 	SyncanoChange_DELETED = 2,
 	/**
-	 Parameters were added to the object.
+	   Parameters were added to the object.
 	 */
 	SyncanoChange_ADDED = 3
 };
 
 /**
- Base class for all Syncano-sourced objects
+   Base class for all Syncano-sourced objects
  */
 @interface SyncanoObject : MTLModel <MTLJSONSerializing>
 
 /**
- Creates Syncano object from passed JSON dictionary. Overriden by all subclasses.
- 
- @param json JSON `descriptionString` of object.
- 
- @return Syncano object created from passed JSON.
+   Creates Syncano object from passed JSON dictionary. Overriden by all subclasses.
+
+   @param json JSON `descriptionString` of object.
+
+   @return Syncano object created from passed JSON.
  */
 + (instancetype)objectFromJSON:(NSDictionary *)json;
 
@@ -54,7 +54,7 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @class SyncanoSubscription, SyncanoRole, SyncanoAdmin, SyncanoIdentity;
 
 /**
- Syncano API client
+   Syncano API client
  */
 @interface SyncanoClient : SyncanoObject
 /// API client id
@@ -69,42 +69,51 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 
 
 /**
- Syncano Client Connection
+   Syncano Client Connection
  */
 @interface SyncanoConnection : SyncanoObject
-/// Identity id
+/**
+   Connection id - used for paginating with since_id
+ */
 @property (strong)    NSString *uid;
-/// Client id
-@property (strong)    NSString *apiClientId;
-/// Identity UUID
+/**
+   Connection UUID - used to uniquely identify connection
+ */
 @property (strong)    NSString *uuid;
-/// identity name
+/**
+   API client id
+ */
+@property (strong)    NSString *apiClientId;
+/**
+   Connection name
+ */
 @property (strong)    NSString *name;
-/// identity state
+/**
+   Connection state
+ */
 @property (strong)    NSString *state;
 /**
- Identity source. Possible taken values: 
- - `API`
- - `TCP`
- - `WebSocket`
+   Connection source - takes values:
+   - TCP
+   - WebSocket.
  */
 @property (strong)    NSString *source;
 @end
 
 /**
- Project object from Syncano API
+   Project object from Syncano API
  */
 @interface SyncanoProject : SyncanoObject
 /// Project id
 @property (strong)  NSString *uid;
 /// Project name
 @property (strong)  NSString *name;
-/// (optional) - project descriptionStringString - if set
+/// (optional) - project descriptionString - if set
 @property (strong)  NSString *descriptionString;
 @end
 
 /**
- Syncano Collection from Syncano API
+   Syncano Collection from Syncano API
  */
 @interface SyncanoCollection : SyncanoObject
 /// Collection id
@@ -126,7 +135,7 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @end
 
 /**
- Syncano Folder, container for Syncano Data Objects
+   Syncano Folder, container for Syncano Data Objects
  */
 @interface SyncanoFolder : SyncanoObject
 /// Folder id
@@ -140,7 +149,7 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @end
 
 /**
- Image avatar, can be assigned to user
+   Image avatar, can be assigned to user
  */
 @interface SyncanoAvatar : SyncanoObject
 /// Image URL
@@ -158,7 +167,7 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @end
 
 /**
- Image, can be contained in Syncano Data Object
+   Image, can be contained in Syncano Data Object
  */
 @interface SyncanoImage : SyncanoObject
 /// Image URL
@@ -178,7 +187,7 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @end
 
 /**
- Syncano internal user
+   Syncano internal user
  */
 @interface SyncanoUser : SyncanoObject
 /// Id of user
@@ -190,12 +199,12 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 /// User avatar
 @property (strong)    SyncanoAvatar *avatar;
 
-- (NSString*)displayedName;
+- (NSString *)displayedName;
 
 @end
 
 /**
- Syncano Data Object
+   Syncano Data Object
  */
 @interface SyncanoData : SyncanoObject <NSCopying>
 /// Parent id of data for future reference
@@ -233,30 +242,30 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @end
 
 /**
- Informs about Data Object changes received by notification from Sync Server.
+   Informs about Data Object changes received by notification from Sync Server.
  */
 @interface SyncanoDataChanges : SyncanoData <NSCopying>
 /**
- Use to receive names of properties that were replaced with new values.
- 
- @return Array of property names which values were replaced.
+   Use to receive names of properties that were replaced with new values.
+
+   @return Array of property names which values were replaced.
  */
 - (NSArray *)getReplaced;
 /**
- Use to receive names of properties that were deleted from the object.
- 
- @return Array of property names which were deleted from the object.
+   Use to receive names of properties that were deleted from the object.
+
+   @return Array of property names which were deleted from the object.
  */
 - (NSArray *)getDeleted;
 /**
- Use to receive names of properties that were added to the object.
- @return Array of property names which values were replaced.
+   Use to receive names of properties that were added to the object.
+   @return Array of property names which values were replaced.
  */
 - (NSArray *)getAdded;
 /**
- Use to check change status of given property.
- 
- ```
+   Use to check change status of given property.
+
+   ```
      SyncanoDataChanges *changes = ... // receive object
      SyncanoChange objectChange = [changes getChange:changes.text];
      switch (objectChange) {
@@ -266,27 +275,35 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
         default:
             break;
      }
- ```
- 
- @param property One of the properties of object which method you're calling.
- 
- @return Change status of given property.
+   ```
+
+   @param property One of the properties of object which method you're calling.
+
+   @return Change status of given property.
  */
 - (SyncanoChange)getChange:(id)property;
 @end
 
 /**
- Syncano Client Subscription Information from Syncano API
+   Syncano Client Subscription Information from Syncano API
  */
 @interface SyncanoSubscription : SyncanoObject
-/// Subscription type (e.g. Project, Collection).
-@property (strong)    NSString *type;
-/// Subscription object id (e.g. project_id if type is equal Project)
-@property (strong)    NSString *uid;
+/**
+   Subscription type (e.g. Project, Collection).
+ */
+@property (strong) NSString *type;
+/**
+   Subscription object id (e.g. project_id if type is equal Project)
+ */
+@property (strong) NSString *uid;
+/**
+   Subscription context - client, session or connection
+ */
+@property (strong) NSString *context;
 @end
 
 /**
- Syncano Role information for Role object from Syncano API
+   Syncano Role information for Role object from Syncano API
  */
 @interface SyncanoRole : SyncanoObject
 /// Role id
@@ -296,7 +313,7 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @end
 
 /**
- Administrator object from Syncano API
+   Administrator object from Syncano API
  */
 @interface SyncanoAdmin : SyncanoObject
 /// admin id
