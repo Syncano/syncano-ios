@@ -10,28 +10,28 @@
 #import "SyncanoParameters_Private.h"
 #import "SyncanoResponse_Collections.h"
 
-NSString * const kSyncanoParametersCollectionStatusActive = @"active";
-NSString * const kSyncanoParametersCollectionStatusInactive = @"inactive";
-NSString * const kSyncanoParametersCollectionStatusAll = @"all";
+NSString *const kSyncanoParametersCollectionStatusActive = @"active";
+NSString *const kSyncanoParametersCollectionStatusInactive = @"inactive";
+NSString *const kSyncanoParametersCollectionStatusAll = @"all";
 
 @implementation SyncanoParameters_Collections_New
 
-- (SyncanoParameters_Collections_New *)initWithProjectId:(NSString *)projectId name:(NSString*)name {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.name = name;
-        [self validateParameters];
-    }
-    return self;
+- (SyncanoParameters_Collections_New *)initWithProjectId:(NSString *)projectId name:(NSString *)name {
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.name = name;
+		[self validateParameters];
+	}
+	return self;
 }
 
 - (SEL)initalizeSelector {
-    return @selector(initWithProjectId:name:);
+	return @selector(initWithProjectId:name:);
 }
 
-- (NSArray*)requiredParametersNames {
-    return @[@"name", @"projectId"];
+- (NSArray *)requiredParametersNames {
+	return @[@"name", @"projectId"];
 }
 
 - (NSString *)methodName {
@@ -43,47 +43,47 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"projectId" : @"project_id",
-                                  @"name" : @"name",
-                                  @"key" : @"key",
-                                  @"description" : @"description"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"projectId" : @"project_id",
+		                          @"name" : @"name",
+		                          @"key" : @"key",
+		                          @"description" : @"description" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
 
 @implementation SyncanoParameters_Collections_Get
 
-- (SyncanoParameters_Collections_Get *)initWithProjectId:(NSString *)projectId{
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        [self validateParameters];
-    }
-    return self;
+- (SyncanoParameters_Collections_Get *)initWithProjectId:(NSString *)projectId {
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		[self validateParameters];
+	}
+	return self;
 }
 
 - (SEL)initalizeSelector {
-    return @selector(initWithProjectId:);
+	return @selector(initWithProjectId:);
 }
 
-- (NSArray*)requiredParametersNames {
-    return @[@"projectId"];
+- (NSArray *)requiredParametersNames {
+	return @[@"projectId"];
 }
 
 - (void)setStatus:(NSString *)status {
-    
-    NSArray * acceptedValues = [self acceptedValues];
-    if ([acceptedValues containsObject:status]) {
-        _status = status;
-    } else {
-        [NSException raise:@"Wrong parameter value" format:@"Allowed values for status parameter: %@ (use kSyncanoParametersCollectionStatus constans)", acceptedValues];
-    }
+	NSArray *acceptedValues = [self acceptedValues];
+	if ([acceptedValues containsObject:status]) {
+		_status = status;
+	}
+	else {
+		[NSException raise:@"Wrong parameter value" format:@"Allowed values for status parameter: %@ (use kSyncanoParametersCollectionStatus constans)", acceptedValues];
+	}
 }
 
-- (NSArray*)acceptedValues {
-    return @[kSyncanoParametersCollectionStatusActive, kSyncanoParametersCollectionStatusInactive, kSyncanoParametersCollectionStatusAll];
+- (NSArray *)acceptedValues {
+	return @[kSyncanoParametersCollectionStatusActive, kSyncanoParametersCollectionStatusInactive, kSyncanoParametersCollectionStatusAll];
 }
 
 - (NSString *)methodName {
@@ -95,11 +95,11 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"projectId" : @"project_id",
-                                  @"status" : @"status",
-                                  @"withTags" : @"with_tags"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"projectId" : @"project_id",
+		                          @"status" : @"status",
+		                          @"withTags" : @"with_tags" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -118,22 +118,22 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 
 @implementation SyncanoParameters_Collections_Activate
 
-- (SyncanoParameters_Collections_Activate *)initWithProjectId:(NSString *)projectId collectionId:(NSString*)collectionId {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.collectionId = collectionId;
-        [self validateParameters];
-    }
-    return self;
+- (SyncanoParameters_Collections_Activate *)initWithProjectId:(NSString *)projectId collectionId:(NSString *)collectionId {
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.collectionId = collectionId;
+		[self validateParameters];
+	}
+	return self;
 }
 
 - (SEL)initalizeSelector {
-    return @selector(initWithProjectId:collectionId:);
+	return @selector(initWithProjectId:collectionId:);
 }
 
-- (NSArray*)requiredParametersNames {
-    return @[@"projectId", @"collectionId"];
+- (NSArray *)requiredParametersNames {
+	return @[@"projectId", @"collectionId"];
 }
 
 - (NSString *)methodName {
@@ -141,11 +141,11 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"projectId" : @"project_id",
-                                  @"collectionId" : @"collection_id",
-                                  @"force" : @"force"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"projectId" : @"project_id",
+		                          @"collectionId" : @"collection_id",
+		                          @"force" : @"force" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -169,10 +169,104 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"name" : @"name",
-                                  @"description" : @"description"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"name" : @"name",
+		                          @"description" : @"description" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+}
+
+@end
+
+@implementation SyncanoParameters_Collections_Authorize
+
+- (SyncanoParameters_Collections_Authorize *)initWithApiClientId:(NSString *)apiClientId permission:(NSString *)permission projectId:(NSString *)projectId collectionId:(NSString *)collectionId {
+	self = [super init];
+	if (self) {
+		self.apiClientId = apiClientId;
+		self.permission = permission;
+		self.projectId = projectId;
+		self.collectionId = collectionId;
+		[self validateSpecialParameters:@[@"apiClientId", @"permission", @"projectId", @"collectionId"]];
+	}
+	return self;
+}
+
+- (SyncanoParameters_Collections_Authorize *)initWithApiClientId:(NSString *)apiClientId permission:(NSString *)permission projectId:(NSString *)projectId collectionKey:(NSString *)collectionKey {
+	self = [super init];
+	if (self) {
+		self.apiClientId = apiClientId;
+		self.permission = permission;
+		self.projectId = projectId;
+		self.collectionKey = collectionKey;
+		[self validateSpecialParameters:@[@"apiClientId", @"permission", @"projectId", @"collectionKey"]];
+	}
+	return self;
+}
+
+- (NSString *)methodName {
+	return @"collection.authorize";
+}
+
+- (NSArray *)initializeSelectorNamesArray {
+	return @[@"initWithApiClientId:permission:projectId:collectionId:",
+	         @"initWithApiClientId:permission:projectId:collectionKey:"];
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"permission" : @"permission",
+		                          @"projectId" : @"project_id",
+		                          @"collectionId" : @"collection_id",
+		                          @"collectionKey" : @"collection_key" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+}
+
+@end
+
+@implementation SyncanoParameters_Collections_Deauthorize
+
+- (SyncanoParameters_Collections_Deauthorize *)initWithApiClientId:(NSString *)apiClientId permission:(NSString *)permission projectId:(NSString *)projectId collectionId:(NSString *)collectionId {
+	self = [super init];
+	if (self) {
+		self.apiClientId = apiClientId;
+		self.permission = permission;
+		self.projectId = projectId;
+		self.collectionId = collectionId;
+		[self validateSpecialParameters:@[@"apiClientId", @"permission", @"projectId", @"collectionId"]];
+	}
+	return self;
+}
+
+- (SyncanoParameters_Collections_Deauthorize *)initWithApiClientId:(NSString *)apiClientId permission:(NSString *)permission projectId:(NSString *)projectId collectionKey:(NSString *)collectionKey {
+	self = [super init];
+	if (self) {
+		self.apiClientId = apiClientId;
+		self.permission = permission;
+		self.projectId = projectId;
+		self.collectionKey = collectionKey;
+		[self validateSpecialParameters:@[@"apiClientId", @"permission", @"projectId", @"collectionKey"]];
+	}
+	return self;
+}
+
+- (NSString *)methodName {
+	return @"collection.deauthorize";
+}
+
+- (NSArray *)initializeSelectorNamesArray {
+	return @[@"initWithApiClientId:permission:projectId:collectionId:",
+	         @"initWithApiClientId:permission:projectId:collectionKey:"];
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"permission" : @"permission",
+		                          @"projectId" : @"project_id",
+		                          @"collectionId" : @"collection_id",
+		                          @"collectionKey" : @"collection_key" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -188,29 +282,29 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 @implementation SyncanoParameters_Collections_AddTag
 
 - (SyncanoParameters_Collections_AddTag *)initWithProjectId:(NSString *)projectId collectionId:(NSString *)collectionId tags:(NSArray *)tags {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.collectionId = collectionId;
-        self.tags = tags;
-        [self validateSpecialParameters:@[@"projectId", @"collectionId", @"tags"]];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.collectionId = collectionId;
+		self.tags = tags;
+		[self validateSpecialParameters:@[@"projectId", @"collectionId", @"tags"]];
+	}
+	return self;
 }
 
 - (SyncanoParameters_Collections_AddTag *)initWithProjectId:(NSString *)projectId collectionKey:(NSString *)collectionKey tags:(NSArray *)tags {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.collectionKey = collectionKey;
-        self.tags = tags;
-        [self validateSpecialParameters:@[@"projectId", @"collectionKey", @"tags"]];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.collectionKey = collectionKey;
+		self.tags = tags;
+		[self validateSpecialParameters:@[@"projectId", @"collectionKey", @"tags"]];
+	}
+	return self;
 }
 
-- (NSArray *)initalizeSelectorNamesArray {
-    return @[@"initWithProjectId:collectionId:tags:", @"initWithProjectId:collectionKey:tags:"];
+- (NSArray *)initializeSelectorNamesArray {
+	return @[@"initWithProjectId:collectionId:tags:", @"initWithProjectId:collectionKey:tags:"];
 }
 
 - (NSString *)methodName {
@@ -218,14 +312,14 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"projectId" : @"project_id",
-                                  @"collectionId" : @"collection_id",
-                                  @"collectionKey" : @"collection_key",
-                                  @"tags" : @"tags",
-                                  @"weight" : @"weight",
-                                  @"removeOther" : @"remove_other"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"projectId" : @"project_id",
+		                          @"collectionId" : @"collection_id",
+		                          @"collectionKey" : @"collection_key",
+		                          @"tags" : @"tags",
+		                          @"weight" : @"weight",
+		                          @"removeOther" : @"remove_other" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -233,29 +327,29 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 @implementation SyncanoParameters_Collections_DeleteTag
 
 - (SyncanoParameters_Collections_DeleteTag *)initWithProjectId:(NSString *)projectId collectionId:(NSString *)collectionId tags:(NSArray *)tags {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.collectionId = collectionId;
-        self.tags = tags;
-        [self validateSpecialParameters:@[@"projectId", @"collectionId", @"tags"]];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.collectionId = collectionId;
+		self.tags = tags;
+		[self validateSpecialParameters:@[@"projectId", @"collectionId", @"tags"]];
+	}
+	return self;
 }
 
 - (SyncanoParameters_Collections_DeleteTag *)initWithProjectId:(NSString *)projectId collectionKey:(NSString *)collectionKey tags:(NSArray *)tags {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.collectionKey = collectionKey;
-        self.tags = tags;
-        [self validateSpecialParameters:@[@"projectId", @"collectionKey", @"tags"]];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.collectionKey = collectionKey;
+		self.tags = tags;
+		[self validateSpecialParameters:@[@"projectId", @"collectionKey", @"tags"]];
+	}
+	return self;
 }
 
-- (NSArray *)initalizeSelectorNamesArray {
-    return @[@"initWithProjectId:collectionId:tags:", @"initWithProjectId:collectionKey:tags:"];
+- (NSArray *)initializeSelectorNamesArray {
+	return @[@"initWithProjectId:collectionId:tags:", @"initWithProjectId:collectionKey:tags:"];
 }
 
 - (NSString *)methodName {
@@ -263,13 +357,12 @@ NSString * const kSyncanoParametersCollectionStatusAll = @"all";
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"projectId" : @"project_id",
-                                  @"collectionId" : @"collection_id",
-                                  @"collectionKey" : @"collection_key",
-                                  @"tags" : @"tags"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
-}
+	NSDictionary *parameters = @{ @"projectId" : @"project_id",
+		                          @"collectionId" : @"collection_id",
+		                          @"collectionKey" : @"collection_key",
+		                          @"tags" : @"tags" };
 
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+}
 
 @end
