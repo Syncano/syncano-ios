@@ -8,71 +8,145 @@
 
 #import "SyncanoParameters.h"
 
+extern NSString *const kSyncanoParametersAPIKeyTypeBackend;
+extern NSString *const kSyncanoParametersAPIKeyTypeUser;
+
 /**
- Parameters for starting session
+   Parameters for starting session
  */
 @interface SyncanoParameters_APIKeys_StartSession : SyncanoParameters
 @end
 
 /**
- Parameters for creating new APIKey
+   Parameters for creating new APIKey
  */
 @interface SyncanoParameters_APIKeys_New : SyncanoParameters
+/**
+   New API client's permission role id (see role.get()). Not used when creating User API key (type = user)
+ */
 @property (strong) NSString *roleId;
+/**
+   Description of new API client.
+ */
 @property (strong) NSString *description;
+/**
+   Type of new API client. Possible values:
+   backend (default) - API key that is not user-aware and has global permissions,
+   user - user-aware API key that can define per container permissions.
+ */
+@property (strong) NSString *type;
 
 /**
- @return SyncanoParameters object with required fields initialized
+   Creates parameters object with required fields initialized
+
+   @param roleId      New API client's permission role id (see role.get()). Not used when creating User API key (type = user)
+   @param description Description of new API client.
+
+   @return SyncanoParameters object with required fields initialized
  */
-- (SyncanoParameters_APIKeys_New*)initWithRoleId:(NSString*)roleId description:(NSString*)description;
+- (SyncanoParameters_APIKeys_New *)initWithRoleId:(NSString *)roleId description:(NSString *)description;
 
 @end
 
 /**
- Parameters for getting API keys list
+   Parameters for getting API keys list
  */
 @interface SyncanoParameters_APIKeys_Get : SyncanoParameters
 @end
 
 /**
- Parameters for getting one API key
+   Parameters for getting one API key
  */
 @interface SyncanoParameters_APIKeys_GetOne : SyncanoParameters
 /// API client id. If not specified, will use current client.
-@property (strong) NSString *clientId; //optional
+@property (strong) NSString *apiClientId; //optional
 /**
- @return SyncanoParameters object with required fields initialized
+   @return SyncanoParameters object with required fields initialized
  */
-- (SyncanoParameters_APIKeys_GetOne*)initWithClientId:(NSString*)clientId;
+- (SyncanoParameters_APIKeys_GetOne *)initWithApiClientId:(NSString *)apiClientId;
 
 @end
 
 /**
- Parameters for updating API key description
+   Parameters for updating API key description
  */
 @interface SyncanoParameters_APIKeys_UpdateDescription : SyncanoParameters
 @property (strong) NSString *description;
 // API client id. If not specified, will update current client.
-@property (strong) NSString *clientId;
+@property (strong) NSString *apiClientId;
 /**
- @return SyncanoParameters object with required fields initialized
+   @return SyncanoParameters object with required fields initialized
  */
-- (SyncanoParameters_APIKeys_UpdateDescription*)initWithDescription:(NSString*)description;
+- (SyncanoParameters_APIKeys_UpdateDescription *)initWithDescription:(NSString *)description;
 /**
- @return SyncanoParameters object with required fields initialized
+   @return SyncanoParameters object with required fields initialized
  */
-- (SyncanoParameters_APIKeys_UpdateDescription*)initWithDescription:(NSString*)description clientId:(NSString*)clientId;
+- (SyncanoParameters_APIKeys_UpdateDescription *)initWithDescription:(NSString *)description apiClientId:(NSString *)apiClientId;
 
 @end
 
 /**
- Parameters for API key deletion
+   Parameters for authorizing API Keys
+ */
+@interface SyncanoParameters_APIKeys_Authorize : SyncanoParameters
+/**
+   User API client id.
+ */
+@property (strong) NSString *apiClientId;
+/**
+   User API client's permission to add. Possible values:
+   send_notification - can send notifications through notification.send(),
+   add_user - can create new users through user.new(),
+   access_sync - can access Sync Server,
+   subscribe - can subscribe to data through Sync Server
+ */
+@property (strong) NSString *permission;
+/**
+   Creates parameters to authorize API Key
+
+   @param apiClientId   User API client id.
+   @param permission User API client's permission to add.
+
+   @return Syncano parameters with required fields initialized
+ */
+- (SyncanoParameters_APIKeys_Authorize *)initWithApiClientId:(NSString *)apiClientId permission:(NSString *)permission;
+@end
+
+/**
+   Parameters for deauthorizing API Keys.
+ */
+@interface SyncanoParameters_APIKeys_Deauthorize : SyncanoParameters
+/**
+   User API client id.
+ */
+@property (strong) NSString *apiClientId;
+/**
+   User API client's permission to remove. Possible values:
+   send_notification - can send notifications through notification.send(),
+   add_user - can create new users through user.new(),
+   access_sync - can access Sync Server,
+   subscribe - can subscribe to data through Sync Server
+ */
+@property (strong) NSString *permission;
+/**
+   Creates parameters to deauthorize API Key.
+
+   @param apiClientId   User API client id.
+   @param permission User API client's permission to remove.
+
+   @return Syncano parameters with required fields initialized.
+ */
+- (SyncanoParameters_APIKeys_Deauthorize *)initWithApiClientId:(NSString *)apiClientId permission:(NSString *)permission;
+@end
+
+/**
+   Parameters for API key deletion
  */
 @interface SyncanoParameters_APIKeys_Delete : SyncanoParameters
-@property (strong) NSString *clientId;
+@property (strong) NSString *apiClientId;
 /**
- @return SyncanoParameters object with required fields initialized
+   @return SyncanoParameters object with required fields initialized
  */
-- (SyncanoParameters_APIKeys_Delete*)initWithClientId:(NSString*)clientId;
+- (SyncanoParameters_APIKeys_Delete *)initWithApiClientId:(NSString *)apiClientId;
 
 @end

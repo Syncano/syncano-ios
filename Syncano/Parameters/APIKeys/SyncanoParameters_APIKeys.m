@@ -10,6 +10,9 @@
 #import "SyncanoParameters_Private.h"
 #import "SyncanoResponse_APIKeys.h"
 
+NSString *const kSyncanoParametersAPIKeyTypeBackend = @"backend";
+NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
+
 @implementation SyncanoParameters_APIKeys_StartSession
 - (NSString *)methodName {
 	return @"apikey.start_session";
@@ -24,21 +27,21 @@
 @implementation SyncanoParameters_APIKeys_New
 
 - (SyncanoParameters_APIKeys_New *)initWithRoleId:(NSString *)roleId description:(NSString *)description {
-    self = [super init];
-    if (self) {
-        self.roleId = roleId;
-        self.description = description;
-        [self validateParameters];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.roleId = roleId;
+		self.description = description;
+		[self validateParameters];
+	}
+	return self;
 }
 
 - (SEL)initalizeSelector {
-    return @selector(initWithRoleId:description:);
+	return @selector(initWithRoleId:description:);
 }
 
-- (NSArray*)requiredParametersNames {
-    return @[@"roleId", @"description"];
+- (NSArray *)requiredParametersNames {
+	return @[@"roleId", @"description"];
 }
 
 - (NSString *)methodName {
@@ -50,10 +53,10 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"roleId" : @"role_id",
-                                  @"description" : @"description"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"roleId" : @"role_id",
+		                          @"description" : @"description" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -71,12 +74,12 @@
 
 @implementation SyncanoParameters_APIKeys_GetOne
 
-- (SyncanoParameters_APIKeys_GetOne *)initWithClientId:(NSString *)clientId {
-    self = [super init];
-    if (self) {
-        self.clientId = clientId;
-    }
-    return self;
+- (SyncanoParameters_APIKeys_GetOne *)initWithApiClientId:(NSString *)apiClientId {
+	self = [super init];
+	if (self) {
+		self.apiClientId = apiClientId;
+	}
+	return self;
 }
 
 - (NSString *)methodName {
@@ -88,39 +91,39 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"clientId" : @"client_id"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
 
 @implementation SyncanoParameters_APIKeys_UpdateDescription
 
-- (SyncanoParameters_APIKeys_UpdateDescription*)initWithDescription:(NSString*)description {
-    self = [super init];
-    if (self) {
-        self.description = description;
-        [self validateParameters];
-    }
-    return self;
+- (SyncanoParameters_APIKeys_UpdateDescription *)initWithDescription:(NSString *)description {
+	self = [super init];
+	if (self) {
+		self.description = description;
+		[self validateParameters];
+	}
+	return self;
 }
 
-- (SyncanoParameters_APIKeys_UpdateDescription*)initWithDescription:(NSString*)description clientId:(NSString*)clientId{
-    self = [super init];
-    if (self) {
-        self.description = description;
-        self.clientId = clientId;
-        [self validateParameters];
-    }
-    return self;
+- (SyncanoParameters_APIKeys_UpdateDescription *)initWithDescription:(NSString *)description apiClientId:(NSString *)apiClientId {
+	self = [super init];
+	if (self) {
+		self.description = description;
+		self.apiClientId = apiClientId;
+		[self validateParameters];
+	}
+	return self;
 }
 
-- (NSArray *)initalizeSelectorNamesArray {
-    return @[@"initWithDescription:", @"initWithDescription:clientId:"];
+- (NSArray *)initializeSelectorNamesArray {
+	return @[@"initWithDescription:", @"initWithDescription:apiClientId:"];
 }
 
 - (NSArray *)requiredParametersNames {
-    return @[@"description"];
+	return @[@"description"];
 }
 
 - (NSString *)methodName {
@@ -132,31 +135,103 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"clientId" : @"client_id",
-                                  @"description" : @"description"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"description" : @"description" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+}
+
+@end
+
+@implementation SyncanoParameters_APIKeys_Authorize
+
+- (SyncanoParameters_APIKeys_Authorize *)initWithApiClientId:(NSString *)apiClientId permission:(NSString *)permission {
+	self = [super init];
+	if (self) {
+		self.apiClientId = apiClientId;
+		self.permission = permission;
+		[self validateParameters];
+	}
+	return self;
+}
+
+- (SEL)initalizeSelector {
+	return @selector(initWithApiClientId:permission:);
+}
+
+- (NSArray *)requiredParametersNames {
+	return @[@"apiClientId", @"permission"];
+}
+
+- (NSString *)methodName {
+	return @"apikey.authorize";
+}
+
+- (id)responseFromJSON:(NSDictionary *)json {
+	return [SyncanoResponse responseFromJSON:json];
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"permission" : @"permission" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+}
+
+@end
+
+@implementation SyncanoParameters_APIKeys_Deauthorize
+
+- (SyncanoParameters_APIKeys_Deauthorize *)initWithApiClientId:(NSString *)apiClientId permission:(NSString *)permission {
+	self = [super init];
+	if (self) {
+		self.apiClientId = apiClientId;
+		self.permission = permission;
+		[self validateParameters];
+	}
+	return self;
+}
+
+- (SEL)initalizeSelector {
+	return @selector(initWithApiClientId:permission:);
+}
+
+- (NSArray *)requiredParametersNames {
+	return @[@"apiClientId", @"permission"];
+}
+
+- (NSString *)methodName {
+	return @"apikey.deauthorize";
+}
+
+- (id)responseFromJSON:(NSDictionary *)json {
+	return [SyncanoResponse responseFromJSON:json];
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"permission" : @"permission" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
 
 @implementation SyncanoParameters_APIKeys_Delete
 
-- (SyncanoParameters_APIKeys_Delete*)initWithClientId:(NSString*)clientId {
-    self = [super init];
-    if (self) {
-        self.clientId = clientId;
-        [self validateParameters];
-    }
-    return self;
+- (SyncanoParameters_APIKeys_Delete *)initWithApiClientId:(NSString *)apiClientId {
+	self = [super init];
+	if (self) {
+		self.apiClientId = apiClientId;
+		[self validateParameters];
+	}
+	return self;
 }
 
 - (SEL)initalizeSelector {
-    return @selector(initWithClientId:);
+	return @selector(initWithApiClientId:);
 }
 
 - (NSArray *)requiredParametersNames {
-    return @[@"clientId"];
+	return @[@"apiClientId"];
 }
 
 - (NSString *)methodName {
@@ -168,8 +243,8 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"clientId" : @"client_id"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
