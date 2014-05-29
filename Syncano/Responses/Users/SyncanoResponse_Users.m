@@ -8,6 +8,18 @@
 
 #import "SyncanoResponse_Users.h"
 
+@implementation SyncanoResponse_Users_Login
+- (void)setValue:(id)value forKey:(NSString *)key {
+	if ([key isEqualToString:@"auth_key"]) {
+		self.authKey = value;
+	}
+	else {
+		[super setValue:value forKey:key];
+	}
+}
+
+@end
+
 @implementation SyncanoResponse_Users_New : SyncanoResponse
 - (Class)classForKey:(NSString *)key {
 	if ([key isEqualToString:@"user"]) {
