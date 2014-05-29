@@ -273,6 +273,10 @@
 		152D07561868645D0020A116 /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
+				152D0757186864B20020A116 /* SyncanoParametersListing.h */,
+				152D0759186865020020A116 /* SyncanoParameters.h */,
+				15027E1F1875CE0300534D5D /* SyncanoParameters_Private.h */,
+				152D075A186865020020A116 /* SyncanoParameters.m */,
 				15AEA8AF18D0A6F70046A35D /* Access Managament */,
 				15AEA8B318D0A74C0046A35D /* Data Management */,
 				15AEA8B418D0A7630046A35D /* User Management */,
@@ -286,17 +290,17 @@
 			isa = PBXGroup;
 			children = (
 				152D0763186866990020A116 /* SyncanoProtocolsListing.h */,
+				159E9ED418D1E0C0007486FA /* SyncanoProtocolAdministrators.h */,
+				159E9ED918D20717007486FA /* SyncanoProtocolAPIKeys.h */,
+				BEEB211118D23F5C00CAA197 /* SyncanoProtocolPermissionRoles.h */,
 				152D0765186866F00020A116 /* SyncanoProtocolProjects.h */,
 				152D0766186867000020A116 /* SyncanoProtocolCollections.h */,
 				152D0767186867130020A116 /* SyncanoProtocolFolders.h */,
 				152D0768186867200020A116 /* SyncanoProtocolDataObjects.h */,
 				152D07691868672E0020A116 /* SyncanoProtocolUsers.h */,
-				152D076A1868673A0020A116 /* SyncanoProtocolNotification.h */,
 				152D076B186867510020A116 /* SyncanoProtocolSubscriptions.h */,
-				159E9ED418D1E0C0007486FA /* SyncanoProtocolAdministrators.h */,
-				159E9ED918D20717007486FA /* SyncanoProtocolAPIKeys.h */,
+				152D076A1868673A0020A116 /* SyncanoProtocolNotification.h */,
 				151E697218D22C320034BBEB /* SyncanoProtocolConnections.h */,
-				BEEB211118D23F5C00CAA197 /* SyncanoProtocolPermissionRoles.h */,
 			);
 			name = Protocols;
 			path = ../Syncano;
@@ -460,13 +464,9 @@
 		15AEA8AF18D0A6F70046A35D /* Access Managament */ = {
 			isa = PBXGroup;
 			children = (
-				152D0757186864B20020A116 /* SyncanoParametersListing.h */,
-				152D0759186865020020A116 /* SyncanoParameters.h */,
-				15027E1F1875CE0300534D5D /* SyncanoParameters_Private.h */,
-				152D075A186865020020A116 /* SyncanoParameters.m */,
-				15AEA8B218D0A7260046A35D /* Permission Roles */,
-				15AEA8B118D0A7170046A35D /* API Keys */,
 				15AEA8B018D0A7060046A35D /* Administrators */,
+				15AEA8B118D0A7170046A35D /* API Keys */,
+				15AEA8B218D0A7260046A35D /* Permission Roles */,
 			);
 			name = "Access Managament";
 			sourceTree = "<group>";
@@ -501,10 +501,10 @@
 		15AEA8B318D0A74C0046A35D /* Data Management */ = {
 			isa = PBXGroup;
 			children = (
-				152D077018686E370020A116 /* Data Objects */,
 				152D077318686E4F0020A116 /* Projects */,
 				152D077218686E480020A116 /* Collections */,
 				152D077118686E400020A116 /* Folders */,
+				152D077018686E370020A116 /* Data Objects */,
 			);
 			name = "Data Management";
 			sourceTree = "<group>";
@@ -520,9 +520,9 @@
 		15AEA8B518D0A76E0046A35D /* Real Time Sync */ = {
 			isa = PBXGroup;
 			children = (
-				151E697318D22C610034BBEB /* Connections */,
-				152D076E18686E260020A116 /* Notification */,
 				152D076D18686DC10020A116 /* Subscriptions */,
+				152D076E18686E260020A116 /* Notification */,
+				151E697318D22C610034BBEB /* Connections */,
 			);
 			name = "Real Time Sync";
 			sourceTree = "<group>";
@@ -586,9 +586,9 @@
 		15AEA8BC18D0A7AE0046A35D /* Real Time Sync */ = {
 			isa = PBXGroup;
 			children = (
-				151E697818D22C9E0034BBEB /* Connections */,
-				152D077918686ECF0020A116 /* Notification */,
 				152D077B18686ECF0020A116 /* Subscriptions */,
+				152D077918686ECF0020A116 /* Notification */,
+				151E697818D22C9E0034BBEB /* Connections */,
 			);
 			name = "Real Time Sync";
 			sourceTree = "<group>";
