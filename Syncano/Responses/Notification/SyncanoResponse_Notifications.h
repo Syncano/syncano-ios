@@ -10,7 +10,7 @@
 
 @interface SyncanoResponse_Notifications_GetHistory : SyncanoResponse
 /**
- Requested list of notification history entries
+   Requested list of notification history entries
  */
 @property (strong)    NSArray *history;
 @end
