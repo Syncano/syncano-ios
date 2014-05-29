@@ -17,17 +17,17 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"apiClientId" : @"api_client_id",
-                                  @"uuid" : @"uuid"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"uuid" : @"uuid" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 - (NSDictionary *)dictionaryValue {
-    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc] initWithDictionary:[super dictionaryValue]];
-    if ([self.additional isKindOfClass:[NSDictionary class]]) {
-        [dictionary addEntriesFromDictionary:self.additional];
-    }
-    return dictionary;
+	NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:[super dictionaryValue]];
+	if ([self.additional isKindOfClass:[NSDictionary class]]) {
+		[dictionary addEntriesFromDictionary:self.additional];
+	}
+	return dictionary;
 }
 
 @end
@@ -43,24 +43,25 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"sinceId" : @"since_id",
-                                  @"sinteTime" : @"since_time",
-                                  @"limit" : @"limit",
-                                  @"order" : @"order"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"sinceId" : @"since_id",
+		                          @"sinceTime" : @"since_time",
+		                          @"limit" : @"limit",
+		                          @"order" : @"order" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 - (void)setOrder:(NSString *)order {
-    NSArray * acceptedValues = [self acceptedOrderValues];
-    if ([acceptedValues containsObject:[order lowercaseString]]) {
-        _order = order;
-    } else {
-        [NSException raise:@"Wrong parameter value" format:@"Allowed values for order parameter: %@ (use kSyncanoParametersOrder constans)", acceptedValues];
-    }
+	NSArray *acceptedValues = [self acceptedOrderValues];
+	if ([acceptedValues containsObject:[order lowercaseString]]) {
+		_order = order;
+	}
+	else {
+		[NSException raise:@"Wrong parameter value" format:@"Allowed values for order parameter: %@ (use kSyncanoParametersOrder constans)", acceptedValues];
+	}
 }
 
-- (NSArray*)acceptedOrderValues {
-    return @[kSyncanoParametersOrderAsc,kSyncanoParametersOrderDesc];
+- (NSArray *)acceptedOrderValues {
+	return @[kSyncanoParametersOrderAsc, kSyncanoParametersOrderDesc];
 }
 
 @end
