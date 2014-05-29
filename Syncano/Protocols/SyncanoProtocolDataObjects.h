@@ -29,6 +29,8 @@
 /**
    Create new data object
 
+   @note User API key usage permitted. Requires create_data permission added through folder.authorize(), collection.authorize() or project.authorize(). user_name field is automatically filled in with current user's info.
+
    @param params Parameters of new data object
 
    @return Response for creation of new data object
@@ -36,6 +38,8 @@
 - (SyncanoResponse_DataObjects_New *)dataNew:(SyncanoParameters_DataObjects_New *)params;
 /**
    Get data object list
+
+   @note User API key usage permitted. Returns Data Objects that are in a container with a read_data permission and associated with current user Data Objects that are in a container with a read_own_data permission.
 
    @param params Data object list parameters
 
@@ -45,6 +49,8 @@
 /**
    Get one data object
 
+   @note User API key usage permitted. Returns Data Object if it is in a container with a read_data permission or is associated with current user and in a container with a read_own_data permission.
+
    @param params Single data object getter parameters
 
    @return Response for single data object
@@ -52,6 +58,8 @@
 - (SyncanoResponse_DataObjects_GetOne *)dataGetOne:(SyncanoParameters_DataObjects_GetOne *)params;
 /**
    Update existing data object
+
+   @note User API key usage permitted. Updates only data that are in a container with an update_data permission (or update_own_data for Data Objects associated with current user).
 
    @param params Update data object parameters
 
@@ -61,6 +69,8 @@
 /**
    Move existing data object
 
+   @note User API key usage permitted. Updates only data that are in a container with an update_data permission (or update_own_data for Data Objects associated with current user).
+
    @param params Move data object parameters
 
    @return Reponse to existing data object move
@@ -68,6 +78,8 @@
 - (SyncanoResponse *)dataMove:(SyncanoParameters_DataObjects_Move *)params;
 /**
    Copy existing data object
+
+   @note User API key usage permitted. Can copy only data that are in a container with a read_data permission (or read_own_data for Data Objects associated with current user). Target container also needs to have create_data permission.
 
    @param params Copy data object parameters
 
@@ -77,6 +89,8 @@
 /**
    Add parent to existing data object
 
+   @note User API key usage permitted. Data Object that parent is added to is required to be in a container with an update_data permission or (or update_own_data if it is associated with current user). Also, parent itself is required to be in a container with a (read_data permission or read_own_data if it is associated with current user).
+
    @param params Add parent to data object parameters
 
    @return Reponse to existing data object parent addition
@@ -85,13 +99,37 @@
 /**
    Remove parent to existing data object
 
+   @note User API key usage permitted. Data Object that parent is removed from is required to be in a container with an update_data permission or (or update_own_data if it is associated with current user). Also, parent itself is required to be in a container with a (read_data permission or read_own_data if it is associated with current user).
+
    @param params Remove parent to data object parameters
 
    @return Reponse to existing data object parent removal
  */
 - (SyncanoResponse *)dataRemoveParent:(SyncanoParameters_DataObjects_RemoveParent *)params;
 /**
+   Adds additional child to data with specified dataId. If removeOther is True, all other children of specified Data Object will be removed.
+
+   @note User API key usage permitted. Data Object that child is added to is required to be in a container with an update_data permission or (or update_own_data if it is associated with current user). Also, child itself is required to be in a container with a (read_data permission or read_own_data if it is associated with current user).
+
+   @param params Add child to data object parameters
+
+   @return Response for adding child to existing data object
+ */
+- (SyncanoResponse *)dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params;
+/**
+   Removes a child (or children) from data with specified dataId.
+
+   @note User API key usage permitted. Data Object that child is removed from is required to be in a container with an update_data permission or (or update_own_data if it is associated with current user). Also, child itself is required to be in a container with a (read_data permission or read_own_data if it is associated with current user).
+
+   @param params Remove child (or children) from data object parameters.
+
+   @return Response for removing child (or children) from existing data object.
+ */
+- (SyncanoResponse *)dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params;
+/**
    Delete existing data object
+
+   @note User API key usage permitted. Deletes only Data Objects that are in a container with a delete_data permission and associated with current user Data Objects that are in a container with delete_own_data permission.
 
    @param params Delete data object parameters
 
@@ -100,6 +138,8 @@
 - (SyncanoResponse *)dataDelete:(SyncanoParameters_DataObjects_Delete *)params;
 /**
    Count existing data objects
+
+   @note User API key usage permitted. Counts only Data Objects that are in a container with a read_data permission and associated with current user Data Objects that are in a container with``read_own_data`` permission.
 
    @param params Count data objects parameters
 
@@ -121,9 +161,27 @@
 
    @param imageInfo Image information returned by Syncano in data.get() function
 
-   @return Thumbnaul image linked in imageInfo
+   @return Thumbnail image linked in imageInfo
  */
 - (UIImage *)downloadImageThumbnail:(SyncanoImage *)imageInfo;
+
+/**
+   Downloads full image linked in avatarInfo
+
+   @param avatarInfo User avatar information returned by Syncano in data.get() function
+
+   @return Full sized image linked in avatarInfo
+ */
+- (UIImage *)downloadAvatarFull:(SyncanoAvatar *)avatarInfo;
+
+/**
+   Downloads image thumbnail linked in avatarInfo
+
+   @param avatarInfo User avatar information returned by Syncano in data.get() function
+
+   @return Thumbnail image linked in avatarInfo
+ */
+- (UIImage *)downloadAvatarThumbnail:(SyncanoAvatar *)avatarInfo;
 
 #pragma mark - Asynchronized
 
@@ -134,11 +192,15 @@
 /**
    Create new data object
 
+   @note User API key usage permitted. Requires create_data permission added through folder.authorize(), collection.authorize() or project.authorize(). user_name field is automatically filled in with current user's info.
+
    @param params Parameters of new data object
  */
 - (void)dataNew:(SyncanoParameters_DataObjects_New *)params callback:(void (^)(SyncanoResponse_DataObjects_New *response))callback;
 /**
    Get data object list
+
+   @note User API key usage permitted. Returns Data Objects that are in a container with a read_data permission and associated with current user Data Objects that are in a container with a read_own_data permission.
 
    @param params Data object list parameters
  */
@@ -146,11 +208,15 @@
 /**
    Get one data object
 
+   @note User API key usage permitted. Returns Data Object if it is in a container with a read_data permission or is associated with current user and in a container with a read_own_data permission.
+
    @param params Single data object getter parameters
  */
 - (void)dataGetOne:(SyncanoParameters_DataObjects_GetOne *)params callback:(void (^)(SyncanoResponse_DataObjects_GetOne *response))callback;
 /**
    Update existing data object
+
+   @note User API key usage permitted. Updates only data that are in a container with an update_data permission (or update_own_data for Data Objects associated with current user).
 
    @param params Update data object parameters
  */
@@ -158,11 +224,15 @@
 /**
    Move existing data object
 
+   @note User API key usage permitted. Updates only data that are in a container with an update_data permission (or update_own_data for Data Objects associated with current user).
+
    @param params Move data object parameters
  */
 - (void)dataMove:(SyncanoParameters_DataObjects_Move *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
    Copy existing data object
+
+   @note User API key usage permitted. Can copy only data that are in a container with a read_data permission (or read_own_data for Data Objects associated with current user). Target container also needs to have create_data permission.
 
    @param params Copy data object parameters
  */
@@ -170,23 +240,49 @@
 /**
    Add parent to existing data object
 
+   @note User API key usage permitted. Data Object that parent is added to is required to be in a container with an update_data permission or (or update_own_data if it is associated with current user). Also, parent itself is required to be in a container with a (read_data permission or read_own_data if it is associated with current user).
+
    @param params Add parent to data object parameters
  */
 - (void)dataAddParent:(SyncanoParameters_DataObjects_AddParent *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
    Remove parent to existing data object
 
+   @note User API key usage permitted. Data Object that parent is removed from is required to be in a container with an update_data permission or (or update_own_data if it is associated with current user). Also, parent itself is required to be in a container with a (read_data permission or read_own_data if it is associated with current user).
+
    @param params Remove parent to data object parameters
  */
 - (void)dataRemoveParent:(SyncanoParameters_DataObjects_RemoveParent *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
+   Adds additional child to data with specified dataId. If removeOther is True, all other children of specified Data Object will be removed.
+
+   @note User API key usage permitted. Data Object that child is added to is required to be in a container with an update_data permission or (or update_own_data if it is associated with current user). Also, child itself is required to be in a container with a (read_data permission or read_own_data if it is associated with current user).
+
+   @param params Add child to data object parameters
+   @param callback Callback with response for adding child to existing data object
+ */
+- (void)dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params callback:(void (^)(SyncanoResponse *))callback;
+/**
+   Removes a child (or children) from data with specified dataId.
+
+   @note User API key usage permitted. Data Object that child is removed from is required to be in a container with an update_data permission or (or update_own_data if it is associated with current user). Also, child itself is required to be in a container with a (read_data permission or read_own_data if it is associated with current user).
+
+   @param params Remove child (or children) from data object parameters.
+   @param callback Callback with response for removing child (or children) from existing data object.
+ */
+- (void)dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params callback:(void (^)(SyncanoResponse *))callback;
+/**
    Delete existing data object
+
+   @note User API key usage permitted. Deletes only Data Objects that are in a container with a delete_data permission and associated with current user Data Objects that are in a container with delete_own_data permission.
 
    @param params Delete data object parameters
  */
 - (void)dataDelete:(SyncanoParameters_DataObjects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
 /**
    Count existing data objects
+
+    @note User API key usage permitted. Counts only Data Objects that are in a container with a read_data permission and associated with current user Data Objects that are in a container with``read_own_data`` permission.
 
    @param params Count data objects parameters
  */
@@ -204,9 +300,25 @@
    Downloads image thumbnail linked in imageInfo
 
    @param imageInfo Image information returned by Syncano in data.get() function
-   @param callback  Callback to invoke when image was downloaded from Syncano
+   @param callback Callback to invoke when image was downloaded from Syncano
  */
 - (void)downloadImageThumbnail:(SyncanoImage *)imageInfo callback:(void (^)(UIImage *image))callback;
+
+/**
+   Downloads full image linked in avatarInfo
+
+   @param avatarInfo User avatar information returned by Syncano in data.get() function
+   @param callback Callback to invoke when image was downloaded from Syncano
+ */
+- (void)downloadAvatarFull:(SyncanoAvatar *)avatarInfo callback:(void (^)(UIImage *))callback;
+
+/**
+   Downloads image thumbnail linked in avatarInfo
+
+   @param avatarInfo User avatar information returned by Syncano in data.get() function
+   @param callback Callback to invoke when image was downloaded from Syncano
+ */
+- (void)downloadAvatarThumbnail:(SyncanoAvatar *)avatarInfo callback:(void (^)(UIImage *))callback;
 
 @end
 
