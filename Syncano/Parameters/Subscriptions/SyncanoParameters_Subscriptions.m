@@ -13,21 +13,21 @@
 @implementation SyncanoParameters_Subscriptions_SubscribeProject : SyncanoParameters
 
 - (SyncanoParameters_Subscriptions_SubscribeProject *)initWithProjectId:(NSString *)projectId context:(NSString *)context {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.context = context;
-        [self validateParameters];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.context = context;
+		[self validateParameters];
+	}
+	return self;
 }
 
 - (SEL)initalizeSelector {
-    return @selector(initWithProjectId:context:);
+	return @selector(initWithProjectId:context:);
 }
 
-- (NSArray*)requiredParametersNames {
-    return @[@"projectId", @"context"];
+- (NSArray *)requiredParametersNames {
+	return @[@"projectId", @"context"];
 }
 
 - (NSString *)methodName {
@@ -35,9 +35,9 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"projectId" : @"project_id",
-                                  @"context" : @"context"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"projectId" : @"project_id",
+		                          @"context" : @"context" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -45,20 +45,20 @@
 @implementation SyncanoParameters_Subscriptions_UnsubscribeProject : SyncanoParameters
 
 - (SyncanoParameters_Subscriptions_UnsubscribeProject *)initWithProjectId:(NSString *)projectId {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        [self validateParameters];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		[self validateParameters];
+	}
+	return self;
 }
 
 - (SEL)initalizeSelector {
-    return @selector(initWithProjectId:);
+	return @selector(initWithProjectId:);
 }
 
-- (NSArray*)requiredParametersNames {
-    return @[@"projectId"];
+- (NSArray *)requiredParametersNames {
+	return @[@"projectId"];
 }
 
 - (NSString *)methodName {
@@ -66,8 +66,8 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"projectId" : @"project_id"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"projectId" : @"project_id" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -75,30 +75,30 @@
 @implementation SyncanoParameters_Subscriptions_SubscribeCollection : SyncanoParameters
 
 - (SyncanoParameters_Subscriptions_SubscribeCollection *)initWithProjectId:(NSString *)projectId collectionId:(NSString *)collectionId context:(NSString *)context {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.collectionId = collectionId;
-        self.context = context;
-        [self validateSpecialParameters:@[@"projectId", @"collectionId", @"context"]];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.collectionId = collectionId;
+		self.context = context;
+		[self validateSpecialParameters:@[@"projectId", @"collectionId", @"context"]];
+	}
+	return self;
 }
 
 - (SyncanoParameters_Subscriptions_SubscribeCollection *)initWithProjectId:(NSString *)projectId collectionKey:(NSString *)collectionKey context:(NSString *)context {
-    self = [super init];
-    if (self) {
-        self.projectId = projectId;
-        self.collectionKey = collectionKey;
-        self.context = context;
-        [self validateSpecialParameters:@[@"projectId", @"collectionKey", @"context"]];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.projectId = projectId;
+		self.collectionKey = collectionKey;
+		self.context = context;
+		[self validateSpecialParameters:@[@"projectId", @"collectionKey", @"context"]];
+	}
+	return self;
 }
 
-- (NSArray *)initalizeSelectorNamesArray {
-    return @[@"initWithProjectId:collectionId:context:",
-             @"initWithProjectId:collectionKey:context:"];
+- (NSArray *)initializeSelectorNamesArray {
+	return @[@"initWithProjectId:collectionId:context:",
+	         @"initWithProjectId:collectionKey:context:"];
 }
 
 - (NSString *)methodName {
@@ -106,11 +106,11 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"projectId" : @"project_id",
-                                  @"collectionId" : @"collection_id",
-                                  @"collectionKey" : @"collection_key",
-                                  @"context" : @"context"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"projectId" : @"project_id",
+		                          @"collectionId" : @"collection_id",
+		                          @"collectionKey" : @"collection_key",
+		                          @"context" : @"context" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -134,10 +134,10 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"apiClientId" : @"api_client_id",
-                                  @"sessionId" : @"session_id",
-                                  @"uuid" : @"uuid"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"sessionId" : @"session_id",
+		                          @"uuid" : @"uuid" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
