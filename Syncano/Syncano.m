@@ -32,7 +32,10 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (NSString *)serializeRequest:(NSURLRequest *)request parameters:(NSDictionary *)parameters error:(NSError **)error;
 - (NSDictionary *)parametersDictionaryForBatchRequestParameters:(NSArray *)batchParameters;
 - (NSArray *)syncanoResponsesFromBatchRequestResponseObject:(id)responseObject requestParameters:(NSArray *)params;
+- (void)addBasicFieldToParameters:(SyncanoParameters *)params;
 - (void)addAPIKeyToParameters:(SyncanoParameters *)params;
+- (void)addTimezoneToParameters:(SyncanoParameters *)params;
+- (void)addAuthKeyToParameters:(SyncanoParameters *)params;
 @end
 
 #pragma mark - Implementation
@@ -58,7 +61,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	NSMutableArray *multicallParameters = [NSMutableArray arrayWithCapacity:batchParameters.count];
 	for (int i = 0; i < batchParameters.count; ++i) {
 		SyncanoParameters *parameters = batchParameters[i];
-		[self addAPIKeyToParameters:parameters];
+		[self addBasicFieldToParameters:parameters];
 		NSDictionary *postParams = [parameters jsonRPCPostDictionaryForJsonRPCId:@(0)];
 		[multicallParameters addObject:postParams];
 	}
@@ -78,9 +81,27 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return syncanoResponses;
 }
 
+- (void)addBasicFieldToParameters:(SyncanoParameters *)params {
+	[self addAPIKeyToParameters:params];
+	[self addTimezoneToParameters:params];
+	[self addAuthKeyToParameters:params];
+}
+
 - (void)addAPIKeyToParameters:(SyncanoParameters *)params {
 	if (params.apiKey.length == 0) {
 		params.apiKey = self.apiKey;
+	}
+}
+
+- (void)addTimezoneToParameters:(SyncanoParameters *)params {
+	if (params.timezone.length == 0) {
+		params.timezone = self.timezone;
+	}
+}
+
+- (void)addAuthKeyToParameters:(SyncanoParameters *)params {
+	if (params.authKey.length == 0) {
+		params.authKey = self.authKey;
 	}
 }
 
@@ -217,7 +238,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 }
 
 - (void)sendRequest:(SyncanoParameters *)params synchronous:(BOOL)synchronous callback:(SyncanoCallback)callback {
-	[self addAPIKeyToParameters:params];
+	[self addBasicFieldToParameters:params];
 
 	AFHTTPRequestOperationManager *operationManager = synchronous ? self.synchronousOperationManager : self.operationManager;
 	operationManager.requestSerializer = self.requestSerializer;
@@ -298,6 +319,14 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return (SyncanoResponse_Projects_Update *)[self sendRequest:params];
 }
 
+- (SyncanoResponse *)projectAuthorize:(SyncanoParameters_Projects_Authorize *)params {
+	return [self sendRequest:params];
+}
+
+- (SyncanoResponse *)projectDeauthorize:(SyncanoParameters_Projects_Deauthorize *)params {
+	return [self sendRequest:params];
+}
+
 - (SyncanoResponse *)projectDelete:(SyncanoParameters_Projects_Delete *)params {
 	return [self sendRequest:params];
 }
@@ -332,6 +361,22 @@ NSString *const multicallParamsKey = @"paramsKey";
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
 	        callback((SyncanoResponse_Projects_Update *)response);
+		}
+	}];
+}
+
+- (void)projectAuthorize:(SyncanoParameters_Projects_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
+- (void)projectDeauthorize:(SyncanoParameters_Projects_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
 		}
 	}];
 }
@@ -371,6 +416,14 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (SyncanoResponse_Collections_Update *)collectionUpdate:(SyncanoParameters_Collections_Update *)params {
 	return (SyncanoResponse_Collections_Update *)[self sendRequest:params];
+}
+
+- (SyncanoResponse *)collectionAuthorize:(SyncanoParameters_Collections_Authorize *)params {
+	return [self sendRequest:params];
+}
+
+- (SyncanoResponse *)collectionDeauthorize:(SyncanoParameters_Collections_Deauthorize *)params {
+	return [self sendRequest:params];
 }
 
 - (SyncanoResponse *)collectionDelete:(SyncanoParameters_Collections_Delete *)params {
@@ -435,6 +488,22 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
+- (void)collectionAuthorize:(SyncanoParameters_Collections_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
+- (void)collectionDeauthorize:(SyncanoParameters_Collections_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
 - (void)collectionDelete:(SyncanoParameters_Collections_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
@@ -480,6 +549,14 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return [self sendRequest:params];
 }
 
+- (SyncanoResponse *)folderAuthorize:(SyncanoParameters_Folders_Authorize *)params {
+	return [self sendRequest:params];
+}
+
+- (SyncanoResponse *)folderDeauthorize:(SyncanoParameters_Folders_Deauthorize *)params {
+	return [self sendRequest:params];
+}
+
 - (SyncanoResponse *)folderDelete:(SyncanoParameters_Folders_Delete *)params {
 	return [self sendRequest:params];
 }
@@ -511,6 +588,22 @@ NSString *const multicallParamsKey = @"paramsKey";
 }
 
 - (void)folderUpdate:(SyncanoParameters_Folders_Update *)params callback:(void (^)(SyncanoResponse *response))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
+- (void)folderAuthorize:(SyncanoParameters_Folders_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
+- (void)folderDeauthorize:(SyncanoParameters_Folders_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
 	        callback(response);
@@ -563,6 +656,14 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return [self sendRequest:params];
 }
 
+- (SyncanoResponse *)dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params {
+	return [self sendRequest:params];
+}
+
+- (SyncanoResponse *)dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params {
+	return [self sendRequest:params];
+}
+
 - (SyncanoResponse *)dataDelete:(SyncanoParameters_DataObjects_Delete *)params {
 	return [self sendRequest:params];
 }
@@ -577,6 +678,14 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (UIImage *)downloadImageThumbnail:(SyncanoImage *)imageInfo {
 	return [self downloadImageFromURL:imageInfo.thumbnail];
+}
+
+- (UIImage *)downloadAvatarFull:(SyncanoAvatar *)avatarInfo {
+	return [self downloadImageFromURL:avatarInfo.image];
+}
+
+- (UIImage *)downloadAvatarThumbnail:(SyncanoAvatar *)avatarInfo {
+	return [self downloadImageFromURL:avatarInfo.thumbnail];
 }
 
 #pragma mark - Asynchronized
@@ -645,6 +754,22 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
+- (void)dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
+- (void)dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
 - (void)dataDelete:(SyncanoParameters_DataObjects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
@@ -669,10 +794,22 @@ NSString *const multicallParamsKey = @"paramsKey";
 	[self downloadImageFromURL:imageInfo.thumbnail callback:callback];
 }
 
+- (void)downloadAvatarFull:(SyncanoAvatar *)avatarInfo callback:(void (^)(UIImage *))callback {
+	[self downloadImageFromURL:avatarInfo.image callback:callback];
+}
+
+- (void)downloadAvatarThumbnail:(SyncanoAvatar *)avatarInfo callback:(void (^)(UIImage *))callback {
+	[self downloadImageFromURL:avatarInfo.thumbnail callback:callback];
+}
+
 #pragma mark protocol SyncanoProtocolUsers
 /*----------------------------------------*/
 
 #pragma mark - Synchronized
+
+- (SyncanoResponse_Users_Login *)userLogin:(SyncanoParameters_Users_Login *)params {
+	return (SyncanoResponse_Users_Login *)[self sendRequest:params];
+}
 
 - (SyncanoResponse_Users_New *)userNew:(SyncanoParameters_Users_New *)params {
 	return (SyncanoResponse_Users_New *)[self sendRequest:params];
@@ -703,6 +840,14 @@ NSString *const multicallParamsKey = @"paramsKey";
 }
 
 #pragma mark - Asynchronized
+
+- (void)userLogin:(SyncanoParameters_Users_Login *)params callback:(void (^)(SyncanoResponse_Users_Login *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback((SyncanoResponse_Users_Login *)response);
+		}
+	}];
+}
 
 - (void)userNew:(SyncanoParameters_Users_New *)params callback:(void (^)(SyncanoResponse_Users_New *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
@@ -848,33 +993,41 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Synchronized
 
-- (SyncanoResponse_APIKeys_StartSession *)apikeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params {
+- (SyncanoResponse_APIKeys_StartSession *)apiKeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params {
 	return (SyncanoResponse_APIKeys_StartSession *)[self sendRequest:params];
 }
 
-- (SyncanoResponse_APIKeys_New *)apikeyNew:(SyncanoParameters_APIKeys_New *)params {
+- (SyncanoResponse_APIKeys_New *)apiKeyNew:(SyncanoParameters_APIKeys_New *)params {
 	return (SyncanoResponse_APIKeys_New *)[self sendRequest:params];
 }
 
-- (SyncanoResponse_APIKeys_Get *)apikeyGet:(SyncanoParameters_APIKeys_Get *)params {
+- (SyncanoResponse_APIKeys_Get *)apiKeyGet:(SyncanoParameters_APIKeys_Get *)params {
 	return (SyncanoResponse_APIKeys_Get *)[self sendRequest:params];
 }
 
-- (SyncanoResponse_APIKeys_GetOne *)apikeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params {
+- (SyncanoResponse_APIKeys_GetOne *)apiKeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params {
 	return (SyncanoResponse_APIKeys_GetOne *)[self sendRequest:params];
 }
 
-- (SyncanoResponse_APIKeys_UpdateDescription *)apikeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params {
+- (SyncanoResponse_APIKeys_UpdateDescription *)apiKeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params {
 	return (SyncanoResponse_APIKeys_UpdateDescription *)[self sendRequest:params];
 }
 
-- (SyncanoResponse *)apikeyDelete:(SyncanoParameters_APIKeys_Delete *)params {
+- (SyncanoResponse *)apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params {
+	return [self sendRequest:params];
+}
+
+- (SyncanoResponse *)apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params {
+	return [self sendRequest:params];
+}
+
+- (SyncanoResponse *)apiKeyDelete:(SyncanoParameters_APIKeys_Delete *)params {
 	return [self sendRequest:params];
 }
 
 #pragma mark - Asynchronized
 
-- (void)apikeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params callback:(void (^)(SyncanoResponse_APIKeys_StartSession *response))callback {
+- (void)apiKeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params callback:(void (^)(SyncanoResponse_APIKeys_StartSession *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
 	        callback((SyncanoResponse_APIKeys_StartSession *)response);
@@ -882,7 +1035,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (void)apikeyNew:(SyncanoParameters_APIKeys_New *)params callback:(void (^)(SyncanoResponse_APIKeys_New *response))callback {
+- (void)apiKeyNew:(SyncanoParameters_APIKeys_New *)params callback:(void (^)(SyncanoResponse_APIKeys_New *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
 	        callback((SyncanoResponse_APIKeys_New *)response);
@@ -890,7 +1043,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (void)apikeyGet:(SyncanoParameters_APIKeys_Get *)params callback:(void (^)(SyncanoResponse_APIKeys_Get *response))callback {
+- (void)apiKeyGet:(SyncanoParameters_APIKeys_Get *)params callback:(void (^)(SyncanoResponse_APIKeys_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
 	        callback((SyncanoResponse_APIKeys_Get *)response);
@@ -898,7 +1051,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (void)apikeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params callback:(void (^)(SyncanoResponse_APIKeys_GetOne *response))callback {
+- (void)apiKeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params callback:(void (^)(SyncanoResponse_APIKeys_GetOne *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
 	        callback((SyncanoResponse_APIKeys_GetOne *)response);
@@ -906,7 +1059,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (void)apikeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params callback:(void (^)(SyncanoResponse_APIKeys_UpdateDescription *response))callback {
+- (void)apiKeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params callback:(void (^)(SyncanoResponse_APIKeys_UpdateDescription *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
 	        callback((SyncanoResponse_APIKeys_UpdateDescription *)response);
@@ -914,7 +1067,23 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (void)apikeyDelete:(SyncanoParameters_APIKeys_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+- (void)apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
+- (void)apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+	    if (callback) {
+	        callback(response);
+		}
+	}];
+}
+
+- (void)apiKeyDelete:(SyncanoParameters_APIKeys_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
 	    if (callback) {
 	        callback(response);
