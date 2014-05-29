@@ -155,6 +155,12 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	if (self.state.length > 0) {
 		[loginDict setObject:self.state forKey:@"state"];
 	}
+	if (self.timezone.length > 0) {
+		[loginDict setObject:self.timezone forKey:@"timezone"];
+	}
+	if (self.authKey.length > 0) {
+		[loginDict setObject:self.authKey forKey:@"auth_key"];
+	}
 	if (self.sinceId) {
 		[loginDict setObject:self.sinceId forKey:@"since_id"];
 	}

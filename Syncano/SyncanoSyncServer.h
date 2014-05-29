@@ -81,6 +81,13 @@ typedef void (^SyncanoSyncServerAddedCallback)(SyncanoData *addedData);
 @property (strong, nonatomic) NSDate *sinceTime;
 
 /**
+   When using User API key, you need to additionally pass auth_key which you can obtain through user.login() API method. You also need to first authorize User API client with access_sync permission through apikey.authorize().
+
+   @warning Has to be set before [connect:](connect:connectionOpen:connectionClosed:messageReceived:historyReceived:syncServerError:notificationDeleted:notificationChanged:notificationAdded:) method is called to affect the connection.
+ */
+@property (strong, nonatomic) NSString *authKey;
+
+/**
    Creates SyncanoSyncServer object in given domain with passed credentials. You should store it and use as a shared object in your application.
 
    @param domain   Your subdomain in Syncano
