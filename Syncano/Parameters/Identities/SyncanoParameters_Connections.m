@@ -21,12 +21,12 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"apiClientId" : @"api_client_id",
-                                  @"name" : @"name",
-                                  @"sinceId" : @"since_id",
-                                  @"limit" : @"limit"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"name" : @"name",
+		                          @"sinceId" : @"since_id",
+		                          @"limit" : @"limit" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -43,11 +43,11 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"name" : @"name",
-                                  @"sinceId" : @"since_id",
-                                  @"limit" : @"limit"};
-    
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"name" : @"name",
+		                          @"sinceId" : @"since_id",
+		                          @"limit" : @"limit" };
+
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
@@ -56,21 +56,21 @@
 @implementation SyncanoParameters_Connections_Update
 
 - (SyncanoParameters_Connections_Update *)initWithUUID:(NSString *)uuid state:(NSString *)state {
-    self = [super init];
-    if (self) {
-        self.uuid = uuid;
-        self.state = state;
-        [self validateParameters];
-    }
-    return self;
+	self = [super init];
+	if (self) {
+		self.uuid = uuid;
+		self.state = state;
+		[self validateParameters];
+	}
+	return self;
 }
 
 - (SEL)initalizeSelector {
-    return @selector(initWithUUID:state:);
+	return @selector(initWithUUID:state:);
 }
 
 - (NSArray *)requiredParametersNames {
-    return @[@"uuid", @"state"];
+	return @[@"uuid", @"state"];
 }
 
 - (NSString *)methodName {
@@ -82,10 +82,10 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    NSDictionary * parameters = @{@"apiClientId" : @"api_client_id",
-                                  @"uuid" : @"uuid",
-                                  @"state" : @"state"};
-    return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
+		                          @"uuid" : @"uuid",
+		                          @"state" : @"state" };
+	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
 @end
