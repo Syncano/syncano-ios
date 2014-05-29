@@ -11,33 +11,37 @@
 #import <Mantle/MTLModel.h>
 #import <Mantle/MTLJSONAdapter.h>
 
-extern NSString * const kSyncanoParametersOrderAsc;
-extern NSString * const kSyncanoParametersOrderDesc;
+extern NSString *const kSyncanoParametersOrderAsc;
+extern NSString *const kSyncanoParametersOrderDesc;
 
-extern NSString * const kSyncanoParametersOrderByCreatedAt;
-extern NSString * const kSyncanoParametersOrderByUpdatedAt;
+extern NSString *const kSyncanoParametersOrderByCreatedAt;
+extern NSString *const kSyncanoParametersOrderByUpdatedAt;
 
-extern NSString * const kSyncanoParametersFilterText;
-extern NSString * const kSyncanoParametersFilterImage;
+extern NSString *const kSyncanoParametersFilterText;
+extern NSString *const kSyncanoParametersFilterImage;
 
 /**
- Base class for request parameters
+   Base class for request parameters
  */
-@interface SyncanoParameters : MTLModel<MTLJSONSerializing>
+@interface SyncanoParameters : MTLModel <MTLJSONSerializing>
 /**
- Module name that parameters are used with
+   Module name that parameters are used with
  */
 @property (strong, readonly)   NSString *moduleName;
 /**
- Timezone for parameters object
+   Timezone for parameters object
  */
 @property (strong)            NSString *timezone;
 /**
- API key used with request
+   API key used with request
  */
 @property (strong)    NSString *apiKey;
 /**
- Session ID of request
+   User authorization key.
+ */
+@property (strong)    NSString *authKey;
+/**
+   Session ID of request
  */
 @property (strong)    NSString *sessionId;
 
@@ -49,19 +53,19 @@ extern NSString * const kSyncanoParametersFilterImage;
 
 - (id)responseFromJSON:(NSDictionary *)json;
 
-+ (NSMutableDictionary *)mergeSuperParameters:(NSDictionary*)superParameters parameters:(NSDictionary*)parameters;
++ (NSMutableDictionary *)mergeSuperParameters:(NSDictionary *)superParameters parameters:(NSDictionary *)parameters;
 
 //Validation
 - (SEL)initalizeSelector;
-- (NSArray*)initalizeSelectorNamesArray;
-- (NSArray*)requiredParametersNames;
+- (NSArray *)initializeSelectorNamesArray;
+- (NSArray *)requiredParametersNames;
 - (void)validateParameters;
-- (void)validateSpecialParameters:(NSArray*)parameters;
+- (void)validateSpecialParameters:(NSArray *)parameters;
 
 @end
 
 /**
- Parameters for collection by either key or ID
+   Parameters for collection by either key or ID
  */
 @interface SyncanoParameters_ProjectId_CollectionId_CollectionKey : SyncanoParameters
 
