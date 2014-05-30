@@ -531,6 +531,9 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 }
 
 - (BOOL)connect:(NSError **)errorPointer {
+	if ([self isConnectionOpen]) {
+		return NO;
+	}
 	BOOL success = [self.socket connectToHost:kSyncanoSyncServerHost onPort:kSyncanoSyncServerPort withTimeout:kSyncanoSyncServerDefaultTimeout error:errorPointer];
 	return success;
 }
@@ -544,9 +547,6 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
     notificationDeleted:(SyncanoSyncServerDeletedCallback)deletedCallback
     notificationChanged:(SyncanoSyncServerChangedCallback)changedCallback
       notificationAdded:(SyncanoSyncServerAddedCallback)addedCallback {
-	if ([self isConnectionOpen]) {
-		return NO;
-	}
 	self.connectionOpenCallback = connectionOpenCallback;
 	self.connectionClosedCallback = connectionClosedCallback;
 	self.messageReceivedCallback = messageReceivedCallback;
