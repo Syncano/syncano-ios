@@ -218,12 +218,12 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	if (self.connectionOpenCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 		    self.connectionOpenCallback();
-		    [self dequeRequest];
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServerConnectionOpened:)]) {
 		[self.delegate syncServerConnectionOpened:self];
 	}
+	[self dequeRequest];
 }
 
 - (void)notifyAboutConnectionClosed:(NSError *)error {
