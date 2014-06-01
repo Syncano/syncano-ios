@@ -39,12 +39,12 @@ extern NSString *const kSyncanoParametersAPIKeyTypeUser;
 /**
    Creates parameters object with required fields initialized
 
-   @param roleId      New API client's permission role id (see role.get()). Not used when creating User API key (type = user)
+   @param type Type of new API client.
    @param description Description of new API client.
 
    @return SyncanoParameters object with required fields initialized
  */
-- (SyncanoParameters_APIKeys_New *)initWithRoleId:(NSString *)roleId description:(NSString *)description;
+- (SyncanoParameters_APIKeys_New *)initWithType:(NSString *)type description:(NSString *)description;
 
 @end
 

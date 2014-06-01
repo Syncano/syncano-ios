@@ -26,10 +26,10 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 
 @implementation SyncanoParameters_APIKeys_New
 
-- (SyncanoParameters_APIKeys_New *)initWithRoleId:(NSString *)roleId description:(NSString *)description {
+- (SyncanoParameters_APIKeys_New *)initWithType:(NSString *)type description:(NSString *)description {
 	self = [super init];
 	if (self) {
-		self.roleId = roleId;
+		self.type = type;
 		self.description = description;
 		[self validateParameters];
 	}
@@ -37,11 +37,11 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 }
 
 - (SEL)initalizeSelector {
-	return @selector(initWithRoleId:description:);
+	return @selector(initWithType:description:);
 }
 
 - (NSArray *)requiredParametersNames {
-	return @[@"roleId", @"description"];
+	return @[@"type", @"description"];
 }
 
 - (NSString *)methodName {
@@ -54,7 +54,8 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"roleId" : @"role_id",
-		                          @"description" : @"description" };
+		                          @"description" : @"description",
+		                          @"type" : @"type" };
 
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
