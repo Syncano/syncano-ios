@@ -46,7 +46,7 @@ Our library depends on following third party frameworks, so you will need to dow
 If you want to use CocoaPods, add this to your Podfile:
 
 ```shell
-pod ‘syncano-ios’, ‘~>3.1.1’
+pod ‘syncano-ios’, ‘~>3.1.2’
 ```
 	
 ## Installing
