@@ -8,6 +8,18 @@
 
 #import "SyncanoObjects_Private.h"
 
+@implementation NSDictionary (SyncanoObjects)
+
+- (id)syncano_notNullObjectForKey:(id)aKey {
+    id object = [self objectForKey:aKey];
+    if (object == [NSNull null]) {
+        object = nil;
+    }
+    return object;
+}
+
+@end
+
 @implementation SyncanoAuth
 - (BOOL)isKeyDate:(NSString *)key {
 	if ([key isEqualToString:@"timestamp"]) {

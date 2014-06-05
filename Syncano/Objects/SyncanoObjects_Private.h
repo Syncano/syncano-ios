@@ -8,6 +8,10 @@
 
 #import "SyncanoObjects.h"
 
+@interface NSDictionary (SyncanoObjects)
+- (id)syncano_notNullObjectForKey:(id)aKey;
+@end
+
 @interface SyncanoAuth : SyncanoObject
 @property (strong)    NSString *object;
 @property (strong)    NSString *result;
