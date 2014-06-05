@@ -7,6 +7,7 @@
 //
 
 #import "SyncanoObjects.h"
+#import "SyncanoObjects_Private.h"
 #import "SyncanoDateFormatter.h"
 #import <Mantle/MTLValueTransformer.h>
 #import <objc/runtime.h>
@@ -89,8 +90,8 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
 	self = [super initWithDictionary:dictionaryValue error:error];
 	if (self) {
-		if ([dictionaryValue objectForKey:@"role"]) {
-			self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue objectForKey:@"role"] error:nil];
+		if ([dictionaryValue syncano_notNullObjectForKey:@"role"]) {
+			self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue syncano_notNullObjectForKey:@"role"] error:nil];
 		}
 	}
 	return self;
@@ -199,8 +200,8 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
 	self = [super initWithDictionary:dictionaryValue error:error];
 	if (self) {
-		if ([dictionaryValue objectForKey:@"avatar"]) {
-			self.avatar = [MTLJSONAdapter modelOfClass:[SyncanoAvatar class] fromJSONDictionary:[dictionaryValue objectForKey:@"avatar"] error:nil];
+		if ([dictionaryValue syncano_notNullObjectForKey:@"avatar"]) {
+			self.avatar = [MTLJSONAdapter modelOfClass:[SyncanoAvatar class] fromJSONDictionary:[dictionaryValue syncano_notNullObjectForKey:@"avatar"] error:nil];
 		}
 	}
 	return self;
@@ -226,18 +227,18 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
 	self = [super initWithDictionary:dictionaryValue error:error];
 	if (self) {
-		if ([dictionaryValue objectForKey:@"user"]) {
-			self.user = [MTLJSONAdapter modelOfClass:[SyncanoUser class] fromJSONDictionary:[dictionaryValue objectForKey:@"user"] error:nil];
+		if ([dictionaryValue syncano_notNullObjectForKey:@"user"]) {
+			self.user = [MTLJSONAdapter modelOfClass:[SyncanoUser class] fromJSONDictionary:[dictionaryValue syncano_notNullObjectForKey:@"user"] error:nil];
 		}
 
-		if ([dictionaryValue objectForKey:@"image"]) {
-			self.image = [MTLJSONAdapter modelOfClass:[SyncanoImage class] fromJSONDictionary:[dictionaryValue objectForKey:@"image"] error:nil];
+		if ([dictionaryValue syncano_notNullObjectForKey:@"image"]) {
+			self.image = [MTLJSONAdapter modelOfClass:[SyncanoImage class] fromJSONDictionary:[dictionaryValue syncano_notNullObjectForKey:@"image"] error:nil];
 		}
 
-		if ([dictionaryValue objectForKey:@"children"]) {
+		if ([dictionaryValue syncano_notNullObjectForKey:@"children"]) {
 			NSMutableArray *children = [[NSMutableArray alloc] init];
 
-			for (NSDictionary *child in[dictionaryValue objectForKey:@"children"]) {
+			for (NSDictionary *child in[dictionaryValue syncano_notNullObjectForKey:@"children"]) {
 				[children addObject:[MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:child error:nil]];
 			}
 			self.children = children;
@@ -281,6 +282,16 @@
 	}
 }
 
++ (void)fillObject:(id)object usingMantleKeyValuePairsWithJSON:(NSDictionary *)json {
+    NSDictionary *mantleDictionary = [self JSONKeyPathsByPropertyKey];
+    [mantleDictionary enumerateKeysAndObjectsWithOptions:0 usingBlock:^(id objectKey, id jsonKey, BOOL *stop) {
+        id value = [json objectForKey:jsonKey];
+        if (value) {
+            [object setValue:value forKey:objectKey];
+        }
+    }];
+}
+
 + (NSArray *)valuesForKeys:(NSArray *)keys forObject:(id)object {
 	NSMutableArray *values = [NSMutableArray arrayWithCapacity:keys.count];
 	for (NSString *key in keys) {
@@ -292,31 +303,42 @@
 	return values;
 }
 
++ (NSArray *)properObjectKeysUsingMantleKeyValuePairsFromJSONKeys:(NSArray *)jsonKeys {
+    NSMutableArray *objectKeys = [NSMutableArray arrayWithCapacity:jsonKeys.count];
+    NSDictionary *mantleDictionary = [self JSONKeyPathsByPropertyKey];
+    [mantleDictionary enumerateKeysAndObjectsWithOptions:0 usingBlock:^(id objectKey, id jsonKey, BOOL *stop) {
+        if ([jsonKeys containsObject:jsonKey]) {
+            [objectKeys addObject:objectKey];
+        }
+    }];
+    return [objectKeys copy];
+}
+
 + (instancetype)objectFromJSON:(NSDictionary *)json {
 	SyncanoDataChanges *object = [[self alloc] init];
 	NSDictionary *dataJSON = json[@"data"];
 	NSDictionary *addedJSON = json[@"add"];
 	NSDictionary *replacedJSON = json[@"replace"];
-	[self fillObject:object withJSON:dataJSON];
-	[self fillObject:object withJSON:addedJSON];
-	[self fillObject:object withJSON:replacedJSON];
-	NSMutableArray *replacedKeys = [NSMutableArray arrayWithArray:[replacedJSON allKeys]];
-	NSMutableArray *deletedKeys = [NSMutableArray arrayWithArray:json[@"delete"]];
-	NSMutableArray *addedKeys = [NSMutableArray arrayWithArray:[addedJSON allKeys]];
-	NSMutableArray *replacedProperties = [[self valuesForKeys:object.replacedKeys forObject:object] mutableCopy];
-	NSMutableArray *deletedProperties = [[self valuesForKeys:object.deletedKeys forObject:object] mutableCopy];
-	NSMutableArray *addedProperties = [[self valuesForKeys:object.addedKeys forObject:object] mutableCopy];
+	[self fillObject:object usingMantleKeyValuePairsWithJSON:dataJSON];
+	[self fillObject:object usingMantleKeyValuePairsWithJSON:addedJSON];
+	[self fillObject:object usingMantleKeyValuePairsWithJSON:replacedJSON];
+	NSMutableArray *replacedKeys = [[self properObjectKeysUsingMantleKeyValuePairsFromJSONKeys:[replacedJSON allKeys]] mutableCopy];
+	NSMutableArray *deletedKeys = [[self properObjectKeysUsingMantleKeyValuePairsFromJSONKeys:json[@"delete"]] mutableCopy];
+	NSMutableArray *addedKeys = [[self properObjectKeysUsingMantleKeyValuePairsFromJSONKeys:[addedJSON allKeys]] mutableCopy];
+	NSMutableArray *replacedProperties = [[self valuesForKeys:replacedKeys forObject:object] mutableCopy];
+	NSMutableArray *deletedProperties = [[self valuesForKeys:deletedKeys forObject:object] mutableCopy];
+	NSMutableArray *addedProperties = [[self valuesForKeys:addedKeys forObject:object] mutableCopy];
 	NSDictionary *additionalAdded = json[@"additional"][@"add"];
 	NSArray *additionalDeleted = json[@"additional"][@"delete"];
 	NSDictionary *additionalReplaced = json[@"additional"][@"replace"];
 	NSMutableDictionary *allAdditionals = [NSMutableDictionary dictionaryWithCapacity:(additionalAdded.count + additionalReplaced.count + additionalDeleted.count)];
-	for (id key in[additionalAdded allKeys]) {
+	for (id key in [additionalAdded allKeys]) {
 		id object = additionalAdded[key];
 		[allAdditionals setObject:object forKey:key];
 		[addedKeys addObject:key];
 		[addedProperties addObject:object];
 	}
-	for (id key in[additionalReplaced allKeys]) {
+	for (id key in [additionalReplaced allKeys]) {
 		id object = additionalReplaced[key];
 		[allAdditionals setObject:object forKey:key];
 		[replacedKeys addObject:key];
@@ -327,6 +349,10 @@
 		[deletedKeys addObject:key];
 		[deletedProperties addObject:[NSNull null]];
 	}
+    for (id key in deletedKeys) {
+        [object setValue:[NSNull null] forKey:key];
+        [deletedProperties addObject:[NSNull null]];
+    }
 	object.additional = allAdditionals;
 	object.addedKeys = addedKeys;
 	object.replacedKeys = replacedKeys;
@@ -408,8 +434,8 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
 	self = [super initWithDictionary:dictionaryValue error:error];
 	if (self) {
-		if ([dictionaryValue objectForKey:@"role"]) {
-			self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue objectForKey:@"role"] error:nil];
+		if ([dictionaryValue syncano_notNullObjectForKey:@"role"]) {
+			self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue syncano_notNullObjectForKey:@"role"] error:nil];
 		}
 	}
 	return self;
