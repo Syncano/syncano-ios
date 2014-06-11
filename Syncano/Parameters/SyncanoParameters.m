@@ -52,6 +52,7 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 	if (self) {
 		_timezone = @"UTC";
 
+#ifdef DEBUG
 		NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
 		NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
 		NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
@@ -87,6 +88,7 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 				[NSException raise:@"Invaild initalization" format:@"Use: %@ for initalization %@ class", allowedSelectors, NSStringFromClass(self.class)];
 			}
 		}
+#endif
 	}
 	return self;
 }
