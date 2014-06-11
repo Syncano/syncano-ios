@@ -56,8 +56,16 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 		NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
 		NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
 		[array removeObject:@""];
-
-		NSString *selectorString = [array objectAtIndex:4];
+        
+		// get index containing memory address, i.e. hex number with at least 8 digits
+		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"0x\\p{Hex_Digit}{8}+" options:0 error:nil];
+		NSUInteger addressIndex = [array indexOfObjectPassingTest:^BOOL(NSString *string, NSUInteger idx, BOOL *stop) {
+			NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
+			return !!matches.count;
+		}];
+        
+		// two indexes "further", theres selector string
+		NSString * selectorString = [array objectAtIndex:addressIndex+2];
 		NSArray *initalizeSelectorNames = [self initializeSelectorNamesArray];
 		SEL initalizeSelector = NSSelectorFromString(selectorString);
 
