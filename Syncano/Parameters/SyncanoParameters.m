@@ -58,7 +58,10 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 		[array removeObject:@""];
         
 		// get index containing memory address, i.e. hex number with at least 8 digits
-		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"0x\\p{Hex_Digit}{8}+" options:0 error:nil];
+		static NSRegularExpression *regex = nil;
+		if (!regex) {
+			regex = [NSRegularExpression regularExpressionWithPattern:@"0x\\p{Hex_Digit}{8}+" options:0 error:nil];
+		}
 		NSUInteger addressIndex = [array indexOfObjectPassingTest:^BOOL(NSString *string, NSUInteger idx, BOOL *stop) {
 			NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
 			return !!matches.count;
