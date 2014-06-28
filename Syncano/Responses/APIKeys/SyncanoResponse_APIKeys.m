@@ -13,8 +13,8 @@
 
 @implementation SyncanoResponse_APIKeys_New
 - (Class)classForKey:(NSString *)key {
-	if ([key isEqualToString:@"client"]) {
-		return [SyncanoClient class];
+	if ([key isEqualToString:@"api_key"]) {
+		return [SyncanoApiKey class];
 	}
 	return nil;
 }
@@ -23,14 +23,14 @@
 
 @implementation SyncanoResponse_APIKeys_Get
 - (Class)classForKey:(NSString *)key {
-	if ([key isEqualToString:@"client"]) {
-		return [SyncanoClient class];
+	if ([key isEqualToString:@"api_key"]) {
+		return [SyncanoApiKey class];
 	}
 	return nil;
 }
 
 - (BOOL)isKeyArray:(NSString *)key {
-	if ([key isEqualToString:@"client"]) {
+	if ([key isEqualToString:@"api_key"]) {
 		return YES;
 	}
 	return NO;
@@ -40,8 +40,8 @@
 
 @implementation SyncanoResponse_APIKeys_GetOne
 - (Class)classForKey:(NSString *)key {
-	if ([key isEqualToString:@"client"]) {
-		return [SyncanoClient class];
+	if ([key isEqualToString:@"api_key"]) {
+		return [SyncanoApiKey class];
 	}
 	return nil;
 }
@@ -50,8 +50,8 @@
 
 @implementation SyncanoResponse_APIKeys_UpdateDescription
 - (Class)classForKey:(NSString *)key {
-	if ([key isEqualToString:@"client"]) {
-		return [SyncanoClient class];
+	if ([key isEqualToString:@"api_key"]) {
+		return [SyncanoApiKey class];
 	}
 	return nil;
 }

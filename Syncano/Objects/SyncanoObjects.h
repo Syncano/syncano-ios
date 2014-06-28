@@ -52,6 +52,7 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @class SyncanoClient, SyncanoProject, SyncanoCollection, SyncanoFolder;
 @class SyncanoAvatar, SyncanoImage, SyncanoUser, SyncanoData, SyncanoDataChanges;
 @class SyncanoSubscription, SyncanoRole, SyncanoAdmin, SyncanoIdentity;
+@class SyncanoApiKey;
 
 /**
    Syncano API client
@@ -59,6 +60,26 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @interface SyncanoClient : SyncanoObject
 /// API client id
 @property (strong)    NSString *uid;
+///  API client descriptionString
+@property (strong)    NSString *descriptionString;
+/// API key
+@property (strong)    NSString *apiKey;
+/// Role
+@property (strong)    SyncanoRole *role;
+@end
+
+/**
+   Syncano APIKey client
+ */
+@interface SyncanoApiKey : SyncanoObject
+/// API client id
+@property (strong)    NSString *uid;
+/**
+   API client type - possible values:
+   backend - Backend API client,
+   user - User API client.
+ */
+@property (strong)    NSString *type;
 ///  API client descriptionString
 @property (strong)    NSString *descriptionString;
 /// API key

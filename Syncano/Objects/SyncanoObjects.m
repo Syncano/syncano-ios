@@ -107,6 +107,30 @@
 
 @end
 
+@implementation SyncanoApiKey : SyncanoObject
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
+	self = [super initWithDictionary:dictionaryValue error:error];
+	if (self) {
+		if ([dictionaryValue syncano_notNullObjectForKey:@"role"]) {
+			self.role = [MTLJSONAdapter modelOfClass:[SyncanoRole class] fromJSONDictionary:[dictionaryValue syncano_notNullObjectForKey:@"role"] error:nil];
+		}
+	}
+	return self;
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+			   @"uid" : @"id",
+			   @"descriptionString" : @"description",
+			   @"apiKey" : @"api_key",
+			   @"type" : @"type"
+	};
+}
+
+@end
+
+
 @implementation SyncanoConnection : SyncanoObject
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -283,13 +307,13 @@
 }
 
 + (void)fillObject:(id)object usingMantleKeyValuePairsWithJSON:(NSDictionary *)json {
-    NSDictionary *mantleDictionary = [self JSONKeyPathsByPropertyKey];
-    [mantleDictionary enumerateKeysAndObjectsWithOptions:0 usingBlock:^(id objectKey, id jsonKey, BOOL *stop) {
-        id value = [json objectForKey:jsonKey];
-        if (value) {
-            [object setValue:value forKey:objectKey];
-        }
-    }];
+	NSDictionary *mantleDictionary = [self JSONKeyPathsByPropertyKey];
+	[mantleDictionary enumerateKeysAndObjectsWithOptions:0 usingBlock: ^(id objectKey, id jsonKey, BOOL *stop) {
+	    id value = [json objectForKey:jsonKey];
+	    if (value) {
+	        [object setValue:value forKey:objectKey];
+		}
+	}];
 }
 
 + (NSArray *)valuesForKeys:(NSArray *)keys forObject:(id)object {
@@ -304,14 +328,14 @@
 }
 
 + (NSArray *)properObjectKeysUsingMantleKeyValuePairsFromJSONKeys:(NSArray *)jsonKeys {
-    NSMutableArray *objectKeys = [NSMutableArray arrayWithCapacity:jsonKeys.count];
-    NSDictionary *mantleDictionary = [self JSONKeyPathsByPropertyKey];
-    [mantleDictionary enumerateKeysAndObjectsWithOptions:0 usingBlock:^(id objectKey, id jsonKey, BOOL *stop) {
-        if ([jsonKeys containsObject:jsonKey]) {
-            [objectKeys addObject:objectKey];
-        }
-    }];
-    return [objectKeys copy];
+	NSMutableArray *objectKeys = [NSMutableArray arrayWithCapacity:jsonKeys.count];
+	NSDictionary *mantleDictionary = [self JSONKeyPathsByPropertyKey];
+	[mantleDictionary enumerateKeysAndObjectsWithOptions:0 usingBlock: ^(id objectKey, id jsonKey, BOOL *stop) {
+	    if ([jsonKeys containsObject:jsonKey]) {
+	        [objectKeys addObject:objectKey];
+		}
+	}];
+	return [objectKeys copy];
 }
 
 + (instancetype)objectFromJSON:(NSDictionary *)json {
@@ -332,13 +356,13 @@
 	NSArray *additionalDeleted = json[@"additional"][@"delete"];
 	NSDictionary *additionalReplaced = json[@"additional"][@"replace"];
 	NSMutableDictionary *allAdditionals = [NSMutableDictionary dictionaryWithCapacity:(additionalAdded.count + additionalReplaced.count + additionalDeleted.count)];
-	for (id key in [additionalAdded allKeys]) {
+	for (id key in[additionalAdded allKeys]) {
 		id object = additionalAdded[key];
 		[allAdditionals setObject:object forKey:key];
 		[addedKeys addObject:key];
 		[addedProperties addObject:object];
 	}
-	for (id key in [additionalReplaced allKeys]) {
+	for (id key in[additionalReplaced allKeys]) {
 		id object = additionalReplaced[key];
 		[allAdditionals setObject:object forKey:key];
 		[replacedKeys addObject:key];
@@ -349,10 +373,10 @@
 		[deletedKeys addObject:key];
 		[deletedProperties addObject:[NSNull null]];
 	}
-    for (id key in deletedKeys) {
-        [object setValue:[NSNull null] forKey:key];
-        [deletedProperties addObject:[NSNull null]];
-    }
+	for (id key in deletedKeys) {
+		[object setValue:[NSNull null] forKey:key];
+		[deletedProperties addObject:[NSNull null]];
+	}
 	object.additional = allAdditionals;
 	object.addedKeys = addedKeys;
 	object.replacedKeys = replacedKeys;

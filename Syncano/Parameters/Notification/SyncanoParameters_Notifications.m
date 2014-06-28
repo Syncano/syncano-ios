@@ -25,6 +25,7 @@
 - (NSDictionary *)dictionaryValue {
 	NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:[super dictionaryValue]];
 	if ([self.additional isKindOfClass:[NSDictionary class]]) {
+        [dictionary removeObjectForKey:@"additional"];
 		[dictionary addEntriesFromDictionary:self.additional];
 	}
 	return dictionary;

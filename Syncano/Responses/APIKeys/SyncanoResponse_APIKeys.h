@@ -11,39 +11,39 @@
 
 @interface SyncanoResponse_APIKeys_StartSession : SyncanoResponse
 /**
- Session ID for current session
+   Session ID for current session
  */
 @property (strong) NSString *session_id;
 /**
- Response UUID
+   Response UUID
  */
 @property (strong) NSString *uuid;
 @end
 
 @interface SyncanoResponse_APIKeys_New : SyncanoResponse
 /**
- Created client SyncanoObject
+   Created client SyncanoObject
  */
-@property (strong) SyncanoClient *client;
+@property (strong) SyncanoApiKey *apiKey;
 @end
 
 @interface SyncanoResponse_APIKeys_Get : SyncanoResponse
 /**
- Clients array from response
+   Clients array from response
  */
-@property (strong) NSArray *client;
+@property (strong) NSArray *apikey;
 @end
 
 @interface SyncanoResponse_APIKeys_GetOne : SyncanoResponse
 /**
- Single client from response
+   Single client from response
  */
-@property (strong) SyncanoClient *client;
+@property (strong) SyncanoApiKey *apikey;
 @end
 
 @interface SyncanoResponse_APIKeys_UpdateDescription : SyncanoResponse
 /**
- Updated client from response
+   Updated client from response
  */
-@property (strong) SyncanoClient *client;
+@property (strong) SyncanoApiKey *apikey;
 @end
