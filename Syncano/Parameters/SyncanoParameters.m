@@ -52,32 +52,43 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 	if (self) {
 		_timezone = @"UTC";
 
-		/*
-		   NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
-		   NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
-		   NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
-		   [array removeObject:@""];
+#ifdef DEBUG
+		NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
+		NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
+		NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
+		[array removeObject:@""];
+        
+		// get index containing memory address, i.e. hex number with at least 8 digits
+		static NSRegularExpression *regex = nil;
+		if (!regex) {
+			regex = [NSRegularExpression regularExpressionWithPattern:@"0x\\p{Hex_Digit}{8}+" options:0 error:nil];
+		}
+		NSUInteger addressIndex = [array indexOfObjectPassingTest:^BOOL(NSString *string, NSUInteger idx, BOOL *stop) {
+			NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
+			return !!matches.count;
+		}];
+        
+		// two indexes "further", theres selector string
+		NSString * selectorString = [array objectAtIndex:addressIndex+2];
+		NSArray *initalizeSelectorNames = [self initializeSelectorNamesArray];
+		SEL initalizeSelector = NSSelectorFromString(selectorString);
 
-		   NSString *selectorString = [array objectAtIndex:4];
-		   NSArray *initalizeSelectorNames = [self initializeSelectorNamesArray];
-		   SEL initalizeSelector = NSSelectorFromString(selectorString);
+		if (self.initalizeSelector) {
+			if (initalizeSelector != self.initalizeSelector) {
+				[NSException raise:@"Invaild initalization" format:@"Use: %@ for initalization", NSStringFromSelector(self.initalizeSelector)];
+			}
 
-		   if (self.initalizeSelector) {
-		    if (initalizeSelector != self.initalizeSelector) {
-		        [NSException raise:@"Invaild initalization" format:@"Use: %@ for initalization", NSStringFromSelector(self.initalizeSelector)];
-		    }
-
-		    if (!self.requiredParametersNames) {
-		        [NSException raise:@"Bad implementation" format:@"%@ has unique init method (%@) and 0 required parameters, implemement requiredParametersNames method", NSStringFromClass(self.class), NSStringFromSelector(self.initalizeSelector)];
-		    }
-		   }
-		   else if (initalizeSelectorNames && [initalizeSelectorNames count] > 0) {
-		    if (![initalizeSelectorNames containsObject:selectorString]) {
-		        NSString *allowedSelectors = [initalizeSelectorNames componentsJoinedByString:@" or "];
-		        [NSException raise:@"Invaild initalization" format:@"Use: %@ for initalization %@ class", allowedSelectors, NSStringFromClass(self.class)];
-		    }
-		   }
-		 */
+			if (!self.requiredParametersNames) {
+				[NSException raise:@"Bad implementation" format:@"%@ has unique init method (%@) and 0 required parameters, implemement requiredParametersNames method", NSStringFromClass(self.class), NSStringFromSelector(self.initalizeSelector)];
+			}
+		}
+		else if (initalizeSelectorNames && [initalizeSelectorNames count] > 0) {
+			if (![initalizeSelectorNames containsObject:selectorString]) {
+				NSString *allowedSelectors = [initalizeSelectorNames componentsJoinedByString:@" or "];
+				[NSException raise:@"Invaild initalization" format:@"Use: %@ for initalization %@ class", allowedSelectors, NSStringFromClass(self.class)];
+			}
+		}
+#endif
 	}
 	return self;
 }
