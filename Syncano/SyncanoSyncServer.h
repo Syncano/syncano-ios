@@ -88,6 +88,15 @@ typedef void (^SyncanoSyncServerAddedCallback)(SyncanoData *addedData);
 @property (strong, nonatomic) NSString *authKey;
 
 /**
+   UUID is being set after connection with Sync Server was successfully established.
+   It can be used to distinguish between different connections, as well as to
+   ignore notifications send by ourselves.
+
+   @warning Until connection was established, it's equal to nil.
+ */
+@property (strong, readonly, nonatomic) NSString *uuid;
+
+/**
    Creates SyncanoSyncServer object in given domain with passed credentials. You should store it and use as a shared object in your application.
 
    @param domain   Your subdomain in Syncano
