@@ -14,6 +14,60 @@ NSString *const kSyncanoParametersDataObjectsStatePending = @"pending";
 NSString *const kSyncanoParametersDataObjectsStateModerated = @"moderated";
 NSString *const kSyncanoParametersDataObjectsStateRejected = @"rejected";
 
+NSString *fieldNameForField(FilterableDataField field) {
+	NSString *fieldName = nil;
+	switch (field) {
+		case FilterableDataField_Data1:
+			fieldName = @"data1";
+			break;
+
+		case FilterableDataField_Data2:
+			fieldName = @"data2";
+			break;
+
+		case FilterableDataField_Data3:
+			fieldName = @"data3";
+			break;
+
+		default:
+			break;
+	}
+	return fieldName;
+}
+
+NSString *filterNameForFilter(DataFieldFilter filter) {
+	NSString *filterName = nil;
+	switch (filter) {
+		case DataFieldFilter_EQUAL:
+			filterName = @"eq";
+			break;
+
+		case DataFieldFilter_NOT_EQUAL:
+			filterName = @"neq";
+			break;
+
+		case DataFieldFilter_LESS:
+			filterName = @"le";
+			break;
+
+		case DataFieldFilter_LESS_EQUAL:
+			filterName = @"leq";
+			break;
+
+		case DataFieldFilter_GREATER:
+			filterName = @"gt";
+			break;
+
+		case DataFieldFilter_GREATER_EQUAL:
+			filterName = @"gte";
+			break;
+
+		default:
+			break;
+	}
+	return filterName;
+}
+
 @implementation SyncanoParameters_DataObjects_State_Validate
 
 - (void)setState:(NSString *)state {
@@ -175,7 +229,10 @@ NSString *const kSyncanoParametersDataObjectsStateRejected = @"rejected";
 		                          @"link" : @"link",
 		                          @"imageUrl" : @"image_url",
 		                          @"folder" : @"folder",
-		                          @"parentId" : @"parent_id" };
+		                          @"parentId" : @"parent_id",
+		                          @"data1" : @"data1",
+		                          @"data2" : @"data2",
+		                          @"data3" : @"data3" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -190,10 +247,38 @@ NSString *const kSyncanoParametersDataObjectsStateRejected = @"rejected";
 
 @end
 
+@interface SyncanoParameters_DataObjects_Get ()
+@property (strong, nonatomic) NSMutableDictionary *additional;
+@end
+
 @implementation SyncanoParameters_DataObjects_Get
+
+- (NSMutableDictionary *)additional {
+	if (_additional == nil) {
+		_additional = [NSMutableDictionary dictionary];
+	}
+	return _additional;
+}
 
 - (NSString *)methodName {
 	return @"data.get";
+}
+
+- (NSString *)combineDataField:(FilterableDataField)field andFilter:(DataFieldFilter)filter {
+	NSString *fieldName = fieldNameForField(field);
+	NSString *filterName = filterNameForFilter(filter);
+	NSString *combined = nil;
+	if (fieldName && filterName) {
+		combined = [NSString stringWithFormat:@"%@__%@", fieldName, filterName];
+	}
+	return combined;
+}
+
+- (void)addFilter:(DataFieldFilter)filter forField:(FilterableDataField)field value:(NSInteger)value {
+	NSString *combined = [self combineDataField:field andFilter:filter];
+	if (combined) {
+		[self.additional setObject:@(value) forKey:combined];
+	}
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -210,8 +295,18 @@ NSString *const kSyncanoParametersDataObjectsStateRejected = @"rejected";
 		                          @"byUser" : @"by_user",
 		                          @"order" : @"order",
 		                          @"orderBy" : @"order_by",
-		                          @"filter" : @"filter" };
+		                          @"filter" : @"filter",
+		                          @"childIds" : @"child_ids" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
+}
+
+- (NSDictionary *)dictionaryValue {
+	NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:[super dictionaryValue]];
+	if ([self.additional isKindOfClass:[NSDictionary class]]) {
+		[dictionary removeObjectForKey:@"additional"];
+		[dictionary addEntriesFromDictionary:self.additional];
+	}
+	return dictionary;
 }
 
 - (id)responseFromJSON:(NSDictionary *)json {
@@ -351,11 +446,37 @@ NSString *const kSyncanoParametersDataObjectsStateRejected = @"rejected";
 
 @end
 
+@interface SyncanoParameters_DataObjects_Update ()
+@property (strong, nonatomic)   NSMutableDictionary *privateAdditional;
+@end
+
 @implementation SyncanoParameters_DataObjects_Update
 
+- (NSMutableDictionary *)privateAdditional {
+	if (_privateAdditional == nil) {
+		_privateAdditional = [NSMutableDictionary dictionary];
+	}
+	return _privateAdditional;
+}
 
 - (NSString *)methodName {
 	return @"data.update";
+}
+
+- (void)incrementDataField:(FilterableDataField)field byValue:(NSInteger)value {
+	NSString *fieldName = fieldNameForField(field);
+	if (fieldName) {
+		NSString *key = [NSString stringWithFormat:@"%@__inc", fieldName];
+		[self.privateAdditional setObject:@(value) forKey:key];
+	}
+}
+
+- (void)decrementDataField:(FilterableDataField)field byValue:(NSInteger)value {
+	NSString *fieldName = fieldNameForField(field);
+	if (fieldName) {
+		NSString *key = [NSString stringWithFormat:@"%@__dec", fieldName];
+		[self.privateAdditional setObject:@(value) forKey:key];
+	}
 }
 
 - (id)responseFromJSON:(NSDictionary *)json {
@@ -380,6 +501,10 @@ NSString *const kSyncanoParametersDataObjectsStateRejected = @"rejected";
 	if ([self.additional isKindOfClass:[NSDictionary class]]) {
 		[dictionary removeObjectForKey:@"additional"];
 		[dictionary addEntriesFromDictionary:self.additional];
+	}
+	if ([self.privateAdditional isKindOfClass:[NSDictionary class]]) {
+		[dictionary removeObjectForKey:@"privateAdditional"];
+		[dictionary addEntriesFromDictionary:self.privateAdditional];
 	}
 	return dictionary;
 }

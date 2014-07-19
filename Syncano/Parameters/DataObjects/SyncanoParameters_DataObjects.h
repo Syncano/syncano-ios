@@ -12,6 +12,21 @@ extern NSString *const kSyncanoParametersDataObjectsStatePending;
 extern NSString *const kSyncanoParametersDataObjectsStateModerated;
 extern NSString *const kSyncanoParametersDataObjectsStateRejected;
 
+typedef enum : NSUInteger {
+	FilterableDataField_Data1,
+	FilterableDataField_Data2,
+	FilterableDataField_Data3
+} FilterableDataField;
+
+typedef enum : NSUInteger {
+	DataFieldFilter_EQUAL,
+	DataFieldFilter_NOT_EQUAL,
+	DataFieldFilter_LESS,
+	DataFieldFilter_LESS_EQUAL,
+	DataFieldFilter_GREATER,
+	DataFieldFilter_GREATER_EQUAL
+} DataFieldFilter;
+
 /**
    Parameters for data object validation
  */
@@ -110,6 +125,14 @@ extern NSString *const kSyncanoParametersDataObjectsStateRejected;
    Any number of additional parameters given in this dictionary will be saved into an additional structure.
  */
 @property (strong)  NSDictionary *additional;
+
+/**
+   Filterable integer data fields, optional.
+ */
+@property (assign) NSInteger data1;
+@property (assign) NSInteger data2;
+@property (assign) NSInteger data3;
+
 /**
    @return SyncanoParameters object with required fields initialized
  */
@@ -122,57 +145,105 @@ extern NSString *const kSyncanoParametersDataObjectsStateRejected;
 @end
 
 /**
-   Get data from collection(s) or whole project with optional additional filtering. All filters, unless explicitly noted otherwise, affect all hierarchy levels. To paginate and to get more data, use since_id or since_time parameter.
+   Get data from collection(s) or whole project with optional additional filtering. All filters, unless explicitly noted otherwise, affect all hierarchy levels. To paginate and to get more data, use since parameter (since_id and since_time do work, but are deprecated).
  */
 @interface SyncanoParameters_DataObjects_Get : SyncanoParameters_ProjectId_CollectionId_CollectionKey
+
+/**
+   Use to add a filter query, using one of the special fields.
+   You can filter by data1, data2, data3 fields.
+   Possible filters are:
+
+   - Equal
+   - Not Equal
+   - Less
+   - Less or equal
+   - Greater
+   - Greater or equal
+
+   @param filter One of the DataFieldFilter enum values.
+   @param field  One of the FilterableDataField enum values
+   @param value  Value to be used for filtering.
+
+   @code
+   //To get objects where data1 >= 5:
+   [params addFilter:DataFieldFilter_GREATER_EQUAL forField:FilterableDataField_Data1 value:5];
+ */
+- (void)addFilter:(DataFieldFilter)filter forField:(FilterableDataField)field value:(NSInteger)value;
+
 /**
    If specified, will return data objects with specified ids. Note: has no effect on returned data object's children. Max 100 values per request.
  */
 @property (strong)    NSArray *dataIds;
+
 /**
    State of data to be returned. Accepted values: Pending, Moderated, All. Default value: All.
  */
 @property (strong, nonatomic)    NSString *state;
+
 /**
    Folder name that data will be returned from. Max 100 values per request. If not present, returns data from all collection folders.
  */
 @property (strong)    NSArray *folders;
+
+/**
+   Used for paginating. Note: has no effect on returned data object's children. Usage depends on order_by value:
+
+   - To paginate results ordered by created_at, id or updated_at: pass value of newest (when order is asc) or oldest (when order is desc) known value from the results in relevant type. E.g. when sorted by created_at, pass string with datetime with created_at value you want to filter from.
+   - To paginate results ordered by data1, data2 or data3: pass an array of two values - newest/oldest``data1`` and id values from the results as an array of either two strings or an integer and a string.
+ */
+@property (strong) NSString *since;
+
 /**
    If specified, will only return data with an id higher than since_id (newer). Note: has no effect on returned data objects children.
  */
-@property (strong)    NSString *sinceId;
+@property (strong)    NSString *sinceId DEPRECATED_MSG_ATTRIBUTE("Use \"since\" instead");
+
 /**
    String with date. If specified, will only return data with a created_at or updated_at time after specified value (newer). Note: has no effect on returned data object's children.
  */
-@property (strong)    NSDate *sinceTime;
+@property (strong)    NSDate *sinceTime DEPRECATED_MSG_ATTRIBUTE("Use \"since\" instead");
+
 /**
    If specified, will only return data with id lower than max_id (older).
  */
 @property (strong)    NSString *maxId;
+
 /**
    Number of Data Objects to be returned. Default and max value: 100.
  */
 @property (strong)    NSNumber *limit;
+
 /**
    If true, include Data Object children as well (recursively). Default value: True. Max 100 of children are shown in one request.
  */
 @property (strong)    NSNumber *includeChildren;
+
 /**
    Max depth of children to follow. If not specified, will follow all levels until children limit is reached.
  */
 @property (strong)    NSNumber *depth;
+
 /**
    Limit of children to show (if include_children is True). Default and max value: 100 (some children levels may be incomplete if there are more than this limit).
  */
 @property (strong)    NSNumber *childrenLimit;
+
 /**
    Data Object id or ids. If specified, only children of specific Data Object parent will be listed.
  */
 @property (strong)    NSArray *parentIds;
+
+/**
+   Data Object id or ids. If specified, only parents of specific Data Object children will be listed.
+ */
+@property (strong)    NSArray *childIds;
+
 /**
    If specified, filter by Data Object user's name.
  */
 @property (strong)    NSString *byUser;
+
 /**
    Sets order of data that will be returned. Possible values:
 
@@ -180,13 +251,18 @@ extern NSString *const kSyncanoParametersDataObjectsStateRejected;
    - DESC - newest first.
  */
 @property (strong, nonatomic)    NSString *order;
+
 /**
    Orders by specified criteria. Possible values:
-
-   - created_at (default) - order by creation date,
-   - updated_at - order by update date.
+   created_at (default) - order by creation date
+   id - order by id
+   updated_at - order by update date
+   data1 - order by data1 field
+   data2 - order by data2 field
+   data3 - order by data3 field
  */
 @property (strong, nonatomic)    NSString *orderBy;
+
 /**
    Filtering by content. Possible values:
 
@@ -261,42 +337,55 @@ extern NSString *const kSyncanoParametersDataObjectsStateRejected;
    Updates an existing Data Object if data with a specified data_id or data_key already exists.
  */
 @interface SyncanoParameters_DataObjects_Update : SyncanoParameters_DataObjects_CollectionId_CollectionKey_DataId_DataKey_State
+
+- (void)incrementDataField:(FilterableDataField)field byValue:(NSInteger)value;
+- (void)decrementDataField:(FilterableDataField)field byValue:(NSInteger)value;
+
 /**
    Default value: replace.
  */
 @property (strong)    NSString *updateMethod;
+
 /**
    User name of user to associate Data Object with. If not set, internal user 'syncano' is used.
  */
 @property (strong)    NSString *userName;
+
 /**
    Source URL associated with message.
  */
 @property (strong)    NSString *sourceUrl;
+
 /**
    Title of message.
  */
 @property (strong)    NSString *title;
+
 /**
    Text data associated with message.
  */
 @property (strong)    NSString *text;
+
 /**
    Link associated with message.
  */
 @property (strong)    NSString *link;
+
 /**
    Image data associated with message. If specified as empty string - will instead delete current image.
  */
 @property (strong)    UIImage *image;
+
 /**
    Image source URL. Used in combination with image parameter.
  */
 @property (strong)    NSString *imageUrl;
+
 /**
    Folder name that data will be put in. Default value: 'Default'.
  */
 @property (strong)    NSString *folder;
+
 /**
    If specified, new Data Object becomes a child of specified parent id. Note that all other parent-child relations for this Data Object are removed.
  */

@@ -285,7 +285,10 @@
 			   @"link" : @"link",
 			   @"sourceUrl" : @"source_url",
 			   @"additional" : @"additional",
-			   @"childrenCount" : @"children_count"
+			   @"childrenCount" : @"children_count",
+			   @"data1" : @"data1",
+			   @"data2" : @"data2",
+			   @"data3" : @"data3"
 	};
 }
 

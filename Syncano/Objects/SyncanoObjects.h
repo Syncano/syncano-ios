@@ -260,6 +260,10 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @property (strong)    NSArray *children;
 /// Number of associated children
 @property (strong)    NSNumber *childrenCount;
+/// Filterable integeres - optional
+@property (assign)  NSInteger data1;
+@property (assign)  NSInteger data2;
+@property (assign)  NSInteger data3;
 @end
 
 /**
