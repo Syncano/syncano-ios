@@ -111,12 +111,12 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (AFHTTPRequestOperationManager *)operationManager {
 	if (_operationManager == nil) {
 		_operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[self fullDomain]]];
-
+    
 		AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
 		securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
 		securityPolicy.validatesCertificateChain = NO;
 		securityPolicy.pinnedCertificates = @[[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]]];
-
+    
 		_operationManager.securityPolicy = securityPolicy;
 	}
 	return _operationManager;
@@ -125,7 +125,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (AFHTTPRequestOperationManager *)synchronousOperationManager {
 	if (_synchronousOperationManager == nil) {
 		_synchronousOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[self fullDomain]]];
-
+    
 		AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
 		securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
 		securityPolicy.validatesCertificateChain = NO;
@@ -147,7 +147,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 		_batchRequestSerializer = [AFHTTPRequestSerializer serializer];
 		__weak id weakSelf = self;
 		[_batchRequestSerializer setQueryStringSerializationWithBlock: ^NSString *(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error) {
-		    return [weakSelf serializeRequest:request parameters:parameters error:error];
+      return [weakSelf serializeRequest:request parameters:parameters error:error];
 		}];
 	}
 	return _batchRequestSerializer;
@@ -158,8 +158,8 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 + (void)initialize {
 #ifdef DEBUG
-//    [[AFNetworkActivityLogger sharedLogger] startLogging];
-//    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+	//    [[AFNetworkActivityLogger sharedLogger] startLogging];
+	//    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
 #endif
 }
 
@@ -192,13 +192,13 @@ NSString *const multicallParamsKey = @"paramsKey";
 	AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
 	requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
 	[requestOperation setCompletionBlockWithSuccess: ^(AFHTTPRequestOperation *operation, id responseObject) {
-	    UIImage *image = responseObject;
-	    if (callback) {
-	        callback(image);
+    UIImage *image = responseObject;
+    if (callback) {
+      callback(image);
 		}
 	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-	    if (callback) {
-	        callback(nil);
+    if (callback) {
+      callback(nil);
 		}
 	}];
 	[requestOperation start];
@@ -208,8 +208,8 @@ NSString *const multicallParamsKey = @"paramsKey";
 	__block UIImage *imageResponse = nil;
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
 	[self downloadImageFromURL:url callback: ^(UIImage *image) {
-	    imageResponse = image;
-	    dispatch_semaphore_signal(semaphore);
+    imageResponse = image;
+    dispatch_semaphore_signal(semaphore);
 	}];
 	while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
@@ -224,8 +224,8 @@ NSString *const multicallParamsKey = @"paramsKey";
 	__block SyncanoResponse *responseToReturn = nil;
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
 	[self sendRequest:params synchronous:YES callback: ^(SyncanoResponse *response) {
-	    responseToReturn = response;
-	    dispatch_semaphore_signal(semaphore);
+    responseToReturn = response;
+    dispatch_semaphore_signal(semaphore);
 	}];
 	while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
@@ -239,23 +239,23 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)sendRequest:(SyncanoParameters *)params synchronous:(BOOL)synchronous callback:(SyncanoCallback)callback {
 	[self addBasicFieldToParameters:params];
-
+  
 	AFHTTPRequestOperationManager *operationManager = synchronous ? self.synchronousOperationManager : self.operationManager;
 	operationManager.requestSerializer = self.requestSerializer;
 	AFHTTPRequestOperation *request = [operationManager POST:kSyncanoModuleJSONRPC parameters:[params jsonRPCPostDictionaryForJsonRPCId:@(0)] success: ^(AFHTTPRequestOperation *operation, id responseObject) {
-	    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
-
-	    if (callback) {
-	        SyncanoResponse *response = [params responseFromJSON:responseObject];
-	        callback(response);
+    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
+    
+    if (callback) {
+      SyncanoResponse *response = [params responseFromJSON:responseObject];
+      callback(response);
 		}
 	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-	    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
-
-	    if (callback) {
-	        SyncanoResponse *response = [params responseFromJSON:nil];
-	        response.error = error;
-	        callback(response);
+    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
+    
+    if (callback) {
+      SyncanoResponse *response = [params responseFromJSON:nil];
+      response.error = error;
+      callback(response);
 		}
 	}];
 	SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
@@ -268,8 +268,8 @@ NSString *const multicallParamsKey = @"paramsKey";
 	__block NSArray *responsesToReturn = nil;
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
 	[self sendAsyncBatchRequest:params callback: ^(NSArray *responses) {
-	    responsesToReturn = responses;
-	    dispatch_semaphore_signal(semaphore);
+    responsesToReturn = responses;
+    dispatch_semaphore_signal(semaphore);
 	}];
 	while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
@@ -281,15 +281,15 @@ NSString *const multicallParamsKey = @"paramsKey";
 	NSDictionary *batchParameters = [self parametersDictionaryForBatchRequestParameters:params];
 	self.operationManager.requestSerializer = self.batchRequestSerializer;
 	AFHTTPRequestOperation *request = [self.operationManager POST:kSyncanoModuleJSONRPC parameters:batchParameters success: ^(AFHTTPRequestOperation *operation, id responseObject) {
-	    if (callback) {
-	        NSArray *syncanoResponses = [self syncanoResponsesFromBatchRequestResponseObject:responseObject requestParameters:params];
-	        callback(syncanoResponses);
+    if (callback) {
+      NSArray *syncanoResponses = [self syncanoResponsesFromBatchRequestResponseObject:responseObject requestParameters:params];
+      callback(syncanoResponses);
 		}
 	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-	    if (callback) {
-	        SyncanoResponse *response = [[SyncanoResponse alloc] init];
-	        response.error = error;
-	        callback(@[response]);
+    if (callback) {
+      SyncanoResponse *response = [[SyncanoResponse alloc] init];
+      response.error = error;
+      callback(@[response]);
 		}
 	}];
 	SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
@@ -335,56 +335,56 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)projectNew:(SyncanoParameters_Projects_New *)params callback:(void (^)(SyncanoResponse_Projects_New *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Projects_New *)response);
+    if (callback) {
+      callback((SyncanoResponse_Projects_New *)response);
 		}
 	}];
 }
 
 - (void)projectGet:(SyncanoParameters_Projects_Get *)params callback:(void (^)(SyncanoResponse_Projects_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Projects_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_Projects_Get *)response);
 		}
 	}];
 }
 
 - (void)projectGetOne:(SyncanoParameters_Projects_GetOne *)params callback:(void (^)(SyncanoResponse_Projects_GetOne *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Projects_GetOne *)response);
+    if (callback) {
+      callback((SyncanoResponse_Projects_GetOne *)response);
 		}
 	}];
 }
 
 - (void)projectUpdate:(SyncanoParameters_Projects_Update *)params callback:(void (^)(SyncanoResponse_Projects_Update *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Projects_Update *)response);
+    if (callback) {
+      callback((SyncanoResponse_Projects_Update *)response);
 		}
 	}];
 }
 
 - (void)projectAuthorize:(SyncanoParameters_Projects_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)projectDeauthorize:(SyncanoParameters_Projects_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)projectDelete:(SyncanoParameters_Projects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
@@ -442,88 +442,88 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)collectionNew:(SyncanoParameters_Collections_New *)params callback:(void (^)(SyncanoResponse_Collections_New *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Collections_New *)response);
+    if (callback) {
+      callback((SyncanoResponse_Collections_New *)response);
 		}
 	}];
 }
 
 - (void)collectionGet:(SyncanoParameters_Collections_Get *)params callback:(void (^)(SyncanoResponse_Collections_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Collections_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_Collections_Get *)response);
 		}
 	}];
 }
 
 - (void)collectionGetOne:(SyncanoParameters_Collections_GetOne *)params callback:(void (^)(SyncanoResponse_Collections_GetOne *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Collections_GetOne *)response);
+    if (callback) {
+      callback((SyncanoResponse_Collections_GetOne *)response);
 		}
 	}];
 }
 
 - (void)collectionActivate:(SyncanoParameters_Collections_Activate *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)collectionDeactivate:(SyncanoParameters_Collections_Deactivate *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)collectionUpdate:(SyncanoParameters_Collections_Update *)params callback:(void (^)(SyncanoResponse_Collections_Update *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Collections_Update *)response);
+    if (callback) {
+      callback((SyncanoResponse_Collections_Update *)response);
 		}
 	}];
 }
 
 - (void)collectionAuthorize:(SyncanoParameters_Collections_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)collectionDeauthorize:(SyncanoParameters_Collections_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)collectionDelete:(SyncanoParameters_Collections_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)collectionAddTag:(SyncanoParameters_Collections_AddTag *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)collectionDeleteTag:(SyncanoParameters_Collections_DeleteTag *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
@@ -565,56 +565,56 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)folderNew:(SyncanoParameters_Folders_New *)params callback:(void (^)(SyncanoResponse_Folders_New *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Folders_New *)response);
+    if (callback) {
+      callback((SyncanoResponse_Folders_New *)response);
 		}
 	}];
 }
 
 - (void)folderGet:(SyncanoParameters_Folders_Get *)params callback:(void (^)(SyncanoResponse_Folders_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Folders_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_Folders_Get *)response);
 		}
 	}];
 }
 
 - (void)folderGetOne:(SyncanoParameters_Folders_GetOne *)params callback:(void (^)(SyncanoResponse_Folders_GetOne *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Folders_GetOne *)response);
+    if (callback) {
+      callback((SyncanoResponse_Folders_GetOne *)response);
 		}
 	}];
 }
 
 - (void)folderUpdate:(SyncanoParameters_Folders_Update *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)folderAuthorize:(SyncanoParameters_Folders_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)folderDeauthorize:(SyncanoParameters_Folders_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)folderDelete:(SyncanoParameters_Folders_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
@@ -692,96 +692,96 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)dataNew:(SyncanoParameters_DataObjects_New *)params callback:(void (^)(SyncanoResponse_DataObjects_New *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_DataObjects_New *)response);
+    if (callback) {
+      callback((SyncanoResponse_DataObjects_New *)response);
 		}
 	}];
 }
 
 - (void)dataGet:(SyncanoParameters_DataObjects_Get *)params callback:(void (^)(SyncanoResponse_DataObjects_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_DataObjects_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_DataObjects_Get *)response);
 		}
 	}];
 }
 
 - (void)dataGetOne:(SyncanoParameters_DataObjects_GetOne *)params callback:(void (^)(SyncanoResponse_DataObjects_GetOne *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_DataObjects_GetOne *)response);
+    if (callback) {
+      callback((SyncanoResponse_DataObjects_GetOne *)response);
 		}
 	}];
 }
 
 - (void)dataUpdate:(SyncanoParameters_DataObjects_Update *)params callback:(void (^)(SyncanoResponse_DataObjects_Update *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_DataObjects_Update *)response);
+    if (callback) {
+      callback((SyncanoResponse_DataObjects_Update *)response);
 		}
 	}];
 }
 
 - (void)dataMove:(SyncanoParameters_DataObjects_Move *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)dataCopy:(SyncanoParameters_DataObjects_Copy *)params callback:(void (^)(SyncanoResponse_DataObjects_Copy *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_DataObjects_Copy *)response);
+    if (callback) {
+      callback((SyncanoResponse_DataObjects_Copy *)response);
 		}
 	}];
 }
 
 - (void)dataAddParent:(SyncanoParameters_DataObjects_AddParent *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)dataRemoveParent:(SyncanoParameters_DataObjects_RemoveParent *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)dataDelete:(SyncanoParameters_DataObjects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)dataCount:(SyncanoParameters_DataObjects_Count *)params callback:(void (^)(SyncanoResponse_DataObjects_Count *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_DataObjects_Count *)response);
+    if (callback) {
+      callback((SyncanoResponse_DataObjects_Count *)response);
 		}
 	}];
 }
@@ -843,64 +843,64 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)userLogin:(SyncanoParameters_Users_Login *)params callback:(void (^)(SyncanoResponse_Users_Login *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Users_Login *)response);
+    if (callback) {
+      callback((SyncanoResponse_Users_Login *)response);
 		}
 	}];
 }
 
 - (void)userNew:(SyncanoParameters_Users_New *)params callback:(void (^)(SyncanoResponse_Users_New *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Users_New *)response);
+    if (callback) {
+      callback((SyncanoResponse_Users_New *)response);
 		}
 	}];
 }
 
 - (void)userGetAll:(SyncanoParameters_Users_GetAll *)params callback:(void (^)(SyncanoResponse_Users_GetAll *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Users_GetAll *)response);
+    if (callback) {
+      callback((SyncanoResponse_Users_GetAll *)response);
 		}
 	}];
 }
 
 - (void)userGet:(SyncanoParameters_Users_Get *)params callback:(void (^)(SyncanoResponse_Users_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Users_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_Users_Get *)response);
 		}
 	}];
 }
 
 - (void)userGetOne:(SyncanoParameters_Users_GetOne *)params callback:(void (^)(SyncanoResponse_Users_GetOne *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Users_GetOne *)response);
+    if (callback) {
+      callback((SyncanoResponse_Users_GetOne *)response);
 		}
 	}];
 }
 
 - (void)userUpdate:(SyncanoParameters_Users_Update *)params callback:(void (^)(SyncanoResponse_Users_Update *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Users_Update *)response);
+    if (callback) {
+      callback((SyncanoResponse_Users_Update *)response);
 		}
 	}];
 }
 
 - (void)userCount:(SyncanoParameters_Users_Count *)params callback:(void (^)(SyncanoResponse_Users_Count *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Users_Count *)response);
+    if (callback) {
+      callback((SyncanoResponse_Users_Count *)response);
 		}
 	}];
 }
 
 - (void)userDelete:(SyncanoParameters_Users_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
@@ -917,8 +917,8 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)roleGet:(SyncanoParameters_PermissionRoles_Get *)params callback:(void (^)(SyncanoResponse_PermissionRoles_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_PermissionRoles_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_PermissionRoles_Get *)response);
 		}
 	}];
 }
@@ -951,40 +951,40 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)adminNew:(SyncanoParameters_Administrators_New *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)adminGet:(SyncanoParameters_Administrators_Get *)params callback:(void (^)(SyncanoResponse_Administrators_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Administrators_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_Administrators_Get *)response);
 		}
 	}];
 }
 
 - (void)adminGetOne:(SyncanoParameters_Administrators_GetOne *)params callback:(void (^)(SyncanoResponse_Administrators_GetOne *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Administrators_GetOne *)response);
+    if (callback) {
+      callback((SyncanoResponse_Administrators_GetOne *)response);
 		}
 	}];
 }
 
 - (void)adminUpdate:(SyncanoParameters_Administrators_Update *)params callback:(void (^)(SyncanoResponse_Administrators_Update *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Administrators_Update *)response);
+    if (callback) {
+      callback((SyncanoResponse_Administrators_Update *)response);
 		}
 	}];
 }
 
 - (void)adminDelete:(SyncanoParameters_Administrators_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
@@ -1029,64 +1029,64 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (void)apiKeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params callback:(void (^)(SyncanoResponse_APIKeys_StartSession *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_APIKeys_StartSession *)response);
+    if (callback) {
+      callback((SyncanoResponse_APIKeys_StartSession *)response);
 		}
 	}];
 }
 
 - (void)apiKeyNew:(SyncanoParameters_APIKeys_New *)params callback:(void (^)(SyncanoResponse_APIKeys_New *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_APIKeys_New *)response);
+    if (callback) {
+      callback((SyncanoResponse_APIKeys_New *)response);
 		}
 	}];
 }
 
 - (void)apiKeyGet:(SyncanoParameters_APIKeys_Get *)params callback:(void (^)(SyncanoResponse_APIKeys_Get *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_APIKeys_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_APIKeys_Get *)response);
 		}
 	}];
 }
 
 - (void)apiKeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params callback:(void (^)(SyncanoResponse_APIKeys_GetOne *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_APIKeys_GetOne *)response);
+    if (callback) {
+      callback((SyncanoResponse_APIKeys_GetOne *)response);
 		}
 	}];
 }
 
 - (void)apiKeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params callback:(void (^)(SyncanoResponse_APIKeys_UpdateDescription *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_APIKeys_UpdateDescription *)response);
+    if (callback) {
+      callback((SyncanoResponse_APIKeys_UpdateDescription *)response);
 		}
 	}];
 }
 
 - (void)apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
 
 - (void)apiKeyDelete:(SyncanoParameters_APIKeys_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback(response);
+    if (callback) {
+      callback(response);
 		}
 	}];
 }
