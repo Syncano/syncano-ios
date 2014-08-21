@@ -369,7 +369,7 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 }
 
 - (NSArray *)acceptedOrderByValues {
-	return @[kSyncanoParametersOrderByUpdatedAt, kSyncanoParametersOrderByCreatedAt];
+	return @[kSyncanoParametersOrderByUpdatedAt, kSyncanoParametersOrderByCreatedAt, kSyncanoParametersDataObjectsOrderByCreatedAt, kSyncanoParametersDataObjectsOrderByData1, kSyncanoParametersDataObjectsOrderByData2, kSyncanoParametersDataObjectsOrderByData3, kSyncanoParametersDataObjectsOrderById, kSyncanoParametersDataObjectsOrderByUpdatedAt];
 }
 
 - (NSArray *)acceptedFilterValues {
