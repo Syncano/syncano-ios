@@ -20,15 +20,15 @@ NSString *fieldNameForField(FilterableDataField field) {
 		case FilterableDataField_Data1:
 			fieldName = @"data1";
 			break;
-
+      
 		case FilterableDataField_Data2:
 			fieldName = @"data2";
 			break;
-
+      
 		case FilterableDataField_Data3:
 			fieldName = @"data3";
 			break;
-
+      
 		default:
 			break;
 	}
@@ -41,27 +41,27 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 		case DataFieldFilter_EQUAL:
 			filterName = @"eq";
 			break;
-
+      
 		case DataFieldFilter_NOT_EQUAL:
 			filterName = @"neq";
 			break;
-
+      
 		case DataFieldFilter_LESS:
 			filterName = @"le";
 			break;
-
+      
 		case DataFieldFilter_LESS_EQUAL:
-			filterName = @"leq";
+			filterName = @"lte";
 			break;
-
+      
 		case DataFieldFilter_GREATER:
 			filterName = @"gt";
 			break;
-
+      
 		case DataFieldFilter_GREATER_EQUAL:
 			filterName = @"gte";
 			break;
-
+      
 		default:
 			break;
 	}
@@ -171,10 +171,10 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key",
-		                          @"dataId" : @"data_id",
-		                          @"dataKey" : @"data_key" };
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key",
+                                @"dataId" : @"data_id",
+                                @"dataKey" : @"data_key" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -218,21 +218,21 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key",
-		                          @"dataId" : @"data_id",
-		                          @"dataKey" : @"data_key",
-		                          @"userName" : @"user_name",
-		                          @"sourceUrl" : @"source_url",
-		                          @"title" : @"title",
-		                          @"text" : @"text",
-		                          @"link" : @"link",
-		                          @"imageUrl" : @"image_url",
-		                          @"folder" : @"folder",
-		                          @"parentId" : @"parent_id",
-		                          @"data1" : @"data1",
-		                          @"data2" : @"data2",
-		                          @"data3" : @"data3" };
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key",
+                                @"dataId" : @"data_id",
+                                @"dataKey" : @"data_key",
+                                @"userName" : @"user_name",
+                                @"sourceUrl" : @"source_url",
+                                @"title" : @"title",
+                                @"text" : @"text",
+                                @"link" : @"link",
+                                @"imageUrl" : @"image_url",
+                                @"folder" : @"folder",
+                                @"parentId" : @"parent_id",
+                                @"data1" : @"data1",
+                                @"data2" : @"data2",
+                                @"data3" : @"data3" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -283,20 +283,20 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"dataIds" : @"data_ids",
-		                          @"state" : @"state",
-		                          @"folders" : @"folders",
-		                          @"sinceId" : @"since_id",
-		                          @"sinceTime" : @"since_time",
-		                          @"maxId" : @"max_id",
-		                          @"includeChildren" : @"include_children",
-		                          @"depth" : @"depth",
-		                          @"childrenLimit" : @"children_limit",
-		                          @"parentIds" : @"parent_ids",
-		                          @"byUser" : @"by_user",
-		                          @"order" : @"order",
-		                          @"orderBy" : @"order_by",
-		                          @"filter" : @"filter",
-		                          @"childIds" : @"child_ids" };
+                                @"state" : @"state",
+                                @"folders" : @"folders",
+                                @"sinceId" : @"since_id",
+                                @"sinceTime" : @"since_time",
+                                @"maxId" : @"max_id",
+                                @"includeChildren" : @"include_children",
+                                @"depth" : @"depth",
+                                @"childrenLimit" : @"children_limit",
+                                @"parentIds" : @"parent_ids",
+                                @"byUser" : @"by_user",
+                                @"order" : @"order",
+                                @"orderBy" : @"order_by",
+                                @"filter" : @"filter",
+                                @"childIds" : @"child_ids" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -434,13 +434,13 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key",
-		                          @"dataId" : @"data_id",
-		                          @"dataKey" : @"data_key",
-		                          @"includeChildren" : @"include_children",
-		                          @"depth" : @"depth",
-		                          @"childrenLimit" : @"children_limit" };
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key",
+                                @"dataId" : @"data_id",
+                                @"dataKey" : @"data_key",
+                                @"includeChildren" : @"include_children",
+                                @"depth" : @"depth",
+                                @"childrenLimit" : @"children_limit" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -485,14 +485,14 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"updateMethod" : @"update_method",
-		                          @"userName" : @"user_name",
-		                          @"sourceUrl" : @"source_url",
-		                          @"title" : @"title",
-		                          @"text" : @"text",
-		                          @"link" : @"link",
-		                          @"imageUrl" : @"image_url",
-		                          @"folder" : @"folder",
-		                          @"parentId" : @"parent_id" };
+                                @"userName" : @"user_name",
+                                @"sourceUrl" : @"source_url",
+                                @"title" : @"title",
+                                @"text" : @"text",
+                                @"link" : @"link",
+                                @"imageUrl" : @"image_url",
+                                @"folder" : @"folder",
+                                @"parentId" : @"parent_id" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -519,12 +519,12 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"dataIds" : @"data_ids",
-		                          @"folders" : @"folders",
-		                          @"byUser" : @"by_user",
-		                          @"limit" : @"limit",
-		                          @"filter" : @"filter",
-		                          @"folderNew" : @"new_folder",
-		                          @"stateNew" : @"new_state" };
+                                @"folders" : @"folders",
+                                @"byUser" : @"by_user",
+                                @"limit" : @"limit",
+                                @"filter" : @"filter",
+                                @"folderNew" : @"new_folder",
+                                @"stateNew" : @"new_state" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -596,9 +596,9 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key",
-		                          @"dataIds" : @"data_ids" };
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key",
+                                @"dataIds" : @"data_ids" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -641,11 +641,11 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key",
-		                          @"dataId" : @"data_id",
-		                          @"parentId" : @"parent_id",
-		                          @"removeOther" : @"remove_other" };
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key",
+                                @"dataId" : @"data_id",
+                                @"parentId" : @"parent_id",
+                                @"removeOther" : @"remove_other" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -686,10 +686,10 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key",
-		                          @"dataId" : @"data_id",
-		                          @"parentId" : @"parent_id" };
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key",
+                                @"dataId" : @"data_id",
+                                @"parentId" : @"parent_id" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -732,11 +732,11 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key",
-		                          @"dataId" : @"data_id",
-		                          @"childId" : @"child_id",
-		                          @"removeOther" : @"remove_other" };
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key",
+                                @"dataId" : @"data_id",
+                                @"childId" : @"child_id",
+                                @"removeOther" : @"remove_other" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -777,10 +777,10 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key",
-		                          @"dataId" : @"data_id",
-		                          @"childId" : @"child_id" };
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key",
+                                @"dataId" : @"data_id",
+                                @"childId" : @"child_id" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -808,10 +808,10 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"dataIds" : @"data_ids",
-		                          @"folders" : @"folders",
-		                          @"byUser" : @"by_user",
-		                          @"limit" : @"limit",
-		                          @"filter" : @"filter" };
+                                @"folders" : @"folders",
+                                @"byUser" : @"by_user",
+                                @"limit" : @"limit",
+                                @"filter" : @"filter" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
@@ -843,7 +843,7 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"folders" : @"folders",
-		                          @"byUser" : @"by_user" };
+                                @"byUser" : @"by_user" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
