@@ -14,6 +14,13 @@ NSString *const kSyncanoParametersDataObjectsStatePending = @"pending";
 NSString *const kSyncanoParametersDataObjectsStateModerated = @"moderated";
 NSString *const kSyncanoParametersDataObjectsStateRejected = @"rejected";
 
+NSString *const kSyncanoParametersDataObjectsOrderById = @"id";
+NSString *const kSyncanoParametersDataObjectsOrderByCreatedAt = @"created_at";
+NSString *const kSyncanoParametersDataObjectsOrderByUpdatedAt = @"updated_at";
+NSString *const kSyncanoParametersDataObjectsOrderByData1 = @"data1";
+NSString *const kSyncanoParametersDataObjectsOrderByData2 = @"data2";
+NSString *const kSyncanoParametersDataObjectsOrderByData3 = @"data3";
+
 NSString *fieldNameForField(FilterableDataField field) {
 	NSString *fieldName = nil;
 	switch (field) {
