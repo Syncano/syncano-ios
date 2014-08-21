@@ -171,14 +171,23 @@ NSString *const multicallParamsKey = @"paramsKey";
 #pragma mark - Public Methods
 /*----------------------------------------------------------------------------*/
 
+- (void)commonInit {
+	self.logAllRequests = YES;
+	self.logJSONResponses = NO;
+}
+
 - (id)init {
 	self = [super init];
+	if (self) {
+		[self commonInit];
+	}
 	return self;
 }
 
 - (Syncano *)initWithDomain:(NSString *)domain apiKey:(NSString *)apiKey {
 	self = [super init];
 	if (self) {
+		[self commonInit];
 		self.apiKey = apiKey;
 		self.domain = domain;
 	}
@@ -245,6 +254,10 @@ NSString *const multicallParamsKey = @"paramsKey";
 	AFHTTPRequestOperation *request = [operationManager POST:kSyncanoModuleJSONRPC parameters:[params jsonRPCPostDictionaryForJsonRPCId:@(0)] success: ^(AFHTTPRequestOperation *operation, id responseObject) {
     SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
     
+    if (self.logJSONResponses) {
+      SyncanoDebugLog(@"Syncano JSON Response: %@", responseObject);
+		}
+    
     if (callback) {
       SyncanoResponse *response = [params responseFromJSON:responseObject];
       callback(response);
@@ -258,7 +271,9 @@ NSString *const multicallParamsKey = @"paramsKey";
       callback(response);
 		}
 	}];
-	SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
+	if (self.logAllRequests) {
+		SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
+	}
 }
 
 #pragma mark - Batch Request

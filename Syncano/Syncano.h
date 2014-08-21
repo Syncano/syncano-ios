@@ -19,9 +19,9 @@ typedef void (^SyncanoBatchCallback)(NSArray *responses);
  *  Syncano class should be used to send any requests to Syncano using your credentials. You can use universal sendRequest method or methods listed in implemented protocols.
  */
 @interface Syncano : NSObject <SyncanoProtocolAPIKeys, SyncanoProtocolProjects,
-	                           SyncanoProtocolCollections, SyncanoProtocolFolders,
-	                           SyncanoProtocolDataObjects, SyncanoProtocolUsers,
-	                           SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
+SyncanoProtocolCollections, SyncanoProtocolFolders,
+SyncanoProtocolDataObjects, SyncanoProtocolUsers,
+SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
 
 /**
  *  Your subdomain in Syncano
@@ -39,9 +39,26 @@ typedef void (^SyncanoBatchCallback)(NSArray *responses);
 @property (strong, readwrite) NSString *timezone;
 
 /**
-   User authorization key.
+ User authorization key.
  */
 @property (strong, readwrite) NSString *authKey;
+
+///
+/// @name Debug
+///
+
+/**
+ Use to enable/disable logging all requests being sent to Syncano.
+ Even when enabled, works only in DEBUG mode!
+ */
+
+@property (assign, readwrite) BOOL logAllRequests;
+
+/**
+ Use to enable/disable logging all JSON responses incoming from Syncano.
+ Even when enabled, works only in DEBUG mode!
+ */
+@property (assign, readwrite) BOOL logJSONResponses;
 
 ///-
 /// @name Initialization
