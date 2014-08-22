@@ -101,6 +101,7 @@
 		151E697518D22C850034BBEB /* SyncanoParameters_Connections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Connections.m; path = Parameters/Connections/SyncanoParameters_Connections.m; sourceTree = "<group>"; };
 		151E697918D22CB90034BBEB /* SyncanoResponse_Connections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse_Connections.h; path = Responses/Connections/SyncanoResponse_Connections.h; sourceTree = "<group>"; };
 		151E697A18D22CB90034BBEB /* SyncanoResponse_Connections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse_Connections.m; path = Responses/Connections/SyncanoResponse_Connections.m; sourceTree = "<group>"; };
+		152B168119A7B4FC00512468 /* SyncanoProtocolRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolRequest.h; path = Protocols/SyncanoProtocolRequest.h; sourceTree = "<group>"; };
 		152D0729186863B00020A116 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		152D0737186863B00020A116 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		152D07511868641F0020A116 /* Syncano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Syncano.h; path = ../Syncano/Syncano.h; sourceTree = "<group>"; };
@@ -301,6 +302,7 @@
 				152D076B186867510020A116 /* SyncanoProtocolSubscriptions.h */,
 				152D076A1868673A0020A116 /* SyncanoProtocolNotification.h */,
 				151E697218D22C320034BBEB /* SyncanoProtocolConnections.h */,
+				152B168119A7B4FC00512468 /* SyncanoProtocolRequest.h */,
 			);
 			name = Protocols;
 			path = ../Syncano;

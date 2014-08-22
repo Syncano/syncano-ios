@@ -201,8 +201,8 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Downloading images from given URL
 
-- (void)downloadImageFromURL:(NSString *)url
-                    callback:(void (^)(UIImage *image))callback {
+- (id <SyncanoRequest> )downloadImageFromURL:(NSString *)url
+                                    callback:(void (^)(UIImage *image))callback {
 	AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
 	requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
 	[requestOperation setCompletionBlockWithSuccess: ^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -216,6 +216,8 @@ NSString *const multicallParamsKey = @"paramsKey";
 		}
 	}];
 	[requestOperation start];
+	id <SyncanoRequest> request = requestOperation;
+	return request;
 }
 
 - (UIImage *)downloadImageFromURL:(NSString *)url {
@@ -320,7 +322,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	if (self.logAllRequests) {
 		SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
 	}
-  id <SyncanoRequest> syncanoRequest = request;
+	id <SyncanoRequest> syncanoRequest = request;
 	return syncanoRequest;
 }
 
@@ -367,56 +369,56 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (void)projectNew:(SyncanoParameters_Projects_New *)params callback:(void (^)(SyncanoResponse_Projects_New *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )projectNew:(SyncanoParameters_Projects_New *)params callback:(void (^)(SyncanoResponse_Projects_New *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Projects_New *)response);
 		}
 	}];
 }
 
-- (void)projectGet:(SyncanoParameters_Projects_Get *)params callback:(void (^)(SyncanoResponse_Projects_Get *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )projectGet:(SyncanoParameters_Projects_Get *)params callback:(void (^)(SyncanoResponse_Projects_Get *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Projects_Get *)response);
 		}
 	}];
 }
 
-- (void)projectGetOne:(SyncanoParameters_Projects_GetOne *)params callback:(void (^)(SyncanoResponse_Projects_GetOne *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )projectGetOne:(SyncanoParameters_Projects_GetOne *)params callback:(void (^)(SyncanoResponse_Projects_GetOne *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Projects_GetOne *)response);
 		}
 	}];
 }
 
-- (void)projectUpdate:(SyncanoParameters_Projects_Update *)params callback:(void (^)(SyncanoResponse_Projects_Update *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )projectUpdate:(SyncanoParameters_Projects_Update *)params callback:(void (^)(SyncanoResponse_Projects_Update *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Projects_Update *)response);
 		}
 	}];
 }
 
-- (void)projectAuthorize:(SyncanoParameters_Projects_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )projectAuthorize:(SyncanoParameters_Projects_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)projectDeauthorize:(SyncanoParameters_Projects_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )projectDeauthorize:(SyncanoParameters_Projects_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)projectDelete:(SyncanoParameters_Projects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )projectDelete:(SyncanoParameters_Projects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
@@ -474,88 +476,88 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (void)collectionNew:(SyncanoParameters_Collections_New *)params callback:(void (^)(SyncanoResponse_Collections_New *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionNew:(SyncanoParameters_Collections_New *)params callback:(void (^)(SyncanoResponse_Collections_New *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Collections_New *)response);
 		}
 	}];
 }
 
-- (void)collectionGet:(SyncanoParameters_Collections_Get *)params callback:(void (^)(SyncanoResponse_Collections_Get *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionGet:(SyncanoParameters_Collections_Get *)params callback:(void (^)(SyncanoResponse_Collections_Get *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Collections_Get *)response);
 		}
 	}];
 }
 
-- (void)collectionGetOne:(SyncanoParameters_Collections_GetOne *)params callback:(void (^)(SyncanoResponse_Collections_GetOne *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionGetOne:(SyncanoParameters_Collections_GetOne *)params callback:(void (^)(SyncanoResponse_Collections_GetOne *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Collections_GetOne *)response);
 		}
 	}];
 }
 
-- (void)collectionActivate:(SyncanoParameters_Collections_Activate *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionActivate:(SyncanoParameters_Collections_Activate *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)collectionDeactivate:(SyncanoParameters_Collections_Deactivate *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionDeactivate:(SyncanoParameters_Collections_Deactivate *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)collectionUpdate:(SyncanoParameters_Collections_Update *)params callback:(void (^)(SyncanoResponse_Collections_Update *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionUpdate:(SyncanoParameters_Collections_Update *)params callback:(void (^)(SyncanoResponse_Collections_Update *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Collections_Update *)response);
 		}
 	}];
 }
 
-- (void)collectionAuthorize:(SyncanoParameters_Collections_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionAuthorize:(SyncanoParameters_Collections_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)collectionDeauthorize:(SyncanoParameters_Collections_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionDeauthorize:(SyncanoParameters_Collections_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)collectionDelete:(SyncanoParameters_Collections_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionDelete:(SyncanoParameters_Collections_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)collectionAddTag:(SyncanoParameters_Collections_AddTag *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionAddTag:(SyncanoParameters_Collections_AddTag *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)collectionDeleteTag:(SyncanoParameters_Collections_DeleteTag *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )collectionDeleteTag:(SyncanoParameters_Collections_DeleteTag *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
@@ -597,56 +599,56 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (void)folderNew:(SyncanoParameters_Folders_New *)params callback:(void (^)(SyncanoResponse_Folders_New *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )folderNew:(SyncanoParameters_Folders_New *)params callback:(void (^)(SyncanoResponse_Folders_New *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Folders_New *)response);
 		}
 	}];
 }
 
-- (void)folderGet:(SyncanoParameters_Folders_Get *)params callback:(void (^)(SyncanoResponse_Folders_Get *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )folderGet:(SyncanoParameters_Folders_Get *)params callback:(void (^)(SyncanoResponse_Folders_Get *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Folders_Get *)response);
 		}
 	}];
 }
 
-- (void)folderGetOne:(SyncanoParameters_Folders_GetOne *)params callback:(void (^)(SyncanoResponse_Folders_GetOne *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )folderGetOne:(SyncanoParameters_Folders_GetOne *)params callback:(void (^)(SyncanoResponse_Folders_GetOne *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Folders_GetOne *)response);
 		}
 	}];
 }
 
-- (void)folderUpdate:(SyncanoParameters_Folders_Update *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )folderUpdate:(SyncanoParameters_Folders_Update *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)folderAuthorize:(SyncanoParameters_Folders_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )folderAuthorize:(SyncanoParameters_Folders_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)folderDeauthorize:(SyncanoParameters_Folders_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )folderDeauthorize:(SyncanoParameters_Folders_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)folderDelete:(SyncanoParameters_Folders_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )folderDelete:(SyncanoParameters_Folders_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
@@ -724,116 +726,116 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (void)dataNew:(SyncanoParameters_DataObjects_New *)params callback:(void (^)(SyncanoResponse_DataObjects_New *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataNew:(SyncanoParameters_DataObjects_New *)params callback:(void (^)(SyncanoResponse_DataObjects_New *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_DataObjects_New *)response);
 		}
 	}];
 }
 
-- (void)dataGet:(SyncanoParameters_DataObjects_Get *)params callback:(void (^)(SyncanoResponse_DataObjects_Get *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataGet:(SyncanoParameters_DataObjects_Get *)params callback:(void (^)(SyncanoResponse_DataObjects_Get *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_DataObjects_Get *)response);
 		}
 	}];
 }
 
-- (void)dataGetOne:(SyncanoParameters_DataObjects_GetOne *)params callback:(void (^)(SyncanoResponse_DataObjects_GetOne *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataGetOne:(SyncanoParameters_DataObjects_GetOne *)params callback:(void (^)(SyncanoResponse_DataObjects_GetOne *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_DataObjects_GetOne *)response);
 		}
 	}];
 }
 
-- (void)dataUpdate:(SyncanoParameters_DataObjects_Update *)params callback:(void (^)(SyncanoResponse_DataObjects_Update *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataUpdate:(SyncanoParameters_DataObjects_Update *)params callback:(void (^)(SyncanoResponse_DataObjects_Update *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_DataObjects_Update *)response);
 		}
 	}];
 }
 
-- (void)dataMove:(SyncanoParameters_DataObjects_Move *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataMove:(SyncanoParameters_DataObjects_Move *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)dataCopy:(SyncanoParameters_DataObjects_Copy *)params callback:(void (^)(SyncanoResponse_DataObjects_Copy *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataCopy:(SyncanoParameters_DataObjects_Copy *)params callback:(void (^)(SyncanoResponse_DataObjects_Copy *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_DataObjects_Copy *)response);
 		}
 	}];
 }
 
-- (void)dataAddParent:(SyncanoParameters_DataObjects_AddParent *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataAddParent:(SyncanoParameters_DataObjects_AddParent *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)dataRemoveParent:(SyncanoParameters_DataObjects_RemoveParent *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataRemoveParent:(SyncanoParameters_DataObjects_RemoveParent *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)dataDelete:(SyncanoParameters_DataObjects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataDelete:(SyncanoParameters_DataObjects_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)dataCount:(SyncanoParameters_DataObjects_Count *)params callback:(void (^)(SyncanoResponse_DataObjects_Count *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )dataCount:(SyncanoParameters_DataObjects_Count *)params callback:(void (^)(SyncanoResponse_DataObjects_Count *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_DataObjects_Count *)response);
 		}
 	}];
 }
 
-- (void)downloadImageFull:(SyncanoImage *)imageInfo callback:(void (^)(UIImage *))callback {
-	[self downloadImageFromURL:imageInfo.image callback:callback];
+- (id <SyncanoRequest> )downloadImageFull:(SyncanoImage *)imageInfo callback:(void (^)(UIImage *))callback {
+	return [self downloadImageFromURL:imageInfo.image callback:callback];
 }
 
-- (void)downloadImageThumbnail:(SyncanoImage *)imageInfo callback:(void (^)(UIImage *))callback {
-	[self downloadImageFromURL:imageInfo.thumbnail callback:callback];
+- (id <SyncanoRequest> )downloadImageThumbnail:(SyncanoImage *)imageInfo callback:(void (^)(UIImage *))callback {
+	return [self downloadImageFromURL:imageInfo.thumbnail callback:callback];
 }
 
-- (void)downloadAvatarFull:(SyncanoAvatar *)avatarInfo callback:(void (^)(UIImage *))callback {
-	[self downloadImageFromURL:avatarInfo.image callback:callback];
+- (id <SyncanoRequest> )downloadAvatarFull:(SyncanoAvatar *)avatarInfo callback:(void (^)(UIImage *))callback {
+	return [self downloadImageFromURL:avatarInfo.image callback:callback];
 }
 
-- (void)downloadAvatarThumbnail:(SyncanoAvatar *)avatarInfo callback:(void (^)(UIImage *))callback {
-	[self downloadImageFromURL:avatarInfo.thumbnail callback:callback];
+- (id <SyncanoRequest> )downloadAvatarThumbnail:(SyncanoAvatar *)avatarInfo callback:(void (^)(UIImage *))callback {
+	return [self downloadImageFromURL:avatarInfo.thumbnail callback:callback];
 }
 
 #pragma mark protocol SyncanoProtocolUsers
@@ -875,64 +877,64 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (void)userLogin:(SyncanoParameters_Users_Login *)params callback:(void (^)(SyncanoResponse_Users_Login *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )userLogin:(SyncanoParameters_Users_Login *)params callback:(void (^)(SyncanoResponse_Users_Login *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Users_Login *)response);
 		}
 	}];
 }
 
-- (void)userNew:(SyncanoParameters_Users_New *)params callback:(void (^)(SyncanoResponse_Users_New *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )userNew:(SyncanoParameters_Users_New *)params callback:(void (^)(SyncanoResponse_Users_New *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Users_New *)response);
 		}
 	}];
 }
 
-- (void)userGetAll:(SyncanoParameters_Users_GetAll *)params callback:(void (^)(SyncanoResponse_Users_GetAll *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )userGetAll:(SyncanoParameters_Users_GetAll *)params callback:(void (^)(SyncanoResponse_Users_GetAll *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Users_GetAll *)response);
 		}
 	}];
 }
 
-- (void)userGet:(SyncanoParameters_Users_Get *)params callback:(void (^)(SyncanoResponse_Users_Get *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )userGet:(SyncanoParameters_Users_Get *)params callback:(void (^)(SyncanoResponse_Users_Get *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Users_Get *)response);
 		}
 	}];
 }
 
-- (void)userGetOne:(SyncanoParameters_Users_GetOne *)params callback:(void (^)(SyncanoResponse_Users_GetOne *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )userGetOne:(SyncanoParameters_Users_GetOne *)params callback:(void (^)(SyncanoResponse_Users_GetOne *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Users_GetOne *)response);
 		}
 	}];
 }
 
-- (void)userUpdate:(SyncanoParameters_Users_Update *)params callback:(void (^)(SyncanoResponse_Users_Update *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )userUpdate:(SyncanoParameters_Users_Update *)params callback:(void (^)(SyncanoResponse_Users_Update *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Users_Update *)response);
 		}
 	}];
 }
 
-- (void)userCount:(SyncanoParameters_Users_Count *)params callback:(void (^)(SyncanoResponse_Users_Count *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )userCount:(SyncanoParameters_Users_Count *)params callback:(void (^)(SyncanoResponse_Users_Count *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Users_Count *)response);
 		}
 	}];
 }
 
-- (void)userDelete:(SyncanoParameters_Users_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )userDelete:(SyncanoParameters_Users_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
@@ -949,8 +951,8 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (void)roleGet:(SyncanoParameters_PermissionRoles_Get *)params callback:(void (^)(SyncanoResponse_PermissionRoles_Get *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )roleGet:(SyncanoParameters_PermissionRoles_Get *)params callback:(void (^)(SyncanoResponse_PermissionRoles_Get *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_PermissionRoles_Get *)response);
 		}
@@ -983,40 +985,40 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (void)adminNew:(SyncanoParameters_Administrators_New *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )adminNew:(SyncanoParameters_Administrators_New *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)adminGet:(SyncanoParameters_Administrators_Get *)params callback:(void (^)(SyncanoResponse_Administrators_Get *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )adminGet:(SyncanoParameters_Administrators_Get *)params callback:(void (^)(SyncanoResponse_Administrators_Get *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Administrators_Get *)response);
 		}
 	}];
 }
 
-- (void)adminGetOne:(SyncanoParameters_Administrators_GetOne *)params callback:(void (^)(SyncanoResponse_Administrators_GetOne *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )adminGetOne:(SyncanoParameters_Administrators_GetOne *)params callback:(void (^)(SyncanoResponse_Administrators_GetOne *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Administrators_GetOne *)response);
 		}
 	}];
 }
 
-- (void)adminUpdate:(SyncanoParameters_Administrators_Update *)params callback:(void (^)(SyncanoResponse_Administrators_Update *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )adminUpdate:(SyncanoParameters_Administrators_Update *)params callback:(void (^)(SyncanoResponse_Administrators_Update *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_Administrators_Update *)response);
 		}
 	}];
 }
 
-- (void)adminDelete:(SyncanoParameters_Administrators_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest> )adminDelete:(SyncanoParameters_Administrators_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
@@ -1061,64 +1063,64 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (void)apiKeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params callback:(void (^)(SyncanoResponse_APIKeys_StartSession *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest>)apiKeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params callback:(void (^)(SyncanoResponse_APIKeys_StartSession *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_StartSession *)response);
 		}
 	}];
 }
 
-- (void)apiKeyNew:(SyncanoParameters_APIKeys_New *)params callback:(void (^)(SyncanoResponse_APIKeys_New *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest>)apiKeyNew:(SyncanoParameters_APIKeys_New *)params callback:(void (^)(SyncanoResponse_APIKeys_New *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_New *)response);
 		}
 	}];
 }
 
-- (void)apiKeyGet:(SyncanoParameters_APIKeys_Get *)params callback:(void (^)(SyncanoResponse_APIKeys_Get *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest>)apiKeyGet:(SyncanoParameters_APIKeys_Get *)params callback:(void (^)(SyncanoResponse_APIKeys_Get *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_Get *)response);
 		}
 	}];
 }
 
-- (void)apiKeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params callback:(void (^)(SyncanoResponse_APIKeys_GetOne *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest>)apiKeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params callback:(void (^)(SyncanoResponse_APIKeys_GetOne *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_GetOne *)response);
 		}
 	}];
 }
 
-- (void)apiKeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params callback:(void (^)(SyncanoResponse_APIKeys_UpdateDescription *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest>)apiKeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params callback:(void (^)(SyncanoResponse_APIKeys_UpdateDescription *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_UpdateDescription *)response);
 		}
 	}];
 }
 
-- (void)apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest>)apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest>)apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}
 	}];
 }
 
-- (void)apiKeyDelete:(SyncanoParameters_APIKeys_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
-	[self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
+- (id <SyncanoRequest>)apiKeyDelete:(SyncanoParameters_APIKeys_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
 		}

@@ -8,11 +8,12 @@
 
 #import "SyncanoParameters_PermissionRoles.h"
 #import "SyncanoResponse_PermissionRoles.h"
+#import "SyncanoProtocolRequest.h"
 
 /**
-   SyncanoProtocolPermissionRoles is used to transmit information about SyncanoRole objects
-
-   @note All `SyncanoProtocol*` protocols define method signatures used by objects (i.e. Syncano, SyncanoSyncServer) communicating with Syncano API.
+ SyncanoProtocolPermissionRoles is used to transmit information about SyncanoRole objects
+ 
+ @note All `SyncanoProtocol*` protocols define method signatures used by objects (i.e. Syncano, SyncanoSyncServer) communicating with Syncano API.
  */
 @protocol SyncanoProtocolPermissionRoles <NSObject>
 @required
@@ -24,11 +25,11 @@
 ///-
 
 /**
-   List of permission roles
-
-   @param params Parameters for role list request
-
-   @return Reponse to role list request
+ List of permission roles
+ 
+ @param params Parameters for role list request
+ 
+ @return Reponse to role list request
  */
 - (SyncanoResponse_PermissionRoles_Get *)roleGet:(SyncanoParameters_PermissionRoles_Get *)params;
 
@@ -39,9 +40,9 @@
 ///-
 
 /**
-   List of permission roles
-
-   @param params Parameters for role list request
+ List of permission roles
+ 
+ @param params Parameters for role list request
  */
-- (void)roleGet:(SyncanoParameters_PermissionRoles_Get *)params callback:(void (^)(SyncanoResponse_PermissionRoles_Get *response))callback;
+- (id <SyncanoRequest> )roleGet:(SyncanoParameters_PermissionRoles_Get *)params callback:(void (^)(SyncanoResponse_PermissionRoles_Get *response))callback;
 @end

@@ -8,6 +8,7 @@
 
 #import "SyncanoParameters_Administrators.h"
 #import "SyncanoResponse_Administrators.h"
+#import "SyncanoProtocolRequest.h"
 
 /**
  SyncanoProtocolAdministrators is used to transmit information about SyncanoAdmin objects
@@ -75,30 +76,34 @@
  
  @param params Parameters of new administrator
  */
-- (void)adminNew:(SyncanoParameters_Administrators_New *)params callback:(void (^)(SyncanoResponse *response))callback;
+- (id <SyncanoRequest> )adminNew:(SyncanoParameters_Administrators_New *)params callback:(void (^)(SyncanoResponse *response))callback;
+
 /**
  Get administrator list
  
  @param params administrator list parameters
  */
-- (void)adminGet:(SyncanoParameters_Administrators_Get *)params callback:(void (^)(SyncanoResponse_Administrators_Get *response))callback;
+- (id <SyncanoRequest> )adminGet:(SyncanoParameters_Administrators_Get *)params callback:(void (^)(SyncanoResponse_Administrators_Get *response))callback;
+
 /**
  Get one administrator
  
  @param params Single administrator getter parameters
  */
-- (void)adminGetOne:(SyncanoParameters_Administrators_GetOne *)params callback:(void (^)(SyncanoResponse_Administrators_GetOne *response))callback;
+- (id <SyncanoRequest> )adminGetOne:(SyncanoParameters_Administrators_GetOne *)params callback:(void (^)(SyncanoResponse_Administrators_GetOne *response))callback;
+
 /**
  Update existing administrator
  
  @param params Update administrator parameters
  */
-- (void)adminUpdate:(SyncanoParameters_Administrators_Update *)params callback:(void (^)(SyncanoResponse_Administrators_Update *response))callback;
+- (id <SyncanoRequest> )adminUpdate:(SyncanoParameters_Administrators_Update *)params callback:(void (^)(SyncanoResponse_Administrators_Update *response))callback;
+
 /**
  Delete existing administrator
  
  @param params Delete administrator parameters
  */
-- (void)adminDelete:(SyncanoParameters_Administrators_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
+- (id <SyncanoRequest> )adminDelete:(SyncanoParameters_Administrators_Delete *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 @end

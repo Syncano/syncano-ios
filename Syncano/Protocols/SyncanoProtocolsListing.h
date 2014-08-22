@@ -20,5 +20,6 @@
 #import "SyncanoProtocolAdministrators.h"
 #import "SyncanoProtocolAPIKeys.h"
 #import "SyncanoProtocolConnections.h"
+#import "SyncanoProtocolRequest.h"
 
 #endif

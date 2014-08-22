@@ -15,8 +15,6 @@
 typedef void (^SyncanoCallback)(SyncanoResponse *response);
 typedef void (^SyncanoBatchCallback)(NSArray *responses);
 
-@protocol SyncanoRequest;
-
 /**
  *  Syncano class should be used to send any requests to Syncano using your credentials. You can use universal sendRequest method or methods listed in implemented protocols.
  */
@@ -131,17 +129,5 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
  Cancells all pending requests.
  */
 - (void)cancellAllRequests;
-
-@end
-
-@protocol SyncanoRequest <NSObject>
-
-@required
-
-- (BOOL)isCancelled;
-- (void)cancel;
-
-- (BOOL)isExecuting;
-- (BOOL)isFinished;
 
 @end
