@@ -17,6 +17,11 @@ NSString *const kSyncanoModuleJSONRPC = @"jsonrpc";
 
 NSString *const multicallParamsKey = @"paramsKey";
 
+@interface AFHTTPRequestOperation (SyncanoRequest) <SyncanoRequest>
+@end
+@implementation AFHTTPRequestOperation (SyncanoRequest)
+@end
+
 #pragma mark - Private Interface
 /*----------------------------------------------------------------------------*/
 
@@ -242,11 +247,12 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return responseToReturn;
 }
 
-- (void)sendAsyncRequest:(SyncanoParameters *)params callback:(SyncanoCallback)callback {
-	[self sendRequest:params synchronous:NO callback:callback];
+- (id <SyncanoRequest> )sendAsyncRequest:(SyncanoParameters *)params callback:(SyncanoCallback)callback {
+	id <SyncanoRequest> syncanoRequest = [self sendRequest:params synchronous:NO callback:callback];
+	return syncanoRequest;
 }
 
-- (void)sendRequest:(SyncanoParameters *)params synchronous:(BOOL)synchronous callback:(SyncanoCallback)callback {
+- (AFHTTPRequestOperation *)sendRequest:(SyncanoParameters *)params synchronous:(BOOL)synchronous callback:(SyncanoCallback)callback {
 	[self addBasicFieldToParameters:params];
   
 	AFHTTPRequestOperationManager *operationManager = synchronous ? self.synchronousOperationManager : self.operationManager;
@@ -274,6 +280,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	if (self.logAllRequests) {
 		SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
 	}
+	return request;
 }
 
 #pragma mark - Batch Request
@@ -292,10 +299,13 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return responsesToReturn;
 }
 
-- (void)sendAsyncBatchRequest:(NSArray *)params callback:(SyncanoBatchCallback)callback {
+- (id <SyncanoRequest> )sendAsyncBatchRequest:(NSArray *)params callback:(SyncanoBatchCallback)callback {
 	NSDictionary *batchParameters = [self parametersDictionaryForBatchRequestParameters:params];
 	self.operationManager.requestSerializer = self.batchRequestSerializer;
 	AFHTTPRequestOperation *request = [self.operationManager POST:kSyncanoModuleJSONRPC parameters:batchParameters success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    if (self.logJSONResponses) {
+      SyncanoDebugLog(@"Syncano Batch JSON response: %@", responseObject);
+		}
     if (callback) {
       NSArray *syncanoResponses = [self syncanoResponsesFromBatchRequestResponseObject:responseObject requestParameters:params];
       callback(syncanoResponses);
@@ -307,7 +317,16 @@ NSString *const multicallParamsKey = @"paramsKey";
       callback(@[response]);
 		}
 	}];
-	SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
+	if (self.logAllRequests) {
+		SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
+	}
+  id <SyncanoRequest> syncanoRequest = request;
+	return syncanoRequest;
+}
+
+- (void)cancellAllRequests {
+	[self.operationManager.operationQueue cancelAllOperations];
+	[self.synchronousOperationManager.operationQueue cancelAllOperations];
 }
 
 #pragma mark - Protocols
