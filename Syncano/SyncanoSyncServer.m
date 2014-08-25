@@ -42,12 +42,12 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	}
 	if ([object isKindOfClass:[SyncanoResponse class]] && self.callback) {
 		dispatch_async(queue, ^{
-		    self.callback((SyncanoResponse *)object);
+      self.callback((SyncanoResponse *)object);
 		});
 	}
 	else if ([object isKindOfClass:[NSArray class]] && self.batchCallback) {
 		dispatch_async(queue, ^{
-		    self.batchCallback((NSArray *)object);
+      self.batchCallback((NSArray *)object);
 		});
 	}
 }
@@ -146,9 +146,9 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 		return NO;
 	}
 	NSMutableDictionary *loginDict = [@{
-	                                      @"api_key":self.apiKey,
-	                                      @"instance":self.domain
-									  } mutableCopy];
+                                      @"api_key":self.apiKey,
+                                      @"instance":self.domain
+                                      } mutableCopy];
 	if (self.name.length > 0) {
 		[loginDict setObject:self.name forKey:@"name"];
 	}
@@ -175,20 +175,20 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 - (void)startSecureConnection {
 	/*
-	   NSDictionary *tlsOptions = @{
-	   (NSString *)kCFStreamSSLLevel:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL,
-	   (NSString *)kCFStreamSSLAllowsExpiredCertificates:@(YES),
-	   (NSString *)kCFStreamSSLAllowsExpiredRoots:@(YES),
-	   (NSString *)kCFStreamSSLAllowsAnyRoot:@(YES),
-	   (NSString *)kCFStreamSSLValidatesCertificateChain:@(NO),
-	   (NSString *)kCFStreamSSLPeerName:(id)kCFNull
-	   };
+   NSDictionary *tlsOptions = @{
+   (NSString *)kCFStreamSSLLevel:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL,
+   (NSString *)kCFStreamSSLAllowsExpiredCertificates:@(YES),
+   (NSString *)kCFStreamSSLAllowsExpiredRoots:@(YES),
+   (NSString *)kCFStreamSSLAllowsAnyRoot:@(YES),
+   (NSString *)kCFStreamSSLValidatesCertificateChain:@(NO),
+   (NSString *)kCFStreamSSLPeerName:(id)kCFNull
+   };
 	 */
 	//    /*
 	NSDictionary *tlsOptions = @{
-		(NSString *)kCFStreamSSLLevel:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL,
-		(NSString *)kCFStreamSSLPeerName:kSyncanoSyncServerPeerName
-	};
+                               (NSString *)kCFStreamSSLLevel:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL,
+                               (NSString *)kCFStreamSSLPeerName:kSyncanoSyncServerPeerName
+                               };
 	//    */
 	[self.socket startTLS:tlsOptions];
 }
@@ -217,7 +217,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)notifyAboutConnectionOpened {
 	if (self.connectionOpenCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.connectionOpenCallback();
+      self.connectionOpenCallback();
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServerConnectionOpened:)]) {
@@ -229,7 +229,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)notifyAboutConnectionClosed:(NSError *)error {
 	if (self.connectionClosedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.connectionClosedCallback(error);
+      self.connectionClosedCallback(error);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:connectionClosedWithError:)]) {
@@ -240,7 +240,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)notifyAboutMessageReceived:(NSDictionary *)json {
 	if (self.messageReceivedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.messageReceivedCallback(json);
+      self.messageReceivedCallback(json);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:messageReceived:)]) {
@@ -251,7 +251,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)notifyAboutHistoryReceived:(NSDictionary *)history isLastOne:(BOOL)isLastOne {
 	if (self.historyReceivedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.historyReceivedCallback(history, isLastOne);
+      self.historyReceivedCallback(history, isLastOne);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:historyReceived:isLastHistoryItem:)]) {
@@ -262,7 +262,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)notifyAboutSyncServerError:(NSString *)error {
 	if (self.syncServerErrorCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.syncServerErrorCallback(error);
+      self.syncServerErrorCallback(error);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:errorReceived:)]) {
@@ -273,7 +273,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)notifyAboutDeletedObjects:(NSArray *)targets {
 	if (self.deletedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.deletedCallback(targets);
+      self.deletedCallback(targets);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:notificationDeleted:)]) {
@@ -284,7 +284,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)notifyAboutChangedObjects:(NSArray *)changesArray {
 	if (self.changedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.changedCallback(changesArray);
+      self.changedCallback(changesArray);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:notificationChanged:)]) {
@@ -295,7 +295,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)notifyAboutAddedObject:(SyncanoData *)data {
 	if (self.addedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-		    self.addedCallback(data);
+      self.addedCallback(data);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:notificationAdded:)]) {
@@ -382,10 +382,10 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 - (void)readDataFromSocket {
 	/*
-	   ASYNC SOCKET DOES NOT HANDLE PROPERLY READING TO DATA WHEN INCOMING
-	   DATA IS FLOWING IN IN PACKETS AND ONE PACKET DOES NOT CONTAIN TERMINAL DATA
-
-	   [self.socket readDataToData:[@"}\n" dataUsingEncoding : NSUTF8StringEncoding] withTimeout:-1 tag:0];
+   ASYNC SOCKET DOES NOT HANDLE PROPERLY READING TO DATA WHEN INCOMING
+   DATA IS FLOWING IN IN PACKETS AND ONE PACKET DOES NOT CONTAIN TERMINAL DATA
+   
+   [self.socket readDataToData:[@"}\n" dataUsingEncoding : NSUTF8StringEncoding] withTimeout:-1 tag:0];
 	 */
 	[self.socket readDataWithTimeout:-1 tag:0];
 }
@@ -744,8 +744,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 - (void)notificationGetHistory:(SyncanoParameters_Notifications_GetHistory *)params callback:(void (^)(SyncanoResponse_Notifications_GetHistory *response))callback {
 	[self sendRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Notifications_GetHistory *)response);
+    if (callback) {
+      callback((SyncanoResponse_Notifications_GetHistory *)response);
 		}
 	}];
 }
@@ -773,8 +773,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 - (void)subscriptionGet:(SyncanoParameters_Subscriptions_Get *)params callback:(void (^)(SyncanoResponse_Subscriptions_Get *response))callback {
 	[self sendRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Subscriptions_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_Subscriptions_Get *)response);
 		}
 	}];
 }
@@ -786,24 +786,24 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 - (void)connectionGet:(SyncanoParameters_Connections_Get *)params callback:(void (^)(SyncanoResponse_Connections_Get *response))callback {
 	[self sendRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Connections_Get *)response);
+    if (callback) {
+      callback((SyncanoResponse_Connections_Get *)response);
 		}
 	}];
 }
 
 - (void)connectionGetAll:(SyncanoParameters_Connections_Get_All *)params callback:(void (^)(SyncanoResponse_Connections_Get_All *response))callback {
 	[self sendRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Connections_Get_All *)response);
+    if (callback) {
+      callback((SyncanoResponse_Connections_Get_All *)response);
 		}
 	}];
 }
 
 - (void)connectionUpdate:(SyncanoParameters_Connections_Update *)params callback:(void (^)(SyncanoResponse_Connections_Update *response))callback {
 	[self sendRequest:params callback: ^(SyncanoResponse *response) {
-	    if (callback) {
-	        callback((SyncanoResponse_Connections_Update *)response);
+    if (callback) {
+      callback((SyncanoResponse_Connections_Update *)response);
 		}
 	}];
 }
