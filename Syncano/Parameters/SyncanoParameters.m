@@ -51,33 +51,33 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 	self = [super init];
 	if (self) {
 		_timezone = @"UTC";
-
+    
 #ifdef DEBUG
 		NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
 		NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
 		NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
 		[array removeObject:@""];
-        
+    
 		// get index containing memory address, i.e. hex number with at least 8 digits
 		static NSRegularExpression *regex = nil;
 		if (!regex) {
 			regex = [NSRegularExpression regularExpressionWithPattern:@"0x\\p{Hex_Digit}{8}+" options:0 error:nil];
 		}
-		NSUInteger addressIndex = [array indexOfObjectPassingTest:^BOOL(NSString *string, NSUInteger idx, BOOL *stop) {
-			NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
-			return !!matches.count;
+		NSUInteger addressIndex = [array indexOfObjectPassingTest: ^BOOL (NSString *string, NSUInteger idx, BOOL *stop) {
+      NSArray *matches = [regex matchesInString:string options:0 range:NSMakeRange(0, string.length)];
+      return !!matches.count;
 		}];
-        
+    
 		// two indexes "further", theres selector string
-		NSString * selectorString = [array objectAtIndex:addressIndex+2];
+		NSString *selectorString = [array objectAtIndex:addressIndex + 2];
 		NSArray *initalizeSelectorNames = [self initializeSelectorNamesArray];
 		SEL initalizeSelector = NSSelectorFromString(selectorString);
-
+    
 		if (self.initalizeSelector) {
 			if (initalizeSelector != self.initalizeSelector) {
 				[NSException raise:@"Invaild initalization" format:@"Use: %@ for initalization", NSStringFromSelector(self.initalizeSelector)];
 			}
-
+      
 			if (!self.requiredParametersNames) {
 				[NSException raise:@"Bad implementation" format:@"%@ has unique init method (%@) and 0 required parameters, implemement requiredParametersNames method", NSStringFromClass(self.class), NSStringFromSelector(self.initalizeSelector)];
 			}
@@ -100,19 +100,19 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 - (void)validateSpecialParameters:(NSArray *)parameters {
 	if (parameters) {
 		[parameters enumerateObjectsUsingBlock: ^(NSString *selectorString, NSUInteger idx, BOOL *stop) {
-		    SEL selector  = NSSelectorFromString(selectorString);
-
-		    // selector not existing is an exceptional situation (NSException-exceptional, in fact)
-		    // considering that exception gets raised anyway, we can care less about possible leak
+      SEL selector  = NSSelectorFromString(selectorString);
+      
+      // selector not existing is an exceptional situation (NSException-exceptional, in fact)
+      // considering that exception gets raised anyway, we can care less about possible leak
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-		    if ([self respondsToSelector:selector]) {
-		        if (![self performSelector:selector]) {
-		            [NSException raise:@"Wrong value" format:@"parameter %@ in %@ class cannot be nil", selectorString, NSStringFromClass(self.class)];
+      if ([self respondsToSelector:selector]) {
+        if (![self performSelector:selector]) {
+          [NSException raise:@"Wrong value" format:@"parameter %@ in %@ class cannot be nil", selectorString, NSStringFromClass(self.class)];
 				}
 			}
-		    else {
-		        [NSException raise:@"Wrong validate parameter" format:@"%@ does not respond to %@, check implementation", NSStringFromClass(self.class), selectorString];
+      else {
+        [NSException raise:@"Wrong validate parameter" format:@"%@ does not respond to %@, check implementation", NSStringFromClass(self.class), selectorString];
 			}
 #pragma clang diagnostic pop
 		}];
@@ -138,7 +138,7 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 - (NSDictionary *)jsonRPCPostDictionaryForJsonRPCId:(NSNumber *)jsonrpcId {
 	NSMutableDictionary *params = [self removeNullValuesFromDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
 	params = [self checkImageDataForDictionary:params];
-
+  
 	NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithCapacity:3];
 	[postParameters setObject:jsonrpcId forKey:@"id"];
 	[postParameters setObject:@"2.0" forKey:@"jsonrpc"];
@@ -151,38 +151,38 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 
 - (NSMutableDictionary *)removeNullValuesFromDictionary:(NSDictionary *)dictionary {
 	NSMutableDictionary *newDictionary = [[NSMutableDictionary alloc] init];
-
+  
 	[[dictionary allKeys] enumerateObjectsUsingBlock: ^(NSString *key, NSUInteger idx, BOOL *stop) {
-	    id value = [dictionary objectForKey:key];
-
-	    if ([value isKindOfClass:[NSNull class]]) {
-	        return;
+    id value = [dictionary objectForKey:key];
+    
+    if ([value isKindOfClass:[NSNull class]]) {
+      return;
 		}
-
-	    if ([value isKindOfClass:[NSArray class]]) {
-	        if ([value count] == 0) return;
+    
+    if ([value isKindOfClass:[NSArray class]]) {
+      if ([value count] == 0) return;
 		}
-
-	    if ([value isKindOfClass:[NSDictionary class]]) {
-	        if ([[value allKeys] count] == 0) return;
+    
+    if ([value isKindOfClass:[NSDictionary class]]) {
+      if ([[value allKeys] count] == 0) return;
 		}
-
-	    [newDictionary setObject:[dictionary objectForKey:key] forKey:key];
+    
+    [newDictionary setObject:[dictionary objectForKey:key] forKey:key];
 	}];
-
+  
 	return newDictionary;
 }
 
 - (NSMutableDictionary *)checkImageDataForDictionary:(NSMutableDictionary *)dictionary {
 	if ([self respondsToSelector:@selector(image)]) {
 		UIImage *image = [self performSelector:@selector(image)];
-
+    
 		if ([image isKindOfClass:[UIImage class]]) {
 			NSString *data = [self base64EncodedData:[self imageData:image]];
 			[dictionary setObject:data forKey:@"image"];
 		}
 	}
-
+  
 	return dictionary;
 }
 
@@ -193,7 +193,7 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 - (NSDictionary *)syncServerDictionaryForMessageId:(NSNumber *)messageId {
 	NSMutableDictionary *params = [self removeNullValuesFromDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
 	params = [self checkImageDataForDictionary:params];
-
+  
 	NSMutableDictionary *postParameters = [NSMutableDictionary dictionaryWithCapacity:4];
 	[postParameters setObject:messageId forKey:@"message_id"];
 	[postParameters setObject:params forKey:@"params"];
@@ -214,14 +214,14 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{ @"apiKey" : @"api_key",
-			  @"timezone" : @"timezone",
-			  @"sessionId" : @"sessionId",
-			  @"authKey" : @"auth_key" };
+            @"timezone" : @"timezone",
+            @"sessionId" : @"sessionId",
+            @"authKey" : @"auth_key" };
 }
 
 #pragma mark - Private Methods
 /*
-   Private Methods
+ Private Methods
  */
 
 - (NSData *)imageJPEGData:(UIImage *)image compression:(CGFloat)compression {
@@ -236,6 +236,8 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 	return [self imageJPEGData:image compression:0.8f];
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (NSString *)base64EncodedData:(NSData *)data {
 	NSString *base64EncodedString = nil;
 	if ([data respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
@@ -247,44 +249,46 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 	return base64EncodedString;
 }
 
+#pragma clang diagnostic pop
+
 - (NSArray *)allPropertyNames {
 	NSMutableArray *propertyNames = [NSMutableArray array];
-
+  
 	Class currentClass = [self class];
-
+  
 	while (![NSStringFromClass(currentClass) isEqualToString:@"NSObject"]) {
 		[propertyNames addObjectsFromArray:[self propertiesForClass:currentClass]];
 		currentClass = [currentClass superclass];
 	}
-
+  
 	[propertyNames removeObject:@"parameters"];
-
+  
 	return propertyNames;
 }
 
 - (NSArray *)propertiesForClass:(Class)class {
 	unsigned count;
-
+  
 	NSMutableArray *propertyNames = [NSMutableArray array];
-
+  
 	objc_property_t *properties = class_copyPropertyList(class, &count);
-
+  
 	unsigned i;
 	for (i = 0; i < count; i++) {
 		objc_property_t property = properties[i];
 		NSString *name = [NSString stringWithUTF8String:property_getName(property)];
 		[propertyNames addObject:name];
 	}
-
+  
 	free(properties);
-
+  
 	return propertyNames;
 }
 
 - (NSString *)description {
 	NSMutableDictionary *params = [self removeNullValuesFromDictionary:[MTLJSONAdapter JSONDictionaryFromModel:self]];
 	params = [self checkImageDataForDictionary:params];
-
+  
 	NSMutableString *description = [NSMutableString stringWithFormat:@"[%@", self.class];
 	[description appendString:[params description]];
 	[description appendString:@"]"];
@@ -341,9 +345,9 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
-		                          @"collectionId" : @"collection_id",
-		                          @"collectionKey" : @"collection_key" };
-
+                                @"collectionId" : @"collection_id",
+                                @"collectionKey" : @"collection_key" };
+  
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 
