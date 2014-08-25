@@ -30,7 +30,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 @interface Syncano ()
 @property (strong, readwrite)  NSString *domain;
 @property (strong, readwrite)  NSString *apiKey;
-@property (strong, nonatomic)  AFHTTPRequestOperationManager *operationManager;
+@property (strong, nonatomic)  AFHTTPRequestOperationManager *asynchronousOperationManager;
 @property (strong, nonatomic)  AFHTTPRequestOperationManager *synchronousOperationManager;
 @property (strong, nonatomic)  AFJSONRequestSerializer *requestSerializer;
 @property (strong, nonatomic)  AFHTTPRequestSerializer *batchRequestSerializer;
@@ -60,7 +60,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 }
 
 - (NSString *)fullDomainForReachability {
-  return [NSString stringWithFormat:kSyncanoDomainApiForReachability, self.domain];
+	return [NSString stringWithFormat:kSyncanoDomainApiForReachability, self.domain];
 }
 
 - (NSString *)serializeRequest:(NSURLRequest *)request parameters:(NSDictionary *)parameters error:(NSError **)error {
@@ -121,18 +121,18 @@ NSString *const multicallParamsKey = @"paramsKey";
 #pragma mark - Properties
 /*----------------------------------------------------------------------------*/
 
-- (AFHTTPRequestOperationManager *)operationManager {
-	if (_operationManager == nil) {
-		_operationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[self fullDomain]]];
+- (AFHTTPRequestOperationManager *)asynchronousOperationManager {
+	if (_asynchronousOperationManager == nil) {
+		_asynchronousOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[self fullDomain]]];
     
 		AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
 		securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
 		securityPolicy.validatesCertificateChain = NO;
 		securityPolicy.pinnedCertificates = @[[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]]];
     
-		_operationManager.securityPolicy = securityPolicy;
+		_asynchronousOperationManager.securityPolicy = securityPolicy;
 	}
-	return _operationManager;
+	return _asynchronousOperationManager;
 }
 
 - (AFHTTPRequestOperationManager *)synchronousOperationManager {
@@ -248,7 +248,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (SyncanoResponse *)sendRequest:(SyncanoParameters *)params {
 	__block SyncanoResponse *responseToReturn = nil;
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-	[self sendRequest:params synchronous:YES callback: ^(SyncanoResponse *response) {
+	[self sendAsyncRequest:params operationManager:self.synchronousOperationManager callback: ^(SyncanoResponse *response) {
     responseToReturn = response;
     dispatch_semaphore_signal(semaphore);
 	}];
@@ -259,29 +259,24 @@ NSString *const multicallParamsKey = @"paramsKey";
 }
 
 - (id <SyncanoRequest> )sendAsyncRequest:(SyncanoParameters *)params callback:(SyncanoCallback)callback {
-	id <SyncanoRequest> syncanoRequest = [self sendRequest:params synchronous:NO callback:callback];
-	return syncanoRequest;
+	return [self sendAsyncRequest:params operationManager:self.asynchronousOperationManager callback:callback];
 }
 
-- (AFHTTPRequestOperation *)sendRequest:(SyncanoParameters *)params synchronous:(BOOL)synchronous callback:(SyncanoCallback)callback {
+- (AFHTTPRequestOperation *)sendAsyncRequest:(SyncanoParameters *)params
+                            operationManager:(AFHTTPRequestOperationManager *)operationManager
+                                    callback:(SyncanoCallback)callback {
 	[self addBasicFieldToParameters:params];
   
-	AFHTTPRequestOperationManager *operationManager = synchronous ? self.synchronousOperationManager : self.operationManager;
 	operationManager.requestSerializer = self.requestSerializer;
 	AFHTTPRequestOperation *request = [operationManager POST:kSyncanoModuleJSONRPC parameters:[params jsonRPCPostDictionaryForJsonRPCId:@(0)] success: ^(AFHTTPRequestOperation *operation, id responseObject) {
-    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
-    
     if (self.logJSONResponses) {
       SyncanoDebugLog(@"Syncano JSON Response: %@", responseObject);
 		}
-    
     if (callback) {
       SyncanoResponse *response = [params responseFromJSON:responseObject];
       callback(response);
 		}
 	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
-    SyncanoDebugLog(@"Operation queue: %@\nSynchronous: %d", operationManager.operationQueue, synchronous);
-    
     if (callback) {
       SyncanoResponse *response = [params responseFromJSON:nil];
       response.error = error;
@@ -300,7 +295,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (NSArray *)sendBatchRequest:(NSArray *)params {
 	__block NSArray *responsesToReturn = nil;
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-	[self sendAsyncBatchRequest:params callback: ^(NSArray *responses) {
+	[self sendAsyncBatchRequest:params operationManager:self.synchronousOperationManager callback: ^(NSArray *responses) {
     responsesToReturn = responses;
     dispatch_semaphore_signal(semaphore);
 	}];
@@ -311,9 +306,16 @@ NSString *const multicallParamsKey = @"paramsKey";
 }
 
 - (id <SyncanoRequest> )sendAsyncBatchRequest:(NSArray *)params callback:(SyncanoBatchCallback)callback {
+	return [self sendAsyncBatchRequest:params operationManager:self.asynchronousOperationManager callback:callback];
+}
+
+- (id <SyncanoRequest> )sendAsyncBatchRequest:(NSArray *)params
+                             operationManager:(AFHTTPRequestOperationManager *)operationManager
+                                     callback:(SyncanoBatchCallback)callback {
 	NSDictionary *batchParameters = [self parametersDictionaryForBatchRequestParameters:params];
-	self.operationManager.requestSerializer = self.batchRequestSerializer;
-	AFHTTPRequestOperation *request = [self.operationManager POST:kSyncanoModuleJSONRPC parameters:batchParameters success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+  
+	operationManager.requestSerializer = self.batchRequestSerializer;
+	AFHTTPRequestOperation *request = [operationManager POST:kSyncanoModuleJSONRPC parameters:batchParameters success: ^(AFHTTPRequestOperation *operation, id responseObject) {
     if (self.logJSONResponses) {
       SyncanoDebugLog(@"Syncano Batch JSON response: %@", responseObject);
 		}
@@ -336,7 +338,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 }
 
 - (void)cancellAllRequests {
-	[self.operationManager.operationQueue cancelAllOperations];
+	[self.asynchronousOperationManager.operationQueue cancelAllOperations];
 	[self.synchronousOperationManager.operationQueue cancelAllOperations];
 }
 
