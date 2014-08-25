@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1548BFD819AB5A3000267128 /* SyncanoReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1548BFD719AB5A3000267128 /* SyncanoReachability.m */; };
 		15C1F3DD19213140005E4EC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C1F3DC19213140005E4EC4 /* UIKit.framework */; };
 		97F8EC4AE2134AED9C970E62 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFEF72E1379411185D85EDA /* libPods.a */; };
 		BE98F69818D6F59C001EC84E /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = BE98F69718D6F59C001EC84E /* server.der */; };
@@ -120,6 +121,8 @@
 		152D07691868672E0020A116 /* SyncanoProtocolUsers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolUsers.h; path = Protocols/SyncanoProtocolUsers.h; sourceTree = "<group>"; };
 		152D076A1868673A0020A116 /* SyncanoProtocolNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolNotification.h; path = Protocols/SyncanoProtocolNotification.h; sourceTree = "<group>"; };
 		152D076B186867510020A116 /* SyncanoProtocolSubscriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolSubscriptions.h; path = Protocols/SyncanoProtocolSubscriptions.h; sourceTree = "<group>"; };
+		1548BFD619AB5A3000267128 /* SyncanoReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoReachability.h; path = Syncano/SyncanoReachability.h; sourceTree = SOURCE_ROOT; };
+		1548BFD719AB5A3000267128 /* SyncanoReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoReachability.m; path = Syncano/SyncanoReachability.m; sourceTree = SOURCE_ROOT; };
 		154C0861187DAEBD0014270F /* SyncanoObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoObjects.h; path = Objects/SyncanoObjects.h; sourceTree = "<group>"; };
 		154C0862187DAEBD0014270F /* SyncanoObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoObjects.m; path = Objects/SyncanoObjects.m; sourceTree = "<group>"; };
 		15791F8118842CAF00889728 /* SyncanoSyncServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoSyncServer.h; path = ../Syncano/SyncanoSyncServer.h; sourceTree = "<group>"; };
@@ -610,6 +613,8 @@
 				152D07521868641F0020A116 /* Syncano.m */,
 				15791F8118842CAF00889728 /* SyncanoSyncServer.h */,
 				15791F8218842CAF00889728 /* SyncanoSyncServer.m */,
+				1548BFD619AB5A3000267128 /* SyncanoReachability.h */,
+				1548BFD719AB5A3000267128 /* SyncanoReachability.m */,
 				15AAADA81876CB6D00139A47 /* Utilities */,
 				154C0865187DAEC20014270F /* Objects */,
 				152D07621868667A0020A116 /* Protocols */,
@@ -788,6 +793,7 @@
 				BEE157F018D2F57A00FFCB6B /* SyncanoObjects_Private.m in Sources */,
 				BEE157ED18D2F57A00FFCB6B /* Syncano.m in Sources */,
 				BEE157FD18D2F57A00FFCB6B /* SyncanoResponse.m in Sources */,
+				1548BFD819AB5A3000267128 /* SyncanoReachability.m in Sources */,
 				BEE157F618D2F57A00FFCB6B /* SyncanoParameters_Projects.m in Sources */,
 				BEE157EB18D2F40200FFCB6B /* SyncanoSyncServer.m in Sources */,
 				BEE157EE18D2F57A00FFCB6B /* SyncanoDateFormatter.m in Sources */,

@@ -11,6 +11,7 @@
 #import "SyncanoParametersListing.h"
 #import "SyncanoResponsesListing.h"
 #import "SyncanoProtocolsListing.h"
+#import "SyncanoReachability.h"
 
 typedef void (^SyncanoCallback)(SyncanoResponse *response);
 typedef void (^SyncanoBatchCallback)(NSArray *responses);
@@ -42,6 +43,11 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
  User authorization key.
  */
 @property (strong, readwrite) NSString *authKey;
+
+/**
+ Reachability for current instance domain. Use to monitor domain reachability.
+ */
+@property (strong, readonly, nonatomic) SyncanoReachability *reachability;
 
 ///
 /// @name Debug

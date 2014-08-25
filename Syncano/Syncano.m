@@ -7,10 +7,12 @@
 //
 
 #import "Syncano.h"
+
 #import <AFNetworking/AFNetworking.h>
 //#import "Vendors/AFNetworking/AFNetworkActivityLogger/AFNetworkActivityLogger.h"
 
 NSString *const kSyncanoDomainApi = @"https://%@.syncano.com/api";
+NSString *const kSyncanoDomainApiForReachability = @"%@.syncano.com";
 //NSString *const kSyncanoDomainApi = @"https://%@.syncanoengine.com/api";
 
 NSString *const kSyncanoModuleJSONRPC = @"jsonrpc";
@@ -32,8 +34,10 @@ NSString *const multicallParamsKey = @"paramsKey";
 @property (strong, nonatomic)  AFHTTPRequestOperationManager *synchronousOperationManager;
 @property (strong, nonatomic)  AFJSONRequestSerializer *requestSerializer;
 @property (strong, nonatomic)  AFHTTPRequestSerializer *batchRequestSerializer;
+@property (strong, readwrite, nonatomic) SyncanoReachability *reachability;
 
 - (NSString *)fullDomain;
+- (NSString *)fullDomainForReachability;
 - (NSString *)serializeRequest:(NSURLRequest *)request parameters:(NSDictionary *)parameters error:(NSError **)error;
 - (NSDictionary *)parametersDictionaryForBatchRequestParameters:(NSArray *)batchParameters;
 - (NSArray *)syncanoResponsesFromBatchRequestResponseObject:(id)responseObject requestParameters:(NSArray *)params;
@@ -53,6 +57,10 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 - (NSString *)fullDomain {
 	return [NSString stringWithFormat:kSyncanoDomainApi, self.domain];
+}
+
+- (NSString *)fullDomainForReachability {
+  return [NSString stringWithFormat:kSyncanoDomainApiForReachability, self.domain];
 }
 
 - (NSString *)serializeRequest:(NSURLRequest *)request parameters:(NSDictionary *)parameters error:(NSError **)error {
@@ -179,6 +187,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (void)commonInit {
 	self.logAllRequests = YES;
 	self.logJSONResponses = NO;
+	self.reachability = [SyncanoReachability reachabilityForDomain:[self fullDomainForReachability]];
 }
 
 - (id)init {
@@ -192,9 +201,9 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (Syncano *)initWithDomain:(NSString *)domain apiKey:(NSString *)apiKey {
 	self = [super init];
 	if (self) {
-		[self commonInit];
 		self.apiKey = apiKey;
 		self.domain = domain;
+		[self commonInit];
 	}
 	return self;
 }
@@ -1063,7 +1072,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 
 #pragma mark - Asynchronized
 
-- (id <SyncanoRequest>)apiKeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params callback:(void (^)(SyncanoResponse_APIKeys_StartSession *response))callback {
+- (id <SyncanoRequest> )apiKeyStartSession:(SyncanoParameters_APIKeys_StartSession *)params callback:(void (^)(SyncanoResponse_APIKeys_StartSession *response))callback {
 	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_StartSession *)response);
@@ -1071,7 +1080,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (id <SyncanoRequest>)apiKeyNew:(SyncanoParameters_APIKeys_New *)params callback:(void (^)(SyncanoResponse_APIKeys_New *response))callback {
+- (id <SyncanoRequest> )apiKeyNew:(SyncanoParameters_APIKeys_New *)params callback:(void (^)(SyncanoResponse_APIKeys_New *response))callback {
 	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_New *)response);
@@ -1079,7 +1088,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (id <SyncanoRequest>)apiKeyGet:(SyncanoParameters_APIKeys_Get *)params callback:(void (^)(SyncanoResponse_APIKeys_Get *response))callback {
+- (id <SyncanoRequest> )apiKeyGet:(SyncanoParameters_APIKeys_Get *)params callback:(void (^)(SyncanoResponse_APIKeys_Get *response))callback {
 	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_Get *)response);
@@ -1087,7 +1096,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (id <SyncanoRequest>)apiKeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params callback:(void (^)(SyncanoResponse_APIKeys_GetOne *response))callback {
+- (id <SyncanoRequest> )apiKeyGetOne:(SyncanoParameters_APIKeys_GetOne *)params callback:(void (^)(SyncanoResponse_APIKeys_GetOne *response))callback {
 	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_GetOne *)response);
@@ -1095,7 +1104,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (id <SyncanoRequest>)apiKeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params callback:(void (^)(SyncanoResponse_APIKeys_UpdateDescription *response))callback {
+- (id <SyncanoRequest> )apiKeyUpdateDescription:(SyncanoParameters_APIKeys_UpdateDescription *)params callback:(void (^)(SyncanoResponse_APIKeys_UpdateDescription *response))callback {
 	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback((SyncanoResponse_APIKeys_UpdateDescription *)response);
@@ -1103,7 +1112,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (id <SyncanoRequest>)apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
+- (id <SyncanoRequest> )apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
@@ -1111,7 +1120,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (id <SyncanoRequest>)apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
+- (id <SyncanoRequest> )apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback {
 	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
@@ -1119,7 +1128,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 	}];
 }
 
-- (id <SyncanoRequest>)apiKeyDelete:(SyncanoParameters_APIKeys_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
+- (id <SyncanoRequest> )apiKeyDelete:(SyncanoParameters_APIKeys_Delete *)params callback:(void (^)(SyncanoResponse *response))callback {
 	return [self sendAsyncRequest:params callback: ^(SyncanoResponse *response) {
     if (callback) {
       callback(response);
