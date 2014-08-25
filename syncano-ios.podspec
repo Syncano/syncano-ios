@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "syncano-ios"
-  s.version      = "3.1.12"
+  s.version      = "3.1.13"
   s.summary      = "Library for http://syncano.com API"
 
   s.homepage     = "http://www.syncano.com"
@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.prefix_header_contents = "#import \"syncano-ios-library-Prefix.pch\""
   s.header_dir   =  'Syncano'
   s.source_files = 'Syncano/**/*.{h,m,pch}', 'syncano-ios-library/**/*.{h,m,pch}'
+  s.private_header_files = 'Syncano/Private/*.h'
   s.resources    = [ 'Resources/server.der' ]
 
   s.dependency 'CocoaAsyncSocket', '7.3.3'
