@@ -325,7 +325,7 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 	if ([acceptedValues containsObject:[order lowercaseString]]) {
 		_order = order;
 	}
-	else {
+	else if (order != nil) {
 		[NSException raise:@"Wrong parameter value" format:@"Allowed values for order parameter: %@ (use kSyncanoParametersOrder constans)", acceptedValues];
 	}
 }
@@ -335,7 +335,7 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 	if ([acceptedValues containsObject:[orderBy lowercaseString]]) {
 		_orderBy = orderBy;
 	}
-	else {
+	else if (orderBy != nil) {
 		[NSException raise:@"Wrong parameter value" format:@"Allowed values for order_by parameter: %@ (use kSyncanoParametersOrderBy constans)", acceptedValues];
 	}
 }
@@ -345,7 +345,7 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 	if ([acceptedValues containsObject:[filter lowercaseString]]) {
 		_filter = filter;
 	}
-	else {
+	else if (filter != nil) {
 		[NSException raise:@"Wrong parameter value" format:@"Allowed values for filter parameter: %@ (use kSyncanoParametersFilter constans)", acceptedValues];
 	}
 }
@@ -355,7 +355,7 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 	if ([acceptedValues containsObject:[state lowercaseString]]) {
 		_state = state;
 	}
-	else {
+	else if (state != nil) {
 		[NSException raise:@"Wrong parameter value" format:@"Allowed values for state parameter: %@ (use kSyncanoParametersDataObjectsState constans)", acceptedValues];
 	}
 }
