@@ -11,6 +11,8 @@
 #import <AFNetworking/AFNetworking.h>
 //#import "Vendors/AFNetworking/AFNetworkActivityLogger/AFNetworkActivityLogger.h"
 
+NSInteger const kSyncanoMaxNumberOfRequestsInBatchCall = 10;
+
 NSString *const kSyncanoDomainApi = @"https://%@.syncano.com/api";
 NSString *const kSyncanoDomainApiForReachability = @"%@.syncano.com";
 //NSString *const kSyncanoDomainApi = @"https://%@.syncanoengine.com/api";
@@ -18,6 +20,17 @@ NSString *const kSyncanoDomainApiForReachability = @"%@.syncano.com";
 NSString *const kSyncanoModuleJSONRPC = @"jsonrpc";
 
 NSString *const multicallParamsKey = @"paramsKey";
+
+NSInteger const kSyncanoMaxNumberOfRequests = 2;
+
+@interface SyncanoParametersCallbackPair : NSObject
+@property (strong, nonatomic) SyncanoParameters *params;
+@property (strong, nonatomic) NSArray *batchParams;
+@property (strong, nonatomic) SyncanoCallback callback;
+@property (strong, nonatomic) SyncanoBatchCallback batchCallback;
++ (instancetype)pairWithParams:(SyncanoParameters *)params callback:(SyncanoCallback)callback;
++ (instancetype)pairWithBatchParams:(NSArray *)batchParams batchCallback:(SyncanoBatchCallback)callback;
+@end
 
 @interface AFHTTPRequestOperation (SyncanoRequest) <SyncanoRequest>
 @end
@@ -35,6 +48,9 @@ NSString *const multicallParamsKey = @"paramsKey";
 @property (strong, nonatomic)  AFJSONRequestSerializer *requestSerializer;
 @property (strong, nonatomic)  AFHTTPRequestSerializer *batchRequestSerializer;
 @property (strong, readwrite, nonatomic) SyncanoReachability *reachability;
+
+@property (strong, nonatomic) NSMutableArray *singleRequestsQueue;
+@property (strong, nonatomic) NSMutableArray *batchRequestsQueue;
 
 - (NSString *)fullDomain;
 - (NSString *)fullDomainForReachability;
@@ -124,6 +140,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (AFHTTPRequestOperationManager *)asynchronousOperationManager {
 	if (_asynchronousOperationManager == nil) {
 		_asynchronousOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[self fullDomain]]];
+		_asynchronousOperationManager.operationQueue.maxConcurrentOperationCount = kSyncanoMaxNumberOfRequests;
     
 		AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
 		securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
@@ -138,6 +155,7 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (AFHTTPRequestOperationManager *)synchronousOperationManager {
 	if (_synchronousOperationManager == nil) {
 		_synchronousOperationManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:[self fullDomain]]];
+		_synchronousOperationManager.operationQueue.maxConcurrentOperationCount = kSyncanoMaxNumberOfRequests;
     
 		AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
 		securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
@@ -164,6 +182,20 @@ NSString *const multicallParamsKey = @"paramsKey";
 		}];
 	}
 	return _batchRequestSerializer;
+}
+
+- (NSMutableArray *)singleRequestsQueue {
+	if (_singleRequestsQueue == nil) {
+		_singleRequestsQueue = [NSMutableArray new];
+	}
+	return _singleRequestsQueue;
+}
+
+- (NSMutableArray *)batchRequestsQueue {
+	if (_batchRequestsQueue == nil) {
+		_batchRequestsQueue = [NSMutableArray new];
+	}
+	return _batchRequestsQueue;
 }
 
 #pragma mark - Class Methods
@@ -242,6 +274,34 @@ NSString *const multicallParamsKey = @"paramsKey";
 	return imageResponse;
 }
 
+#pragma mark - Queueing
+
+- (void)queueSingleReuqest:(SyncanoParameters *)params callback:(SyncanoCallback)callback {
+	id pair = [SyncanoParametersCallbackPair pairWithParams:params callback:callback];
+	[self.singleRequestsQueue addObject:pair];
+}
+
+- (void)dequeueSingleReuqest {
+	if (self.singleRequestsQueue.count > 0) {
+		SyncanoParametersCallbackPair *pair = [self.singleRequestsQueue firstObject];
+		[self.singleRequestsQueue removeObjectAtIndex:0];
+		[self sendAsyncRequest:pair.params operationManager:self.asynchronousOperationManager callback:pair.callback];
+	}
+}
+
+- (void)queueBatchRequest:(NSArray *)batchParams callback:(SyncanoBatchCallback)callback {
+	id pair = [SyncanoParametersCallbackPair pairWithBatchParams:batchParams batchCallback:callback];
+	[self.batchRequestsQueue addObject:pair];
+}
+
+- (void)dequeueBatchRequest {
+	if (self.batchRequestsQueue.count > 0) {
+		SyncanoParametersCallbackPair *pair = [self.batchRequestsQueue firstObject];
+		[self.batchRequestsQueue removeObjectAtIndex:0];
+		[self sendAsyncBatchRequest:pair.batchParams operationManager:self.asynchronousOperationManager callback:pair.batchCallback];
+	}
+}
+
 #pragma mark - Single Requests
 /*----------------------------------------------------------------------------*/
 
@@ -312,6 +372,13 @@ NSString *const multicallParamsKey = @"paramsKey";
 - (id <SyncanoRequest> )sendAsyncBatchRequest:(NSArray *)params
                              operationManager:(AFHTTPRequestOperationManager *)operationManager
                                      callback:(SyncanoBatchCallback)callback {
+  if (params.count > kSyncanoMaxNumberOfRequestsInBatchCall) {
+    if (callback) {
+      callback(nil);
+    }
+    return nil;
+  }
+  
 	NSDictionary *batchParameters = [self parametersDictionaryForBatchRequestParameters:params];
   
 	operationManager.requestSerializer = self.batchRequestSerializer;
@@ -1136,6 +1203,23 @@ NSString *const multicallParamsKey = @"paramsKey";
       callback(response);
 		}
 	}];
+}
+
+@end
+
+@implementation SyncanoParametersCallbackPair
++ (instancetype)pairWithParams:(SyncanoParameters *)params callback:(SyncanoCallback)callback {
+	SyncanoParametersCallbackPair *pair = [[self alloc] init];
+	pair.params = params;
+	pair.callback = callback;
+	return pair;
+}
+
++ (instancetype)pairWithBatchParams:(NSArray *)batchParams batchCallback:(SyncanoBatchCallback)callback {
+	SyncanoParametersCallbackPair *pair = [[self alloc] init];
+	pair.batchParams = batchParams;
+	pair.batchCallback = callback;
+	return pair;
 }
 
 @end

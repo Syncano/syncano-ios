@@ -13,6 +13,8 @@
 #import "SyncanoProtocolsListing.h"
 #import "SyncanoReachability.h"
 
+extern NSInteger const kSyncanoMaxNumberOfRequestsInBatchCall;
+
 typedef void (^SyncanoCallback)(SyncanoResponse *response);
 typedef void (^SyncanoBatchCallback)(NSArray *responses);
 
