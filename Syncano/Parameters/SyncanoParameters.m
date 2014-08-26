@@ -70,7 +70,7 @@ NSString *const kSyncanoParametersFilterImage = @"image";
     
 		// two indexes "further", theres selector string
 		NSString *selectorString = [array objectAtIndex:addressIndex + 2];
-		NSArray *initalizeSelectorNames = [self initializeSelectorNamesArray];
+		NSArray *initalizeSelectorNames = [[self initializeSelectorNamesArray] arrayByAddingObjectsFromArray:[self baseInitializeSelectorNamesArray]];
 		SEL initalizeSelector = NSSelectorFromString(selectorString);
     
 		if (self.initalizeSelector) {
@@ -127,8 +127,14 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 	return nil;
 }
 
+- (NSArray *)baseInitializeSelectorNamesArray {
+  return @[
+           NSStringFromSelector(@selector(copyWithZone:))
+           ];
+}
+
 - (NSArray *)initializeSelectorNamesArray {
-	return nil;
+  return nil;
 }
 
 - (NSString *)methodName {
@@ -306,11 +312,15 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 - (id)copyWithZone:(NSZone *)zone {
 	id copiedParams = [[[self class] alloc] init];
 	NSArray *allPropertyNames = [self allPropertyNames];
-	for (NSString *propertyName in allPropertyNames) {
-		id selfValue = [self valueForKey:propertyName];
-		[copiedParams setValue:selfValue forKey:propertyName];
+  for (NSString *propertyName in allPropertyNames) {
+    id selfValue = [self valueForKey:propertyName];
+    [copiedParams setValue:selfValue forKey:propertyName];
 	}
 	return copiedParams;
+}
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
+  
 }
 
 @end
