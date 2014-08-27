@@ -274,53 +274,32 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 	return imageResponse;
 }
 
-#pragma mark - Queueing
+#pragma mark - General Request Creating
 
-- (void)queueSingleReuqest:(SyncanoParameters *)params callback:(SyncanoCallback)callback {
-	id pair = [SyncanoParametersCallbackPair pairWithParams:params callback:callback];
-	[self.singleRequestsQueue addObject:pair];
-}
-
-- (void)dequeueSingleReuqest {
-	if (self.singleRequestsQueue.count > 0) {
-		SyncanoParametersCallbackPair *pair = [self.singleRequestsQueue firstObject];
-		[self.singleRequestsQueue removeObjectAtIndex:0];
-		[self sendAsyncRequest:pair.params operationManager:self.asynchronousOperationManager callback:pair.callback];
-	}
-}
-
-- (void)queueBatchRequest:(NSArray *)batchParams callback:(SyncanoBatchCallback)callback {
-	id pair = [SyncanoParametersCallbackPair pairWithBatchParams:batchParams batchCallback:callback];
-	[self.batchRequestsQueue addObject:pair];
-}
-
-- (void)dequeueBatchRequest {
-	if (self.batchRequestsQueue.count > 0) {
-		SyncanoParametersCallbackPair *pair = [self.batchRequestsQueue firstObject];
-		[self.batchRequestsQueue removeObjectAtIndex:0];
-		[self sendAsyncBatchRequest:pair.batchParams operationManager:self.asynchronousOperationManager callback:pair.batchCallback];
-	}
-}
-
-#pragma mark - General Request Creating 
-
-- (id<SyncanoRequest>)requestWithOperationManager:(AFHTTPRequestOperationManager *)operationManager params:(NSDictionary *)params success:(void(^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void(^)(AFHTTPRequestOperation *operation, NSError *error))failure {
-  NSMutableURLRequest *request = [operationManager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:kSyncanoModuleJSONRPC relativeToURL:operationManager.baseURL] absoluteString] parameters:params error:nil];
-  AFHTTPRequestOperation *operation = [operationManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+- (id <SyncanoRequest> )pausedRequestWithOperationManager:(AFHTTPRequestOperationManager *)operationManager params:(NSDictionary *)params success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+	NSMutableURLRequest *request = [operationManager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:kSyncanoModuleJSONRPC relativeToURL:operationManager.baseURL] absoluteString] parameters:params error:nil];
+	AFHTTPRequestOperation *operation = [operationManager HTTPRequestOperationWithRequest:request success: ^(AFHTTPRequestOperation *operation, id responseObject) {
     if (self.logJSONResponses) {
       SyncanoDebugLog(@"Syncano JSON Response: %@", responseObject);
-    }
+		}
     if (success) {
-      success(operation,responseObject);
-    }
-  } failure:failure];
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [operationManager.operationQueue addOperation:operation];
-  });
-  if (self.logAllRequests) {
-    SyncanoDebugLog(@"Request: %@ with Params: %@", request, params);
-  }
-  return operation;
+      success(operation, responseObject);
+		}
+	} failure:failure];
+	if (self.logAllRequests) {
+		SyncanoDebugLog(@"Request: %@ with Params: %@", operation, params);
+	}
+	[operation pause];
+	if ([NSThread isMainThread]) {
+		[operationManager.operationQueue addOperation:operation];
+	}
+	else {
+		dispatch_sync(dispatch_get_main_queue(), ^{
+      [operationManager.operationQueue addOperation:operation];
+		});
+	}
+  
+	return operation;
 }
 
 #pragma mark - Single Requests
@@ -329,10 +308,16 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 - (SyncanoResponse *)sendRequest:(SyncanoParameters *)params {
 	__block SyncanoResponse *responseToReturn = nil;
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-	[self sendAsyncRequest:params operationManager:self.synchronousOperationManager callback: ^(SyncanoResponse *response) {
+	id <SyncanoRequest> request = [self getPausedRequest:params operationManager:self.synchronousOperationManager success: ^(id < SyncanoRequest > request, SyncanoResponse *response) {
+    responseToReturn = response;
+    dispatch_semaphore_signal(semaphore);
+	} failure: ^(id <SyncanoRequest> request, NSError *error) {
+    SyncanoResponse *response = [params responseFromJSON:nil];
+    response.error = error;
     responseToReturn = response;
     dispatch_semaphore_signal(semaphore);
 	}];
+	[request resume];
 	while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
 	}
@@ -340,26 +325,52 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 }
 
 - (id <SyncanoRequest> )sendAsyncRequest:(SyncanoParameters *)params callback:(SyncanoCallback)callback {
-	return [self sendAsyncRequest:params operationManager:self.asynchronousOperationManager callback:callback];
-}
-
-- (id <SyncanoRequest>)sendAsyncRequest:(SyncanoParameters *)params
-                            operationManager:(AFHTTPRequestOperationManager *)operationManager
-                                    callback:(SyncanoCallback)callback {
-	[self addBasicFieldToParameters:params];
-	operationManager.requestSerializer = self.requestSerializer;
-  id<SyncanoRequest> request = [self requestWithOperationManager:operationManager params:[params jsonRPCPostDictionaryForJsonRPCId:@(0)] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	return [self sendAsyncRequest:params success: ^(id < SyncanoRequest > request, SyncanoResponse *response) {
     if (callback) {
-      SyncanoResponse *response = [params responseFromJSON:responseObject];
       callback(response);
-    }
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+		}
+	} failure: ^(id <SyncanoRequest> request, NSError *error) {
     if (callback) {
       SyncanoResponse *response = [params responseFromJSON:nil];
       response.error = error;
       callback(response);
-    }
-  }];
+		}
+	}];
+}
+
+- (id <SyncanoRequest> )sendAsyncRequest:(SyncanoParameters *)params
+                                 success:(SyncanoSuccess)success
+                                 failure:(SyncanoFailure)failure {
+	id <SyncanoRequest> request = [self getPausedRequest:params success:success failure:failure];
+	[request resume];
+	return request;
+}
+
+- (id <SyncanoRequest> )getPausedRequest:(SyncanoParameters *)params
+                                 success:(SyncanoSuccess)success
+                                 failure:(SyncanoFailure)failure {
+	return [self getPausedRequest:params operationManager:self.asynchronousOperationManager success:success failure:failure];
+}
+
+- (id <SyncanoRequest> )getPausedRequest:(SyncanoParameters *)params
+                        operationManager:(AFHTTPRequestOperationManager *)operationManager
+                                 success:(SyncanoSuccess)success
+                                 failure:(SyncanoFailure)failure {
+	[self addBasicFieldToParameters:params];
+	operationManager.requestSerializer = self.requestSerializer;
+	id <SyncanoRequest> request = [self pausedRequestWithOperationManager:operationManager params:[params jsonRPCPostDictionaryForJsonRPCId:@(0)] success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    SyncanoResponse *response = [params responseFromJSON:responseObject];
+    if (response.error == nil && success) {
+      success(operation, response);
+		}
+    else if (response.error && failure) {
+      failure(operation, response.error);
+		}
+	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (failure) {
+      failure(operation, error);
+		}
+	}];
 	return request;
 }
 
@@ -369,10 +380,16 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 - (NSArray *)sendBatchRequest:(NSArray *)params {
 	__block NSArray *responsesToReturn = nil;
 	dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-	[self sendAsyncBatchRequest:params operationManager:self.synchronousOperationManager callback: ^(NSArray *responses) {
+	id <SyncanoRequest> request = [self getPausedBatchRequest:params operationManager:self.synchronousOperationManager success: ^(id < SyncanoRequest > request, NSArray *responses) {
     responsesToReturn = responses;
     dispatch_semaphore_signal(semaphore);
+	} failure: ^(id <SyncanoRequest> request, NSError *error) {
+    SyncanoResponse *response = [[SyncanoResponse alloc] init];
+    response.error = error;
+    responsesToReturn = @[response];
+    dispatch_semaphore_signal(semaphore);
 	}];
+	[request resume];
 	while (dispatch_semaphore_wait(semaphore, DISPATCH_TIME_NOW)) {
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:10]];
 	}
@@ -380,31 +397,53 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 }
 
 - (id <SyncanoRequest> )sendAsyncBatchRequest:(NSArray *)params callback:(SyncanoBatchCallback)callback {
-	return [self sendAsyncBatchRequest:params operationManager:self.asynchronousOperationManager callback:callback];
-}
-
-- (id <SyncanoRequest> )sendAsyncBatchRequest:(NSArray *)params
-                             operationManager:(AFHTTPRequestOperationManager *)operationManager
-                                     callback:(SyncanoBatchCallback)callback {
-  if (params.count > kSyncanoMaxNumberOfRequestsInBatchCall) {
-    if (callback) callback(nil);
-    return nil;
-  }
-  
-	NSDictionary *batchParameters = [self parametersDictionaryForBatchRequestParameters:params];
-	operationManager.requestSerializer = self.batchRequestSerializer;
-  id<SyncanoRequest> request = [self requestWithOperationManager:operationManager params:batchParameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+	return [self sendAsyncBatchRequest:params success: ^(id < SyncanoRequest > request, NSArray *responses) {
     if (callback) {
-      NSArray *syncanoResponses = [self syncanoResponsesFromBatchRequestResponseObject:responseObject requestParameters:params];
-      callback(syncanoResponses);
-    }
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      callback(responses);
+		}
+	} failure: ^(id <SyncanoRequest> request, NSError *error) {
     if (callback) {
       SyncanoResponse *response = [[SyncanoResponse alloc] init];
       response.error = error;
       callback(@[response]);
-    }
-  }];
+		}
+	}];
+}
+
+- (id <SyncanoRequest> )sendAsyncBatchRequest:(NSArray *)params
+                                      success:(SyncanoBatchSuccess)success
+                                      failure:(SyncanoFailure)failure {
+	id <SyncanoRequest> request = [self getPausedBatchRequest:params success:success failure:failure];
+	[request resume];
+	return request;
+}
+
+- (id <SyncanoRequest> )getPausedBatchRequest:(NSArray *)params
+                                      success:(SyncanoBatchSuccess)success
+                                      failure:(SyncanoFailure)failure {
+	return [self getPausedBatchRequest:params operationManager:self.asynchronousOperationManager success:success failure:failure];
+}
+
+- (id <SyncanoRequest> )getPausedBatchRequest:(NSArray *)params
+                             operationManager:(AFHTTPRequestOperationManager *)operationManager
+                                      success:(SyncanoBatchSuccess)success
+                                      failure:(SyncanoFailure)failure {
+	if (params.count > kSyncanoMaxNumberOfRequestsInBatchCall) {
+		if (failure) failure(nil, nil);
+		return nil;
+	}
+	NSDictionary *batchParameters = [self parametersDictionaryForBatchRequestParameters:params];
+	operationManager.requestSerializer = self.batchRequestSerializer;
+	id <SyncanoRequest> request = [self pausedRequestWithOperationManager:operationManager params:batchParameters success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSArray *responses = [self syncanoResponsesFromBatchRequestResponseObject:responseObject requestParameters:params];
+    if (success) {
+      success(operation, responses);
+		}
+	} failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+    if (failure) {
+      failure(operation, error);
+		}
+	}];
 	return request;
 }
 
