@@ -160,6 +160,12 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
  @warning Returned request will be in the paused state! It will not be
  sent to Syncano until it's resumed first.
  
+ @code
+ id <SyncanoRequest> request = [syncano getPausedRequest ...];
+ //do some needed action and resume it when needed
+ [request resume];
+ @endcode
+ 
  @param params  Parameters with which request will be sent.
  @param success Block that will be called if both https requests went through
  and response from Syncano was successful.
@@ -243,6 +249,12 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
  
  @warning Returned request will be in the paused state! It will not be
  sent to Syncano until it's resumed first.
+ 
+ @code
+ id <SyncanoRequest> request = [syncano getPausedBatchRequest ...];
+ //do some needed action and resume it when needed
+ [request resume];
+ @endcode
  
  @param params  Parameters with which request will be sent.
  @param success Block that will be called if https requests went through
