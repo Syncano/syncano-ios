@@ -88,7 +88,7 @@ typedef NS_ENUM (NSInteger, SyncanoNetworkReachabilityStatus) {
 
 /**
  Posted when network reachability changes.
- This notification assigns no notification object. The `userInfo` dictionary contains an `NSNumber` object under the `SyncanoNetworkingReachabilityDidChangeNotification` key, representing the `SyncanoNetworkingReachabilityNotificationStatusItem` value for the current network reachability.
+ This notification assigns no notification object. The `userInfo` dictionary contains an `NSNumber` object under the `SyncanoNetworkingReachabilityNotificationStatusItem` key, representing the `SyncanoNetworkReachabilityStatus` value for the current network reachability.
  */
 extern NSString *const SyncanoNetworkingReachabilityDidChangeNotification;
 extern NSString *const SyncanoNetworkingReachabilityNotificationStatusItem;
