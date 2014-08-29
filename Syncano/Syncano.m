@@ -184,6 +184,13 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 	return _batchRequestSerializer;
 }
 
+- (SyncanoReachability *)reachability {
+	if (_reachability == nil) {
+		_reachability = [SyncanoReachability reachabilityForDomain:[self fullDomainForReachability]];
+	}
+	return _reachability;
+}
+
 - (NSMutableArray *)singleRequestsQueue {
 	if (_singleRequestsQueue == nil) {
 		_singleRequestsQueue = [NSMutableArray new];
@@ -219,7 +226,6 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 - (void)commonInit {
 	self.logAllRequests = YES;
 	self.logJSONResponses = NO;
-	self.reachability = [SyncanoReachability reachabilityForDomain:[self fullDomainForReachability]];
 }
 
 - (id)init {
@@ -233,9 +239,10 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 - (Syncano *)initWithDomain:(NSString *)domain apiKey:(NSString *)apiKey {
 	self = [super init];
 	if (self) {
+		[self commonInit];
 		self.apiKey = apiKey;
 		self.domain = domain;
-		[self commonInit];
+		[self.reachability startMonitoring];
 	}
 	return self;
 }

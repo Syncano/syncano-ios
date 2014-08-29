@@ -53,6 +53,7 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
 
 /**
  Reachability for current instance domain. Use to monitor domain reachability.
+ You do not have to start monitoring manually, Syncano will start it for you.
  */
 @property (strong, readonly, nonatomic) SyncanoReachability *reachability;
 
