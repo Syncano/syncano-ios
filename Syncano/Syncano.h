@@ -152,35 +152,6 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
                                  failure:(SyncanoFailure)failure;
 
 /**
- Creates an asynchronous request to Syncano using given parameters.
- Instead of using only one callback like 'sendAsyncRequest:callback'
- it uses two blocks: 'success', which will be called only when response from
- Syncano server wass successful, and 'failure', which will be called either
- on error on Syncano, or in case of error with internet connection.
- 
- @warning Returned request will be in the paused state! It will not be
- sent to Syncano until it's resumed first.
- 
- @code
- id <SyncanoRequest> request = [syncano getPausedRequest ...];
- //do some needed action and resume it when needed
- [request resume];
- @endcode
- 
- @param params  Parameters with which request will be sent.
- @param success Block that will be called if both https requests went through
- and response from Syncano was successful.
- @param failure Block that will be called in case of Syncano error or problems
- with internet connection, which will affect reaching Syncano server.
- 
- @return Object implementing 'SyncanoRequest' protocol, which will enable asking
- about its state, as well as pausing/resuming/cancellation of the request.
- */
-- (id <SyncanoRequest> )getPausedRequest:(SyncanoParameters *)params
-                                 success:(SyncanoSuccess)success
-                                 failure:(SyncanoFailure)failure;
-
-/**
  Sends a synchronous batch request to Syncano with multiple parameters.
  
  @param params Array of parameters that will be sent.
@@ -230,44 +201,6 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
  of the request.
  */
 - (id <SyncanoRequest> )sendAsyncBatchRequest:(NSArray *)params
-                                      success:(SyncanoBatchSuccess)success
-                                      failure:(SyncanoFailure)failure;
-
-/**
- Creates an asynchronous request to Syncano using given parameters.
- 
- Instead of using only one callback like 'sendAsyncBatchRequest:callback'
- it uses two blocks: 'success', which will be called only when https request
- reached the server (but may have failed on Syncano server), and 'failure',
- which will be called in case of error with internet connection.
- 
- @warning This behaviour is different that sending single requests. It is
- because when handling multiple requests being sent, it is possible only
- some of them will be successful on Syncano, and some of them will fail.
- Regardless of the fact, even if all of them failed on Syncano side (e.g.
- by providing wrong parameters type), responses will still be passed on
- 'success' block.
- 
- @warning Returned request will be in the paused state! It will not be
- sent to Syncano until it's resumed first.
- 
- @code
- id <SyncanoRequest> request = [syncano getPausedBatchRequest ...];
- //do some needed action and resume it when needed
- [request resume];
- @endcode
- 
- @param params  Parameters with which request will be sent.
- @param success Block that will be called if https requests went through
- successfully.
- @param failure Block that will be called in case of problems with internet
- connection, which will affect reaching Syncano server.
- 
- @return Object implementing 'SyncanoRequest' protocol, which will enable
- asking about its state, as well as pausing/resuming/cancellation
- of the request.
- */
-- (id <SyncanoRequest> )getPausedBatchRequest:(NSArray *)params
                                       success:(SyncanoBatchSuccess)success
                                       failure:(SyncanoFailure)failure;
 
