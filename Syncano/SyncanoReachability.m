@@ -10,10 +10,16 @@
 
 #import <AFNetworkReachabilityManager.h>
 
+NSString *const SyncanoNetworkingReachabilityDidChangeNotification = @"SyncanoNetworkingReachabilityDidChangeNotification";
+NSString *const SyncanoNetworkingReachabilityNotificationStatusItem = @"SyncanoNetworkingReachabilityNotificationStatusItem";
+NSString *const SyncanoNetworkingReachabilityNotificationDomainItem = @"SyncanoNetworkingReachabilityNotificationDomainItem";
+
 @interface SyncanoReachability ()
 
 @property (strong, nonatomic) AFNetworkReachabilityManager *reachabilityManager;
 @property (strong, readwrite, nonatomic) NSString *domain;
+
+@property (strong, nonatomic) id observer;
 
 @end
 
@@ -21,9 +27,21 @@
 
 #pragma mark - Private
 
+- (void)addObserver {
+	self.observer = [[NSNotificationCenter defaultCenter] addObserverForName:AFNetworkingReachabilityDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock: ^(NSNotification *note) {
+    NSNumber *status = note.userInfo[AFNetworkingReachabilityNotificationStatusItem];
+    if (status == nil) {
+      status = @(SyncanoNetworkReachabilityStatusUnknown);
+		}
+    NSNotification *notification = [NSNotification notificationWithName:SyncanoNetworkingReachabilityDidChangeNotification object:self userInfo:@{ SyncanoNetworkingReachabilityNotificationStatusItem: status                                                                                                                                 }];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+	}];
+}
+
 - (AFNetworkReachabilityManager *)reachabilityManager {
 	if (_reachabilityManager == nil) {
 		_reachabilityManager = [AFNetworkReachabilityManager managerForDomain:self.domain];
+    [self addObserver];
 	}
 	return _reachabilityManager;
 }
@@ -56,6 +74,17 @@
 	return syncanoStatus;
 }
 
+- (id)init {
+	self = [super init];
+	if (self) {
+	}
+	return self;
+}
+
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self.observer];
+}
+
 + (instancetype)reachabilityForDomain:(NSString *)domain {
 	if (domain.length == 0) {
 		return nil;
@@ -66,6 +95,10 @@
 }
 
 #pragma mark - Public
+
+- (SyncanoNetworkReachabilityStatus)networkReachabilityStatus {
+  return [self syncanoNetworkStatusForAFNetworkStatus:self.reachabilityManager.networkReachabilityStatus];
+}
 
 - (BOOL)isReachable {
 	return self.reachabilityManager.isReachable;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM (NSUInteger, SyncanoNetworkReachabilityStatus) {
+typedef NS_ENUM (NSInteger, SyncanoNetworkReachabilityStatus) {
 	SyncanoNetworkReachabilityStatusUnknown          = -1,
 	SyncanoNetworkReachabilityStatusNotReachable     = 0,
 	SyncanoNetworkReachabilityStatusReachableViaWWAN = 1,
@@ -82,5 +82,15 @@ typedef NS_ENUM (NSUInteger, SyncanoNetworkReachabilityStatus) {
  */
 - (void)setReachabilityStatusChangeBlock:(void (^)(SyncanoNetworkReachabilityStatus status))block;
 
+///--------------------
+/// @name Notifications
+///--------------------
+
+/**
+ Posted when network reachability changes.
+ This notification assigns no notification object. The `userInfo` dictionary contains an `NSNumber` object under the `SyncanoNetworkingReachabilityDidChangeNotification` key, representing the `SyncanoNetworkingReachabilityNotificationStatusItem` value for the current network reachability.
+ */
+extern NSString *const SyncanoNetworkingReachabilityDidChangeNotification;
+extern NSString *const SyncanoNetworkingReachabilityNotificationStatusItem;
 
 @end
