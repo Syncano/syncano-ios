@@ -26,15 +26,7 @@ NSString *const kSyncanoParametersOrderByUpdatedAt = @"updated_at";
 NSString *const kSyncanoParametersFilterText = @"text";
 NSString *const kSyncanoParametersFilterImage = @"image";
 
-// private protocol to avoid warnings on checking respondsToSelector:@selector(image)
-@protocol ImageSelectorProtocol <NSObject>
-
-@optional
-- (UIImage *)image;
-
-@end
-
-@interface SyncanoParameters () <ImageSelectorProtocol>
+@interface SyncanoParameters ()
 
 @end
 
@@ -180,14 +172,14 @@ NSString *const kSyncanoParametersFilterImage = @"image";
 }
 
 - (NSMutableDictionary *)checkImageDataForDictionary:(NSMutableDictionary *)dictionary {
-	if ([self respondsToSelector:@selector(image)]) {
-		UIImage *image = [self performSelector:@selector(image)];
-    
-		if ([image isKindOfClass:[UIImage class]]) {
-			NSString *data = [self base64EncodedData:[self imageData:image]];
-			[dictionary setObject:data forKey:@"image"];
-		}
-	}
+	
+  [[dictionary copy] enumerateKeysAndObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id key, id obj, BOOL *stop) {
+    if ([obj isKindOfClass:[UIImage class]]) {
+      UIImage *image = (UIImage *)obj;
+      NSString *data = [self base64EncodedData:[self imageData:image]];
+			[dictionary setObject:data forKey:key];
+    }
+  }];
   
 	return dictionary;
 }
