@@ -18,6 +18,8 @@ NSString *const kSyncanoSyncServerPeerName = @"*.syncano.com";
 
 NSString *const kSyncanoSyncServerTerminalCharacter = @"}\n";
 
+NSString *const kSyncanoSubscriptionChannelKey = @"channel";
+
 //NSString *const kSyncanoSyncServerHost = @"api.syncanoengine.com";
 //NSString *const kSyncanoSyncServerPeerName = @"*.syncanoengine.com";
 
@@ -270,37 +272,66 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	}
 }
 
-- (void)notifyAboutDeletedObjects:(NSArray *)targets {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)notifyAboutDeletedObjects:(NSArray *)targets
+                          channel:(SyncanoChannel *)channel {
 	if (self.deletedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-      self.deletedCallback(targets);
+      self.deletedCallback(targets, channel);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:notificationDeleted:)]) {
 		[self.delegate syncServer:self notificationDeleted:targets];
 	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:notificationDeleted:channel:)]) {
+		[self.delegate syncServer:self notificationDeleted:targets channel:channel];
+	}
 }
 
-- (void)notifyAboutChangedObjects:(NSArray *)changesArray {
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)notifyAboutChangedObjects:(NSArray *)changesArray
+                          channel:(SyncanoChannel *)channel {
 	if (self.changedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-      self.changedCallback(changesArray);
+      self.changedCallback(changesArray, channel);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:notificationChanged:)]) {
 		[self.delegate syncServer:self notificationChanged:changesArray];
 	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:notificationChanged:channel:)]) {
+		[self.delegate syncServer:self notificationChanged:changesArray channel:channel];
+	}
 }
 
-- (void)notifyAboutAddedObject:(SyncanoData *)data {
+#pragma clang diagnostic pop
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+- (void)notifyAboutAddedObject:(SyncanoData *)data
+                       channel:(SyncanoChannel *)channel {
 	if (self.addedCallback) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-      self.addedCallback(data);
+      self.addedCallback(data, channel);
 		});
 	}
 	if ([self.delegate respondsToSelector:@selector(syncServer:notificationAdded:)]) {
 		[self.delegate syncServer:self notificationAdded:data];
 	}
+	if ([self.delegate respondsToSelector:@selector(syncServer:notificationAdded:channel:)]) {
+		[self.delegate syncServer:self notificationAdded:data channel:channel];
+	}
+}
+
+#pragma clang diagnostic pop
+
+- (SyncanoChannel *)channelFromJSON:(NSDictionary *)json {
+	SyncanoChannel *channel = [SyncanoChannel objectFromJSON:json[kSyncanoSubscriptionChannelKey]];
+	return channel;
 }
 
 #pragma mark - Processing Messages From Syncano
@@ -354,6 +385,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 		targets = @[targets];
 	}
 	SyncanoDataChanges *changes = [SyncanoDataChanges objectFromJSON:json];
+	SyncanoChannel *channel = [self channelFromJSON:json];
 	NSMutableArray *changesArray = [NSMutableArray arrayWithCapacity:targets.count];
 	for (NSString *id in targets) {
 		SyncanoDataChanges *targetChange = [changes copy];
@@ -361,21 +393,23 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 		[changesArray addObject:targetChange];
 	}
 	SyncanoDebugClassLog(@"Changed JSON: %@", json);
-	[self notifyAboutChangedObjects:changesArray];
+	[self notifyAboutChangedObjects:changesArray channel:channel];
 }
 
 - (void)processAddedMessage:(NSDictionary *)json {
 	NSDictionary *dataJSON = json[@"data"];
 	SyncanoData *data = [SyncanoData objectFromJSON:dataJSON];
-	[self notifyAboutAddedObject:data];
+	SyncanoChannel *channel = [self channelFromJSON:json];
+	[self notifyAboutAddedObject:data channel:channel];
 }
 
 - (void)processDeletedMessage:(NSDictionary *)json {
 	NSArray *targets = json[@"target"][@"id"];
+	SyncanoChannel *channel = [self channelFromJSON:json];
 	if ([targets isKindOfClass:[NSArray class]] == NO) {
 		targets = @[targets];
 	}
-	[self notifyAboutDeletedObjects:targets];
+	[self notifyAboutDeletedObjects:targets channel:channel];
 }
 
 #pragma mark - Reading Raw Data From Syncano
@@ -383,7 +417,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)readDataFromSocket {
 	/*
    ASYNC SOCKET DOES NOT HANDLE PROPERLY READING TO DATA WHEN INCOMING
-   DATA IS FLOWING IN IN PACKETS AND ONE PACKET DOES NOT CONTAIN TERMINAL DATA
+   DATA IS FLOWING IN PACKETS AND ONE PACKET DOES NOT CONTAIN TERMINAL
+   CHARACTER DATA
    
    [self.socket readDataToData:[@"}\n" dataUsingEncoding : NSUTF8StringEncoding] withTimeout:-1 tag:0];
 	 */
