@@ -8,6 +8,7 @@
 
 #import "SyncanoSyncServer.h"
 #import "SyncanoObjects_Private.h"
+#import "SyncanoReachability.h"
 
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
@@ -27,35 +28,6 @@ NSInteger const kSyncanoSyncServerPort = 8200;
 NSTimeInterval const kSyncanoSyncServerDefaultTimeout = 10;
 NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
-@interface SYNCallback : NSObject
-@property (strong)    dispatch_queue_t callbackQueue;
-@property (strong)    SyncanoSyncServerCallback callback;
-@property (strong)    SyncanoSyncServerBatchCallback batchCallback;
-@property (strong)    Class responseClass;
-@property (strong)    SyncanoParameters *parameters;
-- (void)runCallbackWithObject:(id)object;
-@end
-
-@implementation SYNCallback
-- (void)runCallbackWithObject:(id)object {
-	dispatch_queue_t queue = self.callbackQueue;
-	if (!queue) {
-		queue = dispatch_get_main_queue();
-	}
-	if ([object isKindOfClass:[SyncanoResponse class]] && self.callback) {
-		dispatch_async(queue, ^{
-      self.callback((SyncanoResponse *)object);
-		});
-	}
-	else if ([object isKindOfClass:[NSArray class]] && self.batchCallback) {
-		dispatch_async(queue, ^{
-      self.batchCallback((NSArray *)object);
-		});
-	}
-}
-
-@end
-
 @interface SYNQueuedRequest : NSObject
 @property (strong)    SyncanoParameters *parameters;
 @property (strong)    SyncanoSyncServerCallback callback;
@@ -65,23 +37,13 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
                        batchCallback:(SyncanoSyncServerBatchCallback)batchCallback;
 @end
 
-@implementation SYNQueuedRequest
-- (id)init {
-	return [self initWithParams:nil callback:NULL batchCallback:NULL];
-}
-
-- (id)initWithParams:(SyncanoParameters *)params
-            callback:(SyncanoSyncServerCallback)callback
-       batchCallback:(SyncanoSyncServerBatchCallback)batchCallback {
-	self = [super init];
-	if (self) {
-		self.parameters = params;
-		self.callback = callback;
-		self.batchCallback = batchCallback;
-	}
-	return self;
-}
-
+@interface SYNCallback : NSObject
+@property (strong)    dispatch_queue_t callbackQueue;
+@property (strong)    SyncanoSyncServerCallback callback;
+@property (strong)    SyncanoSyncServerBatchCallback batchCallback;
+@property (strong)    Class responseClass;
+@property (strong)    SyncanoParameters *parameters;
+- (void)runCallbackWithObject:(id)object;
 @end
 
 #pragma mark - Private Interface
@@ -101,6 +63,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 @property (strong, nonatomic)  NSMutableArray *requestsQueue;
 
 @property (strong, nonatomic)  NSMutableData *unprocessedData;
+
+@property (strong, nonatomic) SyncanoReachability *reachability;
 
 @property (strong)    SyncanoSyncServerConnectionOpenCallback connectionOpenCallback;
 @property (strong)    SyncanoSyncServerConnectionClosedCallback connectionClosedCallback;
@@ -339,6 +303,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)processAuthMessage:(NSDictionary *)json {
 	SyncanoAuth *auth = [SyncanoAuth objectFromJSON:json];
 	self.uuid = auth.uuid;
+	self.clientLoggedIn = YES;
 	SyncanoDebugClassLog(@"Auth: %@", auth);
 	if ([auth OK]) {
 		[self notifyAboutConnectionOpened];
@@ -545,13 +510,26 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	return _unprocessedData;
 }
 
+- (SyncanoReachability *)reachability {
+	if (_reachability == nil) {
+		_reachability = [SyncanoReachability reachabilityForDomain:kSyncanoSyncServerHost];
+		[_reachability startMonitoring];
+	}
+	return _reachability;
+}
+
 #pragma mark - Public Methods
 /*----------------------------------------------------------------------------*/
+
+- (void)commonInit {
+	_messageId = 0;
+	[self reachability];
+}
 
 - (id)init {
 	self = [super init];
 	if (self) {
-		_messageId = 0;
+		[self commonInit];
 	}
 	return self;
 }
@@ -559,6 +537,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (SyncanoSyncServer *)initWithDomain:(NSString *)domain apiKey:(NSString *)apiKey {
 	self = [super init];
 	if (self) {
+		[self commonInit];
 		self.apiKey = apiKey;
 		self.domain = domain;
 	}
@@ -570,6 +549,16 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 		return NO;
 	}
 	BOOL success = [self.socket connectToHost:kSyncanoSyncServerHost onPort:kSyncanoSyncServerPort withTimeout:kSyncanoSyncServerDefaultTimeout error:errorPointer];
+  if (success) {
+    __weak SyncanoSyncServer *_weakSelf = self;
+    [_reachability setReachabilityStatusChangeBlock:^(SyncanoNetworkReachabilityStatus status) {
+      if (_weakSelf.reachability.isReachable) {
+        [_weakSelf connect:errorPointer];
+      } else {
+        [_weakSelf closeConnection];
+      }
+    }];
+  }
 	return success;
 }
 
@@ -752,6 +741,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
  **/
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err {
+  self.clientLoggedIn = NO;
 	[self notifyAboutConnectionClosed:err];
 }
 
@@ -841,6 +831,45 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
       callback((SyncanoResponse_Connections_Update *)response);
 		}
 	}];
+}
+
+@end
+
+@implementation SYNCallback
+- (void)runCallbackWithObject:(id)object {
+	dispatch_queue_t queue = self.callbackQueue;
+	if (!queue) {
+		queue = dispatch_get_main_queue();
+	}
+	if ([object isKindOfClass:[SyncanoResponse class]] && self.callback) {
+		dispatch_async(queue, ^{
+      self.callback((SyncanoResponse *)object);
+		});
+	}
+	else if ([object isKindOfClass:[NSArray class]] && self.batchCallback) {
+		dispatch_async(queue, ^{
+      self.batchCallback((NSArray *)object);
+		});
+	}
+}
+
+@end
+
+@implementation SYNQueuedRequest
+- (id)init {
+	return [self initWithParams:nil callback:NULL batchCallback:NULL];
+}
+
+- (id)initWithParams:(SyncanoParameters *)params
+            callback:(SyncanoSyncServerCallback)callback
+       batchCallback:(SyncanoSyncServerBatchCallback)batchCallback {
+	self = [super init];
+	if (self) {
+		self.parameters = params;
+		self.callback = callback;
+		self.batchCallback = batchCallback;
+	}
+	return self;
 }
 
 @end
