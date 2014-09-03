@@ -34,18 +34,18 @@
 - (NSArray *)allPropertyNames {
 	unsigned count;
 	objc_property_t *properties = class_copyPropertyList([self class], &count);
-
+  
 	NSMutableArray *propertyNames = [NSMutableArray array];
-
+  
 	unsigned i;
 	for (i = 0; i < count; i++) {
 		objc_property_t property = properties[i];
 		NSString *name = [NSString stringWithUTF8String:property_getName(property)];
 		[propertyNames addObject:name];
 	}
-
+  
 	free(properties);
-
+  
 	return propertyNames;
 }
 
@@ -61,25 +61,25 @@
 
 + (NSValueTransformer *)createdAtJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock: ^(NSString *str) {
-	    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
+    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
 	} reverseBlock: ^(NSDate *date) {
-	    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
+    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
 	}];
 }
 
 + (NSValueTransformer *)updatedAtJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock: ^(NSString *str) {
-	    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
+    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
 	} reverseBlock: ^(NSDate *date) {
-	    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
+    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
 	}];
 }
 
 + (NSValueTransformer *)sinceTimeJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock: ^(NSString *str) {
-	    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
+    return [SyncanoDateFormatter dateFromTextWithConstFormatWithoutUsingFormatter:str];
 	} reverseBlock: ^(NSDate *date) {
-	    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
+    return [[SyncanoDateFormatter sharedDateFormatter] stringFromDate:date];
 	}];
 }
 
@@ -99,10 +99,10 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"descriptionString" : @"description",
-			   @"apiKey" : @"api_key",
-	};
+           @"uid" : @"id",
+           @"descriptionString" : @"description",
+           @"apiKey" : @"api_key",
+           };
 }
 
 @end
@@ -121,11 +121,11 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"descriptionString" : @"description",
-			   @"apiKey" : @"api_key",
-			   @"type" : @"type"
-	};
+           @"uid" : @"id",
+           @"descriptionString" : @"description",
+           @"apiKey" : @"api_key",
+           @"type" : @"type"
+           };
 }
 
 @end
@@ -135,13 +135,13 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"apiClientId" : @"api_client_id",
-			   @"uuid" : @"uuid",
-			   @"name" : @"name",
-			   @"state" : @"state",
-			   @"source" : @"source"
-	};
+           @"uid" : @"id",
+           @"apiClientId" : @"api_client_id",
+           @"uuid" : @"uuid",
+           @"name" : @"name",
+           @"state" : @"state",
+           @"source" : @"source"
+           };
 }
 
 @end
@@ -150,10 +150,10 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"name" : @"name",
-			   @"descriptionString" : @"description"
-	};
+           @"uid" : @"id",
+           @"name" : @"name",
+           @"descriptionString" : @"description"
+           };
 }
 
 @end
@@ -162,15 +162,15 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"status" : @"status",
-			   @"name" : @"name",
-			   @"descriptionString" : @"description",
-			   @"key" : @"key",
-			   @"startDate" : @"start_date",
-			   @"endDate" : @"end_date",
-			   @"tags" : @"tags"
-	};
+           @"uid" : @"id",
+           @"status" : @"status",
+           @"name" : @"name",
+           @"descriptionString" : @"description",
+           @"key" : @"key",
+           @"startDate" : @"start_date",
+           @"endDate" : @"end_date",
+           @"tags" : @"tags"
+           };
 }
 
 @end
@@ -179,11 +179,11 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"isCustom" : @"is_custom",
-			   @"name" : @"name",
-			   @"sourceId" : @"source_id"
-	};
+           @"uid" : @"id",
+           @"isCustom" : @"is_custom",
+           @"name" : @"name",
+           @"sourceId" : @"source_id"
+           };
 }
 
 @end
@@ -192,13 +192,13 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"image" : @"image",
-			   @"imageWidth" : @"image_width",
-			   @"imageHeight" : @"image_height",
-			   @"thumbnail" : @"thumbnail",
-			   @"thumbnailWidth" : @"thumbnail_width",
-			   @"thumbnailHeight" : @"thumbnail_height"
-	};
+           @"image" : @"image",
+           @"imageWidth" : @"image_width",
+           @"imageHeight" : @"image_height",
+           @"thumbnail" : @"thumbnail",
+           @"thumbnailWidth" : @"thumbnail_width",
+           @"thumbnailHeight" : @"thumbnail_height"
+           };
 }
 
 @end
@@ -207,14 +207,14 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"image" : @"image",
-			   @"imageWidth" : @"image_width",
-			   @"imageHeight" : @"image_height",
-			   @"thumbnail" : @"thumbnail",
-			   @"thumbnailWidth" : @"thumbnail_width",
-			   @"thumbnailHeight" : @"thumbnail_height",
-			   @"sourceUrl" : @"source_url"
-	};
+           @"image" : @"image",
+           @"imageWidth" : @"image_width",
+           @"imageHeight" : @"image_height",
+           @"thumbnail" : @"thumbnail",
+           @"thumbnailWidth" : @"thumbnail_width",
+           @"thumbnailHeight" : @"thumbnail_height",
+           @"sourceUrl" : @"source_url"
+           };
 }
 
 @end
@@ -233,10 +233,10 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"name" : @"name",
-			   @"nick" : @"nick"
-	};
+           @"uid" : @"id",
+           @"name" : @"name",
+           @"nick" : @"nick"
+           };
 }
 
 - (NSString *)displayedName {
@@ -254,14 +254,14 @@
 		if ([dictionaryValue syncano_notNullObjectForKey:@"user"]) {
 			self.user = [MTLJSONAdapter modelOfClass:[SyncanoUser class] fromJSONDictionary:[dictionaryValue syncano_notNullObjectForKey:@"user"] error:nil];
 		}
-
+    
 		if ([dictionaryValue syncano_notNullObjectForKey:@"image"]) {
 			self.image = [MTLJSONAdapter modelOfClass:[SyncanoImage class] fromJSONDictionary:[dictionaryValue syncano_notNullObjectForKey:@"image"] error:nil];
 		}
-
+    
 		if ([dictionaryValue syncano_notNullObjectForKey:@"children"]) {
 			NSMutableArray *children = [[NSMutableArray alloc] init];
-
+      
 			for (NSDictionary *child in[dictionaryValue syncano_notNullObjectForKey:@"children"]) {
 				[children addObject:[MTLJSONAdapter modelOfClass:[self class] fromJSONDictionary:child error:nil]];
 			}
@@ -273,23 +273,23 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"parentId" : @"parent_id",
-			   @"createdAt" : @"created_at",
-			   @"updatedAt" : @"updated_at",
-			   @"folder" : @"folder",
-			   @"state" : @"state",
-			   @"key" : @"key",
-			   @"title" : @"title",
-			   @"text" : @"text",
-			   @"link" : @"link",
-			   @"sourceUrl" : @"source_url",
-			   @"additional" : @"additional",
-			   @"childrenCount" : @"children_count",
-			   @"data1" : @"data1",
-			   @"data2" : @"data2",
-			   @"data3" : @"data3"
-	};
+           @"uid" : @"id",
+           @"parentId" : @"parent_id",
+           @"createdAt" : @"created_at",
+           @"updatedAt" : @"updated_at",
+           @"folder" : @"folder",
+           @"state" : @"state",
+           @"key" : @"key",
+           @"title" : @"title",
+           @"text" : @"text",
+           @"link" : @"link",
+           @"sourceUrl" : @"source_url",
+           @"additional" : @"additional",
+           @"childrenCount" : @"children_count",
+           @"data1" : @"data1",
+           @"data2" : @"data2",
+           @"data3" : @"data3"
+           };
 }
 
 @end
@@ -312,9 +312,9 @@
 + (void)fillObject:(id)object usingMantleKeyValuePairsWithJSON:(NSDictionary *)json {
 	NSDictionary *mantleDictionary = [self JSONKeyPathsByPropertyKey];
 	[mantleDictionary enumerateKeysAndObjectsWithOptions:0 usingBlock: ^(id objectKey, id jsonKey, BOOL *stop) {
-	    id value = [json objectForKey:jsonKey];
-	    if (value) {
-	        [object setValue:value forKey:objectKey];
+    id value = [json objectForKey:jsonKey];
+    if (value) {
+      [object setValue:value forKey:objectKey];
 		}
 	}];
 }
@@ -334,8 +334,8 @@
 	NSMutableArray *objectKeys = [NSMutableArray arrayWithCapacity:jsonKeys.count];
 	NSDictionary *mantleDictionary = [self JSONKeyPathsByPropertyKey];
 	[mantleDictionary enumerateKeysAndObjectsWithOptions:0 usingBlock: ^(id objectKey, id jsonKey, BOOL *stop) {
-	    if ([jsonKeys containsObject:jsonKey]) {
-	        [objectKeys addObject:objectKey];
+    if ([jsonKeys containsObject:jsonKey]) {
+      [objectKeys addObject:objectKey];
 		}
 	}];
 	return [objectKeys copy];
@@ -387,7 +387,7 @@
 	object.addedProperties = addedProperties;
 	object.replacedProperties = replacedProperties;
 	object.deletedProperties = deletedProperties;
-
+  
 	return object;
 }
 
@@ -437,10 +437,10 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"type" : @"type",
-			   @"context" : @"context"
-	};
+           @"uid" : @"id",
+           @"type" : @"type",
+           @"context" : @"context"
+           };
 }
 
 @end
@@ -449,9 +449,9 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"name" : @"name"
-	};
+           @"uid" : @"id",
+           @"name" : @"name"
+           };
 }
 
 @end
@@ -470,12 +470,24 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-			   @"uid" : @"id",
-			   @"email" : @"email",
-			   @"firstName" : @"first_name",
-			   @"lastName" : @"last_name",
-			   @"lastLogin" : @"last_login",
-	};
+           @"uid" : @"id",
+           @"email" : @"email",
+           @"firstName" : @"first_name",
+           @"lastName" : @"last_name",
+           @"lastLogin" : @"last_login",
+           };
+}
+
+@end
+
+@implementation SyncanoChannel
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+           @"projectId" : @"project_id",
+           @"collectionId" : @"collection_id",
+           @"folder" : @"folder"
+           };
 }
 
 @end
