@@ -183,6 +183,8 @@ typedef enum : NSUInteger {
  */
 @property (strong)    NSArray *dataIds;
 
+@property (strong)  NSArray *dataKeys;
+
 /**
  State of data to be returned. Accepted values: Pending, Moderated, All. Default value: All.
  */

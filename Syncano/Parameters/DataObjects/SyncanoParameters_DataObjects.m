@@ -290,6 +290,7 @@ NSString *filterNameForFilter(DataFieldFilter filter) {
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"dataIds" : @"data_ids",
+                                @"dataKeys" : @"data_keys",
                                 @"state" : @"state",
                                 @"folders" : @"folders",
                                 @"sinceId" : @"since_id",
