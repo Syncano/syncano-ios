@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "syncano-ios"
-  s.version      = "3.1.21"
+  s.version      = "3.1.22"
   s.summary      = "Library for http://syncano.com API"
 
   s.homepage     = "http://www.syncano.com"
