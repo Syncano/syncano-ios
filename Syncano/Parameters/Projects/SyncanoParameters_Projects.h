@@ -68,7 +68,7 @@
 /**
    New description of specified project.
  */
-@property (strong)  NSString *description;
+@property (strong)  NSString *projectDescription;
 /**
    Created parameters to update selected project.
 

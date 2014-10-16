@@ -170,7 +170,7 @@ NSString *const kSyncanoParametersCollectionStatusAll = @"all";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"name" : @"name",
-		                          @"description" : @"description" };
+		                          @"collectionDescription" : @"description" };
 
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }

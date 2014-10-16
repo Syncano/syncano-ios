@@ -127,7 +127,7 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
 		                          @"name" : @"name",
-		                          @"description" : @"description" };
+		                          @"projectDescription" : @"description" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 

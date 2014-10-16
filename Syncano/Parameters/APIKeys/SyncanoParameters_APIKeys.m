@@ -30,7 +30,7 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 	self = [super init];
 	if (self) {
 		self.type = type;
-		self.description = description;
+		self.apiKeyDescription = description;
 		[self validateParameters];
 	}
 	return self;
@@ -41,7 +41,7 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 }
 
 - (NSArray *)requiredParametersNames {
-	return @[@"type", @"description"];
+	return @[@"type", @"apiKeyDescription"];
 }
 
 - (NSString *)methodName {
@@ -54,7 +54,7 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"roleId" : @"role_id",
-		                          @"description" : @"description",
+		                          @"apiKeyDescription" : @"description",
 		                          @"type" : @"type" };
 
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
@@ -103,7 +103,7 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 - (SyncanoParameters_APIKeys_UpdateDescription *)initWithDescription:(NSString *)description {
 	self = [super init];
 	if (self) {
-		self.description = description;
+		self.apiKeyDescription = description;
 		[self validateParameters];
 	}
 	return self;
@@ -112,7 +112,7 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 - (SyncanoParameters_APIKeys_UpdateDescription *)initWithDescription:(NSString *)description apiClientId:(NSString *)apiClientId {
 	self = [super init];
 	if (self) {
-		self.description = description;
+		self.apiKeyDescription = description;
 		self.apiClientId = apiClientId;
 		[self validateParameters];
 	}
@@ -124,7 +124,7 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 }
 
 - (NSArray *)requiredParametersNames {
-	return @[@"description"];
+	return @[@"apiKeyDescription"];
 }
 
 - (NSString *)methodName {
@@ -137,7 +137,7 @@ NSString *const kSyncanoParametersAPIKeyTypeUser = @"user";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"apiClientId" : @"api_client_id",
-		                          @"description" : @"description" };
+		                          @"apiKeyDescription" : @"description" };
 
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }

@@ -28,7 +28,7 @@ extern NSString *const kSyncanoParametersAPIKeyTypeUser;
 /**
    Description of new API client.
  */
-@property (strong) NSString *description;
+@property (strong) NSString *apiKeyDescription;
 /**
    Type of new API client. Possible values:
    backend (default) - API key that is not user-aware and has global permissions,
@@ -71,7 +71,7 @@ extern NSString *const kSyncanoParametersAPIKeyTypeUser;
    Parameters for updating API key description
  */
 @interface SyncanoParameters_APIKeys_UpdateDescription : SyncanoParameters
-@property (strong) NSString *description;
+@property (strong) NSString *apiKeyDescription;
 // API client id. If not specified, will update current client.
 @property (strong) NSString *apiClientId;
 /**

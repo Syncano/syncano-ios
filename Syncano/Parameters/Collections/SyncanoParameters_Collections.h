@@ -112,7 +112,7 @@ extern NSString *const kSyncanoParametersCollectionStatusAll;
 /**
    New collection description.
  */
-@property (strong)    NSString *description;
+@property (strong)    NSString *collectionDescription;
 
 @end
 
