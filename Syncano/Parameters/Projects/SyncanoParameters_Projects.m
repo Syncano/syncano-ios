@@ -25,7 +25,7 @@
 	self = [super init];
 	if (self) {
 		self.name = name;
-		self.description = description;
+		self.projectDescription = description;
 		[self validateParameters];
 	}
 	return self;
@@ -33,7 +33,7 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	NSDictionary *parameters = @{ @"name" : @"name",
-		                          @"description" : @"description" };
+		                          @"projectDescription" : @"description" };
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }
 

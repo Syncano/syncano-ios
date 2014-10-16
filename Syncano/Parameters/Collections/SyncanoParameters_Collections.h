@@ -32,7 +32,7 @@ extern NSString *const kSyncanoParametersCollectionStatusAll;
 /**
    New collection's description.
  */
-@property (strong)  NSString *description;
+@property (strong)  NSString *collectionDescription;
 
 /**
    @return SyncanoParameters object with required fields initialized

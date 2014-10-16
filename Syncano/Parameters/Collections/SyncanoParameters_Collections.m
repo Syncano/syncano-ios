@@ -46,7 +46,7 @@ NSString *const kSyncanoParametersCollectionStatusAll = @"all";
 	NSDictionary *parameters = @{ @"projectId" : @"project_id",
 		                          @"name" : @"name",
 		                          @"key" : @"key",
-		                          @"description" : @"description" };
+		                          @"collectionDescription" : @"description" };
 
 	return [SyncanoParameters mergeSuperParameters:[super JSONKeyPathsByPropertyKey] parameters:parameters];
 }

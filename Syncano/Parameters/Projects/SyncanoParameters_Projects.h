@@ -19,7 +19,7 @@
 /**
    New project's description
  */
-@property (strong)  NSString *description;
+@property (strong)  NSString *projectDescription;
 /**
    @return SyncanoParameters object with required fields initialized
  */
