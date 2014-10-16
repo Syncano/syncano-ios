@@ -143,7 +143,7 @@
  @param params Authorize API Key parameters
  @param callback Callback with response to authorizing API Key
  */
-- (id <SyncanoRequest> )apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )apiKeyAuthorize:(SyncanoParameters_APIKeys_Authorize *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Deauthorize API Key
@@ -151,7 +151,7 @@
  @param params Deauthorize API Key parameters
  @param callback Callback with response to deauthorizing API Key
  */
-- (id <SyncanoRequest> )apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )apiKeyDeauthorize:(SyncanoParameters_APIKeys_Deauthorize *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Delete existing API key

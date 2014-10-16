@@ -134,7 +134,7 @@
  @param params Authorize folder paramaters.
  @param callback Callback with response for authorizing folder.
  */
-- (id <SyncanoRequest> )folderAuthorize:(SyncanoParameters_Folders_Authorize *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )folderAuthorize:(SyncanoParameters_Folders_Authorize *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Removes folder-level permission from specified User API client. Requires Backend API key with Admin permission role.
@@ -142,7 +142,7 @@
  @param params Deauthorize folder paramaters.
  @param callback Callback with response for deauthorizing folder.
  */
-- (id <SyncanoRequest> )folderDeauthorize:(SyncanoParameters_Folders_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )folderDeauthorize:(SyncanoParameters_Folders_Deauthorize *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Delete existing folder

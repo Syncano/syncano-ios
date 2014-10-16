@@ -138,7 +138,7 @@
  @param params Project authorize parameters.
  @param callback Callback with response to authorizing project.
  */
-- (id <SyncanoRequest> )projectAuthorize:(SyncanoParameters_Projects_Authorize *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )projectAuthorize:(SyncanoParameters_Projects_Authorize *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Removes project-level permission from specified User API client. Requires Backend API key with Admin permission role.
@@ -146,7 +146,7 @@
  @param params Project deauthorize parameters.
  @param callback Callback with response to deauthorizing project.
  */
-- (id <SyncanoRequest> )projectDeauthorize:(SyncanoParameters_Projects_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )projectDeauthorize:(SyncanoParameters_Projects_Deauthorize *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Delete existing project

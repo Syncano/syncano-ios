@@ -115,7 +115,7 @@
  @param params User login parameters.
  @param callback Callback response for logging in user.
  */
-- (id <SyncanoRequest> )userLogin:(SyncanoParameters_Users_Login *)params callback:(void (^)(SyncanoResponse_Users_Login *))callback;
+- (id <SyncanoRequest> )userLogin:(SyncanoParameters_Users_Login *)params callback:(void (^)(SyncanoResponse_Users_Login *response))callback;
 
 /**
  Create new user

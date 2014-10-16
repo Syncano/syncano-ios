@@ -1,1076 +1,2980 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXAggregateTarget section */
-		BE6A397C18E4793200F5631A /* Documentation */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = BE6A397D18E4793200F5631A /* Build configuration list for PBXAggregateTarget "Documentation" */;
-			buildPhases = (
-				BE6A398218E47B7100F5631A /* ShellScript */,
-			);
-			dependencies = (
-				BE6A398118E47B6600F5631A /* PBXTargetDependency */,
-			);
-			name = Documentation;
-			productName = Documentation;
-		};
-/* End PBXAggregateTarget section */
-
-/* Begin PBXBuildFile section */
-		1548BFD819AB5A3000267128 /* SyncanoReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1548BFD719AB5A3000267128 /* SyncanoReachability.m */; };
-		15C1F3DD19213140005E4EC4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C1F3DC19213140005E4EC4 /* UIKit.framework */; };
-		97F8EC4AE2134AED9C970E62 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFEF72E1379411185D85EDA /* libPods.a */; };
-		BE98F69818D6F59C001EC84E /* server.der in Resources */ = {isa = PBXBuildFile; fileRef = BE98F69718D6F59C001EC84E /* server.der */; };
-		BEE157CA18D2F33900FFCB6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D0729186863B00020A116 /* Foundation.framework */; };
-		BEE157D718D2F33900FFCB6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D0737186863B00020A116 /* XCTest.framework */; };
-		BEE157D818D2F33900FFCB6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D0729186863B00020A116 /* Foundation.framework */; };
-		BEE157DC18D2F33A00FFCB6B /* libsyncano-ios-library.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE157C918D2F33900FFCB6B /* libsyncano-ios-library.a */; };
-		BEE157E218D2F33A00FFCB6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEE157E018D2F33A00FFCB6B /* InfoPlist.strings */; };
-		BEE157E418D2F33A00FFCB6B /* syncano_ios_libraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE157E318D2F33A00FFCB6B /* syncano_ios_libraryTests.m */; };
-		BEE157EB18D2F40200FFCB6B /* SyncanoSyncServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 15791F8218842CAF00889728 /* SyncanoSyncServer.m */; };
-		BEE157ED18D2F57A00FFCB6B /* Syncano.m in Sources */ = {isa = PBXBuildFile; fileRef = 152D07521868641F0020A116 /* Syncano.m */; };
-		BEE157EE18D2F57A00FFCB6B /* SyncanoDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AAADAA1876CB7F00139A47 /* SyncanoDateFormatter.m */; };
-		BEE157EF18D2F57A00FFCB6B /* SyncanoObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 154C0862187DAEBD0014270F /* SyncanoObjects.m */; };
-		BEE157F018D2F57A00FFCB6B /* SyncanoObjects_Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 150B59771886CD4D00E1F9C2 /* SyncanoObjects_Private.m */; };
-		BEE157F118D2F57A00FFCB6B /* SyncanoParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 152D075A186865020020A116 /* SyncanoParameters.m */; };
-		BEE157F218D2F57A00FFCB6B /* SyncanoParameters_PermissionRoles.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA8BE18D0AEAF0046A35D /* SyncanoParameters_PermissionRoles.m */; };
-		BEE157F318D2F57A00FFCB6B /* SyncanoParameters_APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA8C218D0AF2D0046A35D /* SyncanoParameters_APIKeys.m */; };
-		BEE157F418D2F57A00FFCB6B /* SyncanoParameters_Administrators.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA8C618D0AF470046A35D /* SyncanoParameters_Administrators.m */; };
-		BEE157F518D2F57A00FFCB6B /* SyncanoParameters_DataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 15869697187C09DC008A23AC /* SyncanoParameters_DataObjects.m */; };
-		BEE157F618D2F57A00FFCB6B /* SyncanoParameters_Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AAADAE1877221D00139A47 /* SyncanoParameters_Projects.m */; };
-		BEE157F718D2F57A00FFCB6B /* SyncanoParameters_Collections.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AAADB2187726B800139A47 /* SyncanoParameters_Collections.m */; };
-		BEE157F818D2F57A00FFCB6B /* SyncanoParameters_Folders.m in Sources */ = {isa = PBXBuildFile; fileRef = 15869693187C06C8008A23AC /* SyncanoParameters_Folders.m */; };
-		BEE157F918D2F57A00FFCB6B /* SyncanoParameters_Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 1586969B187C2CB8008A23AC /* SyncanoParameters_Users.m */; };
-		BEE157FA18D2F57A00FFCB6B /* SyncanoParameters_Connections.m in Sources */ = {isa = PBXBuildFile; fileRef = 151E697518D22C850034BBEB /* SyncanoParameters_Connections.m */; };
-		BEE157FB18D2F57A00FFCB6B /* SyncanoParameters_Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 1586969F187C317B008A23AC /* SyncanoParameters_Notifications.m */; };
-		BEE157FC18D2F57A00FFCB6B /* SyncanoParameters_Subscriptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 158696A3187C32BD008A23AC /* SyncanoParameters_Subscriptions.m */; };
-		BEE157FD18D2F57A00FFCB6B /* SyncanoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 152D075E1868650F0020A116 /* SyncanoResponse.m */; };
-		BEE157FE18D2F57A00FFCB6B /* SyncanoResponse_Administrators.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA8CA18D0AF7A0046A35D /* SyncanoResponse_Administrators.m */; };
-		BEE157FF18D2F57A00FFCB6B /* SyncanoResponse_APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA8CE18D0AF930046A35D /* SyncanoResponse_APIKeys.m */; };
-		BEE1580018D2F57A00FFCB6B /* SyncanoResponse_PermissionRoles.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA8D218D0AFA70046A35D /* SyncanoResponse_PermissionRoles.m */; };
-		BEE1580118D2F57A00FFCB6B /* SyncanoResponse_Projects.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F55CD6187EBFBA001BC840 /* SyncanoResponse_Projects.m */; };
-		BEE1580218D2F57A00FFCB6B /* SyncanoResponse_Collections.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F55CDA187EC11E001BC840 /* SyncanoResponse_Collections.m */; };
-		BEE1580318D2F57A00FFCB6B /* SyncanoResponse_Folders.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F55CDE187EC412001BC840 /* SyncanoResponse_Folders.m */; };
-		BEE1580418D2F57A00FFCB6B /* SyncanoResponse_DataObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F55CE2187EC4A2001BC840 /* SyncanoResponse_DataObjects.m */; };
-		BEE1580518D2F57A00FFCB6B /* SyncanoResponse_Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F55CE6187EC6BA001BC840 /* SyncanoResponse_Users.m */; };
-		BEE1580618D2F57A00FFCB6B /* SyncanoResponse_Connections.m in Sources */ = {isa = PBXBuildFile; fileRef = 151E697A18D22CB90034BBEB /* SyncanoResponse_Connections.m */; };
-		BEE1580718D2F57A00FFCB6B /* SyncanoResponse_Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F55CEA187EE8E9001BC840 /* SyncanoResponse_Notifications.m */; };
-		BEE1580818D2F57A00FFCB6B /* SyncanoResponse_Subscriptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 15F55CEE187EE979001BC840 /* SyncanoResponse_Subscriptions.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		BE6A398018E47B6600F5631A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152D071A186863B00020A116 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BEE157C818D2F33900FFCB6B;
-			remoteInfo = "syncano-ios-library";
-		};
-		BEE157DA18D2F33A00FFCB6B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 152D071A186863B00020A116 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BEE157C818D2F33900FFCB6B;
-			remoteInfo = "syncano-ios-library";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		BEE157C718D2F33900FFCB6B /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
-/* Begin PBXFileReference section */
-		0BCFC7604BBB4A408CD8EB3F /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		15027E1F1875CE0300534D5D /* SyncanoParameters_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Private.h; path = Parameters/SyncanoParameters_Private.h; sourceTree = "<group>"; };
-		150B59761886CD4D00E1F9C2 /* SyncanoObjects_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoObjects_Private.h; path = Objects/SyncanoObjects_Private.h; sourceTree = "<group>"; };
-		150B59771886CD4D00E1F9C2 /* SyncanoObjects_Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoObjects_Private.m; path = Objects/SyncanoObjects_Private.m; sourceTree = "<group>"; };
-		151E697218D22C320034BBEB /* SyncanoProtocolConnections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolConnections.h; path = Protocols/SyncanoProtocolConnections.h; sourceTree = "<group>"; };
-		151E697418D22C850034BBEB /* SyncanoParameters_Connections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Connections.h; path = Parameters/Connections/SyncanoParameters_Connections.h; sourceTree = "<group>"; };
-		151E697518D22C850034BBEB /* SyncanoParameters_Connections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Connections.m; path = Parameters/Connections/SyncanoParameters_Connections.m; sourceTree = "<group>"; };
-		151E697918D22CB90034BBEB /* SyncanoResponse_Connections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse_Connections.h; path = Responses/Connections/SyncanoResponse_Connections.h; sourceTree = "<group>"; };
-		151E697A18D22CB90034BBEB /* SyncanoResponse_Connections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse_Connections.m; path = Responses/Connections/SyncanoResponse_Connections.m; sourceTree = "<group>"; };
-		152B168119A7B4FC00512468 /* SyncanoProtocolRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolRequest.h; path = Protocols/SyncanoProtocolRequest.h; sourceTree = "<group>"; };
-		152D0729186863B00020A116 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		152D0737186863B00020A116 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		152D07511868641F0020A116 /* Syncano.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Syncano.h; path = ../Syncano/Syncano.h; sourceTree = "<group>"; };
-		152D07521868641F0020A116 /* Syncano.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Syncano.m; path = ../Syncano/Syncano.m; sourceTree = "<group>"; };
-		152D0757186864B20020A116 /* SyncanoParametersListing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoParametersListing.h; path = Parameters/SyncanoParametersListing.h; sourceTree = "<group>"; };
-		152D0758186864C30020A116 /* SyncanoResponsesListing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoResponsesListing.h; path = Responses/SyncanoResponsesListing.h; sourceTree = "<group>"; };
-		152D0759186865020020A116 /* SyncanoParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters.h; path = Parameters/SyncanoParameters.h; sourceTree = "<group>"; };
-		152D075A186865020020A116 /* SyncanoParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters.m; path = Parameters/SyncanoParameters.m; sourceTree = "<group>"; };
-		152D075D1868650F0020A116 /* SyncanoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse.h; path = Responses/SyncanoResponse.h; sourceTree = "<group>"; };
-		152D075E1868650F0020A116 /* SyncanoResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse.m; path = Responses/SyncanoResponse.m; sourceTree = "<group>"; };
-		152D0763186866990020A116 /* SyncanoProtocolsListing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolsListing.h; path = Protocols/SyncanoProtocolsListing.h; sourceTree = "<group>"; };
-		152D0765186866F00020A116 /* SyncanoProtocolProjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolProjects.h; path = Protocols/SyncanoProtocolProjects.h; sourceTree = "<group>"; };
-		152D0766186867000020A116 /* SyncanoProtocolCollections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolCollections.h; path = Protocols/SyncanoProtocolCollections.h; sourceTree = "<group>"; };
-		152D0767186867130020A116 /* SyncanoProtocolFolders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolFolders.h; path = Protocols/SyncanoProtocolFolders.h; sourceTree = "<group>"; };
-		152D0768186867200020A116 /* SyncanoProtocolDataObjects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolDataObjects.h; path = Protocols/SyncanoProtocolDataObjects.h; sourceTree = "<group>"; };
-		152D07691868672E0020A116 /* SyncanoProtocolUsers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolUsers.h; path = Protocols/SyncanoProtocolUsers.h; sourceTree = "<group>"; };
-		152D076A1868673A0020A116 /* SyncanoProtocolNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolNotification.h; path = Protocols/SyncanoProtocolNotification.h; sourceTree = "<group>"; };
-		152D076B186867510020A116 /* SyncanoProtocolSubscriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolSubscriptions.h; path = Protocols/SyncanoProtocolSubscriptions.h; sourceTree = "<group>"; };
-		1548BFD619AB5A3000267128 /* SyncanoReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoReachability.h; path = Syncano/SyncanoReachability.h; sourceTree = SOURCE_ROOT; };
-		1548BFD719AB5A3000267128 /* SyncanoReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoReachability.m; path = Syncano/SyncanoReachability.m; sourceTree = SOURCE_ROOT; };
-		154C0861187DAEBD0014270F /* SyncanoObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoObjects.h; path = Objects/SyncanoObjects.h; sourceTree = "<group>"; };
-		154C0862187DAEBD0014270F /* SyncanoObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoObjects.m; path = Objects/SyncanoObjects.m; sourceTree = "<group>"; };
-		15791F8118842CAF00889728 /* SyncanoSyncServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoSyncServer.h; path = ../Syncano/SyncanoSyncServer.h; sourceTree = "<group>"; };
-		15791F8218842CAF00889728 /* SyncanoSyncServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoSyncServer.m; path = ../Syncano/SyncanoSyncServer.m; sourceTree = "<group>"; };
-		15869692187C06C8008A23AC /* SyncanoParameters_Folders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Folders.h; path = Parameters/Folders/SyncanoParameters_Folders.h; sourceTree = "<group>"; };
-		15869693187C06C8008A23AC /* SyncanoParameters_Folders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Folders.m; path = Parameters/Folders/SyncanoParameters_Folders.m; sourceTree = "<group>"; };
-		15869696187C09DC008A23AC /* SyncanoParameters_DataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_DataObjects.h; path = Parameters/DataObjects/SyncanoParameters_DataObjects.h; sourceTree = "<group>"; };
-		15869697187C09DC008A23AC /* SyncanoParameters_DataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_DataObjects.m; path = Parameters/DataObjects/SyncanoParameters_DataObjects.m; sourceTree = "<group>"; };
-		1586969A187C2CB8008A23AC /* SyncanoParameters_Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Users.h; path = Parameters/Users/SyncanoParameters_Users.h; sourceTree = "<group>"; };
-		1586969B187C2CB8008A23AC /* SyncanoParameters_Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Users.m; path = Parameters/Users/SyncanoParameters_Users.m; sourceTree = "<group>"; };
-		1586969E187C317B008A23AC /* SyncanoParameters_Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Notifications.h; path = Parameters/Notification/SyncanoParameters_Notifications.h; sourceTree = "<group>"; };
-		1586969F187C317B008A23AC /* SyncanoParameters_Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Notifications.m; path = Parameters/Notification/SyncanoParameters_Notifications.m; sourceTree = "<group>"; };
-		158696A2187C32BD008A23AC /* SyncanoParameters_Subscriptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Subscriptions.h; path = Parameters/Subscriptions/SyncanoParameters_Subscriptions.h; sourceTree = "<group>"; };
-		158696A3187C32BD008A23AC /* SyncanoParameters_Subscriptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Subscriptions.m; path = Parameters/Subscriptions/SyncanoParameters_Subscriptions.m; sourceTree = "<group>"; };
-		158696A6187C4648008A23AC /* SyncanoResponse_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse_Private.h; path = Responses/SyncanoResponse_Private.h; sourceTree = "<group>"; };
-		159E9ED418D1E0C0007486FA /* SyncanoProtocolAdministrators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolAdministrators.h; path = Protocols/SyncanoProtocolAdministrators.h; sourceTree = "<group>"; };
-		159E9ED918D20717007486FA /* SyncanoProtocolAPIKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolAPIKeys.h; path = Protocols/SyncanoProtocolAPIKeys.h; sourceTree = "<group>"; };
-		15AAADA91876CB7F00139A47 /* SyncanoDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoDateFormatter.h; sourceTree = "<group>"; };
-		15AAADAA1876CB7F00139A47 /* SyncanoDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoDateFormatter.m; sourceTree = "<group>"; };
-		15AAADAD1877221D00139A47 /* SyncanoParameters_Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Projects.h; path = Parameters/Projects/SyncanoParameters_Projects.h; sourceTree = "<group>"; };
-		15AAADAE1877221D00139A47 /* SyncanoParameters_Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Projects.m; path = Parameters/Projects/SyncanoParameters_Projects.m; sourceTree = "<group>"; };
-		15AAADB1187726B800139A47 /* SyncanoParameters_Collections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Collections.h; path = Parameters/Collections/SyncanoParameters_Collections.h; sourceTree = "<group>"; };
-		15AAADB2187726B800139A47 /* SyncanoParameters_Collections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Collections.m; path = Parameters/Collections/SyncanoParameters_Collections.m; sourceTree = "<group>"; };
-		15AEA8BD18D0AEAF0046A35D /* SyncanoParameters_PermissionRoles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_PermissionRoles.h; path = Parameters/PermissionRoles/SyncanoParameters_PermissionRoles.h; sourceTree = "<group>"; };
-		15AEA8BE18D0AEAF0046A35D /* SyncanoParameters_PermissionRoles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_PermissionRoles.m; path = Parameters/PermissionRoles/SyncanoParameters_PermissionRoles.m; sourceTree = "<group>"; };
-		15AEA8C118D0AF2D0046A35D /* SyncanoParameters_APIKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_APIKeys.h; path = Parameters/APIKeys/SyncanoParameters_APIKeys.h; sourceTree = "<group>"; };
-		15AEA8C218D0AF2D0046A35D /* SyncanoParameters_APIKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_APIKeys.m; path = Parameters/APIKeys/SyncanoParameters_APIKeys.m; sourceTree = "<group>"; };
-		15AEA8C518D0AF470046A35D /* SyncanoParameters_Administrators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Administrators.h; path = Parameters/Administrators/SyncanoParameters_Administrators.h; sourceTree = "<group>"; };
-		15AEA8C618D0AF470046A35D /* SyncanoParameters_Administrators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Administrators.m; path = Parameters/Administrators/SyncanoParameters_Administrators.m; sourceTree = "<group>"; };
-		15AEA8C918D0AF7A0046A35D /* SyncanoResponse_Administrators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse_Administrators.h; path = Responses/Administrators/SyncanoResponse_Administrators.h; sourceTree = "<group>"; };
-		15AEA8CA18D0AF7A0046A35D /* SyncanoResponse_Administrators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse_Administrators.m; path = Responses/Administrators/SyncanoResponse_Administrators.m; sourceTree = "<group>"; };
-		15AEA8CD18D0AF930046A35D /* SyncanoResponse_APIKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse_APIKeys.h; path = Responses/APIKeys/SyncanoResponse_APIKeys.h; sourceTree = "<group>"; };
-		15AEA8CE18D0AF930046A35D /* SyncanoResponse_APIKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse_APIKeys.m; path = Responses/APIKeys/SyncanoResponse_APIKeys.m; sourceTree = "<group>"; };
-		15AEA8D118D0AFA70046A35D /* SyncanoResponse_PermissionRoles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse_PermissionRoles.h; path = Responses/PermissionRoles/SyncanoResponse_PermissionRoles.h; sourceTree = "<group>"; };
-		15AEA8D218D0AFA70046A35D /* SyncanoResponse_PermissionRoles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoResponse_PermissionRoles.m; path = Responses/PermissionRoles/SyncanoResponse_PermissionRoles.m; sourceTree = "<group>"; };
-		15C1F3DC19213140005E4EC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		15F55CD5187EBFBA001BC840 /* SyncanoResponse_Projects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_Projects.h; sourceTree = "<group>"; };
-		15F55CD6187EBFBA001BC840 /* SyncanoResponse_Projects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_Projects.m; sourceTree = "<group>"; };
-		15F55CD9187EC11E001BC840 /* SyncanoResponse_Collections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_Collections.h; sourceTree = "<group>"; };
-		15F55CDA187EC11E001BC840 /* SyncanoResponse_Collections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_Collections.m; sourceTree = "<group>"; };
-		15F55CDD187EC412001BC840 /* SyncanoResponse_Folders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_Folders.h; sourceTree = "<group>"; };
-		15F55CDE187EC412001BC840 /* SyncanoResponse_Folders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_Folders.m; sourceTree = "<group>"; };
-		15F55CE1187EC4A2001BC840 /* SyncanoResponse_DataObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_DataObjects.h; sourceTree = "<group>"; };
-		15F55CE2187EC4A2001BC840 /* SyncanoResponse_DataObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_DataObjects.m; sourceTree = "<group>"; };
-		15F55CE5187EC6BA001BC840 /* SyncanoResponse_Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_Users.h; sourceTree = "<group>"; };
-		15F55CE6187EC6BA001BC840 /* SyncanoResponse_Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_Users.m; sourceTree = "<group>"; };
-		15F55CE9187EE8E9001BC840 /* SyncanoResponse_Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_Notifications.h; sourceTree = "<group>"; };
-		15F55CEA187EE8E9001BC840 /* SyncanoResponse_Notifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_Notifications.m; sourceTree = "<group>"; };
-		15F55CED187EE979001BC840 /* SyncanoResponse_Subscriptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoResponse_Subscriptions.h; sourceTree = "<group>"; };
-		15F55CEE187EE979001BC840 /* SyncanoResponse_Subscriptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_Subscriptions.m; sourceTree = "<group>"; };
-		4CFEF72E1379411185D85EDA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE98F69718D6F59C001EC84E /* server.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = server.der; path = Resources/server.der; sourceTree = "<group>"; };
-		BEE157C918D2F33900FFCB6B /* libsyncano-ios-library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsyncano-ios-library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEE157CD18D2F33900FFCB6B /* syncano-ios-library-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "syncano-ios-library-Prefix.pch"; sourceTree = "<group>"; };
-		BEE157D618D2F33900FFCB6B /* syncano-ios-libraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "syncano-ios-libraryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BEE157DF18D2F33A00FFCB6B /* syncano-ios-libraryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "syncano-ios-libraryTests-Info.plist"; sourceTree = "<group>"; };
-		BEE157E118D2F33A00FFCB6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BEE157E318D2F33A00FFCB6B /* syncano_ios_libraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = syncano_ios_libraryTests.m; sourceTree = "<group>"; };
-		BEEB211118D23F5C00CAA197 /* SyncanoProtocolPermissionRoles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolPermissionRoles.h; path = Protocols/SyncanoProtocolPermissionRoles.h; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		BEE157C618D2F33900FFCB6B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				15C1F3DD19213140005E4EC4 /* UIKit.framework in Frameworks */,
-				BEE157CA18D2F33900FFCB6B /* Foundation.framework in Frameworks */,
-				97F8EC4AE2134AED9C970E62 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BEE157D318D2F33900FFCB6B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BEE157D718D2F33900FFCB6B /* XCTest.framework in Frameworks */,
-				BEE157D818D2F33900FFCB6B /* Foundation.framework in Frameworks */,
-				BEE157DC18D2F33A00FFCB6B /* libsyncano-ios-library.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		151E697318D22C610034BBEB /* Connections */ = {
-			isa = PBXGroup;
-			children = (
-				151E697418D22C850034BBEB /* SyncanoParameters_Connections.h */,
-				151E697518D22C850034BBEB /* SyncanoParameters_Connections.m */,
-			);
-			name = Connections;
-			sourceTree = "<group>";
-		};
-		151E697818D22C9E0034BBEB /* Connections */ = {
-			isa = PBXGroup;
-			children = (
-				151E697918D22CB90034BBEB /* SyncanoResponse_Connections.h */,
-				151E697A18D22CB90034BBEB /* SyncanoResponse_Connections.m */,
-			);
-			name = Connections;
-			sourceTree = "<group>";
-		};
-		152D0719186863B00020A116 = {
-			isa = PBXGroup;
-			children = (
-				BEE157CB18D2F33900FFCB6B /* Syncano */,
-				BEE157DD18D2F33A00FFCB6B /* syncano-ios-libraryTests */,
-				BECB558118D6F1B40074BC3C /* Resources */,
-				152D0728186863B00020A116 /* Frameworks */,
-				152D0727186863B00020A116 /* Products */,
-				0BCFC7604BBB4A408CD8EB3F /* Pods.xcconfig */,
-			);
-			sourceTree = "<group>";
-		};
-		152D0727186863B00020A116 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BEE157C918D2F33900FFCB6B /* libsyncano-ios-library.a */,
-				BEE157D618D2F33900FFCB6B /* syncano-ios-libraryTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		152D0728186863B00020A116 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				15C1F3DC19213140005E4EC4 /* UIKit.framework */,
-				152D0729186863B00020A116 /* Foundation.framework */,
-				152D0737186863B00020A116 /* XCTest.framework */,
-				4CFEF72E1379411185D85EDA /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		152D0755186864500020A116 /* Responses */ = {
-			isa = PBXGroup;
-			children = (
-				152D0758186864C30020A116 /* SyncanoResponsesListing.h */,
-				152D075D1868650F0020A116 /* SyncanoResponse.h */,
-				158696A6187C4648008A23AC /* SyncanoResponse_Private.h */,
-				152D075E1868650F0020A116 /* SyncanoResponse.m */,
-				15AEA8B618D0A7830046A35D /* Access Managament */,
-				15AEA8BA18D0A7A20046A35D /* Data Management */,
-				15AEA8BB18D0A7A80046A35D /* User Management */,
-				15AEA8BC18D0A7AE0046A35D /* Real Time Sync */,
-			);
-			name = Responses;
-			path = ../Syncano;
-			sourceTree = "<group>";
-		};
-		152D07561868645D0020A116 /* Parameters */ = {
-			isa = PBXGroup;
-			children = (
-				152D0757186864B20020A116 /* SyncanoParametersListing.h */,
-				152D0759186865020020A116 /* SyncanoParameters.h */,
-				15027E1F1875CE0300534D5D /* SyncanoParameters_Private.h */,
-				152D075A186865020020A116 /* SyncanoParameters.m */,
-				15AEA8AF18D0A6F70046A35D /* Access Managament */,
-				15AEA8B318D0A74C0046A35D /* Data Management */,
-				15AEA8B418D0A7630046A35D /* User Management */,
-				15AEA8B518D0A76E0046A35D /* Real Time Sync */,
-			);
-			name = Parameters;
-			path = ../Syncano;
-			sourceTree = "<group>";
-		};
-		152D07621868667A0020A116 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				152D0763186866990020A116 /* SyncanoProtocolsListing.h */,
-				159E9ED418D1E0C0007486FA /* SyncanoProtocolAdministrators.h */,
-				159E9ED918D20717007486FA /* SyncanoProtocolAPIKeys.h */,
-				BEEB211118D23F5C00CAA197 /* SyncanoProtocolPermissionRoles.h */,
-				152D0765186866F00020A116 /* SyncanoProtocolProjects.h */,
-				152D0766186867000020A116 /* SyncanoProtocolCollections.h */,
-				152D0767186867130020A116 /* SyncanoProtocolFolders.h */,
-				152D0768186867200020A116 /* SyncanoProtocolDataObjects.h */,
-				152D07691868672E0020A116 /* SyncanoProtocolUsers.h */,
-				152D076B186867510020A116 /* SyncanoProtocolSubscriptions.h */,
-				152D076A1868673A0020A116 /* SyncanoProtocolNotification.h */,
-				151E697218D22C320034BBEB /* SyncanoProtocolConnections.h */,
-				152B168119A7B4FC00512468 /* SyncanoProtocolRequest.h */,
-			);
-			name = Protocols;
-			path = ../Syncano;
-			sourceTree = "<group>";
-		};
-		152D076D18686DC10020A116 /* Subscriptions */ = {
-			isa = PBXGroup;
-			children = (
-				158696A2187C32BD008A23AC /* SyncanoParameters_Subscriptions.h */,
-				158696A3187C32BD008A23AC /* SyncanoParameters_Subscriptions.m */,
-			);
-			name = Subscriptions;
-			sourceTree = "<group>";
-		};
-		152D076E18686E260020A116 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				1586969E187C317B008A23AC /* SyncanoParameters_Notifications.h */,
-				1586969F187C317B008A23AC /* SyncanoParameters_Notifications.m */,
-			);
-			name = Notification;
-			sourceTree = "<group>";
-		};
-		152D076F18686E2D0020A116 /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				1586969A187C2CB8008A23AC /* SyncanoParameters_Users.h */,
-				1586969B187C2CB8008A23AC /* SyncanoParameters_Users.m */,
-			);
-			name = Users;
-			sourceTree = "<group>";
-		};
-		152D077018686E370020A116 /* Data Objects */ = {
-			isa = PBXGroup;
-			children = (
-				15869696187C09DC008A23AC /* SyncanoParameters_DataObjects.h */,
-				15869697187C09DC008A23AC /* SyncanoParameters_DataObjects.m */,
-			);
-			name = "Data Objects";
-			sourceTree = "<group>";
-		};
-		152D077118686E400020A116 /* Folders */ = {
-			isa = PBXGroup;
-			children = (
-				15869692187C06C8008A23AC /* SyncanoParameters_Folders.h */,
-				15869693187C06C8008A23AC /* SyncanoParameters_Folders.m */,
-			);
-			name = Folders;
-			sourceTree = "<group>";
-		};
-		152D077218686E480020A116 /* Collections */ = {
-			isa = PBXGroup;
-			children = (
-				15AAADB1187726B800139A47 /* SyncanoParameters_Collections.h */,
-				15AAADB2187726B800139A47 /* SyncanoParameters_Collections.m */,
-			);
-			name = Collections;
-			sourceTree = "<group>";
-		};
-		152D077318686E4F0020A116 /* Projects */ = {
-			isa = PBXGroup;
-			children = (
-				15AAADAD1877221D00139A47 /* SyncanoParameters_Projects.h */,
-				15AAADAE1877221D00139A47 /* SyncanoParameters_Projects.m */,
-			);
-			name = Projects;
-			sourceTree = "<group>";
-		};
-		152D077618686ECF0020A116 /* Collections */ = {
-			isa = PBXGroup;
-			children = (
-				15F55CD9187EC11E001BC840 /* SyncanoResponse_Collections.h */,
-				15F55CDA187EC11E001BC840 /* SyncanoResponse_Collections.m */,
-			);
-			name = Collections;
-			path = Responses/Collections;
-			sourceTree = "<group>";
-		};
-		152D077718686ECF0020A116 /* Data Objects */ = {
-			isa = PBXGroup;
-			children = (
-				15F55CE1187EC4A2001BC840 /* SyncanoResponse_DataObjects.h */,
-				15F55CE2187EC4A2001BC840 /* SyncanoResponse_DataObjects.m */,
-			);
-			name = "Data Objects";
-			path = Responses/DataObjects;
-			sourceTree = "<group>";
-		};
-		152D077818686ECF0020A116 /* Folders */ = {
-			isa = PBXGroup;
-			children = (
-				15F55CDD187EC412001BC840 /* SyncanoResponse_Folders.h */,
-				15F55CDE187EC412001BC840 /* SyncanoResponse_Folders.m */,
-			);
-			name = Folders;
-			path = Responses/Folders;
-			sourceTree = "<group>";
-		};
-		152D077918686ECF0020A116 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-				15F55CE9187EE8E9001BC840 /* SyncanoResponse_Notifications.h */,
-				15F55CEA187EE8E9001BC840 /* SyncanoResponse_Notifications.m */,
-			);
-			name = Notification;
-			path = Responses/Notification;
-			sourceTree = "<group>";
-		};
-		152D077A18686ECF0020A116 /* Projects */ = {
-			isa = PBXGroup;
-			children = (
-				15F55CD5187EBFBA001BC840 /* SyncanoResponse_Projects.h */,
-				15F55CD6187EBFBA001BC840 /* SyncanoResponse_Projects.m */,
-			);
-			name = Projects;
-			path = Responses/Projects;
-			sourceTree = "<group>";
-		};
-		152D077B18686ECF0020A116 /* Subscriptions */ = {
-			isa = PBXGroup;
-			children = (
-				15F55CED187EE979001BC840 /* SyncanoResponse_Subscriptions.h */,
-				15F55CEE187EE979001BC840 /* SyncanoResponse_Subscriptions.m */,
-			);
-			name = Subscriptions;
-			path = Responses/Subscriptions;
-			sourceTree = "<group>";
-		};
-		152D077C18686ECF0020A116 /* Users */ = {
-			isa = PBXGroup;
-			children = (
-				15F55CE5187EC6BA001BC840 /* SyncanoResponse_Users.h */,
-				15F55CE6187EC6BA001BC840 /* SyncanoResponse_Users.m */,
-			);
-			name = Users;
-			path = Responses/Users;
-			sourceTree = "<group>";
-		};
-		154C0865187DAEC20014270F /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				154C0861187DAEBD0014270F /* SyncanoObjects.h */,
-				154C0862187DAEBD0014270F /* SyncanoObjects.m */,
-				150B59761886CD4D00E1F9C2 /* SyncanoObjects_Private.h */,
-				150B59771886CD4D00E1F9C2 /* SyncanoObjects_Private.m */,
-			);
-			name = Objects;
-			path = ../Syncano;
-			sourceTree = "<group>";
-		};
-		15AAADA81876CB6D00139A47 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				15AAADA91876CB7F00139A47 /* SyncanoDateFormatter.h */,
-				15AAADAA1876CB7F00139A47 /* SyncanoDateFormatter.m */,
-			);
-			name = Utilities;
-			path = ../Syncano/Utilities;
-			sourceTree = "<group>";
-		};
-		15AEA8AF18D0A6F70046A35D /* Access Managament */ = {
-			isa = PBXGroup;
-			children = (
-				15AEA8B018D0A7060046A35D /* Administrators */,
-				15AEA8B118D0A7170046A35D /* API Keys */,
-				15AEA8B218D0A7260046A35D /* Permission Roles */,
-			);
-			name = "Access Managament";
-			sourceTree = "<group>";
-		};
-		15AEA8B018D0A7060046A35D /* Administrators */ = {
-			isa = PBXGroup;
-			children = (
-				15AEA8C518D0AF470046A35D /* SyncanoParameters_Administrators.h */,
-				15AEA8C618D0AF470046A35D /* SyncanoParameters_Administrators.m */,
-			);
-			name = Administrators;
-			sourceTree = "<group>";
-		};
-		15AEA8B118D0A7170046A35D /* API Keys */ = {
-			isa = PBXGroup;
-			children = (
-				15AEA8C118D0AF2D0046A35D /* SyncanoParameters_APIKeys.h */,
-				15AEA8C218D0AF2D0046A35D /* SyncanoParameters_APIKeys.m */,
-			);
-			name = "API Keys";
-			sourceTree = "<group>";
-		};
-		15AEA8B218D0A7260046A35D /* Permission Roles */ = {
-			isa = PBXGroup;
-			children = (
-				15AEA8BD18D0AEAF0046A35D /* SyncanoParameters_PermissionRoles.h */,
-				15AEA8BE18D0AEAF0046A35D /* SyncanoParameters_PermissionRoles.m */,
-			);
-			name = "Permission Roles";
-			sourceTree = "<group>";
-		};
-		15AEA8B318D0A74C0046A35D /* Data Management */ = {
-			isa = PBXGroup;
-			children = (
-				152D077318686E4F0020A116 /* Projects */,
-				152D077218686E480020A116 /* Collections */,
-				152D077118686E400020A116 /* Folders */,
-				152D077018686E370020A116 /* Data Objects */,
-			);
-			name = "Data Management";
-			sourceTree = "<group>";
-		};
-		15AEA8B418D0A7630046A35D /* User Management */ = {
-			isa = PBXGroup;
-			children = (
-				152D076F18686E2D0020A116 /* Users */,
-			);
-			name = "User Management";
-			sourceTree = "<group>";
-		};
-		15AEA8B518D0A76E0046A35D /* Real Time Sync */ = {
-			isa = PBXGroup;
-			children = (
-				152D076D18686DC10020A116 /* Subscriptions */,
-				152D076E18686E260020A116 /* Notification */,
-				151E697318D22C610034BBEB /* Connections */,
-			);
-			name = "Real Time Sync";
-			sourceTree = "<group>";
-		};
-		15AEA8B618D0A7830046A35D /* Access Managament */ = {
-			isa = PBXGroup;
-			children = (
-				15AEA8B918D0A7940046A35D /* Administrators */,
-				15AEA8B818D0A78F0046A35D /* API Keys */,
-				15AEA8B718D0A7890046A35D /* Permission Roles */,
-			);
-			name = "Access Managament";
-			sourceTree = "<group>";
-		};
-		15AEA8B718D0A7890046A35D /* Permission Roles */ = {
-			isa = PBXGroup;
-			children = (
-				15AEA8D118D0AFA70046A35D /* SyncanoResponse_PermissionRoles.h */,
-				15AEA8D218D0AFA70046A35D /* SyncanoResponse_PermissionRoles.m */,
-			);
-			name = "Permission Roles";
-			sourceTree = "<group>";
-		};
-		15AEA8B818D0A78F0046A35D /* API Keys */ = {
-			isa = PBXGroup;
-			children = (
-				15AEA8CD18D0AF930046A35D /* SyncanoResponse_APIKeys.h */,
-				15AEA8CE18D0AF930046A35D /* SyncanoResponse_APIKeys.m */,
-			);
-			name = "API Keys";
-			sourceTree = "<group>";
-		};
-		15AEA8B918D0A7940046A35D /* Administrators */ = {
-			isa = PBXGroup;
-			children = (
-				15AEA8C918D0AF7A0046A35D /* SyncanoResponse_Administrators.h */,
-				15AEA8CA18D0AF7A0046A35D /* SyncanoResponse_Administrators.m */,
-			);
-			name = Administrators;
-			sourceTree = "<group>";
-		};
-		15AEA8BA18D0A7A20046A35D /* Data Management */ = {
-			isa = PBXGroup;
-			children = (
-				152D077A18686ECF0020A116 /* Projects */,
-				152D077618686ECF0020A116 /* Collections */,
-				152D077818686ECF0020A116 /* Folders */,
-				152D077718686ECF0020A116 /* Data Objects */,
-			);
-			name = "Data Management";
-			sourceTree = "<group>";
-		};
-		15AEA8BB18D0A7A80046A35D /* User Management */ = {
-			isa = PBXGroup;
-			children = (
-				152D077C18686ECF0020A116 /* Users */,
-			);
-			name = "User Management";
-			sourceTree = "<group>";
-		};
-		15AEA8BC18D0A7AE0046A35D /* Real Time Sync */ = {
-			isa = PBXGroup;
-			children = (
-				152D077B18686ECF0020A116 /* Subscriptions */,
-				152D077918686ECF0020A116 /* Notification */,
-				151E697818D22C9E0034BBEB /* Connections */,
-			);
-			name = "Real Time Sync";
-			sourceTree = "<group>";
-		};
-		BECB558118D6F1B40074BC3C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				BE98F69718D6F59C001EC84E /* server.der */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		BEE157CB18D2F33900FFCB6B /* Syncano */ = {
-			isa = PBXGroup;
-			children = (
-				152D07511868641F0020A116 /* Syncano.h */,
-				152D07521868641F0020A116 /* Syncano.m */,
-				15791F8118842CAF00889728 /* SyncanoSyncServer.h */,
-				15791F8218842CAF00889728 /* SyncanoSyncServer.m */,
-				1548BFD619AB5A3000267128 /* SyncanoReachability.h */,
-				1548BFD719AB5A3000267128 /* SyncanoReachability.m */,
-				15AAADA81876CB6D00139A47 /* Utilities */,
-				154C0865187DAEC20014270F /* Objects */,
-				152D07621868667A0020A116 /* Protocols */,
-				152D07561868645D0020A116 /* Parameters */,
-				152D0755186864500020A116 /* Responses */,
-				BEE157CC18D2F33900FFCB6B /* Supporting Files */,
-			);
-			name = Syncano;
-			path = "syncano-ios-library";
-			sourceTree = "<group>";
-		};
-		BEE157CC18D2F33900FFCB6B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				BEE157CD18D2F33900FFCB6B /* syncano-ios-library-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BEE157DD18D2F33A00FFCB6B /* syncano-ios-libraryTests */ = {
-			isa = PBXGroup;
-			children = (
-				BEE157E318D2F33A00FFCB6B /* syncano_ios_libraryTests.m */,
-				BEE157DE18D2F33A00FFCB6B /* Supporting Files */,
-			);
-			path = "syncano-ios-libraryTests";
-			sourceTree = "<group>";
-		};
-		BEE157DE18D2F33A00FFCB6B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				BEE157DF18D2F33A00FFCB6B /* syncano-ios-libraryTests-Info.plist */,
-				BEE157E018D2F33A00FFCB6B /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		BEE157C818D2F33900FFCB6B /* syncano-ios-library */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BEE157E918D2F33A00FFCB6B /* Build configuration list for PBXNativeTarget "syncano-ios-library" */;
-			buildPhases = (
-				79B61EB181B64F90897D317B /* Check Pods Manifest.lock */,
-				BEE157C518D2F33900FFCB6B /* Sources */,
-				BEE157C618D2F33900FFCB6B /* Frameworks */,
-				BEE157C718D2F33900FFCB6B /* CopyFiles */,
-				43AEFBBD29134A25A8774F63 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "syncano-ios-library";
-			productName = "syncano-ios-library";
-			productReference = BEE157C918D2F33900FFCB6B /* libsyncano-ios-library.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		BEE157D518D2F33900FFCB6B /* syncano-ios-libraryTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BEE157EA18D2F33A00FFCB6B /* Build configuration list for PBXNativeTarget "syncano-ios-libraryTests" */;
-			buildPhases = (
-				BEE157D218D2F33900FFCB6B /* Sources */,
-				BEE157D318D2F33900FFCB6B /* Frameworks */,
-				BEE157D418D2F33900FFCB6B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BEE157DB18D2F33A00FFCB6B /* PBXTargetDependency */,
-			);
-			name = "syncano-ios-libraryTests";
-			productName = "syncano-ios-libraryTests";
-			productReference = BEE157D618D2F33900FFCB6B /* syncano-ios-libraryTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		152D071A186863B00020A116 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = Mindpower;
-				TargetAttributes = {
-					BEE157D518D2F33900FFCB6B = {
-						TestTargetID = 152D0725186863B00020A116;
-					};
-				};
-			};
-			buildConfigurationList = 152D071D186863B00020A116 /* Build configuration list for PBXProject "Syncano" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				English,
-			);
-			mainGroup = 152D0719186863B00020A116;
-			productRefGroup = 152D0727186863B00020A116 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				BEE157C818D2F33900FFCB6B /* syncano-ios-library */,
-				BEE157D518D2F33900FFCB6B /* syncano-ios-libraryTests */,
-				BE6A397C18E4793200F5631A /* Documentation */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		BEE157D418D2F33900FFCB6B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BE98F69818D6F59C001EC84E /* server.der in Resources */,
-				BEE157E218D2F33A00FFCB6B /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		43AEFBBD29134A25A8774F63 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		79B61EB181B64F90897D317B /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		BE6A398218E47B7100F5631A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Syncano\" \\\n--company-id \"com.syncano\" \\\n--output \"${PROJECT_NAME}-Docs\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\" > appledoc.log";
-		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		BEE157C518D2F33900FFCB6B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BEE157F818D2F57A00FFCB6B /* SyncanoParameters_Folders.m in Sources */,
-				BEE157F018D2F57A00FFCB6B /* SyncanoObjects_Private.m in Sources */,
-				BEE157ED18D2F57A00FFCB6B /* Syncano.m in Sources */,
-				BEE157FD18D2F57A00FFCB6B /* SyncanoResponse.m in Sources */,
-				1548BFD819AB5A3000267128 /* SyncanoReachability.m in Sources */,
-				BEE157F618D2F57A00FFCB6B /* SyncanoParameters_Projects.m in Sources */,
-				BEE157EB18D2F40200FFCB6B /* SyncanoSyncServer.m in Sources */,
-				BEE157EE18D2F57A00FFCB6B /* SyncanoDateFormatter.m in Sources */,
-				BEE157F118D2F57A00FFCB6B /* SyncanoParameters.m in Sources */,
-				BEE1580418D2F57A00FFCB6B /* SyncanoResponse_DataObjects.m in Sources */,
-				BEE1580618D2F57A00FFCB6B /* SyncanoResponse_Connections.m in Sources */,
-				BEE157F918D2F57A00FFCB6B /* SyncanoParameters_Users.m in Sources */,
-				BEE157F318D2F57A00FFCB6B /* SyncanoParameters_APIKeys.m in Sources */,
-				BEE1580818D2F57A00FFCB6B /* SyncanoResponse_Subscriptions.m in Sources */,
-				BEE157FF18D2F57A00FFCB6B /* SyncanoResponse_APIKeys.m in Sources */,
-				BEE1580218D2F57A00FFCB6B /* SyncanoResponse_Collections.m in Sources */,
-				BEE157F418D2F57A00FFCB6B /* SyncanoParameters_Administrators.m in Sources */,
-				BEE157F218D2F57A00FFCB6B /* SyncanoParameters_PermissionRoles.m in Sources */,
-				BEE1580718D2F57A00FFCB6B /* SyncanoResponse_Notifications.m in Sources */,
-				BEE157FE18D2F57A00FFCB6B /* SyncanoResponse_Administrators.m in Sources */,
-				BEE1580518D2F57A00FFCB6B /* SyncanoResponse_Users.m in Sources */,
-				BEE1580318D2F57A00FFCB6B /* SyncanoResponse_Folders.m in Sources */,
-				BEE157EF18D2F57A00FFCB6B /* SyncanoObjects.m in Sources */,
-				BEE1580118D2F57A00FFCB6B /* SyncanoResponse_Projects.m in Sources */,
-				BEE157F718D2F57A00FFCB6B /* SyncanoParameters_Collections.m in Sources */,
-				BEE1580018D2F57A00FFCB6B /* SyncanoResponse_PermissionRoles.m in Sources */,
-				BEE157FA18D2F57A00FFCB6B /* SyncanoParameters_Connections.m in Sources */,
-				BEE157F518D2F57A00FFCB6B /* SyncanoParameters_DataObjects.m in Sources */,
-				BEE157FB18D2F57A00FFCB6B /* SyncanoParameters_Notifications.m in Sources */,
-				BEE157FC18D2F57A00FFCB6B /* SyncanoParameters_Subscriptions.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BEE157D218D2F33900FFCB6B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BEE157E418D2F33A00FFCB6B /* syncano_ios_libraryTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		BE6A398118E47B6600F5631A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BEE157C818D2F33900FFCB6B /* syncano-ios-library */;
-			targetProxy = BE6A398018E47B6600F5631A /* PBXContainerItemProxy */;
-		};
-		BEE157DB18D2F33A00FFCB6B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BEE157C818D2F33900FFCB6B /* syncano-ios-library */;
-			targetProxy = BEE157DA18D2F33A00FFCB6B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		BEE157E018D2F33A00FFCB6B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BEE157E118D2F33A00FFCB6B /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		152D0749186863B00020A116 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		152D074A186863B00020A116 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		BE6A397E18E4793200F5631A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		BE6A397F18E4793200F5631A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		BEE157E518D2F33A00FFCB6B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BCFC7604BBB4A408CD8EB3F /* Pods.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				DSTROOT = /tmp/syncano_ios_library.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "syncano-ios-library/syncano-ios-library-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Release-iphoneos",
-				);
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		BEE157E618D2F33A00FFCB6B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0BCFC7604BBB4A408CD8EB3F /* Pods.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				DSTROOT = /tmp/syncano_ios_library.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "syncano-ios-library/syncano-ios-library-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Release-iphoneos",
-				);
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		BEE157E718D2F33A00FFCB6B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "syncano-ios-library/syncano-ios-library-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "syncano-ios-libraryTests/syncano-ios-libraryTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		BEE157E818D2F33A00FFCB6B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "syncano-ios-library/syncano-ios-library-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = "syncano-ios-libraryTests/syncano-ios-libraryTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		152D071D186863B00020A116 /* Build configuration list for PBXProject "Syncano" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				152D0749186863B00020A116 /* Debug */,
-				152D074A186863B00020A116 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BE6A397D18E4793200F5631A /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BE6A397E18E4793200F5631A /* Debug */,
-				BE6A397F18E4793200F5631A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BEE157E918D2F33A00FFCB6B /* Build configuration list for PBXNativeTarget "syncano-ios-library" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BEE157E518D2F33A00FFCB6B /* Debug */,
-				BEE157E618D2F33A00FFCB6B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BEE157EA18D2F33A00FFCB6B /* Build configuration list for PBXNativeTarget "syncano-ios-libraryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BEE157E718D2F33A00FFCB6B /* Debug */,
-				BEE157E818D2F33A00FFCB6B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 152D071A186863B00020A116 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>15027E1F1875CE0300534D5D</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Private.h</string>
+			<key>path</key>
+			<string>Parameters/SyncanoParameters_Private.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>150B59761886CD4D00E1F9C2</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoObjects_Private.h</string>
+			<key>path</key>
+			<string>Objects/SyncanoObjects_Private.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>150B59771886CD4D00E1F9C2</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoObjects_Private.m</string>
+			<key>path</key>
+			<string>Objects/SyncanoObjects_Private.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151E697218D22C320034BBEB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolConnections.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolConnections.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151E697318D22C610034BBEB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>151E697418D22C850034BBEB</string>
+				<string>151E697518D22C850034BBEB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Connections</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151E697418D22C850034BBEB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Connections.h</string>
+			<key>path</key>
+			<string>Parameters/Connections/SyncanoParameters_Connections.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151E697518D22C850034BBEB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_Connections.m</string>
+			<key>path</key>
+			<string>Parameters/Connections/SyncanoParameters_Connections.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151E697818D22C9E0034BBEB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>151E697918D22CB90034BBEB</string>
+				<string>151E697A18D22CB90034BBEB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Connections</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151E697918D22CB90034BBEB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoResponse_Connections.h</string>
+			<key>path</key>
+			<string>Responses/Connections/SyncanoResponse_Connections.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>151E697A18D22CB90034BBEB</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoResponse_Connections.m</string>
+			<key>path</key>
+			<string>Responses/Connections/SyncanoResponse_Connections.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152B168119A7B4FC00512468</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolRequest.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0719186863B00020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BEE157CB18D2F33900FFCB6B</string>
+				<string>BEE157DD18D2F33A00FFCB6B</string>
+				<string>BECB558118D6F1B40074BC3C</string>
+				<string>152D0728186863B00020A116</string>
+				<string>152D0727186863B00020A116</string>
+				<string>F191ABFCE5813162A7A025B7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D071A186863B00020A116</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0500</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Mindpower</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>BEE157D518D2F33900FFCB6B</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>152D0725186863B00020A116</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>152D071D186863B00020A116</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>English</string>
+			</array>
+			<key>mainGroup</key>
+			<string>152D0719186863B00020A116</string>
+			<key>productRefGroup</key>
+			<string>152D0727186863B00020A116</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>BEE157C818D2F33900FFCB6B</string>
+				<string>BEE157D518D2F33900FFCB6B</string>
+				<string>BE6A397C18E4793200F5631A</string>
+			</array>
+		</dict>
+		<key>152D071D186863B00020A116</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>152D0749186863B00020A116</string>
+				<string>152D074A186863B00020A116</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>152D0727186863B00020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BEE157C918D2F33900FFCB6B</string>
+				<string>BEE157D618D2F33900FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0728186863B00020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15C1F3DC19213140005E4EC4</string>
+				<string>152D0729186863B00020A116</string>
+				<string>152D0737186863B00020A116</string>
+				<string>4CFEF72E1379411185D85EDA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0729186863B00020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>152D0737186863B00020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>152D0749186863B00020A116</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>152D074A186863B00020A116</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_INCLUDING_64_BIT)</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.0</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>152D07511868641F0020A116</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>Syncano.h</string>
+			<key>path</key>
+			<string>../Syncano/Syncano.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D07521868641F0020A116</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>Syncano.m</string>
+			<key>path</key>
+			<string>../Syncano/Syncano.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0755186864500020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D0758186864C30020A116</string>
+				<string>152D075D1868650F0020A116</string>
+				<string>158696A6187C4648008A23AC</string>
+				<string>152D075E1868650F0020A116</string>
+				<string>15AEA8B618D0A7830046A35D</string>
+				<string>15AEA8BA18D0A7A20046A35D</string>
+				<string>15AEA8BB18D0A7A80046A35D</string>
+				<string>15AEA8BC18D0A7AE0046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Responses</string>
+			<key>path</key>
+			<string>../Syncano</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D07561868645D0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D0757186864B20020A116</string>
+				<string>152D0759186865020020A116</string>
+				<string>15027E1F1875CE0300534D5D</string>
+				<string>152D075A186865020020A116</string>
+				<string>15AEA8AF18D0A6F70046A35D</string>
+				<string>15AEA8B318D0A74C0046A35D</string>
+				<string>15AEA8B418D0A7630046A35D</string>
+				<string>15AEA8B518D0A76E0046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Parameters</string>
+			<key>path</key>
+			<string>../Syncano</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0757186864B20020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParametersListing.h</string>
+			<key>path</key>
+			<string>Parameters/SyncanoParametersListing.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0758186864C30020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoResponsesListing.h</string>
+			<key>path</key>
+			<string>Responses/SyncanoResponsesListing.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0759186865020020A116</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters.h</string>
+			<key>path</key>
+			<string>Parameters/SyncanoParameters.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D075A186865020020A116</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters.m</string>
+			<key>path</key>
+			<string>Parameters/SyncanoParameters.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D075D1868650F0020A116</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoResponse.h</string>
+			<key>path</key>
+			<string>Responses/SyncanoResponse.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D075E1868650F0020A116</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoResponse.m</string>
+			<key>path</key>
+			<string>Responses/SyncanoResponse.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D07621868667A0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D0763186866990020A116</string>
+				<string>159E9ED418D1E0C0007486FA</string>
+				<string>159E9ED918D20717007486FA</string>
+				<string>BEEB211118D23F5C00CAA197</string>
+				<string>152D0765186866F00020A116</string>
+				<string>152D0766186867000020A116</string>
+				<string>152D0767186867130020A116</string>
+				<string>152D0768186867200020A116</string>
+				<string>152D07691868672E0020A116</string>
+				<string>152D076B186867510020A116</string>
+				<string>152D076A1868673A0020A116</string>
+				<string>151E697218D22C320034BBEB</string>
+				<string>152B168119A7B4FC00512468</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Protocols</string>
+			<key>path</key>
+			<string>../Syncano</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0763186866990020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolsListing.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolsListing.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0765186866F00020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolProjects.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolProjects.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0766186867000020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolCollections.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolCollections.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0767186867130020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolFolders.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolFolders.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D0768186867200020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolDataObjects.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolDataObjects.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D07691868672E0020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolUsers.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolUsers.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D076A1868673A0020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolNotification.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolNotification.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D076B186867510020A116</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolSubscriptions.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolSubscriptions.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D076D18686DC10020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>158696A2187C32BD008A23AC</string>
+				<string>158696A3187C32BD008A23AC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Subscriptions</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D076E18686E260020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>1586969E187C317B008A23AC</string>
+				<string>1586969F187C317B008A23AC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Notification</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D076F18686E2D0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>1586969A187C2CB8008A23AC</string>
+				<string>1586969B187C2CB8008A23AC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Users</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077018686E370020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15869696187C09DC008A23AC</string>
+				<string>15869697187C09DC008A23AC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Data Objects</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077118686E400020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15869692187C06C8008A23AC</string>
+				<string>15869693187C06C8008A23AC</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Folders</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077218686E480020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AAADB1187726B800139A47</string>
+				<string>15AAADB2187726B800139A47</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Collections</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077318686E4F0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AAADAD1877221D00139A47</string>
+				<string>15AAADAE1877221D00139A47</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Projects</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077618686ECF0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15F55CD9187EC11E001BC840</string>
+				<string>15F55CDA187EC11E001BC840</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Collections</string>
+			<key>path</key>
+			<string>Responses/Collections</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077718686ECF0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15F55CE1187EC4A2001BC840</string>
+				<string>15F55CE2187EC4A2001BC840</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Data Objects</string>
+			<key>path</key>
+			<string>Responses/DataObjects</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077818686ECF0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15F55CDD187EC412001BC840</string>
+				<string>15F55CDE187EC412001BC840</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Folders</string>
+			<key>path</key>
+			<string>Responses/Folders</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077918686ECF0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15F55CE9187EE8E9001BC840</string>
+				<string>15F55CEA187EE8E9001BC840</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Notification</string>
+			<key>path</key>
+			<string>Responses/Notification</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077A18686ECF0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15F55CD5187EBFBA001BC840</string>
+				<string>15F55CD6187EBFBA001BC840</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Projects</string>
+			<key>path</key>
+			<string>Responses/Projects</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077B18686ECF0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15F55CED187EE979001BC840</string>
+				<string>15F55CEE187EE979001BC840</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Subscriptions</string>
+			<key>path</key>
+			<string>Responses/Subscriptions</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>152D077C18686ECF0020A116</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15F55CE5187EC6BA001BC840</string>
+				<string>15F55CE6187EC6BA001BC840</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Users</string>
+			<key>path</key>
+			<string>Responses/Users</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1548BFD619AB5A3000267128</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoReachability.h</string>
+			<key>path</key>
+			<string>Syncano/SyncanoReachability.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>1548BFD719AB5A3000267128</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoReachability.m</string>
+			<key>path</key>
+			<string>Syncano/SyncanoReachability.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>1548BFD819AB5A3000267128</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1548BFD719AB5A3000267128</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>154C0861187DAEBD0014270F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoObjects.h</string>
+			<key>path</key>
+			<string>Objects/SyncanoObjects.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>154C0862187DAEBD0014270F</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoObjects.m</string>
+			<key>path</key>
+			<string>Objects/SyncanoObjects.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>154C0865187DAEC20014270F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>154C0861187DAEBD0014270F</string>
+				<string>154C0862187DAEBD0014270F</string>
+				<string>150B59761886CD4D00E1F9C2</string>
+				<string>150B59771886CD4D00E1F9C2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Objects</string>
+			<key>path</key>
+			<string>../Syncano</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15791F8118842CAF00889728</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoSyncServer.h</string>
+			<key>path</key>
+			<string>../Syncano/SyncanoSyncServer.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15791F8218842CAF00889728</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoSyncServer.m</string>
+			<key>path</key>
+			<string>../Syncano/SyncanoSyncServer.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15869692187C06C8008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Folders.h</string>
+			<key>path</key>
+			<string>Parameters/Folders/SyncanoParameters_Folders.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15869693187C06C8008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_Folders.m</string>
+			<key>path</key>
+			<string>Parameters/Folders/SyncanoParameters_Folders.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15869696187C09DC008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_DataObjects.h</string>
+			<key>path</key>
+			<string>Parameters/DataObjects/SyncanoParameters_DataObjects.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15869697187C09DC008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_DataObjects.m</string>
+			<key>path</key>
+			<string>Parameters/DataObjects/SyncanoParameters_DataObjects.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1586969A187C2CB8008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Users.h</string>
+			<key>path</key>
+			<string>Parameters/Users/SyncanoParameters_Users.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1586969B187C2CB8008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_Users.m</string>
+			<key>path</key>
+			<string>Parameters/Users/SyncanoParameters_Users.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1586969E187C317B008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Notifications.h</string>
+			<key>path</key>
+			<string>Parameters/Notification/SyncanoParameters_Notifications.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1586969F187C317B008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_Notifications.m</string>
+			<key>path</key>
+			<string>Parameters/Notification/SyncanoParameters_Notifications.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>158696A2187C32BD008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Subscriptions.h</string>
+			<key>path</key>
+			<string>Parameters/Subscriptions/SyncanoParameters_Subscriptions.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>158696A3187C32BD008A23AC</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_Subscriptions.m</string>
+			<key>path</key>
+			<string>Parameters/Subscriptions/SyncanoParameters_Subscriptions.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>158696A6187C4648008A23AC</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoResponse_Private.h</string>
+			<key>path</key>
+			<string>Responses/SyncanoResponse_Private.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>159E9ED418D1E0C0007486FA</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolAdministrators.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolAdministrators.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>159E9ED918D20717007486FA</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolAPIKeys.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolAPIKeys.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AAADA81876CB6D00139A47</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AAADA91876CB7F00139A47</string>
+				<string>15AAADAA1876CB7F00139A47</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Utilities</string>
+			<key>path</key>
+			<string>../Syncano/Utilities</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AAADA91876CB7F00139A47</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SyncanoDateFormatter.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AAADAA1876CB7F00139A47</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SyncanoDateFormatter.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AAADAD1877221D00139A47</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Projects.h</string>
+			<key>path</key>
+			<string>Parameters/Projects/SyncanoParameters_Projects.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AAADAE1877221D00139A47</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_Projects.m</string>
+			<key>path</key>
+			<string>Parameters/Projects/SyncanoParameters_Projects.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AAADB1187726B800139A47</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Collections.h</string>
+			<key>path</key>
+			<string>Parameters/Collections/SyncanoParameters_Collections.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AAADB2187726B800139A47</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_Collections.m</string>
+			<key>path</key>
+			<string>Parameters/Collections/SyncanoParameters_Collections.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8AF18D0A6F70046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AEA8B018D0A7060046A35D</string>
+				<string>15AEA8B118D0A7170046A35D</string>
+				<string>15AEA8B218D0A7260046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Access Managament</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B018D0A7060046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AEA8C518D0AF470046A35D</string>
+				<string>15AEA8C618D0AF470046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Administrators</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B118D0A7170046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AEA8C118D0AF2D0046A35D</string>
+				<string>15AEA8C218D0AF2D0046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>API Keys</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B218D0A7260046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AEA8BD18D0AEAF0046A35D</string>
+				<string>15AEA8BE18D0AEAF0046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Permission Roles</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B318D0A74C0046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D077318686E4F0020A116</string>
+				<string>152D077218686E480020A116</string>
+				<string>152D077118686E400020A116</string>
+				<string>152D077018686E370020A116</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Data Management</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B418D0A7630046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D076F18686E2D0020A116</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>User Management</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B518D0A76E0046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D076D18686DC10020A116</string>
+				<string>152D076E18686E260020A116</string>
+				<string>151E697318D22C610034BBEB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Real Time Sync</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B618D0A7830046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AEA8B918D0A7940046A35D</string>
+				<string>15AEA8B818D0A78F0046A35D</string>
+				<string>15AEA8B718D0A7890046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Access Managament</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B718D0A7890046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AEA8D118D0AFA70046A35D</string>
+				<string>15AEA8D218D0AFA70046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Permission Roles</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B818D0A78F0046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AEA8CD18D0AF930046A35D</string>
+				<string>15AEA8CE18D0AF930046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>API Keys</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8B918D0A7940046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15AEA8C918D0AF7A0046A35D</string>
+				<string>15AEA8CA18D0AF7A0046A35D</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Administrators</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8BA18D0A7A20046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D077A18686ECF0020A116</string>
+				<string>152D077618686ECF0020A116</string>
+				<string>152D077818686ECF0020A116</string>
+				<string>152D077718686ECF0020A116</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Data Management</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8BB18D0A7A80046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D077C18686ECF0020A116</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>User Management</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8BC18D0A7AE0046A35D</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D077B18686ECF0020A116</string>
+				<string>152D077918686ECF0020A116</string>
+				<string>151E697818D22C9E0034BBEB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Real Time Sync</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8BD18D0AEAF0046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_PermissionRoles.h</string>
+			<key>path</key>
+			<string>Parameters/PermissionRoles/SyncanoParameters_PermissionRoles.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8BE18D0AEAF0046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_PermissionRoles.m</string>
+			<key>path</key>
+			<string>Parameters/PermissionRoles/SyncanoParameters_PermissionRoles.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8C118D0AF2D0046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_APIKeys.h</string>
+			<key>path</key>
+			<string>Parameters/APIKeys/SyncanoParameters_APIKeys.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8C218D0AF2D0046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_APIKeys.m</string>
+			<key>path</key>
+			<string>Parameters/APIKeys/SyncanoParameters_APIKeys.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8C518D0AF470046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoParameters_Administrators.h</string>
+			<key>path</key>
+			<string>Parameters/Administrators/SyncanoParameters_Administrators.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8C618D0AF470046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoParameters_Administrators.m</string>
+			<key>path</key>
+			<string>Parameters/Administrators/SyncanoParameters_Administrators.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8C918D0AF7A0046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoResponse_Administrators.h</string>
+			<key>path</key>
+			<string>Responses/Administrators/SyncanoResponse_Administrators.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8CA18D0AF7A0046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoResponse_Administrators.m</string>
+			<key>path</key>
+			<string>Responses/Administrators/SyncanoResponse_Administrators.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8CD18D0AF930046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoResponse_APIKeys.h</string>
+			<key>path</key>
+			<string>Responses/APIKeys/SyncanoResponse_APIKeys.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8CE18D0AF930046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoResponse_APIKeys.m</string>
+			<key>path</key>
+			<string>Responses/APIKeys/SyncanoResponse_APIKeys.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8D118D0AFA70046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoResponse_PermissionRoles.h</string>
+			<key>path</key>
+			<string>Responses/PermissionRoles/SyncanoResponse_PermissionRoles.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15AEA8D218D0AFA70046A35D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>SyncanoResponse_PermissionRoles.m</string>
+			<key>path</key>
+			<string>Responses/PermissionRoles/SyncanoResponse_PermissionRoles.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15C1F3DC19213140005E4EC4</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>15C1F3DD19213140005E4EC4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15C1F3DC19213140005E4EC4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>15F55CD5187EBFBA001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SyncanoResponse_Projects.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CD6187EBFBA001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SyncanoResponse_Projects.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CD9187EC11E001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SyncanoResponse_Collections.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CDA187EC11E001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SyncanoResponse_Collections.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CDD187EC412001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SyncanoResponse_Folders.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CDE187EC412001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SyncanoResponse_Folders.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CE1187EC4A2001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SyncanoResponse_DataObjects.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CE2187EC4A2001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SyncanoResponse_DataObjects.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CE5187EC6BA001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SyncanoResponse_Users.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CE6187EC6BA001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SyncanoResponse_Users.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CE9187EE8E9001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SyncanoResponse_Notifications.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CEA187EE8E9001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SyncanoResponse_Notifications.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CED187EE979001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SyncanoResponse_Subscriptions.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15F55CEE187EE979001BC840</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SyncanoResponse_Subscriptions.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2B1E7E6C68734486889515FF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods/Pods.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>43AEFBBD29134A25A8774F63</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>4CFEF72E1379411185D85EDA</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>79B61EB181B64F90897D317B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>97F8EC4AE2134AED9C970E62</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4CFEF72E1379411185D85EDA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BE6A397C18E4793200F5631A</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>BE6A397D18E4793200F5631A</string>
+			<key>buildPhases</key>
+			<array>
+				<string>BE6A398218E47B7100F5631A</string>
+			</array>
+			<key>dependencies</key>
+			<array>
+				<string>BE6A398118E47B6600F5631A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXAggregateTarget</string>
+			<key>name</key>
+			<string>Documentation</string>
+			<key>productName</key>
+			<string>Documentation</string>
+		</dict>
+		<key>BE6A397D18E4793200F5631A</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>BE6A397E18E4793200F5631A</string>
+				<string>BE6A397F18E4793200F5631A</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BE6A397E18E4793200F5631A</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>BE6A397F18E4793200F5631A</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BE6A398018E47B6600F5631A</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>152D071A186863B00020A116</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>BEE157C818D2F33900FFCB6B</string>
+			<key>remoteInfo</key>
+			<string>syncano-ios-library</string>
+		</dict>
+		<key>BE6A398118E47B6600F5631A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>BEE157C818D2F33900FFCB6B</string>
+			<key>targetProxy</key>
+			<string>BE6A398018E47B6600F5631A</string>
+		</dict>
+		<key>BE6A398218E47B7100F5631A</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>/usr/local/bin/appledoc \
+--project-name "${PROJECT_NAME}" \
+--project-company "Syncano" \
+--company-id "com.syncano" \
+--output "${PROJECT_NAME}-Docs" \
+--install-docset \
+--logformat xcode \
+--keep-undocumented-objects \
+--keep-undocumented-members \
+--keep-intermediate-files \
+--no-repeat-first-par \
+--no-warn-invalid-crossref \
+--merge-categories \
+--exit-threshold 2 \
+--docset-platform-family iphoneos \
+--ignore "*.m" \
+"${PROJECT_DIR}/${PROJECT_NAME}" &gt; appledoc.log</string>
+		</dict>
+		<key>BE98F69718D6F59C001EC84E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file</string>
+			<key>name</key>
+			<string>server.der</string>
+			<key>path</key>
+			<string>Resources/server.der</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BE98F69818D6F59C001EC84E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BE98F69718D6F59C001EC84E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BECB558118D6F1B40074BC3C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BE98F69718D6F59C001EC84E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Resources</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157C518D2F33900FFCB6B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>BEE157F818D2F57A00FFCB6B</string>
+				<string>BEE157F018D2F57A00FFCB6B</string>
+				<string>BEE157ED18D2F57A00FFCB6B</string>
+				<string>BEE157FD18D2F57A00FFCB6B</string>
+				<string>1548BFD819AB5A3000267128</string>
+				<string>BEE157F618D2F57A00FFCB6B</string>
+				<string>BEE157EB18D2F40200FFCB6B</string>
+				<string>BEE157EE18D2F57A00FFCB6B</string>
+				<string>BEE157F118D2F57A00FFCB6B</string>
+				<string>BEE1580418D2F57A00FFCB6B</string>
+				<string>BEE1580618D2F57A00FFCB6B</string>
+				<string>BEE157F918D2F57A00FFCB6B</string>
+				<string>BEE157F318D2F57A00FFCB6B</string>
+				<string>BEE1580818D2F57A00FFCB6B</string>
+				<string>BEE157FF18D2F57A00FFCB6B</string>
+				<string>BEE1580218D2F57A00FFCB6B</string>
+				<string>BEE157F418D2F57A00FFCB6B</string>
+				<string>BEE157F218D2F57A00FFCB6B</string>
+				<string>BEE1580718D2F57A00FFCB6B</string>
+				<string>BEE157FE18D2F57A00FFCB6B</string>
+				<string>BEE1580518D2F57A00FFCB6B</string>
+				<string>BEE1580318D2F57A00FFCB6B</string>
+				<string>BEE157EF18D2F57A00FFCB6B</string>
+				<string>BEE1580118D2F57A00FFCB6B</string>
+				<string>BEE157F718D2F57A00FFCB6B</string>
+				<string>BEE1580018D2F57A00FFCB6B</string>
+				<string>BEE157FA18D2F57A00FFCB6B</string>
+				<string>BEE157F518D2F57A00FFCB6B</string>
+				<string>BEE157FB18D2F57A00FFCB6B</string>
+				<string>BEE157FC18D2F57A00FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BEE157C618D2F33900FFCB6B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>15C1F3DD19213140005E4EC4</string>
+				<string>BEE157CA18D2F33900FFCB6B</string>
+				<string>97F8EC4AE2134AED9C970E62</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BEE157C718D2F33900FFCB6B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>dstPath</key>
+			<string>include/$(PRODUCT_NAME)</string>
+			<key>dstSubfolderSpec</key>
+			<string>16</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXCopyFilesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BEE157C818D2F33900FFCB6B</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>BEE157E918D2F33A00FFCB6B</string>
+			<key>buildPhases</key>
+			<array>
+				<string>79B61EB181B64F90897D317B</string>
+				<string>BEE157C518D2F33900FFCB6B</string>
+				<string>BEE157C618D2F33900FFCB6B</string>
+				<string>BEE157C718D2F33900FFCB6B</string>
+				<string>43AEFBBD29134A25A8774F63</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>syncano-ios-library</string>
+			<key>productName</key>
+			<string>syncano-ios-library</string>
+			<key>productReference</key>
+			<string>BEE157C918D2F33900FFCB6B</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>BEE157C918D2F33900FFCB6B</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libsyncano-ios-library.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>BEE157CA18D2F33900FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>152D0729186863B00020A116</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157CB18D2F33900FFCB6B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>152D07511868641F0020A116</string>
+				<string>152D07521868641F0020A116</string>
+				<string>15791F8118842CAF00889728</string>
+				<string>15791F8218842CAF00889728</string>
+				<string>1548BFD619AB5A3000267128</string>
+				<string>1548BFD719AB5A3000267128</string>
+				<string>15AAADA81876CB6D00139A47</string>
+				<string>154C0865187DAEC20014270F</string>
+				<string>152D07621868667A0020A116</string>
+				<string>152D07561868645D0020A116</string>
+				<string>152D0755186864500020A116</string>
+				<string>BEE157CC18D2F33900FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Syncano</string>
+			<key>path</key>
+			<string>syncano-ios-library</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157CC18D2F33900FFCB6B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BEE157CD18D2F33900FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157CD18D2F33900FFCB6B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>syncano-ios-library-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157D218D2F33900FFCB6B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>BEE157E418D2F33A00FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BEE157D318D2F33900FFCB6B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>BEE157D718D2F33900FFCB6B</string>
+				<string>BEE157D818D2F33900FFCB6B</string>
+				<string>BEE157DC18D2F33A00FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BEE157D418D2F33900FFCB6B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>BE98F69818D6F59C001EC84E</string>
+				<string>BEE157E218D2F33A00FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>BEE157D518D2F33900FFCB6B</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>BEE157EA18D2F33A00FFCB6B</string>
+			<key>buildPhases</key>
+			<array>
+				<string>BEE157D218D2F33900FFCB6B</string>
+				<string>BEE157D318D2F33900FFCB6B</string>
+				<string>BEE157D418D2F33900FFCB6B</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>BEE157DB18D2F33A00FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>syncano-ios-libraryTests</string>
+			<key>productName</key>
+			<string>syncano-ios-libraryTests</string>
+			<key>productReference</key>
+			<string>BEE157D618D2F33900FFCB6B</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>BEE157D618D2F33900FFCB6B</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>syncano-ios-libraryTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>BEE157D718D2F33900FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>152D0737186863B00020A116</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157D818D2F33900FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>152D0729186863B00020A116</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157DA18D2F33A00FFCB6B</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>152D071A186863B00020A116</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>BEE157C818D2F33900FFCB6B</string>
+			<key>remoteInfo</key>
+			<string>syncano-ios-library</string>
+		</dict>
+		<key>BEE157DB18D2F33A00FFCB6B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>BEE157C818D2F33900FFCB6B</string>
+			<key>targetProxy</key>
+			<string>BEE157DA18D2F33A00FFCB6B</string>
+		</dict>
+		<key>BEE157DC18D2F33A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BEE157C918D2F33900FFCB6B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157DD18D2F33A00FFCB6B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BEE157E318D2F33A00FFCB6B</string>
+				<string>BEE157DE18D2F33A00FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>syncano-ios-libraryTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157DE18D2F33A00FFCB6B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BEE157DF18D2F33A00FFCB6B</string>
+				<string>BEE157E018D2F33A00FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157DF18D2F33A00FFCB6B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>syncano-ios-libraryTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157E018D2F33A00FFCB6B</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BEE157E118D2F33A00FFCB6B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157E118D2F33A00FFCB6B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157E218D2F33A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BEE157E018D2F33A00FFCB6B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157E318D2F33A00FFCB6B</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>syncano_ios_libraryTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BEE157E418D2F33A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BEE157E318D2F33A00FFCB6B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157E518D2F33A00FFCB6B</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>D12CE4B6407A0DEBB95D1000</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD)</string>
+				<key>DSTROOT</key>
+				<string>/tmp/syncano_ios_library.dst</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>syncano-ios-library/syncano-ios-library-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>LIBRARY_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>$(PROJECT_DIR)/Pods/build/Release-iphoneos</string>
+				</array>
+				<key>OTHER_LDFLAGS</key>
+				<string>$(inherited)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>BEE157E618D2F33A00FFCB6B</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>2B1E7E6C68734486889515FF</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD)</string>
+				<key>DSTROOT</key>
+				<string>/tmp/syncano_ios_library.dst</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>syncano-ios-library/syncano-ios-library-Prefix.pch</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>LIBRARY_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>$(PROJECT_DIR)/Pods/build/Release-iphoneos</string>
+				</array>
+				<key>OTHER_LDFLAGS</key>
+				<string>$(inherited)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BEE157E718D2F33A00FFCB6B</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>syncano-ios-library/syncano-ios-library-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>INFOPLIST_FILE</key>
+				<string>syncano-ios-libraryTests/syncano-ios-libraryTests-Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>BEE157E818D2F33A00FFCB6B</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>syncano-ios-library/syncano-ios-library-Prefix.pch</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>INFOPLIST_FILE</key>
+				<string>syncano-ios-libraryTests/syncano-ios-libraryTests-Info.plist</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BEE157E918D2F33A00FFCB6B</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>BEE157E518D2F33A00FFCB6B</string>
+				<string>BEE157E618D2F33A00FFCB6B</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BEE157EA18D2F33A00FFCB6B</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>BEE157E718D2F33A00FFCB6B</string>
+				<string>BEE157E818D2F33A00FFCB6B</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BEE157EB18D2F40200FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15791F8218842CAF00889728</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157ED18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>152D07521868641F0020A116</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157EE18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AAADAA1876CB7F00139A47</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157EF18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>154C0862187DAEBD0014270F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F018D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>150B59771886CD4D00E1F9C2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F118D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>152D075A186865020020A116</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F218D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AEA8BE18D0AEAF0046A35D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F318D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AEA8C218D0AF2D0046A35D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F418D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AEA8C618D0AF470046A35D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F518D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15869697187C09DC008A23AC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F618D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AAADAE1877221D00139A47</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F718D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AAADB2187726B800139A47</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F818D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15869693187C06C8008A23AC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157F918D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1586969B187C2CB8008A23AC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157FA18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>151E697518D22C850034BBEB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157FB18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1586969F187C317B008A23AC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157FC18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>158696A3187C32BD008A23AC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157FD18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>152D075E1868650F0020A116</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157FE18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AEA8CA18D0AF7A0046A35D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE157FF18D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AEA8CE18D0AF930046A35D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580018D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15AEA8D218D0AFA70046A35D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580118D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15F55CD6187EBFBA001BC840</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580218D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15F55CDA187EC11E001BC840</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580318D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15F55CDE187EC412001BC840</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580418D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15F55CE2187EC4A2001BC840</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580518D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15F55CE6187EC6BA001BC840</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580618D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>151E697A18D22CB90034BBEB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580718D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15F55CEA187EE8E9001BC840</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEE1580818D2F57A00FFCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>15F55CEE187EE979001BC840</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>BEEB211118D23F5C00CAA197</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>SyncanoProtocolPermissionRoles.h</string>
+			<key>path</key>
+			<string>Protocols/SyncanoProtocolPermissionRoles.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D12CE4B6407A0DEBB95D1000</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods/Pods.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F191ABFCE5813162A7A025B7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D12CE4B6407A0DEBB95D1000</string>
+				<string>2B1E7E6C68734486889515FF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>152D071A186863B00020A116</string>
+</dict>
+</plist>

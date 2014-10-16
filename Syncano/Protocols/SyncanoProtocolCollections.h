@@ -188,7 +188,7 @@
  @param params Authorize collection parameters.
  @param callback Callback with response for authorizing collection.
  */
-- (id <SyncanoRequest> )collectionAuthorize:(SyncanoParameters_Collections_Authorize *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )collectionAuthorize:(SyncanoParameters_Collections_Authorize *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Removes collection-level permission from specified User API client. Requires Backend API key with Admin permission role.
@@ -196,7 +196,7 @@
  @param params Deauthorize collection parameters.
  @param callback Callback with response for deauthorizing collection.
  */
-- (id <SyncanoRequest> )collectionDeauthorize:(SyncanoParameters_Collections_Deauthorize *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )collectionDeauthorize:(SyncanoParameters_Collections_Deauthorize *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Delete existing collection

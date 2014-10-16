@@ -281,7 +281,7 @@
  @param params Add child to data object parameters
  @param callback Callback with response for adding child to existing data object
  */
-- (id <SyncanoRequest> )dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )dataAddChild:(SyncanoParameters_DataObjects_AddChild *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Removes a child (or children) from data with specified dataId.
@@ -291,7 +291,7 @@
  @param params Remove child (or children) from data object parameters.
  @param callback Callback with response for removing child (or children) from existing data object.
  */
-- (id <SyncanoRequest> )dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params callback:(void (^)(SyncanoResponse *))callback;
+- (id <SyncanoRequest> )dataRemoveChild:(SyncanoParameters_DataObjects_RemoveChild *)params callback:(void (^)(SyncanoResponse *response))callback;
 
 /**
  Delete existing data object
