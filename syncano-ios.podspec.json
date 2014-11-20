@@ -1,6 +1,6 @@
 {
   "name": "syncano-ios",
-  "version": "3.1.25",
+  "version": "3.1.26",
   "summary": "Library for http://syncano.com API",
   "homepage": "http://www.syncano.com",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "requires_arc": true,
   "source": {
     "git": "https://github.com/Syncano/syncano-ios.git",
-    "tag": "3.1.25"
+    "tag": "3.1.26"
   },
   "prefix_header_contents": "#import \"syncano-ios-library-Prefix.pch\"",
   "header_dir": "Syncano",
@@ -26,10 +26,10 @@
   ],
   "dependencies": {
     "CocoaAsyncSocket": [
-      "7.3.3"
+      "~>7.3.0"
     ],
     "AFNetworking": [
-      "~> 2.2.1"
+      "~> 2.3.0"
     ],
     "Mantle": [
       "~> 1.4.1"
