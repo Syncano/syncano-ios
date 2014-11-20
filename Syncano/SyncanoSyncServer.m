@@ -181,76 +181,76 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 #pragma mark - Notifying Throught Delegate Or Callback
 
 - (void)notifyAboutConnectionOpened {
-	if (self.connectionOpenCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-      self.connectionOpenCallback();
-		});
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServerConnectionOpened:)]) {
-		[self.delegate syncServerConnectionOpened:self];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.connectionOpenCallback) {
+            self.connectionOpenCallback();
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServerConnectionOpened:)]) {
+            [self.delegate syncServerConnectionOpened:self];
+        }
+    });
 	[self dequeRequest];
 }
 
 - (void)notifyAboutConnectionClosed:(NSError *)error {
-	if (self.connectionClosedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-      self.connectionClosedCallback(error);
-		});
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:connectionClosedWithError:)]) {
-		[self.delegate syncServer:self connectionClosedWithError:error];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.connectionClosedCallback) {
+            self.connectionClosedCallback(error);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:connectionClosedWithError:)]) {
+            [self.delegate syncServer:self connectionClosedWithError:error];
+        }
+    });
 }
 
 - (void)notifyAboutMessageReceived:(NSDictionary *)json {
-	if (self.messageReceivedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-      self.messageReceivedCallback(json);
-		});
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:messageReceived:)]) {
-		[self.delegate syncServer:self messageReceived:json];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.messageReceivedCallback) {
+            self.messageReceivedCallback(json);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:messageReceived:)]) {
+            [self.delegate syncServer:self messageReceived:json];
+        }
+    });
 }
 
 - (void)notifyAboutHistoryReceived:(NSDictionary *)history isLastOne:(BOOL)isLastOne {
-	if (self.historyReceivedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-      self.historyReceivedCallback(history, isLastOne);
-		});
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:historyReceived:isLastHistoryItem:)]) {
-		[self.delegate syncServer:self historyReceived:history isLastHistoryItem:isLastOne];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.historyReceivedCallback) {
+            self.historyReceivedCallback(history, isLastOne);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:historyReceived:isLastHistoryItem:)]) {
+            [self.delegate syncServer:self historyReceived:history isLastHistoryItem:isLastOne];
+        }
+    });
 }
 
 - (void)notifyAboutSyncServerError:(NSString *)error {
-	if (self.syncServerErrorCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-      self.syncServerErrorCallback(error);
-		});
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:errorReceived:)]) {
-		[self.delegate syncServer:self errorReceived:error];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.syncServerErrorCallback) {
+            self.syncServerErrorCallback(error);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:errorReceived:)]) {
+            [self.delegate syncServer:self errorReceived:error];
+        }
+    });
 }
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)notifyAboutDeletedObjects:(NSArray *)targets
                           channel:(SyncanoChannel *)channel {
-	if (self.deletedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-      self.deletedCallback(targets, channel);
-		});
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:notificationDeleted:)]) {
-		[self.delegate syncServer:self notificationDeleted:targets];
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:notificationDeleted:channel:)]) {
-		[self.delegate syncServer:self notificationDeleted:targets channel:channel];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.deletedCallback) {
+            self.deletedCallback(targets, channel);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:notificationDeleted:)]) {
+            [self.delegate syncServer:self notificationDeleted:targets];
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:notificationDeleted:channel:)]) {
+            [self.delegate syncServer:self notificationDeleted:targets channel:channel];
+        }
+    });
 }
 
 #pragma clang diagnostic pop
@@ -259,17 +259,17 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)notifyAboutChangedObjects:(NSArray *)changesArray
                           channel:(SyncanoChannel *)channel {
-	if (self.changedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-      self.changedCallback(changesArray, channel);
-		});
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:notificationChanged:)]) {
-		[self.delegate syncServer:self notificationChanged:changesArray];
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:notificationChanged:channel:)]) {
-		[self.delegate syncServer:self notificationChanged:changesArray channel:channel];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.changedCallback) {
+            self.changedCallback(changesArray, channel);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:notificationChanged:)]) {
+            [self.delegate syncServer:self notificationChanged:changesArray];
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:notificationChanged:channel:)]) {
+            [self.delegate syncServer:self notificationChanged:changesArray channel:channel];
+        }
+    });
 }
 
 #pragma clang diagnostic pop
@@ -278,17 +278,17 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (void)notifyAboutAddedObject:(SyncanoData *)data
                        channel:(SyncanoChannel *)channel {
-	if (self.addedCallback) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-      self.addedCallback(data, channel);
-		});
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:notificationAdded:)]) {
-		[self.delegate syncServer:self notificationAdded:data];
-	}
-	if ([self.delegate respondsToSelector:@selector(syncServer:notificationAdded:channel:)]) {
-		[self.delegate syncServer:self notificationAdded:data channel:channel];
-	}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.addedCallback) {
+            self.addedCallback(data, channel);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:notificationAdded:)]) {
+            [self.delegate syncServer:self notificationAdded:data];
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:notificationAdded:channel:)]) {
+            [self.delegate syncServer:self notificationAdded:data channel:channel];
+        }
+    });
 }
 
 #pragma clang diagnostic pop
