@@ -7,6 +7,7 @@
 //
 
 #import "Syncano.h"
+#import "Syncano+Private.h"
 
 #import <AFNetworking/AFNetworking.h>
 //#import "Vendors/AFNetworking/AFNetworkActivityLogger/AFNetworkActivityLogger.h"
@@ -20,6 +21,8 @@ NSString *const kSyncanoDomainApiForReachability = @"%@.syncano.com";
 NSString *const kSyncanoModuleJSONRPC = @"jsonrpc";
 
 NSString *const multicallParamsKey = @"paramsKey";
+
+NSString *const userAgentKey = @"User-Agent";
 
 NSInteger const kSyncanoMaxNumberOfRequests = 2;
 
@@ -148,6 +151,7 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 		securityPolicy.pinnedCertificates = @[[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]]];
     
 		_asynchronousOperationManager.securityPolicy = securityPolicy;
+        
 	}
 	return _asynchronousOperationManager;
 }
@@ -251,7 +255,9 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 
 - (id <SyncanoRequest> )downloadImageFromURL:(NSString *)url
                                     callback:(void (^)(UIImage *image))callback {
-	AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    [request setValue:[[self class] userAgent] forHTTPHeaderField:userAgentKey];
+	AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 	requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
 	[requestOperation setCompletionBlockWithSuccess: ^(AFHTTPRequestOperation *operation, id responseObject) {
     UIImage *image = responseObject;
@@ -264,8 +270,8 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 		}
 	}];
 	[requestOperation start];
-	id <SyncanoRequest> request = requestOperation;
-	return request;
+	id <SyncanoRequest> syncanoRequest = requestOperation;
+	return syncanoRequest;
 }
 
 - (UIImage *)downloadImageFromURL:(NSString *)url {
@@ -285,6 +291,7 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 
 - (id <SyncanoRequest> )pausedRequestWithOperationManager:(AFHTTPRequestOperationManager *)operationManager params:(NSDictionary *)params success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
 	NSMutableURLRequest *request = [operationManager.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:kSyncanoModuleJSONRPC relativeToURL:operationManager.baseURL] absoluteString] parameters:params error:nil];
+    [request setValue:[[self class] userAgent] forHTTPHeaderField:userAgentKey];
 	AFHTTPRequestOperation *operation = [operationManager HTTPRequestOperationWithRequest:request success: ^(AFHTTPRequestOperation *operation, id responseObject) {
     if (self.logJSONResponses) {
       SyncanoDebugLog(@"Syncano JSON Response: %@", responseObject);
@@ -305,7 +312,7 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 	}
   
 	if (self.logAllRequests) {
-		SyncanoDebugLog(@"Request: %@ with Params: %@", operation, params);
+		SyncanoDebugLog(@"Request: %@, %@ with Params: %@", operation, operation.request.allHTTPHeaderFields, params);
 	}
   
 	return operation;
@@ -1344,5 +1351,49 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 - (id <SyncanoRequest> )getPausedRequest:(SyncanoParameters *)params
                                  success:(SyncanoSuccess)success
                                  failure:(SyncanoFailure)failure;
+
+@end
+
+NSString *const kDefaultLibraryName = @"syncano-ios";
+NSString *const KDefaultVersionNumber = @"3.1.25";
+
+@implementation Syncano (Private)
+
++ (NSDictionary *)podspecFileContent {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"syncano-ios.podspec" ofType:@"json"];
+    NSData *podspecData = [NSData dataWithContentsOfFile:path];
+    NSError *error = nil;
+    NSDictionary *podspecJsonContent = nil;
+    if (podspecData) {
+        podspecJsonContent = [NSJSONSerialization JSONObjectWithData:podspecData options:kNilOptions error:&error];
+    }
+    if (error) {
+        podspecJsonContent = nil;
+    }
+    return podspecJsonContent;
+}
+
++ (NSString *)libraryName {
+    NSDictionary *podspec = [self podspecFileContent];
+    NSString *name = [podspec objectForKey:@"name"];
+    if (name == nil) {
+        name = kDefaultLibraryName;
+    }
+    return name;
+}
+
++ (NSString *)libraryVersionNumber {
+    NSDictionary *podspec = [self podspecFileContent];
+    NSString *version = [podspec objectForKey:@"version"];
+    if (version == nil) {
+        version = KDefaultVersionNumber;
+    }
+    return version;
+}
+
++ (NSString *)userAgent {
+    NSString *userAgent = [NSString stringWithFormat:@"%@-%@",[self libraryName],[self libraryVersionNumber]];
+    return userAgent;
+}
 
 @end

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "syncano-ios"
-  s.version      = "3.1.24"
+  s.version      = "3.1.25"
   s.summary      = "Library for http://syncano.com API"
 
   s.homepage     = "http://www.syncano.com"
@@ -16,10 +16,10 @@ Pod::Spec.new do |s|
   s.header_dir   =  'Syncano'
   s.source_files = 'Syncano/**/*.{h,m,pch}', 'syncano-ios-library/**/*.{h,m,pch}'
   s.private_header_files = 'Syncano/Private/*.h'
-  s.resources    = [ 'Resources/server.der' ]
+  s.resources    = [ 'Resources/server.der', 'syncano-ios.podspec.json' ]
 
-  s.dependency 'CocoaAsyncSocket', '7.3.3'
-  s.dependency 'AFNetworking', '~> 2.2.1'
+  s.dependency 'CocoaAsyncSocket', '~>7.3.0'
+  s.dependency 'AFNetworking', '~> 2.3.0'
   s.dependency 'Mantle', '~> 1.4.1'
 
 end
