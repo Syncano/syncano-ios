@@ -228,8 +228,10 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
  Syncano Data Object
  */
 @interface SyncanoData : SyncanoObject <NSCopying>
-/// Parent id of data for future reference
+/// Only present if parent_ids is defined, provides information about which parent connection was used. Takes only values from parentIds list in data.get()
 @property (strong)    NSString *parentId;
+/// Only present if child_ids is defined, provides information about which child connection was used. Takes only values from child_ids list in data.get()
+@property (strong)  NSString *childId;
 /// id of data for future reference
 @property (strong)    NSString *uid;
 /// date and time of creation

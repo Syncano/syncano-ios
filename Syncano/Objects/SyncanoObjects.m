@@ -275,6 +275,7 @@
 	return @{
            @"uid" : @"id",
            @"parentId" : @"parent_id",
+           @"childId" : @"child_id",
            @"createdAt" : @"created_at",
            @"updatedAt" : @"updated_at",
            @"folder" : @"folder",
