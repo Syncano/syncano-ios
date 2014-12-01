@@ -295,6 +295,15 @@
 
 @end
 
+@implementation SyncanoDataRelation
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"parentId" : @"parent_id",
+             @"childId" : @"child_id",
+             };
+}
+@end
+
 @interface SyncanoDataChanges () <NSCopying>
 @property (strong)    NSArray *replacedKeys;
 @property (strong)    NSArray *deletedKeys;

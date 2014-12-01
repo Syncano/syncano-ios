@@ -269,6 +269,16 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @end
 
 /**
+ Contains information about data relation that was changed (either added or deleted)
+ */
+@interface SyncanoDataRelation : SyncanoObject <NSCopying>
+//parent id of relation that was changed
+@property (strong) NSString *parentId;
+// child id of relation that was changed
+@property (strong) NSString *childId;
+@end
+
+/**
  Informs about Data Object changes received by notification from Sync Server.
  */
 @interface SyncanoDataChanges : SyncanoData <NSCopying>
