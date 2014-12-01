@@ -26,6 +26,8 @@ typedef void (^SyncanoSyncServerErrorCallback)(NSString *error);
 typedef void (^SyncanoSyncServerDeletedCallback)(NSArray *deletedIDs, SyncanoChannel *channel);
 typedef void (^SyncanoSyncServerChangedCallback)(NSArray *dataChanges, SyncanoChannel *channel);
 typedef void (^SyncanoSyncServerAddedCallback)(SyncanoData *addedData, SyncanoChannel *channel);
+typedef void (^SyncanoSyncServerRelationDeletedCallback)(SyncanoDataRelation *relation, SyncanoChannel *channel);
+typedef void (^SyncanoSyncServerRelationAddedCallback)(SyncanoDataRelation *relation, SyncanoChannel *channel);
 
 /**
  SyncanoSyncServer class should be used to send any requests to Syncano using Sync Server functionality, and passed credentials, as well as to send and receive notifications, and to subscribe/unsubscribe from changes. You can use universal sendRequest method or methods listed in implemented protocols.
@@ -139,7 +141,9 @@ SyncanoProtocolConnections
         syncServerError:(SyncanoSyncServerErrorCallback)syncServerErrorCallback
     notificationDeleted:(SyncanoSyncServerDeletedCallback)deletedCallback
     notificationChanged:(SyncanoSyncServerChangedCallback)changedCallback
-      notificationAdded:(SyncanoSyncServerAddedCallback)addedCallback;
+      notificationAdded:(SyncanoSyncServerAddedCallback)addedCallback
+notificationRelationDeleted:(SyncanoSyncServerRelationDeletedCallback)relationDeletedCallback
+notificationRelationAdded:(SyncanoSyncServerRelationAddedCallback)relationAddedCallback;
 
 /**
  *  Connects to Syncano Sync Server using credentials passed when creating this Sync Server object.
@@ -188,6 +192,8 @@ SyncanoProtocolConnections
 - (void)syncServer:(SyncanoSyncServer *)syncServer notificationDeleted:(NSArray *)deletedIds channel:(SyncanoChannel *)channel;
 - (void)syncServer:(SyncanoSyncServer *)syncServer notificationChanged:(NSArray *)dataChanges channel:(SyncanoChannel *)channel;
 - (void)syncServer:(SyncanoSyncServer *)syncServer notificationAdded:(SyncanoData *)addedData channel:(SyncanoChannel *)channel;
+- (void)syncServer:(SyncanoSyncServer *)syncServer notificationRelationDeleted:(SyncanoDataRelation *)relation channel:(SyncanoChannel *)channel;
+- (void)syncServer:(SyncanoSyncServer *)syncServer notificationRelationAdded:(SyncanoDataRelation *)relation channel:(SyncanoChannel *)channel;
 
 - (void)syncServer:(SyncanoSyncServer *)syncServer notificationDeleted:(NSArray *)deletedIds DEPRECATED_MSG_ATTRIBUTE("Use syncServer:notificationDeleted:channel instead");
 

@@ -22,6 +22,10 @@ NSString *const kSyncanoSyncServerPeerName = @"*.syncano.com";
 NSString *const kSyncanoSyncServerTerminalCharacter = @"}\n";
 
 NSString *const kSyncanoSubscriptionChannelKey = @"channel";
+NSString *const kSyncanoSubscriptionTargetKey = @"target";
+NSString *const kSyncanoSubscriptionIdKey = @"id";
+NSString *const kSyncanoObjectTypeKey = @"object";
+NSString *const kSyncanoObjectTypeDataRelation = @"datarelation";
 
 //NSString *const kSyncanoSyncServerHost = @"api.syncanoengine.com";
 //NSString *const kSyncanoSyncServerPeerName = @"*.syncanoengine.com";
@@ -76,6 +80,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 @property (strong)    SyncanoSyncServerDeletedCallback deletedCallback;
 @property (strong)    SyncanoSyncServerChangedCallback changedCallback;
 @property (strong)    SyncanoSyncServerAddedCallback addedCallback;
+@property (strong)    SyncanoSyncServerRelationDeletedCallback relationDeletedCallback;
+@property (strong)    SyncanoSyncServerRelationAddedCallback relationAddedCallback;
 
 @property (assign)    NSInteger messageId;
 
@@ -294,11 +300,46 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
     });
 }
 
-#pragma clang diagnostic pop
+- (void)notifyAboutDeletedRelation:(SyncanoDataRelation *)relation
+                          channel:(SyncanoChannel *)channel {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.relationDeletedCallback) {
+            self.relationDeletedCallback(relation, channel);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:notificationRelationDeleted:channel:)]) {
+            [self.delegate syncServer:self notificationRelationDeleted:relation channel:channel];
+        }
+    });
+}
+
+- (void)notifyAboutAddedRelation:(SyncanoDataRelation *)relation
+                       channel:(SyncanoChannel *)channel {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.relationAddedCallback) {
+            self.relationAddedCallback(relation, channel);
+        }
+        if ([self.delegate respondsToSelector:@selector(syncServer:notificationRelationAdded:channel:)]) {
+            [self.delegate syncServer:self notificationRelationAdded:relation channel:channel];
+        }
+    });
+}
 
 - (SyncanoChannel *)channelFromJSON:(NSDictionary *)json {
 	SyncanoChannel *channel = [SyncanoChannel objectFromJSON:json[kSyncanoSubscriptionChannelKey]];
 	return channel;
+}
+
+- (SyncanoDataRelation *)relationFromJSON:(NSDictionary *)json {
+    SyncanoDataRelation *relation = [SyncanoDataRelation objectFromJSON:json[kSyncanoSubscriptionTargetKey]];
+    return relation;
+}
+
+- (BOOL)isObjectTypeDataRelation:(NSDictionary *)json {
+    BOOL isDataRelation = NO;
+    if ([json[kSyncanoObjectTypeKey] isEqualToString:kSyncanoObjectTypeDataRelation] == YES) {
+        isDataRelation = YES;
+    }
+    return isDataRelation;
 }
 
 #pragma mark - Processing Messages From Syncano
@@ -339,7 +380,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 - (void)processHistoryMessage:(NSDictionary *)json {
 	id history = json;
-	BOOL isLastOne = [json[@"type"] isEqualToString:@"done"] && [json[@"object"] isEqualToString:@"history"];
+	BOOL isLastOne = [json[@"type"] isEqualToString:@"done"] && [json[kSyncanoObjectTypeKey] isEqualToString:@"history"];
 	[self notifyAboutHistoryReceived:history isLastOne:isLastOne];
 }
 
@@ -348,7 +389,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 }
 
 - (void)processChangedMessage:(NSDictionary *)json {
-	NSArray *targets = json[@"target"][@"id"];
+	NSArray *targets = json[kSyncanoSubscriptionTargetKey][kSyncanoSubscriptionIdKey];
 	if ([targets isKindOfClass:[NSArray class]] == NO) {
 		targets = @[targets];
 	}
@@ -367,17 +408,28 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)processAddedMessage:(NSDictionary *)json {
 	NSDictionary *dataJSON = json[@"data"];
 	SyncanoData *data = [SyncanoData objectFromJSON:dataJSON];
+    SyncanoDataRelation *relation = [self relationFromJSON:json];
 	SyncanoChannel *channel = [self channelFromJSON:json];
-	[self notifyAboutAddedObject:data channel:channel];
+    if ([self isObjectTypeDataRelation:json]) {
+        [self notifyAboutAddedRelation:relation channel:channel];
+    } else {
+        [self notifyAboutAddedObject:data channel:channel];
+    }
 }
 
 - (void)processDeletedMessage:(NSDictionary *)json {
-	NSArray *targets = json[@"target"][@"id"];
+	NSArray *targets = json[kSyncanoSubscriptionTargetKey][kSyncanoSubscriptionIdKey];
 	SyncanoChannel *channel = [self channelFromJSON:json];
-	if ([targets isKindOfClass:[NSArray class]] == NO) {
+    SyncanoDataRelation *relation = [self relationFromJSON:json];
+	if (   (targets != nil)
+        && ([targets isKindOfClass:[NSArray class]] == NO)) {
 		targets = @[targets];
 	}
-	[self notifyAboutDeletedObjects:targets channel:channel];
+    if ([self isObjectTypeDataRelation:json]) {
+        [self notifyAboutDeletedRelation:relation channel:channel];
+    } else {
+        [self notifyAboutDeletedObjects:targets channel:channel];
+    }
 }
 
 #pragma mark - Reading Raw Data From Syncano
@@ -396,7 +448,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)receivedData:(NSData *)data tag:(long)tag {
 	id json = [self jsonFromData:data];
 	NSString *type = json[@"type"];
-	BOOL isHistory = ([[json[@"history"] uppercaseString] isEqualToString:@"TRUE"] || [json[@"object"] isEqualToString:@"history"]);
+	BOOL isHistory = ([[json[@"history"] uppercaseString] isEqualToString:@"TRUE"] || [json[kSyncanoObjectTypeKey] isEqualToString:@"history"]);
 	if (json[@"error"]) {
 		[self processErrorMessage:json];
 	}
@@ -573,7 +625,9 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
         syncServerError:(SyncanoSyncServerErrorCallback)syncServerErrorCallback
     notificationDeleted:(SyncanoSyncServerDeletedCallback)deletedCallback
     notificationChanged:(SyncanoSyncServerChangedCallback)changedCallback
-      notificationAdded:(SyncanoSyncServerAddedCallback)addedCallback {
+      notificationAdded:(SyncanoSyncServerAddedCallback)addedCallback
+notificationRelationDeleted:(SyncanoSyncServerRelationDeletedCallback)relationDeletedCallback
+notificationRelationAdded:(SyncanoSyncServerRelationAddedCallback)relationAddedCallback {
 	self.connectionOpenCallback = connectionOpenCallback;
 	self.connectionClosedCallback = connectionClosedCallback;
 	self.messageReceivedCallback = messageReceivedCallback;
@@ -582,6 +636,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	self.deletedCallback = deletedCallback;
 	self.changedCallback = changedCallback;
 	self.addedCallback = addedCallback;
+    self.relationDeletedCallback = relationDeletedCallback;
+    self.relationAddedCallback = relationAddedCallback;
 	return [self connect:errorPointer];
 }
 
