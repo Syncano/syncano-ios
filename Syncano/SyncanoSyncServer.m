@@ -10,6 +10,8 @@
 #import "SyncanoObjects_Private.h"
 #import "SyncanoReachability.h"
 
+#import "Syncano+Private.h"
+
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
 
 #import "SyncanoDateFormatter.h"
@@ -113,7 +115,8 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	}
 	NSMutableDictionary *loginDict = [@{
                                       @"api_key":self.apiKey,
-                                      @"instance":self.domain
+                                      @"instance":self.domain,
+                                      @"user-agent":[Syncano userAgent]
                                       } mutableCopy];
 	if (self.name.length > 0) {
 		[loginDict setObject:self.name forKey:@"name"];
