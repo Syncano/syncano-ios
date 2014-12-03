@@ -1,6 +1,6 @@
 {
   "name": "syncano-ios",
-  "version": "3.1.28",
+  "version": "3.1.29",
   "summary": "Library for http://syncano.com API",
   "homepage": "http://www.syncano.com",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "requires_arc": true,
   "source": {
     "git": "https://github.com/Syncano/syncano-ios.git",
-    "tag": "3.1.28"
+    "tag": "3.1.29"
   },
   "prefix_header_contents": "#import \"syncano-ios-library-Prefix.pch\"",
   "header_dir": "Syncano",
