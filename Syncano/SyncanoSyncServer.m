@@ -114,6 +114,17 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 #pragma mark - Private
 /*----------------------------------------------------------------------------*/
 
+- (void)log:(NSString *)format, ...
+{
+    va_list args;
+    va_start(args, format);
+    if (self.logMessages) {
+        NSString *log = [[NSString alloc] initWithFormat:format arguments:args];
+        SyncanoDebugClassLog(@"%@",log);
+    }
+    va_end(args);
+}
+
 - (BOOL)loginClient {
 	BOOL areAllRequiredParametersGiven = (self.apiKey && self.domain);
 	if (self.isClientLoggedIn || areAllRequiredParametersGiven == NO) {
@@ -348,7 +359,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	SyncanoAuth *auth = [SyncanoAuth objectFromJSON:json];
 	self.uuid = auth.uuid;
 	self.clientLoggedIn = YES;
-	SyncanoDebugClassLog(@"Auth: %@", auth);
+    [self log:@"Auth: %@", auth];
 	if ([auth OK]) {
 		[self notifyAboutConnectionOpened];
 	}
@@ -357,12 +368,12 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 - (void)processPingMessage:(NSDictionary *)json {
 	SyncanoPing *ping = [SyncanoPing objectFromJSON:json];
 	self.lastPingTimestamp = ping.timestamp;
-	SyncanoDebugClassLog(@"Ping: %@", ping);
+    [self log:@"Ping: %@", ping];
 }
 
 - (void)processErrorMessage:(NSDictionary *)json {
 	SyncanoError *error = [SyncanoError objectFromJSON:json];
-	SyncanoDebugClassLog(@"Error: %@", error);
+    [self log:@"Error: %@", error];
 	[self notifyAboutSyncServerError:error.error];
 }
 
@@ -371,7 +382,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 	SYNCallback *syncanoCallback = self.callbacksForId[messageId];
 	[self.callbacksForId removeObjectForKey:messageId];
 	SyncanoResponse *response = [self responseForClass:syncanoCallback.responseClass fromJSON:json];
-	SyncanoDebugClassLog(@"Callresponse id: %@", messageId);
+    [self log:@"Callresponse id: %@", messageId];
 	[syncanoCallback runCallbackWithObject:response];
 	if (self.callbacksForId.count < kSyncanoSyncServerMaxNumberOfRequests) {
 		[self dequeRequest];
@@ -401,7 +412,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 		targetChange.uid = id;
 		[changesArray addObject:targetChange];
 	}
-	SyncanoDebugClassLog(@"Changed JSON: %@", json);
+    [self log:@"Changed JSON: %@", json];
 	[self notifyAboutChangedObjects:changesArray channel:channel];
 }
 
@@ -578,6 +589,7 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
 
 - (void)commonInit {
 	_messageId = 0;
+    _logMessages = NO;
 	[self reachability];
 }
 
@@ -722,9 +734,9 @@ notificationRelationAdded:(SyncanoSyncServerRelationAddedCallback)relationAddedC
 
 - (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
 	[self readDataFromSocket];
-	SyncanoDebugClassLog(@"DidReadData, tag: %ld", tag);
+    [self log:@"DidReadData, tag: %ld", tag];
 	NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	SyncanoDebugClassLog(@"DidReadString: %@", (string.length > 20) ? [string substringToIndex:20] : string);
+    [self log:@"DidReadString: %@", string];
 	[self processNewIncomingData:data];
 }
 
@@ -741,7 +753,7 @@ notificationRelationAdded:(SyncanoSyncServerRelationAddedCallback)relationAddedC
  **/
 
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag {
-	SyncanoDebugClassLog(@"DidWriteData, tag: %ld", tag);
+    [self log:@"DidWriteData, tag: %ld", tag];
 }
 
 /**
@@ -813,7 +825,7 @@ notificationRelationAdded:(SyncanoSyncServerRelationAddedCallback)relationAddedC
  **/
 
 - (void)socketDidSecure:(GCDAsyncSocket *)sock {
-	SyncanoDebugClassLog(@"SocketDidSecure");
+    [self log:@"SocketDidSecure"];
 	[self loginClient];
 }
 

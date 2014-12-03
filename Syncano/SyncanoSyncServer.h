@@ -99,6 +99,12 @@ SyncanoProtocolConnections
 @property (strong, readonly, nonatomic) NSString *uuid;
 
 /**
+ Use to enable/disable logging all messages incoming from Syncano.
+ Even when enabled, works only in DEBUG mode!
+ */
+@property (assign, readwrite) BOOL logMessages;
+
+/**
  Creates SyncanoSyncServer object in given domain with passed credentials. You should store it and use as a shared object in your application.
  
  @param domain   Your subdomain in Syncano
