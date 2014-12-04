@@ -143,7 +143,9 @@ NSString *const SYNCANO_UNDEFINED_ERROR = @"SYNCANO_UNDEFINED_ERROR: NOK";
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-	SyncanoDebugLog(@"[%@]: Undefined key: %@, value: %@", [self class], key, value);
+    // Normally that's a bad situation, but we constructed the library it can happen often and it's not an error at all.
+    // We should probably still notify about it, but'll just log it internally when needed, it's not needed to notify other users about it.
+//	SyncanoDebugLog(@"[%@]: Undefined key: %@, value: %@", [self class], key, value);
 }
 
 - (NSArray *)allPropertyNames {
