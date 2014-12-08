@@ -391,7 +391,11 @@
 		[deletedProperties addObject:[NSNull null]];
 	}
 	for (id key in deletedKeys) {
-		[object setValue:[NSNull null] forKey:key];
+        if ([key isEqualToString:@"data1"] || [key isEqualToString:@"data2"] || [key isEqualToString:@"data3"]) {
+            [object setValue:@(NSNotFound) forKey:key];
+        } else {
+            [object setValue:[NSNull null] forKey:key];
+        }
 		[deletedProperties addObject:[NSNull null]];
 	}
 	object.additional = allAdditionals;
@@ -500,7 +504,9 @@
 	return @{
            @"projectId" : @"project_id",
            @"collectionId" : @"collection_id",
-           @"folder" : @"folder"
+           @"folder" : @"folder",
+           @"parentFolder" : @"parent_folder",
+           @"childFolder" : @"child_folder"
            };
 }
 

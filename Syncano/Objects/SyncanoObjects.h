@@ -377,7 +377,11 @@ typedef NS_ENUM (NSUInteger, SyncanoChange) {
 @property (strong) NSString *projectId;
 /// Collection id, where object came from
 @property (strong) NSString *collectionId;
-/// Folder where object came from
+/// Folder where object came from, not present for relationship changes - see parentFolder, or childFolder
 @property (strong) NSString *folder;
+// Folder where parent is stored for relationship change
+@property (strong) NSString *parentFolder;
+// Folder where child is stored for relationship changes
+@property (strong) NSString *childFolder;
 
 @end
