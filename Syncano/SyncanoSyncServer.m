@@ -16,8 +16,8 @@
 
 #import "SyncanoDateFormatter.h"
 
-NSString *const kSyncanoSyncServerHost = @"api.syncano.com";
-NSString *const kSyncanoSyncServerPeerName = @"*.syncano.com";
+//NSString *const kSyncanoSyncServerHost = @"api.syncano.com";
+//NSString *const kSyncanoSyncServerPeerName = @"*.syncano.com";
 
 NSString *const kSyncanoSyncServerTerminalCharacter = @"}\n";
 
@@ -27,8 +27,8 @@ NSString *const kSyncanoSubscriptionIdKey = @"id";
 NSString *const kSyncanoObjectTypeKey = @"object";
 NSString *const kSyncanoObjectTypeDataRelation = @"datarelation";
 
-//NSString *const kSyncanoSyncServerHost = @"api.syncanoengine.com";
-//NSString *const kSyncanoSyncServerPeerName = @"*.syncanoengine.com";
+NSString *const kSyncanoSyncServerHost = @"api.syncano.com";
+NSString *const kSyncanoSyncServerPeerName = @"*.syncano.com";
 
 NSInteger const kSyncanoSyncServerPort = 8200;
 NSTimeInterval const kSyncanoSyncServerDefaultTimeout = 10;
@@ -170,12 +170,12 @@ NSInteger const kSyncanoSyncServerMaxNumberOfRequests = 10;
    (NSString *)kCFStreamSSLPeerName:(id)kCFNull
    };
 	 */
-	//    /*
+//	    /*
 	NSDictionary *tlsOptions = @{
                                (NSString *)kCFStreamSSLLevel:(NSString *)kCFStreamSocketSecurityLevelNegotiatedSSL,
                                (NSString *)kCFStreamSSLPeerName:kSyncanoSyncServerPeerName
                                };
-	//    */
+//	    */
 	[self.socket startTLS:tlsOptions];
 }
 

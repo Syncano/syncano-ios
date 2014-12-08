@@ -16,7 +16,6 @@ NSInteger const kSyncanoMaxNumberOfRequestsInBatchCall = 10;
 
 NSString *const kSyncanoDomainApi = @"https://%@.syncano.com/api";
 NSString *const kSyncanoDomainApiForReachability = @"%@.syncano.com";
-//NSString *const kSyncanoDomainApi = @"https://%@.syncanoengine.com/api";
 
 NSString *const kSyncanoModuleJSONRPC = @"jsonrpc";
 
