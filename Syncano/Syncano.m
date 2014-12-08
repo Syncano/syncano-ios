@@ -1354,7 +1354,7 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 @end
 
 NSString *const kDefaultLibraryName = @"syncano-ios";
-NSString *const KDefaultVersionNumber = @"3.1.30";
+NSString *const KDefaultVersionNumber = @"3.1.31";
 
 @implementation Syncano (Private)
 
