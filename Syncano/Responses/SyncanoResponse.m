@@ -64,7 +64,8 @@ NSString *const SYNCANO_UNDEFINED_ERROR = @"SYNCANO_UNDEFINED_ERROR: NOK";
 		jsonContent = json[@"data"];
 	}
 	for (NSString *key in [jsonContent allKeys]) {
-		[response setValue:jsonContent[key] forKey:key];
+    if (![key isEqualToString:@"error"])
+      [response setValue:jsonContent[key] forKey:key];
 	}
 	return response;
 }
