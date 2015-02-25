@@ -1,15 +1,15 @@
 //
-//  SyncanoProtocolRequest.h
+//  SyncanoRequest.h
 //  Syncano
 //
-//  Created by Mariusz Wisniewski on 22/08/14.
-//  Copyright (c) 2014 Mindpower. All rights reserved.
+//  Created by Mateusz on 24.02.2015.
+//  Copyright (c) 2015 Syncano. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- This protocol provides functionality of 'AFURLConnectionOperation' and 
+ This protocol provides functionality of 'AFURLConnectionOperation' and
  underlying NSOperation, which are used to queue all requests being
  sent with Syncano iOS library.
  
