@@ -163,6 +163,7 @@
 		15F55CEE187EE979001BC840 /* SyncanoResponse_Subscriptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoResponse_Subscriptions.m; sourceTree = "<group>"; };
 		2B1E7E6C68734486889515FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4CFEF72E1379411185D85EDA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6135C4D41AB724610050D2F5 /* syncano-ios.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "syncano-ios.podspec"; sourceTree = SOURCE_ROOT; };
 		BE98F69718D6F59C001EC84E /* server.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = server.der; path = Resources/server.der; sourceTree = "<group>"; };
 		BEE157C918D2F33900FFCB6B /* libsyncano-ios-library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsyncano-ios-library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE157CD18D2F33900FFCB6B /* syncano-ios-library-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "syncano-ios-library-Prefix.pch"; sourceTree = "<group>"; };
@@ -604,6 +605,7 @@
 		BEE157CC18D2F33900FFCB6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6135C4D41AB724610050D2F5 /* syncano-ios.podspec */,
 				15C0AD0D1A1E69AC009DC30E /* syncano-ios.podspec.json */,
 				BEE157CD18D2F33900FFCB6B /* syncano-ios-library-Prefix.pch */,
 			);
