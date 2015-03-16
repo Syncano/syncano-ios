@@ -7,13 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SyncanoObjectProtocol.h"
 
-@interface SyncanoObject : NSObject
+@interface SyncanoObject : NSObject <SyncanoObjectProtocol> {
+	NSDate *_createdAt;
+	NSDate *_updatedAt;
+	NSInteger _revision;
+	NSInteger _dbID;
+	NSString *_sidekick;
+}
 
-@property (strong) NSDate *createdAt;
-@property (strong) NSDate *updatedAt;
-@property (assign) NSInteger revision;
-@property (assign) NSInteger id;
-@property (copy) NSString *sidekick;
+@property (strong, readonly) NSDate *createdAt;
+@property (strong, readonly) NSDate *updatedAt;
+@property (assign, readonly) NSInteger revision;
+@property (assign, readonly) NSInteger dbID;
+@property (copy, readonly) NSString *sidekick;
 
 @end

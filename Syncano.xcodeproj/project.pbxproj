@@ -27,6 +27,8 @@
 		619E42941A9E11C600787585 /* SyncanoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 619E42931A9E11C600787585 /* SyncanoObject.m */; };
 		619E42971A9E14C300787585 /* SyncanoParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 619E42961A9E14C300787585 /* SyncanoParameters.m */; };
 		619E429A1A9E7AA500787585 /* SyncanoArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 619E42991A9E7AA500787585 /* SyncanoArray.m */; };
+		61A1A5501AB74A030028217F /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A1A54F1AB74A030028217F /* APIClient.m */; };
+		61A1A5561AB767CC0028217F /* NSObject+nullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A1A5551AB767CC0028217F /* NSObject+nullSafe.m */; };
 		97F8EC4AE2134AED9C970E62 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFEF72E1379411185D85EDA /* libPods.a */; };
 		BEE157CA18D2F33900FFCB6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D0729186863B00020A116 /* Foundation.framework */; };
 		BEE157ED18D2F57A00FFCB6B /* Syncano.m in Sources */ = {isa = PBXBuildFile; fileRef = 152D07521868641F0020A116 /* Syncano.m */; };
@@ -65,13 +67,19 @@
 		15C1F3DC19213140005E4EC4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2B1E7E6C68734486889515FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4CFEF72E1379411185D85EDA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		619E428D1A9CB44E00787585 /* SyncanoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoRequest.h; path = Syncano/SyncanoRequest.h; sourceTree = SOURCE_ROOT; };
+		6135C4D51AB73CB00050D2F5 /* syncano-ios.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "syncano-ios.podspec"; sourceTree = SOURCE_ROOT; };
 		619E42921A9E11C600787585 /* SyncanoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoObject.h; path = Syncano/SyncanoObject.h; sourceTree = SOURCE_ROOT; };
 		619E42931A9E11C600787585 /* SyncanoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoObject.m; path = Syncano/SyncanoObject.m; sourceTree = SOURCE_ROOT; };
 		619E42951A9E14C300787585 /* SyncanoParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters.h; path = Syncano/SyncanoParameters.h; sourceTree = SOURCE_ROOT; };
 		619E42961A9E14C300787585 /* SyncanoParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters.m; path = Syncano/SyncanoParameters.m; sourceTree = SOURCE_ROOT; };
 		619E42981A9E7AA500787585 /* SyncanoArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoArray.h; path = Syncano/SyncanoArray.h; sourceTree = SOURCE_ROOT; };
 		619E42991A9E7AA500787585 /* SyncanoArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoArray.m; path = Syncano/SyncanoArray.m; sourceTree = SOURCE_ROOT; };
+		61A1A54E1AB74A030028217F /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIClient.h; path = Syncano/APIClient.h; sourceTree = SOURCE_ROOT; };
+		61A1A54F1AB74A030028217F /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APIClient.m; path = Syncano/APIClient.m; sourceTree = SOURCE_ROOT; };
+		61A1A5521AB74B9E0028217F /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Config.plist; path = Resources/Config.plist; sourceTree = "<group>"; };
+		61A1A5531AB759420028217F /* SyncanoObjectProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoObjectProtocol.h; path = Syncano/SyncanoObjectProtocol.h; sourceTree = SOURCE_ROOT; };
+		61A1A5541AB767CC0028217F /* NSObject+nullSafe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+nullSafe.h"; path = "Syncano/NSObject+nullSafe.h"; sourceTree = SOURCE_ROOT; };
+		61A1A5551AB767CC0028217F /* NSObject+nullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+nullSafe.m"; path = "Syncano/NSObject+nullSafe.m"; sourceTree = SOURCE_ROOT; };
 		BE98F69718D6F59C001EC84E /* server.der */ = {isa = PBXFileReference; lastKnownFileType = file; name = server.der; path = Resources/server.der; sourceTree = "<group>"; };
 		BEE157C918D2F33900FFCB6B /* libsyncano-ios-library.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsyncano-ios-library.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE157CD18D2F33900FFCB6B /* syncano-ios-library-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "syncano-ios-library-Prefix.pch"; sourceTree = "<group>"; };
@@ -127,6 +135,10 @@
 			children = (
 				1548BFD619AB5A3000267128 /* SyncanoReachability.h */,
 				1548BFD719AB5A3000267128 /* SyncanoReachability.m */,
+				61A1A54E1AB74A030028217F /* APIClient.h */,
+				61A1A54F1AB74A030028217F /* APIClient.m */,
+				61A1A5541AB767CC0028217F /* NSObject+nullSafe.h */,
+				61A1A5551AB767CC0028217F /* NSObject+nullSafe.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -135,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				BE98F69718D6F59C001EC84E /* server.der */,
+				61A1A5521AB74B9E0028217F /* Config.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -144,13 +157,13 @@
 			children = (
 				152D07511868641F0020A116 /* Syncano.h */,
 				152D07521868641F0020A116 /* Syncano.m */,
+				61A1A5531AB759420028217F /* SyncanoObjectProtocol.h */,
 				619E42921A9E11C600787585 /* SyncanoObject.h */,
 				619E42931A9E11C600787585 /* SyncanoObject.m */,
 				619E42981A9E7AA500787585 /* SyncanoArray.h */,
 				619E42991A9E7AA500787585 /* SyncanoArray.m */,
 				619E42951A9E14C300787585 /* SyncanoParameters.h */,
 				619E42961A9E14C300787585 /* SyncanoParameters.m */,
-				619E428D1A9CB44E00787585 /* SyncanoRequest.h */,
 				619E428C1A9CB40800787585 /* Helpers */,
 				BEE157CC18D2F33900FFCB6B /* Supporting Files */,
 			);
@@ -161,6 +174,7 @@
 		BEE157CC18D2F33900FFCB6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6135C4D51AB73CB00050D2F5 /* syncano-ios.podspec */,
 				15C0AD0D1A1E69AC009DC30E /* syncano-ios.podspec.json */,
 				BEE157CD18D2F33900FFCB6B /* syncano-ios-library-Prefix.pch */,
 			);
@@ -278,6 +292,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE157ED18D2F57A00FFCB6B /* Syncano.m in Sources */,
+				61A1A5561AB767CC0028217F /* NSObject+nullSafe.m in Sources */,
+				61A1A5501AB74A030028217F /* APIClient.m in Sources */,
 				619E42971A9E14C300787585 /* SyncanoParameters.m in Sources */,
 				619E429A1A9E7AA500787585 /* SyncanoArray.m in Sources */,
 				619E42941A9E11C600787585 /* SyncanoObject.m in Sources */,

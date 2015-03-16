@@ -7,11 +7,10 @@
 //
 
 #import "Syncano.h"
-
+#import "APIClient.h"
 #import <AFNetworking/AFNetworking.h>
 
 NSInteger const kSyncanoDefaultPageSize = 100;
-NSString *const kSyncanoURL = @"https://syncanotest1-env.elasticbeanstalk.com:443/v1/";
 
 @interface Syncano () {
 	NSString *_apiKey;
@@ -95,11 +94,33 @@ static Syncano *_sharedInstance = nil;
 	_name = nil;
 }
 
-- (id<SyncanoRequest>)get:(Class)class params:(SyncanoParameters *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {
-	return nil;
+- (NSURLSessionDataTask *)get:(Class)class params:(SyncanoParameters *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {
+	if (![class conformsToProtocol:@protocol(SyncanoObjectProtocol)]) {
+		[NSException exceptionWithName:@"Syncano.InvalidParameterException" reason:[NSString stringWithFormat:@"%@ does not conform to protocol SyncanoObjectProtocol", NSStringFromClass(class)] userInfo:nil];
+		return nil;
+	}
+	
+	NSString *url = [NSString stringWithFormat:@"instances/%@/classes/%@/objects/%@", self.name, NSStringFromClass(class), params[@"dbID"]];
+	return [[APIClient sharedClient] POST:url
+														 parameters:params
+																success:^(NSURLSessionDataTask *task, id responseObject) {
+																	if (success) {
+																		NSDictionary *json = responseObject;
+																		if ([json isKindOfClass:[NSDictionary class]]) {
+																			id<SyncanoObjectProtocol> object = [class alloc];
+																			success(task, [object initWithJSON:json]);
+																		}
+																		else if (failure)
+																			failure(task, [NSError errorWithDomain:@"Syncano" code:100 userInfo:nil]);
+																	}
+																}
+																failure:^(NSURLSessionDataTask *task, NSError *error) {
+																	if (failure)
+																		failure(task, error);
+																}];
 }
 
-- (id<SyncanoRequest>)getArrayOf:(Class)class params:(SyncanoParameters *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure {
+- (NSURLSessionDataTask *)getArrayOf:(Class)class params:(SyncanoParameters *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure {
 	return nil;
 }
 

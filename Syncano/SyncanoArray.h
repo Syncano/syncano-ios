@@ -12,5 +12,6 @@
 
 @property (nonatomic, copy, readonly) NSString *prevURLString;
 @property (nonatomic, copy, readonly) NSString *nextURLString;
+@property (nonatomic, assign, readonly) NSInteger *pageSize;
 
 @end
