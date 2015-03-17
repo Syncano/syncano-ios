@@ -10,10 +10,10 @@
 #import "SyncanoReachability.h"
 #import "SyncanoObjectProtocol.h"
 #import "SyncanoParameters.h"
-#import "SyncanoArray.m"
+#import "SyncanoArray.h"
 
 extern NSInteger const kSyncanoDefaultPageSize;
-typedef void(^SyncanoObjectBlock)(NSURLSessionDataTask *task, id<SyncanoObjectProtocol> object);
+typedef void(^SyncanoObjectBlock)(NSURLSessionDataTask *task, id<SyncanoObject> object);
 typedef void(^SyncanoArrayBlock)(NSURLSessionDataTask *task, SyncanoArray *array);
 typedef void(^SyncanoErrorBlock)(NSURLSessionDataTask *task, NSError *error);
 

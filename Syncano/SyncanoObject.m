@@ -27,4 +27,10 @@
 	return self;
 }
 
+#pragma mark - MTLJSONSerializing
+
+- (NSString *)JSONKeyPathForPropertyKey:(NSString *)key {
+  return key; // by default Syncano fields and object properties are presumed to match
+}
+
 @end

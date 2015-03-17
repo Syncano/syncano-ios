@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "SyncanoObjectProtocol.h"
+#import <Mantle/Mantle.h>
 
-@interface SyncanoObject : NSObject <SyncanoObjectProtocol> {
+@interface SyncanoObject : MTLModel <SyncanoObject> {
 	NSDate *_createdAt;
 	NSDate *_updatedAt;
 	NSInteger _revision;
@@ -17,8 +18,8 @@
 	NSString *_sidekick;
 }
 
-@property (strong, readonly) NSDate *createdAt;
-@property (strong, readonly) NSDate *updatedAt;
+@property (copy, readonly) NSDate *createdAt;
+@property (copy, readonly) NSDate *updatedAt;
 @property (assign, readonly) NSInteger revision;
 @property (assign, readonly) NSInteger dbID;
 @property (copy, readonly) NSString *sidekick;
