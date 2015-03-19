@@ -31,6 +31,7 @@
 		61A1A5561AB767CC0028217F /* NSObject+nullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A1A5551AB767CC0028217F /* NSObject+nullSafe.m */; };
 		61E36E7B1AB8F62900729FC7 /* SyncanoError.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E36E781AB8F62900729FC7 /* SyncanoError.m */; };
 		61E36E7C1AB8F62900729FC7 /* SyncanoException.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E36E7A1AB8F62900729FC7 /* SyncanoException.m */; };
+		61E36E801AB9C0F100729FC7 /* Config.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61A1A5521AB74B9E0028217F /* Config.plist */; };
 		97F8EC4AE2134AED9C970E62 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFEF72E1379411185D85EDA /* libPods.a */; };
 		BEE157CA18D2F33900FFCB6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152D0729186863B00020A116 /* Foundation.framework */; };
 		BEE157ED18D2F57A00FFCB6B /* Syncano.m in Sources */ = {isa = PBXBuildFile; fileRef = 152D07521868641F0020A116 /* Syncano.m */; };
@@ -53,6 +54,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				61E36E801AB9C0F100729FC7 /* Config.plist in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

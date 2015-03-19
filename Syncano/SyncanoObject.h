@@ -10,6 +10,8 @@
 #import "SyncanoObjectProtocol.h"
 #import <Mantle/Mantle.h>
 
+extern NSString *const kPropertyDBID;
+
 @interface SyncanoObject : MTLModel <SyncanoObject> {
 	NSDate *_createdAt;
 	NSDate *_updatedAt;

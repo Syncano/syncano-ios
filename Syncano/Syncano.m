@@ -58,7 +58,7 @@ static Syncano *_sharedInstance = nil;
       defaultName = [Syncano settings][kDefaultName];
     
     if ([defaultAPIKey length] && [defaultName length]) {
-      _sharedInstance = [[Syncano alloc] initWithAPIKey:defaultAPIKey name:defaultName];
+      _sharedInstance = [[self alloc] initWithAPIKey:defaultAPIKey name:defaultName];
     }
   });
   
@@ -99,7 +99,7 @@ static Syncano *_sharedInstance = nil;
 }
 
 + (instancetype)syncanoWithAPIKey:(NSString *)apiKey name:(NSString *)name {
-  return [[Syncano alloc] initWithAPIKey:apiKey name:name];
+  return [[self alloc] initWithAPIKey:apiKey name:name];
 }
 
 - (void)dealloc {
@@ -114,29 +114,31 @@ static Syncano *_sharedInstance = nil;
   }
   
   NSString *url = [NSString stringWithFormat:kSyncanoURLObjects, self.name, NSStringFromClass(class), params[kPropertyDBID]];
-  return [[APIClient sharedClient] POST:url
-                             parameters:params
-                                success:^(NSURLSessionDataTask *task, id responseObject) {
-                                  if (success) {
-                                    NSDictionary *json = responseObject;
-                                    if ([json isKindOfClass:[NSDictionary class]]) {
-                                      NSError *error = nil;
-                                      id<SyncanoObject> object = [MTLJSONAdapter modelOfClass:[class alloc] fromJSONDictionary:json error:&error];
-                                      if (error) {
-                                        if (failure)
-                                          failure(task, error);
-                                      }
-                                      else
-                                        success(task, [object initWithJSON:json]);
-                                    }
-                                    else if (failure)
-                                      failure(task, [SyncanoError errorWithCode:SyncanoErrorResponseIsNotJSONDictionary]);
-                                  }
-                                }
-                                failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                  if (failure)
-                                    failure(task, error);
-                                }];
+  NSMutableDictionary *dictionary = [params mutableCopy];
+  [dictionary removeObjectForKey:kPropertyDBID];
+  return [[APIClient sharedClient] GET:url
+                            parameters:nil
+                               success:^(NSURLSessionDataTask *task, id responseObject) {
+                                 if (success) {
+                                   NSDictionary *json = responseObject;
+                                   if ([json isKindOfClass:[NSDictionary class]]) {
+                                     NSError *error = nil;
+                                     id<SyncanoObject> object = [MTLJSONAdapter modelOfClass:[class alloc] fromJSONDictionary:json error:&error];
+                                     if (error) {
+                                       if (failure)
+                                         failure(task, error);
+                                     }
+                                     else
+                                       success(task, object);
+                                   }
+                                   else if (failure)
+                                     failure(task, [SyncanoError errorWithCode:SyncanoErrorResponseIsNotJSONDictionary]);
+                                 }
+                               }
+                               failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                 if (failure)
+                                   failure(task, error);
+                               }];
 }
 
 - (NSURLSessionDataTask *)getArrayOf:(Class)class params:(SyncanoParameters *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure {

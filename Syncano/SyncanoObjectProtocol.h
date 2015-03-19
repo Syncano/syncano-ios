@@ -12,8 +12,6 @@
 @protocol SyncanoObject <MTLJSONSerializing>
 
 @required
-+ (instancetype)objectWithJSON:(NSDictionary *)json;
-- (id)initWithJSON:(NSDictionary *)json;
 
 @property (copy, readonly) NSDate *createdAt;
 @property (copy, readonly) NSDate *updatedAt;
