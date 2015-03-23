@@ -10,7 +10,7 @@
 
 @implementation NSObject (SyncanoNullSafe)
 
-- (id)nullSafe {
+- (id)syncanoNullSafe {
   return [self isKindOfClass:[NSNull class]] ? nil : self;
 }
 

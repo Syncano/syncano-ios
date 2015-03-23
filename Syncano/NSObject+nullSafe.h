@@ -12,6 +12,6 @@
 
 @interface NSObject (SyncanoNullSafe)
 
-- (id)nullSafe;
+- (id)syncanoNullSafe;
 
 @end
