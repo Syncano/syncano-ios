@@ -36,7 +36,7 @@ NSString *const kSyncanoExceptionInvalidParameter = @"Syncano.InvalidParameterEx
       break;
   }
   
-  return [[[self class] alloc] initWithName:name reason:reason userInfo:userInfo];
+  return [[self alloc] initWithName:name reason:reason userInfo:userInfo];
 }
 
 @end

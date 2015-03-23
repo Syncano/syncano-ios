@@ -13,11 +13,10 @@
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-  return @{@"createdAt":@"createdAt",
-           @"updatedAt":@"updatedAt",
+  return @{@"createdAt":@"created_at",
+           @"updatedAt":@"updated_at",
            @"revision":@"revision",
-           @"dbID":@"id",
-           @"sidekick":@"sidekick"};
+           @"dbID":@"id"};
 }
 
 @end

@@ -10,9 +10,9 @@
 
 extern NSString *const kSyncanoExceptionInvalidParameter;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, SyncanoExceptionCode) {
   SyncanoExceptionInvalidParameter = 0
-} SyncanoExceptionCode;
+};
 
 @interface SyncanoException : NSException
 

@@ -17,6 +17,5 @@
 @property (copy, readonly) NSDate *updatedAt;
 @property (assign, readonly) NSInteger revision;
 @property (assign, readonly) NSInteger dbID;
-@property (copy, readonly) NSString *sidekick;
 
 @end

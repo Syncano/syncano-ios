@@ -24,8 +24,9 @@ NSString *const kPropertyDBID = @"dbID";
 NSString *const kSyncanoURLObjects = @"instances/%@/classes/%@/objects/%@";
 
 @interface Syncano () {
-  NSString *_apiKey;
 }
+@property (nonatomic, copy) NSString *apiKey;
+@property (nonatomic, copy) NSString *name;
 @end
 
 
@@ -74,7 +75,7 @@ static Syncano *_sharedInstance = nil;
   if (!instance)
     return [Syncano sharedInstanceWithAPIKey:[Syncano settings][kAPIKey] name:name];
   
-  instance->_name = [name copy];
+  instance.name = name;
   return instance;
 }
 
@@ -88,8 +89,8 @@ static Syncano *_sharedInstance = nil;
   
   self = [super init];
   if (self) {
-    _apiKey = [apiKey copy];
-    _name = [name copy];
+    self.apiKey = apiKey;
+    self.name = name;
   }
   return self;
 }
@@ -103,8 +104,6 @@ static Syncano *_sharedInstance = nil;
 }
 
 - (void)dealloc {
-  _apiKey = nil;
-  _name = nil;
 }
 
 - (NSURLSessionDataTask *)get:(Class)class params:(SyncanoParameters *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {

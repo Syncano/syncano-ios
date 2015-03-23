@@ -17,13 +17,11 @@ extern NSString *const kPropertyDBID;
 	NSDate *_updatedAt;
 	NSInteger _revision;
 	NSInteger _dbID;
-	NSString *_sidekick;
 }
 
 @property (copy, readonly) NSDate *createdAt;
 @property (copy, readonly) NSDate *updatedAt;
 @property (assign, readonly) NSInteger revision;
 @property (assign, readonly) NSInteger dbID;
-@property (copy, readonly) NSString *sidekick;
 
 @end

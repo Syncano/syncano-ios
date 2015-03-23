@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, SyncanoErrorCode) {
   SyncanoErrorInvalidParameter = 0,
   SyncanoErrorResponseIsNotJSONDictionary
-} SyncanoErrorCode;
+};
 
 @interface SyncanoError : NSError
 
