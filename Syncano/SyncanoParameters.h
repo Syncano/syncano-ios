@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SyncanoParameters : NSMutableDictionary
+@interface SyncanoParameters : NSObject <NSCopying, NSCoding>
+
+@property (nonatomic, retain, readonly) NSDictionary *dictionary;
+
++ (instancetype)parametersWithDictionary:(NSDictionary *)dict;
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
 
 @end

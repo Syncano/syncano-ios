@@ -13,15 +13,16 @@
 #import <Mantle.h>
 #import "SyncanoError.h"
 #import "SyncanoException.h"
+#import "SyncanoObject.h"
 
 NSInteger const kSyncanoDefaultPageSize = 100;
 
 NSString *const kAPIKey = @"apiKey";
 NSString *const kDefaultName = @"defaultName";
 
-NSString *const kPropertyDBID = @"dbID";
+NSString *const kSyncanoURLObjectsByDBID = @"v1/instances/%@/classes/%@/objects/%@/";
+NSString *const kSyncanoURLObjects = @"v1/instances/%@/classes/%@/objects/";
 
-NSString *const kSyncanoURLObjects = @"instances/%@/classes/%@/objects/%@";
 
 @interface Syncano () {
 }
@@ -106,41 +107,80 @@ static Syncano *_sharedInstance = nil;
 - (void)dealloc {
 }
 
-- (NSURLSessionDataTask *)get:(Class)class params:(SyncanoParameters *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {
+- (APIClient *)apiClient {
+  APIClient *client = [APIClient sharedClient];
+  if (self.apiKey)
+    [client.requestSerializer setValue:[NSString stringWithFormat:@"Token %@", self.apiKey] forHTTPHeaderField:@"Authorization"];
+  return client;
+}
+
+- (NSURLSessionDataTask *)get:(Class)class params:(NSDictionary *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {
   if (![class conformsToProtocol:@protocol(SyncanoObject)]) {
     [[SyncanoException exceptionWithCode:SyncanoExceptionInvalidParameter reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", NSStringFromClass(class), NSStringFromProtocol(@protocol(SyncanoObject))]] raise];
     return nil;
   }
   
-  NSString *url = [NSString stringWithFormat:kSyncanoURLObjects, self.name, NSStringFromClass(class), params[kPropertyDBID]];
+  NSString *url = [NSString stringWithFormat:kSyncanoURLObjectsByDBID, self.name, NSStringFromClass(class), params[kPropertyDBID]];
   NSMutableDictionary *dictionary = [params mutableCopy];
   [dictionary removeObjectForKey:kPropertyDBID];
-  return [[APIClient sharedClient] GET:url
-                            parameters:nil
-                               success:^(NSURLSessionDataTask *task, id responseObject) {
-                                 if (success) {
-                                   NSDictionary *json = responseObject;
-                                   if ([json isKindOfClass:[NSDictionary class]]) {
-                                     NSError *error = nil;
-                                     id<SyncanoObject> object = [MTLJSONAdapter modelOfClass:[class alloc] fromJSONDictionary:json error:&error];
-                                     if (error) {
-                                       if (failure)
-                                         failure(task, error);
-                                     }
-                                     else
-                                       success(task, object);
-                                   }
-                                   else if (failure)
-                                     failure(task, [SyncanoError errorWithCode:SyncanoErrorResponseIsNotJSONDictionary]);
-                                 }
-                               }
-                               failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                 if (failure)
-                                   failure(task, error);
-                               }];
+  return [[self apiClient] GET:url
+                    parameters:[dictionary allKeys].count ? dictionary : nil
+                       success:^(NSURLSessionDataTask *task, id responseObject) {
+                         if (success) {
+                           NSDictionary *json = responseObject;
+                           if ([json isKindOfClass:[NSDictionary class]]) {
+                             NSError *error = nil;
+                             id<SyncanoObject> object = [MTLJSONAdapter modelOfClass:class fromJSONDictionary:json error:&error];
+                             if (error) {
+                               if (failure)
+                                 failure(task, error);
+                             }
+                             else
+                               success(task, object);
+                           }
+                           else if (failure)
+                             failure(task, [SyncanoError errorWithCode:SyncanoErrorResponseIsNotJSONDictionary]);
+                         }
+                       }
+                       failure:^(NSURLSessionDataTask *task, NSError *error) {
+                         if (failure)
+                           failure(task, error);
+                       }];
 }
 
-- (NSURLSessionDataTask *)getArrayOf:(Class)class params:(SyncanoParameters *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure {
+- (NSURLSessionDataTask *)create:(Class)class params:(NSDictionary *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {
+  if (![class conformsToProtocol:@protocol(SyncanoObject)]) {
+    [[SyncanoException exceptionWithCode:SyncanoExceptionInvalidParameter reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", NSStringFromClass(class), NSStringFromProtocol(@protocol(SyncanoObject))]] raise];
+    return nil;
+  }
+  
+  NSString *url = [NSString stringWithFormat:kSyncanoURLObjects, self.name, NSStringFromClass(class)];
+  return [[self apiClient] POST:url
+                     parameters:[params allKeys].count ? params : nil
+                        success:^(NSURLSessionDataTask *task, id responseObject) {
+                          if (success) {
+                            NSDictionary *json = responseObject;
+                            if ([json isKindOfClass:[NSDictionary class]]) {
+                              NSError *error = nil;
+                              id<SyncanoObject> object = [MTLJSONAdapter modelOfClass:class fromJSONDictionary:json error:&error];
+                              if (error) {
+                                if (failure)
+                                  failure(task, error);
+                              }
+                              else
+                                success(task, object);
+                            }
+                            else if (failure)
+                              failure(task, [SyncanoError errorWithCode:SyncanoErrorResponseIsNotJSONDictionary]);
+                          }
+                        }
+                        failure:^(NSURLSessionDataTask *task, NSError *error) {
+                          if (failure)
+                            failure(task, error);
+                        }];
+}
+
+- (NSURLSessionDataTask *)getArrayOf:(Class)class params:(NSDictionary *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure {
   return nil;
 }
 
