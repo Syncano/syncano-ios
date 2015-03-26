@@ -30,6 +30,7 @@
 		61A1A5501AB74A030028217F /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A1A54F1AB74A030028217F /* APIClient.m */; };
 		61A1A5561AB767CC0028217F /* NSObject+nullSafe.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A1A5551AB767CC0028217F /* NSObject+nullSafe.m */; };
 		61B4B6D71AC1A74300B4D265 /* NSDictionary+syncanoParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B4B6D61AC1A74300B4D265 /* NSDictionary+syncanoParameters.m */; };
+		61B4B6DD1AC1E4C000B4D265 /* NSMutableDictionary+syncanoParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B4B6DC1AC1E4BF00B4D265 /* NSMutableDictionary+syncanoParameters.m */; };
 		61E36E7B1AB8F62900729FC7 /* SyncanoError.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E36E781AB8F62900729FC7 /* SyncanoError.m */; };
 		61E36E7C1AB8F62900729FC7 /* SyncanoException.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E36E7A1AB8F62900729FC7 /* SyncanoException.m */; };
 		61E36E801AB9C0F100729FC7 /* Config.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61A1A5521AB74B9E0028217F /* Config.plist */; };
@@ -87,6 +88,8 @@
 		61A1A5551AB767CC0028217F /* NSObject+nullSafe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+nullSafe.m"; path = "Syncano/NSObject+nullSafe.m"; sourceTree = SOURCE_ROOT; };
 		61B4B6D51AC1A74300B4D265 /* NSDictionary+syncanoParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+syncanoParameters.h"; path = "Syncano/NSDictionary+syncanoParameters.h"; sourceTree = SOURCE_ROOT; };
 		61B4B6D61AC1A74300B4D265 /* NSDictionary+syncanoParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+syncanoParameters.m"; path = "Syncano/NSDictionary+syncanoParameters.m"; sourceTree = SOURCE_ROOT; };
+		61B4B6DB1AC1E4BF00B4D265 /* NSMutableDictionary+syncanoParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+syncanoParameters.h"; path = "Syncano/NSMutableDictionary+syncanoParameters.h"; sourceTree = SOURCE_ROOT; };
+		61B4B6DC1AC1E4BF00B4D265 /* NSMutableDictionary+syncanoParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+syncanoParameters.m"; path = "Syncano/NSMutableDictionary+syncanoParameters.m"; sourceTree = SOURCE_ROOT; };
 		61E36E771AB8F62900729FC7 /* SyncanoError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoError.h; path = Syncano/SyncanoError.h; sourceTree = SOURCE_ROOT; };
 		61E36E781AB8F62900729FC7 /* SyncanoError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoError.m; path = Syncano/SyncanoError.m; sourceTree = SOURCE_ROOT; };
 		61E36E791AB8F62900729FC7 /* SyncanoException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoException.h; path = Syncano/SyncanoException.h; sourceTree = SOURCE_ROOT; };
@@ -152,6 +155,8 @@
 				61A1A5551AB767CC0028217F /* NSObject+nullSafe.m */,
 				61B4B6D51AC1A74300B4D265 /* NSDictionary+syncanoParameters.h */,
 				61B4B6D61AC1A74300B4D265 /* NSDictionary+syncanoParameters.m */,
+				61B4B6DB1AC1E4BF00B4D265 /* NSMutableDictionary+syncanoParameters.h */,
+				61B4B6DC1AC1E4BF00B4D265 /* NSMutableDictionary+syncanoParameters.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 				61B4B6D71AC1A74300B4D265 /* NSDictionary+syncanoParameters.m in Sources */,
 				619E42941A9E11C600787585 /* SyncanoObject.m in Sources */,
 				61E36E7B1AB8F62900729FC7 /* SyncanoError.m in Sources */,
+				61B4B6DD1AC1E4C000B4D265 /* NSMutableDictionary+syncanoParameters.m in Sources */,
 				1548BFD819AB5A3000267128 /* SyncanoReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

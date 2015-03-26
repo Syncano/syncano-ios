@@ -10,6 +10,8 @@
 
 @interface NSDictionary (syncanoParameters)
 
-+ (NSDictionary *)syncanoParametersWithID:(NSString *)dbID;
+@property (nonatomic, copy, readonly) NSNumber *dbID;
+
++ (NSDictionary *)syncanoParametersWithID:(NSNumber *)dbID;
 
 @end
