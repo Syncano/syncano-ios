@@ -1,6 +1,6 @@
 //
 //  NSObject+nullSafe.h
-//  LoaderSplitView
+//  Syncano
 //
 //  Created by Mateusz on 22.01.2015.
 //  Copyright (c) 2015 Syncano. All rights reserved.
@@ -10,8 +10,8 @@
 
 #define ASSIGN_IF_NOT_NIL(leftOperand, rightOperand) { if (rightOperand) leftOperand = rightOperand; }
 
-@interface NSObject (nullSafe)
+@interface NSObject (SyncanoNullSafe)
 
-- (id)nullSafe;
+- (id)syncanoNullSafe;
 
 @end

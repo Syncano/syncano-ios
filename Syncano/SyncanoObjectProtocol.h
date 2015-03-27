@@ -7,17 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/Mantle.h>
 
-@protocol SyncanoObjectProtocol <NSObject>
+@protocol SyncanoObject <MTLJSONSerializing>
 
 @required
-+ (instancetype)objectWithJSON:(NSDictionary *)json;
-- (id)initWithJSON:(NSDictionary *)json;
 
-- (NSDate *)createdAt;
-- (NSDate *)updatedAt;
-- (NSInteger)revision;
-- (NSInteger)dbID;
-- (NSString *)sidekick;
+@property (copy, readonly) NSDate *createdAt;
+@property (copy, readonly) NSDate *updatedAt;
+@property (assign, readonly) NSInteger revision;
+@property (assign, readonly) NSInteger dbID;
+@property (retain, readonly) NSDictionary *links;
+@property (copy, readonly) NSString *group;
+@property (assign, readonly) NSInteger groupPermissions;
+@property (copy, readonly) NSString *owner;
+@property (assign, readonly) NSInteger ownerPermissions;
+@property (assign, readonly) NSInteger otherPermissions;
 
 @end

@@ -1,3 +1,4 @@
+
 //
 //  Syncano.m
 //  Syncano
@@ -9,12 +10,24 @@
 #import "Syncano.h"
 #import "APIClient.h"
 #import <AFNetworking/AFNetworking.h>
+#import <Mantle.h>
+#import "SyncanoError.h"
+#import "SyncanoException.h"
+#import "SyncanoObject.h"
 
 NSInteger const kSyncanoDefaultPageSize = 100;
 
+NSString *const kAPIKey = @"apiKey";
+NSString *const kDefaultName = @"defaultName";
+
+NSString *const kSyncanoURLObjectsByDBID = @"v1/instances/%@/classes/%@/objects/%@/";
+NSString *const kSyncanoURLObjects = @"v1/instances/%@/classes/%@/objects/";
+
+
 @interface Syncano () {
-	NSString *_apiKey;
 }
+@property (nonatomic, copy) NSString *apiKey;
+@property (nonatomic, copy) NSString *name;
 @end
 
 
@@ -25,103 +38,150 @@ NSInteger const kSyncanoDefaultPageSize = 100;
 static Syncano *_sharedInstance = nil;
 
 + (NSDictionary *)settings {
-	static NSDictionary *_settings = nil;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		_settings = [NSDictionary dictionaryWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"Syncano" ofType:@"plist"]]];
-	});
-	return _settings;
+  static NSDictionary *_settings = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Syncano" ofType:@"plist"];
+    if (filePath)
+      _settings = [NSDictionary dictionaryWithContentsOfURL:[NSURL fileURLWithPath:filePath]];
+  });
+  return _settings;
 }
 
 + (instancetype)sharedInstanceWithAPIKey:(NSString *)apiKey name:(NSString *)name {
-	static dispatch_once_t onceToken;
-	
-	__block NSString *defaultAPIKey = apiKey;
-	__block NSString *defaultName = name;
-	dispatch_once(&onceToken, ^{
-		if (![defaultAPIKey length])
-			defaultAPIKey = [Syncano settings][@"apiKey"];
-		if (![defaultName length])
-			defaultName = [Syncano settings][@"defaultName"];
-		
-		if ([defaultAPIKey length] && [defaultName length]) {
-			_sharedInstance = [[Syncano alloc] initWithAPIKey:defaultAPIKey name:defaultName];
-		}
-	});
-	
-	return _sharedInstance;
+  static dispatch_once_t onceToken;
+  
+  __block NSString *defaultAPIKey = apiKey;
+  __block NSString *defaultName = name;
+  dispatch_once(&onceToken, ^{
+    if (![defaultAPIKey length])
+      defaultAPIKey = [Syncano settings][kAPIKey];
+    if (![defaultName length])
+      defaultName = [Syncano settings][kDefaultName];
+    
+    if ([defaultAPIKey length] && [defaultName length]) {
+      _sharedInstance = [[self alloc] initWithAPIKey:defaultAPIKey name:defaultName];
+    }
+  });
+  
+  return _sharedInstance;
 }
 
 + (instancetype)sharedInstance {
-	return [Syncano sharedInstanceWithAPIKey:[Syncano settings][@"apiKey"] name:[Syncano settings][@"defaultName"]];
+  return [Syncano sharedInstanceWithAPIKey:[Syncano settings][kAPIKey] name:[Syncano settings][kDefaultName]];
 }
 
 + (instancetype)setSharedInstanceName:(NSString *)name {
-	Syncano *instance = [Syncano sharedInstance];
-	if (!instance)
-		return [Syncano sharedInstanceWithAPIKey:[Syncano settings][@"apiKey"] name:name];
-
-	instance->_name = [name copy];
-	return instance;
+  Syncano *instance = [Syncano sharedInstance];
+  if (!instance)
+    return [Syncano sharedInstanceWithAPIKey:[Syncano settings][kAPIKey] name:name];
+  
+  instance.name = name;
+  return instance;
 }
 
 - (instancetype)initWithName:(NSString *)name {
-	return [self initWithAPIKey:[Syncano settings][@"apiKey"] name:name];
+  return [self initWithAPIKey:[Syncano settings][kAPIKey] name:name];
 }
 
 - (instancetype)initWithAPIKey:(NSString *)apiKey name:(NSString *)name {
-	if (![apiKey length] || ![name length])
-		return nil;
-	
-	self = [super init];
-	if (self) {
-		_apiKey = [apiKey copy];
-		_name = [name copy];
-	}
-	return self;
+  if (![apiKey length] || ![name length])
+    return nil;
+  
+  self = [super init];
+  if (self) {
+    self.apiKey = apiKey;
+    self.name = name;
+  }
+  return self;
 }
 
 + (instancetype)syncanoWithName:(NSString *)name {
-	return [Syncano syncanoWithAPIKey:[Syncano settings][@"apiKey"] name:name];
+  return [Syncano syncanoWithAPIKey:[Syncano settings][kAPIKey] name:name];
 }
 
 + (instancetype)syncanoWithAPIKey:(NSString *)apiKey name:(NSString *)name {
-	return [[Syncano alloc] initWithAPIKey:apiKey name:name];
+  return [[self alloc] initWithAPIKey:apiKey name:name];
 }
 
 - (void)dealloc {
-	_apiKey = nil;
-	_name = nil;
 }
 
-- (NSURLSessionDataTask *)get:(Class)class params:(SyncanoParameters *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {
-	if (![class conformsToProtocol:@protocol(SyncanoObjectProtocol)]) {
-		[NSException exceptionWithName:@"Syncano.InvalidParameterException" reason:[NSString stringWithFormat:@"%@ does not conform to protocol SyncanoObjectProtocol", NSStringFromClass(class)] userInfo:nil];
-		return nil;
-	}
-	
-	NSString *url = [NSString stringWithFormat:@"instances/%@/classes/%@/objects/%@", self.name, NSStringFromClass(class), params[@"dbID"]];
-	return [[APIClient sharedClient] POST:url
-														 parameters:params
-																success:^(NSURLSessionDataTask *task, id responseObject) {
-																	if (success) {
-																		NSDictionary *json = responseObject;
-																		if ([json isKindOfClass:[NSDictionary class]]) {
-																			id<SyncanoObjectProtocol> object = [class alloc];
-																			success(task, [object initWithJSON:json]);
-																		}
-																		else if (failure)
-																			failure(task, [NSError errorWithDomain:@"Syncano" code:100 userInfo:nil]);
-																	}
-																}
-																failure:^(NSURLSessionDataTask *task, NSError *error) {
-																	if (failure)
-																		failure(task, error);
-																}];
+- (APIClient *)apiClient {
+  APIClient *client = [APIClient sharedClient];
+  if (self.apiKey)
+    [client.requestSerializer setValue:[NSString stringWithFormat:@"Token %@", self.apiKey] forHTTPHeaderField:@"Authorization"];
+  return client;
 }
 
-- (NSURLSessionDataTask *)getArrayOf:(Class)class params:(SyncanoParameters *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure {
-	return nil;
+- (NSURLSessionDataTask *)get:(Class)class params:(NSDictionary *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {
+  if (![class conformsToProtocol:@protocol(SyncanoObject)]) {
+    [[SyncanoException exceptionWithCode:SyncanoExceptionInvalidParameter reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", NSStringFromClass(class), NSStringFromProtocol(@protocol(SyncanoObject))]] raise];
+    return nil;
+  }
+  
+  NSString *url = [NSString stringWithFormat:kSyncanoURLObjectsByDBID, self.name, NSStringFromClass(class), params[kPropertyDBID]];
+  NSMutableDictionary *dictionary = [params mutableCopy];
+  [dictionary removeObjectForKey:kPropertyDBID];
+  return [[self apiClient] GET:url
+                    parameters:[dictionary allKeys].count ? dictionary : nil
+                       success:^(NSURLSessionDataTask *task, id responseObject) {
+                         if (success) {
+                           NSDictionary *json = responseObject;
+                           if ([json isKindOfClass:[NSDictionary class]]) {
+                             NSError *error = nil;
+                             id<SyncanoObject> object = [MTLJSONAdapter modelOfClass:class fromJSONDictionary:json error:&error];
+                             if (error) {
+                               if (failure)
+                                 failure(task, error);
+                             }
+                             else
+                               success(task, object);
+                           }
+                           else if (failure)
+                             failure(task, [SyncanoError errorWithCode:SyncanoErrorResponseIsNotJSONDictionary]);
+                         }
+                       }
+                       failure:^(NSURLSessionDataTask *task, NSError *error) {
+                         if (failure)
+                           failure(task, error);
+                       }];
+}
+
+- (NSURLSessionDataTask *)create:(Class)class params:(NSDictionary *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure {
+  if (![class conformsToProtocol:@protocol(SyncanoObject)]) {
+    [[SyncanoException exceptionWithCode:SyncanoExceptionInvalidParameter reason:[NSString stringWithFormat:@"%@ does not conform to protocol %@", NSStringFromClass(class), NSStringFromProtocol(@protocol(SyncanoObject))]] raise];
+    return nil;
+  }
+  
+  NSString *url = [NSString stringWithFormat:kSyncanoURLObjects, self.name, NSStringFromClass(class)];
+  return [[self apiClient] POST:url
+                     parameters:[params allKeys].count ? params : nil
+                        success:^(NSURLSessionDataTask *task, id responseObject) {
+                          if (success) {
+                            NSDictionary *json = responseObject;
+                            if ([json isKindOfClass:[NSDictionary class]]) {
+                              NSError *error = nil;
+                              id<SyncanoObject> object = [MTLJSONAdapter modelOfClass:class fromJSONDictionary:json error:&error];
+                              if (error) {
+                                if (failure)
+                                  failure(task, error);
+                              }
+                              else
+                                success(task, object);
+                            }
+                            else if (failure)
+                              failure(task, [SyncanoError errorWithCode:SyncanoErrorResponseIsNotJSONDictionary]);
+                          }
+                        }
+                        failure:^(NSURLSessionDataTask *task, NSError *error) {
+                          if (failure)
+                            failure(task, error);
+                        }];
+}
+
+- (NSURLSessionDataTask *)getArrayOf:(Class)class params:(NSDictionary *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure {
+  return nil;
 }
 
 @end

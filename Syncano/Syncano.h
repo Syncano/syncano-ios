@@ -10,12 +10,14 @@
 #import "SyncanoReachability.h"
 #import "SyncanoObjectProtocol.h"
 #import "SyncanoParameters.h"
-#import "SyncanoArray.m"
+#import "SyncanoArray.h"
 
 extern NSInteger const kSyncanoDefaultPageSize;
-typedef void(^SyncanoObjectBlock)(NSURLSessionDataTask *task, id<SyncanoObjectProtocol> object);
+typedef void(^SyncanoObjectBlock)(NSURLSessionDataTask *task, id<SyncanoObject> object);
 typedef void(^SyncanoArrayBlock)(NSURLSessionDataTask *task, SyncanoArray *array);
 typedef void(^SyncanoErrorBlock)(NSURLSessionDataTask *task, NSError *error);
+
+#define SP(dict) [SyncanoParameters parametersWithDictionary:dict]
 
 @interface Syncano : NSObject
 
@@ -29,7 +31,8 @@ typedef void(^SyncanoErrorBlock)(NSURLSessionDataTask *task, NSError *error);
 - (instancetype)initWithName:(NSString *)name;
 
 // managing objects
-- (NSURLSessionDataTask *)get:(Class)class params:(SyncanoParameters *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure;
-- (NSURLSessionDataTask *)getArrayOf:(Class)class params:(SyncanoParameters *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure;
+- (NSURLSessionDataTask *)get:(Class)class params:(NSDictionary *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure;
+- (NSURLSessionDataTask *)create:(Class)class params:(NSDictionary *)params success:(SyncanoObjectBlock)success failure:(SyncanoErrorBlock)failure;
+- (NSURLSessionDataTask *)getArrayOf:(Class)class params:(NSDictionary *)params success:(SyncanoArrayBlock)success failure:(SyncanoErrorBlock)failure;
 
 @end
