@@ -124,6 +124,7 @@
 		158696A2187C32BD008A23AC /* SyncanoParameters_Subscriptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncanoParameters_Subscriptions.h; path = Parameters/Subscriptions/SyncanoParameters_Subscriptions.h; sourceTree = "<group>"; };
 		158696A3187C32BD008A23AC /* SyncanoParameters_Subscriptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncanoParameters_Subscriptions.m; path = Parameters/Subscriptions/SyncanoParameters_Subscriptions.m; sourceTree = "<group>"; };
 		158696A6187C4648008A23AC /* SyncanoResponse_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoResponse_Private.h; path = Responses/SyncanoResponse_Private.h; sourceTree = "<group>"; };
+		158DEBED1B0304F700360057 /* SyncanoDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyncanoDefines.h; sourceTree = "<group>"; };
 		159E9ED418D1E0C0007486FA /* SyncanoProtocolAdministrators.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolAdministrators.h; path = Protocols/SyncanoProtocolAdministrators.h; sourceTree = "<group>"; };
 		159E9ED918D20717007486FA /* SyncanoProtocolAPIKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SyncanoProtocolAPIKeys.h; path = Protocols/SyncanoProtocolAPIKeys.h; sourceTree = "<group>"; };
 		15AAADA91876CB7F00139A47 /* SyncanoDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncanoDateFormatter.h; sourceTree = "<group>"; };
@@ -436,6 +437,7 @@
 			children = (
 				15AAADA91876CB7F00139A47 /* SyncanoDateFormatter.h */,
 				15AAADAA1876CB7F00139A47 /* SyncanoDateFormatter.m */,
+				158DEBED1B0304F700360057 /* SyncanoDefines.h */,
 			);
 			name = Utilities;
 			path = ../Syncano/Utilities;

@@ -8,6 +8,7 @@
 
 #import "Syncano.h"
 #import "Syncano+Private.h"
+#import "SyncanoDefines.h"
 
 #import <AFNetworking/AFNetworking.h>
 
