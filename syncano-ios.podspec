@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source       = { :git => "https://github.com/Syncano/syncano-ios.git", :tag => s.version.to_s }
-  s.prefix_header_contents = ""
   s.header_dir   =  'Syncano'
   s.source_files = 'Syncano/**/*.{h,m}', 'syncano-ios-library/**/*.{h,m}'
   s.resources    = [ 'Resources/server.der', 'syncano-ios.podspec.json' ]
