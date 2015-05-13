@@ -15,7 +15,6 @@ Pod::Spec.new do |s|
   s.prefix_header_contents = ""
   s.header_dir   =  'Syncano'
   s.source_files = 'Syncano/**/*.{h,m}', 'syncano-ios-library/**/*.{h,m}'
-  s.private_header_files = 'Syncano/Private/*.h'
   s.resources    = [ 'Resources/server.der', 'syncano-ios.podspec.json' ]
 
   s.dependency 'CocoaAsyncSocket', '~>7.3.0'
