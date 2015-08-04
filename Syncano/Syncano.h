@@ -76,6 +76,13 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
  */
 @property (assign, readwrite) BOOL logJSONResponses;
 
+/**
+ The timeout interval, in seconds, for all Syncano requests. The default timeout interval is 60 seconds.
+ 
+ @see NSMutableURLRequest -setTimeoutInterval:
+ */
+@property (assign, readwrite) NSTimeInterval timeoutInterval;
+
 ///-
 /// @name Initialization
 ///-

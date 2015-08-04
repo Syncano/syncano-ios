@@ -28,6 +28,8 @@ NSInteger const kSyncanoMaxNumberOfRequests = 2;
 NSString *const kSyncanoException = @"SyncanoException";
 NSString *const kSyncanoExceptionReasonNoMulticallParameters = @"No Multicall Parameters";
 
+NSTimeInterval const kDefaultTimeoutInterval = 60;
+
 @interface SyncanoParametersCallbackPair : NSObject
 @property (strong, nonatomic) SyncanoParameters *params;
 @property (strong, nonatomic) NSArray *batchParams;
@@ -243,6 +245,7 @@ NSString *const kSyncanoExceptionReasonNoMulticallParameters = @"No Multicall Pa
 - (void)commonInit {
     self.logAllRequests = YES;
     self.logJSONResponses = NO;
+    self.timeoutInterval = kDefaultTimeoutInterval;
 }
 
 - (id)init {
