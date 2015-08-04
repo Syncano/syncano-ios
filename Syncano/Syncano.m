@@ -80,11 +80,13 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
 /*----------------------------------------------------------------------------*/
 
 - (NSString *)fullDomain {
-    return [NSString stringWithFormat:kSyncanoDomainApi, self.domain];
+    NSString *fullDomain = [NSString stringWithFormat:kSyncanoDomainApi, self.domain];
+    return fullDomain;
 }
 
 - (NSString *)fullDomainForReachability {
-    return [NSString stringWithFormat:kSyncanoDomainApiForReachability, self.domain];
+    NSString *fullDomainForReachability = [NSString stringWithFormat:kSyncanoDomainApiForReachability, self.domain];
+    return fullDomainForReachability;
 }
 
 - (NSString *)serializeRequest:(NSURLRequest *)request parameters:(NSDictionary *)parameters error:(NSError **)error {
@@ -146,6 +148,16 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
     }
 }
 
+- (void)setTimeoutInterval:(NSTimeInterval)timeoutInterval {
+    if (timeoutInterval > 0) {
+        _timeoutInterval = timeoutInterval;
+        self.asynchronousOperationManager.requestSerializer.timeoutInterval = timeoutInterval;
+        self.synchronousOperationManager.requestSerializer.timeoutInterval = timeoutInterval;
+        self.requestSerializer.timeoutInterval = timeoutInterval;
+        self.batchRequestSerializer.timeoutInterval = timeoutInterval;
+    }
+}
+
 - (NSException *)exceptionForReason:(NSString *)reason {
     if (reason) {
         return [NSException exceptionWithName:kSyncanoException reason:reason userInfo:nil];
@@ -164,8 +176,8 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
         securityPolicy.SSLPinningMode = AFSSLPinningModeCertificate;
         securityPolicy.validatesCertificateChain = NO;
         securityPolicy.pinnedCertificates = @[[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]]];
-        
         _asynchronousOperationManager.securityPolicy = securityPolicy;
+        _asynchronousOperationManager.requestSerializer.timeoutInterval = (self.timeoutInterval > 0) ? self.timeoutInterval : kDefaultTimeoutInterval;
         
     }
     return _asynchronousOperationManager;
@@ -181,6 +193,7 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
         securityPolicy.validatesCertificateChain = NO;
         securityPolicy.pinnedCertificates = @[[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]]];
         _synchronousOperationManager.securityPolicy = securityPolicy;
+        _synchronousOperationManager.requestSerializer.timeoutInterval = (self.timeoutInterval > 0) ? self.timeoutInterval : kDefaultTimeoutInterval;
     }
     return _synchronousOperationManager;
 }
@@ -188,6 +201,7 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
 - (AFJSONRequestSerializer *)requestSerializer {
     if (_requestSerializer == nil) {
         _requestSerializer = [AFJSONRequestSerializer serializer];
+        _requestSerializer.timeoutInterval = (self.timeoutInterval > 0) ? self.timeoutInterval : kDefaultTimeoutInterval;
     }
     return _requestSerializer;
 }
@@ -199,6 +213,7 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
         [_batchRequestSerializer setQueryStringSerializationWithBlock: ^NSString *(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error) {
             return [weakSelf serializeRequest:request parameters:parameters error:error];
         }];
+        _batchRequestSerializer.timeoutInterval = (self.timeoutInterval > 0) ? self.timeoutInterval : kDefaultTimeoutInterval;
     }
     return _batchRequestSerializer;
 }
@@ -259,9 +274,9 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
 - (Syncano *)initWithDomain:(NSString *)domain apiKey:(NSString *)apiKey {
     self = [super init];
     if (self) {
-        [self commonInit];
         self.apiKey = apiKey;
         self.domain = domain;
+        [self commonInit];
         [self.reachability startMonitoring];
     }
     return self;
@@ -372,7 +387,6 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
                                  success:(SyncanoSuccess)success
                                  failure:(SyncanoFailure)failure {
     id <SyncanoRequest> request = [self getRequest:params operationManager:self.asynchronousOperationManager success:success failure:failure];
-    [request resume];
     return request;
 }
 

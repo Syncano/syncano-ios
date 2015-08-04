@@ -81,7 +81,7 @@ SyncanoProtocolPermissionRoles, SyncanoProtocolAdministrators>
  
  @see NSMutableURLRequest -setTimeoutInterval:
  */
-@property (assign, readwrite) NSTimeInterval timeoutInterval;
+@property (assign, readwrite, nonatomic) NSTimeInterval timeoutInterval;
 
 ///-
 /// @name Initialization
