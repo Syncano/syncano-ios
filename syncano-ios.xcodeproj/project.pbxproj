@@ -760,7 +760,6 @@
 		};
 		119991751AC446E4007B994C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33E2B257DD8BE91564E062D3 /* Pods-syncano4-ios.debug.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -775,7 +774,6 @@
 		};
 		119991761AC446E4007B994C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE7AF753EFEBB7E30AD891D8 /* Pods-syncano4-ios.release.xcconfig */;
 			buildSettings = {
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
@@ -790,7 +788,6 @@
 		};
 		119991781AC446E4007B994C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEB97D9FEB15E2B664F63982 /* Pods-syncano4-iosTests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -810,7 +807,6 @@
 		};
 		119991791AC446E4007B994C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E6F33BBA0CFCE74EA983F31 /* Pods-syncano4-iosTests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
