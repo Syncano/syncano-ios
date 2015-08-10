@@ -34,7 +34,7 @@
 		11961AC61B3D73A000874C31 /* SCFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 11961AC51B3D73A000874C31 /* SCFile.m */; };
 		119991641AC446E4007B994C /* Syncano.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 119991631AC446E4007B994C /* Syncano.h */; };
 		119991661AC446E4007B994C /* Syncano.m in Sources */ = {isa = PBXBuildFile; fileRef = 119991651AC446E4007B994C /* Syncano.m */; };
-		1199916C1AC446E4007B994C /* libsyncano4-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 119991601AC446E4007B994C /* libsyncano4-ios.a */; };
+		1199916C1AC446E4007B994C /* libsyncano-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 119991601AC446E4007B994C /* libsyncano-ios.a */; };
 		119A93571AFA4238001ADA7C /* SCUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 119A93561AFA4238001ADA7C /* SCUser.m */; };
 		119A935D1AFB88A5001ADA7C /* SCUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 119A935C1AFB88A5001ADA7C /* SCUserProfile.m */; };
 		119A93631AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 119A93621AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m */; };
@@ -125,10 +125,10 @@
 		1193D73A1B553140000D665B /* SCUserLogin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUserLogin.json; sourceTree = "<group>"; };
 		11961AC41B3D73A000874C31 /* SCFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFile.h; sourceTree = "<group>"; };
 		11961AC51B3D73A000874C31 /* SCFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFile.m; sourceTree = "<group>"; };
-		119991601AC446E4007B994C /* libsyncano4-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsyncano4-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		119991601AC446E4007B994C /* libsyncano-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsyncano-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		119991631AC446E4007B994C /* Syncano.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Syncano.h; sourceTree = "<group>"; };
 		119991651AC446E4007B994C /* Syncano.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Syncano.m; sourceTree = "<group>"; };
-		1199916B1AC446E4007B994C /* syncano4-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "syncano4-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1199916B1AC446E4007B994C /* syncano-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "syncano-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		119991711AC446E4007B994C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		119A93551AFA4238001ADA7C /* SCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCUser.h; sourceTree = "<group>"; };
 		119A93561AFA4238001ADA7C /* SCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUser.m; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1199916C1AC446E4007B994C /* libsyncano4-ios.a in Frameworks */,
+				1199916C1AC446E4007B994C /* libsyncano-ios.a in Frameworks */,
 				82ACEA9C98817CFE59D8CB88 /* libPods-syncano4-iosTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,7 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				119991621AC446E4007B994C /* Syncano */,
-				1199916F1AC446E4007B994C /* syncano4-iosTests */,
+				1199916F1AC446E4007B994C /* syncano-iosTests */,
 				119991611AC446E4007B994C /* Products */,
 				80F3652329F3460F1878B890 /* Pods */,
 				C222ECDE61B8F54B6E7E6478 /* Frameworks */,
@@ -344,8 +344,8 @@
 		119991611AC446E4007B994C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				119991601AC446E4007B994C /* libsyncano4-ios.a */,
-				1199916B1AC446E4007B994C /* syncano4-iosTests.xctest */,
+				119991601AC446E4007B994C /* libsyncano-ios.a */,
+				1199916B1AC446E4007B994C /* syncano-iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -368,10 +368,10 @@
 				115759331B300BCF00DDCC06 /* SCConstants.m */,
 			);
 			name = Syncano;
-			path = "syncano4-ios";
+			path = "syncano-ios";
 			sourceTree = "<group>";
 		};
-		1199916F1AC446E4007B994C /* syncano4-iosTests */ = {
+		1199916F1AC446E4007B994C /* syncano-iosTests */ = {
 			isa = PBXGroup;
 			children = (
 				11BE43D31AC458EC00FE96C5 /* SyncanoSpec.m */,
@@ -387,7 +387,7 @@
 				11F9AEE11B62128500B51341 /* CodeBox */,
 				1106CE8B1B5E065B00CEA452 /* SCParseManagerSpec.m */,
 			);
-			path = "syncano4-iosTests";
+			path = "syncano-iosTests";
 			sourceTree = "<group>";
 		};
 		119991701AC446E4007B994C /* Supporting Files */ = {
@@ -459,9 +459,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1199915F1AC446E4007B994C /* syncano4-ios */ = {
+		1199915F1AC446E4007B994C /* syncano-ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 119991741AC446E4007B994C /* Build configuration list for PBXNativeTarget "syncano4-ios" */;
+			buildConfigurationList = 119991741AC446E4007B994C /* Build configuration list for PBXNativeTarget "syncano-ios" */;
 			buildPhases = (
 				4EF62FB28BE5090086EC4F26 /* Check Pods Manifest.lock */,
 				1199915C1AC446E4007B994C /* Sources */,
@@ -473,14 +473,14 @@
 			);
 			dependencies = (
 			);
-			name = "syncano4-ios";
+			name = "syncano-ios";
 			productName = "syncano4-ios";
-			productReference = 119991601AC446E4007B994C /* libsyncano4-ios.a */;
+			productReference = 119991601AC446E4007B994C /* libsyncano-ios.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		1199916A1AC446E4007B994C /* syncano4-iosTests */ = {
+		1199916A1AC446E4007B994C /* syncano-iosTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 119991771AC446E4007B994C /* Build configuration list for PBXNativeTarget "syncano4-iosTests" */;
+			buildConfigurationList = 119991771AC446E4007B994C /* Build configuration list for PBXNativeTarget "syncano-iosTests" */;
 			buildPhases = (
 				4A4F22B25DADE90C41C4B090 /* Check Pods Manifest.lock */,
 				119991671AC446E4007B994C /* Sources */,
@@ -493,9 +493,9 @@
 			dependencies = (
 				1199916E1AC446E4007B994C /* PBXTargetDependency */,
 			);
-			name = "syncano4-iosTests";
+			name = "syncano-iosTests";
 			productName = "syncano4-iosTests";
-			productReference = 1199916B1AC446E4007B994C /* syncano4-iosTests.xctest */;
+			productReference = 1199916B1AC446E4007B994C /* syncano-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -516,7 +516,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1199915B1AC446E4007B994C /* Build configuration list for PBXProject "syncano4-ios" */;
+			buildConfigurationList = 1199915B1AC446E4007B994C /* Build configuration list for PBXProject "syncano-ios" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -528,8 +528,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1199915F1AC446E4007B994C /* syncano4-ios */,
-				1199916A1AC446E4007B994C /* syncano4-iosTests */,
+				1199915F1AC446E4007B994C /* syncano-ios */,
+				1199916A1AC446E4007B994C /* syncano-iosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -676,7 +676,7 @@
 /* Begin PBXTargetDependency section */
 		1199916E1AC446E4007B994C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1199915F1AC446E4007B994C /* syncano4-ios */;
+			target = 1199915F1AC446E4007B994C /* syncano-ios */;
 			targetProxy = 1199916D1AC446E4007B994C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -768,7 +768,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "syncano-ios";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -783,7 +783,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "syncano-ios";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -802,9 +802,9 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "syncano4-iosTests/Info.plist";
+				INFOPLIST_FILE = "syncano-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "syncano-iosTests";
 			};
 			name = Debug;
 		};
@@ -818,16 +818,16 @@
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
-				INFOPLIST_FILE = "syncano4-iosTests/Info.plist";
+				INFOPLIST_FILE = "syncano-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "syncano-iosTests";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1199915B1AC446E4007B994C /* Build configuration list for PBXProject "syncano4-ios" */ = {
+		1199915B1AC446E4007B994C /* Build configuration list for PBXProject "syncano-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				119991721AC446E4007B994C /* Debug */,
@@ -836,7 +836,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		119991741AC446E4007B994C /* Build configuration list for PBXNativeTarget "syncano4-ios" */ = {
+		119991741AC446E4007B994C /* Build configuration list for PBXNativeTarget "syncano-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				119991751AC446E4007B994C /* Debug */,
@@ -845,7 +845,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		119991771AC446E4007B994C /* Build configuration list for PBXNativeTarget "syncano4-iosTests" */ = {
+		119991771AC446E4007B994C /* Build configuration list for PBXNativeTarget "syncano-iosTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				119991781AC446E4007B994C /* Debug */,

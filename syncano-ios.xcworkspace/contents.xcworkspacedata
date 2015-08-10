@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-       location = "group:syncano4-ios.xcodeproj">
+      location = "group:/Users/jasiek/Developer/syncano-ios/syncano-ios.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
