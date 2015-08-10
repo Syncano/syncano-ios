@@ -24,6 +24,7 @@ appledoc.log
 *.perspectivev3
 *.xcuserdatad
 xcshareddata/
+*.xcworkspace
 
 # CocoaPods
 Pods

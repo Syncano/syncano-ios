@@ -7,7 +7,7 @@
 //
 
 #import "SCDataObject.h"
-#import <Mantle.h>
+#import <Mantle/Mantle.h>
 #import "SCAPIClient+SCDataObject.h"
 #import "Syncano.h"
 #import "SCParseManager.h"
