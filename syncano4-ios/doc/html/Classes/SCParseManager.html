@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>SCParseManager Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">Syncano </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Syncano</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/registeredClasses">registeredClasses</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/JSONSerializedDictionaryFromDataObject:error:">- JSONSerializedDictionaryFromDataObject:error:</option>
+		
+		<option value="//api/name/fillObject:withDataFromJSONObject:">- fillObject:withDataFromJSONObject:</option>
+		
+		<option value="//api/name/parsedObjectOfClass:fromJSONObject:">- parsedObjectOfClass:fromJSONObject:</option>
+		
+		<option value="//api/name/parsedObjectsOfClass:fromJSONObject:">- parsedObjectsOfClass:fromJSONObject:</option>
+		
+		<option value="//api/name/registerClass:">- registerClass:</option>
+		
+		<option value="//api/name/registerItemForClass:">- registerItemForClass:</option>
+		
+		<option value="//api/name/registerItemForClassName:">- registerItemForClassName:</option>
+		
+		<option value="//api/name/registerUserProfileClass:">- registerUserProfileClass:</option>
+		
+		<option value="//api/name/relationsForClass:">- relationsForClass:</option>
+		
+		<option value="//api/name/typeOfPropertyNamed:fromClass:">- typeOfPropertyNamed:fromClass:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SCParseManager Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>SCParseManager.h<br />SCParseManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Singleton class for <a href="../Classes/SCDataObject.html">SCDataObject</a> parsing</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/typeOfPropertyNamed:fromClass:" title="typeOfPropertyNamed:fromClass:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/typeOfPropertyNamed:fromClass:">&ndash;&nbsp;typeOfPropertyNamed:fromClass:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns type of property from provided class</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSString *)typeOfPropertyNamed:(NSString *)<em>name</em> fromClass:(__unsafe_unretained Class)<em>class</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>name</code></th>
+						<td><p>property name
+@param class</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>property type string or NULL</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Returns type of property from provided class</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="SCUser Methods" name="task_SCUser Methods"></a>
+						<h2 class="task-title">SCUser Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/registerUserProfileClass:" title="registerUserProfileClass:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerUserProfileClass:">&ndash;&nbsp;registerUserProfileClass:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Registers class for subclassing user profile</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)registerUserProfileClass:(__unsafe_unretained Class)<em>classToRegister</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Registers class for subclassing user profile</p>
+
+<p>@param classToRegister</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCUser.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="SCDataObject Methods" name="task_SCDataObject Methods"></a>
+						<h2 class="task-title">SCDataObject Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/registeredClasses" title="registeredClasses"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registeredClasses">&nbsp;&nbsp;registeredClasses</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Array of SCClassRegisterItems</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSMutableArray *registeredClasses</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Array of SCClassRegisterItems</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/parsedObjectOfClass:fromJSONObject:" title="parsedObjectOfClass:fromJSONObject:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/parsedObjectOfClass:fromJSONObject:">&ndash;&nbsp;parsedObjectOfClass:fromJSONObject:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Attempts to parse JSON to <a href="../Classes/SCDataObject.html">SCDataObject</a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (id)parsedObjectOfClass:(__unsafe_unretained Class)<em>objectClass</em> fromJSONObject:(id)<em>JSONObject</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>objectClass</code></th>
+						<td><p>Class of object to parse for</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>JSONObject</code></th>
+						<td><p>serialiazed JSON object from API response</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>parsed <a href="../Classes/SCDataObject.html">SCDataObject</a></p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Attempts to parse JSON to <a href="../Classes/SCDataObject.html">SCDataObject</a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/parsedObjectsOfClass:fromJSONObject:" title="parsedObjectsOfClass:fromJSONObject:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/parsedObjectsOfClass:fromJSONObject:">&ndash;&nbsp;parsedObjectsOfClass:fromJSONObject:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Attempts to parse JSON response object to array of SCDataObjects</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)<em>objectClass</em> fromJSONObject:(id)<em>responseObject</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>objectClass</code></th>
+						<td><p>objectClass Class of object to parse for</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>responseObject</code></th>
+						<td><p>JSON object with array of serialized JSON objects from API response</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSArray with parsed SCDataObjects</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Attempts to parse JSON response object to array of SCDataObjects</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fillObject:withDataFromJSONObject:" title="fillObject:withDataFromJSONObject:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fillObject:withDataFromJSONObject:">&ndash;&nbsp;fillObject:withDataFromJSONObject:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Attempt to fill provided <a href="../Classes/SCDataObject.html">SCDataObject</a> wit data from JSON response object.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)fillObject:(SCDataObject *)<em>object</em> withDataFromJSONObject:(id)<em>responseObject</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>object</code></th>
+						<td><p><a href="../Classes/SCDataObject.html">SCDataObject</a> to update</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>responseObject</code></th>
+						<td><p>JSON response object to update from</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Attempt to fill provided <a href="../Classes/SCDataObject.html">SCDataObject</a> wit data from JSON response object.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/JSONSerializedDictionaryFromDataObject:error:" title="JSONSerializedDictionaryFromDataObject:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/JSONSerializedDictionaryFromDataObject:error:">&ndash;&nbsp;JSONSerializedDictionaryFromDataObject:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Converts <a href="../Classes/SCDataObject.html">SCDataObject</a> to JSON representation</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSDictionary *)JSONSerializedDictionaryFromDataObject:(SCDataObject *)<em>dataObject</em> error:(NSError **)<em>error</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>dataObject</code></th>
+						<td><p><a href="../Classes/SCDataObject.html">SCDataObject</a> to convert</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>JSON representation of <a href="../Classes/SCDataObject.html">SCDataObject</a></p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Converts <a href="../Classes/SCDataObject.html">SCDataObject</a> to JSON representation</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerClass:" title="registerClass:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerClass:">&ndash;&nbsp;registerClass:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Registers class for subclassing</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)registerClass:(__unsafe_unretained Class)<em>classToRegister</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Registers class for subclassing</p>
+
+<p>@param classToRegister</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerItemForClass:" title="registerItemForClass:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerItemForClass:">&ndash;&nbsp;registerItemForClass:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns registered item for provided class</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (SCClassRegisterItem *)registerItemForClass:(__unsafe_unretained Class)<em>registeredClass</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>registeredClass</code></th>
+						<td><p>class to look up register for</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><a href="../Classes/SCClassRegisterItem.html">SCClassRegisterItem</a> for provided class or nil</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Returns registered item for provided class</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/relationsForClass:" title="relationsForClass:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/relationsForClass:">&ndash;&nbsp;relationsForClass:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns relations for provided class</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSDictionary *)relationsForClass:(__unsafe_unretained Class)<em>class</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>class</code></th>
+						<td><p>provided class</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSDictionary with property name as &lsquo;key&rsquo; and <a href="../Classes/SCClassRegisterItem.html">SCClassRegisterItem</a> as &lsquo;value&rsquo; or empty NSDictionary if there are no relations</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Returns relations for provided class</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerItemForClassName:" title="registerItemForClassName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerItemForClassName:">&ndash;&nbsp;registerItemForClassName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns register for provided Class name</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (SCClassRegisterItem *)registerItemForClassName:(NSString *)<em>className</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>className</code></th>
+						<td><p>class name too look up for</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><a href="../Classes/SCClassRegisterItem.html">SCClassRegisterItem</a> or nil</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Returns register for provided Class name</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCParseManager+SCDataObject.m</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 Syncano. All rights reserved. Updated: 2015-06-12</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

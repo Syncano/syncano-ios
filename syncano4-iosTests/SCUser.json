@@ -1,0 +1,27 @@
+{
+    "username": "merigold",
+    "user_key": "15798dd8f361d0d21a4c219c30b6bb47cdda591e",
+    "profile": {
+        "channel_room": null,
+        "group": null,
+        "links": {
+            "owner": "/v1/instances/rivia/users/6/",
+            "self": "/v1/instances/rivia/classes/user_profile/objects/24/"
+        },
+        "group_permissions": "none",
+        "created_at": "2015-05-27T21:08:08.847485Z",
+        "owner_permissions": "full",
+        "updated_at": "2015-05-27T21:08:08.847515Z",
+        "other_permissions": "none",
+        "owner": 6,
+        "id": 24,
+        "channel": null,
+        "revision": 1
+    },
+    "id": 6,
+    "links": {
+        "self": "/v1/instances/rivia/users/6/",
+        "groups": "/v1/instances/rivia/users/6/groups/",
+        "reset-key": "/v1/instances/rivia/users/6/reset_key/"
+    }
+}

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>SCDataObject Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">Syncano </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Syncano</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/classNameForAPI">+ classNameForAPI</option>
+		
+		<option value="//api/name/extendedPropertiesMapping">+ extendedPropertiesMapping</option>
+		
+		<option value="//api/name/please">+ please</option>
+		
+		<option value="//api/name/pleaseFromSyncano:">+ pleaseFromSyncano:</option>
+		
+		<option value="//api/name/registerClass">+ registerClass</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/fetchFromSyncano:completion:">- fetchFromSyncano:completion:</option>
+		
+		<option value="//api/name/fetchWithCompletion:">- fetchWithCompletion:</option>
+		
+		<option value="//api/name/saveToSyncano:withCompletion:">- saveToSyncano:withCompletion:</option>
+		
+		<option value="//api/name/saveWithCompletionBlock:">- saveWithCompletionBlock:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SCDataObject Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>MTLModel</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td>MTLJSONSerializing</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>SCDataObject.h<br />SCDataObject.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Main class for data object from <a href="../Classes/Syncano.html">Syncano</a> API.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/classNameForAPI" title="classNameForAPI"></a>
+	<h3 class="method-title"><code><a href="#//api/name/classNameForAPI">+&nbsp;classNameForAPI</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns class name used in <a href="../Classes/Syncano.html">Syncano</a> API, by default this method converts object Class name to lower case string</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (NSString *)classNameForAPI</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>string with API class name</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Returns class name used in <a href="../Classes/Syncano.html">Syncano</a> API, by default this method converts object Class name to lower case string</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/extendedPropertiesMapping" title="extendedPropertiesMapping"></a>
+	<h3 class="method-title"><code><a href="#//api/name/extendedPropertiesMapping">+&nbsp;extendedPropertiesMapping</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Return custom property mapping between iOS class an API class</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (NSDictionary *)extendedPropertiesMapping</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSDictionary with &lsquo;key&rsquo; of iOS class property name and &lsquo;value&rsquo; with coresponding API class name</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Return custom property mapping between iOS class an API class</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/please" title="please"></a>
+	<h3 class="method-title"><code><a href="#//api/name/please">+&nbsp;please</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns <a href="../Classes/SCPlease.html">SCPlease</a> instance for singleton <a href="../Classes/Syncano.html">Syncano</a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (SCPlease *)please</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><a href="../Classes/SCPlease.html">SCPlease</a> instance</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Returns <a href="../Classes/SCPlease.html">SCPlease</a> instance for singleton <a href="../Classes/Syncano.html">Syncano</a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pleaseFromSyncano:" title="pleaseFromSyncano:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pleaseFromSyncano:">+&nbsp;pleaseFromSyncano:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns <a href="../Classes/SCPlease.html">SCPlease</a> instance for provided <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (SCPlease *)pleaseFromSyncano:(Syncano *)<em>syncano</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>syncano</code></th>
+						<td><p><a href="../Classes/Syncano.html">Syncano</a> instance which <a href="../Classes/SCPlease.html">SCPlease</a> will be using to query objects from</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><a href="../Classes/SCPlease.html">SCPlease</a> instance</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Returns <a href="../Classes/SCPlease.html">SCPlease</a> instance for provided <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerClass" title="registerClass"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerClass">+&nbsp;registerClass</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Registers class in <a href="../Classes/SCParseManager.html">SCParseManager</a> for proper model parsing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)registerClass</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Registers class in <a href="../Classes/SCParseManager.html">SCParseManager</a> for proper model parsing.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/saveWithCompletionBlock:" title="saveWithCompletionBlock:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/saveWithCompletionBlock:">&ndash;&nbsp;saveWithCompletionBlock:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Saves object to API in background for singleton default <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)saveWithCompletionBlock:(SCCompletionBlock)<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>completion block</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Saves object to API in background for singleton default <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/saveToSyncano:withCompletion:" title="saveToSyncano:withCompletion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/saveToSyncano:withCompletion:">&ndash;&nbsp;saveToSyncano:withCompletion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Saves object to API in background for chosen <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)saveToSyncano:(Syncano *)<em>syncano</em> withCompletion:(SCCompletionBlock)<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>syncano</code></th>
+						<td><p>Saves object to API in background for provided <a href="../Classes/Syncano.html">Syncano</a> instance</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>completion block</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Saves object to API in background for chosen <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fetchWithCompletion:" title="fetchWithCompletion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fetchWithCompletion:">&ndash;&nbsp;fetchWithCompletion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fetches object from API using singleton <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)fetchWithCompletion:(SCCompletionBlock)<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>comletion block</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Fetches object from API using singleton <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/fetchFromSyncano:completion:" title="fetchFromSyncano:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/fetchFromSyncano:completion:">&ndash;&nbsp;fetchFromSyncano:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Fetches object from API using provided <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)fetchFromSyncano:(Syncano *)<em>syncano</em> completion:(SCCompletionBlock)<em>completion</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>syncano</code></th>
+						<td><p>provided <a href="../Classes/Syncano.html">Syncano</a> instance</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completion</code></th>
+						<td><p>completion block</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Fetches object from API using provided <a href="../Classes/Syncano.html">Syncano</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SCDataObject.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 Syncano. All rights reserved. Updated: 2015-06-12</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

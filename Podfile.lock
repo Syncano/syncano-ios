@@ -1,36 +1,44 @@
 PODS:
-  - AFNetworking (2.2.4):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
+  - AFNetworking (2.5.3):
+    - AFNetworking/NSURLConnection (= 2.5.3)
+    - AFNetworking/NSURLSession (= 2.5.3)
+    - AFNetworking/Reachability (= 2.5.3)
+    - AFNetworking/Security (= 2.5.3)
+    - AFNetworking/Serialization (= 2.5.3)
+    - AFNetworking/UIKit (= 2.5.3)
+  - AFNetworking/NSURLConnection (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.4):
+  - AFNetworking/NSURLSession (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.4):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.4)
-  - AFNetworking/Security (2.2.4)
-  - AFNetworking/Serialization (2.2.4)
-  - AFNetworking/UIKit (2.2.4):
+  - AFNetworking/Reachability (2.5.3)
+  - AFNetworking/Security (2.5.3)
+  - AFNetworking/Serialization (2.5.3)
+  - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CocoaAsyncSocket (7.3.3)
-  - Mantle (1.4.1):
-    - Mantle/extobjc
-  - Mantle/extobjc (1.4.1)
+  - Kiwi (2.3.1)
+  - Mantle (2.0):
+    - Mantle/extobjc (= 2.0)
+  - Mantle/extobjc (2.0)
+  - OHHTTPStubs (4.0.2)
+  - UICKeyChainStore (2.0.4)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.2.1)
-  - CocoaAsyncSocket (= 7.3.3)
-  - Mantle (~> 1.4.1)
+  - AFNetworking (~> 2.5)
+  - Kiwi (~> 2.3)
+  - Mantle (~> 2.0)
+  - OHHTTPStubs (~> 4.0)
+  - UICKeyChainStore (~> 2.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
-  CocoaAsyncSocket: 169415b80c82ffae67d7f1c9c0f567f58c4cd4e1
-  Mantle: 1ca9c0fa84d3d3fc98524e7229f30489b6dd44e5
+  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
+  Mantle: d7c75b6fb789b20f7ae30cd0d09435fe545896ff
+  OHHTTPStubs: dbd1957d414659783e07b49c961940b7564c23d9
+  UICKeyChainStore: 69eb0c3a6f669bccf16ba88de3b9069b71501361
 
-COCOAPODS: 0.34.2
+COCOAPODS: 0.37.2

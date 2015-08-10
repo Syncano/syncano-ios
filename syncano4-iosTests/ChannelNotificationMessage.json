@@ -1,0 +1,24 @@
+{
+    "author": {
+        "admin": 1379
+    },
+    "created_at": "2015-05-18T16:51:11.171275Z",
+    "id": 1,
+    "action": "create",
+    "payload": {
+        "group": null,
+        "string": "name",
+        "group_permissions": "none",
+        "created_at": "2015-05-18T16:51:11.162254Z",
+        "updated_at": "2015-05-18T16:51:11.162292Z",
+        "owner_permissions": "none",
+        "id": 6,
+        "owner": null,
+        "other_permissions": "none",
+        "revision": 1
+    },
+    "metadata": {
+        "type": "object",
+        "class": "class_name"
+    }
+}
