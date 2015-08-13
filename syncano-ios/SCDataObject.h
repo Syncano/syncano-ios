@@ -26,6 +26,7 @@
 @property (nonatomic,copy) NSString *channel_room;
 @property (nonatomic,copy) NSString *channel;
 @property (nonatomic,copy) NSNumber *group;
+@property (nonatomic,copy) NSNumber *owner;
 @property (nonatomic) SCDataObjectPermissionType owner_permissions;
 @property (nonatomic) SCDataObjectPermissionType group_permissions;
 @property (nonatomic) SCDataObjectPermissionType other_permissions;
