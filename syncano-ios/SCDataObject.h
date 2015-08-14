@@ -67,8 +67,7 @@
 + (void)registerClass;
 
 /**
- *  Returns SCDataObject instance created by parsing key/value
- *  pairs in provided dictionary.
+ *  Returns SCDataObject instance created by parsing dictionary passed as a parameter
  *
  *  @param dictionary Dictionary with properties used to initialize new object
  *
