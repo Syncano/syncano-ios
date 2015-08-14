@@ -10,5 +10,4 @@
 #import "SCDataObject.h"
 
 @interface SCUserProfile : SCDataObject
-@property (nonatomic,retain) NSNumber *owner;
 @end
