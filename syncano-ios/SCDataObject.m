@@ -57,6 +57,10 @@
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class] forSyncano:syncano];
 }
 
++ (instancetype)objectFromDictionary:(NSDictionary *)dictionary {
+    return [[SCParseManager sharedSCParseManager] parsedObjectOfClass:self fromJSONObject:dictionary];
+}
+
 - (NSString *)pathForObject {
     if (self.links[@"self"]) {
         return self.links[@"self"];
