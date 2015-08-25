@@ -67,6 +67,15 @@
 + (void)registerClass;
 
 /**
+ *  Returns SCDataObject instance created by parsing dictionary passed as a parameter
+ *
+ *  @param dictionary Dictionary with properties used to initialize new object
+ *
+ *  @return SCDataObject (or a subclass) created from provided dictionary
+ */
++ (instancetype)objectFromDictionary:(NSDictionary *)dictionary;
+
+/**
  *  Saves object to API in background for singleton default Syncano instance
  *
  *  @param completion completion block
