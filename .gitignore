@@ -28,6 +28,7 @@ xcshareddata/
 
 # CocoaPods
 Pods
+Podfile.lock
 
 # Others
 .uispec.app
