@@ -7,6 +7,7 @@
 //
 
 #import "Kiwi.h"
+#import <UIKit/UIKit.h>
 #import "Syncano.h"
 #import "SCFile.h"
 #import "SCAPIClient+SCFile.h"
@@ -32,7 +33,7 @@ describe(@"SCFile", ^{
         SCFile *file = [SCFile new];
         file.fileURL = [NSURL URLWithString:@""];
         __block BOOL _blockFinished;
-        __block id image;
+        __block UIImage *image;
         [file fetchInBackgroundWithCompletion:^(NSData *data, NSError *error) {
             image = [UIImage imageWithData:data];
             _blockFinished = YES;
