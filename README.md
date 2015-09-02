@@ -5,16 +5,16 @@
 ## Overview
 ---
 
-Syncano's iOS library is written in Objective-C and provides communication with Syncano ([www.syncano.com](http://www.syncano.com/)) via HTTPS RESTful interface.
+Syncano's iOS library is written in Objective-C and provides communication with Syncano ([www.syncano.io](http://www.syncano.io/)) via HTTPS RESTful interface.
 
 The full source code can be found on [Github](https://github.com/Syncano/syncano-ios) - feel free to browse or contribute.
 
 ## iOS QuickStart Guide
 ---
 
-You can find quick start on installing and using Syncano's iOS library (for both Obj-C and Swift) in our [documentation](http://docs.syncano.com/v1.0/docs/ios).
+You can find quick start on installing and using Syncano's iOS library (for both Obj-C and Swift) in our [documentation](http://docs.syncano.com/docs/ios).
 
-For more detailed information on how to use Syncano and its features - our [Developer Manual](http://docs.syncano.com/v1.0/docs/getting-started-with-syncano) should be very helpful.
+For more detailed information on how to use Syncano and its features - our [Developer Manual](http://docs.syncano.com/docs/getting-started-with-syncano) should be very helpful.
 
 In case you need help working with the library - email us at libraries@syncano.com - we will be happy to help!
 
