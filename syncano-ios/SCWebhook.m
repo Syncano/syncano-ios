@@ -45,8 +45,8 @@
    }];
 }
 
-+ (void)runPublicWebhookWithHash:(NSString *)hashTag forInstanceName:(NSString *)instanceName completion:(SCWebhookCompletionBlock)completion {
-    NSString *path = [NSString stringWithFormat:@"%@/webhooks/p/%@/",instanceName,hashTag];
++ (void)runPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name forInstanceName:(NSString *)instanceName completion:(SCWebhookCompletionBlock)completion {
+    NSString *path = [NSString stringWithFormat:@"%@/webhooks/p/%@/%@/",instanceName,hashTag,name];
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
 
     [apiClient GET:path parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -54,6 +54,21 @@
                 SCWebhookResponseObject *webhookResponseObject = [[SCWebhookResponseObject alloc] initWithJSONObject:responseObject];
                 completion(webhookResponseObject,nil);
             }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (completion) {
+            completion(nil,error);
+        }
+    }];
+}
+
++ (void)runPublicWebhookWithURLString:(NSString *)urlString completion:(SCWebhookCompletionBlock)completion {
+    SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
+    
+    [apiClient GET:@"" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (completion) {
+            SCWebhookResponseObject *webhookResponseObject = [[SCWebhookResponseObject alloc] initWithJSONObject:responseObject];
+            completion(webhookResponseObject,nil);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (completion) {
             completion(nil,error);

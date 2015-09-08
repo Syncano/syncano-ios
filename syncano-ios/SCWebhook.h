@@ -22,5 +22,7 @@
 + (void)runWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCWebhookCompletionBlock)completion;
 
 
-+ (void)runPublicWebhookWithHash:(NSString *)hashTag forInstanceName:(NSString *)instanceName completion:(SCWebhookCompletionBlock)completion;
++ (void)runPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name forInstanceName:(NSString *)instanceName completion:(SCWebhookCompletionBlock)completion;
++ (void)runPublicWebhookWithURLString:(NSString *)urlString completion:(SCWebhookCompletionBlock)completion;
+
 @end
