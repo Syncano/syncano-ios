@@ -134,7 +134,7 @@ describe(@"SCWebhook", ^{
         __block SCWebhookResponseObject *_responseObject;
         __block NSError *_error;
         __block BOOL _blockFinished;        
-        [SCWebhook runPublicWebhookWithHash:@"HASH" forInstanceName:@"INSTANCE-NAME" completion:^(SCWebhookResponseObject *responseObject, NSError *error) {
+        [SCWebhook runPublicWebhookWithHash:@"HASH" name:@"WEBHOOK-NAME" forInstanceName:@"INSTANCE-NAME" completion:^(SCWebhookResponseObject *responseObject, NSError *error) {
             _responseObject = responseObject;
             _error = error;
             _blockFinished = YES;
