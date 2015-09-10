@@ -61,7 +61,7 @@
     return [[SCParseManager sharedSCParseManager] parsedObjectOfClass:self fromJSONObject:dictionary];
 }
 
-- (NSString *)pathForObject {
+- (NSString *)path {
     if (self.links[@"self"]) {
         return self.links[@"self"];
     }
@@ -112,7 +112,7 @@
                     completion(error);
                 }
             } else {
-                [apiClient postTaskWithPath:[self pathForObject] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                [apiClient postTaskWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
                     if (completion) {
                         completion(error);
@@ -140,7 +140,7 @@
 }
 
 - (void)deleteUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    [apiClient deleteTaskWithPath:[self pathForObject] params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient deleteTaskWithPath:[self path] params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (completion) {
             completion(error);
         }
@@ -174,7 +174,7 @@
     }
     if ([[[self class] propertyKeys] containsObject:key]) {
         NSDictionary *params = @{key:value};
-        [apiClient patchTaskWithPath:[self pathForObject] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        [apiClient patchTaskWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
             completion(error);
         }];
     } else {

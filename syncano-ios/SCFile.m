@@ -9,8 +9,26 @@
 #import "SCFile.h"
 #import "NSObject+SCParseHelper.h"
 #import "SCAPIClient+SCFile.h"
+#import "SCDataObject.h"
+#import "Syncano.h"
+
+@interface SCFile ()
+@property (nonatomic,retain) NSData *data;
+@end
 
 @implementation SCFile
+
++ (instancetype)fileWithaData:(NSData *)data {
+    return [[SCFile alloc] initWithData:data];;
+}
+
+- (instancetype)initWithData:(NSData *)data {
+    self = [super init];
+    if (self) {
+        self.data = data;
+    }
+    return self;
+}
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
     self = [super init];
@@ -24,6 +42,21 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return [NSDictionary mtl_identityPropertyMapWithModel:[self class]];
+}
+
+
+- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject withCompletion:(SCCompletionBlock)completion {
+    [self saveAsPropertyWithName:name ofDataObject:dataObject usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
+}
+
+- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject toSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
+    [self saveAsPropertyWithName:name ofDataObject:dataObject usingAPIClient:syncano.apiClient withCompletion:completion];
+}
+
+- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
+    [apiClient postUploadTaskWithPath:dataObject.path propertyName:name fileName:@"FILE-NAME" mimeType:@"MIME-TYPE" fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        completion(error);
+    }];
 }
 
 - (void)fetchInBackgroundWithCompletion:(SCFileFetchCompletionBlock)completion {

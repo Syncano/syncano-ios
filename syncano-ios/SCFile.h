@@ -10,8 +10,14 @@
 #import <Mantle/Mantle.h>
 #import "SCConstants.h"
 
+@class SCDataObject;
+
 @interface SCFile : MTLModel<MTLJSONSerializing>
 @property (nonatomic,copy) NSURL *fileURL;
+
++ (instancetype)fileWithaData:(NSData *)data;
+
+- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject withCompletion:(SCCompletionBlock)completion;
 
 - (void)fetchInBackgroundWithCompletion:(SCFileFetchCompletionBlock)completion;
 @end

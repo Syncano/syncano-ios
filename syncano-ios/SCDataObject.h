@@ -31,6 +31,9 @@
 @property (nonatomic) SCDataObjectPermissionType group_permissions;
 @property (nonatomic) SCDataObjectPermissionType other_permissions;
 
+@property (nonatomic,readonly,getter=path) NSString *path;
+
+
 /**
  *  Returns class name used in Syncano API, by default this method converts object Class name to lower case string
  *
