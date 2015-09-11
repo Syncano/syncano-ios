@@ -54,8 +54,10 @@
 }
 
 - (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    [apiClient postUploadTaskWithPath:dataObject.path propertyName:name fileName:@"FILE-NAME" mimeType:@"MIME-TYPE" fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        completion(error);
+    [apiClient postUploadTaskWithPath:dataObject.path propertyName:name fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (completion) {
+            completion(error);
+        }
     }];
 }
 

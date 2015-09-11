@@ -10,6 +10,7 @@
 #import "SCDataObject.h"
 #import <objc/runtime.h>
 #import "SCFile.h"
+#import "SCDataObject+Properties.h"
 
 @implementation SCClassRegisterItem
 @end
@@ -99,7 +100,17 @@
                 [mutableSerialized removeObjectForKey:relationProperty];
             }
         }
-        serialized = mutableSerialized;
+        serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
+    }
+    
+    //Remove SCFileProperties
+    NSArray *fileProperties = [[dataObject class] propertiesNamesOfFileClass];
+    if (fileProperties.count > 0) {
+        NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
+        for (NSString *fileProperty in fileProperties) {
+            [mutableSerialized removeObjectForKey:fileProperty];
+        }
+        serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
     }
     return serialized;
 }

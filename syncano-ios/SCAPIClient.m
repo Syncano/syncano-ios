@@ -120,10 +120,10 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileName:(NSString *)fileName mimeType:(NSString *)mimeType fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:fileData name:propertyName fileName:fileName mimeType:mimeType];
+        [formData appendPartWithFormData:fileData name:propertyName];
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(task,responseObject, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
