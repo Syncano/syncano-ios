@@ -12,6 +12,7 @@
 #import "Syncano.h"
 #import "SCParseManager.h"
 #import "SCPlease.h"
+#import "SCDataObject+Properties.h"
 
 @implementation SCDataObject
 
@@ -114,9 +115,12 @@
             } else {
                 [apiClient postTaskWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
-                    if (completion) {
-                        completion(error);
-                    }
+                    [self saveFilesUsingAPIClient:apiClient completion:^(NSError *error) {
+                        if (completion) {
+                            completion(error);
+                        }
+                    }];
+                    
                 }];
             }
         }
@@ -152,6 +156,32 @@
 }
 - (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
     [self updateValue:value forKey:key usingAPIClient:syncano.apiClient withCompletion:completion];
+}
+
+- (void)saveFilesUsingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
+    NSArray *filesProperties = [[self class] propertiesNamesOfFileClass];
+    if (filesProperties.count>0) {
+        dispatch_group_t filesSaveGroup = dispatch_group_create();
+        for (NSString *filePropertyName in filesProperties) {
+            SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
+            if (file) {
+                dispatch_group_enter(filesSaveGroup);
+                [file saveAsPropertyWithName:filePropertyName ofDataObject:self withCompletion:^(NSError *error) {
+                    dispatch_group_leave(filesSaveGroup);
+                }];
+            }
+            
+        }
+        dispatch_group_notify(filesSaveGroup, dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(nil);
+            }
+        });
+    } else {
+        if (completion) {
+            completion(nil);
+        }
+    }
 }
 
 
