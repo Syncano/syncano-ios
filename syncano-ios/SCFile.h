@@ -13,6 +13,7 @@
 @class SCDataObject;
 
 @interface SCFile : MTLModel<MTLJSONSerializing>
+
 @property (nonatomic,copy) NSURL *fileURL;
 
 + (instancetype)fileWithaData:(NSData *)data;
