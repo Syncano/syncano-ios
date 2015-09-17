@@ -20,4 +20,5 @@
 - (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject withCompletion:(SCCompletionBlock)completion;
 
 - (void)fetchInBackgroundWithCompletion:(SCFileFetchCompletionBlock)completion;
+
 @end

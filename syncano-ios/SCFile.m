@@ -14,6 +14,7 @@
 
 @interface SCFile ()
 @property (nonatomic,retain) NSData *data;
+@property (nonatomic) BOOL needsToBeUploaded;
 @end
 
 @implementation SCFile
@@ -26,6 +27,7 @@
     self = [super init];
     if (self) {
         self.data = data;
+        self.needsToBeUploaded = YES;
     }
     return self;
 }
@@ -54,11 +56,20 @@
 }
 
 - (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    [apiClient postUploadTaskWithPath:dataObject.path propertyName:name fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    if (self.needsToBeUploaded) {
+        [apiClient postUploadTaskWithPath:dataObject.path propertyName:name fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            if (!error) {
+                self.needsToBeUploaded = NO;
+            }
+            if (completion) {
+                completion(error);
+            }
+        }];
+    } else {
         if (completion) {
-            completion(error);
+            completion(nil);
         }
-    }];
+    }
 }
 
 - (void)fetchInBackgroundWithCompletion:(SCFileFetchCompletionBlock)completion {
