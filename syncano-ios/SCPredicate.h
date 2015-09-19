@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SCPredicateProtocol.h"
 /**
  *  Class
  */
-@interface SCPredicate : NSObject
+@interface SCPredicate : NSObject <SCPredicateProtocol>
 
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanString:(NSString *)string;
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanNumber:(NSNumber *)number;
@@ -41,7 +42,5 @@
 + (SCPredicate *)whereKeyExists:(NSString *)key;
 
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
-
-- (NSString *)queryRepresentation;
 
 @end
