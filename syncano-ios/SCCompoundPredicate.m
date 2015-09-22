@@ -37,7 +37,7 @@
 }
 
 - (void)addPredicate:(id<SCPredicateProtocol>)predicate {
-    if (!predicate) {
+    if (!predicate || ![predicate conformsToProtocol:@protocol(SCPredicateProtocol)]) {
         return;
     }
     [self.predicates addObject:predicate];
@@ -48,8 +48,9 @@
     
     int i=0;
     for(id<SCPredicateProtocol> predicate in self.predicates) {
-        if(i!=0)
+        if(i!=0) {
             [query appendString:@","];
+        }
         NSString* localQuery = [predicate queryRepresentation];
         localQuery = [localQuery substringWithRange:NSMakeRange(1, localQuery.length-2)];
         [query appendString:localQuery];
