@@ -36,7 +36,7 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
 /**
  *  SCPredicate to use with API call
  */
-@property (nonatomic,retain) SCPredicate *predicate;
+@property (nonatomic,retain) id<SCPredicateProtocol> predicate;
 
 /**
  *  Params of API call
@@ -102,7 +102,7 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
     return [Syncano sharedAPIClient];
 }
 
-- (void)resolveQueryParameters:(NSDictionary *)parameters withPredicate:(SCPredicate *)predicate completion:(SCPleaseResolveQueryParametersCompletionBlock)completion {
+- (void)resolveQueryParameters:(NSDictionary *)parameters withPredicate:(id<SCPredicateProtocol>)predicate completion:(SCPleaseResolveQueryParametersCompletionBlock)completion {
     NSMutableDictionary *queryParameters = (parameters.count > 0) ? [parameters mutableCopy] : [NSMutableDictionary new];
     NSArray *includeKeys;
     if (queryParameters[SCPleaseParameterIncludeKeys]) {
@@ -136,7 +136,7 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
     [self getDataObjectFromAPIWithCompletion:completion];
 }
 
-- (void)giveMeDataObjectsWithPredicate:(SCPredicate *)predicate
+- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate
                             parameters:(NSDictionary *)parameters
                             completion:(SCDataObjectsCompletionBlock)completion {
     self.parameters = parameters;
