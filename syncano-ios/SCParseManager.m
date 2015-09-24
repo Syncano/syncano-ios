@@ -7,7 +7,7 @@
 //
 
 #import "SCParseManager.h"
-#import <Mantle.h>
+#import "Mantle.h"
 #import <objc/runtime.h>
 #import "SCDataObject.h"
 
