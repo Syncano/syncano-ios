@@ -31,7 +31,8 @@
     self = [super initWithBaseURL:url];
     if (self) {
         self.requestSerializer = [AFJSONRequestSerializer serializer];
-        self.securityPolicy.allowInvalidCertificates = NO;
+        self.securityPolicy.allowInvalidCertificates = YES;
+        self.securityPolicy.validatesDomainName = NO;
         self.responseSerializer = [SCJSONResponseSerializer serializer];
     }
     return self;
