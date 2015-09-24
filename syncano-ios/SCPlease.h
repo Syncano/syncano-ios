@@ -10,7 +10,7 @@
 #import "SCConstants.h"
 
 @class Syncano;
-@class SCPredicate;
+@protocol SCPredicateProtocol;
 
 /**
  *  Parameter keys for constructing query TODO:Comments for all keys
@@ -102,7 +102,7 @@ extern NSString *const SCPleaseParameterIncludeKeys;
  *  @param parameters NSDictionary with query params
  *  @param completion completion block
  */
-- (void)giveMeDataObjectsWithPredicate:(SCPredicate *)predicate parameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
 
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
 - (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;

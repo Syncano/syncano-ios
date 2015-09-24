@@ -19,6 +19,7 @@
 		1109EF631ACD2E2100BD18A6 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
 		111EEAF31BA1BD2100F2EB90 /* NSData+MimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */; };
 		111EEAF91BA2BFD400F2EB90 /* SCDataObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */; };
+		112B2AB61BAD2A1D00CC2FB6 /* SCCompoundPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 112B2AB51BAD2A1D00CC2FB6 /* SCCompoundPredicate.m */; };
 		113C36A51B0224EF008723EC /* NSObject+SCParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */; };
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
@@ -111,6 +112,9 @@
 		111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MimeType.m"; sourceTree = "<group>"; };
 		111EEAF71BA2BFD400F2EB90 /* SCDataObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Properties.h"; sourceTree = "<group>"; };
 		111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+Properties.m"; sourceTree = "<group>"; };
+		112B2AB41BAD2A1D00CC2FB6 /* SCCompoundPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCompoundPredicate.h; sourceTree = "<group>"; };
+		112B2AB51BAD2A1D00CC2FB6 /* SCCompoundPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCompoundPredicate.m; sourceTree = "<group>"; };
+		112B2AB81BAD2B9B00CC2FB6 /* SCPredicateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicateProtocol.h; sourceTree = "<group>"; };
 		113C36A31B0224EF008723EC /* NSObject+SCParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SCParseHelper.h"; sourceTree = "<group>"; };
 		113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SCParseHelper.m"; sourceTree = "<group>"; };
 		1143A5BF1B60D5C800A720D6 /* SCUser.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUser.json; sourceTree = "<group>"; };
@@ -265,8 +269,7 @@
 				11BE43DF1AC55BCA00FE96C5 /* SCDataObject.m */,
 				11BE43E61AC57AC600FE96C5 /* SCPlease.h */,
 				11BE43E71AC57AC600FE96C5 /* SCPlease.m */,
-				11487E451ADE94D200627EFD /* SCPredicate.h */,
-				11487E461ADE94D200627EFD /* SCPredicate.m */,
+				112B2AB71BAD2AB300CC2FB6 /* Predicate */,
 				11961AC41B3D73A000874C31 /* SCFile.h */,
 				11961AC51B3D73A000874C31 /* SCFile.m */,
 			);
@@ -282,6 +285,18 @@
 				11F9AECF1B61F92700B51341 /* SCFileSpec.m */,
 			);
 			name = SCDataObject;
+			sourceTree = "<group>";
+		};
+		112B2AB71BAD2AB300CC2FB6 /* Predicate */ = {
+			isa = PBXGroup;
+			children = (
+				112B2AB81BAD2B9B00CC2FB6 /* SCPredicateProtocol.h */,
+				11487E451ADE94D200627EFD /* SCPredicate.h */,
+				11487E461ADE94D200627EFD /* SCPredicate.m */,
+				112B2AB41BAD2A1D00CC2FB6 /* SCCompoundPredicate.h */,
+				112B2AB51BAD2A1D00CC2FB6 /* SCCompoundPredicate.m */,
+			);
+			name = Predicate;
 			sourceTree = "<group>";
 		};
 		1142F6581B332A8900A38A97 /* Categories */ = {
@@ -644,6 +659,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				119A93571AFA4238001ADA7C /* SCUser.m in Sources */,
+				112B2AB61BAD2A1D00CC2FB6 /* SCCompoundPredicate.m in Sources */,
 				11F9AED81B61FD4100B51341 /* SCAPIClient+SCFile.m in Sources */,
 				11487E471ADE94D200627EFD /* SCPredicate.m in Sources */,
 				119A93631AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m in Sources */,
