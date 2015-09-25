@@ -1301,7 +1301,7 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
 @end
 
 NSString *const kDefaultLibraryName = @"syncano-ios";
-NSString *const KDefaultVersionNumber = @"3.1.34";
+NSString *const KDefaultVersionNumber = @"3.1.35";
 
 @implementation Syncano (Private)
 
