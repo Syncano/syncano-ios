@@ -178,7 +178,6 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
         securityPolicy.pinnedCertificates = @[[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"server" ofType:@"der"]]];
         _asynchronousOperationManager.securityPolicy = securityPolicy;
         _asynchronousOperationManager.requestSerializer.timeoutInterval = (self.timeoutInterval > 0) ? self.timeoutInterval : kDefaultTimeoutInterval;
-        
     }
     return _asynchronousOperationManager;
 }
@@ -202,6 +201,7 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
     if (_requestSerializer == nil) {
         _requestSerializer = [AFJSONRequestSerializer serializer];
         _requestSerializer.timeoutInterval = (self.timeoutInterval > 0) ? self.timeoutInterval : kDefaultTimeoutInterval;
+        [_requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     }
     return _requestSerializer;
 }
@@ -214,6 +214,7 @@ NSTimeInterval const kDefaultTimeoutInterval = 60;
             return [weakSelf serializeRequest:request parameters:parameters error:error];
         }];
         _batchRequestSerializer.timeoutInterval = (self.timeoutInterval > 0) ? self.timeoutInterval : kDefaultTimeoutInterval;
+        [_batchRequestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     }
     return _batchRequestSerializer;
 }
