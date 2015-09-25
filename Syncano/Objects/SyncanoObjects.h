@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Mantle/MTLModel.h>
-#import <Mantle/MTLJSONAdapter.h>
+#import "Mantle/MTLModel.h"
+#import "Mantle/MTLJSONAdapter.h"
 #import "SyncanoDateFormatter.h"
 
 /**

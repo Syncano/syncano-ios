@@ -14,7 +14,7 @@
 #import "SyncanoDateFormatter.h"
 #import "SyncanoDefines.h"
 
-#import <CocoaAsyncSocket/GCDAsyncSocket.h>
+#import "CocoaAsyncSocket/GCDAsyncSocket.h"
 
 //NSString *const kSyncanoSyncServerHost = @"api.syncano.com";
 //NSString *const kSyncanoSyncServerPeerName = @"*.syncano.com";

@@ -10,7 +10,7 @@
 #import "Syncano+Private.h"
 #import "SyncanoDefines.h"
 
-#import <AFNetworking/AFNetworking.h>
+#import "AFNetworking/AFNetworking.h"
 
 NSInteger const kSyncanoMaxNumberOfRequestsInBatchCall = 10;
 

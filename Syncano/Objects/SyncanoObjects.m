@@ -9,7 +9,7 @@
 #import "SyncanoObjects.h"
 #import "SyncanoObjects_Private.h"
 #import "SyncanoDateFormatter.h"
-#import <Mantle/MTLValueTransformer.h>
+#import "Mantle/MTLValueTransformer.h"
 #import <objc/runtime.h>
 
 @implementation SyncanoObject

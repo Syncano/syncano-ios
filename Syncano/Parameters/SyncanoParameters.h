@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIImage.h>
-#import <Mantle/MTLModel.h>
-#import <Mantle/MTLJSONAdapter.h>
+#import "Mantle/MTLModel.h"
+#import "Mantle/MTLJSONAdapter.h"
 
 extern NSString *const kSyncanoParametersOrderAsc;
 extern NSString *const kSyncanoParametersOrderDesc;

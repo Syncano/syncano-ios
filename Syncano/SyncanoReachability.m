@@ -8,7 +8,7 @@
 
 #import "SyncanoReachability.h"
 
-#import <AFNetworkReachabilityManager.h>
+#import "AFNetworkReachabilityManager.h"
 
 NSString *const SyncanoNetworkingReachabilityDidChangeNotification = @"SyncanoNetworkingReachabilityDidChangeNotification";
 NSString *const SyncanoNetworkingReachabilityNotificationStatusItem = @"SyncanoNetworkingReachabilityNotificationStatusItem";
