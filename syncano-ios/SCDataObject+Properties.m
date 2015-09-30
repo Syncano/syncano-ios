@@ -38,7 +38,6 @@
             {
                 NSString *className = [splitPropertyAttributes objectAtIndex:1];
                 results[propertyName] = className;
-                NSLog(@"Property: %@ - Class: %@",propertyName, className);
             }
         }
     }

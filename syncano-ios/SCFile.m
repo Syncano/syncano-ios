@@ -20,7 +20,7 @@
 @implementation SCFile
 
 + (instancetype)fileWithaData:(NSData *)data {
-    return [[SCFile alloc] initWithData:data];;
+    return [[self alloc] initWithData:data];
 }
 
 - (instancetype)initWithData:(NSData *)data {
@@ -79,9 +79,9 @@
                 completion(nil,error);
             }
         } else {
-            NSData *data = [[NSData alloc] initWithData:responseObject];
+            self.data = [[NSData alloc] initWithData:responseObject];
             if (completion) {
-                completion(data,nil);
+                completion(self.data,nil);
             }
         }
     }];
