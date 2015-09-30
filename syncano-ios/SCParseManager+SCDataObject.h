@@ -16,6 +16,11 @@
  *  Name of class using in Syncano
  */
 @property (nonatomic,copy) NSString *classNameForAPI;
+
+/**
+ *  Local reference of subslassed class
+ */
+@property (nonatomic, copy) Class classReference;
 /**
  *  Local name of subslassed class
  */
