@@ -159,7 +159,8 @@
  *  @return SCClassRegisterItem or nil
  */
 - (SCClassRegisterItem *)registerItemForClassName:(NSString *)className {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"className == %@",className];
+    NSString *normalizedClassName = [[className componentsSeparatedByString:@"."] lastObject];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"className == %@",normalizedClassName];
     SCClassRegisterItem *item = [[self.registeredClasses filteredArrayUsingPredicate:predicate] lastObject];
     return item;
 }
