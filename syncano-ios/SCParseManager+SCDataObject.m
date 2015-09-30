@@ -37,7 +37,7 @@
     NSDictionary *relations = [self relationsForClass:[parsedObject class]];
     for (NSString *relationKeyProperty in relations.allKeys) {
         SCClassRegisterItem *relationRegisteredItem = relations[relationKeyProperty];
-        Class relatedClass = NSClassFromString(relationRegisteredItem.className);
+        Class relatedClass = relationRegisteredItem.classReference;
         id relatedObject = [[relatedClass alloc] init];
         if (JSONObject[relationKeyProperty] != [NSNull null]) {
             NSNumber *relatedObjectId = JSONObject[relationKeyProperty][@"value"];
@@ -134,8 +134,9 @@
         }
         SCClassRegisterItem *registerItem = [SCClassRegisterItem new];
         registerItem.classNameForAPI = classNameForAPI;
-        registerItem.className = NSStringFromClass(classToRegister);
+        registerItem.className = [[self class] normalizedClassNameFromClass:classToRegister];
         registerItem.properties = registeredProperties;
+        registerItem.classReference = classToRegister;
         [self.registeredClasses addObject:registerItem];
     }
 }
@@ -148,7 +149,7 @@
  *  @return SCClassRegisterItem or nil
  */
 - (SCClassRegisterItem *)registeredItemForClass:(__unsafe_unretained Class)registeredClass {
-    return [self registerItemForClassName:NSStringFromClass(registeredClass)];
+    return [self registerItemForClassName:[[self class] normalizedClassNameFromClass:registeredClass]];
 }
 
 /**
@@ -162,6 +163,10 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"className == %@",className];
     SCClassRegisterItem *item = [[self.registeredClasses filteredArrayUsingPredicate:predicate] lastObject];
     return item;
+}
+
++ (NSString *)normalizedClassNameFromClass:(__unsafe_unretained Class)class {
+    return [[NSStringFromClass(class) componentsSeparatedByString:@"."] lastObject];
 }
 
 @end
