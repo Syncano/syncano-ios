@@ -13,11 +13,12 @@
 #import "Syncano.h"
 
 @interface SCFile ()
-@property (nonatomic,retain) NSData *data;
 @property (nonatomic) BOOL needsToBeUploaded;
 @end
 
-@implementation SCFile
+@implementation SCFile {
+    NSData *_data;
+}
 
 + (instancetype)fileWithaData:(NSData *)data {
     return [[self alloc] initWithData:data];
@@ -26,8 +27,8 @@
 - (instancetype)initWithData:(NSData *)data {
     self = [super init];
     if (self) {
-        self.data = data;
-        self.needsToBeUploaded = YES;
+        _data = data;
+        _needsToBeUploaded = YES;
     }
     return self;
 }
@@ -40,6 +41,10 @@
         }
     }
     return self;
+}
+
+- (NSData *)data {
+    return _data;
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -56,7 +61,7 @@
 }
 
 - (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    if (self.needsToBeUploaded) {
+    if (self.needsToBeUploaded && self.data != nil) {
         [apiClient postUploadTaskWithPath:dataObject.path propertyName:name fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
             if (!error) {
                 self.needsToBeUploaded = NO;
@@ -79,7 +84,9 @@
                 completion(nil,error);
             }
         } else {
-            self.data = [[NSData alloc] initWithData:responseObject];
+            if (_storeDataAfterFetch) {
+                _data = [[NSData alloc] initWithData:responseObject];
+            }
             if (completion) {
                 completion(self.data,nil);
             }
