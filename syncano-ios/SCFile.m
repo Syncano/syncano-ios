@@ -14,11 +14,10 @@
 
 @interface SCFile ()
 @property (nonatomic) BOOL needsToBeUploaded;
+@property (readwrite) NSData *data;
 @end
 
-@implementation SCFile {
-    NSData *_data;
-}
+@implementation SCFile
 
 + (instancetype)fileWithaData:(NSData *)data {
     return [[self alloc] initWithData:data];
@@ -41,10 +40,6 @@
         }
     }
     return self;
-}
-
-- (NSData *)data {
-    return _data;
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
