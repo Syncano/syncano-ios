@@ -9,8 +9,28 @@
 #import "SCFile.h"
 #import "NSObject+SCParseHelper.h"
 #import "SCAPIClient+SCFile.h"
+#import "SCDataObject.h"
+#import "Syncano.h"
+
+@interface SCFile ()
+@property (nonatomic) BOOL needsToBeUploaded;
+@property (readwrite) NSData *data;
+@end
 
 @implementation SCFile
+
++ (instancetype)fileWithaData:(NSData *)data {
+    return [[self alloc] initWithData:data];
+}
+
+- (instancetype)initWithData:(NSData *)data {
+    self = [super init];
+    if (self) {
+        _data = data;
+        _needsToBeUploaded = YES;
+    }
+    return self;
+}
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error {
     self = [super init];
@@ -26,6 +46,32 @@
     return [NSDictionary mtl_identityPropertyMapWithModel:[self class]];
 }
 
+
+- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject withCompletion:(SCCompletionBlock)completion {
+    [self saveAsPropertyWithName:name ofDataObject:dataObject usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
+}
+
+- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject toSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
+    [self saveAsPropertyWithName:name ofDataObject:dataObject usingAPIClient:syncano.apiClient withCompletion:completion];
+}
+
+- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
+    if (self.needsToBeUploaded && self.data != nil) {
+        [apiClient postUploadTaskWithPath:dataObject.path propertyName:name fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            if (!error) {
+                self.needsToBeUploaded = NO;
+            }
+            if (completion) {
+                completion(error);
+            }
+        }];
+    } else {
+        if (completion) {
+            completion(nil);
+        }
+    }
+}
+
 - (void)fetchInBackgroundWithCompletion:(SCFileFetchCompletionBlock)completion {
     [SCAPIClient downloadFileFromURL:self.fileURL withCompletion:^(id responseObject, NSError *error) {
         if (error) {
@@ -33,9 +79,11 @@
                 completion(nil,error);
             }
         } else {
-            NSData *data = [[NSData alloc] initWithData:responseObject];
+            if (_storeDataAfterFetch) {
+                _data = [[NSData alloc] initWithData:responseObject];
+            }
             if (completion) {
-                completion(data,nil);
+                completion(self.data,nil);
             }
         }
     }];
