@@ -29,6 +29,7 @@
 		115759341B300BCF00DDCC06 /* SCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 115759331B300BCF00DDCC06 /* SCConstants.m */; };
 		1184268B1AC983A1001035A7 /* SCParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268A1AC983A1001035A7 /* SCParseManager.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
+		11865B0C1BC560B9005DE1B5 /* SCSQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */; settings = {ASSET_TAGS = (); }; };
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
@@ -123,6 +124,8 @@
 		118426891AC983A1001035A7 /* SCParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCParseManager.h; sourceTree = "<group>"; };
 		1184268A1AC983A1001035A7 /* SCParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCParseManager.m; sourceTree = "<group>"; };
 		1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDataObjectSpec.m; sourceTree = "<group>"; };
+		11865B0A1BC560B9005DE1B5 /* SCSQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSQLiteDatabase.h; sourceTree = "<group>"; };
+		11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSQLiteDatabase.m; sourceTree = "<group>"; };
 		1193D72C1B53FDCE000D665B /* SCUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUserSpec.m; sourceTree = "<group>"; };
 		1193D7311B54E7AF000D665B /* KWSpec+WaitFor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KWSpec+WaitFor.h"; sourceTree = "<group>"; };
 		1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KWSpec+WaitFor.m"; sourceTree = "<group>"; };
@@ -331,6 +334,15 @@
 			name = ParseManager;
 			sourceTree = "<group>";
 		};
+		11865B091BC560AB005DE1B5 /* OfflineStorage */ = {
+			isa = PBXGroup;
+			children = (
+				11865B0A1BC560B9005DE1B5 /* SCSQLiteDatabase.h */,
+				11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */,
+			);
+			name = OfflineStorage;
+			sourceTree = "<group>";
+		};
 		1193D7341B54EF4E000D665B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +386,7 @@
 		119991621AC446E4007B994C /* Syncano */ = {
 			isa = PBXGroup;
 			children = (
+				11865B091BC560AB005DE1B5 /* OfflineStorage */,
 				119991631AC446E4007B994C /* Syncano.h */,
 				119991651AC446E4007B994C /* Syncano.m */,
 				11055BA61B25CF2E004BB629 /* DataObject */,
@@ -532,7 +545,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SC;
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Syncano;
 				TargetAttributes = {
 					1199915F1AC446E4007B994C = {
@@ -650,6 +663,7 @@
 			files = (
 				119A93571AFA4238001ADA7C /* SCUser.m in Sources */,
 				112B2AB61BAD2A1D00CC2FB6 /* SCCompoundPredicate.m in Sources */,
+				11865B0C1BC560B9005DE1B5 /* SCSQLiteDatabase.m in Sources */,
 				11F9AED81B61FD4100B51341 /* SCAPIClient+SCFile.m in Sources */,
 				11487E471ADE94D200627EFD /* SCPredicate.m in Sources */,
 				119A93631AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m in Sources */,
@@ -729,6 +743,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -833,6 +848,7 @@
 				);
 				INFOPLIST_FILE = "syncano-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.syncano.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "syncano-iosTests";
 			};
 			name = Debug;
@@ -850,6 +866,7 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = "syncano-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.syncano.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "syncano-iosTests";
 			};
 			name = Release;
