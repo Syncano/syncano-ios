@@ -32,6 +32,8 @@
 		1184268B1AC983A1001035A7 /* SCParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268A1AC983A1001035A7 /* SCParseManager.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
 		11865B0C1BC560B9005DE1B5 /* SCSQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */; settings = {ASSET_TAGS = (); }; };
+		11865B131BC667A0005DE1B5 /* SCOfflineStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B121BC667A0005DE1B5 /* SCOfflineStore.m */; settings = {ASSET_TAGS = (); }; };
+		11865B171BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B161BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m */; settings = {ASSET_TAGS = (); }; };
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
@@ -132,6 +134,10 @@
 		1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDataObjectSpec.m; sourceTree = "<group>"; };
 		11865B0A1BC560B9005DE1B5 /* SCSQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSQLiteDatabase.h; sourceTree = "<group>"; };
 		11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSQLiteDatabase.m; sourceTree = "<group>"; };
+		11865B111BC667A0005DE1B5 /* SCOfflineStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCOfflineStore.h; sourceTree = "<group>"; };
+		11865B121BC667A0005DE1B5 /* SCOfflineStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCOfflineStore.m; sourceTree = "<group>"; };
+		11865B151BC667EC005DE1B5 /* SCSQLiteDatabaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSQLiteDatabaseResult.h; sourceTree = "<group>"; };
+		11865B161BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSQLiteDatabaseResult.m; sourceTree = "<group>"; };
 		1193D72C1B53FDCE000D665B /* SCUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUserSpec.m; sourceTree = "<group>"; };
 		1193D7311B54E7AF000D665B /* KWSpec+WaitFor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KWSpec+WaitFor.h"; sourceTree = "<group>"; };
 		1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KWSpec+WaitFor.m"; sourceTree = "<group>"; };
@@ -275,6 +281,8 @@
 				112B2AB71BAD2AB300CC2FB6 /* Predicate */,
 				11961AC41B3D73A000874C31 /* SCFile.h */,
 				11961AC51B3D73A000874C31 /* SCFile.m */,
+				111EEAF71BA2BFD400F2EB90 /* SCDataObject+Properties.h */,
+				111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */,
 			);
 			name = DataObject;
 			sourceTree = "<group>";
@@ -305,6 +313,8 @@
 		1142F6581B332A8900A38A97 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
+				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
 				113C36A31B0224EF008723EC /* NSObject+SCParseHelper.h */,
 				113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */,
 			);
@@ -343,10 +353,22 @@
 		11865B091BC560AB005DE1B5 /* OfflineStorage */ = {
 			isa = PBXGroup;
 			children = (
-				11865B0A1BC560B9005DE1B5 /* SCSQLiteDatabase.h */,
-				11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */,
+				11865B111BC667A0005DE1B5 /* SCOfflineStore.h */,
+				11865B121BC667A0005DE1B5 /* SCOfflineStore.m */,
+				11865B181BC667FC005DE1B5 /* Database */,
 			);
 			name = OfflineStorage;
+			sourceTree = "<group>";
+		};
+		11865B181BC667FC005DE1B5 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				11865B0A1BC560B9005DE1B5 /* SCSQLiteDatabase.h */,
+				11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */,
+				11865B151BC667EC005DE1B5 /* SCSQLiteDatabaseResult.h */,
+				11865B161BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m */,
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 		1193D7341B54EF4E000D665B /* Helpers */ = {
@@ -392,7 +414,6 @@
 		119991621AC446E4007B994C /* Syncano */ = {
 			isa = PBXGroup;
 			children = (
-				11865B091BC560AB005DE1B5 /* OfflineStorage */,
 				119991631AC446E4007B994C /* Syncano.h */,
 				119991651AC446E4007B994C /* Syncano.m */,
 				11055BA61B25CF2E004BB629 /* DataObject */,
@@ -403,13 +424,10 @@
 				1142F6581B332A8900A38A97 /* Categories */,
 				1184268E1AC986C6001035A7 /* ParseManager */,
 				11BE43D81AC552D500FE96C5 /* APIClient */,
+				11865B091BC560AB005DE1B5 /* OfflineStorage */,
 				11BE43DC1AC5539600FE96C5 /* SCMacros.h */,
 				11BE43E51AC57A0500FE96C5 /* SCConstants.h */,
 				115759331B300BCF00DDCC06 /* SCConstants.m */,
-				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
-				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
-				111EEAF71BA2BFD400F2EB90 /* SCDataObject+Properties.h */,
-				111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */,
 			);
 			name = Syncano;
 			path = "syncano-ios";
@@ -682,6 +700,8 @@
 				111EEAF91BA2BFD400F2EB90 /* SCDataObject+Properties.m in Sources */,
 				11BE43E81AC57AC600FE96C5 /* SCPlease.m in Sources */,
 				11961AC61B3D73A000874C31 /* SCFile.m in Sources */,
+				11865B171BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m in Sources */,
+				11865B131BC667A0005DE1B5 /* SCOfflineStore.m in Sources */,
 				11BE43E01AC55BCA00FE96C5 /* SCDataObject.m in Sources */,
 				115759341B300BCF00DDCC06 /* SCConstants.m in Sources */,
 				119991661AC446E4007B994C /* Syncano.m in Sources */,
