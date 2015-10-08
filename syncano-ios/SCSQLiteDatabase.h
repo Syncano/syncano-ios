@@ -11,6 +11,6 @@
 @interface SCSQLiteDatabase : NSObject
 - (instancetype)initWithPath:(NSString *)path;
 
-- (void)open;
+- (void)openWithCompletionBlock:(void(^)(NSError *error))block;
 - (void)close;
 @end
