@@ -31,9 +31,7 @@
 		115759341B300BCF00DDCC06 /* SCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 115759331B300BCF00DDCC06 /* SCConstants.m */; };
 		1184268B1AC983A1001035A7 /* SCParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268A1AC983A1001035A7 /* SCParseManager.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
-		11865B0C1BC560B9005DE1B5 /* SCSQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */; settings = {ASSET_TAGS = (); }; };
-		11865B131BC667A0005DE1B5 /* SCOfflineStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B121BC667A0005DE1B5 /* SCOfflineStore.m */; settings = {ASSET_TAGS = (); }; };
-		11865B171BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B161BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m */; settings = {ASSET_TAGS = (); }; };
+		11865B131BC667A0005DE1B5 /* SCOfflineStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B121BC667A0005DE1B5 /* SCOfflineStore.m */; };
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
@@ -132,12 +130,9 @@
 		118426891AC983A1001035A7 /* SCParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCParseManager.h; sourceTree = "<group>"; };
 		1184268A1AC983A1001035A7 /* SCParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCParseManager.m; sourceTree = "<group>"; };
 		1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDataObjectSpec.m; sourceTree = "<group>"; };
-		11865B0A1BC560B9005DE1B5 /* SCSQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSQLiteDatabase.h; sourceTree = "<group>"; };
-		11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSQLiteDatabase.m; sourceTree = "<group>"; };
 		11865B111BC667A0005DE1B5 /* SCOfflineStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCOfflineStore.h; sourceTree = "<group>"; };
 		11865B121BC667A0005DE1B5 /* SCOfflineStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCOfflineStore.m; sourceTree = "<group>"; };
-		11865B151BC667EC005DE1B5 /* SCSQLiteDatabaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSQLiteDatabaseResult.h; sourceTree = "<group>"; };
-		11865B161BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSQLiteDatabaseResult.m; sourceTree = "<group>"; };
+		11865B1E1BC6786B005DE1B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1193D72C1B53FDCE000D665B /* SCUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUserSpec.m; sourceTree = "<group>"; };
 		1193D7311B54E7AF000D665B /* KWSpec+WaitFor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KWSpec+WaitFor.h"; sourceTree = "<group>"; };
 		1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KWSpec+WaitFor.m"; sourceTree = "<group>"; };
@@ -355,20 +350,8 @@
 			children = (
 				11865B111BC667A0005DE1B5 /* SCOfflineStore.h */,
 				11865B121BC667A0005DE1B5 /* SCOfflineStore.m */,
-				11865B181BC667FC005DE1B5 /* Database */,
 			);
 			name = OfflineStorage;
-			sourceTree = "<group>";
-		};
-		11865B181BC667FC005DE1B5 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				11865B0A1BC560B9005DE1B5 /* SCSQLiteDatabase.h */,
-				11865B0B1BC560B9005DE1B5 /* SCSQLiteDatabase.m */,
-				11865B151BC667EC005DE1B5 /* SCSQLiteDatabaseResult.h */,
-				11865B161BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m */,
-			);
-			name = Database;
 			sourceTree = "<group>";
 		};
 		1193D7341B54EF4E000D665B /* Helpers */ = {
@@ -516,6 +499,7 @@
 		C222ECDE61B8F54B6E7E6478 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11865B1E1BC6786B005DE1B5 /* Foundation.framework */,
 				511B5F9F9997C6EBF74E11F2 /* libPods-syncano4-ios.a */,
 				C6C26CD1570D29893B2F95D7 /* libPods-syncano4-iosTests.a */,
 				25FEEEC60C1A6FB4DA6DBF0D /* libPods-syncano-ios.a */,
@@ -691,7 +675,6 @@
 			files = (
 				119A93571AFA4238001ADA7C /* SCUser.m in Sources */,
 				112B2AB61BAD2A1D00CC2FB6 /* SCCompoundPredicate.m in Sources */,
-				11865B0C1BC560B9005DE1B5 /* SCSQLiteDatabase.m in Sources */,
 				11F9AED81B61FD4100B51341 /* SCAPIClient+SCFile.m in Sources */,
 				11487E471ADE94D200627EFD /* SCPredicate.m in Sources */,
 				119A93631AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m in Sources */,
@@ -700,7 +683,6 @@
 				111EEAF91BA2BFD400F2EB90 /* SCDataObject+Properties.m in Sources */,
 				11BE43E81AC57AC600FE96C5 /* SCPlease.m in Sources */,
 				11961AC61B3D73A000874C31 /* SCFile.m in Sources */,
-				11865B171BC667EC005DE1B5 /* SCSQLiteDatabaseResult.m in Sources */,
 				11865B131BC667A0005DE1B5 /* SCOfflineStore.m in Sources */,
 				11BE43E01AC55BCA00FE96C5 /* SCDataObject.m in Sources */,
 				115759341B300BCF00DDCC06 /* SCConstants.m in Sources */,
@@ -841,6 +823,10 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "syncano-ios";
@@ -856,6 +842,10 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PREFIX_HEADER = "";
 				HEADER_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "syncano-ios";
