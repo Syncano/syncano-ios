@@ -54,6 +54,8 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
 @property (nonatomic,retain) NSString *previousUrlString;
 
 @property (nonatomic,retain) NSArray *includeKeys;
+
+@property (nonatomic) BOOL fromLocalStorage;
 @end
 
 @implementation SCPlease
@@ -253,5 +255,19 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
             completion(objects,nil);
         }
     });
+}
+
+@end
+
+
+@implementation SCPlease (LocalStore)
+- (void)fromLocalStore {
+    _fromLocalStorage = YES;
+}
+
+- (void)giveMeDataObjectsFromLocalStoreWithPredicate:(id<SCPredicateProtocol>)predicate
+                                          parameters:(NSDictionary *)parameters
+                                          completion:(SCDataObjectsCompletionBlock)completion {
+    //TODO: get objects from OfflineStore
 }
 @end

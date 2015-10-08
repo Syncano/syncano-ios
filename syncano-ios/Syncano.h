@@ -23,7 +23,7 @@
 #import "SCChannel.h"
 #import "SCFile.h"
 
-@class SCAPIClient;
+@class SCAPIClient,SCLocalStore;
 /**
  *  Main Syncano Class
  */
@@ -40,6 +40,9 @@
  *  Session CLient to comunicate with API
  */
 @property (nonatomic,retain) SCAPIClient *apiClient;
+
+
+@property (nonatomic,readonly) SCLocalStore *localStore;
 
 /**
  *  Initiates Singleton instance of Syncano Class
@@ -81,6 +84,8 @@
  *  @return SCAPIClient object
  */
 + (SCAPIClient *)sharedAPIClient;
+
+
 
 
 /**
@@ -134,6 +139,8 @@
  *  @param completion       completion block
  */
 - (void)validateInstanceOnServerWithCompletion:(SCCompletionBlock)completion;
+
+- (void)enableOfflineStorage;
 
 /**
  *  Initiates Test instance of Syncano Class

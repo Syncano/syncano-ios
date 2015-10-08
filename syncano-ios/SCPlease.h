@@ -109,3 +109,9 @@ extern NSString *const SCPleaseParameterIncludeKeys;
 
 
 @end
+
+@interface SCPlease (LocalStore)
+
+- (void)fromLocalStore;
+
+@end

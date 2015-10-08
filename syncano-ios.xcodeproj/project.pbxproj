@@ -18,7 +18,6 @@
 		1109EF5D1ACD257300BD18A6 /* SCAPIClient+SCDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF5C1ACD257300BD18A6 /* SCAPIClient+SCDataObject.m */; };
 		1109EF631ACD2E2100BD18A6 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
 		111EEAF31BA1BD2100F2EB90 /* NSData+MimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */; };
-		111EEAF91BA2BFD400F2EB90 /* SCDataObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */; };
 		112B2AB61BAD2A1D00CC2FB6 /* SCCompoundPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 112B2AB51BAD2A1D00CC2FB6 /* SCCompoundPredicate.m */; };
 		113C36A51B0224EF008723EC /* NSObject+SCParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */; };
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
@@ -31,7 +30,7 @@
 		115759341B300BCF00DDCC06 /* SCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 115759331B300BCF00DDCC06 /* SCConstants.m */; };
 		1184268B1AC983A1001035A7 /* SCParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268A1AC983A1001035A7 /* SCParseManager.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
-		11865B131BC667A0005DE1B5 /* SCOfflineStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B121BC667A0005DE1B5 /* SCOfflineStore.m */; };
+		11865B131BC667A0005DE1B5 /* SCLocalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B121BC667A0005DE1B5 /* SCLocalStore.m */; };
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
@@ -111,8 +110,6 @@
 		1109EF621ACD2E2100BD18A6 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MimeType.h"; sourceTree = "<group>"; };
 		111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MimeType.m"; sourceTree = "<group>"; };
-		111EEAF71BA2BFD400F2EB90 /* SCDataObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Properties.h"; sourceTree = "<group>"; };
-		111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+Properties.m"; sourceTree = "<group>"; };
 		112B2AB41BAD2A1D00CC2FB6 /* SCCompoundPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCompoundPredicate.h; sourceTree = "<group>"; };
 		112B2AB51BAD2A1D00CC2FB6 /* SCCompoundPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCompoundPredicate.m; sourceTree = "<group>"; };
 		112B2AB81BAD2B9B00CC2FB6 /* SCPredicateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicateProtocol.h; sourceTree = "<group>"; };
@@ -130,8 +127,8 @@
 		118426891AC983A1001035A7 /* SCParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCParseManager.h; sourceTree = "<group>"; };
 		1184268A1AC983A1001035A7 /* SCParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCParseManager.m; sourceTree = "<group>"; };
 		1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDataObjectSpec.m; sourceTree = "<group>"; };
-		11865B111BC667A0005DE1B5 /* SCOfflineStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCOfflineStore.h; sourceTree = "<group>"; };
-		11865B121BC667A0005DE1B5 /* SCOfflineStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCOfflineStore.m; sourceTree = "<group>"; };
+		11865B111BC667A0005DE1B5 /* SCLocalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLocalStore.h; sourceTree = "<group>"; };
+		11865B121BC667A0005DE1B5 /* SCLocalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLocalStore.m; sourceTree = "<group>"; };
 		11865B1E1BC6786B005DE1B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1193D72C1B53FDCE000D665B /* SCUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUserSpec.m; sourceTree = "<group>"; };
 		1193D7311B54E7AF000D665B /* KWSpec+WaitFor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KWSpec+WaitFor.h"; sourceTree = "<group>"; };
@@ -276,8 +273,6 @@
 				112B2AB71BAD2AB300CC2FB6 /* Predicate */,
 				11961AC41B3D73A000874C31 /* SCFile.h */,
 				11961AC51B3D73A000874C31 /* SCFile.m */,
-				111EEAF71BA2BFD400F2EB90 /* SCDataObject+Properties.h */,
-				111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */,
 			);
 			name = DataObject;
 			sourceTree = "<group>";
@@ -348,8 +343,8 @@
 		11865B091BC560AB005DE1B5 /* OfflineStorage */ = {
 			isa = PBXGroup;
 			children = (
-				11865B111BC667A0005DE1B5 /* SCOfflineStore.h */,
-				11865B121BC667A0005DE1B5 /* SCOfflineStore.m */,
+				11865B111BC667A0005DE1B5 /* SCLocalStore.h */,
+				11865B121BC667A0005DE1B5 /* SCLocalStore.m */,
 			);
 			name = OfflineStorage;
 			sourceTree = "<group>";
@@ -680,10 +675,9 @@
 				119A93631AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m in Sources */,
 				115759321B2FF69500DDCC06 /* SCJSONResponseSerializer.m in Sources */,
 				1109EF5D1ACD257300BD18A6 /* SCAPIClient+SCDataObject.m in Sources */,
-				111EEAF91BA2BFD400F2EB90 /* SCDataObject+Properties.m in Sources */,
 				11BE43E81AC57AC600FE96C5 /* SCPlease.m in Sources */,
 				11961AC61B3D73A000874C31 /* SCFile.m in Sources */,
-				11865B131BC667A0005DE1B5 /* SCOfflineStore.m in Sources */,
+				11865B131BC667A0005DE1B5 /* SCLocalStore.m in Sources */,
 				11BE43E01AC55BCA00FE96C5 /* SCDataObject.m in Sources */,
 				115759341B300BCF00DDCC06 /* SCConstants.m in Sources */,
 				119991661AC446E4007B994C /* Syncano.m in Sources */,
