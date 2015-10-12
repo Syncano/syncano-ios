@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "SCMacros.h"
 #import "SCConstants.h"
-#import "NSError+MTLModelException.h"
+#import "Mantle/NSError+MTLModelException.h"
 
 /**
  *  Validates a value for an object and sets it if necessary. Method copied from Mantle

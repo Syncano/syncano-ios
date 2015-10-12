@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Mantle.h"
+#import "Mantle/Mantle.h"
 #import "SCConstants.h"
 
 @class Syncano;
