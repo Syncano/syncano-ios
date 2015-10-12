@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Mantle.h"
+#import "Mantle/Mantle.h"
 
 @interface SCSchemaItem : MTLModel<MTLJSONSerializing>
 @property (nonatomic,copy) NSString *name;

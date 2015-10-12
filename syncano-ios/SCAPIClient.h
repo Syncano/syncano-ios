@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Syncano. All rights reserved.
 //
 
-#import "AFHTTPSessionManager.h"
+#import "AFNetworking/AFHTTPSessionManager.h"
 #import "SCConstants.h"
 
 @class Syncano;
@@ -81,5 +81,8 @@
  *  @return NSURLSessionDataTask object
  */
 - (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+
+
+- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion;
 
 @end

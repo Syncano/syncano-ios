@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Mantle.h"
+#import "Mantle/Mantle.h"
 #import "SCConstants.h"
 
 @class Syncano;
@@ -30,6 +30,9 @@
 @property (nonatomic) SCDataObjectPermissionType owner_permissions;
 @property (nonatomic) SCDataObjectPermissionType group_permissions;
 @property (nonatomic) SCDataObjectPermissionType other_permissions;
+
+@property (nonatomic,readonly,getter=path) NSString *path;
+
 
 /**
  *  Returns class name used in Syncano API, by default this method converts object Class name to lower case string

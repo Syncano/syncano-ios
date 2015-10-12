@@ -7,7 +7,7 @@
 //
 
 #import "SCAPIClient.h"
-#import <AFNetworking/AFNetworking.h>
+#import "AFNetworking/AFNetworking.h"
 
 @interface SCAPIClient (SCFile)
 + (AFHTTPRequestOperation *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Syncano. All rights reserved.
 //
 
-#import "AFURLResponseSerialization.h"
+#import "AFNetworking/AFURLResponseSerialization.h"
 
 static NSString * const kSyncanoRepsonseErrorKey = @"com.Syncano.response.error.response";
 static NSString * const kSyncanoValidationErrorKey = @"com.Syncano.response.error.validation";

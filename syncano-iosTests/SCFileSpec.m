@@ -17,6 +17,13 @@ SPEC_BEGIN(SCFileSpec)
 
 describe(@"SCFile", ^{
     
+    it(@"should initialize with data", ^{
+        NSBundle* bundle = [NSBundle bundleForClass:self.class];
+        NSString *filePath = [bundle pathForResource:@"syncano-white" ofType:@"png"];
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        SCFile *file = [SCFile fileWithaData:data];
+        [[file shouldNot] beNil];
+    });
 
     it(@"should fetch file", ^{
         
