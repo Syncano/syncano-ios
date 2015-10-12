@@ -11,7 +11,7 @@
 #import "SCParseManager+SCDataObject.h"
 #import "SCUser.h"
 #import "NSObject+SCParseHelper.h"
-#import <UICKeyChainStore/UICKeyChainStore.h>
+#import "UICKeyChainStore/UICKeyChainStore.h"
 
 @implementation SCParseManager (SCUser)
 

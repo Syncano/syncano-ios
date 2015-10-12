@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Syncano. All rights reserved.
 //
 
-#import "AFHTTPSessionManager.h"
+#import "AFNetworking/AFHTTPSessionManager.h"
 #import "SCConstants.h"
 
 @class Syncano;

@@ -1,7 +1,7 @@
 
 
 #import "SCConstants.h"
-#import <Mantle/Mantle.h>
+#import "Mantle/Mantle.h"
 
 NSString * const SCDataObjectErrorDomain = @"com.syncano.DataObjectErrorDomain";
 
