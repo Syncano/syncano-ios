@@ -86,4 +86,22 @@ NSString * const kSCSocialBackendGoogle = @"google-oauth2";
     }
     return SCChannelNotificationMessageActionNone;
 }
+
+#pragma mark - Database -
++ (NSString *)DB_PATH {
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *dbPath = [docDir stringByAppendingPathComponent:@"Syncano.db"];
+    return dbPath;
+}
+
++ (NSString *)createTableSQLStatement {
+    NSString *objectsTableSchema = @"CREATE TABLE IF NOT EXISTS %@ ("
+    @"Syncano TEXT PRIMARY KEY, "
+    @"className TEXT, "
+    @"objectId INTEGER, "
+    @"json TEXT, "
+    @"%@ INTEGER DEFAULT 0, "
+    @"UNIQUE(className, objectId));";
+    return objectsTableSchema;
+}
 @end

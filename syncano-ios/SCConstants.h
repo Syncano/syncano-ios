@@ -87,4 +87,7 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
 + (NSString *)socialAuthenticationBackendToString:(SCSocialAuthenticationBackend)backend;
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
+
++ (NSString *)DB_PATH;
++ (NSString *)createTableSQLStatement;
 @end
