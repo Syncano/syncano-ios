@@ -114,6 +114,10 @@
                 }
             } else {
                 [apiClient postTaskWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                    if (completion && error) {
+                        completion(error);
+                        return;
+                    }
                     [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
                     [self saveFilesUsingAPIClient:apiClient completion:^(NSError *error) {
                         if (completion) {
