@@ -2,4 +2,4 @@ test:
   override:
     - xctool
       -workspace syncano-ios.xcworkspace
-      -scheme "Syncano"
+      -scheme "syncano-ios"
