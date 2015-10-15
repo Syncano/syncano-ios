@@ -2,12 +2,6 @@ platform :ios, '7.0'
 
 source 'https://github.com/CocoaPods/Specs'
 
-target "syncano-ios" do
-pod 'AFNetworking', '~> 2.5'
-pod 'Mantle', '~> 2.0'
-pod 'UICKeyChainStore', '~> 2.0'
-end
-
 target "Syncano" do
     pod 'AFNetworking', '~> 2.5'
     pod 'Mantle', '~> 2.0'
