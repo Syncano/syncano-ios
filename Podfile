@@ -8,6 +8,12 @@ pod 'Mantle', '~> 2.0'
 pod 'UICKeyChainStore', '~> 2.0'
 end
 
+target "Syncano" do
+    pod 'AFNetworking', '~> 2.5'
+    pod 'Mantle', '~> 2.0'
+    pod 'UICKeyChainStore', '~> 2.0'
+end
+
 target "syncano-iosTests" do
 pod 'Kiwi', '~> 2.3'
 pod 'OHHTTPStubs', '~> 4.0'
