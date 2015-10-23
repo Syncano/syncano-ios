@@ -3,3 +3,6 @@ test:
     - xctool
       -workspace syncano-ios.xcworkspace
       -scheme "Syncano"
+machine:
+  xcode:
+    version: "7.0"
