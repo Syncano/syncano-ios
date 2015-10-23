@@ -6,3 +6,5 @@ test:
 machine:
   xcode:
     version: "7.0"
+  environment:
+    XCODE_WORKSPACE: syncano-ios.xcworkspace
