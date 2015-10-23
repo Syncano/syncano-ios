@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Syncano. All rights reserved.
 //
 
+
+
 #import <Foundation/Foundation.h>
 #import "SCMacros.h"
 #import "SCConstants.h"
@@ -22,6 +24,14 @@
 #import "SCWebhook.h"
 #import "SCChannel.h"
 #import "SCFile.h"
+
+//! Project version number for Syncano.
+FOUNDATION_EXPORT double SyncanoVersionNumber;
+
+//! Project version string for Syncano.
+FOUNDATION_EXPORT const unsigned char SyncanoVersionString[];
+
+// In this header, you should import all the public headers of your framework using statements like #import <Syncano/PublicHeader.h>
 
 @class SCAPIClient,SCLocalStore;
 /**

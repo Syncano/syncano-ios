@@ -14,17 +14,17 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1199915F1AC446E4007B994C"
-               BuildableName = "libsyncano-ios.a"
-               BlueprintName = "syncano-ios"
+               BlueprintIdentifier = "11CE3C881BCFD44900DE3163"
+               BuildableName = "Syncano.framework"
+               BlueprintName = "Syncano"
                ReferencedContainer = "container:syncano-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -56,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1199915F1AC446E4007B994C"
-            BuildableName = "libsyncano-ios.a"
-            BlueprintName = "syncano-ios"
+            BlueprintIdentifier = "11CE3C881BCFD44900DE3163"
+            BuildableName = "Syncano.framework"
+            BlueprintName = "Syncano"
             ReferencedContainer = "container:syncano-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -78,9 +78,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1199915F1AC446E4007B994C"
-            BuildableName = "libsyncano-ios.a"
-            BlueprintName = "syncano-ios"
+            BlueprintIdentifier = "11CE3C881BCFD44900DE3163"
+            BuildableName = "Syncano.framework"
+            BlueprintName = "Syncano"
             ReferencedContainer = "container:syncano-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -96,9 +96,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1199915F1AC446E4007B994C"
-            BuildableName = "libsyncano-ios.a"
-            BlueprintName = "syncano-ios"
+            BlueprintIdentifier = "11CE3C881BCFD44900DE3163"
+            BuildableName = "Syncano.framework"
+            BlueprintName = "Syncano"
             ReferencedContainer = "container:syncano-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
