@@ -9,6 +9,6 @@ target "Syncano" do
 end
 
 target "syncano-iosTests" do
-pod 'Kiwi', '~> 2.3'
-pod 'OHHTTPStubs', '~> 4.0'
+	pod 'Kiwi', '~> 2.3'
+	pod 'OHHTTPStubs', '4.0'
 end
