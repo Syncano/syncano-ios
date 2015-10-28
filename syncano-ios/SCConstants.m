@@ -95,12 +95,10 @@ NSString * const kSCSocialBackendGoogle = @"google-oauth2";
 }
 
 + (NSString *)createTableSQLStatement {
-    NSString *objectsTableSchema = @"CREATE TABLE IF NOT EXISTS %@ ("
-    @"Syncano TEXT PRIMARY KEY, "
+    NSString *objectsTableSchema = @"CREATE TABLE IF NOT EXISTS SyncanoDataObjects ("
     @"className TEXT, "
     @"objectId INTEGER, "
     @"json TEXT, "
-    @"%@ INTEGER DEFAULT 0, "
     @"UNIQUE(className, objectId));";
     return objectsTableSchema;
 }

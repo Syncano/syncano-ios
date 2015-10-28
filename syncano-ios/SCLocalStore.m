@@ -9,6 +9,7 @@
 #import "SCLocalStore.h"
 #import <FMDB.h>
 #import "SCConstants.h"
+#import "SCDataObject+LocalStorage.h"
 
 @interface SCLocalStore ()
 @property (nonatomic,retain) FMDatabase *db;
@@ -32,7 +33,19 @@
 }
 
 - (void)saveDataObject:(SCDataObject *)dataObject withCompletionBlock:(SCCompletionBlock)completionBlock {
-    
+    if ([_db open]) {
+        [dataObject generateInsertQueryWithCompletion:^(NSError *error, NSString *query) {
+            if (!error) {
+                [_db beginTransaction];
+                [_db executeUpdate:query];
+                [_db  commit];
+            }
+            [_db close];
+            if (completionBlock) {
+                completionBlock(error);
+            }
+        }];
+    }
 }
 
 

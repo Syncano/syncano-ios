@@ -87,6 +87,8 @@
 		11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */; };
 		11F8BF7F1BE0F4A500091F58 /* SCLocalStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 11865B111BC667A0005DE1B5 /* SCLocalStore.h */; };
 		11F8BF801BE0F4A800091F58 /* SCLocalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B121BC667A0005DE1B5 /* SCLocalStore.m */; };
+		11F8BF831BE1083F00091F58 /* SCDataObject+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F8BF811BE1083F00091F58 /* SCDataObject+LocalStorage.h */; };
+		11F8BF841BE1083F00091F58 /* SCDataObject+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F8BF821BE1083F00091F58 /* SCDataObject+LocalStorage.m */; };
 		11F9AED01B61F92700B51341 /* SCFileSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AECF1B61F92700B51341 /* SCFileSpec.m */; };
 		11F9AED21B61F98200B51341 /* syncano-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F9AED11B61F98200B51341 /* syncano-white.png */; };
 		11F9AEDC1B62105C00B51341 /* SCCodeBoxSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDB1B62105C00B51341 /* SCCodeBoxSpec.m */; };
@@ -194,6 +196,8 @@
 		11F80C3D1ACEDF3600134A39 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
 		11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Properties.h"; sourceTree = "<group>"; };
 		11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+Properties.m"; sourceTree = "<group>"; };
+		11F8BF811BE1083F00091F58 /* SCDataObject+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+LocalStorage.h"; sourceTree = "<group>"; };
+		11F8BF821BE1083F00091F58 /* SCDataObject+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+LocalStorage.m"; sourceTree = "<group>"; };
 		11F9AECF1B61F92700B51341 /* SCFileSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFileSpec.m; sourceTree = "<group>"; };
 		11F9AED11B61F98200B51341 /* syncano-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "syncano-white.png"; sourceTree = "<group>"; };
 		11F9AED61B61FD4100B51341 /* SCAPIClient+SCFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCAPIClient+SCFile.m"; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 			children = (
 				11865B111BC667A0005DE1B5 /* SCLocalStore.h */,
 				11865B121BC667A0005DE1B5 /* SCLocalStore.m */,
+				11F8BF811BE1083F00091F58 /* SCDataObject+LocalStorage.h */,
+				11F8BF821BE1083F00091F58 /* SCDataObject+LocalStorage.m */,
 			);
 			name = OfflineStorage;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */,
 				11CE3CD51BCFDC3000DE3163 /* (null) in Headers */,
 				11CE3CBE1BCFDC3000DE3163 /* SCChannelNotificationMessage.h in Headers */,
+				11F8BF831BE1083F00091F58 /* SCDataObject+LocalStorage.h in Headers */,
 				11CE3CBB1BCFDC3000DE3163 /* SCChannelDelegate.h in Headers */,
 				11CE3CA41BCFDC3000DE3163 /* SCDataObject.h in Headers */,
 				11CE3CB91BCFDC3000DE3163 /* SCWebhookResponseObject.h in Headers */,
@@ -753,6 +760,7 @@
 				11CE3CB21BCFDC3000DE3163 /* SCUserProfile.m in Sources */,
 				11CE3CA51BCFDC3000DE3163 /* SCDataObject.m in Sources */,
 				11CE3CBD1BCFDC3000DE3163 /* SCChannel.m in Sources */,
+				11F8BF841BE1083F00091F58 /* SCDataObject+LocalStorage.m in Sources */,
 				11CE3CC51BCFDC3000DE3163 /* SCParseManager+SCDataObject.m in Sources */,
 				11CE3CA31BCFDC3000DE3163 /* Syncano.m in Sources */,
 				11CE3CD61BCFDC3000DE3163 /* (null) in Sources */,
@@ -871,13 +879,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EC9C1B264ACD55359E0902E /* Pods-syncano-iosTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -893,13 +902,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8BF99851DBBA47E0CF76564B /* Pods-syncano-iosTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				INFOPLIST_FILE = "syncano-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.syncano.$(PRODUCT_NAME:rfc1034identifier)";
@@ -911,6 +921,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1FB0F601D18FCBEE14F632E8 /* Pods-Syncano.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -918,6 +929,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -940,6 +953,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC0C5B3F1FDC67E357877BFF /* Pods-Syncano.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_CODE_COVERAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -947,6 +961,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "syncano-ios/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
