@@ -13,6 +13,7 @@
 #import "SCConstants.h"
 #import "SCPlease.h"
 #import "SCDataObject.h"
+#import "SCDataObject+LocalStorage.h"
 #import "SCPredicate.h"
 #import "SCCompoundPredicate.h"
 #import "SCParseManager.h"
@@ -52,7 +53,7 @@ FOUNDATION_EXPORT const unsigned char SyncanoVersionString[];
 @property (nonatomic,retain) SCAPIClient *apiClient;
 
 
-@property (nonatomic,readonly) SCLocalStore *localStore;
++ (SCLocalStore *)localStore;
 
 /**
  *  Initiates Singleton instance of Syncano Class
@@ -150,7 +151,7 @@ FOUNDATION_EXPORT const unsigned char SyncanoVersionString[];
  */
 - (void)validateInstanceOnServerWithCompletion:(SCCompletionBlock)completion;
 
-- (void)enableOfflineStorage;
++ (void)enableOfflineStorage;
 
 /**
  *  Initiates Test instance of Syncano Class

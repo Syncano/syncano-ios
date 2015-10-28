@@ -9,5 +9,11 @@
 #import "SCDataObject.h"
 
 @interface SCDataObject (LocalStorage)
+
+#pragma mark - Saving -
+- (void)saveToLocalStorageWithCompletion:(SCCompletionBlock)completion;
+
+
+#pragma mark - Helpers -
 - (void)generateInsertQueryWithCompletion:(void(^)(NSError *error, NSString* query))completion;
 @end
