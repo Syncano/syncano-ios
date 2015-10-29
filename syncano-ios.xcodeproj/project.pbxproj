@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		11A074D51BC254DB00351014 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 11A074D81BC254DB00351014 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				11A074D91BC254E400351014 /* ShellScript */,
+			);
+			dependencies = (
+				11A074DB1BC254E900351014 /* PBXTargetDependency */,
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1104DAA51AEA5A8F0088F45E /* SCPredicateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1104DAA41AEA5A8F0088F45E /* SCPredicateSpec.m */; };
 		11055B9E1B25C393004BB629 /* SCChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 11055B9D1B25C393004BB629 /* SCChannel.m */; };
@@ -74,6 +89,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1199915F1AC446E4007B994C;
 			remoteInfo = "syncano4-ios";
+		};
+		11A074DA1BC254E900351014 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 119991581AC446E4007B994C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1199915F1AC446E4007B994C;
+			remoteInfo = "syncano-ios";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -551,6 +573,9 @@
 					1199916A1AC446E4007B994C = {
 						CreatedOnToolsVersion = 6.2;
 					};
+					11A074D51BC254DB00351014 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
 				};
 			};
 			buildConfigurationList = 1199915B1AC446E4007B994C /* Build configuration list for PBXProject "syncano-ios" */;
@@ -567,6 +592,7 @@
 			targets = (
 				1199915F1AC446E4007B994C /* syncano-ios */,
 				1199916A1AC446E4007B994C /* syncano-iosTests */,
+				11A074D51BC254DB00351014 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -591,6 +617,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		11A074D91BC254E400351014 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Syncano\" \\\n--company-id \"com.syncano\" \\\n--output \"${PROJECT_NAME}-Docs\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"*.m\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\" > appledoc.log";
+		};
 		1BB54A1772EAD73859706ADE /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -718,6 +757,11 @@
 			isa = PBXTargetDependency;
 			target = 1199915F1AC446E4007B994C /* syncano-ios */;
 			targetProxy = 1199916D1AC446E4007B994C /* PBXContainerItemProxy */;
+		};
+		11A074DB1BC254E900351014 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1199915F1AC446E4007B994C /* syncano-ios */;
+			targetProxy = 11A074DA1BC254E900351014 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -866,6 +910,20 @@
 			};
 			name = Release;
 		};
+		11A074D61BC254DB00351014 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		11A074D71BC254DB00351014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -895,6 +953,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		11A074D81BC254DB00351014 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11A074D61BC254DB00351014 /* Debug */,
+				11A074D71BC254DB00351014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
