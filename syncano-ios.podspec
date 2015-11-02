@@ -21,5 +21,6 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking', '~> 2.5'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'UICKeyChainStore', '~> 2.0'
+  s.dependency 'FMDB'
 
 end
