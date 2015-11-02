@@ -23,8 +23,8 @@ appledoc.log
 *.pbxuser
 *.perspectivev3
 *.xcuserdatad
-xcshareddata/
-*.xcworkspace
+#xcshareddata/
+#*.xcworkspace
 
 # CocoaPods
 Pods

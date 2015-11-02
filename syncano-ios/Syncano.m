@@ -18,7 +18,7 @@
 
 /**
  *  Initiates singleton instance of Syncano Class
- *
+ * 
  *  @param apiKey       API Key to authorize syncano
  *  @param instanceName name of the Syncano instance
  *
