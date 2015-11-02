@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DEBB935A-6A8B-4978-9109-EA37FBD8E4B9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>syncano-ios</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0AF8BAD5CDD7E0C7AE5369619F80A4B6942ADEE5</key>
+		<string>https://github.com/Syncano/syncano-ios</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>syncano-ios.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0AF8BAD5CDD7E0C7AE5369619F80A4B6942ADEE5</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Syncano/syncano-ios</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0AF8BAD5CDD7E0C7AE5369619F80A4B6942ADEE5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0AF8BAD5CDD7E0C7AE5369619F80A4B6942ADEE5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>syncano-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
