@@ -21,7 +21,7 @@
 #pragma mark - Helpers -
 - (void)generateInsertQueryWithCompletion:(void(^)(NSError *error, NSString* query))completion {
     NSError *error;
-    NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO SyncanoDataObjects (className, objectId,json) VALUES ('%@',%@,%@);",NSStringFromClass([self class]),self.objectId,[[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error]];
+    NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO SyncanoDataObjects (className, objectId,json) VALUES ('%@',%@,'%@');",NSStringFromClass([self class]),self.objectId,[[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error]];
     if (completion) {
         completion(error,insertQuery);
     }
