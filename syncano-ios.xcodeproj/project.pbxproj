@@ -32,6 +32,8 @@
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
 		1150CF9C1B5789DF0080D5E3 /* SCUserRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */; };
+		11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */; };
+		11537F9C1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
@@ -110,7 +112,8 @@
 		11F9AEDE1B62113D00B51341 /* Trace.json in Resources */ = {isa = PBXBuildFile; fileRef = 11F9AEDD1B62113D00B51341 /* Trace.json */; };
 		11F9AEE01B62128200B51341 /* SCTraceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDF1B62128200B51341 /* SCTraceSpec.m */; };
 		1FC156E21DC7A89615EC23BD /* libPods-Syncano.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0704F2B7C07BA370BAF28B2F /* libPods-Syncano.a */; };
-		FC72B7C13F671E978712CABE /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E920729E0ACBA6F8713F4804 /* libPods-syncano-iosTests.a */; };
+		CCACFF387D22E8AC0321BB77 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
+		FC72B7C13F671E978712CABE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +163,8 @@
 		11487E451ADE94D200627EFD /* SCPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicate.h; sourceTree = "<group>"; };
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
 		1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUserRegister.json; sourceTree = "<group>"; };
+		11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCParseManager+SCLocalStorage.h"; sourceTree = "<group>"; };
+		11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCLocalStorage.m"; sourceTree = "<group>"; };
 		115759301B2FF69500DDCC06 /* SCJSONResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONResponseSerializer.h; sourceTree = "<group>"; };
 		115759311B2FF69500DDCC06 /* SCJSONResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONResponseSerializer.m; sourceTree = "<group>"; };
 		115759331B300BCF00DDCC06 /* SCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCConstants.m; sourceTree = "<group>"; };
@@ -168,7 +173,6 @@
 		1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDataObjectSpec.m; sourceTree = "<group>"; };
 		11865B111BC667A0005DE1B5 /* SCLocalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLocalStore.h; sourceTree = "<group>"; };
 		11865B121BC667A0005DE1B5 /* SCLocalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLocalStore.m; sourceTree = "<group>"; };
-		11865B1E1BC6786B005DE1B5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1193D72C1B53FDCE000D665B /* SCUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUserSpec.m; sourceTree = "<group>"; };
 		1193D7311B54E7AF000D665B /* KWSpec+WaitFor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KWSpec+WaitFor.h"; sourceTree = "<group>"; };
 		1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KWSpec+WaitFor.m"; sourceTree = "<group>"; };
@@ -227,12 +231,12 @@
 		11F9AEDB1B62105C00B51341 /* SCCodeBoxSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCodeBoxSpec.m; sourceTree = "<group>"; };
 		11F9AEDD1B62113D00B51341 /* Trace.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Trace.json; sourceTree = "<group>"; };
 		11F9AEDF1B62128200B51341 /* SCTraceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTraceSpec.m; sourceTree = "<group>"; };
-		1B93455B2DDBCC1B72A55BF1 /* Pods-syncano-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Syncano.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		76E56D1310C4DAFB1FD32169 /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
-		B82587DE5315797724F0BA55 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
-		C99C551225468498EBC5E2FC /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
+		68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
+		6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +245,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				11CE3CF11BCFEAFF00DE3163 /* Syncano.framework in Frameworks */,
-				FC72B7C13F671E978712CABE /* libPods-syncano-iosTests.a in Frameworks */,
+				FC72B7C13F671E978712CABE /* (null) in Frameworks */,
+				CCACFF387D22E8AC0321BB77 /* libPods-syncano-iosTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +379,8 @@
 				119A93621AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m */,
 				119A93641AFB911E001ADA7C /* SCParseManager+SCUser.h */,
 				119A93651AFB911E001ADA7C /* SCParseManager+SCUser.m */,
+				11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */,
+				11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */,
 			);
 			name = ParseManager;
 			sourceTree = "<group>";
@@ -522,10 +529,10 @@
 		80F3652329F3460F1878B890 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1FB0F601D18FCBEE14F632E8 /* Pods-Syncano.debug.xcconfig */,
-				CC0C5B3F1FDC67E357877BFF /* Pods-Syncano.release.xcconfig */,
-				1EC9C1B264ACD55359E0902E /* Pods-syncano-iosTests.debug.xcconfig */,
-				8BF99851DBBA47E0CF76564B /* Pods-syncano-iosTests.release.xcconfig */,
+				E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */,
+				68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */,
+				6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */,
+				B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -548,6 +555,7 @@
 			files = (
 				11CE3CC61BCFDC3000DE3163 /* SCParseManager+SCUser.h in Headers */,
 				11CE3CCE1BCFDC3000DE3163 /* SCJSONResponseSerializer.h in Headers */,
+				11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */,
 				11CE3CBC1BCFDC3000DE3163 /* SCChannel.h in Headers */,
 				11CE3CD31BCFDC3000DE3163 /* NSData+MimeType.h in Headers */,
 				11CE3CCA1BCFDC3000DE3163 /* SCAPIClient.h in Headers */,
@@ -812,6 +820,7 @@
 				11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */,
 				11CE3CA71BCFDC3000DE3163 /* SCPlease.m in Sources */,
 				11CE3CAE1BCFDC3000DE3163 /* SCFile.m in Sources */,
+				11537F9C1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m in Sources */,
 				11CE3CB01BCFDC3000DE3163 /* SCUser.m in Sources */,
 				11CE3CB81BCFDC3000DE3163 /* SCWebhook.m in Sources */,
 				11CE3CB41BCFDC3000DE3163 /* SCCodeBox.m in Sources */,
@@ -942,7 +951,7 @@
 		};
 		119991781AC446E4007B994C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EC9C1B264ACD55359E0902E /* Pods-syncano-iosTests.debug.xcconfig */;
+			baseConfigurationReference = 6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -965,7 +974,7 @@
 		};
 		119991791AC446E4007B994C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BF99851DBBA47E0CF76564B /* Pods-syncano-iosTests.release.xcconfig */;
+			baseConfigurationReference = B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -984,7 +993,7 @@
 		};
 		11CE3C9C1BCFD44900DE3163 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FB0F601D18FCBEE14F632E8 /* Pods-Syncano.debug.xcconfig */;
+			baseConfigurationReference = E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1016,7 +1025,7 @@
 		};
 		11CE3C9D1BCFD44900DE3163 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC0C5B3F1FDC67E357877BFF /* Pods-Syncano.release.xcconfig */;
+			baseConfigurationReference = 68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
