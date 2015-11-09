@@ -30,4 +30,14 @@
     return serialized;
 }
 
+- (SCDataObject *)parsedObjectOfClassWithName:(NSString *)className fromJSON:(NSDictionary *)JSONDictionary error:(NSError *__autoreleasing *)error {
+    NSError *parsingError;
+    Class objectClass = NSClassFromString(className);
+    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONDictionary error:&parsingError];
+    if (parsingError) {
+        *error = parsingError;
+    }
+    return parsedobject;
+}
+
 @end
