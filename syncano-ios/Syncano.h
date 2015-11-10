@@ -144,6 +144,8 @@
 
 + (void)enableOfflineStorage;
 
++ (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock;
+
 /**
  *  Initiates Test instance of Syncano Class
  *

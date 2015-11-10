@@ -17,36 +17,95 @@
 
 @implementation SCLocalStore
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self initializeDB];
+- (void)initializeDBWithCompletionBlock:(SCCompletionBlock)completionBlock  {
+    self.db = [FMDatabase databaseWithPath:[SCConstants DB_PATH]];
+    if (self.db) {
+        [self executeUpdateWithQuery:[SCConstants createTableSQLStatement] withCompletionBlock:^(NSError *error) {
+            [self handleError:error forCompletionBlock:completionBlock];
+        }];
+    } else {
+        
+        NSError *error = [NSError errorWithDomain:@"SCLocalStoreErrorDomain" code:1 userInfo:@{@"SyncanoLocalStoreErrorDescription" : @"Could not initialize database"}];
+        [self handleError:error forCompletionBlock:completionBlock];
     }
-    return self;
-}
 
-- (void)initializeDB {
-    _db = [FMDatabase databaseWithPath:[SCConstants DB_PATH]];
-    [_db open];
-    [_db executeUpdate:[SCConstants createTableSQLStatement]];
-    [_db close];
 }
 
 - (void)saveDataObject:(SCDataObject *)dataObject withCompletionBlock:(SCCompletionBlock)completionBlock {
-    if ([_db open]) {
-        [dataObject generateInsertQueryWithCompletion:^(NSError *error, NSString *query) {
-            if (!error) {
-                [_db beginTransaction];
-                [_db executeUpdate:query];
-                [_db  commit];
-            }
-            [_db close];
-            if (completionBlock) {
-                completionBlock(error);
-            }
-        }];
+    [dataObject generateInsertQueryWithCompletion:^(NSError *error, NSString *query) {
+        if (error) {
+            [self handleError:error forCompletionBlock:completionBlock];
+        } else {
+            [self executeUpdateWithQuery:query withCompletionBlock:^(NSError *error) {
+                [self handleError:error forCompletionBlock:completionBlock];
+            }];
+        }
+    }];
+}
+
+
+- (void)openDatabaseWithCompletionBlock:(SCCompletionBlock)completionBlock {
+    if ([self.db open]) {
+        if (completionBlock) {
+            completionBlock(nil);
+        }
+    } else {
+        if (completionBlock) {
+            completionBlock([self.db lastError]);
+        }
     }
 }
 
+- (void)closeDataBaseWithCompletionBlock:(SCCompletionBlock)completionBlock {
+    if ([self.db close]) {
+        if (completionBlock) {
+            completionBlock(nil);
+        }
+    } else {
+        if (completionBlock) {
+            completionBlock([self.db lastError]);
+        }
+    }
+}
+
+- (void)executeUpdateWithQuery:(NSString *)query withCompletionBlock:(SCCompletionBlock)completionBlock {
+   [self openDatabaseWithCompletionBlock:^(NSError *error) {
+       if (!error) {
+           NSError *executeError;
+           [self.db beginTransaction];
+           
+           if (![self.db executeUpdate:query]) {
+               executeError = [self.db lastError];
+           }
+           
+           if (executeError) {
+               [self.db rollback];
+               if (completionBlock) {
+                   completionBlock(executeError);
+               }
+           } else {
+               [self.db commit];
+               [self closeDataBaseWithCompletionBlock:^(NSError *error) {
+                   if (completionBlock) {
+                       completionBlock(error);
+                   }
+               }];
+           }
+       } else {
+           if (completionBlock) {
+               completionBlock(error);
+           }
+       }
+   }];
+    
+    
+
+}
+
+- (void)handleError:(NSError *)error forCompletionBlock:(SCCompletionBlock)completionBlock {
+    if (completionBlock) {
+        completionBlock(error);
+    }
+}
 
 @end
