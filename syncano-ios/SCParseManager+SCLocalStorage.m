@@ -19,7 +19,7 @@
         NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
         for (NSString *relationProperty in relations.allKeys) {
             SCClassRegisterItem *registerItem = (SCClassRegisterItem*)relations[relationProperty];
-            id relatedObject = [dataObject valueForKey:relationProperty];
+            SCDataObject *relatedObject = [dataObject valueForKey:relationProperty];
             NSNumber *objectId = [relatedObject valueForKey:@"objectId"];
             if (objectId) {
                 NSDictionary *relation = @{@"_type" : @"relation", @"objectId" : objectId , @"class" : registerItem.className};
