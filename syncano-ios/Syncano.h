@@ -23,6 +23,7 @@
 #import "SCWebhook.h"
 #import "SCChannel.h"
 #import "SCFile.h"
+#import "SCRegisterManager.h"
 
 @class SCAPIClient,SCLocalStore;
 
