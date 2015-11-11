@@ -19,11 +19,13 @@
         NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
         for (NSString *relationProperty in relations.allKeys) {
             SCClassRegisterItem *registerItem = (SCClassRegisterItem*)relations[relationProperty];
-            SCDataObject *relatedObject = [dataObject valueForKey:relationProperty];
-            NSNumber *objectId = [relatedObject valueForKey:@"objectId"];
-            if (objectId) {
-                NSDictionary *relation = @{@"_type" : @"relation", @"objectId" : objectId , @"class" : registerItem.className};
-                [mutableSerialized setObject:relation forKey:relationProperty];
+            SCDataObject *relatedObject = (SCDataObject *)[dataObject valueForKey:relationProperty];
+            if ([relatedObject isKindOfClass:[SCDataObject class]]) {
+                NSNumber *objectId = relatedObject.objectId;
+                if (objectId) {
+                    NSDictionary *relation = @{@"_type" : @"relation", @"objectId" : objectId , @"class" : registerItem.className};
+                    [mutableSerialized setObject:relation forKey:relationProperty];
+                }
             }
         }
         serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
