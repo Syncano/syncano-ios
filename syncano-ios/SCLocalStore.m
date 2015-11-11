@@ -46,25 +46,17 @@
 
 - (void)openDatabaseWithCompletionBlock:(SCCompletionBlock)completionBlock {
     if ([self.db open]) {
-        if (completionBlock) {
-            completionBlock(nil);
-        }
+        [self handleError:nil forCompletionBlock:completionBlock];
     } else {
-        if (completionBlock) {
-            completionBlock([self.db lastError]);
-        }
+        [self handleError:[self.db lastError] forCompletionBlock:completionBlock];
     }
 }
 
 - (void)closeDataBaseWithCompletionBlock:(SCCompletionBlock)completionBlock {
     if ([self.db close]) {
-        if (completionBlock) {
-            completionBlock(nil);
-        }
+        [self handleError:nil forCompletionBlock:completionBlock];
     } else {
-        if (completionBlock) {
-            completionBlock([self.db lastError]);
-        }
+        [self handleError:[self.db lastError] forCompletionBlock:completionBlock];
     }
 }
 
@@ -80,26 +72,17 @@
            
            if (executeError) {
                [self.db rollback];
-               if (completionBlock) {
-                   completionBlock(executeError);
-               }
+               [self handleError:executeError forCompletionBlock:completionBlock];
            } else {
                [self.db commit];
                [self closeDataBaseWithCompletionBlock:^(NSError *error) {
-                   if (completionBlock) {
-                       completionBlock(error);
-                   }
+                   [self handleError:error forCompletionBlock:completionBlock];
                }];
            }
        } else {
-           if (completionBlock) {
-               completionBlock(error);
-           }
+           [self handleError:error forCompletionBlock:completionBlock];
        }
    }];
-    
-    
-
 }
 
 - (void)handleError:(NSError *)error forCompletionBlock:(SCCompletionBlock)completionBlock {
