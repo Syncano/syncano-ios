@@ -13,6 +13,7 @@
 #import "SCParseManager.h"
 #import "SCPlease.h"
 #import "SCDataObject+Properties.h"
+#import "SCRegisterManager.h"
 
 @implementation SCDataObject
 
@@ -47,7 +48,7 @@
 
 
 + (void)registerClass {
-    [[SCParseManager sharedSCParseManager] registerClass:[self class]];
+    [SCRegisterManager registerClass:[self class]];
 }
 
 + (SCPlease *)please {
@@ -218,7 +219,7 @@
 }
 
 - (void)handleRelationsSaveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    NSDictionary *relations = [[SCParseManager sharedSCParseManager] relationsForClass:[self class]];
+    NSDictionary *relations = [SCRegisterManager relationsForClass:[self class]];
     if (relations.count > 0) {
         dispatch_group_t relationSaveGroup = dispatch_group_create();
         for (NSString *propertyName in relations.allKeys) {

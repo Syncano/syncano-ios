@@ -23,6 +23,7 @@
 #import "SCWebhook.h"
 #import "SCChannel.h"
 #import "SCFile.h"
+#import "SCRegisterManager.h"
 
 @class SCAPIClient,SCLocalStore;
 
@@ -143,6 +144,8 @@
 - (void)validateInstanceOnServerWithCompletion:(SCCompletionBlock)completion;
 
 + (void)enableOfflineStorage;
+
++ (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock;
 
 /**
  *  Initiates Test instance of Syncano Class

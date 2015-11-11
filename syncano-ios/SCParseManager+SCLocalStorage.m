@@ -9,11 +9,12 @@
 #import "SCParseManager+SCLocalStorage.h"
 #import <Mantle.h>
 #import "SCDataObject.h"
+#import "SCRegisterManager.h"
 
 @implementation SCParseManager (SCLocalStorage)
 - (NSDictionary *)JSONRepresentationOfDataObject:(SCDataObject *)dataObject error:(NSError *__autoreleasing *)error {
     NSDictionary *serialized = [MTLJSONAdapter JSONDictionaryFromModel:dataObject error:nil];
-    NSDictionary *relations = [self relationsForClass:[dataObject class]];
+    NSDictionary *relations = [SCRegisterManager relationsForClass:[dataObject class]];
     if (relations.count > 0) {
         NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
         for (NSString *relationProperty in relations.allKeys) {

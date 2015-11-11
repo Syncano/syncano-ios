@@ -11,8 +11,7 @@
 #import <objc/runtime.h>
 #import "SCFile.h"
 #import "SCDataObject+Properties.h"
-
-
+#import "SCRegisterManager.h"
 
 @implementation SCParseManager (SCDataObject)
 
@@ -26,7 +25,7 @@
 }
 
 - (void)resolveRelationsToObject:(id)parsedObject withJSONObject:(id)JSONObject {
-    NSDictionary *relations = [self relationsForClass:[parsedObject class]];
+    NSDictionary *relations = [SCRegisterManager relationsForClass:[parsedObject class]];
     for (NSString *relationKeyProperty in relations.allKeys) {
         SCClassRegisterItem *relationRegisteredItem = relations[relationKeyProperty];
         Class relatedClass = relationRegisteredItem.classReference;
@@ -72,7 +71,7 @@
     /**
      *  Temporary remove non saved relations
      */
-    NSDictionary *relations = [self relationsForClass:[dataObject class]];
+    NSDictionary *relations = [SCRegisterManager relationsForClass:[dataObject class]];
     if (relations.count > 0) {
         NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
         for (NSString *relationProperty in relations.allKeys) {
