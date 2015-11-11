@@ -12,5 +12,6 @@
 @class SCDataObject;
 
 @interface SCLocalStore : NSObject
+- (void)initializeDBWithCompletionBlock:(SCCompletionBlock)completionBlock;
 - (void)saveDataObject:(SCDataObject *)dataObject withCompletionBlock:(SCCompletionBlock)completionBlock;
 @end

@@ -12,13 +12,13 @@
 #import "SCAPIClient+Class.h"
 #import "SCLocalStore.h"
 
+static SCLocalStore *_localStore;
+
 @interface Syncano ()
 
 @end
 
-@implementation Syncano {
-    SCLocalStore *_localStore;
-}
+@implementation Syncano
 
 /**
  *  Initiates singleton instance of Syncano Class
@@ -37,7 +37,7 @@
     return instance;
 }
 
-- (SCLocalStore *)localStore {
++ (SCLocalStore *)localStore {
     return  _localStore;
 }
 
@@ -114,9 +114,13 @@
     self.instanceName = instanceName;
 }
 
++(void)enableOfflineStorage {
+    [self enableOfflineStorageWithCompletionBlock:nil];
+}
 
-- (void)enableOfflineStorage {
++ (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock {
     _localStore = [SCLocalStore new];
+    [_localStore initializeDBWithCompletionBlock:completionBlock];
 }
 
 @end

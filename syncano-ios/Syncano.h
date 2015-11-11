@@ -11,6 +11,7 @@
 #import "SCConstants.h"
 #import "SCPlease.h"
 #import "SCDataObject.h"
+#import "SCDataObject+LocalStorage.h"
 #import "SCPredicate.h"
 #import "SCCompoundPredicate.h"
 #import "SCParseManager.h"
@@ -43,7 +44,7 @@
 @property (nonatomic,retain) SCAPIClient *apiClient;
 
 
-@property (nonatomic,readonly) SCLocalStore *localStore;
++ (SCLocalStore *)localStore;
 
 /**
  *  Initiates Singleton instance of Syncano Class
@@ -141,7 +142,9 @@
  */
 - (void)validateInstanceOnServerWithCompletion:(SCCompletionBlock)completion;
 
-- (void)enableOfflineStorage;
++ (void)enableOfflineStorage;
+
++ (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock;
 
 /**
  *  Initiates Test instance of Syncano Class

@@ -25,6 +25,8 @@ NSString * const kSCChannelNotificationMessageActionDelete = @"delete";
 NSString * const kSCSocialBackendFacebook = @"facebook";
 NSString * const kSCSocialBackendGoogle = @"google-oauth2";
 
+NSString * const kDatabaseName = @"SyncanoDataObjects";
+
 @implementation SCConstants
 
 + (SCDataObjectPermissionType)dataObjectPermissiontypeByString:(NSString *)typeString {
@@ -95,13 +97,11 @@ NSString * const kSCSocialBackendGoogle = @"google-oauth2";
 }
 
 + (NSString *)createTableSQLStatement {
-    NSString *objectsTableSchema = @"CREATE TABLE IF NOT EXISTS %@ ("
-    @"Syncano TEXT PRIMARY KEY, "
+    NSString *objectsTableSchema = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ("
     @"className TEXT, "
     @"objectId INTEGER, "
     @"json TEXT, "
-    @"%@ INTEGER DEFAULT 0, "
-    @"UNIQUE(className, objectId));";
+    @"UNIQUE(className, objectId));",kDatabaseName];
     return objectsTableSchema;
 }
 @end
