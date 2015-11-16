@@ -43,7 +43,24 @@
     }];
 }
 
+- (void)fetchAllObjectsOfClass:(Class)objectClass withCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock {
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE className = '%@'",kDatabaseName,NSStringFromClass(objectClass)];
+    NSMutableArray *resultObjects = [NSMutableArray new];
+    [self executeQuery:query withCompletionBlock:^(FMResultSet *resultSet, NSError *error) {
+        if (!error) {
+            while ([resultSet next]) {
+             //objectForColumnName:
+                
+            }
+        } else {
+            if (completionBlock) {
+                completionBlock(nil,error);
+            }
+        }
+    }];
+}
 
+#pragma mark - DB communication methods -
 - (void)openDatabaseWithCompletionBlock:(SCCompletionBlock)completionBlock {
     if ([self.db open]) {
         [self handleError:nil forCompletionBlock:completionBlock];
@@ -83,6 +100,35 @@
            [self handleError:error forCompletionBlock:completionBlock];
        }
    }];
+}
+
+- (void)executeQuery:(NSString *)query withCompletionBlock:(void(^)(FMResultSet *resultSet, NSError* error))completionBlock {
+    [self openDatabaseWithCompletionBlock:^(NSError *error) {
+        if (!error) {
+            FMResultSet *result = [self.db executeQuery:query];
+            [self closeDataBaseWithCompletionBlock:^(NSError *error) {
+                if (!error) {
+                    if (![self.db hadError] && result) {
+                        if (completionBlock) {
+                            completionBlock(result,nil);
+                        }
+                    } else {
+                        if (completionBlock) {
+                            completionBlock(nil,[self.db lastError]);
+                        }
+                    }
+                } else {
+                    if (completionBlock) {
+                        completionBlock(nil,error);
+                    }
+                }
+            }];
+        } else {
+            if (completionBlock) {
+                completionBlock(nil,error);
+            }
+        }
+    }];
 }
 
 - (void)handleError:(NSError *)error forCompletionBlock:(SCCompletionBlock)completionBlock {
