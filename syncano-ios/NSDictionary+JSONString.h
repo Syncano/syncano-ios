@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDictionary (JSONString)
--(NSString*) sc_jsonStringWithPrettyPrint:(BOOL) prettyPrint error:(NSError **)error;
+-(NSString*) sc_jsonStringWithPrettyPrint:(BOOL) prettyPrint error:(NSError *__autoreleasing*)error;
 @end

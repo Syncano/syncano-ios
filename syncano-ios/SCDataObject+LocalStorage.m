@@ -33,9 +33,11 @@
 }
 
 - (NSString *)stringRepresentation {
-    NSError *dictionarySerializeError;
+
+    NSError *dictionarySerializeError = nil;
+    NSError *stringSerializeError = nil;
+
     NSDictionary *dictionaryRepresentation = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&dictionarySerializeError];
-    NSError *stringSerializeError;
     NSString *stringRepresentation = [dictionaryRepresentation sc_jsonStringWithPrettyPrint:YES error:&stringSerializeError];
     return stringRepresentation;
 }

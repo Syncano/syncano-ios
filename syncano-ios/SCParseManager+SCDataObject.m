@@ -17,7 +17,7 @@
 
 - (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
     //TODO change to send error
-    NSError *error;
+    NSError *error = nil;
     id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:&error];
     [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
     [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
@@ -45,7 +45,7 @@
         id object = JSONObject[key];
         if ([object isKindOfClass:[NSDictionary class]] && object[@"type"] && [object[@"type"] isEqualToString:@"file"]) {
             //TODO change to send error
-            NSError *error;
+            NSError *error = nil;
             SCFile *file = [[SCFile alloc] initWithDictionary:object error:&error];
             SCValidateAndSetValue(parsedObject, key, file, YES, nil);
         }

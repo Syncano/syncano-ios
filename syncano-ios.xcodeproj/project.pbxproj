@@ -362,6 +362,12 @@
 			children = (
 				113C36A31B0224EF008723EC /* NSObject+SCParseHelper.h */,
 				113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */,
+				11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */,
+				11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */,
+				11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */,
+				11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */,
+				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
+				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -467,13 +473,7 @@
 				11BE43DC1AC5539600FE96C5 /* SCMacros.h */,
 				11BE43E51AC57A0500FE96C5 /* SCConstants.h */,
 				115759331B300BCF00DDCC06 /* SCConstants.m */,
-				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
-				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
 				11CE3CDD1BCFE79100DE3163 /* Info.plist */,
-				11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */,
-				11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */,
-				11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */,
-				11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */,
 			);
 			name = Syncano;
 			path = "syncano-ios";

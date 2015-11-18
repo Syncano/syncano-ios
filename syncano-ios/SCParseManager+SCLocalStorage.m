@@ -34,7 +34,7 @@
 }
 
 - (SCDataObject *)parsedObjectOfClassWithName:(NSString *)className fromJSON:(NSDictionary *)JSONDictionary error:(NSError *__autoreleasing *)error {
-    NSError *parsingError;
+    NSError *parsingError = nil;
     Class objectClass = NSClassFromString(className);
     SCDataObject * parsedobject = (SCDataObject *)[MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONDictionary error:&parsingError];
     if (parsingError) {

@@ -52,9 +52,9 @@
         if (!error) {
             while ([resultSet next]) {
                 NSString *JSONString = [resultSet objectForColumnName:@"json"];
-                NSError *serializeError;
+                NSError *serializeError = nil;
                 NSDictionary *JSON = [JSONString sc_jsonDictionary:&serializeError];
-                NSError *parseError;
+                NSError *parseError = nil;
                 id dataObject = [[SCParseManager sharedSCParseManager] parsedObjectOfClassWithName:NSStringFromClass(objectClass) fromJSON:JSON error:&parseError];
                 if (!parseError && !serializeError) {
                     if (dataObject) {
@@ -93,7 +93,7 @@
 - (void)executeUpdateWithQuery:(NSString *)query withCompletionBlock:(SCCompletionBlock)completionBlock {
    [self openDatabaseWithCompletionBlock:^(NSError *error) {
        if (!error) {
-           NSError *executeError;
+           NSError *executeError = nil;
            [self.db beginTransaction];
            
            if (![self.db executeUpdate:query]) {

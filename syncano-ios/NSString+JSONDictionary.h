@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (JSONDictionary)
-- (NSDictionary *) sc_jsonDictionary:(NSError **)error;
+- (NSDictionary *) sc_jsonDictionary:(NSError *__autoreleasing*)error;
 @end

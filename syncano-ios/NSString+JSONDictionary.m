@@ -9,8 +9,8 @@
 #import "NSString+JSONDictionary.h"
 
 @implementation NSString (JSONDictionary)
-- (NSDictionary *) sc_jsonDictionary:(NSError **)error {
-    NSError *jsonError;
+- (NSDictionary *) sc_jsonDictionary:(NSError *__autoreleasing*)error {
+    NSError *jsonError = nil;
     NSData *objectData = [self dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:objectData
                                                          options:NSJSONReadingMutableContainers
