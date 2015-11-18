@@ -1,5 +1,5 @@
 //
-//  NSDictionary+JSONString.h
+//  NSString+JSONDictionary.h
 //  syncano-ios
 //
 //  Created by Jan Lipmann on 18/11/15.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDictionary (JSONString)
--(NSString*) sc_jsonStringWithPrettyPrint:(BOOL) prettyPrint error:(NSError **)error;
+@interface NSString (JSONDictionary)
+- (NSDictionary *) sc_jsonDictionary:(NSError **)error;
 @end

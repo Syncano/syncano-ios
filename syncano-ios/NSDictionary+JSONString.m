@@ -9,14 +9,14 @@
 #import "NSDictionary+JSONString.h"
 
 @implementation NSDictionary (JSONString)
--(NSString*) sc_jsonStringWithPrettyPrint:(BOOL) prettyPrint {
-    NSError *error;
+-(NSString*) sc_jsonStringWithPrettyPrint:(BOOL) prettyPrint error:(NSError **)error {
+    NSError *parseError;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self
                                                        options:(NSJSONWritingOptions)    (prettyPrint ? NSJSONWritingPrettyPrinted : 0)
-                                                         error:&error];
-    
+                                                         error:&parseError];
+    *error = parseError;
     if (! jsonData) {
-        NSLog(@"bv_jsonStringWithPrettyPrint: error: %@", error.localizedDescription);
+        NSLog(@"bv_jsonStringWithPrettyPrint: error: %@", parseError.localizedDescription);
         return @"{}";
     } else {
         return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];

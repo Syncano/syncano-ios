@@ -45,6 +45,8 @@
 		11AFBC891AC58B5F002B1F2F /* SCAPIClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AFBC881AC58B5F002B1F2F /* SCAPIClientSpec.m */; };
 		11B0E6681BFCC4F700E36713 /* NSDictionary+JSONString.h in Headers */ = {isa = PBXBuildFile; fileRef = 11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */; };
 		11B0E6691BFCC4F700E36713 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */; };
+		11B0E66C1BFCCB0100E36713 /* NSString+JSONDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */; };
+		11B0E66D1BFCCB0100E36713 /* NSString+JSONDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */; };
 		11B1DAEB1B58B866000D8488 /* CustomUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B1DAEA1B58B866000D8488 /* CustomUserProfile.m */; };
 		11BE43D41AC458EC00FE96C5 /* SyncanoSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BE43D31AC458EC00FE96C5 /* SyncanoSpec.m */; };
 		11CE3CA21BCFDC3000DE3163 /* Syncano.h in Headers */ = {isa = PBXBuildFile; fileRef = 119991631AC446E4007B994C /* Syncano.h */; };
@@ -206,6 +208,8 @@
 		11AFBC881AC58B5F002B1F2F /* SCAPIClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAPIClientSpec.m; sourceTree = "<group>"; };
 		11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
 		11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONString.m"; sourceTree = "<group>"; };
+		11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSONDictionary.h"; sourceTree = "<group>"; };
+		11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSONDictionary.m"; sourceTree = "<group>"; };
 		11B1DAE91B58B866000D8488 /* CustomUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUserProfile.h; sourceTree = "<group>"; };
 		11B1DAEA1B58B866000D8488 /* CustomUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUserProfile.m; sourceTree = "<group>"; };
 		11BE43D31AC458EC00FE96C5 /* SyncanoSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoSpec.m; sourceTree = "<group>"; };
@@ -468,6 +472,8 @@
 				11CE3CDD1BCFE79100DE3163 /* Info.plist */,
 				11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */,
 				11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */,
+				11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */,
+				11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */,
 			);
 			name = Syncano;
 			path = "syncano-ios";
@@ -587,6 +593,7 @@
 				11CE3CC21BCFDC3000DE3163 /* SCParseManager.h in Headers */,
 				11CE3CAD1BCFDC3000DE3163 /* SCFile.h in Headers */,
 				11CE3CA21BCFDC3000DE3163 /* Syncano.h in Headers */,
+				11B0E66C1BFCCB0100E36713 /* NSString+JSONDictionary.h in Headers */,
 				11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */,
 				11CE3CD51BCFDC3000DE3163 /* (null) in Headers */,
 				11CE3CBE1BCFDC3000DE3163 /* SCChannelNotificationMessage.h in Headers */,
@@ -821,6 +828,7 @@
 				11CE3CBD1BCFDC3000DE3163 /* SCChannel.m in Sources */,
 				11F8BF841BE1083F00091F58 /* SCDataObject+LocalStorage.m in Sources */,
 				11CE3CC51BCFDC3000DE3163 /* SCParseManager+SCDataObject.m in Sources */,
+				11B0E66D1BFCCB0100E36713 /* NSString+JSONDictionary.m in Sources */,
 				11CE3CA31BCFDC3000DE3163 /* Syncano.m in Sources */,
 				11CE3CD61BCFDC3000DE3163 /* (null) in Sources */,
 				11CE3CC71BCFDC3000DE3163 /* SCParseManager+SCUser.m in Sources */,

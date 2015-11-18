@@ -11,6 +11,7 @@
 #import "SCConstants.h"
 #import "SCDataObject+LocalStorage.h"
 #import "SCParseManager+SCLocalStorage.h"
+#import "NSString+JSONDictionary.h"
 
 @interface SCLocalStore ()
 @property (nonatomic,retain) FMDatabase *db;
@@ -50,17 +51,12 @@
     [self executeQuery:query withCompletionBlock:^(FMResultSet *resultSet, NSError *error) {
         if (!error) {
             while ([resultSet next]) {
-                NSError *parseError;
                 NSString *JSONString = [resultSet objectForColumnName:@"json"];
-                
-                NSError *jsonError;
-                NSData *objectData = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
-                NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                     options:NSJSONReadingMutableContainers
-                                                                       error:&jsonError];
-                
+                NSError *serializeError;
+                NSDictionary *JSON = [JSONString sc_jsonDictionary:&serializeError];
+                NSError *parseError;
                 id dataObject = [[SCParseManager sharedSCParseManager] parsedObjectOfClassWithName:NSStringFromClass(objectClass) fromJSON:JSON error:&parseError];
-                if (!parseError) {
+                if (!parseError && !serializeError) {
                     if (dataObject) {
                         [resultObjects addObject:dataObject];
                     }
