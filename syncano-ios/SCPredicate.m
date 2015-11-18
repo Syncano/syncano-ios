@@ -38,7 +38,7 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (NSString *)queryRepresentation {
-    NSError *error;
+    NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{self.leftHand : @{self.operator : self.rightHand}}
                                                        options:0
                                                          error:&error];

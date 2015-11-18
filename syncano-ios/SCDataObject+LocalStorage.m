@@ -10,6 +10,7 @@
 #import "SCParseManager+SCDataObject.h"
 #import "Syncano.h"
 #import "SCLocalStore.h"
+#import "NSDictionary+JSONString.h"
 
 @implementation SCDataObject (LocalStorage)
 
@@ -18,12 +19,26 @@
     [[Syncano localStore] saveDataObject:self withCompletionBlock:completion];
 }
 
+#pragma mark - Fetching -
++ (void)fetchAllObjectsFromLocalStorageWithCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock {
+    [[Syncano localStore] fetchAllObjectsOfClass:[self class] withCompletionBlock:completionBlock];
+}
+
 #pragma mark - Helpers -
 - (void)generateInsertQueryWithCompletion:(void(^)(NSError *error, NSString* query))completion {
-    NSError *error;
-    NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO %@ (className, objectId,json) VALUES ('%@',%@,'%@');",kDatabaseName,NSStringFromClass([self class]),self.objectId,[[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error]];
+    NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO %@ (className, objectId,json) VALUES ('%@',%@,'%@');",kDatabaseName,NSStringFromClass([self class]),self.objectId,[self stringRepresentation]];
     if (completion) {
-        completion(error,insertQuery);
+        completion(nil,insertQuery);
     }
+}
+
+- (NSString *)stringRepresentation {
+
+    NSError *dictionarySerializeError = nil;
+    NSError *stringSerializeError = nil;
+
+    NSDictionary *dictionaryRepresentation = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&dictionarySerializeError];
+    NSString *stringRepresentation = [dictionaryRepresentation sc_jsonStringWithPrettyPrint:YES error:&stringSerializeError];
+    return stringRepresentation;
 }
 @end

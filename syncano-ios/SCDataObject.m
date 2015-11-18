@@ -201,7 +201,7 @@
 }
 
 - (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    NSError *validationError;
+    NSError *validationError = nil;
     SCValidateAndSetValue(self, key, value, YES, &validationError);
     if (validationError) {
         completion(validationError);

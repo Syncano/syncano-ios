@@ -14,6 +14,8 @@
 - (void)saveToLocalStorageWithCompletion:(SCCompletionBlock)completion;
 
 
++ (void)fetchAllObjectsFromLocalStorageWithCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock;
+
 #pragma mark - Helpers -
 - (void)generateInsertQueryWithCompletion:(void(^)(NSError *error, NSString* query))completion;
 @end
