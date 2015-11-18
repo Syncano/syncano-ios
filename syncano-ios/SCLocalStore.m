@@ -7,9 +7,10 @@
 //
 
 #import "SCLocalStore.h"
-#import <FMDB.h>
+#import "FMDB.h"
 #import "SCConstants.h"
 #import "SCDataObject+LocalStorage.h"
+#import "SCParseManager+SCLocalStorage.h"
 
 @interface SCLocalStore ()
 @property (nonatomic,retain) FMDatabase *db;
@@ -49,8 +50,24 @@
     [self executeQuery:query withCompletionBlock:^(FMResultSet *resultSet, NSError *error) {
         if (!error) {
             while ([resultSet next]) {
-             //objectForColumnName:
+                NSError *parseError;
+                NSString *JSONString = [resultSet objectForColumnName:@"json"];
                 
+                NSError *jsonError;
+                NSData *objectData = [JSONString dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                     options:NSJSONReadingMutableContainers
+                                                                       error:&jsonError];
+                
+                id dataObject = [[SCParseManager sharedSCParseManager] parsedObjectOfClassWithName:NSStringFromClass(objectClass) fromJSON:JSON error:&parseError];
+                if (!parseError) {
+                    if (dataObject) {
+                        [resultObjects addObject:dataObject];
+                    }
+                }
+            }
+            if (completionBlock) {
+                completionBlock([NSArray arrayWithArray:resultObjects],nil);
             }
         } else {
             if (completionBlock) {
@@ -106,23 +123,20 @@
     [self openDatabaseWithCompletionBlock:^(NSError *error) {
         if (!error) {
             FMResultSet *result = [self.db executeQuery:query];
-            [self closeDataBaseWithCompletionBlock:^(NSError *error) {
-                if (!error) {
-                    if (![self.db hadError] && result) {
-                        if (completionBlock) {
-                            completionBlock(result,nil);
-                        }
-                    } else {
-                        if (completionBlock) {
-                            completionBlock(nil,[self.db lastError]);
-                        }
-                    }
-                } else {
-                    if (completionBlock) {
-                        completionBlock(nil,error);
-                    }
+            
+            if (![self.db hadError] && result) {
+                if (completionBlock) {
+                    completionBlock(result,nil);
                 }
-            }];
+            } else {
+                if (completionBlock) {
+                    completionBlock(nil,[self.db lastError]);
+                }
+            }
+ 
+            [self.db close];
+            
+            //}];
         } else {
             if (completionBlock) {
                 completionBlock(nil,error);

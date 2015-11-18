@@ -7,7 +7,7 @@
 //
 
 #import "SCParseManager+SCLocalStorage.h"
-#import <Mantle.h>
+#import "Mantle.h"
 #import "SCDataObject.h"
 #import "SCRegisterManager.h"
 
