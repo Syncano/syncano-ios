@@ -108,6 +108,8 @@ extern NSString *const SCPleaseParameterIncludeKeys;
 - (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
 
 
+- (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
+
 @end
 
 @interface SCPlease (LocalStore)

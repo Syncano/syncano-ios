@@ -1,20 +1,20 @@
-[![Circle CI](https://circleci.com/gh/Syncano/syncano4-ios/tree/master.svg?style=svg)](https://circleci.com/gh/Syncano/syncano4-ios/tree/master)
+[![Circle CI](https://circleci.com/gh/Syncano/syncano-ios/tree/master.svg?style=svg)](https://circleci.com/gh/Syncano/syncano-ios/tree/master)
 
 # Syncano iOS Library
 
 ## Overview
 ---
 
-Syncano's iOS library is written in Objective-C and provides communication with Syncano ([www.syncano.io](http://www.syncano.io/)) via HTTPS RESTful interface.
+Syncano's iOS library is written in Objective-C and provides communication with Syncano ([www.syncano.io](http://www.syncano.io/?utm_source=github&utm_medium=readme&utm_campaign=syncano-ios)) via HTTPS RESTful interface.
 
 The full source code can be found on [Github](https://github.com/Syncano/syncano-ios) - feel free to browse or contribute.
 
 ## iOS QuickStart Guide
 ---
 
-You can find quick start on installing and using Syncano's iOS library (for both Obj-C and Swift) in our [documentation](http://docs.syncano.com/docs/ios).
+You can find quick start on installing and using Syncano's iOS library (for both Obj-C and Swift) in our [documentation](http://docs.syncano.com/docs/ios/?utm_source=github&utm_medium=readme&utm_campaign=syncano-ios).
 
-For more detailed information on how to use Syncano and its features - our [Developer Manual](http://docs.syncano.com/docs/getting-started-with-syncano) should be very helpful.
+For more detailed information on how to use Syncano and its features - our [Developer Manual](http://docs.syncano.com/docs/getting-started-with-syncano/?utm_source=github&utm_medium=readme&utm_campaign=syncano-ios) should be very helpful.
 
 In case you need help working with the library - email us at libraries@syncano.com - we will be happy to help!
 

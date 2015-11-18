@@ -22,6 +22,8 @@ typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject *responseObject
 typedef void (^SCPleaseResolveQueryParametersCompletionBlock)(NSDictionary *queryParameters,NSArray *includeKeys);
 typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *notificationMessage, NSError *error);
 typedef void (^SCFileFetchCompletionBlock)(NSData *data, NSError *error);
+typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *error);
+
 
 extern NSString * const SCDataObjectErrorDomain;
 

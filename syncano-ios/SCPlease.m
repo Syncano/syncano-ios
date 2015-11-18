@@ -162,7 +162,7 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
 }
 
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
-    if (self.nextUrlString) {
+    if (self.nextUrlString.length > 0) {
         [[self apiClient] GET:self.nextUrlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self handleResponse:responseObject error:nil completion:completion includeKeys:self.includeKeys];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -255,6 +255,34 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
             completion(objects,nil);
         }
     });
+}
+
+- (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block {
+    if (!block) {
+        return;
+    }
+    [self giveMeDataObjectsWithPredicate:predicate parameters:parameters completion:^(NSArray *objects, NSError *error) {
+        BOOL stop = NO;
+        if (block) {
+            block(&stop,objects,error);
+            if (!stop) {
+                [self performNextEnumerationStepWithBlock:block];
+            }
+        }
+        
+    }];
+}
+
+- (void)performNextEnumerationStepWithBlock:(SCPleaseEnumerateBlock)block {
+    [self giveMeNextPageOfDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
+        BOOL stop = NO;
+        if (block) {
+            block(&stop,objects,error);
+        }
+        if (!stop && self.nextUrlString.length > 0) {
+            [self performNextEnumerationStepWithBlock:block];
+        }
+    }];
 }
 
 @end
