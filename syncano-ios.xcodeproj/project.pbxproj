@@ -28,10 +28,20 @@
 		1106CE881B5DFF9500CEA452 /* Books.json in Resources */ = {isa = PBXBuildFile; fileRef = 1106CE871B5DFF9500CEA452 /* Books.json */; };
 		1106CE8A1B5E005800CEA452 /* SCPleaseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1106CE891B5E005800CEA452 /* SCPleaseSpec.m */; };
 		1106CE8C1B5E065B00CEA452 /* SCParseManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1106CE8B1B5E065B00CEA452 /* SCParseManagerSpec.m */; };
+		1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */; };
+		1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */; };
 		1109EF631ACD2E2100BD18A6 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
 		1150CF9C1B5789DF0080D5E3 /* SCUserRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */; };
+		1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */; };
+		1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */; };
+		1152FF941C04A036001D267C /* SCCompoundPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */; };
+		1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF931C04A036001D267C /* SCCompoundPredicate+LocalStorage.m */; };
+		11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */; };
+		11537F9C1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */; };
+		115E32091BF33FEA000130DE /* SCRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 115E32071BF33FEA000130DE /* SCRegisterManager.m */; };
+		115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 115E32081BF33FEA000130DE /* SCRegisterManager.h */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
@@ -39,6 +49,10 @@
 		11A7C6571B67B62C00EDC3CE /* SCChannelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A7C6561B67B62C00EDC3CE /* SCChannelSpec.m */; };
 		11A7C65C1B67C00D00EDC3CE /* ChannelNotificationMessage.json in Resources */ = {isa = PBXBuildFile; fileRef = 11A7C65B1B67C00D00EDC3CE /* ChannelNotificationMessage.json */; };
 		11AFBC891AC58B5F002B1F2F /* SCAPIClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AFBC881AC58B5F002B1F2F /* SCAPIClientSpec.m */; };
+		11B0E6681BFCC4F700E36713 /* NSDictionary+JSONString.h in Headers */ = {isa = PBXBuildFile; fileRef = 11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */; };
+		11B0E6691BFCC4F700E36713 /* NSDictionary+JSONString.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */; };
+		11B0E66C1BFCCB0100E36713 /* NSString+JSONDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */; };
+		11B0E66D1BFCCB0100E36713 /* NSString+JSONDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */; };
 		11B1DAEB1B58B866000D8488 /* CustomUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B1DAEA1B58B866000D8488 /* CustomUserProfile.m */; };
 		11BE43D41AC458EC00FE96C5 /* SyncanoSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11BE43D31AC458EC00FE96C5 /* SyncanoSpec.m */; };
 		11CE3CA21BCFDC3000DE3163 /* Syncano.h in Headers */ = {isa = PBXBuildFile; fileRef = 119991631AC446E4007B994C /* Syncano.h */; };
@@ -92,19 +106,26 @@
 		11CE3CD21BCFDC3000DE3163 /* SCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 115759331B300BCF00DDCC06 /* SCConstants.m */; };
 		11CE3CD31BCFDC3000DE3163 /* NSData+MimeType.h in Headers */ = {isa = PBXBuildFile; fileRef = 111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */; };
 		11CE3CD41BCFDC3000DE3163 /* NSData+MimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */; };
-		11CE3CD51BCFDC3000DE3163 /* SCDataObject+Properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 111EEAF71BA2BFD400F2EB90 /* SCDataObject+Properties.h */; };
-		11CE3CD61BCFDC3000DE3163 /* SCDataObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */; };
+		11CE3CD51BCFDC3000DE3163 /* (null) in Headers */ = {isa = PBXBuildFile; };
+		11CE3CD61BCFDC3000DE3163 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		11CE3CF11BCFEAFF00DE3163 /* Syncano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; };
 		11D7D1B21B660C4A00466E66 /* SCWebhookSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D1B11B660C4A00466E66 /* SCWebhookSpec.m */; };
 		11D7D1B41B660CD700466E66 /* Webhook.json in Resources */ = {isa = PBXBuildFile; fileRef = 11D7D1B31B660CD700466E66 /* Webhook.json */; };
 		11F80C3E1ACEDF3600134A39 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C3D1ACEDF3600134A39 /* Author.m */; };
+		11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */; };
+		11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */; };
+		11F8BF7F1BE0F4A500091F58 /* SCLocalStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 11865B111BC667A0005DE1B5 /* SCLocalStore.h */; };
+		11F8BF801BE0F4A800091F58 /* SCLocalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 11865B121BC667A0005DE1B5 /* SCLocalStore.m */; };
+		11F8BF831BE1083F00091F58 /* SCDataObject+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F8BF811BE1083F00091F58 /* SCDataObject+LocalStorage.h */; };
+		11F8BF841BE1083F00091F58 /* SCDataObject+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F8BF821BE1083F00091F58 /* SCDataObject+LocalStorage.m */; };
 		11F9AED01B61F92700B51341 /* SCFileSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AECF1B61F92700B51341 /* SCFileSpec.m */; };
 		11F9AED21B61F98200B51341 /* syncano-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 11F9AED11B61F98200B51341 /* syncano-white.png */; };
 		11F9AEDC1B62105C00B51341 /* SCCodeBoxSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDB1B62105C00B51341 /* SCCodeBoxSpec.m */; };
 		11F9AEDE1B62113D00B51341 /* Trace.json in Resources */ = {isa = PBXBuildFile; fileRef = 11F9AEDD1B62113D00B51341 /* Trace.json */; };
 		11F9AEE01B62128200B51341 /* SCTraceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDF1B62128200B51341 /* SCTraceSpec.m */; };
-		19208A154B407611AF645A7A /* libPods-Syncano.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */; };
-		FA3BA7DD65FC33A82B508F1A /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
+		1FC156E21DC7A89615EC23BD /* libPods-Syncano.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0704F2B7C07BA370BAF28B2F /* libPods-Syncano.a */; };
+		CCACFF387D22E8AC0321BB77 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
+		FC72B7C13F671E978712CABE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +146,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0704F2B7C07BA370BAF28B2F /* libPods-Syncano.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Syncano.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1104DAA41AEA5A8F0088F45E /* SCPredicateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicateSpec.m; sourceTree = "<group>"; };
 		11055B9C1B25C393004BB629 /* SCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChannel.h; sourceTree = "<group>"; };
 		11055B9D1B25C393004BB629 /* SCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChannel.m; sourceTree = "<group>"; };
@@ -136,14 +158,14 @@
 		1106CE871B5DFF9500CEA452 /* Books.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Books.json; sourceTree = "<group>"; };
 		1106CE891B5E005800CEA452 /* SCPleaseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseSpec.m; sourceTree = "<group>"; };
 		1106CE8B1B5E065B00CEA452 /* SCParseManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCParseManagerSpec.m; sourceTree = "<group>"; };
+		1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCPlease+LocalStorage.h"; sourceTree = "<group>"; };
+		1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCPlease+LocalStorage.m"; sourceTree = "<group>"; };
 		1109EF5B1ACD257300BD18A6 /* SCAPIClient+SCDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCAPIClient+SCDataObject.h"; sourceTree = "<group>"; };
 		1109EF5C1ACD257300BD18A6 /* SCAPIClient+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCAPIClient+SCDataObject.m"; sourceTree = "<group>"; };
 		1109EF611ACD2E2100BD18A6 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		1109EF621ACD2E2100BD18A6 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MimeType.h"; sourceTree = "<group>"; };
 		111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MimeType.m"; sourceTree = "<group>"; };
-		111EEAF71BA2BFD400F2EB90 /* SCDataObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Properties.h"; sourceTree = "<group>"; };
-		111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+Properties.m"; sourceTree = "<group>"; };
 		112B2AB41BAD2A1D00CC2FB6 /* SCCompoundPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCompoundPredicate.h; sourceTree = "<group>"; };
 		112B2AB51BAD2A1D00CC2FB6 /* SCCompoundPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCompoundPredicate.m; sourceTree = "<group>"; };
 		112B2AB81BAD2B9B00CC2FB6 /* SCPredicateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicateProtocol.h; sourceTree = "<group>"; };
@@ -155,12 +177,22 @@
 		11487E451ADE94D200627EFD /* SCPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicate.h; sourceTree = "<group>"; };
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
 		1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUserRegister.json; sourceTree = "<group>"; };
+		1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCPredicate+LocalStorage.h"; sourceTree = "<group>"; };
+		1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCPredicate+LocalStorage.m"; sourceTree = "<group>"; };
+		1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCCompoundPredicate+LocalStorage.h"; sourceTree = "<group>"; };
+		1152FF931C04A036001D267C /* SCCompoundPredicate+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCCompoundPredicate+LocalStorage.m"; sourceTree = "<group>"; };
+		11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCParseManager+SCLocalStorage.h"; sourceTree = "<group>"; };
+		11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCLocalStorage.m"; sourceTree = "<group>"; };
 		115759301B2FF69500DDCC06 /* SCJSONResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONResponseSerializer.h; sourceTree = "<group>"; };
 		115759311B2FF69500DDCC06 /* SCJSONResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONResponseSerializer.m; sourceTree = "<group>"; };
 		115759331B300BCF00DDCC06 /* SCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCConstants.m; sourceTree = "<group>"; };
+		115E32071BF33FEA000130DE /* SCRegisterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRegisterManager.m; sourceTree = "<group>"; };
+		115E32081BF33FEA000130DE /* SCRegisterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRegisterManager.h; sourceTree = "<group>"; };
 		118426891AC983A1001035A7 /* SCParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCParseManager.h; sourceTree = "<group>"; };
 		1184268A1AC983A1001035A7 /* SCParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCParseManager.m; sourceTree = "<group>"; };
 		1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDataObjectSpec.m; sourceTree = "<group>"; };
+		11865B111BC667A0005DE1B5 /* SCLocalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLocalStore.h; sourceTree = "<group>"; };
+		11865B121BC667A0005DE1B5 /* SCLocalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLocalStore.m; sourceTree = "<group>"; };
 		1193D72C1B53FDCE000D665B /* SCUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUserSpec.m; sourceTree = "<group>"; };
 		1193D7311B54E7AF000D665B /* KWSpec+WaitFor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KWSpec+WaitFor.h"; sourceTree = "<group>"; };
 		1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KWSpec+WaitFor.m"; sourceTree = "<group>"; };
@@ -186,6 +218,10 @@
 		11A7C6561B67B62C00EDC3CE /* SCChannelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChannelSpec.m; sourceTree = "<group>"; };
 		11A7C65B1B67C00D00EDC3CE /* ChannelNotificationMessage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ChannelNotificationMessage.json; sourceTree = "<group>"; };
 		11AFBC881AC58B5F002B1F2F /* SCAPIClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAPIClientSpec.m; sourceTree = "<group>"; };
+		11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONString.h"; sourceTree = "<group>"; };
+		11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONString.m"; sourceTree = "<group>"; };
+		11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSONDictionary.h"; sourceTree = "<group>"; };
+		11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSONDictionary.m"; sourceTree = "<group>"; };
 		11B1DAE91B58B866000D8488 /* CustomUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUserProfile.h; sourceTree = "<group>"; };
 		11B1DAEA1B58B866000D8488 /* CustomUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUserProfile.m; sourceTree = "<group>"; };
 		11BE43D31AC458EC00FE96C5 /* SyncanoSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncanoSpec.m; sourceTree = "<group>"; };
@@ -208,6 +244,10 @@
 		11D7D1B31B660CD700466E66 /* Webhook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Webhook.json; sourceTree = "<group>"; };
 		11F80C3C1ACEDF3600134A39 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
 		11F80C3D1ACEDF3600134A39 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
+		11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Properties.h"; sourceTree = "<group>"; };
+		11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+Properties.m"; sourceTree = "<group>"; };
+		11F8BF811BE1083F00091F58 /* SCDataObject+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+LocalStorage.h"; sourceTree = "<group>"; };
+		11F8BF821BE1083F00091F58 /* SCDataObject+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+LocalStorage.m"; sourceTree = "<group>"; };
 		11F9AECF1B61F92700B51341 /* SCFileSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFileSpec.m; sourceTree = "<group>"; };
 		11F9AED11B61F98200B51341 /* syncano-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "syncano-white.png"; sourceTree = "<group>"; };
 		11F9AED61B61FD4100B51341 /* SCAPIClient+SCFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCAPIClient+SCFile.m"; sourceTree = "<group>"; };
@@ -215,12 +255,12 @@
 		11F9AEDB1B62105C00B51341 /* SCCodeBoxSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCodeBoxSpec.m; sourceTree = "<group>"; };
 		11F9AEDD1B62113D00B51341 /* Trace.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Trace.json; sourceTree = "<group>"; };
 		11F9AEDF1B62128200B51341 /* SCTraceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTraceSpec.m; sourceTree = "<group>"; };
-		1B93455B2DDBCC1B72A55BF1 /* Pods-syncano-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Syncano.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		76E56D1310C4DAFB1FD32169 /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
-		B82587DE5315797724F0BA55 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
-		C99C551225468498EBC5E2FC /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
+		68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
+		6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,7 +269,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				11CE3CF11BCFEAFF00DE3163 /* Syncano.framework in Frameworks */,
-				FA3BA7DD65FC33A82B508F1A /* libPods-syncano-iosTests.a in Frameworks */,
+				FC72B7C13F671E978712CABE /* (null) in Frameworks */,
+				CCACFF387D22E8AC0321BB77 /* libPods-syncano-iosTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +278,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19208A154B407611AF645A7A /* libPods-Syncano.a in Frameworks */,
+				1FC156E21DC7A89615EC23BD /* libPods-Syncano.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +333,8 @@
 		11055BA61B25CF2E004BB629 /* DataObject */ = {
 			isa = PBXGroup;
 			children = (
+				11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */,
+				11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */,
 				11BE43DE1AC55BCA00FE96C5 /* SCDataObject.h */,
 				11BE43DF1AC55BCA00FE96C5 /* SCDataObject.m */,
 				11BE43E61AC57AC600FE96C5 /* SCPlease.h */,
@@ -331,6 +374,12 @@
 			children = (
 				113C36A31B0224EF008723EC /* NSObject+SCParseHelper.h */,
 				113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */,
+				11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */,
+				11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */,
+				11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */,
+				11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */,
+				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
+				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -351,6 +400,17 @@
 			name = "Response mock files";
 			sourceTree = "<group>";
 		};
+		1152FF961C04A03F001D267C /* Predicate */ = {
+			isa = PBXGroup;
+			children = (
+				1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */,
+				1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */,
+				1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */,
+				1152FF931C04A036001D267C /* SCCompoundPredicate+LocalStorage.m */,
+			);
+			name = Predicate;
+			sourceTree = "<group>";
+		};
 		1184268E1AC986C6001035A7 /* ParseManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,8 +420,26 @@
 				119A93621AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m */,
 				119A93641AFB911E001ADA7C /* SCParseManager+SCUser.h */,
 				119A93651AFB911E001ADA7C /* SCParseManager+SCUser.m */,
+				11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */,
+				11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */,
+				115E32081BF33FEA000130DE /* SCRegisterManager.h */,
+				115E32071BF33FEA000130DE /* SCRegisterManager.m */,
 			);
 			name = ParseManager;
+			sourceTree = "<group>";
+		};
+		11865B091BC560AB005DE1B5 /* OfflineStorage */ = {
+			isa = PBXGroup;
+			children = (
+				1152FF961C04A03F001D267C /* Predicate */,
+				11865B111BC667A0005DE1B5 /* SCLocalStore.h */,
+				11865B121BC667A0005DE1B5 /* SCLocalStore.m */,
+				11F8BF811BE1083F00091F58 /* SCDataObject+LocalStorage.h */,
+				11F8BF821BE1083F00091F58 /* SCDataObject+LocalStorage.m */,
+				1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */,
+				1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */,
+			);
+			name = OfflineStorage;
 			sourceTree = "<group>";
 		};
 		1193D7341B54EF4E000D665B /* Helpers */ = {
@@ -417,13 +495,10 @@
 				1142F6581B332A8900A38A97 /* Categories */,
 				1184268E1AC986C6001035A7 /* ParseManager */,
 				11BE43D81AC552D500FE96C5 /* APIClient */,
+				11865B091BC560AB005DE1B5 /* OfflineStorage */,
 				11BE43DC1AC5539600FE96C5 /* SCMacros.h */,
 				11BE43E51AC57A0500FE96C5 /* SCConstants.h */,
 				115759331B300BCF00DDCC06 /* SCConstants.m */,
-				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
-				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
-				111EEAF71BA2BFD400F2EB90 /* SCDataObject+Properties.h */,
-				111EEAF81BA2BFD400F2EB90 /* SCDataObject+Properties.m */,
 				11CE3CDD1BCFE79100DE3163 /* Info.plist */,
 			);
 			name = Syncano;
@@ -498,10 +573,10 @@
 		80F3652329F3460F1878B890 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1B93455B2DDBCC1B72A55BF1 /* Pods-syncano-iosTests.debug.xcconfig */,
-				76E56D1310C4DAFB1FD32169 /* Pods-syncano-iosTests.release.xcconfig */,
-				B82587DE5315797724F0BA55 /* Pods-Syncano.debug.xcconfig */,
-				C99C551225468498EBC5E2FC /* Pods-Syncano.release.xcconfig */,
+				E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */,
+				68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */,
+				6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */,
+				B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -524,6 +599,7 @@
 			files = (
 				11CE3CC61BCFDC3000DE3163 /* SCParseManager+SCUser.h in Headers */,
 				11CE3CCE1BCFDC3000DE3163 /* SCJSONResponseSerializer.h in Headers */,
+				11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */,
 				11CE3CBC1BCFDC3000DE3163 /* SCChannel.h in Headers */,
 				11CE3CD31BCFDC3000DE3163 /* NSData+MimeType.h in Headers */,
 				11CE3CCA1BCFDC3000DE3163 /* SCAPIClient.h in Headers */,
@@ -537,16 +613,25 @@
 				11CE3CA61BCFDC3000DE3163 /* SCPlease.h in Headers */,
 				11CE3CD11BCFDC3000DE3163 /* SCConstants.h in Headers */,
 				11CE3CA81BCFDC3000DE3163 /* SCPredicateProtocol.h in Headers */,
+				11B0E6681BFCC4F700E36713 /* NSDictionary+JSONString.h in Headers */,
 				11CE3CD01BCFDC3000DE3163 /* SCMacros.h in Headers */,
 				11CE3CB71BCFDC3000DE3163 /* SCWebhook.h in Headers */,
 				11CE3CC21BCFDC3000DE3163 /* SCParseManager.h in Headers */,
+				1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */,
 				11CE3CAD1BCFDC3000DE3163 /* SCFile.h in Headers */,
 				11CE3CA21BCFDC3000DE3163 /* Syncano.h in Headers */,
-				11CE3CD51BCFDC3000DE3163 /* SCDataObject+Properties.h in Headers */,
+				11B0E66C1BFCCB0100E36713 /* NSString+JSONDictionary.h in Headers */,
+				11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */,
+				11CE3CD51BCFDC3000DE3163 /* (null) in Headers */,
+				1152FF941C04A036001D267C /* SCCompoundPredicate+LocalStorage.h in Headers */,
 				11CE3CBE1BCFDC3000DE3163 /* SCChannelNotificationMessage.h in Headers */,
+				11F8BF831BE1083F00091F58 /* SCDataObject+LocalStorage.h in Headers */,
 				11CE3CBB1BCFDC3000DE3163 /* SCChannelDelegate.h in Headers */,
 				11CE3CA41BCFDC3000DE3163 /* SCDataObject.h in Headers */,
+				115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */,
 				11CE3CB91BCFDC3000DE3163 /* SCWebhookResponseObject.h in Headers */,
+				11F8BF7F1BE0F4A500091F58 /* SCLocalStore.h in Headers */,
+				1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */,
 				11CE3CC41BCFDC3000DE3163 /* SCParseManager+SCDataObject.h in Headers */,
 				11CE3CC01BCFDC3000DE3163 /* NSObject+SCParseHelper.h in Headers */,
 				11CE3CB11BCFDC3000DE3163 /* SCUserProfile.h in Headers */,
@@ -765,30 +850,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B0E6691BFCC4F700E36713 /* NSDictionary+JSONString.m in Sources */,
 				11CE3CBF1BCFDC3000DE3163 /* SCChannelNotificationMessage.m in Sources */,
 				11CE3CB21BCFDC3000DE3163 /* SCUserProfile.m in Sources */,
 				11CE3CA51BCFDC3000DE3163 /* SCDataObject.m in Sources */,
 				11CE3CBD1BCFDC3000DE3163 /* SCChannel.m in Sources */,
+				11F8BF841BE1083F00091F58 /* SCDataObject+LocalStorage.m in Sources */,
 				11CE3CC51BCFDC3000DE3163 /* SCParseManager+SCDataObject.m in Sources */,
+				11B0E66D1BFCCB0100E36713 /* NSString+JSONDictionary.m in Sources */,
 				11CE3CA31BCFDC3000DE3163 /* Syncano.m in Sources */,
-				11CE3CD61BCFDC3000DE3163 /* SCDataObject+Properties.m in Sources */,
+				11CE3CD61BCFDC3000DE3163 /* (null) in Sources */,
 				11CE3CC71BCFDC3000DE3163 /* SCParseManager+SCUser.m in Sources */,
 				11CE3CD21BCFDC3000DE3163 /* SCConstants.m in Sources */,
+				11F8BF801BE0F4A800091F58 /* SCLocalStore.m in Sources */,
 				11CE3CCD1BCFDC3000DE3163 /* SCAPIClient+SCDataObject.m in Sources */,
 				11CE3CCB1BCFDC3000DE3163 /* SCAPIClient.m in Sources */,
 				11CE3CBA1BCFDC3000DE3163 /* SCWebhookResponseObject.m in Sources */,
 				11CE3CCF1BCFDC3000DE3163 /* SCJSONResponseSerializer.m in Sources */,
 				11CE3CB61BCFDC3000DE3163 /* SCTrace.m in Sources */,
 				11CE3CC31BCFDC3000DE3163 /* SCParseManager.m in Sources */,
+				11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */,
 				11CE3CA71BCFDC3000DE3163 /* SCPlease.m in Sources */,
 				11CE3CAE1BCFDC3000DE3163 /* SCFile.m in Sources */,
+				11537F9C1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m in Sources */,
 				11CE3CB01BCFDC3000DE3163 /* SCUser.m in Sources */,
 				11CE3CB81BCFDC3000DE3163 /* SCWebhook.m in Sources */,
 				11CE3CB41BCFDC3000DE3163 /* SCCodeBox.m in Sources */,
+				1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */,
+				115E32091BF33FEA000130DE /* SCRegisterManager.m in Sources */,
 				11CE3CC91BCFDC3000DE3163 /* SCAPIClient+SCFile.m in Sources */,
 				11CE3CD41BCFDC3000DE3163 /* NSData+MimeType.m in Sources */,
 				11CE3CAA1BCFDC3000DE3163 /* SCPredicate.m in Sources */,
+				1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */,
 				11CE3CAC1BCFDC3000DE3163 /* SCCompoundPredicate.m in Sources */,
+				1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */,
 				11CE3CC11BCFDC3000DE3163 /* NSObject+SCParseHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -912,7 +1007,7 @@
 		};
 		119991781AC446E4007B994C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B93455B2DDBCC1B72A55BF1 /* Pods-syncano-iosTests.debug.xcconfig */;
+			baseConfigurationReference = 6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -935,7 +1030,7 @@
 		};
 		119991791AC446E4007B994C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76E56D1310C4DAFB1FD32169 /* Pods-syncano-iosTests.release.xcconfig */;
+			baseConfigurationReference = B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -954,7 +1049,7 @@
 		};
 		11CE3C9C1BCFD44900DE3163 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B82587DE5315797724F0BA55 /* Pods-Syncano.debug.xcconfig */;
+			baseConfigurationReference = E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -986,7 +1081,7 @@
 		};
 		11CE3C9D1BCFD44900DE3163 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C99C551225468498EBC5E2FC /* Pods-Syncano.release.xcconfig */;
+			baseConfigurationReference = 68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -996,6 +1091,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "syncano-ios/Info.plist";

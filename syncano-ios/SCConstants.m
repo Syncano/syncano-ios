@@ -25,6 +25,8 @@ NSString * const kSCChannelNotificationMessageActionDelete = @"delete";
 NSString * const kSCSocialBackendFacebook = @"facebook";
 NSString * const kSCSocialBackendGoogle = @"google-oauth2";
 
+NSString * const kDatabaseName = @"SyncanoDataObjects";
+
 @implementation SCConstants
 
 + (SCDataObjectPermissionType)dataObjectPermissiontypeByString:(NSString *)typeString {
@@ -85,5 +87,21 @@ NSString * const kSCSocialBackendGoogle = @"google-oauth2";
         return SCChannelNotificationMessageActionDelete;
     }
     return SCChannelNotificationMessageActionNone;
+}
+
+#pragma mark - Database -
++ (NSString *)DB_PATH {
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *dbPath = [docDir stringByAppendingPathComponent:@"Syncano.db"];
+    return dbPath;
+}
+
++ (NSString *)createTableSQLStatement {
+    NSString *objectsTableSchema = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ("
+    @"className TEXT, "
+    @"objectId INTEGER, "
+    @"json TEXT, "
+    @"UNIQUE(className, objectId));",kDatabaseName];
+    return objectsTableSchema;
 }
 @end

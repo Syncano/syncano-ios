@@ -8,37 +8,51 @@
 
 #import "SCPredicate.h"
 
-static NSString *const SCPredicateGreaterThanOperator = @"_gt";
-static NSString *const SCPredicateGreaterThanOrEqualOperator = @"_gte";
-static NSString *const SCPredicateLessThanOperator = @"_lt";
-static NSString *const SCPredicateLessThanOrEqualOperator = @"_lte";
-static NSString *const SCPredicateEqualOperator = @"_eq";
-static NSString *const SCPredicateNotEqualOperator = @"_neq";
-static NSString *const SCPredicateExistsOperator = @"_exists";
-static NSString *const SCPredicateInOperator = @"_in";
+NSString *const SCPredicateGreaterThanOperator = @"_gt";
+NSString *const SCPredicateGreaterThanOrEqualOperator = @"_gte";
+NSString *const SCPredicateLessThanOperator = @"_lt";
+NSString *const SCPredicateLessThanOrEqualOperator = @"_lte";
+NSString *const SCPredicateEqualOperator = @"_eq";
+NSString *const SCPredicateNotEqualOperator = @"_neq";
+NSString *const SCPredicateExistsOperator = @"_exists";
+NSString *const SCPredicateInOperator = @"_in";
 
 static NSDateFormatter *dateFormatter;
 
 @interface SCPredicate ()
-@property (nonatomic,retain) NSString *leftHand;
-@property (nonatomic,retain) NSString *operator;
-@property (nonatomic,retain) id rightHand;
+
 @end
 
-@implementation SCPredicate
+@implementation SCPredicate {
+    NSString *_leftHand;
+    NSString *_operator;
+    id _rightHand;
+}
 
 - (instancetype)initWithLeftHand:(NSString *)leftHand operator:(NSString *)operator rightHand:(id)rightHand {
     self = [super init];
     if (self) {
-        self.leftHand = leftHand;
-        self.operator = operator;
-        self.rightHand = rightHand;
+        _leftHand = leftHand;
+        _operator = operator;
+        _rightHand = rightHand;
     }
     return self;
 }
 
+- (NSString *)leftHand {
+    return _leftHand;
+}
+
+- (id)rightHand {
+    return _rightHand;
+}
+
+- (NSString *)operator {
+    return _operator;
+}
+
 - (NSString *)queryRepresentation {
-    NSError *error;
+    NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{self.leftHand : @{self.operator : self.rightHand}}
                                                        options:0
                                                          error:&error];

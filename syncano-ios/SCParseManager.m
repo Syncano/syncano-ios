@@ -20,7 +20,7 @@
 
 SINGLETON_IMPL_FOR_CLASS(SCParseManager)
 
-- (NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class
++ (NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class
 {
     objc_property_t property = class_getProperty( class, [name UTF8String] );
     if ( property == NULL )

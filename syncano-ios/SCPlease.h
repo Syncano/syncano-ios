@@ -33,6 +33,11 @@ extern NSString *const SCPleaseParameterIncludeKeys;
 @property (nonatomic,assign) Syncano *syncano;
 
 /**
+ *  Connected SCDataObject Class
+ */
+@property (nonatomic,assign) Class dataObjectClass;
+
+/**
  *  Initializes new empty SCPlease object for provided SCDataObject class
  *
  *  @param dataObjectClass SCDataObject scope class
@@ -109,5 +114,11 @@ extern NSString *const SCPleaseParameterIncludeKeys;
 
 
 - (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
+
+@end
+
+@interface SCPlease (LocalStore)
+
+- (void)fromLocalStore;
 
 @end

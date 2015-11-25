@@ -6,6 +6,7 @@ target "Syncano" do
     pod 'AFNetworking', '2.5.4'
     pod 'Mantle', '~> 2.0'
     pod 'UICKeyChainStore', '~> 2.0'
+    pod 'FMDB'
 end
 
 target "syncano-iosTests" do

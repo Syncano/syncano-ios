@@ -47,6 +47,8 @@ extern NSString * const kSCChannelNotificationMessageActionCreate;
 extern NSString * const kSCChannelNotificationMessageActionUpdate;
 extern NSString * const kSCChannelNotificationMessageActionDelete;
 
+extern NSString * const kDatabaseName;
+
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,
     SCDataObjectPermissionTypeRead,
@@ -89,4 +91,7 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
 + (NSString *)socialAuthenticationBackendToString:(SCSocialAuthenticationBackend)backend;
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
+
++ (NSString *)DB_PATH;
++ (NSString *)createTableSQLStatement;
 @end

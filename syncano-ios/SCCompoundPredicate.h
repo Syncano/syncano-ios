@@ -10,6 +10,9 @@
 #import "SCPredicateProtocol.h"
 
 @interface SCCompoundPredicate : NSObject <SCPredicateProtocol>
+
+@property (nonatomic,readonly) NSArray * predicates;
+
 + (instancetype)compoundPredicateWithPredicates:(NSArray *)predicates;
 - (instancetype)initWithPredicates:(NSArray *)predicates;
 - (void)addPredicate:(id<SCPredicateProtocol>)predicate;

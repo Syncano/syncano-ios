@@ -18,7 +18,7 @@ SPEC_BEGIN(SCParseManagerSpec)
 describe(@"SCParseManager", ^{
     
     it(@"should return type name string of provided property name inside provided class", ^{
-        NSString *typeName =  [[SCParseManager sharedSCParseManager] typeOfPropertyNamed:@"author" fromClass:[Book class]];
+        NSString *typeName =  [SCParseManager typeOfPropertyNamed:@"author" fromClass:[Book class]];
         [[typeName should] equal:@"Author"];
     });
     
@@ -71,27 +71,25 @@ describe(@"SCParseManager", ^{
         });
         
         it(@"should register class", ^{
-            SCParseManager *parsemanager = [SCParseManager sharedSCParseManager];
             
-            NSUInteger count = parsemanager.registeredClasses.count;
+            NSUInteger count = SCRegisterManager.registeredClasses.count;
             
-            [parsemanager registerClass:[Book class]];
+            [SCRegisterManager registerClass:[Book class]];
             
-            SCClassRegisterItem *registeredItem = [parsemanager registeredItemForClass:[Book class]];
+            SCClassRegisterItem *registeredItem = [SCRegisterManager registeredItemForClass:[Book class]];
             
             [[registeredItem should] beNonNil];
             [[registeredItem.className should] equal:@"Book"];
             [[registeredItem.classNameForAPI should] equal:@"book"];
             [[registeredItem.properties[@"author"] should] equal:@"Author"];
-            [[theValue(parsemanager.registeredClasses.count) should] equal:theValue(count+1)];
+            [[theValue(SCRegisterManager.registeredClasses.count) should] equal:theValue(count+1)];
         });
         
         it(@"should return realtions for Book class", ^{
-            SCParseManager *parsemanager = [SCParseManager sharedSCParseManager];
-            [parsemanager registerClass:[Book class]];
-            [parsemanager registerClass:[Author class]];
+            [SCRegisterManager registerClass:[Book class]];
+            [SCRegisterManager registerClass:[Author class]];
             
-            NSDictionary *relations = [parsemanager relationsForClass:[Book class]];
+            NSDictionary *relations = [SCRegisterManager relationsForClass:[Book class]];
             
             [[relations should] beNonNil];
             [[relations[@"author"] should] beKindOfClass:[SCClassRegisterItem class]];

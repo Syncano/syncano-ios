@@ -10,8 +10,12 @@
 #import "SCAPIClient.h"
 #import "SCParseManager.h"
 #import "SCAPIClient+Class.h"
+#import "SCLocalStore.h"
+
+static SCLocalStore *_localStore;
 
 @interface Syncano ()
+
 @end
 
 @implementation Syncano
@@ -31,6 +35,10 @@
         instance = [[self alloc] init];
     });
     return instance;
+}
+
++ (SCLocalStore *)localStore {
+    return  _localStore;
 }
 
 + (Syncano *)sharedInstanceWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName {
@@ -106,5 +114,13 @@
     self.instanceName = instanceName;
 }
 
++(void)enableOfflineStorage {
+    [self enableOfflineStorageWithCompletionBlock:nil];
+}
+
++ (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock {
+    _localStore = [SCLocalStore new];
+    [_localStore initializeDBWithCompletionBlock:completionBlock];
+}
 
 @end
