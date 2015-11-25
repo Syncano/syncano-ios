@@ -10,19 +10,28 @@
 
 @implementation SCPredicate (LocalStorage)
 - (NSPredicate *)nspredicateRepresentation {
-    return [NSPredicate predicateWithFormat:@"%@ %@ %@",self.leftHand , [self nspredicateOperatorRepresentationForOperator:self.operator],self.rightHand];
+    NSExpression *lexp = [NSExpression expressionForKeyPath:[self leftHand]];
+    NSExpression *rexp = [NSExpression expressionForConstantValue:[self rightHand]];
+    NSPredicateOperatorType op = [self nspredicateOperatorRepresentationForOperator:[self operator]];
+    
+    NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:lexp
+                                                         rightExpression:rexp
+                                                                modifier:0
+                                                                    type:op
+                                                                 options:0];
+    return predicate;
 }
 
-- (NSString *)nspredicateOperatorRepresentationForOperator:(NSString *)operator {
-    NSDictionary *operators = @{SCPredicateGreaterThanOperator : @">",
-                                SCPredicateGreaterThanOrEqualOperator : @">=",
-                                SCPredicateLessThanOperator : @"<",
-                                SCPredicateLessThanOrEqualOperator : @"<=",
-                                SCPredicateEqualOperator : @"==",
-                                SCPredicateNotEqualOperator : @"!=",
-                                SCPredicateExistsOperator : @"==",
-                                SCPredicateInOperator : @"IN"};
+- (NSPredicateOperatorType)nspredicateOperatorRepresentationForOperator:(NSString *)operator {
+    NSDictionary *operators = @{SCPredicateGreaterThanOperator : @(NSGreaterThanPredicateOperatorType),
+                                SCPredicateGreaterThanOrEqualOperator : @(NSGreaterThanOrEqualToPredicateOperatorType),
+                                SCPredicateLessThanOperator : @(NSLessThanPredicateOperatorType),
+                                SCPredicateLessThanOrEqualOperator : @(NSLessThanOrEqualToPredicateOperatorType),
+                                SCPredicateEqualOperator : @(NSEqualToPredicateOperatorType),
+                                SCPredicateNotEqualOperator : @(NSNotEqualToPredicateOperatorType),
+                                SCPredicateExistsOperator : @(NSEqualToPredicateOperatorType),
+                                SCPredicateInOperator : @(NSInPredicateOperatorType)};
     
-    return operators[operator];
+    return (NSPredicateOperatorType)[operators[operator] unsignedIntegerValue];
 }
 @end
