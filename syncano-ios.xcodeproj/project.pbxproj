@@ -34,7 +34,6 @@
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
 		1150CF9C1B5789DF0080D5E3 /* SCUserRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */; };
-		1152FF8D1C049ED1001D267C /* SCLocalStoragePredicateProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF8C1C049ED1001D267C /* SCLocalStoragePredicateProtocol.h */; };
 		1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */; };
 		1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */; };
 		1152FF941C04A036001D267C /* SCCompoundPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */; };
@@ -178,7 +177,6 @@
 		11487E451ADE94D200627EFD /* SCPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicate.h; sourceTree = "<group>"; };
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
 		1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUserRegister.json; sourceTree = "<group>"; };
-		1152FF8C1C049ED1001D267C /* SCLocalStoragePredicateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLocalStoragePredicateProtocol.h; sourceTree = "<group>"; };
 		1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCPredicate+LocalStorage.h"; sourceTree = "<group>"; };
 		1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCPredicate+LocalStorage.m"; sourceTree = "<group>"; };
 		1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCCompoundPredicate+LocalStorage.h"; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 		1152FF961C04A03F001D267C /* Predicate */ = {
 			isa = PBXGroup;
 			children = (
-				1152FF8C1C049ED1001D267C /* SCLocalStoragePredicateProtocol.h */,
 				1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */,
 				1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */,
 				1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */,
@@ -634,7 +631,6 @@
 				115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */,
 				11CE3CB91BCFDC3000DE3163 /* SCWebhookResponseObject.h in Headers */,
 				11F8BF7F1BE0F4A500091F58 /* SCLocalStore.h in Headers */,
-				1152FF8D1C049ED1001D267C /* SCLocalStoragePredicateProtocol.h in Headers */,
 				1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */,
 				11CE3CC41BCFDC3000DE3163 /* SCParseManager+SCDataObject.h in Headers */,
 				11CE3CC01BCFDC3000DE3163 /* NSObject+SCParseHelper.h in Headers */,

@@ -8,10 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "SCPredicateProtocol.h"
+
+extern NSString *const SCPredicateGreaterThanOperator;
+extern NSString *const SCPredicateGreaterThanOrEqualOperator;
+extern NSString *const SCPredicateLessThanOperator;
+extern NSString *const SCPredicateLessThanOrEqualOperator;
+extern NSString *const SCPredicateEqualOperator;
+extern NSString *const SCPredicateNotEqualOperator;
+extern NSString *const SCPredicateExistsOperator;
+extern NSString *const SCPredicateInOperator;
+
 /**
  *  Class
  */
 @interface SCPredicate : NSObject <SCPredicateProtocol>
+
+@property (nonatomic,readonly) NSString *leftHand;
+@property (nonatomic,readonly) NSString *operator;
+@property (nonatomic,readonly) id rightHand;
+
+
 
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanString:(NSString *)string;
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanNumber:(NSNumber *)number;

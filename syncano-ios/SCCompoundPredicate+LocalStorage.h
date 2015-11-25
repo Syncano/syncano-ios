@@ -7,8 +7,7 @@
 //
 
 #import "SCCompoundPredicate.h"
-#import "SCLocalStoragePredicateProtocol.h"
 
-@interface SCCompoundPredicate (LocalStorage) <SCLocalStoragePredicateProtocol>
+@interface SCCompoundPredicate (LocalStorage)
 
 @end

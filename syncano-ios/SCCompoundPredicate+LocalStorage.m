@@ -10,6 +10,13 @@
 
 @implementation SCCompoundPredicate (LocalStorage)
 - (NSPredicate *)nspredicateRepresentation {
-    return nil;
+    NSMutableArray *subpredicates = [NSMutableArray new];
+    for (id<SCPredicateProtocol>predicate in self.predicates) {
+        if ([predicate respondsToSelector:@selector(nspredicateRepresentation)]) {
+            [subpredicates addObject:[predicate nspredicateRepresentation]];
+        }
+    }
+    NSCompoundPredicate *compoundPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:subpredicates];
+    return compoundPredicate;
 }
 @end

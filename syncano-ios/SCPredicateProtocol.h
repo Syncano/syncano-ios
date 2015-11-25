@@ -11,4 +11,6 @@
 @protocol SCPredicateProtocol <NSObject>
 @required
 - (NSString *)queryRepresentation;
+@optional
+- (NSPredicate *)nspredicateRepresentation;
 @end

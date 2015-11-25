@@ -10,6 +10,19 @@
 
 @implementation SCPredicate (LocalStorage)
 - (NSPredicate *)nspredicateRepresentation {
-    return nil;
+    return [NSPredicate predicateWithFormat:@"%@ %@ %@",self.leftHand , [self nspredicateOperatorRepresentationForOperator:self.operator],self.rightHand];
+}
+
+- (NSString *)nspredicateOperatorRepresentationForOperator:(NSString *)operator {
+    NSDictionary *operators = @{SCPredicateGreaterThanOperator : @">",
+                                SCPredicateGreaterThanOrEqualOperator : @">=",
+                                SCPredicateLessThanOperator : @"<",
+                                SCPredicateLessThanOrEqualOperator : @"<=",
+                                SCPredicateEqualOperator : @"==",
+                                SCPredicateNotEqualOperator : @"!=",
+                                SCPredicateExistsOperator : @"==",
+                                SCPredicateInOperator : @"IN"};
+    
+    return operators[operator];
 }
 @end

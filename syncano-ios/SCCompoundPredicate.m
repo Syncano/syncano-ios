@@ -10,10 +10,15 @@
 
 
 @interface SCCompoundPredicate ()
-@property (strong,nonatomic) NSMutableArray* predicates;
 @end
 
-@implementation SCCompoundPredicate
+@implementation SCCompoundPredicate {
+    NSMutableArray *_predicates;
+}
+
+- (NSArray *)predicates {
+    return [NSArray arrayWithArray:_predicates];
+}
 
 - (instancetype)init
 {
@@ -40,7 +45,7 @@
     if (!predicate || ![predicate conformsToProtocol:@protocol(SCPredicateProtocol)]) {
         return;
     }
-    [self.predicates addObject:predicate];
+    [_predicates addObject:predicate];
 }
 
 -(NSString *)queryRepresentation {

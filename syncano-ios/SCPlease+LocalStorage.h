@@ -7,8 +7,7 @@
 //
 
 #import "SCPlease.h"
-#import "SCLocalStoragePredicateProtocol.h"
 
 @interface SCPlease (LocalStorage)
-- (void)giveMeDataObjectsFromLocalStorageWithPredicate:(id<SCLocalStoragePredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsFromLocalStorageWithPredicate:(id<SCPredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion;
 @end
