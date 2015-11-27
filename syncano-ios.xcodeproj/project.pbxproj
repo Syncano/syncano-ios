@@ -28,10 +28,16 @@
 		1106CE881B5DFF9500CEA452 /* Books.json in Resources */ = {isa = PBXBuildFile; fileRef = 1106CE871B5DFF9500CEA452 /* Books.json */; };
 		1106CE8A1B5E005800CEA452 /* SCPleaseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1106CE891B5E005800CEA452 /* SCPleaseSpec.m */; };
 		1106CE8C1B5E065B00CEA452 /* SCParseManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1106CE8B1B5E065B00CEA452 /* SCParseManagerSpec.m */; };
+		1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */; };
+		1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */; };
 		1109EF631ACD2E2100BD18A6 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
 		1150CF9C1B5789DF0080D5E3 /* SCUserRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */; };
+		1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */; };
+		1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */; };
+		1152FF941C04A036001D267C /* SCCompoundPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */; };
+		1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF931C04A036001D267C /* SCCompoundPredicate+LocalStorage.m */; };
 		11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */; };
 		11537F9C1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */; };
 		115E32091BF33FEA000130DE /* SCRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 115E32071BF33FEA000130DE /* SCRegisterManager.m */; };
@@ -152,6 +158,8 @@
 		1106CE871B5DFF9500CEA452 /* Books.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Books.json; sourceTree = "<group>"; };
 		1106CE891B5E005800CEA452 /* SCPleaseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseSpec.m; sourceTree = "<group>"; };
 		1106CE8B1B5E065B00CEA452 /* SCParseManagerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCParseManagerSpec.m; sourceTree = "<group>"; };
+		1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCPlease+LocalStorage.h"; sourceTree = "<group>"; };
+		1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCPlease+LocalStorage.m"; sourceTree = "<group>"; };
 		1109EF5B1ACD257300BD18A6 /* SCAPIClient+SCDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCAPIClient+SCDataObject.h"; sourceTree = "<group>"; };
 		1109EF5C1ACD257300BD18A6 /* SCAPIClient+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCAPIClient+SCDataObject.m"; sourceTree = "<group>"; };
 		1109EF611ACD2E2100BD18A6 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
@@ -169,6 +177,10 @@
 		11487E451ADE94D200627EFD /* SCPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicate.h; sourceTree = "<group>"; };
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
 		1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUserRegister.json; sourceTree = "<group>"; };
+		1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCPredicate+LocalStorage.h"; sourceTree = "<group>"; };
+		1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCPredicate+LocalStorage.m"; sourceTree = "<group>"; };
+		1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCCompoundPredicate+LocalStorage.h"; sourceTree = "<group>"; };
+		1152FF931C04A036001D267C /* SCCompoundPredicate+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCCompoundPredicate+LocalStorage.m"; sourceTree = "<group>"; };
 		11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCParseManager+SCLocalStorage.h"; sourceTree = "<group>"; };
 		11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCLocalStorage.m"; sourceTree = "<group>"; };
 		115759301B2FF69500DDCC06 /* SCJSONResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONResponseSerializer.h; sourceTree = "<group>"; };
@@ -388,6 +400,17 @@
 			name = "Response mock files";
 			sourceTree = "<group>";
 		};
+		1152FF961C04A03F001D267C /* Predicate */ = {
+			isa = PBXGroup;
+			children = (
+				1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */,
+				1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */,
+				1152FF921C04A036001D267C /* SCCompoundPredicate+LocalStorage.h */,
+				1152FF931C04A036001D267C /* SCCompoundPredicate+LocalStorage.m */,
+			);
+			name = Predicate;
+			sourceTree = "<group>";
+		};
 		1184268E1AC986C6001035A7 /* ParseManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,10 +431,13 @@
 		11865B091BC560AB005DE1B5 /* OfflineStorage */ = {
 			isa = PBXGroup;
 			children = (
+				1152FF961C04A03F001D267C /* Predicate */,
 				11865B111BC667A0005DE1B5 /* SCLocalStore.h */,
 				11865B121BC667A0005DE1B5 /* SCLocalStore.m */,
 				11F8BF811BE1083F00091F58 /* SCDataObject+LocalStorage.h */,
 				11F8BF821BE1083F00091F58 /* SCDataObject+LocalStorage.m */,
+				1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */,
+				1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */,
 			);
 			name = OfflineStorage;
 			sourceTree = "<group>";
@@ -591,11 +617,13 @@
 				11CE3CD01BCFDC3000DE3163 /* SCMacros.h in Headers */,
 				11CE3CB71BCFDC3000DE3163 /* SCWebhook.h in Headers */,
 				11CE3CC21BCFDC3000DE3163 /* SCParseManager.h in Headers */,
+				1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */,
 				11CE3CAD1BCFDC3000DE3163 /* SCFile.h in Headers */,
 				11CE3CA21BCFDC3000DE3163 /* Syncano.h in Headers */,
 				11B0E66C1BFCCB0100E36713 /* NSString+JSONDictionary.h in Headers */,
 				11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */,
 				11CE3CD51BCFDC3000DE3163 /* (null) in Headers */,
+				1152FF941C04A036001D267C /* SCCompoundPredicate+LocalStorage.h in Headers */,
 				11CE3CBE1BCFDC3000DE3163 /* SCChannelNotificationMessage.h in Headers */,
 				11F8BF831BE1083F00091F58 /* SCDataObject+LocalStorage.h in Headers */,
 				11CE3CBB1BCFDC3000DE3163 /* SCChannelDelegate.h in Headers */,
@@ -603,6 +631,7 @@
 				115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */,
 				11CE3CB91BCFDC3000DE3163 /* SCWebhookResponseObject.h in Headers */,
 				11F8BF7F1BE0F4A500091F58 /* SCLocalStore.h in Headers */,
+				1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */,
 				11CE3CC41BCFDC3000DE3163 /* SCParseManager+SCDataObject.h in Headers */,
 				11CE3CC01BCFDC3000DE3163 /* NSObject+SCParseHelper.h in Headers */,
 				11CE3CB11BCFDC3000DE3163 /* SCUserProfile.h in Headers */,
@@ -847,11 +876,14 @@
 				11CE3CB01BCFDC3000DE3163 /* SCUser.m in Sources */,
 				11CE3CB81BCFDC3000DE3163 /* SCWebhook.m in Sources */,
 				11CE3CB41BCFDC3000DE3163 /* SCCodeBox.m in Sources */,
+				1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */,
 				115E32091BF33FEA000130DE /* SCRegisterManager.m in Sources */,
 				11CE3CC91BCFDC3000DE3163 /* SCAPIClient+SCFile.m in Sources */,
 				11CE3CD41BCFDC3000DE3163 /* NSData+MimeType.m in Sources */,
 				11CE3CAA1BCFDC3000DE3163 /* SCPredicate.m in Sources */,
+				1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */,
 				11CE3CAC1BCFDC3000DE3163 /* SCCompoundPredicate.m in Sources */,
+				1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */,
 				11CE3CC11BCFDC3000DE3163 /* NSObject+SCParseHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
