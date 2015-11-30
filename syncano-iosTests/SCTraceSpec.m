@@ -9,6 +9,7 @@
 #import "Kiwi.h"
 #import "Syncano.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import "OHPathHelpers.h"
 #import "SCJSONHelper.h"
 
 

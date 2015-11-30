@@ -13,6 +13,8 @@
 #import "SCUser.h"
 #import "CustomUserProfile.h"
 #import "SCPlease.h"
+#import "OHPathHelpers.h"
+
 
 SPEC_BEGIN(SCUserSpec)
 

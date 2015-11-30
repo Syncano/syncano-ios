@@ -11,6 +11,8 @@
 #import "SCPredicate.h"
 #import "Book.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import "OHPathHelpers.h"
+
 
 SPEC_BEGIN(SCPleaseSpec)
 

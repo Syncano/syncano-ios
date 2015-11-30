@@ -12,6 +12,8 @@
 #import "SCFile.h"
 #import "SCAPIClient+SCFile.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import "OHPathHelpers.h"
+
 
 SPEC_BEGIN(SCFileSpec)
 
