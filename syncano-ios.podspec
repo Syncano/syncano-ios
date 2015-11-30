@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.public_header_files = 'syncano-ios/*.h'
   s.source_files = 'syncano-ios/*.{h,m}'
 
-  s.dependency 'AFNetworking', '~> 2.5'
+  s.dependency 'AFNetworking', '2.6.3'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'UICKeyChainStore', '~> 2.0'
 

@@ -7,7 +7,8 @@
 //
 
 #import "Kiwi.h"
-#import <OHHTTPStubs.h>
+#import "OHHTTPStubs.h"
+#import "OHPathHelpers.h"
 #import "Syncano.h"
 
 SPEC_BEGIN(SCUserProfileSpec)
