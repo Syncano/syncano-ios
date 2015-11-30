@@ -204,55 +204,14 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
     }
     if (responseObject[@"objects"]) {
         NSArray *parsedObjects = [[SCParseManager sharedSCParseManager] parsedObjectsOfClass:self.dataObjectClass fromJSONObject:responseObject[@"objects"]];
-        if (includeKeys.count > 0) {
-            [self handleIncludesForObjects:parsedObjects includeKeys:includeKeys completion:^(NSArray *objects, NSError *error) {
-                if (completion) {
-                    completion(objects,nil);
-                }
-            }];
-        } else {
-            if (completion) {
-                completion(parsedObjects,nil);
-            }
+        if (completion) {
+            completion(parsedObjects,nil);
         }
     } else {
         if (completion) {
             completion(nil,error);
         }
     }
-}
-
-- (void)handleIncludesForObjects:(NSArray *)objects includeKeys:(NSArray *)includeKeys completion:(SCDataObjectsCompletionBlock)completion {
-    dispatch_group_t fetchGroup = dispatch_group_create();
-    for (id object in objects) {
-        for (NSString *includeKey in includeKeys) {
-            dispatch_group_enter(fetchGroup);
-            if ([object respondsToSelector:NSSelectorFromString(includeKey)]) {
-                id relatedObject = [object valueForKey:includeKey];
-                if (self.syncano && [relatedObject respondsToSelector:@selector(fetchFromSyncano:completion:)]) {
-                    [relatedObject fetchFromSyncano:self.syncano completion:^(NSError *error) {
-                        dispatch_group_leave(fetchGroup);
-                    }];
-                } else if ([relatedObject respondsToSelector:@selector(fetchWithCompletion:)]) {
-                    [relatedObject fetchWithCompletion:^(NSError *error) {
-                        dispatch_group_leave(fetchGroup);
-                    }];
-                } else {
-                    //TODO: throw error here
-                    dispatch_group_leave(fetchGroup);
-                }
-
-            } else {
-                //TODO: throw error here
-                dispatch_group_leave(fetchGroup);
-            }
-        }
-    }
-    dispatch_group_notify(fetchGroup, dispatch_get_main_queue(), ^{
-        if (completion) {
-            completion(objects,nil);
-        }
-    });
 }
 
 - (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block {
