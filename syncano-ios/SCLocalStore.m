@@ -14,23 +14,16 @@
 #import "NSString+JSONDictionary.h"
 
 @interface SCLocalStore ()
-@property (nonatomic,retain) FMDatabase *db;
+@property (nonatomic,retain) FMDatabaseQueue *queue;
 @end
 
 @implementation SCLocalStore
 
 - (void)initializeDBWithCompletionBlock:(SCCompletionBlock)completionBlock  {
-    self.db = [FMDatabase databaseWithPath:[SCConstants DB_PATH]];
-    if (self.db) {
-        [self executeUpdateWithQuery:[SCConstants createTableSQLStatement] withCompletionBlock:^(NSError *error) {
-            [self handleError:error forCompletionBlock:completionBlock];
-        }];
-    } else {
-        
-        NSError *error = [NSError errorWithDomain:@"SCLocalStoreErrorDomain" code:1 userInfo:@{@"SyncanoLocalStoreErrorDescription" : @"Could not initialize database"}];
+    self.queue = [FMDatabaseQueue databaseQueueWithPath:[SCConstants DB_PATH]];
+    [self executeUpdateWithQuery:[SCConstants createTableSQLStatement] withCompletionBlock:^(NSError *error) {
         [self handleError:error forCompletionBlock:completionBlock];
-    }
-
+    }];
 }
 
 - (void)saveDataObject:(SCDataObject *)dataObject withCompletionBlock:(SCCompletionBlock)completionBlock {
@@ -73,72 +66,39 @@
     }];
 }
 
-#pragma mark - DB communication methods -
-- (void)openDatabaseWithCompletionBlock:(SCCompletionBlock)completionBlock {
-    if ([self.db open]) {
-        [self handleError:nil forCompletionBlock:completionBlock];
-    } else {
-        [self handleError:[self.db lastError] forCompletionBlock:completionBlock];
-    }
-}
-
-- (void)closeDataBaseWithCompletionBlock:(SCCompletionBlock)completionBlock {
-    if ([self.db close]) {
-        [self handleError:nil forCompletionBlock:completionBlock];
-    } else {
-        [self handleError:[self.db lastError] forCompletionBlock:completionBlock];
-    }
-}
-
 - (void)executeUpdateWithQuery:(NSString *)query withCompletionBlock:(SCCompletionBlock)completionBlock {
-   [self openDatabaseWithCompletionBlock:^(NSError *error) {
-       if (!error) {
-           NSError *executeError = nil;
-           [self.db beginTransaction];
-           
-           if (![self.db executeUpdate:query]) {
-               executeError = [self.db lastError];
-           }
-           
-           if (executeError) {
-               [self.db rollback];
-               [self handleError:executeError forCompletionBlock:completionBlock];
-           } else {
-               [self.db commit];
-               [self closeDataBaseWithCompletionBlock:^(NSError *error) {
-                   [self handleError:error forCompletionBlock:completionBlock];
-               }];
-           }
-       } else {
-           [self handleError:error forCompletionBlock:completionBlock];
-       }
-   }];
+   
+    __block NSError *error;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self.queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+            [db executeUpdate:query];
+            if ([db hadError]) {
+                error = [db lastError];
+            }
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self handleError:error forCompletionBlock:completionBlock];
+        });
+    });
 }
 
 - (void)executeQuery:(NSString *)query withCompletionBlock:(void(^)(FMResultSet *resultSet, NSError* error))completionBlock {
-    [self openDatabaseWithCompletionBlock:^(NSError *error) {
-        if (!error) {
-            FMResultSet *result = [self.db executeQuery:query];
-            
-            if (![self.db hadError] && result) {
-                if (completionBlock) {
-                    completionBlock(result,nil);
-                }
-            } else {
-                if (completionBlock) {
-                    completionBlock(nil,[self.db lastError]);
-                }
+    
+    __block NSError *error;
+    __block FMResultSet *result;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        [self.queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+            result = [db executeQuery:query];
+            if ([db hadError]) {
+                error = [db lastError];
             }
- 
-            [self.db close];
-            
-            //}];
-        } else {
+        }];
+        dispatch_async(dispatch_get_main_queue(), ^(void){
             if (completionBlock) {
-                completionBlock(nil,error);
+                completionBlock(result,error);
             }
-        }
-    }];
+        });
+    });
 }
 
 - (void)handleError:(NSError *)error forCompletionBlock:(SCCompletionBlock)completionBlock {
