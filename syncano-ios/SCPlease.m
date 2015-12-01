@@ -18,8 +18,6 @@ NSString *const SCPleaseParameterFields = @"fields";
 NSString *const SCPleaseParameterExcludedFields = @"excluded_fields";
 NSString *const SCPleaseParameterPageSize = @"page_size";
 NSString *const SCPleaseParameterOrderBy = @"order_by";
-NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
-
 
 @interface SCPlease ()
 
@@ -53,7 +51,6 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
  */
 @property (nonatomic,retain) NSString *previousUrlString;
 
-@property (nonatomic,retain) NSArray *includeKeys;
 @end
 
 @implementation SCPlease
@@ -104,13 +101,6 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
 
 - (void)resolveQueryParameters:(NSDictionary *)parameters withPredicate:(id<SCPredicateProtocol>)predicate completion:(SCPleaseResolveQueryParametersCompletionBlock)completion {
     NSMutableDictionary *queryParameters = (parameters.count > 0) ? [parameters mutableCopy] : [NSMutableDictionary new];
-    NSArray *includeKeys;
-    if (queryParameters[SCPleaseParameterIncludeKeys]) {
-        if ([queryParameters[SCPleaseParameterIncludeKeys] isKindOfClass:[NSArray class]]) {
-            includeKeys = queryParameters[SCPleaseParameterIncludeKeys];
-        }
-        [queryParameters removeObjectForKey:SCPleaseParameterIncludeKeys];
-    }
     if ([parameters[SCPleaseParameterFields] isKindOfClass:[NSArray class]] == YES) {
         NSArray *fieldsArray = parameters[SCPleaseParameterFields];
         NSString *fields = [fieldsArray componentsJoinedByString:@","];
@@ -120,7 +110,7 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
         [queryParameters  addEntriesFromDictionary:@{@"query" : [predicate queryRepresentation]}];
     }
     if (completion) {
-        completion([NSDictionary dictionaryWithDictionary:queryParameters],includeKeys);
+        completion([NSDictionary dictionaryWithDictionary:queryParameters]);
     }
 }
 
@@ -149,11 +139,9 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
 - (void)getDataObjectFromAPIWithCompletion:(SCDataObjectsCompletionBlock)completion {
     self.previousUrlString = nil;
     self.nextUrlString = nil;
-    self.includeKeys = nil;
-    [self resolveQueryParameters:self.parameters withPredicate:self.predicate completion:^(NSDictionary *queryParameters, NSArray *includeKeys) {
-        self.includeKeys = includeKeys;
+    [self resolveQueryParameters:self.parameters withPredicate:self.predicate completion:^(NSDictionary *queryParameters) {
         [[self apiClient] getDataObjectsFromClassName:self.classNameForAPICalls params:queryParameters completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-            [self handleResponse:responseObject error:error completion:completion includeKeys:includeKeys];
+            [self handleResponse:responseObject error:error completion:completion];
         }];
     }];
 
@@ -162,7 +150,7 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     if (self.nextUrlString.length > 0) {
         [[self apiClient] GET:self.nextUrlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [self handleResponse:responseObject error:nil completion:completion includeKeys:self.includeKeys];
+            [self handleResponse:responseObject error:nil completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (completion) {
                 completion(nil,error);
@@ -179,7 +167,7 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
 - (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     if (self.previousUrlString) {
         [[self apiClient] GET:self.previousUrlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [self handleResponse:responseObject error:nil completion:completion includeKeys:self.includeKeys];
+            [self handleResponse:responseObject error:nil completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (completion) {
                 completion(nil,error);
@@ -193,7 +181,7 @@ NSString *const SCPleaseParameterIncludeKeys = @"include_keys";
     }
 }
 
-- (void)handleResponse:(id)responseObject error:(NSError *)error completion:(SCDataObjectsCompletionBlock)completion includeKeys:(NSArray *)includeKeys {
+- (void)handleResponse:(id)responseObject error:(NSError *)error completion:(SCDataObjectsCompletionBlock)completion {
     self.previousUrlString = nil;
     self.nextUrlString = nil;
     if (responseObject[@"prev"] && responseObject[@"prev"]!=[NSNull null]) {
