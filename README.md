@@ -29,3 +29,14 @@ To write documentation, we recommend using the [`VVDocumenter` XCode plugin](htt
 ---
 
 Syncano's iOS Library (syncano-ios) is available under the MIT license. See the LICENSE file for more info.
+
+## Change Log
+--
+* **4.0.6** - 2015-12-01
+    * Fixed webhook payload wraping
+    * Added framework targed instead of static library in xcode project
+    * Added documentation target
+    * Added pages enumerator to SCPlease
+    * Removed automatic reference objects fetching
+    * Removed SCPleaseParameterIncludeKey
+    * Updated AFNetworking to 2.6.3
