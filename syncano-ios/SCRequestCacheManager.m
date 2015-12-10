@@ -16,7 +16,7 @@
 @implementation SCRequestCacheManager
 
 - (NSMutableDictionary *)requestsStore {
-    if (_requestsStore) {
+    if (!_requestsStore) {
         _requestsStore = [NSMutableDictionary new];
     }
     return _requestsStore;
