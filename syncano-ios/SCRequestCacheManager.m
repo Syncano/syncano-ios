@@ -14,10 +14,15 @@
 @end
 
 @implementation SCRequestCacheManager
-- (void)enqueueRequest:(SCRequest *)request {
-    if (!self.requestsStore) {
-        self.requestsStore = [NSMutableDictionary new];
+
+- (NSMutableDictionary *)requestsStore {
+    if (_requestsStore) {
+        _requestsStore = [NSMutableDictionary new];
     }
+    return _requestsStore;
+}
+
+- (void)enqueueRequest:(SCRequest *)request {
     [self.requestsStore setObject:[request dictionaryRepresentation] forKey:request.identifier];
 }
 

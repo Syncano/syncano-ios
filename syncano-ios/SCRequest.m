@@ -13,7 +13,7 @@ static NSString * const kRequestMethodPOST = @"POST";
 static NSString * const kRequestMethodPATCH = @"PATCH";
 static NSString * const kRequestMethodDELETE = @"DELETE";
 static NSString * const kRequestMethodPUT = @"PUT";
-static NSString * const kRequestMethodUnknown = @"UNKNOWN";
+static NSString * const kRequestMethodUndefined = @"UNDEFINED";
 
 @implementation SCRequest
 
@@ -61,7 +61,7 @@ static NSString * const kRequestMethodUnknown = @"UNKNOWN";
             return kRequestMethodPUT;
             break;
         default:
-            return kRequestMethodUnknown;
+            return kRequestMethodUndefined;
             break;
     }
 }
