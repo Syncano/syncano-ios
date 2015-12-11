@@ -6,18 +6,23 @@
 //  Copyright © 2015 Syncano. All rights reserved.
 //
 
-#import "SCRequestCacheManager.h"
+#import "SCRequestQueue.h"
 #import "SCRequest.h"
 #import "SCUploadRequest.h"
 
-@interface SCRequestCacheManager ()
+@interface SCRequestQueue ()
 @property (nonatomic,retain) NSMutableDictionary *requestsStore;
 @end
 
-@implementation SCRequestCacheManager
+@implementation SCRequestQueue
 
-SINGLETON_IMPL_FOR_CLASS(SCRequestCacheManager);
-
+- (instancetype)initWithIdentifier:(NSString *)identifier {
+    self = [super init];
+    if (self) {
+        _identifier = identifier;
+    }
+    return self;
+}
 
 - (NSMutableDictionary *)requestsStore {
     if (!_requestsStore) {

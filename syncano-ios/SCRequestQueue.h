@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "SCMacros.h"
 
-@interface SCRequestCacheManager : NSObject
+@interface SCRequestQueue : NSObject
 
-/**
- *  Initializes singleton
- */
-SINGLETON_FOR_CLASS(SCRequestCacheManager);
+@property (nonatomic,retain) NSString *identifier;
+
+- (instancetype)initWithIdentifier:(NSString *)identifier;
 
 - (void)enqueueGETRequestWithPath:(NSString *)path params:(NSDictionary *)params;
 - (void)enqueuePOSTRequestWithPath:(NSString *)path params:(NSDictionary *)params;
