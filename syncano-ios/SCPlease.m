@@ -18,6 +18,7 @@ NSString *const SCPleaseParameterFields = @"fields";
 NSString *const SCPleaseParameterExcludedFields = @"excluded_fields";
 NSString *const SCPleaseParameterPageSize = @"page_size";
 NSString *const SCPleaseParameterOrderBy = @"order_by";
+NSString *const SCPleaseParameterIncludeCount = @"include_count";
 
 @interface SCPlease ()
 
@@ -105,6 +106,9 @@ NSString *const SCPleaseParameterOrderBy = @"order_by";
         NSArray *fieldsArray = parameters[SCPleaseParameterFields];
         NSString *fields = [fieldsArray componentsJoinedByString:@","];
         [queryParameters setObject:fields forKey:SCPleaseParameterFields];
+    }
+    if ([parameters[SCPleaseParameterIncludeCount] isEqualToNumber:@YES]) {
+        [queryParameters setObject:@"true" forKey:SCPleaseParameterIncludeCount];
     }
     if (predicate) {
         [queryParameters  addEntriesFromDictionary:@{@"query" : [predicate queryRepresentation]}];

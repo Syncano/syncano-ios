@@ -19,7 +19,7 @@ extern NSString *const SCPleaseParameterFields;
 extern NSString *const SCPleaseParameterExcludedFields;
 extern NSString *const SCPleaseParameterPageSize;
 extern NSString *const SCPleaseParameterOrderBy;
-extern NSString *const SCPleaseParameterIncludeKeys;
+extern NSString *const SCPleaseParameterIncludeCount;
 
 
 /**
