@@ -33,13 +33,13 @@ static NSString * const kRequestMethodUndefined = @"UNDEFINED";
 }
 
 - (NSDictionary *)dictionaryRepresentation {
-    NSMutableDictionary *dictRepresentation = [NSMutableDictionary new];
-    dictRepresentation[@"path"] = self.path;
-    dictRepresentation[@"method"] = [self methodToString];
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    dict[@"path"] = self.path;
+    dict[@"method"] = [self methodToString];
     if (self.params) {
-        dictRepresentation[@"params"] = self.params;
+        dict[@"params"] = self.params;
     }
-    return dictRepresentation;
+    return [NSDictionary dictionaryWithDictionary:dict];
 }
 
 - (SCRequestMethod)methodFromString:(NSString *)methodString {

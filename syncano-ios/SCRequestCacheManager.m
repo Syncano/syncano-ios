@@ -8,6 +8,7 @@
 
 #import "SCRequestCacheManager.h"
 #import "SCRequest.h"
+#import "SCUploadRequest.h"
 
 @interface SCRequestCacheManager ()
 @property (nonatomic,retain) NSMutableDictionary *requestsStore;
@@ -46,6 +47,10 @@ SINGLETON_IMPL_FOR_CLASS(SCRequestCacheManager);
     [self enqueueRequest:request];
 }
 
+- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData {
+    SCUploadRequest *request = [SCUploadRequest uploadrRequestWithPath:path propertName:propertyName fileData:fileData];
+    [self enqueueRequest:request];
+}
 
 - (void)enqueueRequest:(SCRequest *)request {
     [self.requestsStore setObject:[request dictionaryRepresentation] forKey:request.identifier];

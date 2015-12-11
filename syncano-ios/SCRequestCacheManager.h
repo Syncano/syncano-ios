@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SCMacros.h"
 
-@class SCRequest;
-
 @interface SCRequestCacheManager : NSObject
 
 /**
@@ -23,7 +21,5 @@ SINGLETON_FOR_CLASS(SCRequestCacheManager);
 - (void)enqueuePATCHRequestWithPath:(NSString *)path params:(NSDictionary *)params;
 - (void)enqueueDELETERequestWithPath:(NSString *)path params:(NSDictionary *)params;
 - (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params;
-
-
-- (void)enqueueRequest:(SCRequest *)request;
+- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData;
 @end
