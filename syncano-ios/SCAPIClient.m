@@ -10,6 +10,8 @@
 #import "Syncano.h"
 #import "SCJSONResponseSerializer.h"
 #import "NSData+MimeType.h"
+#import "SCRequest.h"
+#import "SCRequestCacheManager.h"
 
 @interface SCAPIClient ()
 @property (nonatomic,copy) NSString *apiKey;
@@ -59,6 +61,9 @@
 
 - (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [[SCRequestCacheManager sharedSCRequestCacheManager] enqueueGETRequestWithPath:path params:params];
+    
     NSURLSessionDataTask *task = [self GET:path
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -72,6 +77,9 @@
 
 - (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [[SCRequestCacheManager sharedSCRequestCacheManager] enqueuePOSTRequestWithPath:path params:params];
+    
     NSURLSessionDataTask *task = [self POST:path
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -85,6 +93,10 @@
 
 - (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [[SCRequestCacheManager sharedSCRequestCacheManager] enqueuePUTRequestWithPath:path params:params];
+    
+
     NSURLSessionDataTask *task = [self PUT:path
                                  parameters:params
                                     success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -98,6 +110,10 @@
 
 - (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [[SCRequestCacheManager sharedSCRequestCacheManager] enqueuePATCHRequestWithPath:path params:params];
+    
+
     NSURLSessionDataTask *task = [self PATCH:path
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -111,6 +127,10 @@
 
 - (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [[SCRequestCacheManager sharedSCRequestCacheManager] enqueueDELETERequestWithPath:path params:params];
+    
+
     NSURLSessionDataTask *task = [self DELETE:path
                                  parameters:params
                                     success:^(NSURLSessionDataTask *task, id responseObject) {

@@ -23,6 +23,9 @@ typedef NS_ENUM(NSUInteger, SCRequestMethod) {
 @property (nonatomic) SCRequestMethod method;
 @property (nonatomic,retain) NSDictionary *params;
 
+- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params;
+
++ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params;
 
 - (NSDictionary *)dictionaryRepresentation;
 @end

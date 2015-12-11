@@ -7,9 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SCMacros.h"
 
 @class SCRequest;
 
 @interface SCRequestCacheManager : NSObject
+
+/**
+ *  Initializes singleton
+ */
+SINGLETON_FOR_CLASS(SCRequestCacheManager);
+
+- (void)enqueueGETRequestWithPath:(NSString *)path params:(NSDictionary *)params;
+- (void)enqueuePOSTRequestWithPath:(NSString *)path params:(NSDictionary *)params;
+- (void)enqueuePATCHRequestWithPath:(NSString *)path params:(NSDictionary *)params;
+- (void)enqueueDELETERequestWithPath:(NSString *)path params:(NSDictionary *)params;
+- (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params;
+
+
 - (void)enqueueRequest:(SCRequest *)request;
 @end

@@ -15,12 +15,37 @@
 
 @implementation SCRequestCacheManager
 
+SINGLETON_IMPL_FOR_CLASS(SCRequestCacheManager);
+
+
 - (NSMutableDictionary *)requestsStore {
     if (!_requestsStore) {
         _requestsStore = [NSMutableDictionary new];
     }
     return _requestsStore;
 }
+
+- (void)enqueueGETRequestWithPath:(NSString *)path params:(NSDictionary *)params {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodGET params:params];
+    [self enqueueRequest:request];
+}
+- (void)enqueuePOSTRequestWithPath:(NSString *)path params:(NSDictionary *)params {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPOST params:params];
+    [self enqueueRequest:request];
+}
+- (void)enqueuePATCHRequestWithPath:(NSString *)path params:(NSDictionary *)params {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPATCH params:params];
+    [self enqueueRequest:request];
+}
+- (void)enqueueDELETERequestWithPath:(NSString *)path params:(NSDictionary *)params {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodDELETE params:params];
+    [self enqueueRequest:request];
+}
+- (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPUT params:params];
+    [self enqueueRequest:request];
+}
+
 
 - (void)enqueueRequest:(SCRequest *)request {
     [self.requestsStore setObject:[request dictionaryRepresentation] forKey:request.identifier];
