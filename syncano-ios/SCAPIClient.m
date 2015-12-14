@@ -10,10 +10,14 @@
 #import "Syncano.h"
 #import "SCJSONResponseSerializer.h"
 #import "NSData+MimeType.h"
+#import "SCRequest.h"
+#import "SCRequestQueue.h"
+#import "NSString+MD5.h"
 
 @interface SCAPIClient ()
 @property (nonatomic,copy) NSString *apiKey;
 @property (nonatomic,copy) NSString *instanceName;
+@property (nonatomic,retain) SCRequestQueue *requestQueue;
 @end
 
 @implementation SCAPIClient
@@ -23,6 +27,7 @@
     if (self) {
         self.apiKey = apiKey;
         self.instanceName = instanceName;
+        self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier]];
     }
     return self;
 }
@@ -36,6 +41,16 @@
         self.responseSerializer = [SCJSONResponseSerializer serializer];
     }
     return self;
+}
+
+- (NSString *)identifier {
+    NSMutableString *hash = [NSMutableString new];
+    [hash appendString:self.apiKey];
+    [hash appendString:self.instanceName];
+    if ([SCUser currentUser]) {
+        [hash appendString:[SCUser currentUser].userKey];
+    }
+    return [hash MD5String];
 }
 
 + (SCAPIClient *)apiClientForSyncano:(Syncano *)syncano {
@@ -59,6 +74,9 @@
 
 - (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [self.requestQueue enqueueGETRequestWithPath:path params:params];
+    
     NSURLSessionDataTask *task = [self GET:path
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -72,6 +90,9 @@
 
 - (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [self.requestQueue enqueuePOSTRequestWithPath:path params:params];
+    
     NSURLSessionDataTask *task = [self POST:path
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -85,6 +106,10 @@
 
 - (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [self.requestQueue enqueuePUTRequestWithPath:path params:params];
+    
+
     NSURLSessionDataTask *task = [self PUT:path
                                  parameters:params
                                     success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -98,6 +123,10 @@
 
 - (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [self.requestQueue enqueuePATCHRequestWithPath:path params:params];
+    
+
     NSURLSessionDataTask *task = [self PATCH:path
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -111,6 +140,10 @@
 
 - (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    
+    [self.requestQueue enqueueDELETERequestWithPath:path params:params];
+    
+
     NSURLSessionDataTask *task = [self DELETE:path
                                  parameters:params
                                     success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -124,6 +157,7 @@
 
 - (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    [self.requestQueue enqueueUploadRequestWithPath:path propertyName:propertyName fileData:fileData];
     NSURLSessionDataTask *task = [self POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];
         [formData appendPartWithFormData:fileData name:propertyName];

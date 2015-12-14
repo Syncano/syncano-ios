@@ -17,11 +17,29 @@ static NSString * const kRequestMethodUndefined = @"UNDEFINED";
 
 @implementation SCRequest
 
+- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params {
+    self = [super init];
+    if (self) {
+        _path = path;
+        _method = method;
+        _params = params;
+        _identifier = [self generateIdentifier];
+    }
+    return self;
+}
+
++ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params {
+    return [[self alloc] initWithPath:path method:method params:params];
+}
+
 - (NSDictionary *)dictionaryRepresentation {
-    NSDictionary *dictRepresentation = @{@"path" : self.path,
-                                         @"method" : [self methodToString],
-                                         @"params" : [self params]};
-    return dictRepresentation;
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    dict[@"path"] = self.path;
+    dict[@"method"] = [self methodToString];
+    if (self.params) {
+        dict[@"params"] = self.params;
+    }
+    return [NSDictionary dictionaryWithDictionary:dict];
 }
 
 - (SCRequestMethod)methodFromString:(NSString *)methodString {
@@ -64,6 +82,11 @@ static NSString * const kRequestMethodUndefined = @"UNDEFINED";
             return kRequestMethodUndefined;
             break;
     }
+}
+
+- (NSString *)generateIdentifier {
+    NSString *uuidString = [[NSProcessInfo processInfo] globallyUniqueString];
+    return uuidString;
 }
 
 @end
