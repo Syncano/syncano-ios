@@ -14,11 +14,18 @@
 #import "SCRequestQueue.h"
 #import "NSString+MD5.h"
 #import "SCRequest.h"
+#import "SCUploadRequest.h"
+
+typedef NS_ENUM(NSUInteger, SCAPIClientRequestQueueState) {
+    SCAPIClientRequestQueueStateIdle = 0,
+    SCAPIClientRequestQueueStateRunning,
+};
 
 @interface SCAPIClient ()
 @property (nonatomic,copy) NSString *apiKey;
 @property (nonatomic,copy) NSString *instanceName;
 @property (nonatomic,retain) SCRequestQueue *requestQueue;
+@property (nonatomic) SCAPIClientRequestQueueState requestQueueState;
 @end
 
 @implementation SCAPIClient
@@ -78,37 +85,94 @@
 
 - (void)GETWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self.requestQueue enqueueGETRequestWithPath:path params:params callback:completion];
+    [self runQueue];
 }
 
 - (void)POSTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self.requestQueue enqueuePOSTRequestWithPath:path params:params callback:completion];
+    [self runQueue];
 }
 
 - (void)PUTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self.requestQueue enqueuePUTRequestWithPath:path params:params callback:completion];
+    [self runQueue];
 }
 
 - (void)PATCHWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     
     [self.requestQueue enqueuePATCHRequestWithPath:path params:params callback:completion];
+    [self runQueue];
 }
 
 - (void)DELETEWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self.requestQueue enqueueDELETERequestWithPath:path params:params callback:completion];
+    [self runQueue];
 }
 
 - (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
     [self.requestQueue enqueueUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:completion];
+    [self runQueue];
 }
 
 
 #pragma mark  - Dequeue -
 
-- (void)runRequest:(SCRequest *)request {
-    
+- (void)runQueue {
+    if (self.requestQueueState == SCAPIClientRequestQueueStateRunning) {
+        return;
+    }
+    [self dequeueNextRequest];
 }
 
-- (NSURLSessionDataTask *)_getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (void)dequeueNextRequest {
+    if (self.requestQueue.hasRequests) {
+        self.requestQueueState = SCAPIClientRequestQueueStateRunning;
+        SCRequest *request = self.requestQueue.nextRequest;
+        [self runRequest:request];
+        [self.requestQueue removeRequest:request];
+        [self dequeueNextRequest];
+    } else {
+        self.requestQueueState = SCAPIClientRequestQueueStateIdle;
+    }
+}
+
+
+- (void)runRequest:(SCRequest *)request {
+    SCRequestMethod method = request.method;
+    NSString *path = request.path;
+    NSDictionary *params = request.params;
+    SCAPICompletionBlock completion = request.callback;
+    
+    if ([request isKindOfClass:[SCUploadRequest class]]) {
+        SCUploadRequest *uploadRequest = (SCUploadRequest *)request;
+        NSString *propertyName = uploadRequest.propertyName;
+        NSData *fileData = uploadRequest.fileData;
+        [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:completion];
+    } else {
+        switch (method) {
+            case SCRequestMethodGET:
+                [self getTaskWithPath:path params:params completion:completion];
+                break;
+            case SCRequestMethodPOST:
+                [self postTaskWithPath:path params:params completion:completion];
+                break;
+            case SCRequestMethodPUT:
+                [self putTaskWithPath:path params:params completion:completion];
+                break;
+            case SCRequestMethodPATCH:
+                [self patchTaskWithPath:path params:params completion:completion];
+                break;
+            case SCRequestMethodDELETE:
+                [self deleteTaskWithPath:path params:params completion:completion];
+                break;
+            default:
+                break;
+        }
+    }
+
+}
+
+- (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self GET:path
                                 parameters:params
@@ -121,7 +185,7 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)_postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self POST:path
                                 parameters:params
@@ -134,7 +198,7 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)_putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self PUT:path
                                  parameters:params
@@ -147,7 +211,7 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)_patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     
 
@@ -162,7 +226,7 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)_deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
 
     NSURLSessionDataTask *task = [self DELETE:path
@@ -176,7 +240,7 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)_postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];

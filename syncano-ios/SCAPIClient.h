@@ -85,6 +85,4 @@
 
 - (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion;
 
-
-- (void)runRequest:(SCRequest *)request;
 @end
