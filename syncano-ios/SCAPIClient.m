@@ -13,6 +13,7 @@
 #import "SCRequest.h"
 #import "SCRequestQueue.h"
 #import "NSString+MD5.h"
+#import "SCRequest.h"
 
 @interface SCAPIClient ()
 @property (nonatomic,copy) NSString *apiKey;
@@ -72,11 +73,43 @@
     }
 }
 
-- (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
-    [self authorizeRequest];
-    
+#pragma mark  - Enqueue -
+
+
+- (void)GETWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self.requestQueue enqueueGETRequestWithPath:path params:params callback:completion];
+}
+
+- (void)POSTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+    [self.requestQueue enqueuePOSTRequestWithPath:path params:params callback:completion];
+}
+
+- (void)PUTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+    [self.requestQueue enqueuePUTRequestWithPath:path params:params callback:completion];
+}
+
+- (void)PATCHWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     
+    [self.requestQueue enqueuePATCHRequestWithPath:path params:params callback:completion];
+}
+
+- (void)DELETEWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+    [self.requestQueue enqueueDELETERequestWithPath:path params:params callback:completion];
+}
+
+- (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+    [self.requestQueue enqueueUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:completion];
+}
+
+
+#pragma mark  - Dequeue -
+
+- (void)runRequest:(SCRequest *)request {
+    
+}
+
+- (NSURLSessionDataTask *)_getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+    [self authorizeRequest];
     NSURLSessionDataTask *task = [self GET:path
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -88,11 +121,8 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)_postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
-    
-    [self.requestQueue enqueuePOSTRequestWithPath:path params:params callback:completion];
-    
     NSURLSessionDataTask *task = [self POST:path
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -104,12 +134,8 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)_putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
-    
-    [self.requestQueue enqueuePUTRequestWithPath:path params:params callback:completion];
-    
-
     NSURLSessionDataTask *task = [self PUT:path
                                  parameters:params
                                     success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -121,10 +147,8 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)_patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
-    
-    [self.requestQueue enqueuePATCHRequestWithPath:path params:params callback:completion];
     
 
     NSURLSessionDataTask *task = [self PATCH:path
@@ -138,11 +162,8 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)_deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
-    
-    [self.requestQueue enqueueDELETERequestWithPath:path params:params callback:completion];
-    
 
     NSURLSessionDataTask *task = [self DELETE:path
                                  parameters:params
@@ -155,9 +176,8 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)_postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
-    [self.requestQueue enqueueUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:completion];
     NSURLSessionDataTask *task = [self POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];
         [formData appendPartWithFormData:fileData name:propertyName];

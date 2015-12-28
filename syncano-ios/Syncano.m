@@ -87,7 +87,7 @@ static SCLocalStore *_localStore;
 }
 
 - (void)validateInstanceOnServerWithCompletion:(SCCompletionBlock)completion {
-    [self.apiClient getTaskWithPath:@"" params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [self.apiClient GETWithPath:@"" params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (completion) {
             completion(error);
         }

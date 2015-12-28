@@ -31,7 +31,7 @@
 + (void)runWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCWebhookCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"webhooks/%@/run/",name];
     NSDictionary *params = (payload) ? payload : nil;
-   [apiClient postTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+   [apiClient POSTWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
        if (error) {
            if (completion) {
                completion(nil,error);
