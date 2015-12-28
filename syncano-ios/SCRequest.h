@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SCConstants.h"
 
 typedef NS_ENUM(NSUInteger, SCRequestMethod) {
     SCRequestMethodUndefined,
@@ -22,10 +23,11 @@ typedef NS_ENUM(NSUInteger, SCRequestMethod) {
 @property (nonatomic,retain) NSString *path;
 @property (nonatomic) SCRequestMethod method;
 @property (nonatomic,retain) NSDictionary *params;
+@property (nonatomic,strong) SCAPICompletionBlock callback;
 
-- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params;
+- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
 
-+ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params;
++ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
 
 - (NSDictionary *)dictionaryRepresentation;
 @end

@@ -17,19 +17,20 @@ static NSString * const kRequestMethodUndefined = @"UNDEFINED";
 
 @implementation SCRequest
 
-- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params {
+- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback {
     self = [super init];
     if (self) {
         _path = path;
         _method = method;
         _params = params;
         _identifier = [self generateIdentifier];
+        _callback = callback;
     }
     return self;
 }
 
-+ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params {
-    return [[self alloc] initWithPath:path method:method params:params];
++ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback {
+    return [[self alloc] initWithPath:path method:method params:params callback:callback];
 }
 
 - (NSDictionary *)dictionaryRepresentation {

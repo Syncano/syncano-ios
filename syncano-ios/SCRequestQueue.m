@@ -31,29 +31,29 @@
     return _requestsStore;
 }
 
-- (void)enqueueGETRequestWithPath:(NSString *)path params:(NSDictionary *)params {
-    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodGET params:params];
+- (void)enqueueGETRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodGET params:params callback:callback];
     [self enqueueRequest:request];
 }
-- (void)enqueuePOSTRequestWithPath:(NSString *)path params:(NSDictionary *)params {
-    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPOST params:params];
+- (void)enqueuePOSTRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPOST params:params callback:callback];
     [self enqueueRequest:request];
 }
-- (void)enqueuePATCHRequestWithPath:(NSString *)path params:(NSDictionary *)params {
-    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPATCH params:params];
+- (void)enqueuePATCHRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPATCH params:params callback:callback];
     [self enqueueRequest:request];
 }
-- (void)enqueueDELETERequestWithPath:(NSString *)path params:(NSDictionary *)params {
-    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodDELETE params:params];
+- (void)enqueueDELETERequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodDELETE params:params callback:callback];
     [self enqueueRequest:request];
 }
-- (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params {
-    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPUT params:params];
+- (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPUT params:params callback:callback];
     [self enqueueRequest:request];
 }
 
-- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData {
-    SCUploadRequest *request = [SCUploadRequest uploadrRequestWithPath:path propertName:propertyName fileData:fileData];
+- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback {
+    SCUploadRequest *request = [SCUploadRequest uploadrRequestWithPath:path propertName:propertyName fileData:fileData callback:callback];
     [self enqueueRequest:request];
 }
 

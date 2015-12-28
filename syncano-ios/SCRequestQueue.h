@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SCMacros.h"
+#import "SCConstants.h"
 
 @interface SCRequestQueue : NSObject
 
@@ -15,10 +16,10 @@
 
 - (instancetype)initWithIdentifier:(NSString *)identifier;
 
-- (void)enqueueGETRequestWithPath:(NSString *)path params:(NSDictionary *)params;
-- (void)enqueuePOSTRequestWithPath:(NSString *)path params:(NSDictionary *)params;
-- (void)enqueuePATCHRequestWithPath:(NSString *)path params:(NSDictionary *)params;
-- (void)enqueueDELETERequestWithPath:(NSString *)path params:(NSDictionary *)params;
-- (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params;
-- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData;
+- (void)enqueueGETRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
+- (void)enqueuePOSTRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
+- (void)enqueuePATCHRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
+- (void)enqueueDELETERequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
+- (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
+- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback;
 @end
