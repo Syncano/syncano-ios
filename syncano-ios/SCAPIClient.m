@@ -21,7 +21,7 @@
 @property (nonatomic,copy) NSString *instanceName;
 @property (nonatomic,retain) SCRequestQueue *requestQueue;
 @property (nonatomic,retain) NSMutableArray *requestsBeingProcessed;
-@property (nonatomic) NSInteger maxConcurentRequestInQueue;
+@property (nonatomic) NSInteger maxConcurentRequestsInQueue;
 @end
 
 @implementation SCAPIClient
@@ -32,7 +32,7 @@
         self.apiKey = apiKey;
         self.instanceName = instanceName;
         self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier]];
-        self.maxConcurentRequestInQueue = 2;
+        self.maxConcurentRequestsInQueue = 2;
     }
     return self;
 }
@@ -122,7 +122,7 @@
 }
 
 - (void)runQueue {
-    if (self.requestsBeingProcessed.count < self.maxConcurentRequestInQueue) {
+    if (self.maxConcurentRequestsInQueue <= 0 || self.requestsBeingProcessed.count < self.maxConcurentRequestsInQueue) {
         [self dequeueNextRequest];
     }
 }
