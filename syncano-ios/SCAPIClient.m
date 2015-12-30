@@ -16,16 +16,12 @@
 #import "SCRequest.h"
 #import "SCUploadRequest.h"
 
-typedef NS_ENUM(NSUInteger, SCAPIClientRequestQueueState) {
-    SCAPIClientRequestQueueStateIdle = 0,
-    SCAPIClientRequestQueueStateRunning,
-};
-
 @interface SCAPIClient ()
 @property (nonatomic,copy) NSString *apiKey;
 @property (nonatomic,copy) NSString *instanceName;
 @property (nonatomic,retain) SCRequestQueue *requestQueue;
-@property (nonatomic) SCAPIClientRequestQueueState requestQueueState;
+@property (nonatomic,retain) NSMutableArray *requestsBeingProcessed;
+@property (nonatomic) NSInteger maxConcurentRequestInQueue;
 @end
 
 @implementation SCAPIClient
@@ -36,6 +32,7 @@ typedef NS_ENUM(NSUInteger, SCAPIClientRequestQueueState) {
         self.apiKey = apiKey;
         self.instanceName = instanceName;
         self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier]];
+        self.maxConcurentRequestInQueue = 2;
     }
     return self;
 }
@@ -117,25 +114,26 @@ typedef NS_ENUM(NSUInteger, SCAPIClientRequestQueueState) {
 
 #pragma mark  - Dequeue -
 
-- (void)runQueue {
-    if (self.requestQueueState == SCAPIClientRequestQueueStateRunning) {
-        return;
+- (NSMutableArray *)requestsBeingProcessed {
+    if (!_requestsBeingProcessed) {
+        _requestsBeingProcessed = [NSMutableArray new];
     }
-    [self dequeueNextRequest];
+    return _requestsBeingProcessed;
+}
+
+- (void)runQueue {
+    if (self.requestsBeingProcessed.count < self.maxConcurentRequestInQueue) {
+        [self dequeueNextRequest];
+    }
 }
 
 - (void)dequeueNextRequest {
     if (self.requestQueue.hasRequests) {
-        self.requestQueueState = SCAPIClientRequestQueueStateRunning;
-        SCRequest *request = self.requestQueue.nextRequest;
+        SCRequest *request = [self.requestQueue dequeueRequest];
+        [self.requestsBeingProcessed addObject:request];
         [self runRequest:request];
-        [self.requestQueue removeRequest:request];
-        [self dequeueNextRequest];
-    } else {
-        self.requestQueueState = SCAPIClientRequestQueueStateIdle;
     }
 }
-
 
 - (void)runRequest:(SCRequest *)request {
     SCRequestMethod method = request.method;
@@ -147,29 +145,64 @@ typedef NS_ENUM(NSUInteger, SCAPIClientRequestQueueState) {
         SCUploadRequest *uploadRequest = (SCUploadRequest *)request;
         NSString *propertyName = uploadRequest.propertyName;
         NSData *fileData = uploadRequest.fileData;
-        [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:completion];
+        [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            if (completion) {
+                completion(task,responseObject,error);
+            }
+            [self requestHasFinishedProcessing:uploadRequest];
+        }];
     } else {
         switch (method) {
-            case SCRequestMethodGET:
-                [self getTaskWithPath:path params:params completion:completion];
+            case SCRequestMethodGET: {
+                [self getTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                    if (completion) {
+                        completion(task,responseObject,error);
+                    }
+                    [self requestHasFinishedProcessing:request];
+                }];}
                 break;
-            case SCRequestMethodPOST:
-                [self postTaskWithPath:path params:params completion:completion];
+            case SCRequestMethodPOST: {
+                [self postTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                    if (completion) {
+                        completion(task,responseObject,error);
+                    }
+                    [self requestHasFinishedProcessing:request];
+                }];}
                 break;
-            case SCRequestMethodPUT:
-                [self putTaskWithPath:path params:params completion:completion];
+            case SCRequestMethodPUT: {
+                [self putTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                    if (completion) {
+                        completion(task,responseObject,error);
+                    }
+                    [self requestHasFinishedProcessing:request];
+                }];}
                 break;
-            case SCRequestMethodPATCH:
-                [self patchTaskWithPath:path params:params completion:completion];
+            case SCRequestMethodPATCH: {
+                [self patchTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                    if (completion) {
+                        completion(task,responseObject,error);
+                    }
+                    [self requestHasFinishedProcessing:request];
+                }];}
                 break;
-            case SCRequestMethodDELETE:
-                [self deleteTaskWithPath:path params:params completion:completion];
+            case SCRequestMethodDELETE: {
+                [self deleteTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                    if (completion) {
+                        completion(task,responseObject,error);
+                    }
+                    [self requestHasFinishedProcessing:request];
+                }];}
                 break;
             default:
                 break;
         }
     }
 
+}
+
+- (void)requestHasFinishedProcessing:(SCRequest *)request {
+    [self.requestsBeingProcessed removeObject:request];
+    [self runQueue];
 }
 
 - (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {

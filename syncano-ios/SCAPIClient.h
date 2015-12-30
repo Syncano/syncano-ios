@@ -16,6 +16,7 @@
  */
 @interface SCAPIClient : AFHTTPSessionManager
 
+
 /**
  *  Creates API Client for provided Syncano instance
  *

@@ -28,8 +28,10 @@
     return self.requestsStore.count > 0;
 }
 
-- (SCRequest *)nextRequest {
-    return (SCRequest *)[self.requestsStore firstObject];
+- (SCRequest *)dequeueRequest {
+    SCRequest *request = [self.requestsStore firstObject];
+    [self removeRequest:request];
+    return request;
 }
 
 - (NSMutableArray *)requestsStore {

@@ -16,7 +16,6 @@
 
 @property (nonatomic,retain) NSString *identifier;
 @property (nonatomic,readonly) BOOL hasRequests;
-@property (nonatomic,readonly) SCRequest *nextRequest;
 
 
 - (instancetype)initWithIdentifier:(NSString *)identifier;
@@ -28,6 +27,6 @@
 - (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
 - (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback;
 
-- (void)removeRequest:(SCRequest *)request;
+- (SCRequest *)dequeueRequest;
 
 @end
