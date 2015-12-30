@@ -141,6 +141,13 @@
     NSDictionary *params = request.params;
     SCAPICompletionBlock completion = request.callback;
     
+    void (^requestFinishedBlock)(NSURLSessionDataTask *task, id responseObject, NSError *error) = ^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (completion) {
+            completion(task,responseObject,error);
+        }
+        [self requestHasFinishedProcessing:request];
+    };
+    
     if ([request isKindOfClass:[SCUploadRequest class]]) {
         SCUploadRequest *uploadRequest = (SCUploadRequest *)request;
         NSString *propertyName = uploadRequest.propertyName;
@@ -153,45 +160,20 @@
         }];
     } else {
         switch (method) {
-            case SCRequestMethodGET: {
-                [self getTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-                    if (completion) {
-                        completion(task,responseObject,error);
-                    }
-                    [self requestHasFinishedProcessing:request];
-                }];}
+            case SCRequestMethodGET:
+                [self getTaskWithPath:path params:params completion:requestFinishedBlock];
                 break;
-            case SCRequestMethodPOST: {
-                [self postTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-                    if (completion) {
-                        completion(task,responseObject,error);
-                    }
-                    [self requestHasFinishedProcessing:request];
-                }];}
+            case SCRequestMethodPOST:
+                [self postTaskWithPath:path params:params completion:requestFinishedBlock];
                 break;
-            case SCRequestMethodPUT: {
-                [self putTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-                    if (completion) {
-                        completion(task,responseObject,error);
-                    }
-                    [self requestHasFinishedProcessing:request];
-                }];}
+            case SCRequestMethodPUT:
+                [self putTaskWithPath:path params:params completion:requestFinishedBlock];
                 break;
-            case SCRequestMethodPATCH: {
-                [self patchTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-                    if (completion) {
-                        completion(task,responseObject,error);
-                    }
-                    [self requestHasFinishedProcessing:request];
-                }];}
+            case SCRequestMethodPATCH:
+                [self patchTaskWithPath:path params:params completion:requestFinishedBlock];
                 break;
-            case SCRequestMethodDELETE: {
-                [self deleteTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-                    if (completion) {
-                        completion(task,responseObject,error);
-                    }
-                    [self requestHasFinishedProcessing:request];
-                }];}
+            case SCRequestMethodDELETE:
+                [self deleteTaskWithPath:path params:params completion:requestFinishedBlock];
                 break;
             default:
                 break;
