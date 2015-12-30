@@ -152,12 +152,7 @@
         SCUploadRequest *uploadRequest = (SCUploadRequest *)request;
         NSString *propertyName = uploadRequest.propertyName;
         NSData *fileData = uploadRequest.fileData;
-        [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-            if (completion) {
-                completion(task,responseObject,error);
-            }
-            [self requestHasFinishedProcessing:uploadRequest];
-        }];
+        [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
     } else {
         switch (method) {
             case SCRequestMethodGET:
