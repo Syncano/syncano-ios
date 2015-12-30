@@ -11,7 +11,7 @@
 #import "SCUploadRequest.h"
 
 @interface SCRequestQueue ()
-@property (nonatomic,retain) NSMutableDictionary *requestsStore;
+@property (nonatomic,retain) NSMutableArray *requestsStore;
 @end
 
 @implementation SCRequestQueue
@@ -24,9 +24,19 @@
     return self;
 }
 
-- (NSMutableDictionary *)requestsStore {
+- (BOOL)hasRequests {
+    return self.requestsStore.count > 0;
+}
+
+- (SCRequest *)dequeueRequest {
+    SCRequest *request = [self.requestsStore firstObject];
+    [self removeRequest:request];
+    return request;
+}
+
+- (NSMutableArray *)requestsStore {
     if (!_requestsStore) {
-        _requestsStore = [NSMutableDictionary new];
+        _requestsStore = [NSMutableArray new];
     }
     return _requestsStore;
 }
@@ -58,12 +68,12 @@
 }
 
 - (void)enqueueRequest:(SCRequest *)request {
-    [self.requestsStore setObject:[request dictionaryRepresentation] forKey:request.identifier];
+    [self.requestsStore addObject:request];
 }
 
-- (void)removeRequestWithIdentifier:(NSString *)identifier {
-    if ([self.requestsStore objectForKey:identifier]) {
-        [self.requestsStore removeObjectForKey:identifier];
+- (void)removeRequest:(SCRequest *)request {
+    if ([self.requestsStore containsObject:request]) {
+        [self.requestsStore removeObject:request];
     }
 }
 

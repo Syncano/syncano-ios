@@ -10,9 +10,13 @@
 #import "SCMacros.h"
 #import "SCConstants.h"
 
+@class SCRequest;
+
 @interface SCRequestQueue : NSObject
 
 @property (nonatomic,retain) NSString *identifier;
+@property (nonatomic,readonly) BOOL hasRequests;
+
 
 - (instancetype)initWithIdentifier:(NSString *)identifier;
 
@@ -22,4 +26,7 @@
 - (void)enqueueDELETERequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
 - (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
 - (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback;
+
+- (SCRequest *)dequeueRequest;
+
 @end

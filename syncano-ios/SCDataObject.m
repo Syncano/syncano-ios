@@ -114,7 +114,7 @@
                     completion(error);
                 }
             } else {
-                [apiClient postTaskWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     if (completion && error) {
                         completion(error);
                         return;
@@ -149,7 +149,7 @@
 }
 
 - (void)deleteUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    [apiClient deleteTaskWithPath:[self path] params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient DELETEWithPath:[self path] params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (completion) {
             completion(error);
         }
@@ -209,7 +209,7 @@
     }
     if ([[[self class] propertyKeys] containsObject:key]) {
         NSDictionary *params = @{key:value};
-        [apiClient patchTaskWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
             completion(error);
         }];
     } else {
