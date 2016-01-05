@@ -9,7 +9,6 @@
 #import "Syncano.h"
 #import "SCAPIClient.h"
 #import "SCParseManager.h"
-#import "SCAPIClient+Class.h"
 #import "SCLocalStore.h"
 
 static SCLocalStore *_localStore;
