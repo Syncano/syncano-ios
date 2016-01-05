@@ -9,6 +9,7 @@
 #import "SCLocalStore.h"
 #import "FMDB.h"
 #import "SCConstants.h"
+#import "SCFileManager.h"
 #import "SCDataObject+LocalStorage.h"
 #import "SCParseManager+SCLocalStorage.h"
 #import "NSString+JSONDictionary.h"
@@ -20,7 +21,7 @@
 @implementation SCLocalStore
 
 - (void)initializeDBWithCompletionBlock:(SCCompletionBlock)completionBlock  {
-    self.queue = [FMDatabaseQueue databaseQueueWithPath:[SCConstants DB_PATH]];
+    self.queue = [FMDatabaseQueue databaseQueueWithPath:[SCFileManager syncanoDBFilePath]];
     [self executeUpdateWithQuery:[SCConstants createTableSQLStatement] withCompletionBlock:^(NSError *error) {
         [self handleError:error forCompletionBlock:completionBlock];
     }];
