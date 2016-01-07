@@ -7,8 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SCConstants.h"
+
 
 @interface SCFileManager : NSObject
 + (NSString *)syncanoDocumentsDirectoryPath;
 + (NSString *)syncanoDBFilePath;
+@end
+
+@class SCRequest;
+
+@interface SCFileManager (Request)
++ (void)writeAsyncSerializedRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock;
 @end

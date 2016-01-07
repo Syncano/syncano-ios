@@ -7,6 +7,7 @@
 //
 
 #import "SCFileManager.h"
+#import "SCRequest.h"
 
 static NSString *const _SyncanoDBFileName = @"Syncano.db";
 static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
@@ -40,4 +41,36 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
         *error = _error;
     }
 }
+
+
+
+@end
+
+@implementation SCFileManager (Request)
+
++ (void)writeAsyncSerializedRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock {
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@.plist",request.identifier];
+    NSString *dirPath = [[self syncanoDocumentsDirectoryPath] stringByAppendingPathComponent:queueIdentifier];
+    NSString *filePath = [dirPath stringByAppendingPathComponent:fileName];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSError *error;
+        [self createDirectoryIfNeededAtPath:dirPath error:&error];
+        if (!error) {
+            NSData *data = [NSJSONSerialization dataWithJSONObject:[request dictionaryRepresentation]
+                                                                   options:0
+                                                                     error:&error];
+            if (!error) {
+                [data writeToFile:filePath options:NSDataWritingAtomic error:&error];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            if (completionBlock) {
+                completionBlock(error);
+            }
+        });
+    });
+}
+
 @end
