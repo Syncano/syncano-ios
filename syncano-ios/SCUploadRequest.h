@@ -12,7 +12,7 @@
 @property (nonatomic,retain) NSString *propertyName;
 @property (nonatomic,retain) NSData *fileData;
 
-+ (SCUploadRequest *)uploadrRequestWithPath:(NSString *)path propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback;
++ (SCUploadRequest *)uploadRequestWithPath:(NSString *)path propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save;
 
 
 @end

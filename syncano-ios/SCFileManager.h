@@ -18,5 +18,6 @@
 @class SCRequest;
 
 @interface SCFileManager (Request)
-+ (void)writeAsyncSerializedRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock;
++ (void)writeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock;
++ (void)removeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock;
 @end

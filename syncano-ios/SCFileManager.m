@@ -48,7 +48,7 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
 
 @implementation SCFileManager (Request)
 
-+ (void)writeAsyncSerializedRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock {
++ (void)writeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock {
     
     NSString *fileName = [NSString stringWithFormat:@"%@.plist",request.identifier];
     NSString *dirPath = [[self syncanoDocumentsDirectoryPath] stringByAppendingPathComponent:queueIdentifier];
@@ -65,6 +65,26 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
                 [data writeToFile:filePath options:NSDataWritingAtomic error:&error];
             }
         }
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            if (completionBlock) {
+                completionBlock(error);
+            }
+        });
+    });
+}
+
++ (void)removeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock {
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@.plist",request.identifier];
+    NSString *dirPath = [[self syncanoDocumentsDirectoryPath] stringByAppendingPathComponent:queueIdentifier];
+    NSString *filePath = [dirPath stringByAppendingPathComponent:fileName];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSError *error;
+        [fileManager removeItemAtPath:filePath error:&error];
+        
         dispatch_async(dispatch_get_main_queue(), ^(void){
             if (completionBlock) {
                 completionBlock(error);
