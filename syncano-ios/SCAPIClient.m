@@ -15,6 +15,7 @@
 #import "NSString+MD5.h"
 #import "SCRequest.h"
 #import "SCUploadRequest.h"
+#import "AFNetworkReachabilityManager.h"
 
 @interface SCAPIClient () <SCRequestQueueDelegate>
 @property (nonatomic,copy) NSString *apiKey;
@@ -22,6 +23,7 @@
 @property (nonatomic,retain) SCRequestQueue *requestQueue;
 @property (nonatomic,retain) NSMutableArray *requestsBeingProcessed;
 @property (nonatomic) NSInteger maxConcurentRequestsInQueue;
+@property (nonatomic,retain) AFNetworkReachabilityManager *networkReachabilityManager;
 @end
 
 @implementation SCAPIClient
@@ -44,6 +46,7 @@
         self.securityPolicy.allowInvalidCertificates = YES;
         self.securityPolicy.validatesDomainName = NO;
         self.responseSerializer = [SCJSONResponseSerializer serializer];
+        [self initializeReachabilityManager];
     }
     return self;
 }
@@ -266,6 +269,19 @@
         completion(task,nil, error);
     }];
     return task;
+}
+
+@end
+
+@implementation SCAPIClient (Reachability)
+
+- (void)initializeReachabilityManager {
+    self.networkReachabilityManager = [AFNetworkReachabilityManager managerForDomain:kBaseURL];
+    [self.networkReachabilityManager startMonitoring];
+}
+
+- (BOOL)reachable {
+    return self.networkReachabilityManager.reachable;
 }
 
 @end
