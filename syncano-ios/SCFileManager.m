@@ -93,4 +93,41 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
     });
 }
 
++ (void)findAllRequestArchivesForQueueWithIdentifier:(NSString *)queueIdentifier completionBlock:(SCFindRequestsCompletionBlock)completionBlock {
+    NSString *dirPath = [[self syncanoDocumentsDirectoryPath] stringByAppendingPathComponent:queueIdentifier];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        BOOL directoryExists = [fileManager fileExistsAtPath:dirPath];
+        if (directoryExists) {
+                NSError *error;
+                NSArray *files = [fileManager contentsOfDirectoryAtPath:dirPath error:&error];
+                if (error) {
+                    dispatch_async(dispatch_get_main_queue(), ^(void){
+                        if (completionBlock) {
+                            completionBlock(nil,error);
+                        }
+                    });
+                } else {
+                NSPredicate *plistFilter = [NSPredicate predicateWithFormat:@"self ENDSWITH '.plist'"];
+                NSArray *plistFiles = [files filteredArrayUsingPredicate:plistFilter];
+                    dispatch_async(dispatch_get_main_queue(), ^(void){
+                        if (completionBlock) {
+                            completionBlock(plistFiles,error);
+                        }
+                    });
+                }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                if (completionBlock) {
+                    completionBlock(nil,nil);
+                }
+            });
+        }
+    });
+}
+
++ (BOOL)directoryExistsForQueueIdentifier:(NSString *)queueIdentifier {
+    return YES;
+}
+
 @end
