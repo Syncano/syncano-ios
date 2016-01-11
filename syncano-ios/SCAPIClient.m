@@ -150,8 +150,15 @@
     SCAPICompletionBlock completion = request.callback;
     
     void (^requestFinishedBlock)(NSURLSessionDataTask *task, id responseObject, NSError *error) = ^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if (completion) {
-            completion(task,responseObject,error);
+        if (error) {
+            BOOL reachable = [self reachable];
+            if (!reachable) {
+                //TODO: we have to discuss if we want to make this request again and maybe here we should stop the queue until we reach internet connection?
+            }
+        } else {
+            if (completion) {
+                completion(task,responseObject,error);
+            }
         }
         [self requestHasFinishedProcessing:request];
     };
