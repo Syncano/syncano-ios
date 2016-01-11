@@ -28,6 +28,8 @@ typedef NS_ENUM(NSUInteger, SCRequestMethod) {
 
 - (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback save:(BOOL)save;
 
+- (instancetype)initFromDictionaryRepresentation:(NSDictionary *)dictionaryRepresentation;
+
 + (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback save:(BOOL)save;
 
 - (NSDictionary *)dictionaryRepresentation;
