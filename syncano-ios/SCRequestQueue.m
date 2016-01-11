@@ -22,6 +22,7 @@
     if (self) {
         self.identifier = identifier;
         self.delegate = delegate;
+        [self findSavedRequests];
     }
     return self;
 }
@@ -116,5 +117,25 @@
     }
 }
 
+- (void)findSavedRequests {
+    [SCFileManager findAllRequestArchivesForQueueWithIdentifier:self.identifier completionBlock:^(NSArray *objects, NSError *error) {
+        if (!error && objects.count > 0) {
+            NSError *_error;
+            for (NSData *data in objects) {
+                NSDictionary *dictionaryRepresentation = [NSJSONSerialization JSONObjectWithData:data
+                                                                             options:NSJSONReadingAllowFragments
+                                                                               error:&_error];
+                if (!error) {
+                    SCRequest *request = [[SCRequest alloc] initFromDictionaryRepresentation:dictionaryRepresentation];
+                    request.save = YES;
+                    [self.requestsStore addObject:request];
+                }
+            }
+            if ([self.delegate respondsToSelector:@selector(requestQueueDidEnqueuedRequestsFromDisk:)]) {
+                [self.delegate requestQueueDidEnqueuedRequestsFromDisk:self];
+            }
+        }
+    }];
+}
 
 @end
