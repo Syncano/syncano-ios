@@ -92,6 +92,5 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
 
-+ (NSString *)DB_PATH;
 + (NSString *)createTableSQLStatement;
 @end

@@ -16,7 +16,7 @@
 #import "SCRequest.h"
 #import "SCUploadRequest.h"
 
-@interface SCAPIClient ()
+@interface SCAPIClient () <SCRequestQueueDelegate>
 @property (nonatomic,copy) NSString *apiKey;
 @property (nonatomic,copy) NSString *instanceName;
 @property (nonatomic,retain) SCRequestQueue *requestQueue;
@@ -31,7 +31,7 @@
     if (self) {
         self.apiKey = apiKey;
         self.instanceName = instanceName;
-        self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier]];
+        self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier] delegate:self];
         self.maxConcurentRequestsInQueue = 2;
     }
     return self;
@@ -111,6 +111,11 @@
     [self runQueue];
 }
 
+#pragma mark - Request Queue Delegate -
+
+- (void)requestQueue:(SCRequestQueue *)queue didSavedRequest:(SCRequest *)request {
+    [self runQueue];
+}
 
 #pragma mark  - Dequeue -
 

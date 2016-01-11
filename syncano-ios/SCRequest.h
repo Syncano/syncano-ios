@@ -24,10 +24,11 @@ typedef NS_ENUM(NSUInteger, SCRequestMethod) {
 @property (nonatomic) SCRequestMethod method;
 @property (nonatomic,retain) NSDictionary *params;
 @property (nonatomic,strong) SCAPICompletionBlock callback;
+@property (nonatomic) BOOL save;
 
-- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
+- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback save:(BOOL)save;
 
-+ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback;
++ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback save:(BOOL)save;
 
 - (NSDictionary *)dictionaryRepresentation;
 @end
