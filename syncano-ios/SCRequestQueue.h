@@ -14,6 +14,7 @@
 
 @protocol SCRequestQueueDelegate <NSObject>
 - (void)requestQueue:(SCRequestQueue *)queue didSavedRequest:(SCRequest *)request;
+- (void)requestQueueDidEnqueuedRequestsFromDisk:(SCRequestQueue *)queue;
 @end
 
 @interface SCRequestQueue : NSObject

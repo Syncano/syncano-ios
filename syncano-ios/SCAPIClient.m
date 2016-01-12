@@ -117,6 +117,10 @@
     [self runQueue];
 }
 
+- (void)requestQueueDidEnqueuedRequestsFromDisk:(SCRequestQueue *)queue {
+    [self runQueue];
+}
+
 #pragma mark  - Dequeue -
 
 - (NSMutableArray *)requestsBeingProcessed {
