@@ -108,12 +108,16 @@
                 completion(error);
             }
         } else {
-            NSDictionary *params = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error];
+            NSMutableDictionary *params = [[[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error] mutableCopy];
+            
             if (error) {
                 if (completion) {
                     completion(error);
                 }
             } else {
+                if (self.objectId && self.revision) {
+                    [params setObject:self.revision forKey:@"expected_revision"];
+                }
                 [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     if (completion && error) {
                         completion(error);
@@ -208,7 +212,7 @@
         return;
     }
     if ([[[self class] propertyKeys] containsObject:key]) {
-        NSDictionary *params = @{key:value};
+        NSDictionary *params = @{key:value , @"expected_revision" : self.revision};
         [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
             completion(error);
         }];
