@@ -15,6 +15,7 @@
 #import "NSString+MD5.h"
 #import "SCRequest.h"
 #import "SCUploadRequest.h"
+#import "AFNetworkReachabilityManager.h"
 
 @interface SCAPIClient () <SCRequestQueueDelegate>
 @property (nonatomic,copy) NSString *apiKey;
@@ -22,6 +23,7 @@
 @property (nonatomic,retain) SCRequestQueue *requestQueue;
 @property (nonatomic,retain) NSMutableArray *requestsBeingProcessed;
 @property (nonatomic) NSInteger maxConcurentRequestsInQueue;
+@property (nonatomic,retain) AFNetworkReachabilityManager *networkReachabilityManager;
 @end
 
 @implementation SCAPIClient
@@ -44,6 +46,7 @@
         self.securityPolicy.allowInvalidCertificates = YES;
         self.securityPolicy.validatesDomainName = NO;
         self.responseSerializer = [SCJSONResponseSerializer serializer];
+        [self initializeReachabilityManager];
     }
     return self;
 }
@@ -151,8 +154,15 @@
     SCAPICompletionBlock completion = request.callback;
     
     void (^requestFinishedBlock)(NSURLSessionDataTask *task, id responseObject, NSError *error) = ^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if (completion) {
-            completion(task,responseObject,error);
+        if (error) {
+            BOOL reachable = [self reachable];
+            if (!reachable) {
+                //TODO: we have to discuss if we want to make this request again and maybe here we should stop the queue until we reach internet connection?
+            }
+        } else {
+            if (completion) {
+                completion(task,responseObject,error);
+            }
         }
         [self requestHasFinishedProcessing:request];
     };
@@ -270,6 +280,19 @@
         completion(task,nil, error);
     }];
     return task;
+}
+
+@end
+
+@implementation SCAPIClient (Reachability)
+
+- (void)initializeReachabilityManager {
+    self.networkReachabilityManager = [AFNetworkReachabilityManager managerForDomain:kBaseURL];
+    [self.networkReachabilityManager startMonitoring];
+}
+
+- (BOOL)reachable {
+    return self.networkReachabilityManager.reachable;
 }
 
 @end

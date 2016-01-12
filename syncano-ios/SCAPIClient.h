@@ -87,3 +87,8 @@
 - (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion;
 
 @end
+
+@interface SCAPIClient (Reachability)
+- (void)initializeReachabilityManager;
+- (BOOL)reachable;
+@end
