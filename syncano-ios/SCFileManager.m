@@ -24,7 +24,7 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
 
 #pragma mark - Database -
 + (NSString *)syncanoDBFilePath {
-    NSString *dbPath = [[self syncanoDBFilePath] stringByAppendingPathComponent:_SyncanoDBFileName];
+    NSString *dbPath = [[self syncanoDocumentsDirectoryPath] stringByAppendingPathComponent:_SyncanoDBFileName];
     return dbPath;
 }
 
@@ -34,7 +34,7 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
 
 + (void)createDirectoryIfNeededAtPath:(NSString *)path error:(NSError **)error {
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSError *_error = nil;
+        NSError *_error;
         [[NSFileManager defaultManager] createDirectoryAtPath:path
                                   withIntermediateDirectories:YES
                                                    attributes:nil
