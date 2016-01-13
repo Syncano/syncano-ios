@@ -18,7 +18,7 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
     NSString *library = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
     NSString *privateDocuments = [library stringByAppendingPathComponent:@"Private Documents"];
     NSString *syncanoDocumentsDir = [privateDocuments stringByAppendingPathComponent:_SyncanoDocumentsDirectoryName];
-    [self createDirectoryIfNeededAtPath:syncanoDocumentsDir];
+    [self createDirectoryIfNeededAtPath:syncanoDocumentsDir completionBlock:nil];
     return syncanoDocumentsDir;
 }
 
@@ -28,23 +28,24 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
     return dbPath;
 }
 
-+ (void)createDirectoryIfNeededAtPath:(NSString *)path {
-    [self createDirectoryIfNeededAtPath:path error:nil];
+
++ (void)createDirectoryIfNeededAtPath:(NSString *)path completionBlock:(SCCompletionBlock)completionBlock {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSError *creationError;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:path
+                                      withIntermediateDirectories:YES
+                                                       attributes:nil
+                                                            error:&creationError];
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            if (completionBlock) {
+                completionBlock(creationError);
+            }
+        });
+    });
 }
-
-+ (void)createDirectoryIfNeededAtPath:(NSString *)path error:(NSError **)error {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSError *_error;
-        [[NSFileManager defaultManager] createDirectoryAtPath:path
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:&_error];
-        *error = _error;
-    }
-}
-
-
-
 @end
 
 @implementation SCFileManager (Request)
@@ -55,23 +56,35 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
     NSString *dirPath = [[self syncanoDocumentsDirectoryPath] stringByAppendingPathComponent:queueIdentifier];
     NSString *filePath = [dirPath stringByAppendingPathComponent:fileName];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSError *error;
-        [self createDirectoryIfNeededAtPath:dirPath error:&error];
+    [self createDirectoryIfNeededAtPath:dirPath completionBlock:^(NSError *error) {
         if (!error) {
-            NSData *data = [NSJSONSerialization dataWithJSONObject:[request dictionaryRepresentation]
-                                                                   options:0
-                                                                     error:&error];
-            if (!error) {
-                [data writeToFile:filePath options:NSDataWritingAtomic error:&error];
-            }
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                
+                NSError *serializationError;
+                
+                NSData *data = [NSJSONSerialization dataWithJSONObject:[request dictionaryRepresentation]
+                                                               options:0
+                                                                 error:&serializationError];
+                if (!serializationError) {
+                    NSError *savingError;
+                    [data writeToFile:filePath options:NSDataWritingAtomic error:&savingError];
+                    dispatch_async(dispatch_get_main_queue(), ^(void){
+                        if (completionBlock) {
+                            completionBlock(savingError);
+                        }
+                    });
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^(void){
+                        if (completionBlock) {
+                            completionBlock(serializationError);
+                        }
+                    });
+                }
+            });
         }
-        dispatch_async(dispatch_get_main_queue(), ^(void){
-            if (completionBlock) {
-                completionBlock(error);
-            }
-        });
-    });
+    }];
+    
+    
 }
 
 + (void)removeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock {
