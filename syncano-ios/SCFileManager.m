@@ -28,7 +28,6 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
     return dbPath;
 }
 
-
 + (void)createDirectoryIfNeededAtPath:(NSString *)path completionBlock:(SCCompletionBlock)completionBlock {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
         NSError *creationError;
