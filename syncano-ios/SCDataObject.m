@@ -212,7 +212,10 @@
         return;
     }
     if ([[[self class] propertyKeys] containsObject:key]) {
-        NSDictionary *params = @{key:value , @"expected_revision" : self.revision};
+        NSMutableDictionary *params = [@{key:value} mutableCopy];
+        if (self.revision) {
+            [params setObject:self.revision forKey:@"expected_revision"];
+        }
         [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
             completion(error);
         }];
