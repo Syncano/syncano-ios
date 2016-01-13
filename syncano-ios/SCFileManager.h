@@ -11,6 +11,12 @@
 
 
 @interface SCFileManager : NSObject
+/**
+ Returns <Application Home>/Library/Private Documents/Syncano
+ for non-user generated data that shouldn't be deleted by iOS, such as "offline data".
+ 
+ See https://developer.apple.com/library/ios/#qa/qa1699/_index.html
+ */
 + (NSString *)syncanoDocumentsDirectoryPath;
 + (NSString *)syncanoDBFilePath;
 @end

@@ -15,8 +15,9 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
 
 #pragma mark - Storage -
 + (NSString *)syncanoDocumentsDirectoryPath {
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *syncanoDocumentsDir = [documentsDir stringByAppendingPathComponent:_SyncanoDocumentsDirectoryName];
+    NSString *library = [NSHomeDirectory() stringByAppendingPathComponent:@"Library"];
+    NSString *privateDocuments = [library stringByAppendingPathComponent:@"Private Documents"];
+    NSString *syncanoDocumentsDir = [privateDocuments stringByAppendingPathComponent:_SyncanoDocumentsDirectoryName];
     [self createDirectoryIfNeededAtPath:syncanoDocumentsDir];
     return syncanoDocumentsDir;
 }
