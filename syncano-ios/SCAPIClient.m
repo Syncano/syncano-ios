@@ -156,8 +156,12 @@
     void (^requestFinishedBlock)(NSURLSessionDataTask *task, id responseObject, NSError *error) = ^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             BOOL reachable = [self reachable];
-            if (!reachable) {
+            if (!reachable && request.save) {
                 //TODO: we have to discuss if we want to make this request again and maybe here we should stop the queue until we reach internet connection?
+            } else {
+                if (completion) {
+                    completion(task,responseObject,error);
+                }
             }
         } else {
             if (completion) {
