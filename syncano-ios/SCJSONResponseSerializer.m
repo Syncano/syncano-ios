@@ -7,6 +7,8 @@
 //
 
 #import "SCJSONResponseSerializer.h"
+#import "SCConstants.h"
+
 
 @implementation SCJSONResponseSerializer
 

@@ -24,10 +24,13 @@ typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *no
 typedef void (^SCFileFetchCompletionBlock)(NSData *data, NSError *error);
 typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *error);
 typedef void (^SCFindRequestsCompletionBlock)(NSArray *objects, NSError *error);
-
+typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString *description);
 
 
 extern NSString * const SCDataObjectErrorDomain;
+
+static NSString * const kSyncanoRepsonseErrorKey = @"com.Syncano.response.error";
+
 
 extern NSString * const kBaseURL;
 extern NSString * const kUserKeyKeychainKey;

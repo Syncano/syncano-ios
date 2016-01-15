@@ -14,6 +14,7 @@
 #import "SCPlease.h"
 #import "SCDataObject+Properties.h"
 #import "SCRegisterManager.h"
+#import "NSError+RevisionMismatch.h"
 
 @implementation SCDataObject
 
@@ -102,6 +103,22 @@
 }
 
 - (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
+    [self saveUsingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+
+
+- (void)saveWithCompletionBlock:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self saveUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self saveUsingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+
+
+- (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
     [self handleRelationsSaveUsingAPIClient:apiClient withCompletion:^(NSError *error) {
         if (error) {
             if (completion) {
@@ -121,6 +138,9 @@
                 [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     if (completion && error) {
                         completion(error);
+                        if (revisionMismatchBlock) {
+                            [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                        }
                         return;
                     }
                     [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];

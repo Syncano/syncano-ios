@@ -95,6 +95,13 @@
  */
 - (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
 
+
+- (void)saveWithCompletionBlock:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+- (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+
+
 /**
  *  Fetches object from API using singleton Syncano instance
  *
