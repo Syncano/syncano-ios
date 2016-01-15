@@ -15,19 +15,10 @@
     if (*error != nil) {
         NSMutableDictionary *userInfo = [(*error).userInfo mutableCopy];
         userInfo[kSyncanoRepsonseErrorKey] = @"";
-        userInfo[kSyncanoValidationErrorKey] = @[];
         if (data != nil) {
             id errorData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            if (errorData) {
-                if (errorData[@"detail"]) {
-                    NSString *responseErrorString = errorData[@"detail"];
-                    userInfo[kSyncanoRepsonseErrorKey] = responseErrorString.length > 0 ? errorData : @"";
-                }
-                if (errorData[@"name"]) {
-                    NSArray *validationErrorArray = errorData[@"name"];
-                    userInfo[kSyncanoValidationErrorKey] = validationErrorArray;
-                }
-            }
+            userInfo[kSyncanoRepsonseErrorKey] = errorData;
+            
         }
         NSError *newError = [NSError errorWithDomain:(*error).domain code:(*error).code userInfo:userInfo];
         (*error) = newError;
