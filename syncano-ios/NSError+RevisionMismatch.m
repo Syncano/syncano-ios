@@ -19,13 +19,6 @@
             mismatched = YES;
             description = syncanoErroInfo[@"expected_revision"];
         }
-        
-        //Temporary for testing purposes
-        if (syncanoErroInfo[@"non_field_errors"]) {
-            mismatched = YES;
-            description = syncanoErroInfo[@"non_field_errors"];
-        }
-        
         if (completionBlock) {
             completionBlock(mismatched,description);
         }
