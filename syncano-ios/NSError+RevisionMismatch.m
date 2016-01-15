@@ -29,6 +29,10 @@
         if (completionBlock) {
             completionBlock(mismatched,description);
         }
+    } else {
+        if (completionBlock) {
+            completionBlock(NO,nil);
+        }
     }
 }
 @end
