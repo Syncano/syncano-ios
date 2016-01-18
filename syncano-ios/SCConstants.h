@@ -24,10 +24,13 @@ typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *no
 typedef void (^SCFileFetchCompletionBlock)(NSData *data, NSError *error);
 typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *error);
 typedef void (^SCFindRequestsCompletionBlock)(NSArray *objects, NSError *error);
-
+typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString *description);
 
 
 extern NSString * const SCDataObjectErrorDomain;
+
+static NSString * const kSyncanoRepsonseErrorKey = @"com.Syncano.response.error";
+
 
 extern NSString * const kBaseURL;
 extern NSString * const kUserKeyKeychainKey;
@@ -48,6 +51,9 @@ extern NSString * const kSCSocialBackendGoogle;
 extern NSString * const kSCChannelNotificationMessageActionCreate;
 extern NSString * const kSCChannelNotificationMessageActionUpdate;
 extern NSString * const kSCChannelNotificationMessageActionDelete;
+
+extern NSString * const kExpectedReviosionRequestParam;
+extern NSString * const kReviosionMismatchResponseError;
 
 extern NSString * const kDatabaseName;
 
