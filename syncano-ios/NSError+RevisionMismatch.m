@@ -11,21 +11,14 @@
 
 @implementation NSError (RevisionMismatch)
 - (void)checkIfMismatchOccuredWithCompletion:(SCDataObjectRevisionMismatchCompletionBlock)completionBlock {
-    if (self.userInfo[kSyncanoRepsonseErrorKey]) {
-        NSDictionary *syncanoErroInfo = self.userInfo[kSyncanoRepsonseErrorKey];
-        BOOL mismatched = NO;
-        NSString *description;
-        if (syncanoErroInfo[kReviosionMismatchResponseError]) {
-            mismatched = YES;
-            description = syncanoErroInfo[kReviosionMismatchResponseError];
-        }
-        if (completionBlock) {
-            completionBlock(mismatched,description);
-        }
-    } else {
-        if (completionBlock) {
-            completionBlock(NO,nil);
-        }
+    NSDictionary *syncanoErroInfo = self.userInfo[kSyncanoRepsonseErrorKey];
+    NSString *expectedRevisionDescription = syncanoErroInfo[kReviosionMismatchResponseError];
+    BOOL mismatched = NO;
+    if (expectedRevisionDescription) {
+        mismatched = YES;
+    }
+    if (completionBlock) {
+        completionBlock(mismatched,expectedRevisionDescription);
     }
 }
 @end
