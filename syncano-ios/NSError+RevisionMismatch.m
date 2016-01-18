@@ -15,9 +15,9 @@
         NSDictionary *syncanoErroInfo = self.userInfo[kSyncanoRepsonseErrorKey];
         BOOL mismatched = NO;
         NSString *description;
-        if (syncanoErroInfo[@"expected_revision"]) {
+        if (syncanoErroInfo[kReviosionMismatchResponseError]) {
             mismatched = YES;
-            description = syncanoErroInfo[@"expected_revision"];
+            description = syncanoErroInfo[kReviosionMismatchResponseError];
         }
         if (completionBlock) {
             completionBlock(mismatched,description);

@@ -133,7 +133,7 @@
                 }
             } else {
                 if (self.objectId && self.revision) {
-                    [params setObject:self.revision forKey:@"expected_revision"];
+                    [params setObject:self.revision forKey:kExpectedReviosionRequestParam];
                 }
                 [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     if (error) {
@@ -244,7 +244,7 @@
     if ([[[self class] propertyKeys] containsObject:key]) {
         NSMutableDictionary *params = [@{key:value} mutableCopy];
         if (self.revision) {
-            [params setObject:self.revision forKey:@"expected_revision"];
+            [params setObject:self.revision forKey:kExpectedReviosionRequestParam];
         }
         [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
             if (completion) {

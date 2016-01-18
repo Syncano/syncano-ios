@@ -18,6 +18,9 @@ NSString * const kSCPermissionTypePublish = @"publish";
 NSString * const kSCChannelTypeDefault = @"default";
 NSString * const kSCChannelTypeSeparateRooms = @"separate_rooms";
 
+NSString * const kExpectedReviosionRequestParam = @"expected_revision";
+NSString * const kReviosionMismatchResponseError = @"expected_revision";
+
 NSString * const kSCChannelNotificationMessageActionCreate = @"create";
 NSString * const kSCChannelNotificationMessageActionUpdate = @"update";
 NSString * const kSCChannelNotificationMessageActionDelete = @"delete";
