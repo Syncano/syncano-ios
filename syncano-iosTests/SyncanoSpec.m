@@ -14,15 +14,6 @@ SPEC_BEGIN(SyncanoSpec)
 
 describe(@"Syncano", ^{
     
-    context(@"environment variables test", ^{
-       it(@"should get env var", ^{
-           NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-           NSString *apikey = environment[@"API_KEY"];
-           [[apikey shouldNot] beNil];
-           [[apikey should] equal:@"ABCD"];
-       });
-    });
-    
      context(@"singleton syncano instance", ^{
         beforeAll(^{
             [Syncano sharedInstanceWithApiKey:@"API-KEY" instanceName:@"INSTANCE-NAME"];
