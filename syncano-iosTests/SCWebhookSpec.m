@@ -67,6 +67,32 @@ describe(@"SCWebhook", ^{
             [[_responseObject.result[@"stdout"] should] equal:@"Killed Manticore"];
         });
  
+        it(@"should run webhook with custom response", ^{
+            [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+                return [[request.URL absoluteString] isEqualToString:@"https://api.syncano.io/v1/instances/INSTANCE-NAME/webhooks/WEBHOOK-NAME/run/"];
+            } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+                return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"CustomWebhook",self.class)
+                                                        statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+            }];
+            
+            id responseSerializer = [Syncano sharedAPIClient].responseSerializer;
+            __block NSData *_responseObject;
+            __block NSError *_error;
+            __block BOOL _blockFinished;
+            [SCWebhook runCustomWebhookWithName:@"WEBHOOK-NAME" completion:^(id responseObject, NSError *error) {
+                _responseObject = (NSData*)responseObject;
+                _error = error;
+                _blockFinished = YES;
+            }];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+            [[_error shouldEventually] beNil];
+            [[_responseObject shouldEventually] beNonNil];
+            NSString* responseString = [[NSString alloc] initWithData:_responseObject encoding:NSUTF8StringEncoding];
+            [[responseString should] equal:@"It works!"];
+            [[[Syncano sharedAPIClient].responseSerializer should] beIdenticalTo:responseSerializer];
+            
+        });
+        
     });
     
     context(@"custom Syncano instance", ^{
@@ -122,6 +148,31 @@ describe(@"SCWebhook", ^{
             [[_responseObject shouldEventually] beNonNil];
             [[_responseObject.result[@"stdout"] should] equal:@"Killed Manticore"];
         });
+        
+        it(@"should run webhook with custom response", ^{
+            Syncano *syncano =  [Syncano newSyncanoWithApiKey:@"API-KEY" instanceName:@"INSTANCE-NAME-CUSTOM"];
+            [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+                return [[request.URL absoluteString] isEqualToString:@"https://api.syncano.io/v1/instances/INSTANCE-NAME-CUSTOM/webhooks/WEBHOOK-NAME/run/"];
+            } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+                return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"Trace.json",self.class)
+                                                        statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+            }];
+            
+            __block NSDictionary *_responseObject;
+            __block NSError *_error;
+            __block BOOL _blockFinished;
+            [SCWebhook runCustomWebhookWithName:@"WEBHOOK-NAME" onSyncano:syncano completion:^(id responseObject, NSError *error) {
+                _responseObject = (NSDictionary*)responseObject;
+                _error = error;
+                _blockFinished = YES;
+            }];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+            [[_error shouldEventually] beNil];
+            [[_responseObject shouldEventually] beNonNil];
+            NSString* responseString = _responseObject[@"status"];
+            [[responseString should] equal:@"pending"];
+            
+        });
     });
     
     it(@"should run public webhook", ^{
@@ -146,6 +197,31 @@ describe(@"SCWebhook", ^{
         [[_responseObject shouldEventually] beNonNil];
         [[_responseObject.result[@"stdout"] should] equal:@"Killed Manticore"];
 
+    });
+    
+    it(@"should run public webhook with custom response", ^{
+        [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+            return [[request.URL absoluteString] isEqualToString:@"https://api.syncano.io/v1/instances/INSTANCE-NAME/webhooks/p/HASH/WEBHOOK-NAME/"];
+        } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+            return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"CustomWebhook",self.class)
+                                                    statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+        }];
+        
+        __block NSData *_responseObject;
+        __block NSError *_error;
+        __block BOOL _blockFinished;
+        [SCWebhook runCustomPublicWebhookWithHash:@"HASH" name:@"WEBHOOK-NAME" params:nil forInstanceName:@"INSTANCE-NAME" completion:^(id responseObject, NSError *error) {
+            _responseObject = (NSData*)responseObject;
+            _error = error;
+            _blockFinished = YES;
+        }];
+        
+        [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+        [[_error shouldEventually] beNil];
+        [[_responseObject shouldEventually] beNonNil];
+        NSString* responseString = [[NSString alloc] initWithData:_responseObject encoding:NSUTF8StringEncoding];
+        [[responseString should] equal:@"It works!"];
+        
     });
     
 });
