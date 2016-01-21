@@ -160,6 +160,64 @@ describe(@"SCpredicate", ^{
         queryRepresentation = [predicate queryRepresentation];
         [[queryRepresentation should] equal:expectedQuery];
     });
+    
+    context(@"String functions", ^{
+        //starts with
+        it(@"should generate starts with query statement", ^{
+            predicate = [SCPredicate whereKey:@"left" startsWithString:@"beginning"];
+            expectedQuery = @"{\"left\":{\"_startswith\":\"beginning\"}}";
+            queryRepresentation = [predicate queryRepresentation];
+            [[queryRepresentation should] equal:expectedQuery];
+        });
+        
+        //starts with case insensitive
+        it(@"should generate starts with case insensitive query statement", ^{
+            predicate = [SCPredicate whereKey:@"left" caseInsensitiveStartsWithString:@"beginning"];
+            expectedQuery = @"{\"left\":{\"_istartswith\":\"beginning\"}}";
+            queryRepresentation = [predicate queryRepresentation];
+            [[queryRepresentation should] equal:expectedQuery];
+        });
+        
+        //ends with
+        it(@"should generate ends with query statement", ^{
+            predicate = [SCPredicate whereKey:@"left" endsWithString:@"end"];
+            expectedQuery = @"{\"left\":{\"_endswith\":\"end\"}}";
+            queryRepresentation = [predicate queryRepresentation];
+            [[queryRepresentation should] equal:expectedQuery];
+        });
+        
+        //ends with case insensitive
+        it(@"should generate ends with case insensitive query statement", ^{
+            predicate = [SCPredicate whereKey:@"left" caseInsensitiveEndsWithString:@"end"];
+            expectedQuery = @"{\"left\":{\"_iendswith\":\"end\"}}";
+            queryRepresentation = [predicate queryRepresentation];
+            [[queryRepresentation should] equal:expectedQuery];
+        });
+        
+        //contains
+        it(@"should generate contains query statement", ^{
+            predicate = [SCPredicate whereKey:@"left" containsString:@"middle"];
+            expectedQuery = @"{\"left\":{\"_contains\":\"middle\"}}";
+            queryRepresentation = [predicate queryRepresentation];
+            [[queryRepresentation should] equal:expectedQuery];
+        });
+        
+        //contains case insensitive
+        it(@"should generate contains case insensitive query statement", ^{
+            predicate = [SCPredicate whereKey:@"left" caseInsensitiveContainsString:@"middle"];
+            expectedQuery = @"{\"left\":{\"_icontains\":\"middle\"}}";
+            queryRepresentation = [predicate queryRepresentation];
+            [[queryRepresentation should] equal:expectedQuery];
+        });
+        
+        //equals case insensitive
+        it(@"should generate equals case insensitive query statement", ^{
+            predicate = [SCPredicate whereKey:@"left" caseInsensitiveIsEqualToString:@"the SaMe"];
+            expectedQuery = @"{\"left\":{\"_ieq\":\"the SaMe\"}}";
+            queryRepresentation = [predicate queryRepresentation];
+            [[queryRepresentation should] equal:expectedQuery];
+        });
+    });
 });
 
 

@@ -43,4 +43,12 @@
 
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
 
++ (SCPredicate *)whereKey:(NSString *)key startsWithString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveStartsWithString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key endsWithString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveEndsWithString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key containsString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveContainsString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveIsEqualToString:(NSString *)string;
+
 @end
