@@ -25,4 +25,16 @@
 + (void)runPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name params:(NSDictionary *)params forInstanceName:(NSString *)instanceName completion:(SCWebhookCompletionBlock)completion;
 + (void)runPublicWebhookWithURLString:(NSString *)urlString params:(NSDictionary *)params completion:(SCWebhookCompletionBlock)completion;
 
+
+
++ (void)runCustomWebhookWithName:(NSString *)name completion:(SCCustomWebhookCompletionBlock)completion;
++ (void)runCustomWebhookWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCCustomWebhookCompletionBlock)completion;
+
++ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCCustomWebhookCompletionBlock)completion;
++ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCCustomWebhookCompletionBlock)completion;
+
+
++ (void)runCustomPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name params:(NSDictionary *)params forInstanceName:(NSString *)instanceName completion:(SCCustomWebhookCompletionBlock)completion;
++ (void)runCustomPublicWebhookWithURLString:(NSString *)urlString params:(NSDictionary *)params completion:(SCCustomWebhookCompletionBlock)completion;
+
 @end
