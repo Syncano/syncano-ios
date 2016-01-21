@@ -43,13 +43,17 @@
 
 #pragma mark - Custom webhooks
 + (void)runCustomWebhookWithName:(NSString *)name completion:(SCCustomWebhookCompletionBlock)completion {
-    [self runCustomWebhookWithName:name withPayload:nil usingAPIClient:[Syncano sharedAPIClient] completion:completion];
+    SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
+    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [self runCustomWebhookWithName:name withPayload:nil usingAPIClient:apiClient completion:completion];
 }
 + (void)runCustomWebhookWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCCustomWebhookCompletionBlock)completion {
     [self runCustomWebhookWithName:name withPayload:nil usingAPIClient:syncano.apiClient completion:completion];
 }
 
 + (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCCustomWebhookCompletionBlock)completion {
+    SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
+    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     [self runCustomWebhookWithName:name withPayload:payload usingAPIClient:[Syncano sharedAPIClient] completion:completion];
 }
 + (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCCustomWebhookCompletionBlock)completion {
@@ -64,6 +68,7 @@
                 completion:(SCCustomWebhookCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"%@/webhooks/p/%@/%@/",instanceName,hashTag,name];
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
+    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [self runCustomPublicWebhookWithPath:path params:params usingAPIClient:apiClient completion:completion];
 }
@@ -71,6 +76,7 @@
                                params:(NSDictionary *)params
                      completion:(SCCustomWebhookCompletionBlock)completion {
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
+    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [self runCustomPublicWebhookWithPath:@"" params:params usingAPIClient:apiClient completion:completion];
 }
