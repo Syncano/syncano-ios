@@ -54,7 +54,7 @@
 + (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCCustomResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [self runCustomWebhookWithName:name withPayload:payload usingAPIClient:[Syncano sharedAPIClient] completion:completion];
+    [self runCustomWebhookWithName:name withPayload:payload usingAPIClient:apiClient completion:completion];
 }
 + (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
     [self runCustomWebhookWithName:name withPayload:payload usingAPIClient:syncano.apiClient completion:completion];
