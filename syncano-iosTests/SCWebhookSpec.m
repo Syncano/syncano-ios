@@ -71,7 +71,7 @@ describe(@"SCWebhook", ^{
             [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
                 return [[request.URL absoluteString] isEqualToString:@"https://api.syncano.io/v1/instances/INSTANCE-NAME/webhooks/WEBHOOK-NAME/run/"];
             } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-                return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"CustomWebhook",self.class)
+                return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"CustomResponse",self.class)
                                                         statusCode:200 headers:@{@"Content-Type":@"application/json"}];
             }];
             
@@ -203,10 +203,11 @@ describe(@"SCWebhook", ^{
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return [[request.URL absoluteString] isEqualToString:@"https://api.syncano.io/v1/instances/INSTANCE-NAME/webhooks/p/HASH/WEBHOOK-NAME/"];
         } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-            return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"CustomWebhook",self.class)
+            return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"CustomResponse",self.class)
                                                     statusCode:200 headers:@{@"Content-Type":@"application/json"}];
         }];
         
+        id responseSerializer = [Syncano sharedAPIClient].responseSerializer;
         __block NSData *_responseObject;
         __block NSError *_error;
         __block BOOL _blockFinished;
@@ -221,7 +222,7 @@ describe(@"SCWebhook", ^{
         [[_responseObject shouldEventually] beNonNil];
         NSString* responseString = [[NSString alloc] initWithData:_responseObject encoding:NSUTF8StringEncoding];
         [[responseString should] equal:@"It works!"];
-        
+        [[[Syncano sharedAPIClient].responseSerializer should] beIdenticalTo:responseSerializer];
     });
     
 });
