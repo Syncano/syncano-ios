@@ -21,23 +21,53 @@
     [self runCodeBoxWithId:codeBoxId params:params usingAPIClient:syncano.apiClient completion:completion];
 }
 
+#pragma mark - custom response
+
++ (void)runCustomCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params completion:(SCCustomResponseCompletionBlock)completion {
+    SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
+    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [self runCustomCodeBoxWithId:codeBoxId params:params usingAPIClient:apiClient completion:completion];
+}
+
++ (void)runCustomCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
+    [self runCustomCodeBoxWithId:codeBoxId params:params usingAPIClient:syncano.apiClient completion:completion];
+}
+
+#pragma mark - private methods
+
 + (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params usingAPIClient:(SCAPIClient *)apiClient completion:(SCCodeBoxCompletionBlock)completion {
-    NSString *path = [NSString stringWithFormat:@"codeboxes/%@/run/",codeBoxId];
-    NSDictionary *payload = (params) ? @{@"payload" : params} : nil;
-    [apiClient postTaskWithPath:path params:payload completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if (error) {
-            if (completion) {
+    
+    [self runCodeBoxWithId:codeBoxId params:params usingAPIClient:apiClient apiCompletion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (completion) {
+            if(error) {
                 completion(nil,error);
+                return;
             }
-        } else {
-            if (completion) {
-                SCTrace *trace = [[SCTrace alloc] initWithJSONObject:responseObject andCodeboxIdentifier:codeBoxId];
-                completion(trace,error);
-            }
+            SCTrace *trace = [[SCTrace alloc] initWithJSONObject:responseObject andCodeboxIdentifier:codeBoxId];
+            completion(trace,error);
         }
     }];
 }
 
++ (void)runCustomCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params usingAPIClient:(SCAPIClient *)apiClient completion:(SCCustomResponseCompletionBlock)completion {
+    
+    [self runCodeBoxWithId:codeBoxId params:params usingAPIClient:apiClient apiCompletion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (completion) {
+            if(error) {
+                completion(nil, error);
+                return;
+            }
+            completion(responseObject, error);
+        }
+    }];
+}
 
++ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params usingAPIClient:(SCAPIClient *)apiClient apiCompletion:(SCAPICompletionBlock)completion {
+    NSString *path = [NSString stringWithFormat:@"codeboxes/%@/run/",codeBoxId];
+    NSDictionary *payload = (params) ? @{@"payload" : params} : nil;
+    
+    [apiClient postTaskWithPath:path params:payload completion:completion];
+}
 
 @end

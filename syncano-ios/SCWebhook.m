@@ -42,21 +42,21 @@
 }
 
 #pragma mark - Custom webhooks
-+ (void)runCustomWebhookWithName:(NSString *)name completion:(SCCustomWebhookCompletionBlock)completion {
++ (void)runCustomWebhookWithName:(NSString *)name completion:(SCCustomResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     [self runCustomWebhookWithName:name withPayload:nil usingAPIClient:apiClient completion:completion];
 }
-+ (void)runCustomWebhookWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCCustomWebhookCompletionBlock)completion {
++ (void)runCustomWebhookWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
     [self runCustomWebhookWithName:name withPayload:nil usingAPIClient:syncano.apiClient completion:completion];
 }
 
-+ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCCustomWebhookCompletionBlock)completion {
++ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCCustomResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     [self runCustomWebhookWithName:name withPayload:payload usingAPIClient:[Syncano sharedAPIClient] completion:completion];
 }
-+ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCCustomWebhookCompletionBlock)completion {
++ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
     [self runCustomWebhookWithName:name withPayload:payload usingAPIClient:syncano.apiClient completion:completion];
 }
 
@@ -65,7 +65,7 @@
                             name:(NSString *)name
                           params:(NSDictionary *)params
                  forInstanceName:(NSString *)instanceName
-                completion:(SCCustomWebhookCompletionBlock)completion {
+                completion:(SCCustomResponseCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"%@/webhooks/p/%@/%@/",instanceName,hashTag,name];
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -74,7 +74,7 @@
 }
 + (void)runCustomPublicWebhookWithURLString:(NSString *)urlString
                                params:(NSDictionary *)params
-                     completion:(SCCustomWebhookCompletionBlock)completion {
+                     completion:(SCCustomResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     
@@ -102,7 +102,7 @@
     }];
 }
 
-+ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCCustomWebhookCompletionBlock)completion {
++ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCCustomResponseCompletionBlock)completion {
     [self runWebhookOnAPIClientWithName:name withPayload:payload usingAPIClient:apiClient completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (completion) {
             if(error) {
@@ -128,7 +128,7 @@
     }];
 }
 
-+ (void)runCustomPublicWebhookWithPath:(NSString *)path params:(NSDictionary *)params usingAPIClient:(SCAPIClient*)apiClient completion:(SCCustomWebhookCompletionBlock)completion {
++ (void)runCustomPublicWebhookWithPath:(NSString *)path params:(NSDictionary *)params usingAPIClient:(SCAPIClient*)apiClient completion:(SCCustomResponseCompletionBlock)completion {
     [apiClient POST:path parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         if (completion) {
             completion(responseObject,nil);
