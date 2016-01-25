@@ -65,6 +65,25 @@
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
 
 /**
+ *  Returns SCPlease instance for singleton Syncano
+ *
+ *  @param viewName Name of Data Object View
+ *
+ *  @return SCPlease instance
+ */
++ (SCPlease *)pleaseForView:(NSString*)viewName;
+
+/**
+ *  Returns SCPlease instance for provided Syncano instance
+ *
+ *  @param viewName Name of Data Object View
+ *  @param syncano Syncano instance which SCPlease will be using to query objects from
+ *
+ *  @return SCPlease instance
+ */
++ (SCPlease *)pleaseForView:(NSString*)viewName fromSyncano:(Syncano *)syncano;
+
+/**
  *  Registers class in SCParseManager for proper model parsing.
  */
 + (void)registerClass;

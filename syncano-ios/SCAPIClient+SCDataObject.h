@@ -11,4 +11,6 @@
 @interface SCAPIClient (SCDataObject)
 - (NSURLSessionDataTask *)getDataObjectsFromClassName:(NSString *)className params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 - (NSURLSessionDataTask *)getDataObjectsFromClassName:(NSString *)className withId:(NSNumber *)identifier completion:(SCAPICompletionBlock)completion;
+
+- (NSURLSessionDataTask *)getDataObjectsFromViewName:(NSString *)viewName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 @end

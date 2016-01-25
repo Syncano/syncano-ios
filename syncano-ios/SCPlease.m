@@ -13,6 +13,7 @@
 #import "SCPredicate.h"
 #import "SCDataObject.h"
 #import "SCUser.h"
+#import "SCPleaseProtected.h"
 
 NSString *const SCPleaseParameterFields = @"fields";
 NSString *const SCPleaseParameterExcludedFields = @"excluded_fields";
@@ -21,16 +22,6 @@ NSString *const SCPleaseParameterOrderBy = @"order_by";
 NSString *const SCPleaseParameterIncludeCount = @"include_count";
 
 @interface SCPlease ()
-
-/**
- *  Connected SCDataObject Class
- */
-@property (nonatomic,assign) Class dataObjectClass;
-
-/**
- *  API class name representation of connected SCDataObject Class
- */
-@property (nonatomic,retain) NSString *classNameForAPICalls;
 
 /**
  *  SCPredicate to use with API call
@@ -52,6 +43,9 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
  */
 @property (nonatomic,retain) NSString *previousUrlString;
 
+- (SCAPIClient *)apiClient;
+- (void)handleResponse:(id)responseObject error:(NSError *)error completion:(SCDataObjectsCompletionBlock)completion;
+
 @end
 
 @implementation SCPlease
@@ -68,7 +62,7 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 }
 
 + (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forSyncano:(Syncano *)syncano {
-    SCPlease *please = [[SCPlease alloc] initWithDataObjectClass:dataObjectClass];
+    SCPlease *please = [[self alloc] initWithDataObjectClass:dataObjectClass];
     if (syncano) {
         please.syncano = syncano;
     }
@@ -138,15 +132,17 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
     [self getDataObjectFromAPIWithCompletion:completion];
 }
 
-
+- (void)getDataObjectFromAPIWithParams:(NSDictionary*)queryParameters completion:(SCDataObjectsCompletionBlock)completion {
+    [[self apiClient] getDataObjectsFromClassName:self.classNameForAPICalls params:queryParameters completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        [self handleResponse:responseObject error:error completion:completion];
+    }];
+}
 
 - (void)getDataObjectFromAPIWithCompletion:(SCDataObjectsCompletionBlock)completion {
     self.previousUrlString = nil;
     self.nextUrlString = nil;
     [self resolveQueryParameters:self.parameters withPredicate:self.predicate completion:^(NSDictionary *queryParameters) {
-        [[self apiClient] getDataObjectsFromClassName:self.classNameForAPICalls params:queryParameters completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-            [self handleResponse:responseObject error:error completion:completion];
-        }];
+        [self getDataObjectFromAPIWithParams:queryParameters completion:completion];
     }];
 
 }

@@ -18,4 +18,10 @@
     NSString *path = [NSString stringWithFormat:@"classes/%@/objects/%@/",className,identifier];
     return [self getTaskWithPath:path params:nil completion:completion];
 }
+
+- (NSURLSessionDataTask *)getDataObjectsFromViewName:(NSString *)viewName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+    NSString *path = [NSString stringWithFormat:@"api/objects/%@/get/",viewName];
+    return [self getTaskWithPath:path params:params completion:completion];
+}
+
 @end

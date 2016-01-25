@@ -12,6 +12,7 @@
 #import "Syncano.h"
 #import "SCParseManager.h"
 #import "SCPlease.h"
+#import "SCPleaseForView.h"
 #import "SCDataObject+Properties.h"
 
 @implementation SCDataObject
@@ -54,9 +55,18 @@
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class]];
 }
 
++ (SCPlease *)pleaseForView:(NSString *)viewName {
+    return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName];
+}
+
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano {
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class] forSyncano:syncano];
 }
+
++ (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano {
+    return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano];
+}
+
 
 + (instancetype)objectFromDictionary:(NSDictionary *)dictionary {
     return [[SCParseManager sharedSCParseManager] parsedObjectOfClass:self fromJSONObject:dictionary];
