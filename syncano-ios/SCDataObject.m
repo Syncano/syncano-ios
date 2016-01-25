@@ -25,6 +25,10 @@
     return className;
 }
 
++ (NSString *)viewNameForAPI {
+    return nil;
+}
+
 //This is Mantle method we have to prevent form invoking it form child classes of SCDataObject
 +(NSDictionary *)JSONKeyPathsByPropertyKey {
     NSDictionary *automaticMapping = [NSDictionary mtl_identityPropertyMapWithModel:[self class]];
@@ -52,6 +56,8 @@
 }
 
 + (SCPlease *)please {
+    if([self viewNameForAPI] != nil)
+        return [self pleaseForView:[self viewNameForAPI]];
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class]];
 }
 
@@ -60,6 +66,8 @@
 }
 
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano {
+    if([self viewNameForAPI] != nil)
+        return [self pleaseForView:[self viewNameForAPI] fromSyncano:syncano];
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class] forSyncano:syncano];
 }
 

@@ -110,6 +110,7 @@
 		A6BCC8F51C56526B008A0B0A /* SCPleaseProtected.h in Headers */ = {isa = PBXBuildFile; fileRef = A6BCC8F41C565264008A0B0A /* SCPleaseProtected.h */; };
 		A6BCC8F71C56570F008A0B0A /* ViewResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = A6BCC8F61C56570F008A0B0A /* ViewResponse.json */; };
 		A6BCC8FA1C565792008A0B0A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8F91C565792008A0B0A /* Message.m */; };
+		A6BCC8FD1C56B4BB008A0B0A /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */; };
 		FA3BA7DD65FC33A82B508F1A /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
 /* End PBXBuildFile section */
 
@@ -232,6 +233,8 @@
 		A6BCC8F61C56570F008A0B0A /* ViewResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ViewResponse.json; sourceTree = "<group>"; };
 		A6BCC8F81C565792008A0B0A /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
 		A6BCC8F91C565792008A0B0A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		A6BCC8FB1C56B4BB008A0B0A /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
+		A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		B82587DE5315797724F0BA55 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
 		C99C551225468498EBC5E2FC /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -483,6 +486,8 @@
 				11B1DAEA1B58B866000D8488 /* CustomUserProfile.m */,
 				A6BCC8F81C565792008A0B0A /* Message.h */,
 				A6BCC8F91C565792008A0B0A /* Message.m */,
+				A6BCC8FB1C56B4BB008A0B0A /* MessageView.h */,
+				A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */,
 			);
 			name = MockClasses;
 			sourceTree = "<group>";
@@ -526,10 +531,10 @@
 			isa = PBXGroup;
 			children = (
 				11BE43E61AC57AC600FE96C5 /* SCPlease.h */,
+				A6BCC8F41C565264008A0B0A /* SCPleaseProtected.h */,
 				11BE43E71AC57AC600FE96C5 /* SCPlease.m */,
 				A6BCC8EA1C56372E008A0B0A /* SCPleaseForView.h */,
 				A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */,
-				A6BCC8F41C565264008A0B0A /* SCPleaseProtected.h */,
 			);
 			name = Please;
 			sourceTree = "<group>";
@@ -802,6 +807,7 @@
 				1106CE8C1B5E065B00CEA452 /* SCParseManagerSpec.m in Sources */,
 				1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */,
 				1106CE8A1B5E005800CEA452 /* SCPleaseSpec.m in Sources */,
+				A6BCC8FD1C56B4BB008A0B0A /* MessageView.m in Sources */,
 				11F9AED01B61F92700B51341 /* SCFileSpec.m in Sources */,
 				11AFBC891AC58B5F002B1F2F /* SCAPIClientSpec.m in Sources */,
 				A6BCC8FA1C565792008A0B0A /* Message.m in Sources */,

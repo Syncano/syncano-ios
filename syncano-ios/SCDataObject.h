@@ -42,6 +42,15 @@
 + (NSString *)classNameForAPI;
 
 /**
+ *  Returns view name used in Syncano API, by default this method returns nil.
+ *  Use it when you want to create a class which is always fetched using a view.
+ *  When you set viewNameForAPI, [YourClass please] will target queries to the view instead of raw class.
+ *
+ *  @return string with API class name
+ */
++ (NSString *)viewNameForAPI;
+
+/**
  *  Return custom property mapping between iOS class an API class
  *
  *  @return NSDictionary with 'key' of iOS class property name and 'value' with coresponding API class name

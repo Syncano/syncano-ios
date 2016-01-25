@@ -10,6 +10,7 @@
 #import "Syncano.h"
 #import "SCPredicate.h"
 #import "Message.h"
+#import "MessageView.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "OHPathHelpers.h"
 #import "SCPleaseForView.h"
@@ -40,7 +41,7 @@ describe(@"SCPleaseForView", ^{
     
     it(@"should fetch objects from API", ^{
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-            return [[request.URL absoluteString] isEqualToString:@"https://api.syncano.io/v1/instances/INSTANCE-NAME/api/objects/test_view/get/?"];
+            return [[request.URL absoluteString] isEqualToString:@"https://api.syncano.io/v1/instances/INSTANCE-NAME/api/objects/messages_last_week/get/?"];
         } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
             return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"ViewResponse.json",self.class)
                                                     statusCode:200 headers:@{@"Content-Type":@"application/json"}];
@@ -48,7 +49,7 @@ describe(@"SCPleaseForView", ^{
         __block NSArray *messages;
         __block NSError *_error;
         __block BOOL _blockFinished;
-        [[Message pleaseForView:@"test_view"] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
+        [[MessageView please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
             _error = error;
             _blockFinished = YES;
             messages = objects;
@@ -56,7 +57,7 @@ describe(@"SCPleaseForView", ^{
         [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
         [[_error should] beNil];
         [[messages shouldNot] beNil];
-        [[[messages firstObject] should] beKindOfClass:[Message class]];
+        [[[messages firstObject] should] beKindOfClass:[MessageView class]];
     });
     
 });
