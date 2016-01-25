@@ -143,20 +143,20 @@ static NSDateFormatter *dateFormatter;
 
 #pragma mark - String predicates
 
-+ (SCPredicate *)whereKey:(NSString *)key startsWithString:(NSString *)string {
-    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringStartsWithOperator rightHand:string];
++ (SCPredicate *)whereKey:(NSString *)key hasPrefix:(NSString *)prefix {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringStartsWithOperator rightHand:prefix];
 }
 
-+ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveStartsWithString:(NSString *)string {
-    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringiStartsWithOperator rightHand:string];
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasPrefix:(NSString *)prefix {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringiStartsWithOperator rightHand:prefix];
 }
 
-+ (SCPredicate *)whereKey:(NSString *)key endsWithString:(NSString *)string {
-    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringEndsWithOperator rightHand:string];
++ (SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringEndsWithOperator rightHand:suffix];
 }
 
-+ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveEndsWithString:(NSString *)string {
-    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringiEndsWithOperator rightHand:string];
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasSuffix:(NSString *)suffix {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringiEndsWithOperator rightHand:suffix];
 }
 
 + (SCPredicate *)whereKey:(NSString *)key containsString:(NSString *)string {

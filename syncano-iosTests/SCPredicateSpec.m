@@ -164,7 +164,7 @@ describe(@"SCpredicate", ^{
     context(@"String functions", ^{
         //starts with
         it(@"should generate starts with query statement", ^{
-            predicate = [SCPredicate whereKey:@"left" startsWithString:@"beginning"];
+            predicate = [SCPredicate whereKey:@"left" hasPrefix:@"beginning"];
             expectedQuery = @"{\"left\":{\"_startswith\":\"beginning\"}}";
             queryRepresentation = [predicate queryRepresentation];
             [[queryRepresentation should] equal:expectedQuery];
@@ -172,7 +172,7 @@ describe(@"SCpredicate", ^{
         
         //starts with case insensitive
         it(@"should generate starts with case insensitive query statement", ^{
-            predicate = [SCPredicate whereKey:@"left" caseInsensitiveStartsWithString:@"beginning"];
+            predicate = [SCPredicate whereKey:@"left" caseInsensitiveHasPrefix:@"beginning"];
             expectedQuery = @"{\"left\":{\"_istartswith\":\"beginning\"}}";
             queryRepresentation = [predicate queryRepresentation];
             [[queryRepresentation should] equal:expectedQuery];
@@ -180,7 +180,7 @@ describe(@"SCpredicate", ^{
         
         //ends with
         it(@"should generate ends with query statement", ^{
-            predicate = [SCPredicate whereKey:@"left" endsWithString:@"end"];
+            predicate = [SCPredicate whereKey:@"left" hasSuffix:@"end"];
             expectedQuery = @"{\"left\":{\"_endswith\":\"end\"}}";
             queryRepresentation = [predicate queryRepresentation];
             [[queryRepresentation should] equal:expectedQuery];
@@ -188,7 +188,7 @@ describe(@"SCpredicate", ^{
         
         //ends with case insensitive
         it(@"should generate ends with case insensitive query statement", ^{
-            predicate = [SCPredicate whereKey:@"left" caseInsensitiveEndsWithString:@"end"];
+            predicate = [SCPredicate whereKey:@"left" caseInsensitiveHasSuffix:@"end"];
             expectedQuery = @"{\"left\":{\"_iendswith\":\"end\"}}";
             queryRepresentation = [predicate queryRepresentation];
             [[queryRepresentation should] equal:expectedQuery];
