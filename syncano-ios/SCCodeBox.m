@@ -21,23 +21,21 @@
     [self runCodeBoxWithId:codeBoxId params:params usingAPIClient:syncano.apiClient completion:completion];
 }
 
+#pragma mark - private methods
+
 + (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params usingAPIClient:(SCAPIClient *)apiClient completion:(SCCodeBoxCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"codeboxes/%@/run/",codeBoxId];
     NSDictionary *payload = (params) ? @{@"payload" : params} : nil;
     [apiClient postTaskWithPath:path params:payload completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if (error) {
-            if (completion) {
+        if (completion) {
+            if(error) {
                 completion(nil,error);
+                return;
             }
-        } else {
-            if (completion) {
-                SCTrace *trace = [[SCTrace alloc] initWithJSONObject:responseObject andCodeboxIdentifier:codeBoxId];
-                completion(trace,error);
-            }
+            SCTrace *trace = [[SCTrace alloc] initWithJSONObject:responseObject andCodeboxIdentifier:codeBoxId];
+            completion(trace,error);
         }
     }];
 }
-
-
 
 @end

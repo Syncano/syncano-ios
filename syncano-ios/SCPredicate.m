@@ -16,6 +16,13 @@ static NSString *const SCPredicateEqualOperator = @"_eq";
 static NSString *const SCPredicateNotEqualOperator = @"_neq";
 static NSString *const SCPredicateExistsOperator = @"_exists";
 static NSString *const SCPredicateInOperator = @"_in";
+static NSString *const SCPredicateStringStartsWithOperator = @"_startswith";
+static NSString *const SCPredicateStringiStartsWithOperator = @"_istartswith";
+static NSString *const SCPredicateStringEndsWithOperator = @"_endswith";
+static NSString *const SCPredicateStringiEndsWithOperator = @"_iendswith";
+static NSString *const SCPredicateStringContainsOperator = @"_contains";
+static NSString *const SCPredicateStringiContainsOperator = @"_icontains";
+static NSString *const SCPredicateStringiEqualOperator = @"_ieq";
 
 static NSDateFormatter *dateFormatter;
 
@@ -132,6 +139,36 @@ static NSDateFormatter *dateFormatter;
 
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array {
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateInOperator rightHand:array];
+}
+
+#pragma mark - String predicates
+
++ (SCPredicate *)whereKey:(NSString *)key hasPrefix:(NSString *)prefix {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringStartsWithOperator rightHand:prefix];
+}
+
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasPrefix:(NSString *)prefix {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringiStartsWithOperator rightHand:prefix];
+}
+
++ (SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringEndsWithOperator rightHand:suffix];
+}
+
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasSuffix:(NSString *)suffix {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringiEndsWithOperator rightHand:suffix];
+}
+
++ (SCPredicate *)whereKey:(NSString *)key containsString:(NSString *)string {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringContainsOperator rightHand:string];
+}
+
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveContainsString:(NSString *)string {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringiContainsOperator rightHand:string];
+}
+
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveIsEqualToString:(NSString *)string {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateStringiEqualOperator rightHand:string];
 }
 
 @end
