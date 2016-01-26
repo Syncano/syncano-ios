@@ -25,17 +25,23 @@
     return objc_getAssociatedObject(self, @selector(registeredClasses));
 }
 
-- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
-    //TODO change to send error
-    NSError *error;
-    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:&error];
-    [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
+- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject relationsForObject:(NSDictionary *)relations error:(NSError **)error {
+    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:error];
+    if(parsedobject == nil)
+        return parsedobject;//possible error in parsing
+    
+    [self resolveRelations:relations toObject:parsedobject withJSONObject:JSONObject];
     [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
     return parsedobject;
 }
 
-- (void)resolveRelationsToObject:(id)parsedObject withJSONObject:(id)JSONObject {
-    NSDictionary *relations = [self relationsForClass:[parsedObject class]];
+- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
+    //TODO change to send error
+    NSDictionary *relations = [self relationsForClass:objectClass];
+    return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject relationsForObject:relations error:NULL];
+}
+
+- (void)resolveRelations:(NSDictionary*)relations toObject:(id)parsedObject withJSONObject:(id)JSONObject {
     for (NSString *relationKeyProperty in relations.allKeys) {
         SCClassRegisterItem *relationRegisteredItem = relations[relationKeyProperty];
         Class relatedClass = relationRegisteredItem.classReference;
@@ -66,7 +72,9 @@
     NSArray *responseObjects = responseObject;
     NSMutableArray *parsedObjects = [[NSMutableArray alloc] initWithCapacity:responseObjects.count];
     for (NSDictionary *object in responseObjects) {
-        [parsedObjects addObject:[self parsedObjectOfClass:objectClass fromJSONObject:object]];
+        NSDictionary *relations = [self relationsForClass:objectClass];
+        id result = [self parsedObjectOfClass:objectClass fromJSONObject:object relationsForObject:relations error:NULL];
+        [parsedObjects addObject:result];
     }
     return [NSArray arrayWithArray:parsedObjects];
 }

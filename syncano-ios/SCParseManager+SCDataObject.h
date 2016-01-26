@@ -44,12 +44,27 @@
  *  Attempts to parse JSON to SCDataObject
  *
  *  @param objectClass Class of object to parse for
- *  @param JSONObject  serialiazed JSON object from API response
+ *  @param JSONObject  serialized JSON object from API response
  *
  *  @return parsed SCDataObject
  */
 - (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass
            fromJSONObject:(id)JSONObject;
+
+/**
+ *  Attempts to parse JSON to SCDataObject
+ *
+ *  @param objectClass Class of object to parse for
+ *  @param JSONObject  serialized JSON object from API response
+ *  @param relations   Relations for provided objectClass @see relationsForClass
+ *  @param error       Error object
+ *
+ *  @return parsed SCDataObject
+ */
+- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass
+           fromJSONObject:(id)JSONObject
+       relationsForObject:(NSDictionary *)relations
+                    error:(NSError **)error;
 
 /**
  *  Attempts to parse JSON response object to array of SCDataObjects
