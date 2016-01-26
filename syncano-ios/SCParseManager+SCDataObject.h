@@ -56,14 +56,14 @@
  *
  *  @param objectClass Class of object to parse for
  *  @param JSONObject  serialized JSON object from API response
- *  @param relations   Relations for provided objectClass @see relationsForClass
+ *  @param relations   Key is class name, value is Dictionary of relations for the class @see relationsForClass. Pass an empty dictionary here
  *  @param error       Error object
  *
  *  @return parsed SCDataObject
  */
 - (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass
            fromJSONObject:(id)JSONObject
-       relationsForObject:(NSDictionary *)relations
+           withRelationsCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache
                     error:(NSError **)error;
 
 /**

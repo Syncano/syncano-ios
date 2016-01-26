@@ -25,33 +25,48 @@
     return objc_getAssociatedObject(self, @selector(registeredClasses));
 }
 
-- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject relationsForObject:(NSDictionary *)relations error:(NSError **)error {
+- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject withRelationsCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache error:(NSError **)error {
     id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:error];
     if(parsedobject == nil)
         return parsedobject;//possible error in parsing
     
-    [self resolveRelations:relations toObject:parsedobject withJSONObject:JSONObject];
+    [self resolveRelationsToObject:parsedobject withRelationsCache:relationsCache withJSONObject:JSONObject];
     [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
     return parsedobject;
 }
 
 - (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
     //TODO change to send error
-    NSDictionary *relations = [self relationsForClass:objectClass];
-    return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject relationsForObject:relations error:NULL];
+    return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject withRelationsCache:[@{} mutableCopy] error:NULL];
 }
 
-- (void)resolveRelations:(NSDictionary*)relations toObject:(id)parsedObject withJSONObject:(id)JSONObject {
+- (id)relatedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject withRelationsCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache {
+    if(JSONObject[@"id"] != nil) {
+        //object is downloaded
+        return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject withRelationsCache:relationsCache error:NULL];
+    }
+    
+    NSNumber *relatedObjectId = JSONObject[@"value"];
+    if (relatedObjectId) {
+        //we have only id
+        id relatedObject = [[objectClass alloc] init];
+        [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+        return relatedObject;
+    }
+    
+    return nil;
+}
+
+- (void)resolveRelationsToObject:(id)parsedObject withRelationsCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache withJSONObject:(id)JSONObject {
+    NSDictionary* relations = [self relationsForClass:[parsedObject class] fromCache:relationsCache];
+    
     for (NSString *relationKeyProperty in relations.allKeys) {
         SCClassRegisterItem *relationRegisteredItem = relations[relationKeyProperty];
         Class relatedClass = relationRegisteredItem.classReference;
-        id relatedObject = [[relatedClass alloc] init];
         if (JSONObject[relationKeyProperty] != [NSNull null]) {
-            NSNumber *relatedObjectId = JSONObject[relationKeyProperty][@"value"];
-            if (relatedObjectId) {
-                [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+            id relatedObject = [self relatedObjectOfClass:relatedClass fromJSONObject:JSONObject[relationKeyProperty] withRelationsCache:relationsCache];
+            if (relatedObject != nil)
                 SCValidateAndSetValue(parsedObject, relationKeyProperty, relatedObject, YES, nil);
-            }
         }
     }
 }
@@ -71,9 +86,9 @@
 - (NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)responseObject {
     NSArray *responseObjects = responseObject;
     NSMutableArray *parsedObjects = [[NSMutableArray alloc] initWithCapacity:responseObjects.count];
+    NSMutableDictionary<NSString*,NSDictionary*>* relationsCache = [@{} mutableCopy];
     for (NSDictionary *object in responseObjects) {
-        NSDictionary *relations = [self relationsForClass:objectClass];
-        id result = [self parsedObjectOfClass:objectClass fromJSONObject:object relationsForObject:relations error:NULL];
+        id result = [self parsedObjectOfClass:objectClass fromJSONObject:object withRelationsCache:relationsCache error:NULL];
         [parsedObjects addObject:result];
     }
     return [NSArray arrayWithArray:parsedObjects];
@@ -121,6 +136,16 @@
         serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
     }
     return serialized;
+}
+
+- (NSDictionary *)relationsForClass:(__unsafe_unretained Class)class fromCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache {
+    NSString* className = [[self class] normalizedClassNameFromClass:class];
+    NSDictionary* relations = relationsCache[className];
+    if(relations == nil) {
+        relations = [self relationsForClass:class];
+        relationsCache[className] = relations;
+    }
+    return relations;
 }
 
 - (NSDictionary *)relationsForClass:(__unsafe_unretained Class)class {
