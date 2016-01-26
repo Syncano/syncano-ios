@@ -104,6 +104,11 @@
             value = "$API_KEY"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "INSTANCE_NAME"
+            value = "$INSTANCE_NAME"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>

@@ -15,14 +15,12 @@ describe(@"Syncano", ^{
     
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
     NSString *apikey = environment[@"API_KEY"];
-    NSString *instanceName = @"ancient-firefly-1371";
+    NSString *instanceName = environment[@"INSTANCE_NAME"];
     
     context(@"environment variables test", ^{
-        
-        
-        
         it(@"should get env var", ^{
-            [[apikey shouldNot] beNil];            
+            [[apikey shouldNot] beNil];
+            [[instanceName shouldNot] beNil];
         });
     });
     
