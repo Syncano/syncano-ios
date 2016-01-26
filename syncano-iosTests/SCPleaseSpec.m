@@ -71,9 +71,7 @@ describe(@"SCPlease", ^{
         [[books shouldNotEventually] beNil];
         [[[books firstObject] shouldEventually] beKindOfClass:[Book class]];
     });
-    
-#warning TODO: we have to test cases with wrong parameters
-    
+        
     it(@"should fetch objects from API with parameters", ^{
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;
@@ -84,7 +82,7 @@ describe(@"SCPlease", ^{
         __block NSArray *books;
         __block NSError *_error;
         __block BOOL _blockFinished;
-        NSDictionary *parameters = @{SCPleaseParameterIncludeKeys : @[@"author"]};
+        NSDictionary *parameters = @{SCPleaseParameterPageSize : @12 , SCPleaseParameterIncludeCount : @YES};
         [[Book please] giveMeDataObjectsWithParameters:parameters completion:^(NSArray *objects, NSError *error) {
             _error = error;
             _blockFinished = YES;
@@ -106,7 +104,7 @@ describe(@"SCPlease", ^{
         __block NSArray *books;
         __block NSError *_error;
         __block BOOL _blockFinished;
-        NSDictionary *parameters = @{SCPleaseParameterIncludeKeys : @[@"author"]};
+        NSDictionary *parameters = @{SCPleaseParameterPageSize : @12};
         SCPredicate *predicate = [SCPredicate whereKey:@"numofpages" isEqualToNumber:@123];
         [[Book please] giveMeDataObjectsWithPredicate:predicate parameters:parameters completion:^(NSArray *objects, NSError *error) {
             _error = error;

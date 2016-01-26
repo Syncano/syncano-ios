@@ -13,3 +13,7 @@ target "syncano-iosTests" do
 	pod 'Kiwi', '~> 2.3'
 	pod 'OHHTTPStubs', '~> 4.0'
 end
+
+target "syncano-IntegrationTests" do
+    pod 'Kiwi', '~> 2.3'
+end

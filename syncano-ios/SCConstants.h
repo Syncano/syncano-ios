@@ -19,7 +19,7 @@ typedef void (^SCCompletionBlock)(NSError *error);
 typedef void (^SCCodeBoxCompletionBlock)(SCTrace *trace,NSError *error);
 typedef void (^SCTraceCompletionBlock)(SCTrace *trace, NSError *error);
 typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject *responseObject,NSError *error);
-typedef void (^SCPleaseResolveQueryParametersCompletionBlock)(NSDictionary *queryParameters,NSArray *includeKeys);
+typedef void (^SCPleaseResolveQueryParametersCompletionBlock)(NSDictionary *queryParameters);
 typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *notificationMessage, NSError *error);
 typedef void (^SCFileFetchCompletionBlock)(NSData *data, NSError *error);
 typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *error);

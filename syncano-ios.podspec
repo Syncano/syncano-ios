@@ -1,15 +1,15 @@
 Pod::Spec.new do |s|
 
   s.name         = "syncano-ios"
-  s.version      = "4.0.5"
+  s.version      = "4.0.6"
   s.summary      = "Library for http://syncano.com API"
 
   s.homepage     = "http://www.syncano.com"
   s.license      = 'MIT'
   s.author       = 'Syncano Inc.'
 
-  s.ios.deployment_target = "6.0"
-  s.osx.deployment_target = "10.8"
+  s.ios.deployment_target = "7.0"
+  s.osx.deployment_target = "10.9"
 
   s.requires_arc = true
 

@@ -122,6 +122,8 @@
 		11CE3CF11BCFEAFF00DE3163 /* Syncano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; };
 		11D7D1B21B660C4A00466E66 /* SCWebhookSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D1B11B660C4A00466E66 /* SCWebhookSpec.m */; };
 		11D7D1B41B660CD700466E66 /* Webhook.json in Resources */ = {isa = PBXBuildFile; fileRef = 11D7D1B31B660CD700466E66 /* Webhook.json */; };
+		11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */; };
+		11E35B0F1C4F82740092E0A9 /* Syncano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; };
 		11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 11E47AFE1C3BD63400DB644A /* SCFileManager.h */; };
 		11E47B011C3BD63400DB644A /* SCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E47AFF1C3BD63400DB644A /* SCFileManager.m */; };
 		11F80C3E1ACEDF3600134A39 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C3D1ACEDF3600134A39 /* Author.m */; };
@@ -136,6 +138,7 @@
 		11F9AEDC1B62105C00B51341 /* SCCodeBoxSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDB1B62105C00B51341 /* SCCodeBoxSpec.m */; };
 		11F9AEDE1B62113D00B51341 /* Trace.json in Resources */ = {isa = PBXBuildFile; fileRef = 11F9AEDD1B62113D00B51341 /* Trace.json */; };
 		11F9AEE01B62128200B51341 /* SCTraceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDF1B62128200B51341 /* SCTraceSpec.m */; };
+		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
 		1FC156E21DC7A89615EC23BD /* libPods-Syncano.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0704F2B7C07BA370BAF28B2F /* libPods-Syncano.a */; };
 		CCACFF387D22E8AC0321BB77 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
 		FC72B7C13F671E978712CABE /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -150,6 +153,13 @@
 			remoteInfo = "syncano-ios";
 		};
 		11CE3CDF1BCFE96300DE3163 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 119991581AC446E4007B994C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11CE3C881BCFD44900DE3163;
+			remoteInfo = Syncano;
+		};
+		11E35B101C4F82740092E0A9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 119991581AC446E4007B994C /* Project object */;
 			proxyType = 1;
@@ -278,6 +288,9 @@
 		11CE3CDD1BCFE79100DE3163 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11D7D1B11B660C4A00466E66 /* SCWebhookSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCWebhookSpec.m; sourceTree = "<group>"; };
 		11D7D1B31B660CD700466E66 /* Webhook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Webhook.json; sourceTree = "<group>"; };
+		11E35B0A1C4F82740092E0A9 /* syncano-IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "syncano-IntegrationTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncanoIntegrationTestsSpec.m; sourceTree = "<group>"; };
+		11E35B0E1C4F82740092E0A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11E47AFE1C3BD63400DB644A /* SCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFileManager.h; sourceTree = "<group>"; };
 		11E47AFF1C3BD63400DB644A /* SCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFileManager.m; sourceTree = "<group>"; };
 		11F80C3C1ACEDF3600134A39 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
@@ -294,11 +307,18 @@
 		11F9AEDD1B62113D00B51341 /* Trace.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Trace.json; sourceTree = "<group>"; };
 		11F9AEDF1B62128200B51341 /* SCTraceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTraceSpec.m; sourceTree = "<group>"; };
 		347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C37B36513699B4BA8C0285 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
+		48C4424C15D38DF6C50EC7A7 /* Pods-syncano-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Syncano.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
 		6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		76120F10CFC50CEE3176FA78 /* Pods-syncano-IntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
+		8FD3D89778AF22C5C8CC73BB /* Pods-syncano-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		B457B7CCF3528CACB8C1C71B /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-IntegrationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
+		FDC9B3D755EBE7FABB55E2DB /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +337,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FC156E21DC7A89615EC23BD /* libPods-Syncano.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11E35B071C4F82740092E0A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11E35B0F1C4F82740092E0A9 /* Syncano.framework in Frameworks */,
+				1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +495,17 @@
 			name = Queue;
 			sourceTree = "<group>";
 		};
+		1183F71A1C573EF50053673F /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */,
+				68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */,
+				6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */,
+				B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		1184268E1AC986C6001035A7 /* ParseManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,9 +562,11 @@
 			children = (
 				119991621AC446E4007B994C /* Syncano */,
 				1199916F1AC446E4007B994C /* syncano-iosTests */,
+				11E35B0B1C4F82740092E0A9 /* SyncanoIntegrationTests */,
 				119991611AC446E4007B994C /* Products */,
 				80F3652329F3460F1878B890 /* Pods */,
 				C222ECDE61B8F54B6E7E6478 /* Frameworks */,
+				1183F71A1C573EF50053673F /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -533,6 +575,7 @@
 			children = (
 				1199916B1AC446E4007B994C /* syncano-iosTests.xctest */,
 				11CE3C891BCFD44900DE3163 /* Syncano.framework */,
+				11E35B0A1C4F82740092E0A9 /* syncano-IntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -619,6 +662,15 @@
 			name = APIClient;
 			sourceTree = "<group>";
 		};
+		11E35B0B1C4F82740092E0A9 /* SyncanoIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */,
+				11E35B0E1C4F82740092E0A9 /* Info.plist */,
+			);
+			path = SyncanoIntegrationTests;
+			sourceTree = "<group>";
+		};
 		11F9AEE11B62128500B51341 /* CodeBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -631,10 +683,12 @@
 		80F3652329F3460F1878B890 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */,
-				68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */,
-				6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */,
-				B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */,
+				42C37B36513699B4BA8C0285 /* Pods-Syncano.debug.xcconfig */,
+				FDC9B3D755EBE7FABB55E2DB /* Pods-Syncano.release.xcconfig */,
+				8FD3D89778AF22C5C8CC73BB /* Pods-syncano-IntegrationTests.debug.xcconfig */,
+				76120F10CFC50CEE3176FA78 /* Pods-syncano-IntegrationTests.release.xcconfig */,
+				48C4424C15D38DF6C50EC7A7 /* Pods-syncano-iosTests.debug.xcconfig */,
+				B457B7CCF3528CACB8C1C71B /* Pods-syncano-iosTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -644,6 +698,7 @@
 			children = (
 				347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */,
 				5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */,
+				D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -747,6 +802,27 @@
 			productReference = 11CE3C891BCFD44900DE3163 /* Syncano.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		11E35B091C4F82740092E0A9 /* syncano-IntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11E35B141C4F82740092E0A9 /* Build configuration list for PBXNativeTarget "syncano-IntegrationTests" */;
+			buildPhases = (
+				3218754CE5DA7DD128CD2083 /* Check Pods Manifest.lock */,
+				11E35B061C4F82740092E0A9 /* Sources */,
+				11E35B071C4F82740092E0A9 /* Frameworks */,
+				11E35B081C4F82740092E0A9 /* Resources */,
+				7850FACDC187476A25BAAC98 /* Embed Pods Frameworks */,
+				A7CA96C93F1649B8F6144F57 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				11E35B111C4F82740092E0A9 /* PBXTargetDependency */,
+			);
+			name = "syncano-IntegrationTests";
+			productName = SyncanoIntegrationTests;
+			productReference = 11E35B0A1C4F82740092E0A9 /* syncano-IntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -762,6 +838,9 @@
 					};
 					11A074D51BC254DB00351014 = {
 						CreatedOnToolsVersion = 7.0.1;
+					};
+					11E35B091C4F82740092E0A9 = {
+						CreatedOnToolsVersion = 7.2;
 					};
 				};
 			};
@@ -779,6 +858,7 @@
 			targets = (
 				11CE3C881BCFD44900DE3163 /* Syncano */,
 				1199916A1AC446E4007B994C /* syncano-iosTests */,
+				11E35B091C4F82740092E0A9 /* syncano-IntegrationTests */,
 				11A074D51BC254DB00351014 /* Documentation */,
 			);
 		};
@@ -802,6 +882,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		11CE3C871BCFD44900DE3163 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		11E35B081C4F82740092E0A9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -839,6 +926,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3218754CE5DA7DD128CD2083 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		394097F0E1D845A1E572B0E7 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -869,6 +971,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		7850FACDC187476A25BAAC98 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8C4840FE12FDEB90CCEFD476 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -882,6 +999,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A7CA96C93F1649B8F6144F57 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BDC43FE1EA824191BEC1B133 /* Embed Pods Frameworks */ = {
@@ -975,6 +1107,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		11E35B061C4F82740092E0A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -986,6 +1126,11 @@
 			isa = PBXTargetDependency;
 			target = 11CE3C881BCFD44900DE3163 /* Syncano */;
 			targetProxy = 11CE3CDF1BCFE96300DE3163 /* PBXContainerItemProxy */;
+		};
+		11E35B111C4F82740092E0A9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11CE3C881BCFD44900DE3163 /* Syncano */;
+			targetProxy = 11E35B101C4F82740092E0A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1094,7 +1239,7 @@
 		};
 		119991781AC446E4007B994C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F0AC7AFB5AD77256B05DA4C /* Pods-syncano-iosTests.debug.xcconfig */;
+			baseConfigurationReference = 48C4424C15D38DF6C50EC7A7 /* Pods-syncano-iosTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1117,7 +1262,7 @@
 		};
 		119991791AC446E4007B994C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3F876BFAA7109457CA05B04 /* Pods-syncano-iosTests.release.xcconfig */;
+			baseConfigurationReference = B457B7CCF3528CACB8C1C71B /* Pods-syncano-iosTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1136,7 +1281,7 @@
 		};
 		11CE3C9C1BCFD44900DE3163 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E67A31AB4F8097C57207DB15 /* Pods-Syncano.debug.xcconfig */;
+			baseConfigurationReference = 42C37B36513699B4BA8C0285 /* Pods-Syncano.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1168,7 +1313,7 @@
 		};
 		11CE3C9D1BCFD44900DE3163 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68648C8C0B8E3999C90BC031 /* Pods-Syncano.release.xcconfig */;
+			baseConfigurationReference = FDC9B3D755EBE7FABB55E2DB /* Pods-Syncano.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_CODE_COVERAGE = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1191,6 +1336,36 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		11E35B121C4F82740092E0A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FD3D89778AF22C5C8CC73BB /* Pods-syncano-IntegrationTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SyncanoIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.syncano.SyncanoIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		11E35B131C4F82740092E0A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76120F10CFC50CEE3176FA78 /* Pods-syncano-IntegrationTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SyncanoIntegrationTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.syncano.SyncanoIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1229,6 +1404,15 @@
 			buildConfigurations = (
 				11CE3C9C1BCFD44900DE3163 /* Debug */,
 				11CE3C9D1BCFD44900DE3163 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11E35B141C4F82740092E0A9 /* Build configuration list for PBXNativeTarget "syncano-IntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11E35B121C4F82740092E0A9 /* Debug */,
+				11E35B131C4F82740092E0A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
