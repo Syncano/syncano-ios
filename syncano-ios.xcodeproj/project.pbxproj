@@ -106,6 +106,8 @@
 		11F9AEDE1B62113D00B51341 /* Trace.json in Resources */ = {isa = PBXBuildFile; fileRef = 11F9AEDD1B62113D00B51341 /* Trace.json */; };
 		11F9AEE01B62128200B51341 /* SCTraceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDF1B62128200B51341 /* SCTraceSpec.m */; };
 		19208A154B407611AF645A7A /* libPods-Syncano.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */; };
+		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
+		A6750F3C1C57A14D004956C3 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = A6750F3B1C57A14D004956C3 /* Device.m */; };
 		A6BCC8EC1C56372E008A0B0A /* SCPleaseForView.h in Headers */ = {isa = PBXBuildFile; fileRef = A6BCC8EA1C56372E008A0B0A /* SCPleaseForView.h */; };
 		A6BCC8ED1C56372E008A0B0A /* SCPleaseForView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */; };
 		A6BCC8EF1C563D14008A0B0A /* SCPleaseForViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8EE1C563D14008A0B0A /* SCPleaseForViewSpec.m */; };
@@ -114,7 +116,6 @@
 		A6BCC8FA1C565792008A0B0A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8F91C565792008A0B0A /* Message.m */; };
 		A6BCC8FD1C56B4BB008A0B0A /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */; };
 		A6DEC5671C51186500BEA5B1 /* CustomResponse in Resources */ = {isa = PBXBuildFile; fileRef = A6DEC5661C51186500BEA5B1 /* CustomResponse */; };
-		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
 		FA3BA7DD65FC33A82B508F1A /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
 /* End PBXBuildFile section */
 
@@ -242,6 +243,8 @@
 		3DDB6BB1C8E98BE8315CCE39 /* Pods-syncano-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Syncano.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E56D1310C4DAFB1FD32169 /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		A6750F3A1C57A14D004956C3 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		A6750F3B1C57A14D004956C3 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
 		A6BCC8EA1C56372E008A0B0A /* SCPleaseForView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForView.h; sourceTree = "<group>"; };
 		A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForView.m; sourceTree = "<group>"; };
 		A6BCC8EE1C563D14008A0B0A /* SCPleaseForViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForViewSpec.m; sourceTree = "<group>"; };
@@ -518,6 +521,8 @@
 				A6BCC8F91C565792008A0B0A /* Message.m */,
 				A6BCC8FB1C56B4BB008A0B0A /* MessageView.h */,
 				A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */,
+				A6750F3A1C57A14D004956C3 /* Device.h */,
+				A6750F3B1C57A14D004956C3 /* Device.m */,
 			);
 			name = MockClasses;
 			sourceTree = "<group>";
@@ -919,6 +924,7 @@
 				11A7C6571B67B62C00EDC3CE /* SCChannelSpec.m in Sources */,
 				1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */,
 				11F9AEDC1B62105C00B51341 /* SCCodeBoxSpec.m in Sources */,
+				A6750F3C1C57A14D004956C3 /* Device.m in Sources */,
 				11BE43D41AC458EC00FE96C5 /* SyncanoSpec.m in Sources */,
 				11D7D1B21B660C4A00466E66 /* SCWebhookSpec.m in Sources */,
 				11B1DAEB1B58B866000D8488 /* CustomUserProfile.m in Sources */,
