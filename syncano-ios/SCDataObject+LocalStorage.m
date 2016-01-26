@@ -26,7 +26,7 @@
 
 #pragma mark - Helpers -
 - (void)generateInsertQueryWithCompletion:(void(^)(NSError *error, NSString* query))completion {
-    NSString *insertQuery = [NSString stringWithFormat:@"INSERT INTO %@ (className, objectId,json) VALUES ('%@',%@,'%@');",kDatabaseName,NSStringFromClass([self class]),self.objectId,[self stringRepresentation]];
+    NSString *insertQuery = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (className, objectId,json) VALUES ('%@',%@,'%@');",kDatabaseName,NSStringFromClass([self class]),self.objectId,[self stringRepresentation]];
     if (completion) {
         completion(nil,insertQuery);
     }
