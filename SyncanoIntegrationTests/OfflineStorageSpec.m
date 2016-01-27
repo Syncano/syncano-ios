@@ -31,11 +31,15 @@ describe(@"OfflineStorage", ^{
             __block Book *_book;
             __block NSNumber *_bookId;
             __block Book *_storedBook;
+            
+            //Getting books from API
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
                 _book = [objects firstObject];
                 _bookId = _book.objectId;
+                // Savig first of them
                 [_book saveToLocalStorageWithCompletion:^(NSError *error) {
                     SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
+                   // Getting this book from local storage
                     [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
                         _storedBook = [objects firstObject];
                     }];
