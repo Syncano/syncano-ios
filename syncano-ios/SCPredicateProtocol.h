@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @protocol SCPredicateProtocol <NSObject>
+
 @required
 - (NSString *)queryRepresentation;
+- (NSDictionary<NSString*,NSDictionary*> *)rawPredicate;
+
 @end
