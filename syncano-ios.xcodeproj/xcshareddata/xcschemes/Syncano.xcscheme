@@ -105,6 +105,21 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "LINKEDIN_TOKEN_KEY"
+            value = "$LINKEDIN_TOKEN_KEY"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "INSTANCE_NAME"
+            value = "$INSTANCE_NAME"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "TWITTER_TOKEN_KEY"
+            value = "$TWITTER_TOKEN_KEY"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "FACEBOOK_TOKEN_KEY"
             value = "$FACEBOOK_TOKEN_KEY"
             isEnabled = "YES">
@@ -112,11 +127,6 @@
          <EnvironmentVariable
             key = "GOOGLE_TOKEN_KEY"
             value = "$GOOGLE_TOKEN_KEY"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "INSTANCE_NAME"
-            value = "$INSTANCE_NAME"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
