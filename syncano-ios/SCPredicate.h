@@ -43,6 +43,8 @@
 
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
 
++ (SCPredicate *)whereKey:(NSString *)key satisfiesPredicate:(id<SCPredicateProtocol>)predicate;
+
 + (SCPredicate *)whereKey:(NSString *)key hasPrefix:(NSString *)prefix;
 + (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasPrefix:(NSString *)prefix;
 + (SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix;
