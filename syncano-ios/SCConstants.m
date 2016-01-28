@@ -24,6 +24,8 @@ NSString * const kSCChannelNotificationMessageActionDelete = @"delete";
 
 NSString * const kSCSocialBackendFacebook = @"facebook";
 NSString * const kSCSocialBackendGoogle = @"google-oauth2";
+NSString * const kSCSocialBackendLinkedIn = @"linkedin";
+NSString * const kSCSocialBackendTwitter = @"twitter";
 
 @implementation SCConstants
 
@@ -55,7 +57,18 @@ NSString * const kSCSocialBackendGoogle = @"google-oauth2";
 }
 
 + (NSString *)socialAuthenticationBackendToString:(SCSocialAuthenticationBackend)backend {
-    return (backend == SCSocialAuthenticationBackendFacebook) ? kSCSocialBackendFacebook : kSCSocialBackendGoogle;
+    
+    switch (backend) {
+        case SCSocialAuthenticationBackendFacebook:
+            return kSCSocialBackendFacebook;
+        case SCSocialAuthenticationBackendGoogle:
+            return kSCSocialBackendGoogle;
+        case SCSocialAuthenticationBackendLinkedIn:
+            return kSCSocialBackendLinkedIn;
+        case SCSocialAuthenticationBackendTwitter:
+            return kSCSocialBackendTwitter;
+    }
+    
 }
 
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer {
