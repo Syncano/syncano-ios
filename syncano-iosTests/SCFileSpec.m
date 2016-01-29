@@ -43,12 +43,15 @@ describe(@"SCFile", ^{
         file.fileURL = [NSURL URLWithString:@""];
         __block BOOL _blockFinished;
         __block UIImage *image;
+        __block NSData *imageData;
         [file fetchInBackgroundWithCompletion:^(NSData *data, NSError *error) {
+            imageData = data;
             image = [UIImage imageWithData:data];
             _blockFinished = YES;
         }];
         [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-        [[image shouldEventually] beKindOfClass:[UIImage class]];
+        [[imageData should] beNonNil];
+        [[image should] beKindOfClass:[UIImage class]];
 
     });
 
