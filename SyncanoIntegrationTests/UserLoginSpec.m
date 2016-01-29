@@ -17,11 +17,11 @@ SPEC_BEGIN(UserLoginSpec)
 describe(@"User login", ^{
     
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-    NSString *apikey = environment[@"API_KEY"];
+    NSString *apiKey = environment[@"API_KEY"];
     NSString *instanceName = environment[@"INSTANCE_NAME"];
     
     beforeAll(^{
-        [Syncano sharedInstanceWithApiKey:apikey instanceName:instanceName];
+        [Syncano sharedInstanceWithApiKey:apiKey instanceName:instanceName];
     });
     
     afterEach(^{
