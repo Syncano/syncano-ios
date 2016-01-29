@@ -69,6 +69,8 @@ typedef NS_ENUM(NSUInteger, SCChannelType) {
 typedef NS_ENUM(NSUInteger, SCSocialAuthenticationBackend) {
     SCSocialAuthenticationBackendFacebook,
     SCSocialAuthenticationBackendGoogle,
+    SCSocialAuthenticationBackendLinkedIn,
+    SCSocialAuthenticationBackendTwitter,
 };
 
 typedef NS_ENUM(NSUInteger, SCChannelNotificationMessageAction) {
