@@ -39,7 +39,10 @@ NSString * const kSCSocialBackendTwitter = @"twitter";
     if ([typeString isEqualToString:kSCPermissionTypeWrite]) {
         return SCDataObjectPermissionTypeWrite;
     }
-    return SCDataObjectPermissionTypeNone;
+    if ([typeString isEqualToString:kSCPermissionTypeNone]) {
+        return SCDataObjectPermissionTypeNone;
+    }
+    return SCDataObjectPermissionTypeDefault;
 }
 
 + (SCChannelPermisionType)channelPermissionTypeByString:(NSString *)typeString {
@@ -80,7 +83,7 @@ NSString * const kSCSocialBackendTwitter = @"twitter";
                              };
     
     return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *value, BOOL *success, NSError *__autoreleasing *error) {
-        if (value == nil) return @(SCDataObjectPermissionTypeNone);
+        if (value == nil) return @(SCDataObjectPermissionTypeDefault);
         
         return states[value];
     } reverseBlock:^id(NSString *value, BOOL *success, NSError *__autoreleasing *error) {
