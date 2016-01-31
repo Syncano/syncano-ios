@@ -49,11 +49,11 @@ extern NSString * const kSCChannelNotificationMessageActionUpdate;
 extern NSString * const kSCChannelNotificationMessageActionDelete;
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
-    SCDataObjectPermissionTypeDefault,
     SCDataObjectPermissionTypeNone,
     SCDataObjectPermissionTypeRead,
     SCDataObjectPermissionTypeWrite,
     SCDataObjectPermissionTypeFull,
+    SCDataObjectPermissionTypeNotSet
 };
 
 typedef NS_ENUM(NSUInteger, SCChannelPermisionType) {
