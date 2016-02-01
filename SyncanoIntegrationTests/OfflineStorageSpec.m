@@ -8,6 +8,7 @@
 
 #import "Kiwi.h"
 #import "Syncano.h"
+#import "SCFileManager.h"
 #import "Book.h"
 
 SPEC_BEGIN(OfflineStorage)
@@ -19,6 +20,7 @@ describe(@"OfflineStorage", ^{
     NSString *instanceName = environment[@"INSTANCE_NAME"];
     
     beforeAll(^{
+        [SCFileManager cleanUpLocalStorage];
         [Syncano enableOfflineStorage];
         [Syncano sharedInstanceWithApiKey:apikey instanceName:instanceName];
 

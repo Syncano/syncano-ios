@@ -28,3 +28,7 @@
 + (void)removeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock;
 + (void)findAllRequestArchivesForQueueWithIdentifier:(NSString *)queueIdentifier completionBlock:(SCFindRequestsCompletionBlock)completionBlock;
 @end
+
+@interface SCFileManager (LocalStorage)
++ (void)cleanUpLocalStorage;
+@end
