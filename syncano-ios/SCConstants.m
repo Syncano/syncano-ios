@@ -29,6 +29,18 @@ NSString * const kSCSocialBackendTwitter = @"twitter";
 
 @implementation SCConstants
 
++ (NSDateFormatter *)dateFormatter {
+    static dispatch_once_t onceToken;
+    static NSDateFormatter *__dateFormatter = nil;
+    dispatch_once(&onceToken, ^{
+        __dateFormatter = [[NSDateFormatter alloc] init];
+        __dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+        __dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        __dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSSSSX";
+    });
+    return __dateFormatter;
+}
+
 + (SCDataObjectPermissionType)dataObjectPermissiontypeByString:(NSString *)typeString {
     if ([typeString isEqualToString:kSCPermissionTypeFull]) {
         return SCDataObjectPermissionTypeFull;
@@ -39,7 +51,10 @@ NSString * const kSCSocialBackendTwitter = @"twitter";
     if ([typeString isEqualToString:kSCPermissionTypeWrite]) {
         return SCDataObjectPermissionTypeWrite;
     }
-    return SCDataObjectPermissionTypeNone;
+    if ([typeString isEqualToString:kSCPermissionTypeNone]) {
+        return SCDataObjectPermissionTypeNone;
+    }
+    return SCDataObjectPermissionTypeNotSet;
 }
 
 + (SCChannelPermisionType)channelPermissionTypeByString:(NSString *)typeString {
@@ -80,11 +95,19 @@ NSString * const kSCSocialBackendTwitter = @"twitter";
                              };
     
     return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *value, BOOL *success, NSError *__autoreleasing *error) {
-        if (value == nil) return @(SCDataObjectPermissionTypeNone);
+        if (value == nil) return @(SCDataObjectPermissionTypeNotSet);
         
         return states[value];
     } reverseBlock:^id(NSString *value, BOOL *success, NSError *__autoreleasing *error) {
         return [states allKeysForObject:value].lastObject;
+    }];
+}
+
++ (NSValueTransformer *)SCDataObjectDatesTransformer {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *dateString, BOOL *success, NSError *__autoreleasing *error) {
+        return [[self dateFormatter] dateFromString:dateString];
+    } reverseBlock:^id(NSDate *date, BOOL *success, NSError *__autoreleasing *error) {
+        return [[self dateFormatter] stringFromDate:date];
     }];
 }
 
