@@ -90,4 +90,13 @@
     }];
 }
 
+- (NSURLSessionDownloadTask *)fetchToFileInBackgroundWithProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion {
+    return [self fetchToFileInBackground:self.storeURL withProgress:progress completion:completion];
+}
+
+- (NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL* )storePath withProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion {
+    self.storeURL = storePath;
+    return [SCAPIClient downloadFileFromURL:self.fileURL andSaveToPath:storePath withProgress:progress withCompletion:completion];
+}
+
 @end

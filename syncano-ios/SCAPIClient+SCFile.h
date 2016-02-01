@@ -11,4 +11,8 @@
 
 @interface SCAPIClient (SCFile)
 + (AFHTTPRequestOperation *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
++ (NSURLSessionDownloadTask *)downloadFileFromURL:(NSURL *)fileURL
+                                    andSaveToPath:(NSURL *)storePath
+                                     withProgress:(SCFileDownloadProgressCompletionBlock)progress
+                                   withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
 @end
