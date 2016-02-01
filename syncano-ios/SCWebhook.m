@@ -31,7 +31,7 @@
 + (void)runPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name params:(NSDictionary *)params forInstanceName:(NSString *)instanceName completion:(SCWebhookCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"%@/webhooks/p/%@/%@/",instanceName,hashTag,name];
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
-    
+
     [self runPublicWebhookWithPath:path params:params usingAPIClient:apiClient completion:completion];
 }
 
@@ -62,10 +62,10 @@
 
 
 + (void)runCustomPublicWebhookWithHash:(NSString *)hashTag
-                                  name:(NSString *)name
-                                params:(NSDictionary *)params
-                       forInstanceName:(NSString *)instanceName
-                            completion:(SCCustomResponseCompletionBlock)completion {
+                            name:(NSString *)name
+                          params:(NSDictionary *)params
+                 forInstanceName:(NSString *)instanceName
+                completion:(SCCustomResponseCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"%@/webhooks/p/%@/%@/",instanceName,hashTag,name];
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -73,8 +73,8 @@
     [self runCustomPublicWebhookWithPath:path params:params usingAPIClient:apiClient completion:completion];
 }
 + (void)runCustomPublicWebhookWithURLString:(NSString *)urlString
-                                     params:(NSDictionary *)params
-                                 completion:(SCCustomResponseCompletionBlock)completion {
+                               params:(NSDictionary *)params
+                     completion:(SCCustomResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:urlString]];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     
@@ -85,7 +85,7 @@
 + (void)runWebhookOnAPIClientWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCAPICompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"webhooks/%@/run/",name];
     NSDictionary *params = (payload) ? payload : nil;
-    [apiClient postTaskWithPath:path params:params completion:completion];
+    [apiClient POSTWithPath:path params:params completion:completion];
 }
 
 + (void)runWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCWebhookCompletionBlock)completion {
