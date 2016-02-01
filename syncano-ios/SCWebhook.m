@@ -85,7 +85,7 @@
 + (void)runWebhookOnAPIClientWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCAPICompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"webhooks/%@/run/",name];
     NSDictionary *params = (payload) ? payload : nil;
-    [apiClient POSTWithPath:path params:params completion:completion];
+    [apiClient postTaskWithPath:path params:params completion:completion];
 }
 
 + (void)runWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCWebhookCompletionBlock)completion {
