@@ -12,5 +12,4 @@
 @interface Book : SCDataObject
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic,copy) NSNumber *numOfPages;
-@property (nonatomic,copy) Author *author;
 @end

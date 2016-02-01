@@ -31,13 +31,18 @@ describe(@"OfflineStorage", ^{
             __block NSError *_error;
             __block BOOL _blockFinished;
             __block Book *_book;
-            __block NSNumber *_bookId;
+           
             __block Book *_storedBook;
+            __block NSNumber *_bookId;
+            __block NSString *_bookTitle;
+            __block NSNumber *_bookNumOfPages;
             
             //Getting books from API
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
                 _book = [objects firstObject];
                 _bookId = _book.objectId;
+                _bookTitle = _book.title;
+                _bookNumOfPages = _book.numOfPages;
                 // Savig first of them
                 [_book saveToLocalStorageWithCompletion:^(NSError *error) {
                     SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
@@ -53,10 +58,14 @@ describe(@"OfflineStorage", ^{
                 }];
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
-            [[_error shouldEventually] beNil];
-            [[_book shouldEventually] beNonNil];
-            [[_storedBook shouldEventually] beNonNil];
-            [[_bookId shouldEventually] equal:_storedBook.objectId];
+            [[_error should] beNil];
+            [[_book should] beNonNil];
+            [[_storedBook should] beNonNil];
+            [[_bookId should] equal:_storedBook.objectId];
+            [[_bookTitle should] equal:_storedBook.title];
+            [[_bookNumOfPages should] equal:_storedBook.numOfPages];
+
+
         });
     });
     
