@@ -92,5 +92,6 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
 + (SCChannelType)channelTypeByString:(NSString *)typeString;
 + (NSString *)socialAuthenticationBackendToString:(SCSocialAuthenticationBackend)backend;
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
++ (NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
 @end
