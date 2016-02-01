@@ -64,6 +64,14 @@
     return [[SCParseManager sharedSCParseManager] parsedObjectOfClass:self fromJSONObject:dictionary];
 }
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.owner_permissions = SCDataObjectPermissionTypeFull;
+    }
+    return self;
+}
+
 - (NSString *)path {
     if (self.links[@"self"]) {
         return self.links[@"self"];

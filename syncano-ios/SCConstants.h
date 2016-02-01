@@ -18,7 +18,8 @@ typedef void (^SCParseObjectCompletionBlock)(id parsedObject, NSError *error);
 typedef void (^SCCompletionBlock)(NSError *error);
 typedef void (^SCCodeBoxCompletionBlock)(SCTrace *trace,NSError *error);
 typedef void (^SCTraceCompletionBlock)(SCTrace *trace, NSError *error);
-typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject *responseObject,NSError *error);
+typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject *responseObject, NSError *error);
+typedef void (^SCCustomResponseCompletionBlock)(id responseObject, NSError *error);
 typedef void (^SCPleaseResolveQueryParametersCompletionBlock)(NSDictionary *queryParameters);
 typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *notificationMessage, NSError *error);
 typedef void (^SCFileFetchCompletionBlock)(NSData *data, NSError *error);
@@ -28,9 +29,6 @@ typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSS
 
 
 extern NSString * const SCDataObjectErrorDomain;
-
-static NSString * const kSyncanoRepsonseErrorKey = @"com.Syncano.response.error";
-
 
 extern NSString * const kBaseURL;
 extern NSString * const kUserKeyKeychainKey;
@@ -52,10 +50,13 @@ extern NSString * const kSCChannelNotificationMessageActionCreate;
 extern NSString * const kSCChannelNotificationMessageActionUpdate;
 extern NSString * const kSCChannelNotificationMessageActionDelete;
 
+extern NSString * const kSyncanoRepsonseErrorKey;
+
+
 extern NSString * const kExpectedReviosionRequestParam;
 extern NSString * const kReviosionMismatchResponseError;
-
 extern NSString * const kDatabaseName;
+
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,
@@ -78,6 +79,8 @@ typedef NS_ENUM(NSUInteger, SCChannelType) {
 typedef NS_ENUM(NSUInteger, SCSocialAuthenticationBackend) {
     SCSocialAuthenticationBackendFacebook,
     SCSocialAuthenticationBackendGoogle,
+    SCSocialAuthenticationBackendLinkedIn,
+    SCSocialAuthenticationBackendTwitter,
 };
 
 typedef NS_ENUM(NSUInteger, SCChannelNotificationMessageAction) {

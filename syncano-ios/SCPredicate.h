@@ -59,4 +59,14 @@ extern NSString *const SCPredicateInOperator;
 
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
 
++ (SCPredicate *)whereKey:(NSString *)key satisfiesPredicate:(id<SCPredicateProtocol>)predicate;
+
++ (SCPredicate *)whereKey:(NSString *)key hasPrefix:(NSString *)prefix;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasPrefix:(NSString *)prefix;
++ (SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasSuffix:(NSString *)suffix;
++ (SCPredicate *)whereKey:(NSString *)key containsString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveContainsString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveIsEqualToString:(NSString *)string;
+
 @end

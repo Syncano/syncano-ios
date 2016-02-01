@@ -14,12 +14,12 @@ SPEC_BEGIN(SyncanoIntegrationTestsSpec)
 describe(@"Syncano", ^{
     
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-    NSString *apikey = environment[@"API_KEY"];
+    NSString *apiKey = environment[@"API_KEY"];
     NSString *instanceName = environment[@"INSTANCE_NAME"];
     
     context(@"environment variables test", ^{
         it(@"should get env var", ^{
-            [[apikey shouldNot] beNil];
+            [[apiKey shouldNot] beNil];
             [[instanceName shouldNot] beNil];
         });
     });
@@ -28,13 +28,13 @@ describe(@"Syncano", ^{
         it(@"should create singletone instance and validate it with server", ^{
             __block NSError *_error;
             __block BOOL _blockFinished;
-            [Syncano sharedInstanceWithApiKey:apikey instanceName:instanceName andValidateWithCompletion:^(NSError *error) {
+            [Syncano sharedInstanceWithApiKey:apiKey instanceName:instanceName andValidateWithCompletion:^(NSError *error) {
                 _error = error;
                 _blockFinished = YES;
             }];
-            [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
             [[_error shouldEventually] beNil];
-            [[[Syncano getApiKey] shouldEventually] equal:apikey];
+            [[[Syncano getApiKey] shouldEventually] equal:apiKey];
             [[[Syncano getInstanceName] shouldEventually] equal:instanceName];
             
         });
