@@ -144,3 +144,14 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
 }
 
 @end
+
+@implementation SCFileManager (LocalStorage)
+
++ (void)cleanUpLocalStorage {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:self.syncanoDBFilePath]) {
+        [fileManager removeItemAtPath:self.syncanoDBFilePath error:nil];
+    }
+}
+
+@end

@@ -32,7 +32,7 @@ describe(@"Syncano", ^{
                 _error = error;
                 _blockFinished = YES;
             }];
-            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
             [[_error shouldEventually] beNil];
             [[[Syncano getApiKey] shouldEventually] equal:apikey];
             [[[Syncano getInstanceName] shouldEventually] equal:instanceName];

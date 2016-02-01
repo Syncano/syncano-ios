@@ -48,6 +48,8 @@
 		116B6C7F1C1AEF5100D602D1 /* SCUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */; };
 		116B6C831C1AFDEF00D602D1 /* NSString+MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = 116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */; };
 		116B6C841C1AFDEF00D602D1 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */; };
+		1183F7191C573BE90053673F /* OfflineStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1183F7181C573BE90053673F /* OfflineStorageSpec.m */; };
+		1183F71B1C578B190053673F /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
@@ -230,6 +232,7 @@
 		116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUploadRequest.m; sourceTree = "<group>"; };
 		116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		1183F7181C573BE90053673F /* OfflineStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineStorageSpec.m; sourceTree = "<group>"; };
 		118426891AC983A1001035A7 /* SCParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCParseManager.h; sourceTree = "<group>"; };
 		1184268A1AC983A1001035A7 /* SCParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCParseManager.m; sourceTree = "<group>"; };
 		1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCDataObjectSpec.m; sourceTree = "<group>"; };
@@ -666,6 +669,7 @@
 			isa = PBXGroup;
 			children = (
 				11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */,
+				1183F7181C573BE90053673F /* OfflineStorageSpec.m */,
 				11E35B0E1C4F82740092E0A9 /* Info.plist */,
 			);
 			path = SyncanoIntegrationTests;
@@ -1111,6 +1115,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1183F7191C573BE90053673F /* OfflineStorageSpec.m in Sources */,
+				1183F71B1C578B190053673F /* Book.m in Sources */,
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
