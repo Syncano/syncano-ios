@@ -32,6 +32,8 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.0.7** - 2016-01-29
+    * Fixed default owner permissions when creating a new object
 * **4.0.6** - 2015-12-01
     * Fixed webhook payload wraping
     * Added framework targed instead of static library in xcode project

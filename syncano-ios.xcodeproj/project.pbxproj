@@ -115,6 +115,9 @@
 		A6BCC8F71C56570F008A0B0A /* ViewResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = A6BCC8F61C56570F008A0B0A /* ViewResponse.json */; };
 		A6BCC8FA1C565792008A0B0A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8F91C565792008A0B0A /* Message.m */; };
 		A6BCC8FD1C56B4BB008A0B0A /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */; };
+		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
+		A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */; };
+		A6CC63651C58B24E005E0132 /* SCCompoundPredicateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */; };
 		A6DEC5671C51186500BEA5B1 /* CustomResponse in Resources */ = {isa = PBXBuildFile; fileRef = A6DEC5661C51186500BEA5B1 /* CustomResponse */; };
 		FA3BA7DD65FC33A82B508F1A /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
 /* End PBXBuildFile section */
@@ -254,6 +257,8 @@
 		A6BCC8F91C565792008A0B0A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		A6BCC8FB1C56B4BB008A0B0A /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
+		A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginSpec.m; sourceTree = "<group>"; };
+		A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCompoundPredicateSpec.m; sourceTree = "<group>"; };
 		A6DEC5661C51186500BEA5B1 /* CustomResponse */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CustomResponse; sourceTree = "<group>"; };
 		B82587DE5315797724F0BA55 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
 		C99C551225468498EBC5E2FC /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
@@ -353,6 +358,7 @@
 			children = (
 				1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */,
 				1104DAA41AEA5A8F0088F45E /* SCPredicateSpec.m */,
+				A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */,
 				1106CE891B5E005800CEA452 /* SCPleaseSpec.m */,
 				A6BCC8EE1C563D14008A0B0A /* SCPleaseForViewSpec.m */,
 				11F9AECF1B61F92700B51341 /* SCFileSpec.m */,
@@ -546,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */,
+				A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */,
 				11E35B0E1C4F82740092E0A9 /* Info.plist */,
 			);
 			path = SyncanoIntegrationTests;
@@ -918,6 +925,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1109EF631ACD2E2100BD18A6 /* Book.m in Sources */,
+				A6CC63651C58B24E005E0132 /* SCCompoundPredicateSpec.m in Sources */,
 				1106CE511B5CEB7700CEA452 /* SCUserProfileSpec.m in Sources */,
 				11F80C3E1ACEDF3600134A39 /* Author.m in Sources */,
 				1104DAA51AEA5A8F0088F45E /* SCPredicateSpec.m in Sources */,
@@ -980,6 +988,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
+				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

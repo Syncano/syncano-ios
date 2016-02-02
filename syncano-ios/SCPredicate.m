@@ -23,6 +23,7 @@ static NSString *const SCPredicateStringiEndsWithOperator = @"_iendswith";
 static NSString *const SCPredicateStringContainsOperator = @"_contains";
 static NSString *const SCPredicateStringiContainsOperator = @"_icontains";
 static NSString *const SCPredicateStringiEqualOperator = @"_ieq";
+static NSString *const SCPredicateIsOperator = @"_is";
 
 static NSDateFormatter *dateFormatter;
 
@@ -44,9 +45,22 @@ static NSDateFormatter *dateFormatter;
     return self;
 }
 
+- (id)rightHand {
+    if([_rightHand conformsToProtocol:@protocol(SCPredicateProtocol)]) {
+        id<SCPredicateProtocol> rightHandPredicate = _rightHand;
+        return [rightHandPredicate rawPredicate];
+    }
+    return _rightHand;
+}
+
+- (NSDictionary<NSString*,NSDictionary*> *)rawPredicate {
+    return @{self.leftHand : @{self.operator : self.rightHand}};
+}
+
 - (NSString *)queryRepresentation {
     NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{self.leftHand : @{self.operator : self.rightHand}}
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self rawPredicate]
                                                        options:0
                                                          error:&error];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
@@ -139,6 +153,10 @@ static NSDateFormatter *dateFormatter;
 
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array {
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateInOperator rightHand:array];
+}
+
++ (SCPredicate *)whereKey:(NSString *)key satisfiesPredicate:(id<SCPredicateProtocol>)predicate {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateIsOperator rightHand:predicate];
 }
 
 #pragma mark - String predicates

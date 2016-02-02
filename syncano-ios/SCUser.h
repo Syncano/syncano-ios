@@ -55,7 +55,7 @@
 /**
  *  Attempts to login user using social authentication into singleton Syncano
  *
- *  @param backend    SCSocialAuthenticationBackend type available options: SCSocialAuthenticationBackendFacebook, SCSocialAuthenticationBackendGoogle
+ *  @param backend    SCSocialAuthenticationBackend type available options: SCSocialAuthenticationBackendFacebook, SCSocialAuthenticationBackendGoogle, SCSocialAuthenticationBackendLinkedIn, SCSocialAuthenticationBackendTwitter
  *  @param authToken  authToken from social provider
  *  @param completion completion block
  */
@@ -64,7 +64,7 @@
 /**
  *  Attempts to login user using social authentication into singleton Syncano
  *
- *  @param backend    SCSocialAuthenticationBackend type available options: SCSocialAuthenticationBackendFacebook, SCSocialAuthenticationBackendGoogle
+ *  @param backend    SCSocialAuthenticationBackend type available options: SCSocialAuthenticationBackendFacebook, SCSocialAuthenticationBackendGoogle, SCSocialAuthenticationBackendLinkedIn, SCSocialAuthenticationBackendTwitter§z
  *  @param authToken  authToken from social provider
  *  @param syncano    syncano instance for login in to
  *  @param completion completion block

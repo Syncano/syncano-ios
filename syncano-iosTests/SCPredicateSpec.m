@@ -161,6 +161,19 @@ describe(@"SCpredicate", ^{
         [[queryRepresentation should] equal:expectedQuery];
     });
     
+    //Is
+    it(@"should generate join query", ^{
+        predicate = [SCPredicate whereKey:@"author" satisfiesPredicate:
+                     [SCPredicate whereKey:@"name" isEqualToString:@"Prus"]];
+        expectedQuery = @"{\"author\":{\"_is\":{\"name\":{\"_eq\":\"Prus\"}}}}";
+        queryRepresentation = [predicate queryRepresentation];
+        
+        NSLog(@"%@",expectedQuery);
+        NSLog(@"%@",queryRepresentation);
+        
+        [[queryRepresentation should] equal:expectedQuery];
+    });
+    
     context(@"String functions", ^{
         //starts with
         it(@"should generate starts with query statement", ^{

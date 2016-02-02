@@ -53,6 +53,7 @@ typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeRead,
     SCDataObjectPermissionTypeWrite,
     SCDataObjectPermissionTypeFull,
+    SCDataObjectPermissionTypeNotSet
 };
 
 typedef NS_ENUM(NSUInteger, SCChannelPermisionType) {
@@ -69,6 +70,8 @@ typedef NS_ENUM(NSUInteger, SCChannelType) {
 typedef NS_ENUM(NSUInteger, SCSocialAuthenticationBackend) {
     SCSocialAuthenticationBackendFacebook,
     SCSocialAuthenticationBackendGoogle,
+    SCSocialAuthenticationBackendLinkedIn,
+    SCSocialAuthenticationBackendTwitter,
 };
 
 typedef NS_ENUM(NSUInteger, SCChannelNotificationMessageAction) {
@@ -89,5 +92,6 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
 + (SCChannelType)channelTypeByString:(NSString *)typeString;
 + (NSString *)socialAuthenticationBackendToString:(SCSocialAuthenticationBackend)backend;
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
++ (NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
 @end
