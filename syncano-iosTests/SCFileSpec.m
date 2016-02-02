@@ -67,8 +67,8 @@ describe(@"SCFile", ^{
         SCFile *file = [SCFile new];
         file.fileURL = [NSURL URLWithString:@""];
         
-        NSURL *storePath = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-        storePath = [storePath URLByAppendingPathComponent:@"syncano-white.png"];
+        NSURL *storePathDocuments = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        NSURL *storePath = [storePathDocuments URLByAppendingPathComponent:@"syncano-white.png"];
         
         [[storePath should] beNonNil];
         
@@ -82,17 +82,19 @@ describe(@"SCFile", ^{
         } completion:^(NSURLResponse *response, NSError *error) {
             _blockFinished = YES;
         }];
-        [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-        [[file.storeURL should] equal:storePath];
-        [[downloadTask should] beIdenticalTo:_reportedDownloadTask];
-        [[theValue(_bytesWritten) should] beGreaterThan:theValue(0)];//reports progress
-        
-        NSData* resultData = [NSData dataWithContentsOfURL:storePath];
-        NSData* fileData = [NSData dataWithContentsOfFile:OHPathForFile(@"syncano-white.png",self.class)];
-        [[fileData should] beNonNil];
-        [[resultData should] equal:fileData];
-        
-        [[NSFileManager defaultManager] removeItemAtURL:storePath error:NULL];
+        if([[NSFileManager defaultManager] isWritableFileAtPath:storePathDocuments.path]) {
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+            [[file.storeURL should] equal:storePath];
+            [[downloadTask should] beIdenticalTo:_reportedDownloadTask];
+            [[theValue(_bytesWritten) should] beGreaterThan:theValue(0)];//reports progress
+            
+            NSData* resultData = [NSData dataWithContentsOfURL:storePath];
+            NSData* fileData = [NSData dataWithContentsOfFile:OHPathForFile(@"syncano-white.png",self.class)];
+            [[fileData should] beNonNil];
+            [[resultData should] equal:fileData];
+            
+            [[NSFileManager defaultManager] removeItemAtURL:storePath error:NULL];
+        }
     });
 
 });
