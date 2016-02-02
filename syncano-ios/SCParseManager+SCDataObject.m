@@ -42,12 +42,14 @@
 
 - (void)resolveFilesForObject:(id)parsedObject withJSONObject:(id)JSONObject {
     for (NSString *key in [JSONObject allKeys]) {
-        id object = JSONObject[key];
-        if ([object isKindOfClass:[NSDictionary class]] && object[@"type"] && [object[@"type"] isEqualToString:@"file"]) {
-            //TODO change to send error
-            NSError *error = nil;
-            SCFile *file = [[SCFile alloc] initWithDictionary:object error:&error];
-            SCValidateAndSetValue(parsedObject, key, file, YES, nil);
+        if ([parsedObject respondsToSelector:@selector(key)]) {
+            id object = JSONObject[key];
+            if ([object isKindOfClass:[NSDictionary class]] && object[@"type"] && [object[@"type"] isEqualToString:@"file"]) {
+                //TODO change to send error
+                NSError *error = nil;
+                SCFile *file = [[SCFile alloc] initWithDictionary:object error:&error];
+                SCValidateAndSetValue(parsedObject, key, file, YES, nil);
+            }
         }
     }
 }
