@@ -13,6 +13,8 @@
 #import "SCParseManager.h"
 #import "SCPlease.h"
 #import "SCDataObject+Properties.h"
+#import "SCRegisterManager.h"
+#import "NSError+RevisionMismatch.h"
 
 @implementation SCDataObject
 
@@ -51,7 +53,7 @@
 
 
 + (void)registerClass {
-    [[SCParseManager sharedSCParseManager] registerClass:[self class]];
+    [SCRegisterManager registerClass:[self class]];
 }
 
 + (SCPlease *)please {
@@ -115,21 +117,46 @@
 }
 
 - (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
+    [self saveUsingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+
+
+- (void)saveWithCompletionBlock:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self saveUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self saveUsingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
     [self handleRelationsSaveUsingAPIClient:apiClient withCompletion:^(NSError *error) {
         if (error) {
             if (completion) {
                 completion(error);
             }
         } else {
-            NSDictionary *params = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error];
+            NSMutableDictionary *params = [[[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error] mutableCopy];
             if (error) {
                 if (completion) {
                     completion(error);
                 }
+                if (revisionMismatchBlock) {
+                    revisionMismatchBlock(NO,nil);
+                }
             } else {
-                [apiClient postTaskWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-                    if (completion && error) {
-                        completion(error);
+                if (self.objectId && self.revision) {
+                    params[kExpectedRevisionRequestParam] = self.revision;
+                }
+                [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                    if (error) {
+                        if (completion) {
+                            completion(error);
+                        }
+                        if (revisionMismatchBlock) {
+                            [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                        }
                         return;
                     }
                     [[SCParseManager sharedSCParseManager] fillObject:self withDataFromJSONObject:responseObject];
@@ -137,35 +164,15 @@
                         if (completion) {
                             completion(error);
                         }
+                        if (revisionMismatchBlock) {
+                            revisionMismatchBlock(NO,nil);
+                        }
                     }];
                     
                 }];
             }
         }
     }];
-}
-
-- (void)deleteWithCompletion:(SCCompletionBlock)completion {
-    [self deleteUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
-}
-
-- (void)deleteFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion {
-    [self deleteUsingAPIClient:syncano.apiClient withCompletion:completion];
-}
-
-- (void)deleteUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    [apiClient deleteTaskWithPath:[self path] params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if (completion) {
-            completion(error);
-        }
-    }];
-}
-
-- (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion {
-    [self updateValue:value forKey:key usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
-}
-- (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
-    [self updateValue:value forKey:key usingAPIClient:syncano.apiClient withCompletion:completion];
 }
 
 - (void)saveFilesUsingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
@@ -194,6 +201,75 @@
     }
 }
 
+- (void)deleteWithCompletion:(SCCompletionBlock)completion {
+    [self deleteUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
+}
+
+- (void)deleteFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion {
+    [self deleteUsingAPIClient:syncano.apiClient withCompletion:completion];
+}
+
+- (void)deleteUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
+    [apiClient DELETEWithPath:[self path] params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (completion) {
+            completion(error);
+        }
+    }];
+}
+
+- (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion {
+    [self updateValue:value forKey:key usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
+}
+- (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
+    [self updateValue:value forKey:key usingAPIClient:syncano.apiClient withCompletion:completion];
+}
+
+- (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock
+ {
+    [self updateValue:value forKey:key usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+- (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock
+ {
+    [self updateValue:value forKey:key usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
+    [self updateValue:value forKey:key usingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+
+- (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    NSError *validationError = nil;
+    SCValidateAndSetValue(self, key, value, YES, &validationError);
+    if (validationError) {
+        if (completion) {
+            completion(validationError);
+        }
+        return;
+    }
+    if ([[[self class] propertyKeys] containsObject:key]) {
+        NSMutableDictionary *params = [@{key:value} mutableCopy];
+        if (self.revision) {
+            params[kExpectedRevisionRequestParam] = self.revision;
+        }
+        [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            if (completion) {
+                completion(error);
+                if (revisionMismatchBlock) {
+                    if (error) {
+                        [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                    } else {
+                        revisionMismatchBlock(NO,nil);
+                    }
+                }
+            }
+        }];
+    } else {
+        NSError *error; //TODO: create error
+        completion(error);
+    }
+}
+
 
 /**
  * In API it's possible to have attributes without any values. In this case, when parsing JSON
@@ -205,26 +281,8 @@
 - (void)setNilValueForKey:(NSString *)key {
 }
 
-- (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    NSError *validationError;
-    SCValidateAndSetValue(self, key, value, YES, &validationError);
-    if (validationError) {
-        completion(validationError);
-        return;
-    }
-    if ([[[self class] propertyKeys] containsObject:key]) {
-        NSDictionary *params = @{key:value};
-        [apiClient patchTaskWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-            completion(error);
-        }];
-    } else {
-        NSError *error; //TODO: create error
-        completion(error);
-    }
-}
-
 - (void)handleRelationsSaveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    NSDictionary *relations = [[SCParseManager sharedSCParseManager] relationsForClass:[self class]];
+    NSDictionary *relations = [SCRegisterManager relationsForClass:[self class]];
     if (relations.count > 0) {
         dispatch_group_t relationSaveGroup = dispatch_group_create();
         for (NSString *propertyName in relations.allKeys) {

@@ -23,11 +23,6 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 @interface SCPlease ()
 
 /**
- *  Connected SCDataObject Class
- */
-@property (nonatomic,assign) Class dataObjectClass;
-
-/**
  *  API class name representation of connected SCDataObject Class
  */
 @property (nonatomic,retain) NSString *classNameForAPICalls;
@@ -51,6 +46,8 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
  *  URL string to get prevoius of objects from
  */
 @property (nonatomic,retain) NSString *previousUrlString;
+
+@property (nonatomic) BOOL fromLocalStorage;
 
 @end
 
@@ -233,4 +230,5 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
         }
     }];
 }
+
 @end

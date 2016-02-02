@@ -8,8 +8,6 @@
 
 #import "AFNetworking/AFURLResponseSerialization.h"
 
-static NSString * const kSyncanoRepsonseErrorKey = @"com.Syncano.response.error.response";
-static NSString * const kSyncanoValidationErrorKey = @"com.Syncano.response.error.validation";
 
 @interface SCJSONResponseSerializer : AFJSONResponseSerializer
 

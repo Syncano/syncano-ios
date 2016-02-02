@@ -24,6 +24,8 @@ typedef void (^SCPleaseResolveQueryParametersCompletionBlock)(NSDictionary *quer
 typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *notificationMessage, NSError *error);
 typedef void (^SCFileFetchCompletionBlock)(NSData *data, NSError *error);
 typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *error);
+typedef void (^SCFindRequestsCompletionBlock)(NSArray *objects, NSError *error);
+typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString *description);
 
 
 extern NSString * const SCDataObjectErrorDomain;
@@ -47,6 +49,14 @@ extern NSString * const kSCSocialBackendGoogle;
 extern NSString * const kSCChannelNotificationMessageActionCreate;
 extern NSString * const kSCChannelNotificationMessageActionUpdate;
 extern NSString * const kSCChannelNotificationMessageActionDelete;
+
+extern NSString * const kSyncanoResponseErrorKey;
+
+
+extern NSString * const kExpectedRevisionRequestParam;
+extern NSString * const kRevisionMismatchResponseError;
+extern NSString * const kDatabaseName;
+
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,
@@ -94,4 +104,6 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
 + (NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
+
++ (NSString *)createTableSQLStatement;
 @end

@@ -8,30 +8,25 @@
 
 #import "SCPredicate.h"
 
-static NSString *const SCPredicateGreaterThanOperator = @"_gt";
-static NSString *const SCPredicateGreaterThanOrEqualOperator = @"_gte";
-static NSString *const SCPredicateLessThanOperator = @"_lt";
-static NSString *const SCPredicateLessThanOrEqualOperator = @"_lte";
-static NSString *const SCPredicateEqualOperator = @"_eq";
-static NSString *const SCPredicateNotEqualOperator = @"_neq";
-static NSString *const SCPredicateExistsOperator = @"_exists";
-static NSString *const SCPredicateInOperator = @"_in";
-static NSString *const SCPredicateStringStartsWithOperator = @"_startswith";
-static NSString *const SCPredicateStringiStartsWithOperator = @"_istartswith";
-static NSString *const SCPredicateStringEndsWithOperator = @"_endswith";
-static NSString *const SCPredicateStringiEndsWithOperator = @"_iendswith";
-static NSString *const SCPredicateStringContainsOperator = @"_contains";
-static NSString *const SCPredicateStringiContainsOperator = @"_icontains";
-static NSString *const SCPredicateStringiEqualOperator = @"_ieq";
-static NSString *const SCPredicateIsOperator = @"_is";
+NSString *const SCPredicateGreaterThanOperator = @"_gt";
+NSString *const SCPredicateGreaterThanOrEqualOperator = @"_gte";
+NSString *const SCPredicateLessThanOperator = @"_lt";
+NSString *const SCPredicateLessThanOrEqualOperator = @"_lte";
+NSString *const SCPredicateEqualOperator = @"_eq";
+NSString *const SCPredicateNotEqualOperator = @"_neq";
+NSString *const SCPredicateExistsOperator = @"_exists";
+NSString *const SCPredicateInOperator = @"_in";
+NSString *const SCPredicateStringStartsWithOperator = @"_startswith";
+NSString *const SCPredicateStringiStartsWithOperator = @"_istartswith";
+NSString *const SCPredicateStringEndsWithOperator = @"_endswith";
+NSString *const SCPredicateStringiEndsWithOperator = @"_iendswith";
+NSString *const SCPredicateStringContainsOperator = @"_contains";
+NSString *const SCPredicateStringiContainsOperator = @"_icontains";
+NSString *const SCPredicateStringiEqualOperator = @"_ieq";
+NSString *const SCPredicateIsOperator = @"_is";
 
 static NSDateFormatter *dateFormatter;
 
-@interface SCPredicate ()
-@property (nonatomic,retain) NSString *leftHand;
-@property (nonatomic,retain) NSString *operator;
-@property (nonatomic,retain) id rightHand;
-@end
 
 @implementation SCPredicate
 

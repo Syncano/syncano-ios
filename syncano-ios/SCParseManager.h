@@ -51,7 +51,6 @@ static inline BOOL SCValidateAndSetValue(id obj, NSString *key, id value, BOOL f
     }
 }
 
-
 /**
  *  Singleton class for SCDataObject parsing
  */
@@ -70,8 +69,7 @@ SINGLETON_FOR_CLASS(SCParseManager);
  *
  *  @return property type string or NULL
  */
-- (NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class;
-
-
++ (NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class;
 
 @end
+

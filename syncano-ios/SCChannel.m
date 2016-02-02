@@ -71,7 +71,7 @@
     if (self.lastId) {
         [params setObject:self.lastId forKey:@"last_id"];
     }
-    [apiClient getTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient GETWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (!error) {
             SCChannelNotificationMessage *message = [[SCChannelNotificationMessage alloc] initWithJSONObject:responseObject];
             self.lastId = message.identifier;
@@ -101,7 +101,7 @@
     if (payload) {
         [params setObject:payload forKey:@"payload"];
     }
-    [apiClient postTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient POSTWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (!error) {
             SCChannelNotificationMessage *message = [[SCChannelNotificationMessage alloc] initWithJSONObject:responseObject];
             if (completion) {
