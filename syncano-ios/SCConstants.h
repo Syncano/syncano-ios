@@ -50,11 +50,11 @@ extern NSString * const kSCChannelNotificationMessageActionCreate;
 extern NSString * const kSCChannelNotificationMessageActionUpdate;
 extern NSString * const kSCChannelNotificationMessageActionDelete;
 
-extern NSString * const kSyncanoRepsonseErrorKey;
+extern NSString * const kSyncanoResponseErrorKey;
 
 
-extern NSString * const kExpectedReviosionRequestParam;
-extern NSString * const kReviosionMismatchResponseError;
+extern NSString * const kExpectedRevisionRequestParam;
+extern NSString * const kRevisionMismatchResponseError;
 extern NSString * const kDatabaseName;
 
 

@@ -12,7 +12,7 @@
 
 @required
 - (NSString *)queryRepresentation;
+- (NSDictionary<NSString*,NSDictionary*> *)rawPredicate;
 @optional
 - (NSPredicate *)nspredicateRepresentation;
-- (NSDictionary<NSString*,NSDictionary*> *)rawPredicate;
 @end

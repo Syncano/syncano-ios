@@ -16,7 +16,7 @@
 - (void)giveMeDataObjectsFromLocalStorageWithPredicate:(id<SCPredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion {
     if (![predicate respondsToSelector:@selector(nspredicateRepresentation)]) {
         if (completion) {
-            NSError *error = [NSError errorWithDomain:@"SCPleaseErrorDomain" code:1 userInfo:@{@"SyncanoError":@"Predicate have to respond to 'nspredicateRepresentation' method"}];
+            NSError *error = [NSError errorWithDomain:@"SCPleaseErrorDomain" code:1 userInfo:@{@"SyncanoError":@"Predicate has to respond to 'nspredicateRepresentation' method"}];
             completion(nil,error);
         }
     } else {

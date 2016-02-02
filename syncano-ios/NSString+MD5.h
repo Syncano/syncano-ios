@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (MD5)
-- (NSString *)MD5String;
+- (NSString *)sc_MD5String;
 @end

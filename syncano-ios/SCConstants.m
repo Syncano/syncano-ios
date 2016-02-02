@@ -18,8 +18,8 @@ NSString * const kSCPermissionTypePublish = @"publish";
 NSString * const kSCChannelTypeDefault = @"default";
 NSString * const kSCChannelTypeSeparateRooms = @"separate_rooms";
 
-NSString * const kExpectedReviosionRequestParam = @"expected_revision";
-NSString * const kReviosionMismatchResponseError = @"expected_revision";
+NSString * const kExpectedRevisionRequestParam = @"expected_revision";
+NSString * const kRevisionMismatchResponseError = @"expected_revision";
 
 NSString * const kSCChannelNotificationMessageActionCreate = @"create";
 NSString * const kSCChannelNotificationMessageActionUpdate = @"update";
@@ -32,7 +32,7 @@ NSString * const kSCSocialBackendTwitter = @"twitter";
 
 NSString * const kDatabaseName = @"SyncanoDataObjects";
 
-NSString * const kSyncanoRepsonseErrorKey = @"com.Syncano.response.error";
+NSString * const kSyncanoResponseErrorKey = @"com.Syncano.response.error";
 
 
 @implementation SCConstants

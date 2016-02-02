@@ -232,16 +232,3 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 }
 
 @end
-
-
-@implementation SCPlease (LocalStore)
-- (void)fromLocalStore {
-    _fromLocalStorage = YES;
-}
-
-- (void)giveMeDataObjectsFromLocalStoreWithPredicate:(id<SCPredicateProtocol>)predicate
-                                          parameters:(NSDictionary *)parameters
-                                          completion:(SCDataObjectsCompletionBlock)completion {
-    //TODO: get objects from OfflineStore
-}
-@end

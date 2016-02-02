@@ -35,6 +35,7 @@
         self.instanceName = instanceName;
         self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier] delegate:self];
         self.maxConcurentRequestsInQueue = 2;
+        self.requestsBeingProcessed = [NSMutableArray new];
     }
     return self;
 }
@@ -58,7 +59,7 @@
     if ([SCUser currentUser]) {
         [hash appendString:[SCUser currentUser].userKey];
     }
-    return [hash MD5String];
+    return [hash sc_MD5String];
 }
 
 + (SCAPIClient *)apiClientForSyncano:(Syncano *)syncano {
@@ -125,14 +126,6 @@
 }
 
 #pragma mark  - Dequeue -
-
-- (NSMutableArray *)requestsBeingProcessed {
-    if (!_requestsBeingProcessed) {
-        _requestsBeingProcessed = [NSMutableArray new];
-    }
-    return _requestsBeingProcessed;
-}
-
 - (void)runQueue {
     if (self.maxConcurentRequestsInQueue <= 0 || self.requestsBeingProcessed.count < self.maxConcurentRequestsInQueue) {
         [self dequeueNextRequest];

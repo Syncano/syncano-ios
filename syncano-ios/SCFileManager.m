@@ -107,9 +107,10 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
 }
 
 + (void)findAllRequestArchivesForQueueWithIdentifier:(NSString *)queueIdentifier completionBlock:(SCFindRequestsCompletionBlock)completionBlock {
-    NSString *dirPath = [[self syncanoDocumentsDirectoryPath] stringByAppendingPathComponent:queueIdentifier];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+        NSString *dirPath = [[self syncanoDocumentsDirectoryPath] stringByAppendingPathComponent:queueIdentifier];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+
         BOOL directoryExists = [fileManager fileExistsAtPath:dirPath];
         if (directoryExists) {
                 NSError *error;
@@ -138,11 +139,6 @@ static NSString *const _SyncanoDocumentsDirectoryName = @"Syncano";
         }
     });
 }
-
-+ (BOOL)directoryExistsForQueueIdentifier:(NSString *)queueIdentifier {
-    return YES;
-}
-
 @end
 
 @implementation SCFileManager (LocalStorage)

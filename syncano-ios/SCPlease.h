@@ -116,9 +116,3 @@ extern NSString *const SCPleaseParameterIncludeCount;
 - (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
 
 @end
-
-@interface SCPlease (LocalStore)
-
-- (void)fromLocalStore;
-
-@end

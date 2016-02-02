@@ -16,10 +16,10 @@
     id JSONObject = [super responseObjectForResponse:response data:data error:error];
     if (*error != nil) {
         NSMutableDictionary *userInfo = [(*error).userInfo mutableCopy];
-        userInfo[kSyncanoRepsonseErrorKey] = @"";
+        userInfo[kSyncanoResponseErrorKey] = @"";
         if (data != nil) {
             id errorData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            userInfo[kSyncanoRepsonseErrorKey] = errorData;
+            userInfo[kSyncanoResponseErrorKey] = errorData;
             
         }
         NSError *newError = [NSError errorWithDomain:(*error).domain code:(*error).code userInfo:userInfo];

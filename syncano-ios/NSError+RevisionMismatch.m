@@ -12,8 +12,8 @@
 @implementation NSError (RevisionMismatch)
 - (void)checkIfMismatchOccuredWithCompletion:(SCDataObjectRevisionMismatchCompletionBlock)completionBlock {
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        NSDictionary *syncanoErroInfo = self.userInfo[kSyncanoRepsonseErrorKey];
-        NSString *expectedRevisionDescription = syncanoErroInfo[kReviosionMismatchResponseError];
+        NSDictionary *syncanoErrorInfo = self.userInfo[kSyncanoResponseErrorKey];
+        NSString *expectedRevisionDescription = syncanoErrorInfo[kRevisionMismatchResponseError];
         BOOL mismatched = NO;
         if (expectedRevisionDescription) {
             mismatched = YES;

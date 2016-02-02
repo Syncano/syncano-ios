@@ -16,11 +16,11 @@
     NSDictionary *serialized = [MTLJSONAdapter JSONDictionaryFromModel:dataObject error:nil];
     NSDictionary *relations = [SCRegisterManager relationsForClass:[dataObject class]];
     if (relations.count > 0) {
-        NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
+        NSMutableDictionary *mutableSerialized = [serialized mutableCopy];
         for (NSString *relationProperty in relations.allKeys) {
             SCClassRegisterItem *registerItem = (SCClassRegisterItem*)relations[relationProperty];
-            SCDataObject *relatedObject = (SCDataObject *)[dataObject valueForKey:relationProperty];
-            if ([relatedObject isKindOfClass:[SCDataObject class]]) {
+            if ([[dataObject valueForKey:relationProperty] isKindOfClass:[SCDataObject class]]) {
+                SCDataObject *relatedObject = (SCDataObject *)[dataObject valueForKey:relationProperty];
                 NSNumber *objectId = relatedObject.objectId;
                 if (objectId) {
                     NSDictionary *relation = @{@"_type" : @"relation", @"objectId" : objectId , @"class" : registerItem.className};
