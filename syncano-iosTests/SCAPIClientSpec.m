@@ -60,11 +60,11 @@ describe(@"SCAPIClient", ^{
                     _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[_task.currentRequest.HTTPMethod shouldEventually] equal:@"GET"];
-                [[_task.currentRequest.URL shouldEventually] equal:url];
-                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] shouldEventually] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"GET"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
                 
             });
             it(@"should create, authorize and call POST task", ^{
@@ -79,14 +79,14 @@ describe(@"SCAPIClient", ^{
                     _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[_task.currentRequest.HTTPMethod shouldEventually] equal:@"POST"];
-                [[_task.currentRequest.URL shouldEventually] equal:url];
-                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] shouldEventually] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"POST"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
                 
                 NSData *httpBody = [NSJSONSerialization dataWithJSONObject:@{@"param" : @"value"} options:0 error:nil];
-                [[_task.originalRequest.HTTPBody shouldEventually] equal:httpBody];
+                [[_task.originalRequest.HTTPBody should] equal:httpBody];
             });
             
             it(@"should create, authorize and call PUT task", ^{
@@ -101,14 +101,14 @@ describe(@"SCAPIClient", ^{
                     _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[_task.currentRequest.HTTPMethod shouldEventually] equal:@"PUT"];
-                [[_task.currentRequest.URL shouldEventually] equal:url];
-                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] shouldEventually] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"PUT"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
                 
                 NSData *httpBody = [NSJSONSerialization dataWithJSONObject:@{@"param" : @"value"} options:0 error:nil];
-                [[_task.originalRequest.HTTPBody shouldEventually] equal:httpBody];
+                [[_task.originalRequest.HTTPBody should] equal:httpBody];
             });
             
             it(@"should create, authorize and call PATCH task", ^{
@@ -123,14 +123,14 @@ describe(@"SCAPIClient", ^{
                     _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[_task.currentRequest.HTTPMethod shouldEventually] equal:@"PATCH"];
-                [[_task.currentRequest.URL shouldEventually] equal:url];
-                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] shouldEventually] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"PATCH"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
                 
                 NSData *httpBody = [NSJSONSerialization dataWithJSONObject:@{@"param" : @"value"} options:0 error:nil];
-                [[_task.originalRequest.HTTPBody shouldEventually] equal:httpBody];
+                [[_task.originalRequest.HTTPBody should] equal:httpBody];
             });
             
             it(@"should create, authorize and call DELETE task", ^{
@@ -145,7 +145,7 @@ describe(@"SCAPIClient", ^{
                     _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
                 [[_task.currentRequest.HTTPMethod should] equal:@"DELETE"];
                 [[_task.currentRequest.URL should] equal:url];
@@ -172,12 +172,12 @@ describe(@"SCAPIClient", ^{
             }];
             
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-            [[_error shouldEventually] beNil];
+            [[_error should] beNil];
             
             NSData *reference = [NSData dataWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"syncano-white" ofType:@"png"]];
             
-            [[_responseobject shouldEventually] beKindOfClass:[NSData class]];
-            [[_responseobject shouldEventually] equal:reference];
+            [[_responseobject should] beKindOfClass:[NSData class]];
+            [[_responseobject should] equal:reference];
         });
     });
     
@@ -205,11 +205,11 @@ describe(@"SCAPIClient", ^{
                 _task = task;
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-            [[_error shouldEventually] beNil];
-            [[_task.currentRequest.HTTPMethod shouldEventually] equal:@"GET"];
-            [[_task.currentRequest.URL shouldEventually] equal:url];
-            [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] shouldEventually] equal:@"API-KEY"];
-            [[_responseobject[@"objects"] shouldEventually] beKindOfClass:[NSArray class]];
+            [[_error should] beNil];
+            [[_task.currentRequest.HTTPMethod should] equal:@"GET"];
+            [[_task.currentRequest.URL should] equal:url];
+            [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
+            [[_responseobject[@"objects"] should] beKindOfClass:[NSArray class]];
        });
         
         it(@"should get data object for class with name and with id", ^{
@@ -232,11 +232,11 @@ describe(@"SCAPIClient", ^{
                 _task = task;
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-            [[_error shouldEventually] beNil];
+            [[_error should] beNil];
             [[_task.currentRequest.HTTPMethod should] equal:@"GET"];
             [[_task.currentRequest.URL should] equal:url];
             [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
-            [[_responseobject shouldEventually] beNonNil];
+            [[_responseobject should] beNonNil];
         });
     });
     
