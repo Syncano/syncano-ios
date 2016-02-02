@@ -63,6 +63,7 @@ typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeRead,
     SCDataObjectPermissionTypeWrite,
     SCDataObjectPermissionTypeFull,
+    SCDataObjectPermissionTypeNotSet
 };
 
 typedef NS_ENUM(NSUInteger, SCChannelPermisionType) {
@@ -101,6 +102,7 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
 + (SCChannelType)channelTypeByString:(NSString *)typeString;
 + (NSString *)socialAuthenticationBackendToString:(SCSocialAuthenticationBackend)backend;
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
++ (NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
 
 + (NSString *)createTableSQLStatement;

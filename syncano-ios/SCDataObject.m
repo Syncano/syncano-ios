@@ -44,6 +44,10 @@
         [key isEqualToString:@"other_permissions"]) {
         return [SCConstants SCDataObjectPermissionsValueTransformer];
     }
+    if ([key isEqualToString:@"created_at"] ||
+        [key isEqualToString:@"updated_at"]) {
+        return [SCConstants SCDataObjectDatesTransformer];
+    }
     return nil;
 }
 
@@ -67,7 +71,9 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.owner_permissions = SCDataObjectPermissionTypeFull;
+        self.owner_permissions = SCDataObjectPermissionTypeNotSet;
+        self.group_permissions = SCDataObjectPermissionTypeNotSet;
+        self.other_permissions = SCDataObjectPermissionTypeNotSet;
     }
     return self;
 }
@@ -153,7 +159,7 @@
                         }
                         return;
                     }
-                    [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
+                    [[SCParseManager sharedSCParseManager] fillObject:self withDataFromJSONObject:responseObject];
                     [self saveFilesUsingAPIClient:apiClient completion:^(NSError *error) {
                         if (completion) {
                             completion(error);
@@ -193,14 +199,6 @@
             completion(nil);
         }
     }
-}
-
-- (void)updateObjectAfterSaveWithDataFromJSONObject:(id)responseObject {
-    self.objectId = responseObject[@"id"];
-    self.created_at = responseObject[@"created_at"];
-    self.links = responseObject[@"links"];
-    self.updated_at = responseObject[@"updated_at"];
-    self.revision = responseObject[@"revision"];
 }
 
 - (void)deleteWithCompletion:(SCCompletionBlock)completion {
