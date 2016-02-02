@@ -11,9 +11,6 @@
 #import "Book.h"
 #import <CommonCrypto/CommonDigest.h>
 
-/**
- *  You should set GOOGLE_TOKEN_KEY, FACEBOOK_TOKEN_KEY, TWITTER_TOKEN_KEY, LINKEDIN_TOKEN_KEY for this tests to work
- */
 SPEC_BEGIN(FileFetchSpec)
 
 NSString* (^md5FromNSData) (NSData *) = ^NSString* (NSData *data) {

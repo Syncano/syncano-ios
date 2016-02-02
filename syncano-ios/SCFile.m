@@ -79,12 +79,11 @@
                 completion(nil,error);
             }
         } else {
-            NSData* result = [[NSData alloc] initWithData:responseObject];
             if (_storeDataAfterFetch) {
-                _data = result;
+                _data = [[NSData alloc] initWithData:responseObject];
             }
             if (completion) {
-                completion(result,nil);
+                completion(responseObject,nil);
             }
         }
     }];
