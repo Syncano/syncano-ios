@@ -17,8 +17,9 @@
 
 - (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
     id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:NULL];
-    if(parsedobject == nil)
+    if(parsedobject == nil) {
         return parsedobject;//possible error in parsing
+    }
     
     [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
     [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
@@ -49,8 +50,9 @@
         Class relatedClass = relationRegisteredItem.classReference;
         if (JSONObject[relationKeyProperty] != [NSNull null]) {
             id relatedObject = [self relatedObjectOfClass:relatedClass fromJSONObject:JSONObject[relationKeyProperty]];
-            if (relatedObject != nil)
+            if (relatedObject != nil) {
                 SCValidateAndSetValue(parsedObject, relationKeyProperty, relatedObject, YES, nil);
+            }
         }
     }
 }

@@ -62,8 +62,9 @@
 }
 
 + (SCPlease *)please {
-    if([self viewNameForAPI] != nil)
+    if([self viewNameForAPI] != nil) {
         return [self pleaseForView:[self viewNameForAPI]];
+    }
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class]];
 }
 
@@ -72,8 +73,9 @@
 }
 
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano {
-    if([self viewNameForAPI] != nil)
+    if([self viewNameForAPI] != nil) {
         return [self pleaseForView:[self viewNameForAPI] fromSyncano:syncano];
+    }
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class] forSyncano:syncano];
 }
 
