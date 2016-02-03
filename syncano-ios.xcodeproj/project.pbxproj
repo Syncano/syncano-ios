@@ -107,7 +107,11 @@
 		11F9AEE01B62128200B51341 /* SCTraceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDF1B62128200B51341 /* SCTraceSpec.m */; };
 		19208A154B407611AF645A7A /* libPods-Syncano.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */; };
 		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
+		A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */; };
 		A6750F3C1C57A14D004956C3 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = A6750F3B1C57A14D004956C3 /* Device.m */; };
+		A697A63C1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A697A63B1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m */; };
+		A697A63D1C61F7A700D245F3 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C3D1ACEDF3600134A39 /* Author.m */; };
+		A697A63E1C61F7AA00D245F3 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
 		A6BCC8EC1C56372E008A0B0A /* SCPleaseForView.h in Headers */ = {isa = PBXBuildFile; fileRef = A6BCC8EA1C56372E008A0B0A /* SCPleaseForView.h */; };
 		A6BCC8ED1C56372E008A0B0A /* SCPleaseForView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */; };
 		A6BCC8EF1C563D14008A0B0A /* SCPleaseForViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8EE1C563D14008A0B0A /* SCPleaseForViewSpec.m */; };
@@ -115,8 +119,6 @@
 		A6BCC8F71C56570F008A0B0A /* ViewResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = A6BCC8F61C56570F008A0B0A /* ViewResponse.json */; };
 		A6BCC8FA1C565792008A0B0A /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8F91C565792008A0B0A /* Message.m */; };
 		A6BCC8FD1C56B4BB008A0B0A /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */; };
-		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
-		A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */; };
 		A6CC63651C58B24E005E0132 /* SCCompoundPredicateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */; };
 		A6DEC5671C51186500BEA5B1 /* CustomResponse in Resources */ = {isa = PBXBuildFile; fileRef = A6DEC5661C51186500BEA5B1 /* CustomResponse */; };
 		FA3BA7DD65FC33A82B508F1A /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
@@ -246,8 +248,10 @@
 		3DDB6BB1C8E98BE8315CCE39 /* Pods-syncano-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Syncano.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E56D1310C4DAFB1FD32169 /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginSpec.m; sourceTree = "<group>"; };
 		A6750F3A1C57A14D004956C3 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
 		A6750F3B1C57A14D004956C3 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		A697A63B1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataViewIntegrationTestsSpec.m; sourceTree = "<group>"; };
 		A6BCC8EA1C56372E008A0B0A /* SCPleaseForView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForView.h; sourceTree = "<group>"; };
 		A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForView.m; sourceTree = "<group>"; };
 		A6BCC8EE1C563D14008A0B0A /* SCPleaseForViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForViewSpec.m; sourceTree = "<group>"; };
@@ -257,7 +261,6 @@
 		A6BCC8F91C565792008A0B0A /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		A6BCC8FB1C56B4BB008A0B0A /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
 		A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
-		A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginSpec.m; sourceTree = "<group>"; };
 		A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCompoundPredicateSpec.m; sourceTree = "<group>"; };
 		A6DEC5661C51186500BEA5B1 /* CustomResponse */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CustomResponse; sourceTree = "<group>"; };
 		B82587DE5315797724F0BA55 /* Pods-Syncano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.debug.xcconfig"; sourceTree = "<group>"; };
@@ -553,6 +556,7 @@
 			children = (
 				11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */,
 				A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */,
+				A697A63B1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m */,
 				11E35B0E1C4F82740092E0A9 /* Info.plist */,
 			);
 			path = SyncanoIntegrationTests;
@@ -987,8 +991,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A697A63E1C61F7AA00D245F3 /* Book.m in Sources */,
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
 				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
+				A697A63D1C61F7A700D245F3 /* Author.m in Sources */,
+				A697A63C1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

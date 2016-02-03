@@ -7,10 +7,14 @@
 //
 
 #import "SCDataObject.h"
+#import "SCFile.h"
 #import "Author.h"
 
 @interface Book : SCDataObject
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic,copy) NSNumber *numOfPages;
 @property (nonatomic,copy) Author *author;
+
+@property (nonatomic,assign) SCFile* cover;
+@property (nonatomic,assign) SCFile* content;
 @end
