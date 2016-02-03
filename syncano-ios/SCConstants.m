@@ -18,6 +18,9 @@ NSString * const kSCPermissionTypePublish = @"publish";
 NSString * const kSCChannelTypeDefault = @"default";
 NSString * const kSCChannelTypeSeparateRooms = @"separate_rooms";
 
+NSString * const kExpectedRevisionRequestParam = @"expected_revision";
+NSString * const kRevisionMismatchResponseError = @"expected_revision";
+
 NSString * const kSCChannelNotificationMessageActionCreate = @"create";
 NSString * const kSCChannelNotificationMessageActionUpdate = @"update";
 NSString * const kSCChannelNotificationMessageActionDelete = @"delete";
@@ -26,6 +29,11 @@ NSString * const kSCSocialBackendFacebook = @"facebook";
 NSString * const kSCSocialBackendGoogle = @"google-oauth2";
 NSString * const kSCSocialBackendLinkedIn = @"linkedin";
 NSString * const kSCSocialBackendTwitter = @"twitter";
+
+NSString * const kDatabaseName = @"SyncanoDataObjects";
+
+NSString * const kSyncanoResponseErrorKey = @"com.Syncano.response.error";
+
 
 @implementation SCConstants
 
@@ -121,5 +129,14 @@ NSString * const kSCSocialBackendTwitter = @"twitter";
         return SCChannelNotificationMessageActionDelete;
     }
     return SCChannelNotificationMessageActionNone;
+}
+
++ (NSString *)createTableSQLStatement {
+    NSString *objectsTableSchema = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ("
+    @"className TEXT, "
+    @"objectId INTEGER, "
+    @"json TEXT, "
+    @"UNIQUE(className, objectId));",kDatabaseName];
+    return objectsTableSchema;
 }
 @end

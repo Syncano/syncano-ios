@@ -1,1 +1,0 @@
-groovy http://frankencover.it/with -source-dir syncano4-ios

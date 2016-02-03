@@ -43,8 +43,7 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
  */
 @property (nonatomic,retain) NSString *previousUrlString;
 
-- (SCAPIClient *)apiClient;
-- (void)handleResponse:(id)responseObject error:(NSError *)error completion:(SCDataObjectsCompletionBlock)completion;
+@property (nonatomic) BOOL fromLocalStorage;
 
 @end
 
@@ -229,4 +228,5 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
         }
     }];
 }
+
 @end

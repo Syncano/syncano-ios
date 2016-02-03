@@ -53,16 +53,18 @@ describe(@"SCAPIClient", ^{
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH?param=value",kBaseURL]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
-                NSURLSessionDataTask *task = [apiClient getTaskWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                __block NSURLSessionDataTask *_task;
+                [apiClient GETWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     _error = error;
                     _blockFinished = YES;
+                    _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[task.currentRequest.HTTPMethod should] equal:@"GET"];
-                [[task.currentRequest.URL should] equal:url];
-                [[task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"GET"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
                 
             });
             it(@"should create, authorize and call POST task", ^{
@@ -70,19 +72,21 @@ describe(@"SCAPIClient", ^{
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",kBaseURL]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
-                NSURLSessionDataTask *task = [apiClient postTaskWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                __block NSURLSessionDataTask *_task;
+                [apiClient POSTWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     _error = error;
                     _blockFinished = YES;
+                    _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[task.currentRequest.HTTPMethod should] equal:@"POST"];
-                [[task.currentRequest.URL should] equal:url];
-                [[task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"POST"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
                 
                 NSData *httpBody = [NSJSONSerialization dataWithJSONObject:@{@"param" : @"value"} options:0 error:nil];
-                [[task.originalRequest.HTTPBody should] equal:httpBody];
+                [[_task.originalRequest.HTTPBody should] equal:httpBody];
             });
             
             it(@"should create, authorize and call PUT task", ^{
@@ -90,19 +94,21 @@ describe(@"SCAPIClient", ^{
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",kBaseURL]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
-                NSURLSessionDataTask *task = [apiClient putTaskWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                __block NSURLSessionDataTask *_task;
+                [apiClient PUTWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     _error = error;
                     _blockFinished = YES;
+                    _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[task.currentRequest.HTTPMethod should] equal:@"PUT"];
-                [[task.currentRequest.URL should] equal:url];
-                [[task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"PUT"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
                 
                 NSData *httpBody = [NSJSONSerialization dataWithJSONObject:@{@"param" : @"value"} options:0 error:nil];
-                [[task.originalRequest.HTTPBody should] equal:httpBody];
+                [[_task.originalRequest.HTTPBody should] equal:httpBody];
             });
             
             it(@"should create, authorize and call PATCH task", ^{
@@ -110,19 +116,21 @@ describe(@"SCAPIClient", ^{
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",kBaseURL]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
-                NSURLSessionDataTask *task = [apiClient patchTaskWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                __block NSURLSessionDataTask *_task;
+                [apiClient PATCHWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     _error = error;
                     _blockFinished = YES;
+                    _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[task.currentRequest.HTTPMethod should] equal:@"PATCH"];
-                [[task.currentRequest.URL should] equal:url];
-                [[task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"PATCH"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
                 
                 NSData *httpBody = [NSJSONSerialization dataWithJSONObject:@{@"param" : @"value"} options:0 error:nil];
-                [[task.originalRequest.HTTPBody should] equal:httpBody];
+                [[_task.originalRequest.HTTPBody should] equal:httpBody];
             });
             
             it(@"should create, authorize and call DELETE task", ^{
@@ -130,16 +138,18 @@ describe(@"SCAPIClient", ^{
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH?param=value",kBaseURL]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
-                NSURLSessionDataTask *task = [apiClient deleteTaskWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                __block NSURLSessionDataTask *_task;
+                [apiClient DELETEWithPath:@"PATH" params:@{@"param" : @"value"} completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     _error = error;
                     _blockFinished = YES;
+                    _task = task;
                 }];
                 [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-                [[_error shouldEventually] beNil];
+                [[_error should] beNil];
                 [[apiClient.requestSerializer.HTTPRequestHeaders[@"X-API-KEY"] should] equal:@"API-KEY"];
-                [[task.currentRequest.HTTPMethod should] equal:@"DELETE"];
-                [[task.currentRequest.URL should] equal:url];
-                [[task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
+                [[_task.currentRequest.HTTPMethod should] equal:@"DELETE"];
+                [[_task.currentRequest.URL should] equal:url];
+                [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
             });
         });
     });
@@ -162,12 +172,12 @@ describe(@"SCAPIClient", ^{
             }];
             
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-            [[_error shouldEventually] beNil];
+            [[_error should] beNil];
             
             NSData *reference = [NSData dataWithContentsOfFile:[[NSBundle bundleForClass:[self class]] pathForResource:@"syncano-white" ofType:@"png"]];
             
-            [[_responseobject shouldEventually] beKindOfClass:[NSData class]];
-            [[_responseobject shouldEventually] equal:reference];
+            [[_responseobject should] beKindOfClass:[NSData class]];
+            [[_responseobject should] equal:reference];
         });
     });
     
@@ -184,19 +194,22 @@ describe(@"SCAPIClient", ^{
             __block NSError *_error;
             __block BOOL _blockFinished;
             __block id _responseobject;
+            __block NSURLSessionDataTask *_task;
+
             SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/classes/book/objects/",kBaseURL]];
-            NSURLSessionDataTask *task = [apiClient getDataObjectsFromClassName:@"book" params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            [apiClient getDataObjectsFromClassName:@"book" params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                 _error = error;
                 _responseobject = responseObject;
                 _blockFinished = YES;
+                _task = task;
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-            [[_error shouldEventually] beNil];
-            [[task.currentRequest.HTTPMethod should] equal:@"GET"];
-            [[task.currentRequest.URL should] equal:url];
-            [[task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
-            [[_responseobject[@"objects"] shouldEventually] beKindOfClass:[NSArray class]];
+            [[_error should] beNil];
+            [[_task.currentRequest.HTTPMethod should] equal:@"GET"];
+            [[_task.currentRequest.URL should] equal:url];
+            [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
+            [[_responseobject[@"objects"] should] beKindOfClass:[NSArray class]];
        });
         
         it(@"should get data object for class with name and with id", ^{
@@ -209,19 +222,21 @@ describe(@"SCAPIClient", ^{
             __block NSError *_error;
             __block BOOL _blockFinished;
             __block id _responseobject;
+            __block NSURLSessionDataTask *_task;
             SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/classes/book/objects/2/",kBaseURL]];
-            NSURLSessionDataTask *task = [apiClient getDataObjectsFromClassName:@"book" withId:@2 completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            [apiClient getDataObjectsFromClassName:@"book" withId:@2 completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                 _error = error;
                 _responseobject = responseObject;
                 _blockFinished = YES;
+                _task = task;
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
-            [[_error shouldEventually] beNil];
-            [[task.currentRequest.HTTPMethod should] equal:@"GET"];
-            [[task.currentRequest.URL should] equal:url];
-            [[task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
-            [[_responseobject shouldEventually] beNonNil];
+            [[_error should] beNil];
+            [[_task.currentRequest.HTTPMethod should] equal:@"GET"];
+            [[_task.currentRequest.URL should] equal:url];
+            [[_task.currentRequest.allHTTPHeaderFields[@"X-API-KEY"] should] equal:@"API-KEY"];
+            [[_responseobject should] beNonNil];
         });
     });
     

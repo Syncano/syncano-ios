@@ -9,11 +9,6 @@
 @interface SCPlease ()
 
 /**
- *  Connected SCDataObject Class
- */
-@property (nonatomic,assign) Class dataObjectClass;
-
-/**
  *  API class name representation of connected SCDataObject Class
  */
 @property (nonatomic,retain) NSString *classNameForAPICalls;
