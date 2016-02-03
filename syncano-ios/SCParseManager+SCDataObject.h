@@ -23,21 +23,6 @@
            fromJSONObject:(id)JSONObject;
 
 /**
- *  Attempts to parse JSON to SCDataObject
- *
- *  @param objectClass Class of object to parse for
- *  @param JSONObject  serialized JSON object from API response
- *  @param relations   Key is class name, value is Dictionary of relations for the class @see relationsForClass. Pass an empty dictionary here
- *  @param error       Error object
- *
- *  @return parsed SCDataObject
- */
-- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass
-           fromJSONObject:(id)JSONObject
-           withRelationsCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache
-                    error:(NSError **)error;
-
-/**
  *  Attempts to parse JSON response object to array of SCDataObjects
  *
  *  @param objectClass    objectClass Class of object to parse for

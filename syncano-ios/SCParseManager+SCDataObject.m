@@ -15,25 +15,20 @@
 
 @implementation SCParseManager (SCDataObject)
 
-- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject withRelationsCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache error:(NSError **)error {
-    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:error];
+- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
+    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:NULL];
     if(parsedobject == nil)
         return parsedobject;//possible error in parsing
     
-    [self resolveRelationsToObject:parsedobject withRelationsCache:relationsCache withJSONObject:JSONObject];
+    [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
     [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
     return parsedobject;
 }
 
-- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
-    //TODO change to send error
-    return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject withRelationsCache:[@{} mutableCopy] error:NULL];
-}
-
-- (id)relatedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject withRelationsCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache {
+- (id)relatedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
     if(JSONObject[@"id"] != nil) {
         //object is downloaded
-        return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject withRelationsCache:relationsCache error:NULL];
+        return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject];
     }
     
     NSNumber *relatedObjectId = JSONObject[@"value"];
@@ -47,13 +42,13 @@
     return nil;
 }
 
-- (void)resolveRelationsToObject:(id)parsedObject withRelationsCache:(NSMutableDictionary<NSString*,NSDictionary*> *)relationsCache withJSONObject:(id)JSONObject {
-    NSDictionary* relations = [SCRegisterManager relationsForClass:[parsedObject class]];// fromCache:relationsCache];
+- (void)resolveRelationsToObject:(id)parsedObject withJSONObject:(id)JSONObject {
+    NSDictionary* relations = [SCRegisterManager relationsForClass:[parsedObject class]];
     for (NSString *relationKeyProperty in relations.allKeys) {
         SCClassRegisterItem *relationRegisteredItem = relations[relationKeyProperty];
         Class relatedClass = relationRegisteredItem.classReference;
         if (JSONObject[relationKeyProperty] != [NSNull null]) {
-            id relatedObject = [self relatedObjectOfClass:relatedClass fromJSONObject:JSONObject[relationKeyProperty] withRelationsCache:relationsCache];
+            id relatedObject = [self relatedObjectOfClass:relatedClass fromJSONObject:JSONObject[relationKeyProperty]];
             if (relatedObject != nil)
                 SCValidateAndSetValue(parsedObject, relationKeyProperty, relatedObject, YES, nil);
         }
@@ -77,9 +72,8 @@
 - (NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)responseObject {
     NSArray *responseObjects = responseObject;
     NSMutableArray *parsedObjects = [[NSMutableArray alloc] initWithCapacity:responseObjects.count];
-    NSMutableDictionary<NSString*,NSDictionary*>* relationsCache = [@{} mutableCopy];
     for (NSDictionary *object in responseObjects) {
-        id result = [self parsedObjectOfClass:objectClass fromJSONObject:object withRelationsCache:relationsCache error:NULL];
+        id result = [self parsedObjectOfClass:objectClass fromJSONObject:object];
         [parsedObjects addObject:result];
     }
     return [NSArray arrayWithArray:parsedObjects];

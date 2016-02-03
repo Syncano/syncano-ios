@@ -17,6 +17,12 @@
 #import "SCJSONHelper.h"
 #import "OHPathHelpers.h"
 
+@interface SCRegisterManager (SCParseManagerSpec)
+
++ (NSMutableArray *)registeredClasses;
+
+@end
+
 SPEC_BEGIN(SCParseManagerSpec)
 
 describe(@"SCParseManager", ^{
