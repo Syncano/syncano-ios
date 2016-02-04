@@ -143,6 +143,8 @@
 		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
 		3A822952B9060FB5C5A84B79 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
 		A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */; };
+		A66984901C63B54F0056A228 /* SCDataObject+Increment.h in Headers */ = {isa = PBXBuildFile; fileRef = A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */; };
+		A66984911C63B54F0056A228 /* SCDataObject+Increment.m in Sources */ = {isa = PBXBuildFile; fileRef = A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */; };
 		A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */; };
 		A6CC63651C58B24E005E0132 /* SCCompoundPredicateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */; };
 		A6DEC5671C51186500BEA5B1 /* CustomResponse in Resources */ = {isa = PBXBuildFile; fileRef = A6DEC5661C51186500BEA5B1 /* CustomResponse */; };
@@ -318,6 +320,8 @@
 		5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Syncano.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		969B9F0895E8C3013271D478 /* Pods-syncano-IntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 		A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectManipulationsSpec.m; sourceTree = "<group>"; };
+		A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Increment.h"; sourceTree = "<group>"; };
+		A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+Increment.m"; sourceTree = "<group>"; };
 		A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginSpec.m; sourceTree = "<group>"; };
 		A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCompoundPredicateSpec.m; sourceTree = "<group>"; };
 		A6DEC5661C51186500BEA5B1 /* CustomResponse */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CustomResponse; sourceTree = "<group>"; };
@@ -406,6 +410,8 @@
 			children = (
 				11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */,
 				11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */,
+				A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */,
+				A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */,
 				11BE43DE1AC55BCA00FE96C5 /* SCDataObject.h */,
 				11BE43DF1AC55BCA00FE96C5 /* SCDataObject.m */,
 				11BE43E61AC57AC600FE96C5 /* SCPlease.h */,
@@ -759,6 +765,7 @@
 				11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */,
 				11CE3CC01BCFDC3000DE3163 /* NSObject+SCParseHelper.h in Headers */,
 				11CE3CB11BCFDC3000DE3163 /* SCUserProfile.h in Headers */,
+				A66984901C63B54F0056A228 /* SCDataObject+Increment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1094,6 +1101,7 @@
 				11CE3CA71BCFDC3000DE3163 /* SCPlease.m in Sources */,
 				11CE3CAE1BCFDC3000DE3163 /* SCFile.m in Sources */,
 				11537F9C1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m in Sources */,
+				A66984911C63B54F0056A228 /* SCDataObject+Increment.m in Sources */,
 				11CE3CB01BCFDC3000DE3163 /* SCUser.m in Sources */,
 				11CE3CB81BCFDC3000DE3163 /* SCWebhook.m in Sources */,
 				113B2E4D1C48DA5400057F00 /* NSError+RevisionMismatch.m in Sources */,
