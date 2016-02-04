@@ -12,6 +12,7 @@
 #import "Syncano.h"
 #import "SCParseManager.h"
 #import "SCPlease.h"
+#import "SCPleaseForView.h"
 #import "SCDataObject+Properties.h"
 #import "SCRegisterManager.h"
 #import "NSError+RevisionMismatch.h"
@@ -24,6 +25,10 @@
         className = [className componentsSeparatedByString:@"."].lastObject;
     }
     return className;
+}
+
++ (NSString *)viewNameForAPI {
+    return nil;
 }
 
 //This is Mantle method we have to prevent form invoking it form child classes of SCDataObject
@@ -57,12 +62,27 @@
 }
 
 + (SCPlease *)please {
+    if([self viewNameForAPI] != nil) {
+        return [self pleaseForView:[self viewNameForAPI]];
+    }
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class]];
 }
 
++ (SCPlease *)pleaseForView:(NSString *)viewName {
+    return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName];
+}
+
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano {
+    if([self viewNameForAPI] != nil) {
+        return [self pleaseForView:[self viewNameForAPI] fromSyncano:syncano];
+    }
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class] forSyncano:syncano];
 }
+
++ (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano {
+    return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano];
+}
+
 
 + (instancetype)objectFromDictionary:(NSDictionary *)dictionary {
     return [[SCParseManager sharedSCParseManager] parsedObjectOfClass:self fromJSONObject:dictionary];

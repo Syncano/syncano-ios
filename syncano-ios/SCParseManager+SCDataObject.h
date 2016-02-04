@@ -15,7 +15,7 @@
  *  Attempts to parse JSON to SCDataObject
  *
  *  @param objectClass Class of object to parse for
- *  @param JSONObject  serialiazed JSON object from API response
+ *  @param JSONObject  serialized JSON object from API response
  *
  *  @return parsed SCDataObject
  */

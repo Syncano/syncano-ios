@@ -16,24 +16,41 @@
 @implementation SCParseManager (SCDataObject)
 
 - (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
-    //TODO change to send error
-    NSError *error = nil;
-    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:&error];
+    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:NULL];
+    if(parsedobject == nil) {
+        return parsedobject;//possible error in parsing
+    }
+    
     [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
     [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
     return parsedobject;
 }
 
+- (id)relatedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
+    if(JSONObject[@"id"] != nil) {
+        //object is downloaded
+        return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject];
+    }
+    
+    NSNumber *relatedObjectId = JSONObject[@"value"];
+    if (relatedObjectId) {
+        //we have only id
+        id relatedObject = [[objectClass alloc] init];
+        [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+        return relatedObject;
+    }
+    
+    return nil;
+}
+
 - (void)resolveRelationsToObject:(id)parsedObject withJSONObject:(id)JSONObject {
-    NSDictionary *relations = [SCRegisterManager relationsForClass:[parsedObject class]];
+    NSDictionary* relations = [SCRegisterManager relationsForClass:[parsedObject class]];
     for (NSString *relationKeyProperty in relations.allKeys) {
         SCClassRegisterItem *relationRegisteredItem = relations[relationKeyProperty];
         Class relatedClass = relationRegisteredItem.classReference;
-        id relatedObject = [[relatedClass alloc] init];
         if (JSONObject[relationKeyProperty] != [NSNull null]) {
-            NSNumber *relatedObjectId = JSONObject[relationKeyProperty][@"value"];
-            if (relatedObjectId) {
-                [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+            id relatedObject = [self relatedObjectOfClass:relatedClass fromJSONObject:JSONObject[relationKeyProperty]];
+            if (relatedObject != nil) {
                 SCValidateAndSetValue(parsedObject, relationKeyProperty, relatedObject, YES, nil);
             }
         }
@@ -58,7 +75,8 @@
     NSArray *responseObjects = responseObject;
     NSMutableArray *parsedObjects = [[NSMutableArray alloc] initWithCapacity:responseObjects.count];
     for (NSDictionary *object in responseObjects) {
-        [parsedObjects addObject:[self parsedObjectOfClass:objectClass fromJSONObject:object]];
+        id result = [self parsedObjectOfClass:objectClass fromJSONObject:object];
+        [parsedObjects addObject:result];
     }
     return [NSArray arrayWithArray:parsedObjects];
 }
@@ -106,6 +124,4 @@
     }
     return serialized;
 }
-
-
 @end

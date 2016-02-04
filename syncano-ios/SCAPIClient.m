@@ -54,8 +54,12 @@
 
 - (NSString *)identifier {
     NSMutableString *hash = [NSMutableString new];
-    [hash appendString:self.apiKey];
-    [hash appendString:self.instanceName];
+    if(self.apiKey != nil) {
+        [hash appendString:self.apiKey];
+    }
+    if(self.instanceName != nil) {
+        [hash appendString:self.instanceName];
+    }
     if ([SCUser currentUser]) {
         [hash appendString:[SCUser currentUser].userKey];
     }
