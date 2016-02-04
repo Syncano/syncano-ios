@@ -316,4 +316,94 @@
         }
     }
 }
+
+#pragma mark - increment
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(SCCompletionBlock)completion {
+    [self incrementValues:@{key:value} withCompletion:completion];
+}
+
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
+    [self incrementValues:@{key:value} inSyncano:syncano withCompletion:completion];
+}
+
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self incrementValues:@{key:value} withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self incrementValues:@{key:value} inSyncano:syncano withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)incrementValues:(NSDictionary<NSString*,NSNumber*>*)values withCompletion:(SCCompletionBlock)completion {
+    [self incrementValues:values usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)incrementValues:(NSDictionary<NSString*,NSNumber*>*)values inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
+    [self incrementValues:values usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)incrementValues:(NSDictionary<NSString*,NSNumber*>*)values withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self incrementValues:values usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)incrementValues:(NSDictionary<NSString*,NSNumber*>*)values inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self incrementValues:values usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)incrementValues:(NSDictionary<NSString*,NSNumber*>*)values usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:(values.count+1)];
+    __block NSError* error = nil;
+    [values enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyName, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
+        if ([[[self class] propertyKeys] containsObject:propertyName]) {
+            params[propertyName] = @{@"_increment":value};
+        } else {
+            *stop = YES;
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Property %@ does not exist", @""),propertyName],
+                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"You change value of non-existing property.",@""),
+                                       };
+            error = [NSError errorWithDomain:SCDataObjectErrorDomain  code:SCErrorCodeDataObjectNonExistingPropertyName userInfo:userInfo];
+        }
+    }];
+    if(error) {
+        if(completion) {
+            completion(error);
+        }
+        return;
+    }
+    
+    if (self.revision) {
+        params[kExpectedRevisionRequestParam] = self.revision;
+    }
+    typeof(self) __weak selfWeak = self;
+    [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        typeof(self) selfStrong = selfWeak;
+        if(error) {
+            if(completion) {
+                completion(error);
+            }
+            if(revisionMismatchBlock) {
+                [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+            }
+            return;
+        }
+
+        [values enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyName, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
+            [selfStrong setValue:[responseObject valueForKey:propertyName] forKey:propertyName];
+        }];
+        //selfStrong.objectId = responseObject[@"id"];
+        selfStrong.updated_at = responseObject[@"updated_at"];
+        selfStrong.revision = responseObject[@"revision"];
+
+        if(completion) {
+            completion(nil);
+        }
+        if(revisionMismatchBlock) {
+            revisionMismatchBlock(NO,nil);
+        }
+    }];
+    
+}
+
 @end
