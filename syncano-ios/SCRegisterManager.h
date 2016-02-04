@@ -35,10 +35,6 @@
 @interface SCRegisterManager : NSObject
 
 
-
-+ (NSMutableArray *)registeredClasses;
-
-
 /**
  *  Registers class for subclassing
  *

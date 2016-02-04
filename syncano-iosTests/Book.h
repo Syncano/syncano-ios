@@ -7,6 +7,7 @@
 //
 
 #import "SCDataObject.h"
+#import "SCFile.h"
 #import "Author.h"
 #import "SCFile.h"
 

@@ -13,6 +13,13 @@
 @implementation SCClassRegisterItem
 @end
 
+@interface SCRegisterManager()
+
++ (NSMutableArray *)registeredClasses;
++ (NSMutableDictionary<NSString*,NSDictionary*> *)relationsForClass;
+
+@end
+
 @implementation SCRegisterManager
 
 + (NSMutableArray *)registeredClasses {
@@ -27,8 +34,28 @@
     return registeredClasses;
 }
 
++ (NSMutableDictionary<NSString*,NSDictionary*> *)relationsForClass {
+    static NSMutableDictionary<NSString*,NSDictionary*>* relationsForClass = nil;
+    static dispatch_once_t oncePredicate;
+    
+    dispatch_once(&oncePredicate, ^{
+        relationsForClass = [NSMutableDictionary dictionary];
+    });
+    
+    return relationsForClass;
+}
+
 + (NSDictionary *)relationsForClass:(__unsafe_unretained Class)class {
-    SCClassRegisterItem *registerForClass = [self registeredItemForClass:class];
+    NSString *className = [self normalizedClassNameFromClass:class];
+    NSDictionary *relations = [self relationsForClass][className];
+    if(relations == nil) {
+        relations = [self relationsForClassItem:[self registerItemForClassName:className]];
+        [self relationsForClass][className] = relations;
+    }
+    return relations;
+}
+
++ (NSDictionary *)relationsForClassItem:(SCClassRegisterItem *)registerForClass {
     NSMutableDictionary *relations = [NSMutableDictionary new];
     for (NSString *propertyName in registerForClass.properties.allKeys) {
         NSString *propertyType = registerForClass.properties[propertyName];
@@ -38,6 +65,12 @@
         }
     }
     return relations;
+}
+
++ (void)refreshRelationsForRegisteredClasses {
+    [[self relationsForClass] enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary * _Nonnull obj, BOOL * _Nonnull stop) {
+        [self relationsForClass][key] = [self relationsForClassItem:[self registerItemForClassName:key]];
+    }];
 }
 
 + (void)registerClass:(__unsafe_unretained Class)classToRegister {
@@ -58,6 +91,7 @@
         registerItem.properties = registeredProperties;
         registerItem.classReference = classToRegister;
         [self.registeredClasses addObject:registerItem];
+        [self refreshRelationsForRegisteredClasses];
     }
 }
 

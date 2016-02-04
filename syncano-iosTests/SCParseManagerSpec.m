@@ -9,9 +9,19 @@
 #import "Kiwi.h"
 #import "Syncano.h"
 #import "Book.h"
+#import "Message.h"
+#import "Device.h"
+
 #import "CustomUserProfile.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "SCJSONHelper.h"
+#import "OHPathHelpers.h"
+
+@interface SCRegisterManager (SCParseManagerSpec)
+
++ (NSMutableArray *)registeredClasses;
+
+@end
 
 SPEC_BEGIN(SCParseManagerSpec)
 
@@ -40,6 +50,23 @@ describe(@"SCParseManager", ^{
             [[theValue(dataObjects.count) should] equal:theValue(2)];
             Book *book = [dataObjects lastObject];
             [[book.objectId should] equal:@124];
+        });
+        
+        it(@"should parse objects from JSON and resolve relations", ^{
+            NSString* path = OHPathForFile(@"ViewResponse.json",self.class);
+            NSData* content = [NSData dataWithContentsOfFile:path];
+            id JSON = [NSJSONSerialization JSONObjectWithData:content
+                                                      options:NSJSONReadingMutableContainers
+                                                        error:NULL];
+            [Device registerClass];
+            [Message registerClass];
+            NSArray *dataObjects = [[SCParseManager sharedSCParseManager] parsedObjectsOfClass:[Message class] fromJSONObject:JSON[@"objects"]];
+            [[theValue(dataObjects.count) should] equal:theValue(2)];
+            
+            for(Message* msg in dataObjects) {
+                [[msg should] beKindOfClass:[Message class]];
+                [[msg.device should] beKindOfClass:[Device class]];
+            }
         });
         
         it(@"should fill object from JSON NSDictionary", ^{
@@ -94,6 +121,7 @@ describe(@"SCParseManager", ^{
             [[relations should] beNonNil];
             [[relations[@"author"] should] beKindOfClass:[SCClassRegisterItem class]];
         });
+        
     });
     
     context(@"SCUser context", ^{
