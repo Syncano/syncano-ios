@@ -195,27 +195,12 @@
     }];
 }
 
-- (NSDictionary *)filesForPropertyNamesThatNeedToBeUploaded {
-    NSMutableDictionary *filesForPropertyNamesThatNeedToBeUploaded = [NSMutableDictionary dictionary];
-    NSArray *filesProperties = [[self class] propertiesNamesOfFileClass];
-    for (NSString *filePropertyName in filesProperties) {
-        SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
-        if (file.needsToBeUploaded) {
-            filesForPropertyNamesThatNeedToBeUploaded[filePropertyName] = file;
-        }
-    }
-    return filesForPropertyNamesThatNeedToBeUploaded;
-}
-
-- (id)responseObjectWithFileValuesThatNeedToBeUploaded:(id)responseObject {
-    NSMutableDictionary *responseCopy = [responseObject mutableCopy];
-    [responseCopy setValuesForKeysWithDictionary:[self filesForPropertyNamesThatNeedToBeUploaded]];
-    return responseCopy;
-}
-
 - (void)updateObjectAfterSaveWithDataFromJSONObject:(id)responseObject {
-    id responseObjectWithFileValuesThatNeedToBeUploaded = [self responseObjectWithFileValuesThatNeedToBeUploaded:responseObject];
-    [[SCParseManager sharedSCParseManager] fillObject:self withDataFromJSONObject:responseObjectWithFileValuesThatNeedToBeUploaded];
+    self.objectId = responseObject[@"id"];
+    self.links = responseObject[@"links"];
+    self.revision = responseObject[@"revision"];
+    self.created_at = [[SCConstants SCDataObjectDatesTransformer] transformedValue:responseObject[@"created_at"]];
+    self.updated_at = [[SCConstants SCDataObjectDatesTransformer] transformedValue:responseObject[@"updated_at"]];
 }
 
 - (void)saveFilesUsingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
