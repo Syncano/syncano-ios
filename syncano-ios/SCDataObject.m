@@ -1,6 +1,6 @@
 //
 //  SCDataObject.m
-//  syncano4-ios
+//  syncano-ios
 //
 //  Created by Jan Lipmann on 27/03/15.
 //  Copyright (c) 2015 Syncano. All rights reserved.
@@ -179,7 +179,7 @@
                         }
                         return;
                     }
-                    [[SCParseManager sharedSCParseManager] fillObject:self withDataFromJSONObject:responseObject];
+                    [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
                     [self saveFilesUsingAPIClient:apiClient completion:^(NSError *error) {
                         if (completion) {
                             completion(error);
@@ -195,9 +195,17 @@
     }];
 }
 
+- (void)updateObjectAfterSaveWithDataFromJSONObject:(id)responseObject {
+    self.objectId = responseObject[@"id"];
+    self.links = responseObject[@"links"];
+    self.revision = responseObject[@"revision"];
+    self.created_at = [[SCConstants SCDataObjectDatesTransformer] transformedValue:responseObject[@"created_at"]];
+    self.updated_at = [[SCConstants SCDataObjectDatesTransformer] transformedValue:responseObject[@"updated_at"]];
+}
+
 - (void)saveFilesUsingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
     NSArray *filesProperties = [[self class] propertiesNamesOfFileClass];
-    if (filesProperties.count>0) {
+    if (filesProperties.count > 0) {
         dispatch_group_t filesSaveGroup = dispatch_group_create();
         for (NSString *filePropertyName in filesProperties) {
             SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
