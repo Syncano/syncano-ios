@@ -59,7 +59,7 @@
 
 - (void)resolveFilesForObject:(id)parsedObject withJSONObject:(id)JSONObject {
     for (NSString *key in [JSONObject allKeys]) {
-        if ([parsedObject respondsToSelector:@selector(key)]) {
+        if ([parsedObject respondsToSelector:NSSelectorFromString(key)]) {
             id object = JSONObject[key];
             if ([object isKindOfClass:[NSDictionary class]] && object[@"type"] && [object[@"type"] isEqualToString:@"file"]) {
                 //TODO change to send error
