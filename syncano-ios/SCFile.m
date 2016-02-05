@@ -1,6 +1,6 @@
 //
 //  SCFile.m
-//  syncano4-ios
+//  syncano-ios
 //
 //  Created by Jan Lipmann on 26/06/15.
 //  Copyright (c) 2015 Syncano. All rights reserved.
@@ -13,7 +13,7 @@
 #import "Syncano.h"
 
 @interface SCFile ()
-@property (nonatomic) BOOL needsToBeUploaded;
+@property (nonatomic,readwrite) BOOL needsToBeUploaded;
 @property (readwrite) NSData *data;
 @end
 

@@ -1,6 +1,6 @@
 //
 //  SCFile.h
-//  syncano4-ios
+//  syncano-ios
 //
 //  Created by Jan Lipmann on 26/06/15.
 //  Copyright (c) 2015 Syncano. All rights reserved.
@@ -28,6 +28,11 @@
  *  After set this property to YES fetched data will be stored and can be accessed via 'data' property
  */
 @property (nonatomic) BOOL storeDataAfterFetch;
+
+/**
+ * Informs if file will be sent to Syncano when saving object containig it. Read-only
+ */
+@property (nonatomic, readonly) BOOL needsToBeUploaded;
 
 /**
  *  SCFile initializer
