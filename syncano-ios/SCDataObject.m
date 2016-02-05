@@ -1,6 +1,6 @@
 //
 //  SCDataObject.m
-//  syncano4-ios
+//  syncano-ios
 //
 //  Created by Jan Lipmann on 27/03/15.
 //  Copyright (c) 2015 Syncano. All rights reserved.
@@ -179,7 +179,7 @@
                         }
                         return;
                     }
-                    [[SCParseManager sharedSCParseManager] fillObject:self withDataFromJSONObject:responseObject];
+                    [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
                     [self saveFilesUsingAPIClient:apiClient completion:^(NSError *error) {
                         if (completion) {
                             completion(error);
@@ -195,9 +195,32 @@
     }];
 }
 
+- (NSDictionary *)filesForPropertyNamesThatNeedToBeUploaded {
+    NSMutableDictionary *filesForPropertyNamesThatNeedToBeUploaded = [NSMutableDictionary dictionary];
+    NSArray *filesProperties = [[self class] propertiesNamesOfFileClass];
+    for (NSString *filePropertyName in filesProperties) {
+        SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
+        if (file.needsToBeUploaded) {
+            filesForPropertyNamesThatNeedToBeUploaded[filePropertyName] = file;
+        }
+    }
+    return filesForPropertyNamesThatNeedToBeUploaded;
+}
+
+- (id)responseObjectWithFileValuesThatNeedToBeUploaded:(id)responseObject {
+    NSMutableDictionary *responseCopy = [responseObject mutableCopy];
+    [responseCopy setValuesForKeysWithDictionary:[self filesForPropertyNamesThatNeedToBeUploaded]];
+    return responseCopy;
+}
+
+- (void)updateObjectAfterSaveWithDataFromJSONObject:(id)responseObject {
+    id responseObjectWithFileValuesThatNeedToBeUploaded = [self responseObjectWithFileValuesThatNeedToBeUploaded:responseObject];
+    [[SCParseManager sharedSCParseManager] fillObject:self withDataFromJSONObject:responseObjectWithFileValuesThatNeedToBeUploaded];
+}
+
 - (void)saveFilesUsingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
     NSArray *filesProperties = [[self class] propertiesNamesOfFileClass];
-    if (filesProperties.count>0) {
+    if (filesProperties.count > 0) {
         dispatch_group_t filesSaveGroup = dispatch_group_create();
         for (NSString *filePropertyName in filesProperties) {
             SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
