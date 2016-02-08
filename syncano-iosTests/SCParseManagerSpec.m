@@ -9,16 +9,26 @@
 #import "Kiwi.h"
 #import "Syncano.h"
 #import "Book.h"
+#import "Message.h"
+#import "Device.h"
+
 #import "CustomUserProfile.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "SCJSONHelper.h"
+#import "OHPathHelpers.h"
+
+@interface SCRegisterManager (SCParseManagerSpec)
+
++ (NSMutableArray *)registeredClasses;
+
+@end
 
 SPEC_BEGIN(SCParseManagerSpec)
 
 describe(@"SCParseManager", ^{
     
     it(@"should return type name string of provided property name inside provided class", ^{
-        NSString *typeName =  [[SCParseManager sharedSCParseManager] typeOfPropertyNamed:@"author" fromClass:[Book class]];
+        NSString *typeName =  [SCParseManager typeOfPropertyNamed:@"author" fromClass:[Book class]];
         [[typeName should] equal:@"Author"];
     });
     
@@ -40,6 +50,23 @@ describe(@"SCParseManager", ^{
             [[theValue(dataObjects.count) should] equal:theValue(2)];
             Book *book = [dataObjects lastObject];
             [[book.objectId should] equal:@124];
+        });
+        
+        it(@"should parse objects from JSON and resolve relations", ^{
+            NSString* path = OHPathForFile(@"ViewResponse.json",self.class);
+            NSData* content = [NSData dataWithContentsOfFile:path];
+            id JSON = [NSJSONSerialization JSONObjectWithData:content
+                                                      options:NSJSONReadingMutableContainers
+                                                        error:NULL];
+            [Device registerClass];
+            [Message registerClass];
+            NSArray *dataObjects = [[SCParseManager sharedSCParseManager] parsedObjectsOfClass:[Message class] fromJSONObject:JSON[@"objects"]];
+            [[theValue(dataObjects.count) should] equal:theValue(2)];
+            
+            for(Message* msg in dataObjects) {
+                [[msg should] beKindOfClass:[Message class]];
+                [[msg.device should] beKindOfClass:[Device class]];
+            }
         });
         
         it(@"should fill object from JSON NSDictionary", ^{
@@ -71,31 +98,30 @@ describe(@"SCParseManager", ^{
         });
         
         it(@"should register class", ^{
-            SCParseManager *parsemanager = [SCParseManager sharedSCParseManager];
             
-            NSUInteger count = parsemanager.registeredClasses.count;
+            NSUInteger count = SCRegisterManager.registeredClasses.count;
             
-            [parsemanager registerClass:[Book class]];
+            [SCRegisterManager registerClass:[Book class]];
             
-            SCClassRegisterItem *registeredItem = [parsemanager registeredItemForClass:[Book class]];
+            SCClassRegisterItem *registeredItem = [SCRegisterManager registeredItemForClass:[Book class]];
             
             [[registeredItem should] beNonNil];
             [[registeredItem.className should] equal:@"Book"];
             [[registeredItem.classNameForAPI should] equal:@"book"];
             [[registeredItem.properties[@"author"] should] equal:@"Author"];
-            [[theValue(parsemanager.registeredClasses.count) should] equal:theValue(count+1)];
+            [[theValue(SCRegisterManager.registeredClasses.count) should] equal:theValue(count+1)];
         });
         
         it(@"should return realtions for Book class", ^{
-            SCParseManager *parsemanager = [SCParseManager sharedSCParseManager];
-            [parsemanager registerClass:[Book class]];
-            [parsemanager registerClass:[Author class]];
+            [SCRegisterManager registerClass:[Book class]];
+            [SCRegisterManager registerClass:[Author class]];
             
-            NSDictionary *relations = [parsemanager relationsForClass:[Book class]];
+            NSDictionary *relations = [SCRegisterManager relationsForClass:[Book class]];
             
             [[relations should] beNonNil];
             [[relations[@"author"] should] beKindOfClass:[SCClassRegisterItem class]];
         });
+        
     });
     
     context(@"SCUser context", ^{

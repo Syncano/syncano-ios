@@ -9,12 +9,13 @@
 #import "AFNetworking/AFHTTPSessionManager.h"
 #import "SCConstants.h"
 
-@class Syncano;
+@class Syncano, SCRequest;
 
 /**
  *  Base class for API calls
  */
 @interface SCAPIClient : AFHTTPSessionManager
+
 
 /**
  *  Creates API Client for provided Syncano instance
@@ -34,9 +35,9 @@
  *  @param params     NSDictionary with params for request
  *  @param completion SCAPICompletionBlock completion callback block
  *
- *  @return NSURLSessionDataTask object
+ *  @return void
  */
-- (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)GETWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to POST method call
@@ -45,9 +46,9 @@
  *  @param params     NSDictionary with params for request
  *  @param completion SCAPICompletionBlock completion callback block
  *
- *  @return NSURLSessionDataTask object
+ *  @return void
  */
-- (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)POSTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to PUT method call
@@ -56,9 +57,9 @@
  *  @param params     NSDictionary with params for request
  *  @param completion SCAPICompletionBlock completion callback block
  *
- *  @return NSURLSessionDataTask object
+ *  @return void
  */
-- (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)PUTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to PATCH method call
@@ -67,9 +68,9 @@
  *  @param params     NSDictionary with params for request
  *  @param completion SCAPICompletionBlock completion callback block
  *
- *  @return NSURLSessionDataTask object
+ *  @return void
  */
-- (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)PATCHWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to DELETE method call
@@ -80,9 +81,26 @@
  *
  *  @return NSURLSessionDataTask object
  */
+- (void)DELETEWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+
+
+- (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion;
+
+
+- (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+
+- (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+
+- (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+
+- (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+
 - (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 
-- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion;
+@end
 
+@interface SCAPIClient (Reachability)
+- (void)initializeReachabilityManager;
+- (BOOL)reachable;
 @end

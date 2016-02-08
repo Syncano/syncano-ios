@@ -10,7 +10,9 @@
 #import "SCMacros.h"
 #import "SCConstants.h"
 #import "SCPlease.h"
+#import "SCPlease+LocalStorage.h"
 #import "SCDataObject.h"
+#import "SCDataObject+LocalStorage.h"
 #import "SCPredicate.h"
 #import "SCCompoundPredicate.h"
 #import "SCParseManager.h"
@@ -22,8 +24,10 @@
 #import "SCWebhook.h"
 #import "SCChannel.h"
 #import "SCFile.h"
+#import "SCRegisterManager.h"
 
-@class SCAPIClient;
+@class SCAPIClient,SCLocalStore;
+
 /**
  *  Main Syncano Class
  */
@@ -40,6 +44,9 @@
  *  Session CLient to comunicate with API
  */
 @property (nonatomic,retain) SCAPIClient *apiClient;
+
+
++ (SCLocalStore *)localStore;
 
 /**
  *  Initiates Singleton instance of Syncano Class
@@ -81,6 +88,8 @@
  *  @return SCAPIClient object
  */
 + (SCAPIClient *)sharedAPIClient;
+
+
 
 
 /**
@@ -134,6 +143,10 @@
  *  @param completion       completion block
  */
 - (void)validateInstanceOnServerWithCompletion:(SCCompletionBlock)completion;
+
++ (void)enableOfflineStorage;
+
++ (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock;
 
 /**
  *  Initiates Test instance of Syncano Class

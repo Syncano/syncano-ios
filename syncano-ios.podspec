@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "syncano-ios"
-  s.version      = "4.0.6"
+  s.version      = "4.0.7"
   s.summary      = "Library for http://syncano.com API"
 
   s.homepage     = "http://www.syncano.com"
@@ -21,5 +21,6 @@ Pod::Spec.new do |s|
   s.dependency 'AFNetworking', '2.6.3'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'UICKeyChainStore', '~> 2.0'
+  s.dependency 'FMDB', '2.6'
 
 end
