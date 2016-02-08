@@ -17,9 +17,9 @@
 + (void)fetchAllObjectsFromLocalStorageWithCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock;
 
 #pragma mark - Delete -
-- (void)deleteFromLocalStorageWithComplrtion:(SCCompletionBlock)completion;
+- (void)deleteFromLocalStorageWithCompletion:(SCCompletionBlock)completion;
 
 #pragma mark - Helpers -
-- (void)generateInsertQueryWithCompletion:(SCLocalStorageGenereteQueryStringCompletionBlock)completion;
-- (void)generateDeleteQueryWithCompletion:(SCLocalStorageGenereteQueryStringCompletionBlock)completion;
+- (void)generateInsertQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion;
+- (void)generateDeleteQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion;
 @end
