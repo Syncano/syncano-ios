@@ -57,7 +57,7 @@ describe(@"Data object manipulations", ^{
             NSNumber* readersChange = @(12);
             NSNumber* expectedLoversNb = @(book.lovers.integerValue + loversChange.integerValue);
             NSNumber* expectedReadersNb = @(book.readers.integerValue + readersChange.integerValue);
-            [book incrementValues:@{@"lovers":loversChange,@"readers":readersChange} withCompletion:^(NSError *error) {
+            [book incrementKeys:@{@"lovers":loversChange,@"readers":readersChange} withCompletion:^(NSError *error) {
                 _blockFinished = YES;
                 _error = error;
             }];

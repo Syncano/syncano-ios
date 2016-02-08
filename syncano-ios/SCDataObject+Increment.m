@@ -20,11 +20,11 @@
     return [NSError errorWithDomain:SCDataObjectErrorDomain  code:SCErrorCodeDataObjectNonExistingPropertyName userInfo:userInfo];
 }
 
-- (NSDictionary*)buildParametersForIncrementQueryForValues:(NSDictionary<NSString*,NSNumber*>*)values withError:(NSError *__autoreleasing *)error {
+- (NSDictionary*)buildParametersForIncrementQueryForKeys:(NSDictionary<NSString*,NSNumber*>*)keys withError:(NSError *__autoreleasing *)error {
     
     __block NSError* internalError;
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:(values.count+1)];
-    [values enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyName, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:(keys.count+1)];
+    [keys enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyName, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
         if ([[[self class] propertyKeys] containsObject:propertyName]) {
             params[propertyName] = @{@"_increment":value};
         } else {
@@ -43,18 +43,18 @@
     return params;
 }
 
-- (void)fillValues:(NSDictionary<NSString*,NSNumber*>*)values fromResponseObject:(id)responseObject {
-    [values enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyName, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
+- (void)fillKeys:(NSDictionary<NSString*,NSNumber*>*)keys fromResponseObject:(id)responseObject {
+    [keys enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyName, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
         [self setValue:[responseObject valueForKey:propertyName] forKey:propertyName];
     }];
     self.updated_at = [[SCConstants SCDataObjectDatesTransformer] transformedValue:responseObject[@"updated_at"]];
     self.revision = responseObject[@"revision"];
 }
 
-- (void)incrementValues:(NSDictionary<NSString*,NSNumber*>*)values usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
     
     NSError *error = nil;
-    NSDictionary* params = [self buildParametersForIncrementQueryForValues:values withError:&error];
+    NSDictionary* params = [self buildParametersForIncrementQueryForKeys:keys withError:&error];
     
     if(error) {
         if(completion) {
@@ -75,7 +75,7 @@
             return;
         }
         
-        [selfWeak fillValues:values fromResponseObject:responseObject];
+        [selfWeak fillKeys:keys fromResponseObject:responseObject];
         
         if(completion) {
             completion(nil);
