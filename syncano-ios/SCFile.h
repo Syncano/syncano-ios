@@ -20,6 +20,11 @@
 @property (nonatomic,copy) NSURL *fileURL;
 
 /**
+ *  Local path to the file
+ */
+@property (nonatomic,copy) NSURL *storeURL;
+
+/**
  *  NSData representation of a file
  */
 @property (nonatomic,readonly) NSData *data;
@@ -58,5 +63,26 @@
  *  @param completion completion block
  */
 - (void)fetchInBackgroundWithCompletion:(SCFileFetchCompletionBlock)completion;
+
+/**
+ *  Attempts to fetch file from server and store it under given location.
+ *
+ *  @param storePath  Path on disk where file should be stored. You can pass nil here then file will be stored under temporary location.
+ *  @param progress   Progress information block
+ *  @param completion Completion block
+ *
+ *  @return Download task. You can use it f.e. to suspend or resume download.
+ */
+- (NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL* )storePath withProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion;
+
+/**
+ *  Attempts to fetch file from server and store it under self.storeURL location.
+ *
+ *  @param progress   Progress information block
+ *  @param completion Completion block
+ *
+ *  @return Download task. You can use it f.e. to suspend or resume download.
+ */
+- (NSURLSessionDownloadTask *)fetchToFileInBackgroundWithProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion;
 
 @end

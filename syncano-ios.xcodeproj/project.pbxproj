@@ -143,6 +143,7 @@
 		3A822952B9060FB5C5A84B79 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
 		A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */; };
 		A6750F3C1C57A14D004956C3 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = A6750F3B1C57A14D004956C3 /* Device.m */; };
+		A697A62D1C5F61DE00D245F3 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		A697A63C1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A697A63B1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m */; };
 		A697A63D1C61F7A700D245F3 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C3D1ACEDF3600134A39 /* Author.m */; };
 		A697A63E1C61F7AA00D245F3 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
@@ -155,6 +156,7 @@
 		A6BCC8FD1C56B4BB008A0B0A /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */; };
 		A6CC63651C58B24E005E0132 /* SCCompoundPredicateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */; };
 		A6DEC5671C51186500BEA5B1 /* CustomResponse in Resources */ = {isa = PBXBuildFile; fileRef = A6DEC5661C51186500BEA5B1 /* CustomResponse */; };
+		A6FE12061C68BE3D00DAB682 /* FileFetchSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FE12041C68BE2900DAB682 /* FileFetchSpec.m */; };
 		BCF3ED888B793EDC1D3CDF7C /* libPods-Syncano.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4CFA00F7439CD53B66BA0C /* libPods-Syncano.a */; };
 /* End PBXBuildFile section */
 
@@ -341,6 +343,7 @@
 		A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
 		A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCompoundPredicateSpec.m; sourceTree = "<group>"; };
 		A6DEC5661C51186500BEA5B1 /* CustomResponse */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CustomResponse; sourceTree = "<group>"; };
+		A6FE12041C68BE2900DAB682 /* FileFetchSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileFetchSpec.m; sourceTree = "<group>"; };
 		D01A526E13B6B610161B50E3 /* Pods-Syncano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Syncano.release.xcconfig"; path = "Pods/Target Support Files/Pods-Syncano/Pods-Syncano.release.xcconfig"; sourceTree = "<group>"; };
 		D7CE1A39DC740EAB8C3D94D6 /* Pods-syncano-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-iosTests/Pods-syncano-iosTests.release.xcconfig"; sourceTree = "<group>"; };
 		D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-IntegrationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -694,6 +697,7 @@
 		11E35B0B1C4F82740092E0A9 /* SyncanoIntegrationTests */ = {
 			isa = PBXGroup;
 			children = (
+				A6FE12041C68BE2900DAB682 /* FileFetchSpec.m */,
 				11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */,
 				1183F7181C573BE90053673F /* OfflineStorageSpec.m */,
 				A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */,
@@ -1168,9 +1172,11 @@
 				A697A63E1C61F7AA00D245F3 /* Book.m in Sources */,
 				1183F7191C573BE90053673F /* OfflineStorageSpec.m in Sources */,
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
+				A697A62D1C5F61DE00D245F3 /* (null) in Sources */,
 				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
 				A697A63D1C61F7A700D245F3 /* Author.m in Sources */,
 				A697A63C1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m in Sources */,
+				A6FE12061C68BE3D00DAB682 /* FileFetchSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
