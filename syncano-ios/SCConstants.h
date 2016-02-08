@@ -28,6 +28,7 @@ typedef void (^SCFileDownloadProgressCompletionBlock)(NSURLSessionDownloadTask *
 typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *error);
 typedef void (^SCFindRequestsCompletionBlock)(NSArray *objects, NSError *error);
 typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString *description);
+typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError *error, NSString* query);
 
 
 extern NSString * const SCDataObjectErrorDomain;

@@ -24,11 +24,23 @@
     [[Syncano localStore] fetchAllObjectsOfClass:[self class] withCompletionBlock:completionBlock];
 }
 
+#pragma mark - Delete -
+- (void)deleteFromLocalStorageWithCompletion:(SCCompletionBlock)completion {
+    [[Syncano localStore] deleteDataObject:self withCompletionBlock:completion];
+}
+
 #pragma mark - Helpers -
-- (void)generateInsertQueryWithCompletion:(void(^)(NSError *error, NSString* query))completion {
+- (void)generateInsertQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion {
     NSString *insertQuery = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (className, objectId,json) VALUES ('%@',%@,'%@');",kDatabaseName,NSStringFromClass([self class]),self.objectId,[self stringRepresentation]];
     if (completion) {
         completion(nil,insertQuery);
+    }
+}
+
+- (void)generateDeleteQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion {
+    NSString *deleteQuery = [NSString stringWithFormat:@"DELETE FROM %@ WHERE className = %@ AND objectId = %@",kDatabaseName,NSStringFromClass([self class]),self.objectId];
+    if (completion) {
+        completion(nil,deleteQuery);
     }
 }
 
