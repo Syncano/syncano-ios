@@ -39,6 +39,18 @@
     }];
 }
 
+- (void)deleteDataObject:(SCDataObject *)dataObject withCompletionBlock:(SCCompletionBlock)completionBlock {
+    [dataObject generateDeleteQueryWithCompletion:^(NSError *error, NSString *query) {
+        if (error) {
+            [self handleError:error forCompletionBlock:completionBlock];
+        } else {
+            [self executeUpdateWithQuery:query withCompletionBlock:^(NSError *error) {
+                [self handleError:error forCompletionBlock:completionBlock];
+            }];
+        }
+    }];
+}
+
 - (void)fetchAllObjectsOfClass:(Class)objectClass withCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock {
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE className = '%@'",kDatabaseName,NSStringFromClass(objectClass)];
     NSMutableArray *resultObjects = [NSMutableArray new];

@@ -13,9 +13,13 @@
 #pragma mark - Saving -
 - (void)saveToLocalStorageWithCompletion:(SCCompletionBlock)completion;
 
-
+#pragma mark - Fetch -
 + (void)fetchAllObjectsFromLocalStorageWithCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock;
 
+#pragma mark - Delete -
+- (void)deleteFromLocalStorageWithComplrtion:(SCCompletionBlock)completion;
+
 #pragma mark - Helpers -
-- (void)generateInsertQueryWithCompletion:(void(^)(NSError *error, NSString* query))completion;
+- (void)generateInsertQueryWithCompletion:(SCLocalStorageGenereteQueryStringCompletionBlock)completion;
+- (void)generateDeleteQueryWithCompletion:(SCLocalStorageGenereteQueryStringCompletionBlock)completion;
 @end
