@@ -20,7 +20,7 @@
     return [NSError errorWithDomain:SCDataObjectErrorDomain  code:SCErrorCodeDataObjectNonExistingPropertyName userInfo:userInfo];
 }
 
-- (NSDictionary*)buildParametrsForIncrementQueryForValues:(NSDictionary<NSString*,NSNumber*>*)values withError:(NSError *__autoreleasing *)error {
+- (NSDictionary*)buildParametersForIncrementQueryForValues:(NSDictionary<NSString*,NSNumber*>*)values withError:(NSError *__autoreleasing *)error {
     
     __block NSError* internalError;
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:(values.count+1)];
@@ -47,14 +47,14 @@
     [values enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull propertyName, NSNumber * _Nonnull value, BOOL * _Nonnull stop) {
         [self setValue:[responseObject valueForKey:propertyName] forKey:propertyName];
     }];
-    self.updated_at = responseObject[@"updated_at"];
+    self.updated_at = [[SCConstants SCDataObjectDatesTransformer] transformedValue:responseObject[@"updated_at"]];
     self.revision = responseObject[@"revision"];
 }
 
 - (void)incrementValues:(NSDictionary<NSString*,NSNumber*>*)values usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
     
     NSError *error = nil;
-    NSDictionary* params = [self buildParametrsForIncrementQueryForValues:values withError:&error];
+    NSDictionary* params = [self buildParametersForIncrementQueryForValues:values withError:&error];
     
     if(error) {
         if(completion) {

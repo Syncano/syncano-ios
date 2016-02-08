@@ -10,10 +10,6 @@
 #import "Syncano.h"
 #import "Book.h"
 
-#define TestNeedsToWaitForBlock() __block BOOL blockFinished = NO
-#define BlockFinished() blockFinished = YES
-#define WaitForBlock() while (CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0, true) && !blockFinished)
-
 SPEC_BEGIN(DataObjectManipulationsSpec)
 
 describe(@"Data object manipulations", ^{
@@ -22,10 +18,10 @@ describe(@"Data object manipulations", ^{
     NSString *apiKey = environment[@"API_KEY"];
     NSString *instanceName = environment[@"INSTANCE_NAME"];
     
-    [Syncano sharedInstanceWithApiKey:apiKey instanceName:instanceName];
-    
     __block Book* book;
     beforeAll(^{
+        [Syncano sharedInstanceWithApiKey:apiKey instanceName:instanceName];
+        
         __block BOOL _blockFinished;
         __block NSError *_error;
         [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
@@ -57,9 +53,11 @@ describe(@"Data object manipulations", ^{
         it(@"should increment many values", ^{
             __block BOOL _blockFinished;
             __block NSError *_error;
-            NSNumber* expectedLoversNb = @(book.lovers.integerValue - 1);
-            NSNumber* expectedReadersNb = @(book.readers.integerValue + 12);
-            [book incrementValues:@{@"lovers":@(-1),@"readers":@12} withCompletion:^(NSError *error) {
+            NSNumber* loversChange = @(-1);
+            NSNumber* readersChange = @(12);
+            NSNumber* expectedLoversNb = @(book.lovers.integerValue + loversChange.integerValue);
+            NSNumber* expectedReadersNb = @(book.readers.integerValue + readersChange.integerValue);
+            [book incrementValues:@{@"lovers":loversChange,@"readers":readersChange} withCompletion:^(NSError *error) {
                 _blockFinished = YES;
                 _error = error;
             }];
@@ -74,7 +72,7 @@ describe(@"Data object manipulations", ^{
         it(@"should error on unknown property", ^{
             __block BOOL _blockFinished;
             __block NSError *_error;
-            [book incrementKey:@"haters" by:@1 withCompletion:^(NSError *error) {
+            [book incrementKey:@"haters" by:@(1) withCompletion:^(NSError *error) {
                 _blockFinished = YES;
                 _error = error;
             }];
