@@ -79,7 +79,7 @@ describe(@"SCFile", ^{
                          withProgress:^(NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
                              _reportedDownloadTask = downloadTask;
                              _bytesWritten = totalBytesWritten;
-        } completion:^(NSURLResponse *response, NSError *error) {
+        } completion:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
             _blockFinished = YES;
         }];
         if([[NSFileManager defaultManager] isWritableFileAtPath:storePathDocuments.path]) {

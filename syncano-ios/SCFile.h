@@ -62,6 +62,7 @@
 /**
  *  Attempts to fetch file from server and store it under given location.
  *
+ *  @param storePath  Path on disk where file should be stored. You can pass nil here then file will be stored under temporary location.
  *  @param progress   Progress information block
  *  @param completion Completion block
  *
@@ -70,7 +71,7 @@
 - (NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL* )storePath withProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion;
 
 /**
- *  Attempts to fetch file from server and store it under self.storageURL location.
+ *  Attempts to fetch file from server and store it under self.storeURL location.
  *
  *  @param progress   Progress information block
  *  @param completion Completion block

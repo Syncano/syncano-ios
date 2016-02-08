@@ -46,6 +46,10 @@
     return [NSDictionary mtl_identityPropertyMapWithModel:[self class]];
 }
 
+- (NSURL*)temporaryStoreURL {
+    NSString* fileName = [self.fileURL lastPathComponent];
+    return [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:fileName]];
+}
 
 - (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject withCompletion:(SCCompletionBlock)completion {
     [self saveAsPropertyWithName:name ofDataObject:dataObject usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
@@ -93,9 +97,15 @@
     return [self fetchToFileInBackground:self.storeURL withProgress:progress completion:completion];
 }
 
-- (NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL* )storePath withProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion {
+- (NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL *)storePath withProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion {
     self.storeURL = storePath;
-    return [SCAPIClient downloadFileFromURL:self.fileURL andSaveToPath:storePath withProgress:progress withCompletion:completion];
+    if(self.storeURL == nil) {
+        self.storeURL = [self temporaryStoreURL];
+    }
+    __weak typeof(self) selfWeak = self;
+    return [SCAPIClient downloadFileFromURL:self.fileURL andSaveToPath:self.storeURL withProgress:progress withCompletion:^(id responseObject, NSError *error) {
+        completion(responseObject,selfWeak.storeURL,error);
+    }];
 }
 
 @end

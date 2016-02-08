@@ -28,6 +28,9 @@ NSString* (^md5FromNSData) (NSData *) = ^NSString* (NSData *data) {
     return output;
 };
 
+static const NSString* const kFileMD5Sum = @"0c64a3389d3235ac345c528b3f3875b5";
+static const NSInteger kFileSize = 24516040;
+
 describe(@"File fetch", ^{
     
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
@@ -36,45 +39,79 @@ describe(@"File fetch", ^{
     
     beforeAll(^{
         [Syncano sharedInstanceWithApiKey:apiKey instanceName:instanceName];
+        
     });
     
-    it(@"download a file to disk", ^{
+    __block Book* _book;
+    
+    it(@"Needs object",^{
+        __block BOOL _blockFinished;
+        __block NSError* _error;
+        [[Book please] giveMeDataObjectsWithPredicate:[SCPredicate whereKey:@"id" isEqualToNumber:@(8)] parameters:nil completion:^(NSArray *objects, NSError *error) {
+            _blockFinished = YES;
+            _error = error;
+            _book = objects.firstObject;
+        }];
+        [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
+        [[_error should] beNil];
+        [[_book shouldNot] beNil];
+        
+    });
+    
+    it(@"downloads a file to temporary location", ^{
+        __block BOOL _blockFinished;
+        __block NSError* _error;
+        __block int64_t _bytesWritten = 0;
+        __block NSURL* _filePath;
+        
+        [_book.content fetchToFileInBackgroundWithProgress:^(NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+            _bytesWritten = totalBytesWritten;
+        } completion:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+            _error = error;
+            _blockFinished = YES;
+            _filePath = filePath;
+        }];
+        [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(30.0)] beYes];
+        if(_error.code != -999) {//xctool write to path error workaround
+            [[_error should] beNil];
+            NSData* content = [NSData dataWithContentsOfURL:_filePath];
+            [[content shouldNot] beNil];
+            [[md5FromNSData(content) should] equal:kFileMD5Sum];
+            [[theValue(_bytesWritten) should] equal:theValue(kFileSize)];
+            [[NSFileManager defaultManager] removeItemAtURL:_filePath error:NULL];
+        }
+    });
+
+    
+    it(@"downloads a file to disk", ^{
         NSURL *storePathDocuments = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
         NSURL *storePath = [storePathDocuments URLByAppendingPathComponent:@"saabManual.pdf"];
         
         __block BOOL _blockFinished;
-        __block NSError* _errorPlease;
-        __block NSError* _errorFile;
+        __block NSError* _error;
         __block int64_t _bytesWritten = 0;
-        __block Book* _book;
-        [[Book please] giveMeDataObjectsWithPredicate:[SCPredicate whereKey:@"id" isEqualToNumber:@(8)] parameters:nil completion:^(NSArray *objects, NSError *error) {
-            if(error) {
-                _errorPlease = error;
-                _blockFinished = YES;
-                return;
-            }
-            
-            _book = objects[0];
-            _book.content.storeURL = storePath;
-            [_book.content fetchToFileInBackgroundWithProgress:^(NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-                _bytesWritten = totalBytesWritten;
-                NSLog(@"%lld",totalBytesWritten);
-            } completion:^(NSURLResponse *response, NSError *error) {
-                _errorFile = error;
-                _blockFinished = YES;
-            }];
+        __block NSURL* _filePath;
+        
+        _book.content.storeURL = storePath;
+        [_book.content fetchToFileInBackgroundWithProgress:^(NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+            _bytesWritten = totalBytesWritten;
+        } completion:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+            _error = error;
+            _blockFinished = YES;
+            _filePath = filePath;
         }];
-        if([[NSFileManager defaultManager] isWritableFileAtPath:storePathDocuments.path]) {
-            [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(30.0)] beYes];
-            [[_errorPlease should] beNil];
-            [[_errorFile should] beNil];
-            [[_book shouldNot] beNil];
+        [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(30.0)] beYes];
+        if(_error.code != -999) {//xctool write to path error workaround
+            [[_error should] beNil];
+            [[_filePath should] equal:_book.content.storeURL];
             NSData* content = [NSData dataWithContentsOfURL:storePath];
-            [[md5FromNSData(content) should] equal:@"0c64a3389d3235ac345c528b3f3875b5"];
-            [[theValue(_bytesWritten) should] equal:theValue(24516040)];
+            [[content shouldNot] beNil];
+            [[md5FromNSData(content) should] equal:kFileMD5Sum];
+            [[theValue(_bytesWritten) should] equal:theValue(kFileSize)];
             [[NSFileManager defaultManager] removeItemAtURL:storePath error:NULL];
         }
     });
+    
 });
 
 SPEC_END
