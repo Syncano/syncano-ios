@@ -16,30 +16,31 @@ SPEC_BEGIN(DataObjectRevisionMismatch)
 describe(@"DataObjectRevisionMismatch", ^{
     
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-    NSString *apikey = environment[@"API_KEY"];
+    NSString *apiKey = environment[@"API_KEY"];
     NSString *instanceName = environment[@"INSTANCE_NAME"];
     
     beforeAll(^{
-        [Syncano sharedInstanceWithApiKey:apikey instanceName:instanceName];
+        [Syncano sharedInstanceWithApiKey:apiKey instanceName:instanceName];
     });
     
     context(@"data object revision check", ^{
         
         it(@"should rise mismatch error", ^{
-            __block NSError *_error;
+            __block Book *_book;
+            __block NSError *_fetchError;
+            __block NSError *_saveError;
             __block BOOL _blockFinished;
             __block BOOL _mismatched;
             __block NSString *_mismatchDescription;
 
-            //Getting books from API
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
-                Book *_book = [objects firstObject];
-                // Savig first of them
-                
+                _fetchError = error;
+
+                _book = [objects firstObject];
                 _book.revision = @(_book.revision.integerValue - 1);
                 
                 [_book saveWithCompletionBlock:^(NSError *error) {
-                    _error = error;
+                    _saveError = error;
                     if(error){
                         NSLog(@"error: %@",error);
                     }
@@ -50,23 +51,27 @@ describe(@"DataObjectRevisionMismatch", ^{
                 }];
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
-            [[_error should] beNonNil];
+            [[_fetchError should] beNil];
+            [[_book should] beNonNil];
+            [[_saveError should] beNonNil];
             [[theValue(_mismatched) should] beYes];
             [[_mismatchDescription should] beNonNil];
 
         });
         it(@"should pass", ^{
-            __block NSError *_error;
+            __block Book *_book;
+            __block NSError *_fetchError;
+            __block NSError *_saveError;
             __block BOOL _blockFinished;
             __block BOOL _mismatched;
             __block NSString *_mismatchDescription;
             
-            //Getting books from API
+            
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
-                Book *_book = [objects firstObject];
-
+                _fetchError = error;
+                _book = [objects firstObject];
                 [_book saveWithCompletionBlock:^(NSError *error) {
-                    _error = error;
+                    _saveError = error;
                     if(error){
                         NSLog(@"error: %@",error);
                     }
@@ -77,7 +82,9 @@ describe(@"DataObjectRevisionMismatch", ^{
                 }];
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
-            [[_error should] beNil];
+            [[_fetchError should] beNil];
+            [[_book should] beNonNil];
+            [[_saveError should] beNil];
             [[theValue(_mismatched) should] beNo];
             [[_mismatchDescription should] beNil];
         });
