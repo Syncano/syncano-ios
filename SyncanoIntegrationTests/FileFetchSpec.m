@@ -72,14 +72,12 @@ describe(@"File fetch", ^{
             _filePath = filePath;
         }];
         [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(30.0)] beYes];
-        if(_error.code != -999) {//xctool write to path error workaround
-            [[_error should] beNil];
-            NSData* content = [NSData dataWithContentsOfURL:_filePath];
-            [[content shouldNot] beNil];
-            [[md5FromNSData(content) should] equal:kFileMD5Sum];
-            [[theValue(_bytesWritten) should] equal:theValue(kFileSize)];
-            [[NSFileManager defaultManager] removeItemAtURL:_filePath error:NULL];
-        }
+        [[_error should] beNil];
+        NSData* content = [NSData dataWithContentsOfURL:_filePath];
+        [[content shouldNot] beNil];
+        [[md5FromNSData(content) should] equal:kFileMD5Sum];
+        [[theValue(_bytesWritten) should] equal:theValue(kFileSize)];
+        [[NSFileManager defaultManager] removeItemAtURL:_filePath error:NULL];
     });
 
     
@@ -101,15 +99,13 @@ describe(@"File fetch", ^{
             _filePath = filePath;
         }];
         [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(30.0)] beYes];
-        if(_error.code != -999) {//xctool write to path error workaround
-            [[_error should] beNil];
-            [[_filePath should] equal:_book.content.storeURL];
-            NSData* content = [NSData dataWithContentsOfURL:storePath];
-            [[content shouldNot] beNil];
-            [[md5FromNSData(content) should] equal:kFileMD5Sum];
-            [[theValue(_bytesWritten) should] equal:theValue(kFileSize)];
-            [[NSFileManager defaultManager] removeItemAtURL:storePath error:NULL];
-        }
+        [[_error should] beNil];
+        [[_filePath should] equal:_book.content.storeURL];
+        NSData* content = [NSData dataWithContentsOfURL:storePath];
+        [[content shouldNot] beNil];
+        [[md5FromNSData(content) should] equal:kFileMD5Sum];
+        [[theValue(_bytesWritten) should] equal:theValue(kFileSize)];
+        [[NSFileManager defaultManager] removeItemAtURL:storePath error:NULL];
     });
     
 });
