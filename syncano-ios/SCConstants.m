@@ -34,7 +34,7 @@ NSString * const kDatabaseName = @"SyncanoDataObjects";
 
 NSString * const kSyncanoResponseErrorKey = @"com.Syncano.response.error";
 
-NSString * const kSCCertificateFileName = @"certfile.der"
+NSString * const kSCCertificateFileName = @"certfile.der";
 
 @implementation SCConstants
 
