@@ -96,6 +96,7 @@ typedef NS_ENUM(NSUInteger, SCChannelNotificationMessageAction) {
 
 typedef NS_ENUM(NSUInteger, SCErrorCode) {
     SCErrorCodeDataObjectWrongParentClass = 1,
+    SCErrorCodeDataObjectNonExistingPropertyName = 2,
 };
 
 
