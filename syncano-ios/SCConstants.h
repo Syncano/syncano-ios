@@ -55,6 +55,7 @@ extern NSString * const kSCChannelNotificationMessageActionDelete;
 
 extern NSString * const kSyncanoResponseErrorKey;
 
+extern NSString * const kSCCertificateFileName;
 
 extern NSString * const kExpectedRevisionRequestParam;
 extern NSString * const kRevisionMismatchResponseError;
