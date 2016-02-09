@@ -14,6 +14,7 @@
 #import "SCPlease.h"
 #import "SCPleaseForView.h"
 #import "SCDataObject+Properties.h"
+#import "SCDataObject+Increment.h"
 #import "SCRegisterManager.h"
 #import "NSError+RevisionMismatch.h"
 
@@ -344,4 +345,38 @@
         }
     }
 }
+
+#pragma mark - increment
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(SCCompletionBlock)completion {
+    [self incrementKeys:@{key:value} withCompletion:completion];
+}
+
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
+    [self incrementKeys:@{key:value} inSyncano:syncano withCompletion:completion];
+}
+
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self incrementKeys:@{key:value} withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self incrementKeys:@{key:value} inSyncano:syncano withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys withCompletion:(SCCompletionBlock)completion {
+    [self incrementKeys:keys usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
+    [self incrementKeys:keys usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self incrementKeys:keys usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self incrementKeys:keys usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
 @end

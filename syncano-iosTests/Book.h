@@ -17,4 +17,8 @@
 @property (nonatomic, copy) SCFile *cover;
 @property (nonatomic, copy) SCFile *content;
 @property (nonatomic,copy) Author *author;
+
+@property (nonatomic,copy) NSNumber *lovers;
+@property (nonatomic,copy) NSNumber *readers;
+
 @end
