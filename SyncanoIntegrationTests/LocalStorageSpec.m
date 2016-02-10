@@ -11,9 +11,9 @@
 #import "SCFileManager.h"
 #import "Book.h"
 
-SPEC_BEGIN(OfflineStorage)
+SPEC_BEGIN(LocalStorageSpec)
 
-describe(@"OfflineStorage", ^{
+describe(@"LocalStorageSpec", ^{
     
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
     NSString *apikey = environment[@"API_KEY"];
@@ -26,7 +26,7 @@ describe(@"OfflineStorage", ^{
 
     });
     
-    context(@"save data object", ^{
+    context(@"data object", ^{
         it(@"should save data object locally", ^{
             __block NSError *_error;
             __block BOOL _blockFinished;
@@ -66,6 +66,48 @@ describe(@"OfflineStorage", ^{
             [[_bookNumOfPages should] equal:_storedBook.numOfPages];
 
 
+        });
+        
+        it(@"should delete datat object", ^{
+            __block NSError *_fetchError;
+            __block NSError *_saveError;
+            __block NSError *_deleteError;
+            
+            __block BOOL _blockFinished;
+            __block Book *_book;
+            __block Book *_storedBook;
+            __block NSNumber *_bookId;
+
+            
+            //Getting books from API
+            [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
+                _fetchError = error;
+                _book = [objects firstObject];
+                _bookId = _book.objectId;
+                // Savig first of them
+                [_book saveToLocalStorageWithCompletion:^(NSError *error) {
+                    _saveError = error;
+                    if(error){
+                        NSLog(@"error: %@",error);
+                    }
+                    
+                    [_book deleteFromLocalStorageWithCompletion:^(NSError *error) {
+                        _deleteError = error;
+                        // Getting this book from local storage
+                        SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
+                        [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
+                            _storedBook = [objects firstObject];
+                            _blockFinished = YES;
+                        }];
+                    }];
+                }];
+            }];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
+            [[_fetchError should] beNil];
+            [[_saveError should] beNil];
+            [[_deleteError should] beNil];
+            [[_book should] beNonNil];
+            [[_storedBook should] beNil];
         });
     });
     

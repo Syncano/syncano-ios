@@ -38,7 +38,7 @@
 }
 
 - (void)generateDeleteQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion {
-    NSString *deleteQuery = [NSString stringWithFormat:@"DELETE FROM %@ WHERE className = %@ AND objectId = %@",kDatabaseName,NSStringFromClass([self class]),self.objectId];
+    NSString *deleteQuery = [NSString stringWithFormat:@"DELETE FROM %@ WHERE className = '%@' AND objectId = %@",kDatabaseName,NSStringFromClass([self class]),self.objectId];
     if (completion) {
         completion(nil,deleteQuery);
     }
