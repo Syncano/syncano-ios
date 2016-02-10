@@ -83,7 +83,7 @@
                 _data = [[NSData alloc] initWithData:responseObject];
             }
             if (completion) {
-                completion(self.data,nil);
+                completion(responseObject,nil);
             }
         }
     }];
