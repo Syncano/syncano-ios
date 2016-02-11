@@ -19,7 +19,7 @@ extern NSString *const SCPleaseParameterFields;
 extern NSString *const SCPleaseParameterExcludedFields;
 extern NSString *const SCPleaseParameterPageSize;
 extern NSString *const SCPleaseParameterOrderBy;
-extern NSString *const SCPleaseParameterIncludeKeys;
+extern NSString *const SCPleaseParameterIncludeCount;
 
 
 /**
@@ -31,6 +31,11 @@ extern NSString *const SCPleaseParameterIncludeKeys;
  *  Syncano instance on which queries are made
  */
 @property (nonatomic,assign) Syncano *syncano;
+
+/**
+ *  Connected SCDataObject Class
+ */
+@property (nonatomic,assign) Class dataObjectClass;
 
 /**
  *  Initializes new empty SCPlease object for provided SCDataObject class

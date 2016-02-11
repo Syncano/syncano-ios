@@ -42,6 +42,15 @@
 + (NSString *)classNameForAPI;
 
 /**
+ *  Returns view name used in Syncano API, by default this method returns nil.
+ *  Use it when you want to create a class which is always fetched using a view.
+ *  When you set viewNameForAPI, [YourClass please] will target queries to the view instead of raw class.
+ *
+ *  @return string with API class name
+ */
++ (NSString *)viewNameForAPI;
+
+/**
  *  Return custom property mapping between iOS class an API class
  *
  *  @return NSDictionary with 'key' of iOS class property name and 'value' with coresponding API class name
@@ -63,6 +72,25 @@
  *  @return SCPlease instance
  */
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
+
+/**
+ *  Returns SCPlease instance for singleton Syncano
+ *
+ *  @param viewName Name of Data Object View
+ *
+ *  @return SCPlease instance
+ */
++ (SCPlease *)pleaseForView:(NSString*)viewName;
+
+/**
+ *  Returns SCPlease instance for provided Syncano instance
+ *
+ *  @param viewName Name of Data Object View
+ *  @param syncano Syncano instance which SCPlease will be using to query objects from
+ *
+ *  @return SCPlease instance
+ */
++ (SCPlease *)pleaseForView:(NSString*)viewName fromSyncano:(Syncano *)syncano;
 
 /**
  *  Registers class in SCParseManager for proper model parsing.
@@ -95,6 +123,13 @@
  */
 - (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
 
+
+- (void)saveWithCompletionBlock:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+- (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+
+
 /**
  *  Fetches object from API using singleton Syncano instance
  *
@@ -116,4 +151,84 @@
 - (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion;
 - (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
 - (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion;
+
+- (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+/**
+ *  Increments NSNumber* property of given key by given value.
+ *
+ *  @param key        property name of the class
+ *  @param value      can be positive (increment) or negative value (decrement)
+ *  @param completion completion block
+ */
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(SCCompletionBlock)completion;
+
+/**
+ *  Increments NSNumber* property of given key by given value.
+ *
+ *  @param key        property name of the class
+ *  @param value      can be positive (increment) or negative value (decrement)
+ *  @param syncano    provided Syncano instance
+ *  @param completion completion block
+ */
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+
+/**
+ *  Increments NSNumber* property of given key by given value.
+ *
+ *  @param key                   property name of the class
+ *  @param value                 can be positive (increment) or negative value (decrement)
+ *  @param completion            completion block
+ *  @param revisionMismatchBlock revision mismatch block
+ */
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+/**
+ *  Increments NSNumber* property of given key by given value.
+ *
+ *  @param key                   property name of the class
+ *  @param value                 can be positive (increment) or negative value (decrement)
+ *  @param syncano               provided Syncano instance
+ *  @param completion            completion block
+ *  @param revisionMismatchBlock revision mismatch block
+ */
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+/**
+ *  Increments properties of given keys by given values.
+ *
+ *  @param keys     Dictionary of properties which values should be increased. Key of the dictionary is a property name. Example: @{@"downloads":@(1),@"items":@(-1)}
+ *  @param completion completion block
+ */
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys withCompletion:(SCCompletionBlock)completion;
+
+/**
+ *  Increments properties of given keys by given values.
+ *
+ *  @param keys     Dictionary of properties which values should be increased. Key of the dictionary is a property name. Example: @{@"downloads":@(1),@"items":@(-1)}
+ *  @param syncano    provided Syncano instance
+ *  @param completion completion block
+ */
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+
+/**
+ *  Increments properties of given keys by given values.
+ *
+ *  @param keys                Dictionary of properties which values should be increased. Key of the dictionary is a property name. Example: @{@"downloads":@(1),@"items":@(-1)}
+ *  @param completion            completion block
+ *  @param revisionMismatchBlock revision mismatch block
+ */
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+/**
+ *  Increments properties of given keys by given values.
+ *
+ *  @param keys                Dictionary of properties which values should be increased. Key of the dictionary is a property name. Example: @{@"downloads":@(1),@"items":@(-1)}
+ *  @param syncano               provided Syncano instance
+ *  @param completion            completion block
+ *  @param revisionMismatchBlock revision mismatch block
+ */
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 @end

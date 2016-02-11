@@ -82,7 +82,7 @@ static id _currentUser;
 
 + (void)loginWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
     NSDictionary *params = @{@"username" : username , @"password" : password};
-    [apiClient postTaskWithPath:@"user/auth/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient POSTWithPath:@"user/auth/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             completion(error);
         } else {
@@ -103,7 +103,7 @@ static id _currentUser;
 + (void)registerWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
     //TODO: validate if username and password are not empty or maybe leave it to API :)
     NSDictionary *params = @{@"username" : username , @"password" : password};
-    [apiClient postTaskWithPath:@"users/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient POSTWithPath:@"users/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             completion(error);
         } else {
@@ -124,7 +124,7 @@ static id _currentUser;
 + (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
     [apiClient setSocialAuthTokenKey:authToken];
     NSString *path = [NSString stringWithFormat:@"user/auth/%@/", [SCConstants socialAuthenticationBackendToString:backend]];
-    [apiClient postTaskWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient POSTWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             completion(error);
         } else {
@@ -176,7 +176,7 @@ static id _currentUser;
         [params setObject:password forKey:@"password"];
     }
     NSString *path = @"user/";
-    [apiClient patchTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient PATCHWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         completion(error);
     }];
 

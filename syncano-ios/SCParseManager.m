@@ -20,14 +20,50 @@
 
 SINGLETON_IMPL_FOR_CLASS(SCParseManager)
 
-- (NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class
+/**
+ Pass mangled class name from Swift and extract demangled one - in format of Namespace.Classname
+ */
++ (NSString *)demangleClassName:(NSString *)mangled {
+    NSScanner *scanner = [[NSScanner alloc] initWithString:mangled];
+    scanner.scanLocation = 0;
+    if (![scanner scanString:@"_TtC" intoString:nil]) {
+        // not a mangled swift class name: Core Foundation, etc. have no module prefix
+        return mangled;
+    }
+    NSMutableString *demangled = [NSMutableString new];
+    NSInteger length = 0;
+    
+    while(!scanner.atEnd && [scanner scanInteger:&length]) {
+        NSRange range = NSMakeRange(scanner.scanLocation, length);
+        NSString *part = [mangled substringWithRange:range];
+        if (demangled.length > 0) {
+            [demangled appendString:@"."];
+        }
+        [demangled appendString:part];
+        scanner.scanLocation += length;
+    }
+    return [demangled copy];
+}
+
+/**
+ Gets class name from demangled name - extracts Classname from Namespace.Classname format
+ */
++ (NSString *)classNameFromDemangledName:(NSString *)demangledName {
+    if ([demangledName rangeOfString:@"."].location != NSNotFound) {
+        demangledName = [demangledName componentsSeparatedByString:@"."].lastObject;
+    }
+    return demangledName;
+}
+
++ (NSString *)typeOfPropertyNamed:(NSString *)name fromClass:(__unsafe_unretained Class)aClass
 {
-    objc_property_t property = class_getProperty( class, [name UTF8String] );
+    objc_property_t property = class_getProperty( aClass, [name UTF8String] );
     if ( property == NULL )
         return ( NULL );
     NSString *typeName = [NSString stringWithUTF8String:property_getTypeString(property)];
     typeName = [typeName stringByReplacingOccurrencesOfString:@"T@\"" withString:@""];
     typeName = [typeName stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    typeName = [self classNameFromDemangledName:[self demangleClassName:typeName]];
     return typeName;
 }
 

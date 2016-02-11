@@ -11,39 +11,46 @@
 #import <objc/runtime.h>
 #import "SCFile.h"
 #import "SCDataObject+Properties.h"
-
-@implementation SCClassRegisterItem
-@end
+#import "SCRegisterManager.h"
 
 @implementation SCParseManager (SCDataObject)
 
-- (void)setRegisteredClasses:(NSMutableArray *)registeredClasses {
-    objc_setAssociatedObject(self, @selector(registeredClasses), registeredClasses, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSMutableArray *)registeredClasses {
-    return objc_getAssociatedObject(self, @selector(registeredClasses));
-}
-
 - (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
-    //TODO change to send error
-    NSError *error;
-    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:&error];
+    id parsedobject = [MTLJSONAdapter modelOfClass:objectClass fromJSONDictionary:JSONObject error:NULL];
+    if(parsedobject == nil) {
+        return parsedobject;//possible error in parsing
+    }
+    
     [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
     [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
     return parsedobject;
 }
 
+- (id)relatedObjectOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)JSONObject {
+    if(JSONObject[@"id"] != nil) {
+        //object is downloaded
+        return [self parsedObjectOfClass:objectClass fromJSONObject:JSONObject];
+    }
+    
+    NSNumber *relatedObjectId = JSONObject[@"value"];
+    if (relatedObjectId) {
+        //we have only id
+        id relatedObject = [[objectClass alloc] init];
+        [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+        return relatedObject;
+    }
+    
+    return nil;
+}
+
 - (void)resolveRelationsToObject:(id)parsedObject withJSONObject:(id)JSONObject {
-    NSDictionary *relations = [self relationsForClass:[parsedObject class]];
+    NSDictionary* relations = [SCRegisterManager relationsForClass:[parsedObject class]];
     for (NSString *relationKeyProperty in relations.allKeys) {
         SCClassRegisterItem *relationRegisteredItem = relations[relationKeyProperty];
         Class relatedClass = relationRegisteredItem.classReference;
-        id relatedObject = [[relatedClass alloc] init];
         if (JSONObject[relationKeyProperty] != [NSNull null]) {
-            NSNumber *relatedObjectId = JSONObject[relationKeyProperty][@"value"];
-            if (relatedObjectId) {
-                [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+            id relatedObject = [self relatedObjectOfClass:relatedClass fromJSONObject:JSONObject[relationKeyProperty]];
+            if (relatedObject != nil) {
                 SCValidateAndSetValue(parsedObject, relationKeyProperty, relatedObject, YES, nil);
             }
         }
@@ -52,12 +59,14 @@
 
 - (void)resolveFilesForObject:(id)parsedObject withJSONObject:(id)JSONObject {
     for (NSString *key in [JSONObject allKeys]) {
-        id object = JSONObject[key];
-        if ([object isKindOfClass:[NSDictionary class]] && object[@"type"] && [object[@"type"] isEqualToString:@"file"]) {
-            //TODO change to send error
-            NSError *error;
-            SCFile *file = [[SCFile alloc] initWithDictionary:object error:&error];
-            SCValidateAndSetValue(parsedObject, key, file, YES, nil);
+        if ([parsedObject respondsToSelector:NSSelectorFromString(key)]) {
+            id object = JSONObject[key];
+            if ([object isKindOfClass:[NSDictionary class]] && object[@"type"] && [object[@"type"] isEqualToString:@"file"]) {
+                //TODO change to send error
+                NSError *error = nil;
+                SCFile *file = [[SCFile alloc] initWithDictionary:object error:&error];
+                SCValidateAndSetValue(parsedObject, key, file, YES, nil);
+            }
         }
     }
 }
@@ -66,7 +75,8 @@
     NSArray *responseObjects = responseObject;
     NSMutableArray *parsedObjects = [[NSMutableArray alloc] initWithCapacity:responseObjects.count];
     for (NSDictionary *object in responseObjects) {
-        [parsedObjects addObject:[self parsedObjectOfClass:objectClass fromJSONObject:object]];
+        id result = [self parsedObjectOfClass:objectClass fromJSONObject:object];
+        [parsedObjects addObject:result];
     }
     return [NSArray arrayWithArray:parsedObjects];
 }
@@ -81,7 +91,7 @@
     /**
      *  Temporary remove non saved relations
      */
-    NSDictionary *relations = [self relationsForClass:[dataObject class]];
+    NSDictionary *relations = [SCRegisterManager relationsForClass:[dataObject class]];
     if (relations.count > 0) {
         NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
         for (NSString *relationProperty in relations.allKeys) {
@@ -114,70 +124,4 @@
     }
     return serialized;
 }
-
-- (NSDictionary *)relationsForClass:(__unsafe_unretained Class)class {
-    SCClassRegisterItem *registerForClass = [self registeredItemForClass:class];
-    NSMutableDictionary *relations = [NSMutableDictionary new];
-    for (NSString *propertyName in registerForClass.properties.allKeys) {
-        NSString *propertyType = registerForClass.properties[propertyName];
-        SCClassRegisterItem *item = [self registerItemForClassName:propertyType];
-        if (item) {
-            [relations setObject:item forKey:propertyName];
-        }
-    }
-    return relations;
-}
-
-- (void)registerClass:(__unsafe_unretained Class)classToRegister {
-    if ([classToRegister respondsToSelector:@selector(propertyKeys)]) {
-        if (!self.registeredClasses) {
-            self.registeredClasses = [NSMutableArray new];
-        }
-        NSSet *properties = [classToRegister propertyKeys];
-        NSMutableDictionary *registeredProperties = [[NSMutableDictionary alloc] initWithCapacity:properties.count];
-        NSString *classNameForAPI;
-        if ([classToRegister respondsToSelector:@selector(classNameForAPI)]) {
-            classNameForAPI = [classToRegister classNameForAPI];
-        }
-        for (NSString *property in properties) {
-            NSString *typeName = [self typeOfPropertyNamed:property fromClass:classToRegister];
-            [registeredProperties setObject:typeName forKey:property];
-        }
-        SCClassRegisterItem *registerItem = [SCClassRegisterItem new];
-        registerItem.classNameForAPI = classNameForAPI;
-        registerItem.className = [[self class] normalizedClassNameFromClass:classToRegister];
-        registerItem.properties = registeredProperties;
-        registerItem.classReference = classToRegister;
-        [self.registeredClasses addObject:registerItem];
-    }
-}
-
-/**
- *  Returns register for provided Class
- *
- *  @param registeredClass class too look up for
- *
- *  @return SCClassRegisterItem or nil
- */
-- (SCClassRegisterItem *)registeredItemForClass:(__unsafe_unretained Class)registeredClass {
-    return [self registerItemForClassName:[[self class] normalizedClassNameFromClass:registeredClass]];
-}
-
-/**
- *  Returns register for provided Class name
- *
- *  @param className class name too look up for
- *
- *  @return SCClassRegisterItem or nil
- */
-- (SCClassRegisterItem *)registerItemForClassName:(NSString *)className {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"className == %@",className];
-    SCClassRegisterItem *item = [[self.registeredClasses filteredArrayUsingPredicate:predicate] lastObject];
-    return item;
-}
-
-+ (NSString *)normalizedClassNameFromClass:(__unsafe_unretained Class)class {
-    return [[NSStringFromClass(class) componentsSeparatedByString:@"."] lastObject];
-}
-
 @end

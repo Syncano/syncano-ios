@@ -8,6 +8,8 @@
 #import "SCDataObject.h"
 
 @interface Author : SCDataObject
-@property (nonatomic,copy) NSString *firstname;
-@property (nonatomic,copy) NSString *secondname;
+@property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *surname;
+@property (nonatomic,copy) NSNumber *yearofbirth;
+@property (nonatomic,copy) NSNumber *yearofdeath;
 @end

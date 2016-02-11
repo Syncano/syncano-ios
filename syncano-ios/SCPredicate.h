@@ -8,10 +8,33 @@
 
 #import <Foundation/Foundation.h>
 #import "SCPredicateProtocol.h"
+
+
+extern NSString *const SCPredicateGreaterThanOperator;
+extern NSString *const SCPredicateGreaterThanOrEqualOperator;
+extern NSString *const SCPredicateLessThanOperator;
+extern NSString *const SCPredicateLessThanOrEqualOperator;
+extern NSString *const SCPredicateEqualOperator;
+extern NSString *const SCPredicateNotEqualOperator;
+extern NSString *const SCPredicateExistsOperator;
+extern NSString *const SCPredicateInOperator;
+extern NSString *const SCPredicateStringStartsWithOperator;
+extern NSString *const SCPredicateStringiStartsWithOperator;
+extern NSString *const SCPredicateStringEndsWithOperator;
+extern NSString *const SCPredicateStringiEndsWithOperator;
+extern NSString *const SCPredicateStringContainsOperator;
+extern NSString *const SCPredicateStringiContainsOperator;
+extern NSString *const SCPredicateStringiEqualOperator;
+extern NSString *const SCPredicateIsOperator;
+
 /**
  *  Class
  */
 @interface SCPredicate : NSObject <SCPredicateProtocol>
+
+@property (nonatomic,retain) NSString *leftHand;
+@property (nonatomic,retain) NSString *operator;
+@property (nonatomic,retain) id rightHand;
 
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanString:(NSString *)string;
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanNumber:(NSNumber *)number;
@@ -42,5 +65,15 @@
 + (SCPredicate *)whereKeyExists:(NSString *)key;
 
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
+
++ (SCPredicate *)whereKey:(NSString *)key satisfiesPredicate:(id<SCPredicateProtocol>)predicate;
+
++ (SCPredicate *)whereKey:(NSString *)key hasPrefix:(NSString *)prefix;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasPrefix:(NSString *)prefix;
++ (SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasSuffix:(NSString *)suffix;
++ (SCPredicate *)whereKey:(NSString *)key containsString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveContainsString:(NSString *)string;
++ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveIsEqualToString:(NSString *)string;
 
 @end

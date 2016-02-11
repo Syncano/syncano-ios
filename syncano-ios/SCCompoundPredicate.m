@@ -10,10 +10,15 @@
 
 
 @interface SCCompoundPredicate ()
-@property (strong,nonatomic) NSMutableArray* predicates;
 @end
 
-@implementation SCCompoundPredicate
+@implementation SCCompoundPredicate {
+    NSMutableArray *_predicates;
+}
+
+- (NSArray *)predicates {
+    return [NSArray arrayWithArray:_predicates];
+}
 
 - (instancetype)init
 {
@@ -40,26 +45,31 @@
     if (!predicate || ![predicate conformsToProtocol:@protocol(SCPredicateProtocol)]) {
         return;
     }
-    [self.predicates addObject:predicate];
+    [_predicates addObject:predicate];
 }
 
--(NSString *)queryRepresentation {
-    NSMutableString* query = [NSMutableString stringWithString:@"{"];
-    
-    int i=0;
+- (NSDictionary<NSString*,NSDictionary*> *)rawPredicate {
+    NSMutableDictionary<NSString*,NSMutableDictionary*>* dictionary = [NSMutableDictionary dictionaryWithCapacity:self.predicates.count];
     for(id<SCPredicateProtocol> predicate in self.predicates) {
-        if(i!=0) {
-            [query appendString:@","];
+        NSDictionary<NSString*,NSDictionary*>* localPredicate = [predicate rawPredicate];
+        for(NSString* key in localPredicate.allKeys) {
+            NSMutableDictionary* localDictionary = dictionary[key];
+            if(localDictionary == nil) {
+                dictionary[key] = [NSMutableDictionary dictionaryWithDictionary:localPredicate[key]];
+            } else {//AND on the same field f.e. {"year":{"_gte":1978,"_lte":1994}}
+                [localDictionary addEntriesFromDictionary:localPredicate[key]];
+            }
         }
-        NSString* localQuery = [predicate queryRepresentation];
-        localQuery = [localQuery substringWithRange:NSMakeRange(1, localQuery.length-2)];
-        [query appendString:localQuery];
-        i++;
     }
     
-    [query appendString:@"}"];
-    
-    return query;
+    return dictionary;
+}
+
+- (NSString *)queryRepresentation {
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self rawPredicate]
+                                                       options:0
+                                                         error:NULL];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
 @end

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0720"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -56,6 +56,16 @@
                referenceType = "1">
             </LocationScenarioReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "11E35B091C4F82740092E0A9"
+               BuildableName = "syncano-IntegrationTests.xctest"
+               BlueprintName = "syncano-IntegrationTests"
+               ReferencedContainer = "container:syncano-ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -88,6 +98,38 @@
             ReferencedContainer = "container:syncano-ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "API_KEY"
+            value = "$API_KEY"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "LINKEDIN_TOKEN_KEY"
+            value = "$LINKEDIN_TOKEN_KEY"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "INSTANCE_NAME"
+            value = "$INSTANCE_NAME"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "TWITTER_TOKEN_KEY"
+            value = "$TWITTER_TOKEN_KEY"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "FACEBOOK_TOKEN_KEY"
+            value = "$FACEBOOK_TOKEN_KEY"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "GOOGLE_TOKEN_KEY"
+            value = "$GOOGLE_TOKEN_KEY"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

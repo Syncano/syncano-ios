@@ -82,7 +82,7 @@ describe(@"SCPlease", ^{
         __block NSArray *books;
         __block NSError *_error;
         __block BOOL _blockFinished;
-        NSDictionary *parameters = @{SCPleaseParameterPageSize : @12};
+        NSDictionary *parameters = @{SCPleaseParameterPageSize : @12 , SCPleaseParameterIncludeCount : @YES};
         [[Book please] giveMeDataObjectsWithParameters:parameters completion:^(NSArray *objects, NSError *error) {
             _error = error;
             _blockFinished = YES;
