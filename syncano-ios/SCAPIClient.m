@@ -44,12 +44,21 @@
     self = [super initWithBaseURL:url];
     if (self) {
         self.requestSerializer = [AFJSONRequestSerializer serializer];
-        self.securityPolicy.allowInvalidCertificates = YES;
-        self.securityPolicy.validatesDomainName = NO;
+        self.securityPolicy = [self syncanoSecurityPolicy];
         self.responseSerializer = [SCJSONResponseSerializer serializer];
         [self initializeReachabilityManager];
     }
     return self;
+}
+
+- (AFSecurityPolicy*)syncanoSecurityPolicy {
+    AFSecurityPolicy* policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+    policy.allowInvalidCertificates = NO;
+    policy.validatesDomainName = NO;
+    NSString *cerPath = [[NSBundle bundleForClass:[self class]] pathForResource:kSCCertificateFileName ofType:nil];
+    NSData *certData = [NSData dataWithContentsOfFile:cerPath];
+    policy.pinnedCertificates = @[certData];
+    return policy;
 }
 
 - (NSString *)identifier {
