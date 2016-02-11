@@ -32,6 +32,18 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.0.9** - 2016-02-11
+    * Offline storage (save results to offline and query local storage)
+    * Added string filtering on objects (contains, startsWith, endsWith - both case sensitive and insensitivie)
+    * Handling custom responses in CodeBoxes and Webhooks
+    * Fix for default permissions (now by default permissions are .NotSet - taking defaults from the server)
+    * Fix for properly transforming `updated_at` and `created_at` fields from string to `NSDate` 
+    * Added ability to save files (`SCFile`) to disk
+    * Added SSL certificate  
+    * Implemented Data Views
+    * Added Twitter/LinkedIn login
+    * More powerful filtering (filter by properties of classes, that one class has reference to)
+    * Added ability to incerement fields (helps with concurrency when updating objects) 
 * **4.0.8** - 2016-02-10
     * Fixed issue with fetching SCFile content 
 * **4.0.7** - 2016-01-29
