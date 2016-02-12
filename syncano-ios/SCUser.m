@@ -13,9 +13,8 @@
 #import "SCParseManager+SCUser.h"
 #import "UICKeyChainStore/UICKeyChainStore.h"
 #import "NSObject+SCParseHelper.h"
+#import "SCUser+UserDefaults.h"
 
-
-static NSString *const kCurrentUser = @"com.syncano.kCurrentUser";
 static id _currentUser;
 
 @implementation SCUser
@@ -42,21 +41,6 @@ static id _currentUser;
         return _currentUser;
     }
     return nil;
-}
-
-+ (id)JSONUserDataFromDefaults {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentUser];
-    if (data) {
-        id userData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        return userData;
-    }
-    return nil;
-}
-
-+ (void)saveJSONUserData:(id)JSONUserData {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:JSONUserData];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:kCurrentUser];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (void)registerClass {
@@ -136,8 +120,7 @@ static id _currentUser;
 }
 
 - (void)logout {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCurrentUser];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[self class] removeUserFromDefaults];
     UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.syncano"];
     [keychain removeItemForKey:kUserKeyKeychainKey];
     _currentUser = nil;
