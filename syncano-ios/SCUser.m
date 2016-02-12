@@ -113,6 +113,23 @@ static id _currentUser;
     }];
 }
 
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password completionBlockWithNewUser:(SCUserCompletionBlock)completion {
+    [self registerWithUsername:username password:password usingAPIClient:[Syncano sharedAPIClient] completionBlockWithNewUser:completion];
+}
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completionBlockWithNewUser:(SCUserCompletionBlock)completion {
+    
+    NSDictionary *params = @{@"username" : username , @"password" : password};
+    [apiClient postTaskWithPath:@"users/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (error) {
+            completion(nil, error);
+        } else {
+            SCUser *newUser = [[SCParseManager sharedSCParseManager] parsedUserObjectFromJSONObject:responseObject];
+            completion(newUser, nil);
+        }
+    }];
+}
+
 + (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken completion:(SCCompletionBlock)completion {
     [self loginWithSocialBackend:backend authToken:authToken usingAPIClient:[Syncano sharedAPIClient] completion:completion];
 }
