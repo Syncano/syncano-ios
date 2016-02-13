@@ -113,12 +113,15 @@ static id _currentUser;
     }];
 }
 
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password completionBlockWithNewUser:(SCUserCompletionBlock)completion {
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password completionBlockWithNewUser:(SCCompletionBlockWithUser)completion {
     [self registerWithUsername:username password:password usingAPIClient:[Syncano sharedAPIClient] completionBlockWithNewUser:completion];
 }
 
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completionBlockWithNewUser:(SCUserCompletionBlock)completion {
-    
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completionBlockWithNewUser:(SCCompletionBlockWithUser)completion {
+    [self registerWithUsername:username password:password usingAPIClient:syncano.apiClient completionBlockWithNewUser:completion];
+}
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completionBlockWithNewUser:(SCCompletionBlockWithUser)completion {
     NSDictionary *params = @{@"username" : username , @"password" : password};
     [apiClient postTaskWithPath:@"users/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
