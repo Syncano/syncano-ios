@@ -96,6 +96,11 @@
         NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
         for (NSString *relationProperty in relations.allKeys) {
             id relatedObject = [dataObject valueForKey:relationProperty];
+            // relatedObject == nil means no relation was set at all
+            // and we want to handle only ones that were set but were not saved
+            if (relatedObject == nil) {
+                continue;
+            }
             NSNumber *objectId = [relatedObject valueForKey:@"objectId"];
             if (objectId) {
                 [mutableSerialized setObject:objectId forKey:relationProperty];
