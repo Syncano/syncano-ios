@@ -11,15 +11,27 @@
 @implementation SCPredicate (LocalStorage)
 - (NSPredicate *)nspredicateRepresentation {
     NSExpression *lexp = [NSExpression expressionForKeyPath:[self leftHand]];
-    NSExpression *rexp = [NSExpression expressionForConstantValue:[self rightHand]];
+    NSExpression *rexp = [NSExpression expressionForConstantValue:[self rightHandForNspredicate]];
     NSPredicateOperatorType op = [self nspredicateOperatorRepresentationForOperator:[self operator]];
+    NSComparisonPredicateOptions options = [self nspredicateOptionsForOperator:[self operator]];
     
     NSPredicate *predicate = [NSComparisonPredicate predicateWithLeftExpression:lexp
                                                          rightExpression:rexp
                                                                 modifier:0
                                                                     type:op
-                                                                 options:0];
+                                                                 options:options];
     return predicate;
+}
+
+- (NSString*)rightHandForNspredicate {
+    NSString* operator = [self operator];
+    NSString* rightHand = [self rightHand];
+    
+    if([operator isEqualToString:SCPredicateStringContainsOperator] || [operator isEqualToString:SCPredicateStringiContainsOperator]) {
+        rightHand = [NSString stringWithFormat:@"*%@*",rightHand];
+    }
+        
+    return rightHand;
 }
 
 - (NSPredicateOperatorType)nspredicateOperatorRepresentationForOperator:(NSString *)operator {
@@ -30,8 +42,29 @@
                                 SCPredicateEqualOperator : @(NSEqualToPredicateOperatorType),
                                 SCPredicateNotEqualOperator : @(NSNotEqualToPredicateOperatorType),
                                 SCPredicateExistsOperator : @(NSEqualToPredicateOperatorType),
-                                SCPredicateInOperator : @(NSInPredicateOperatorType)};
+                                SCPredicateInOperator : @(NSInPredicateOperatorType),
+                                SCPredicateStringStartsWithOperator: @(NSBeginsWithPredicateOperatorType),
+                                SCPredicateStringiStartsWithOperator: @(NSBeginsWithPredicateOperatorType),
+                                SCPredicateStringEndsWithOperator: @(NSEndsWithPredicateOperatorType),
+                                SCPredicateStringiEndsWithOperator: @(NSEndsWithPredicateOperatorType),
+                                SCPredicateStringiEqualOperator : @(NSEqualToPredicateOperatorType),
+                                SCPredicateStringContainsOperator : @(NSLikePredicateOperatorType),
+                                SCPredicateStringiContainsOperator : @(NSLikePredicateOperatorType)};
     
     return (NSPredicateOperatorType)[operators[operator] unsignedIntegerValue];
 }
+
+- (NSComparisonPredicateOptions)nspredicateOptionsForOperator:(NSString *)operator {
+    NSDictionary *operators = @{SCPredicateStringiStartsWithOperator: @(NSCaseInsensitivePredicateOption),
+                                SCPredicateStringiEndsWithOperator: @(NSCaseInsensitivePredicateOption),
+                                SCPredicateStringiEqualOperator : @(NSCaseInsensitivePredicateOption),
+                                SCPredicateStringiContainsOperator : @(NSCaseInsensitivePredicateOption)};
+    
+    NSNumber* option = operators[operator];
+    if(option == nil) {
+        return 0;
+    }
+    return [option unsignedIntegerValue];
+}
+
 @end
