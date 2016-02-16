@@ -27,6 +27,10 @@
     NSString* operator = [self operator];
     NSString* rightHand = [self rightHand];
     
+    if ([operator isEqualToString:SCPredicateIsOperator]) {
+        NSAssert(![operator isEqualToString:SCPredicateIsOperator], NSLocalizedString(@"SCPredicateIsOperator is not supported in local queries.", @""));
+    }
+    
     if([operator isEqualToString:SCPredicateStringContainsOperator] || [operator isEqualToString:SCPredicateStringiContainsOperator]) {
         rightHand = [NSString stringWithFormat:@"*%@*",rightHand];
     }

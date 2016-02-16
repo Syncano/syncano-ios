@@ -213,7 +213,6 @@ describe(@"LocalStorageSpec", ^{
             testBook(predicate, YES);
         });
     });
-    
 });
 
 SPEC_END
