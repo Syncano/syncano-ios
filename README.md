@@ -32,6 +32,8 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.0.11** - 2016-02-15
+    * Fixed saving objects with empty relations 
 * **4.0.10** - 2016-02-12
     * Fixed using custom class for User and User Profile 
 * **4.0.9** - 2016-02-11
