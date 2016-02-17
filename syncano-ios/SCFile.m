@@ -102,9 +102,9 @@
     if(self.storeURL == nil) {
         self.storeURL = [self temporaryStoreURL];
     }
-    __weak typeof(self) selfWeak = self;
+    NSURL *localStoreURL = self.storeURL;
     return [SCAPIClient downloadFileFromURL:self.fileURL andSaveToPath:self.storeURL withProgress:progress withCompletion:^(id responseObject, NSError *error) {
-        completion(responseObject,selfWeak.storeURL,error);
+        completion(responseObject,localStoreURL,error);
     }];
 }
 
