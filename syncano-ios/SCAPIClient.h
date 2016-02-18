@@ -26,8 +26,6 @@
  */
 + (SCAPIClient *)apiClientForSyncano:(Syncano *)syncano;
 
-- (void)setSocialAuthTokenKey:(NSString *)authToken;
-
 /**
  *  "Abstract" method to GET method call
  *

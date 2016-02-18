@@ -31,6 +31,13 @@ static id _currentUser;
     return userKey;
 }
 
++ (NSDictionary *)paramsForAuthToken:(NSString *)authToken {
+    if (authToken.length <= 0) {
+        return nil;
+    }
+    return @{@"access_token":authToken};
+}
+
 + (instancetype)currentUser {
     if (_currentUser) {
         return _currentUser;
@@ -106,9 +113,8 @@ static id _currentUser;
 }
 
 + (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
-    [apiClient setSocialAuthTokenKey:authToken];
     NSString *path = [NSString stringWithFormat:@"user/auth/%@/", [SCConstants socialAuthenticationBackendToString:backend]];
-    [apiClient POSTWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient POSTWithPath:path params:[self paramsForAuthToken:authToken] completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             completion(error);
         } else {

@@ -31,12 +31,6 @@ describe(@"SCAPIClient", ^{
             [[apiClient.baseURL should] equal:instanceURL];
         });
         
-        it(@"should set social auth key", ^{
-            SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
-            [apiClient setSocialAuthTokenKey:@"SOCIAL-AUTH-TOKEN-KEY"];
-            [[apiClient.requestSerializer.HTTPRequestHeaders[@"Authorization"] should] equal:@"token SOCIAL-AUTH-TOKEN-KEY"];
-        });
-        
         context(@"data tasks", ^{
             
             beforeEach(^{
