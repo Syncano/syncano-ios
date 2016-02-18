@@ -14,7 +14,7 @@
 
 @implementation SCPlease (LocalStorage)
 - (void)giveMeDataObjectsFromLocalStorageWithPredicate:(id<SCPredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion {
-    if (![predicate respondsToSelector:@selector(nspredicateRepresentation)]) {
+    if (predicate && ![predicate respondsToSelector:@selector(nspredicateRepresentation)]) {
         if (completion) {
             NSError *error = [NSError errorWithDomain:@"SCPleaseErrorDomain" code:1 userInfo:@{@"SyncanoError":@"Predicate has to respond to 'nspredicateRepresentation' method"}];
             completion(nil,error);
@@ -28,7 +28,10 @@
                 }
             } else {
                 if (completion) {
-                    completion([objects filteredArrayUsingPredicate:_predicate],nil);
+                    if (predicate) {
+                        objects = [objects filteredArrayUsingPredicate:_predicate];
+                    }
+                    completion(objects,nil);
                 }
             }
         }];
