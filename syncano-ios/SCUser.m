@@ -113,15 +113,15 @@ static id _currentUser;
     }];
 }
 
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password completionBlockWithNewUser:(SCCompletionBlockWithUser)completion {
-    [self registerWithUsername:username password:password usingAPIClient:[Syncano sharedAPIClient] completionBlockWithNewUser:completion];
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password completionBlock:(SCCompletionBlockWithUser)completion {
+    [self addNewUserWithUsername:username password:password usingAPIClient:[Syncano sharedAPIClient] completionBlock:completion];
 }
 
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completionBlockWithNewUser:(SCCompletionBlockWithUser)completion {
-    [self registerWithUsername:username password:password usingAPIClient:syncano.apiClient completionBlockWithNewUser:completion];
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completionBlock:(SCCompletionBlockWithUser)completion {
+    [self addNewUserWithUsername:username password:password usingAPIClient:syncano.apiClient completionBlock:completion];
 }
 
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completionBlockWithNewUser:(SCCompletionBlockWithUser)completion {
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completionBlock:(SCCompletionBlockWithUser)completion {
     NSDictionary *params = @{@"username" : username , @"password" : password};
     [apiClient postTaskWithPath:@"users/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {

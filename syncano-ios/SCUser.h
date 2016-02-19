@@ -97,7 +97,7 @@
  *  @param password   password for login
  *  @param completion completion block
  */
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password completionBlockWithNewUser:(SCCompletionBlockWithUser)completion;
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password completionBlock:(SCCompletionBlockWithUser)completion;
 
 /**
  *  Attempts to register user into provided Syncano instance,
@@ -108,7 +108,7 @@
  *  @param syncano    syncano instance for login in to
  *  @param completion completion block
  */
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completionBlockWithNewUser:(SCCompletionBlockWithUser)completion;
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completionBlock:(SCCompletionBlockWithUser)completion;
     
 /**
  *  Returns SCPlease instance for singleton Syncano
