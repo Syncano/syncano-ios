@@ -136,6 +136,18 @@ describe(@"LocalStorageSpec", ^{
             }
         };
         
+        void (^testNilPredicate)() = ^() {
+            __block NSError *_error;
+            __block BOOL _blockFinished;
+            
+            [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:nil completion:^(NSArray *objects, NSError *error) {
+                _blockFinished = YES;
+                _error = error;
+            }];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+            [[_error should] beNil];
+        };
+        
         beforeAll(^{
             __block NSError* _error;
             __block BOOL _blockFinished;
@@ -159,6 +171,11 @@ describe(@"LocalStorageSpec", ^{
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
             [[_error should] beNil];
+        });
+        
+        it(@"should not throw exception for nil predicate", ^{
+            SCPredicate* nilPredicate = nil;
+            [[theBlock(testNilPredicate) shouldNot] raise];
         });
         
         it(@"should work for hasPrefix", ^{
