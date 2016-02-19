@@ -174,7 +174,6 @@ describe(@"LocalStorageSpec", ^{
         });
         
         it(@"should not throw exception for nil predicate", ^{
-            SCPredicate* nilPredicate = nil;
             [[theBlock(testNilPredicate) shouldNot] raise];
         });
         
