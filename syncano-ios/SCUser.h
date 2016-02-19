@@ -32,7 +32,6 @@
 
 + (void)registerClassWithProfileClass:(__unsafe_unretained Class)profileClass;
 
-
 /**
  *  Attempts to login user into singleton Syncano
  *
@@ -90,6 +89,27 @@
  */
 + (void)registerWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
 
+/**
+ *  Attempts to register user into singleton Syncano,
+ *  but does not automatically login that user. It returns the newly created user in the completion block
+ *
+ *  @param username   username for login
+ *  @param password   password for login
+ *  @param completion completion block
+ */
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password completionBlock:(SCCompletionBlockWithUser)completion;
+
+/**
+ *  Attempts to register user into provided Syncano instance,
+ *  but does not automatically login that user. It returns the newly created user in the completion block
+ *
+ *  @param username   username for login
+ *  @param password   password for login
+ *  @param syncano    syncano instance for login in to
+ *  @param completion completion block
+ */
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completionBlock:(SCCompletionBlockWithUser)completion;
+    
 /**
  *  Returns SCPlease instance for singleton Syncano
  *

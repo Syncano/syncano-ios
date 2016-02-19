@@ -41,20 +41,41 @@ describe(@"SCUser", ^{
             
             __block NSError *_error;
             __block BOOL _blockFinished;
-            __block SCUser *registereddUser;
+            __block SCUser *registeredUser;
             [SCUser registerWithUsername:@"zenon" password:@"rtw57hwggwt6" completion:^(NSError *error) {
                 _error = error;
                 _blockFinished = YES;
-                registereddUser = [SCUser currentUser];
+                registeredUser = [SCUser currentUser];
                 //[SCCannedURLProtocol unregisterFromAPIClient:syncano.apiClient];
                 
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
             [[_error shouldEventually] beNil];
-            [[registereddUser shouldEventually] beNonNil];
+            [[registeredUser shouldEventually] beNonNil];
         });
         
-        
+        it(@"should add new user", ^{
+            
+            [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+                return YES;
+            } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+                // Stub it with our "wsresponse.json" stub file
+                return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"SCUserRegister.json",self.class)
+                                                        statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+            }];
+            
+            __block NSError *_error;
+            __block BOOL _blockFinished;
+            __block SCUser *registeredUser;
+            [SCUser addNewUserWithUsername:@"zenon" password:@"rtw57hwggwt6" completionBlock:^(SCUser *user, NSError *error) {
+                _error = error;
+                _blockFinished = YES;
+                registeredUser = user;
+            }];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+            [[_error shouldEventually] beNil];
+            [[registeredUser shouldEventually] beNonNil];
+        });
         
         it(@"should login and logout", ^{
             
@@ -189,7 +210,28 @@ describe(@"SCUser", ^{
             [[registereddUser shouldEventually] beNonNil];
         });
         
-        
+        it(@"should add new user", ^{
+            
+            [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+                return YES;
+            } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+                // Stub it with our "wsresponse.json" stub file
+                return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"SCUserRegister.json",self.class)
+                                                        statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+            }];
+            
+            __block NSError *_error;
+            __block BOOL _blockFinished;
+            __block SCUser *registeredUser;
+            [SCUser addNewUserWithUsername:@"zenon" password:@"rtw57hwggwt6" inSyncano:syncano completionBlock:^(SCUser *user, NSError *error) {
+                _error = error;
+                _blockFinished = YES;
+                registeredUser = user;
+            }];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+            [[_error shouldEventually] beNil];
+            [[registeredUser shouldEventually] beNonNil];
+        });
         
         it(@"should login and logout", ^{
             
