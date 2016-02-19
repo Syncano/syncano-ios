@@ -140,6 +140,8 @@
 		11F9AEDC1B62105C00B51341 /* SCCodeBoxSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDB1B62105C00B51341 /* SCCodeBoxSpec.m */; };
 		11F9AEDE1B62113D00B51341 /* Trace.json in Resources */ = {isa = PBXBuildFile; fileRef = 11F9AEDD1B62113D00B51341 /* Trace.json */; };
 		11F9AEE01B62128200B51341 /* SCTraceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDF1B62128200B51341 /* SCTraceSpec.m */; };
+		15094F3A1C6E9156007CD77D /* SCUser+UserDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 15094F381C6E9156007CD77D /* SCUser+UserDefaults.h */; };
+		15094F3B1C6E9156007CD77D /* SCUser+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 15094F391C6E9156007CD77D /* SCUser+UserDefaults.m */; };
 		159E69E41C76F6000032D0CB /* UserRegistrationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */; };
 		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
 		3A822952B9060FB5C5A84B79 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
@@ -340,6 +342,8 @@
 		11F9AEDB1B62105C00B51341 /* SCCodeBoxSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCodeBoxSpec.m; sourceTree = "<group>"; };
 		11F9AEDD1B62113D00B51341 /* Trace.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Trace.json; sourceTree = "<group>"; };
 		11F9AEDF1B62128200B51341 /* SCTraceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTraceSpec.m; sourceTree = "<group>"; };
+		15094F381C6E9156007CD77D /* SCUser+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCUser+UserDefaults.h"; sourceTree = "<group>"; };
+		15094F391C6E9156007CD77D /* SCUser+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCUser+UserDefaults.m"; sourceTree = "<group>"; };
 		159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRegistrationSpec.m; sourceTree = "<group>"; };
 		347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46752C1A7D469AA33BF9E983 /* Pods-syncano-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -433,6 +437,8 @@
 				119A93561AFA4238001ADA7C /* SCUser.m */,
 				119A935B1AFB88A5001ADA7C /* SCUserProfile.h */,
 				119A935C1AFB88A5001ADA7C /* SCUserProfile.m */,
+				15094F381C6E9156007CD77D /* SCUser+UserDefaults.h */,
+				15094F391C6E9156007CD77D /* SCUser+UserDefaults.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -855,6 +861,7 @@
 				11CE3CBE1BCFDC3000DE3163 /* SCChannelNotificationMessage.h in Headers */,
 				11F8BF831BE1083F00091F58 /* SCDataObject+LocalStorage.h in Headers */,
 				11CE3CBB1BCFDC3000DE3163 /* SCChannelDelegate.h in Headers */,
+				15094F3A1C6E9156007CD77D /* SCUser+UserDefaults.h in Headers */,
 				A6BCC8F51C56526B008A0B0A /* SCPleaseProtected.h in Headers */,
 				11CE3CA41BCFDC3000DE3163 /* SCDataObject.h in Headers */,
 				115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */,
@@ -1260,6 +1267,7 @@
 				11CE3CAC1BCFDC3000DE3163 /* SCCompoundPredicate.m in Sources */,
 				1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */,
 				11CE3CC11BCFDC3000DE3163 /* NSObject+SCParseHelper.m in Sources */,
+				15094F3B1C6E9156007CD77D /* SCUser+UserDefaults.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

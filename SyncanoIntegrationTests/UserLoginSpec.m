@@ -48,7 +48,7 @@ describe(@"User login", ^{
         }
     };
     
-    //Below "sharedExamplesFor" from Kiwi should be used but it didn't want to work with xctool :(
+    //Below "sharedExamplesFor" from Kiwi should be used but it didn't work with xctool :(
     
     it(@"should login with Google", ^{
         if(![environment[@"GOOGLE_TOKEN_KEY"] isEqualToString:@"$GOOGLE_TOKEN_KEY"])

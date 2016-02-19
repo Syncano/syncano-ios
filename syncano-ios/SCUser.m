@@ -13,9 +13,8 @@
 #import "SCParseManager+SCUser.h"
 #import "UICKeyChainStore/UICKeyChainStore.h"
 #import "NSObject+SCParseHelper.h"
+#import "SCUser+UserDefaults.h"
 
-
-static NSString *const kCurrentUser = @"com.syncano.kCurrentUser";
 static id _currentUser;
 
 @implementation SCUser
@@ -32,6 +31,13 @@ static id _currentUser;
     return userKey;
 }
 
++ (NSDictionary *)paramsForAuthToken:(NSString *)authToken {
+    if (authToken.length <= 0) {
+        return nil;
+    }
+    return @{@"access_token":authToken};
+}
+
 + (instancetype)currentUser {
     if (_currentUser) {
         return _currentUser;
@@ -42,21 +48,6 @@ static id _currentUser;
         return _currentUser;
     }
     return nil;
-}
-
-+ (id)JSONUserDataFromDefaults {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentUser];
-    if (data) {
-        id userData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        return userData;
-    }
-    return nil;
-}
-
-+ (void)saveJSONUserData:(id)JSONUserData {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:JSONUserData];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:kCurrentUser];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (void)registerClass {
@@ -142,9 +133,8 @@ static id _currentUser;
 }
 
 + (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
-    [apiClient setSocialAuthTokenKey:authToken];
     NSString *path = [NSString stringWithFormat:@"user/auth/%@/", [SCConstants socialAuthenticationBackendToString:backend]];
-    [apiClient POSTWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient POSTWithPath:path params:[self paramsForAuthToken:authToken] completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             completion(error);
         } else {
@@ -156,8 +146,7 @@ static id _currentUser;
 }
 
 - (void)logout {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCurrentUser];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[self class] removeUserFromDefaults];
     UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.syncano"];
     [keychain removeItemForKey:kUserKeyKeychainKey];
     _currentUser = nil;

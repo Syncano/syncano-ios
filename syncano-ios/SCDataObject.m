@@ -316,6 +316,10 @@
         dispatch_group_t relationSaveGroup = dispatch_group_create();
         for (NSString *propertyName in relations.allKeys) {
             SCDataObject *relatedObject = [self valueForKey:propertyName];
+            // no object here, go to saving next one
+            if (relatedObject == nil) {
+                continue;
+            }
             if ([relatedObject isKindOfClass:[SCDataObject class]]) {
                 if (!relatedObject.objectId) {
                     dispatch_group_enter(relationSaveGroup);

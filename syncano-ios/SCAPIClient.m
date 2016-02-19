@@ -16,6 +16,7 @@
 #import "SCRequest.h"
 #import "SCUploadRequest.h"
 #import "AFNetworkReachabilityManager.h"
+#import "SCUser+UserDefaults.h"
 
 @interface SCAPIClient () <SCRequestQueueDelegate>
 @property (nonatomic,copy) NSString *apiKey;
@@ -69,8 +70,8 @@
     if(self.instanceName != nil) {
         [hash appendString:self.instanceName];
     }
-    if ([SCUser currentUser]) {
-        [hash appendString:[SCUser currentUser].userKey];
+    if ([SCUser userKeyFromDefaults]) {
+        [hash appendString:[SCUser userKeyFromDefaults]];
     }
     return [hash sc_MD5String];
 }
@@ -79,10 +80,6 @@
     NSURL *instanceURL = [NSURL URLWithString:syncano.instanceName relativeToURL:[NSURL URLWithString:kBaseURL]];
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:instanceURL apiKey:syncano.apiKey instanceName:syncano.instanceName];
     return apiClient;
-}
-
-- (void)setSocialAuthTokenKey:(NSString *)authToken {
-    [self.requestSerializer setValue:[NSString stringWithFormat:@"token %@",authToken] forHTTPHeaderField:@"Authorization"];
 }
 
 - (void)authorizeRequest {

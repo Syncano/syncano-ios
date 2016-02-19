@@ -32,6 +32,14 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.0.12** - 2016-02-18
+    * Fixed bug with social backends login 
+* **4.0.11** - 2016-02-17
+    * Fixed saving objects with empty relations
+    * Fixed saving files to disks memory management issue
+    * Added missing predicates for working with local storage
+* **4.0.10** - 2016-02-12
+    * Fixed using custom class for User and User Profile 
 * **4.0.9** - 2016-02-11
     * Offline storage (save results to offline and query local storage)
     * Added string filtering on objects (contains, startsWith, endsWith - both case sensitive and insensitivie)
