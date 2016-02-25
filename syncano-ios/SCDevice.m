@@ -9,26 +9,44 @@
 #import "SCDevice.h"
 #import "Syncano.h"
 
+static NSString * const kDeviceRegistrationId = @"registration_id";
+static NSString * const kDeviceLabel = @"label";
+static NSString * const kDeviceUserId = @"user_id";
+static NSString * const kDeviceDeviceId = @"device_id";
+static NSString * const kDeviceMetadata = @"metadata";
+
 @implementation SCDevice {
     NSString *_deviceToken;
-    NSString *_label;
+    NSDictionary *_metadata;
 }
 
-+ (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData label:(NSString *)label {
-    return [[SCDevice alloc] initWithTokenFromData:tokenData label:label];
++ (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData {
+    return [[SCDevice alloc] initWithTokenFromData:tokenData];
 }
 
-- (instancetype)initWithTokenFromData:(NSData *)tokenData label:(NSString *)label {
+- (instancetype)initWithTokenFromData:(NSData *)tokenData {
     self = [super init];
     if(self) {
         _deviceToken = [[self class] convertDeviceTokenToString:tokenData];
-        _label = label;
     }
     return self;
 }
 
 - (NSString *)deviceToken {
     return _deviceToken;
+}
+
+- (NSDictionary *)metadata {
+    if (!_metadata) {
+        _metadata = [NSDictionary new];
+    }
+    return _metadata;
+}
+
+- (void)setMetadataObject:(id)object forKey:(nonnull NSString *)key {
+    NSMutableDictionary *metadata = [[self metadata] mutableCopy];
+    [metadata setObject:object forKey:key];
+    _metadata = [NSDictionary dictionaryWithDictionary:metadata];
 }
 
 - (void)saveWithCompletionBlock:(SCCompletionBlock)completion {
@@ -39,10 +57,33 @@
     [self saveUsingAPIClient:syncano.apiClient withCompletion:completion];
 }
 
+- (NSDictionary *)params {
+    NSMutableDictionary *params = [NSMutableDictionary new];
+    if (self.deviceToken.length > 0) {
+        params[kDeviceRegistrationId] = self.deviceToken;
+    }
+    if (self.deviceId.length > 0) {
+        params[kDeviceDeviceId] = self.deviceId;
+    }
+    if (_metadata) {
+        params[kDeviceMetadata] = _metadata;
+    }
+    if (self.label.length > 0) {
+        params[kDeviceLabel] = self.label;
+    }
+    /* Below is temporary workaround while label is required field */
+    else {
+        params[kDeviceLabel] = @"tempLabel";
+    }
+    if (self.userId) {
+        params[kDeviceUserId] = self.userId;
+    }
+    return [NSDictionary dictionaryWithDictionary:params];
+}
+
 - (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
     NSString *path = @"push_notifications/apns/devices/";
-    NSDictionary *params = @{@"registration_id" : self.deviceToken,@"label" : self.label};
-    [apiClient postTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient postTaskWithPath:path params:[self params] completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (completion) {
             completion(error);
         }

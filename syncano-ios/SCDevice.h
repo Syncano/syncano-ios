@@ -13,10 +13,16 @@
 
 @interface SCDevice : NSObject
 @property (nonatomic,readonly) NSString *deviceToken;
-@property (nonatomic,readonly) NSString *label;
+@property (nonatomic,retain) NSString *label;
+@property (nonatomic,retain) NSNumber *userId;
+@property (nonatomic,retain) NSString *deviceId;
 
-+ (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData label:(NSString *)label;
-- (instancetype)initWithTokenFromData:(NSData *)tokenData label:(NSString *)label;
+
++ (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData;
+
+- (instancetype)initWithTokenFromData:(NSData *)tokenData;
+
+- (void)setMetadataObject:(id)object forKey:(nonnull NSString *)key;
 
 /**
  *  Saves object to API in background for singleton default Syncano instance
