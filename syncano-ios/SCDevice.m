@@ -29,15 +29,6 @@
     return _deviceToken;
 }
 
-+ (NSString *)convertDeviceTokenToString:(NSData *)deviceTokenData {
-    NSMutableString *hexString = [NSMutableString string];
-    const unsigned char *bytes = [deviceTokenData bytes];
-    for (int i = 0; i < [deviceTokenData length]; i++) {
-        [hexString appendFormat:@"%02x", bytes[i]];
-    }
-    return [NSString stringWithString:hexString];
-}
-
 - (void)saveWithCompletionBlock:(SCCompletionBlock)completion {
     [self saveUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
 }
@@ -47,10 +38,21 @@
 }
 
 - (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    NSString *path = @"";
-    NSDictionary *params = @{};
+    NSString *path = @"/push_notifications/apns/devices/";
+    NSDictionary *params = @{@"registration_id" : self.deviceToken};
     [apiClient POSTWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        
+        if (completion) {
+            completion(error);
+        }
     }];
+}
+
++ (NSString *)convertDeviceTokenToString:(NSData *)deviceTokenData {
+    NSMutableString *hexString = [NSMutableString string];
+    const unsigned char *bytes = [deviceTokenData bytes];
+    for (int i = 0; i < [deviceTokenData length]; i++) {
+        [hexString appendFormat:@"%02x", bytes[i]];
+    }
+    return [NSString stringWithString:hexString];
 }
 @end
