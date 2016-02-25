@@ -11,16 +11,18 @@
 
 @implementation SCDevice {
     NSString *_deviceToken;
+    NSString *_label;
 }
 
-+ (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData {
-    return [[SCDevice alloc] initWithTokenFromData:tokenData];
++ (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData label:(NSString *)label {
+    return [[SCDevice alloc] initWithTokenFromData:tokenData label:label];
 }
 
-- (instancetype)initWithTokenFromData:(NSData *)tokenData {
+- (instancetype)initWithTokenFromData:(NSData *)tokenData label:(NSString *)label {
     self = [super init];
     if(self) {
         _deviceToken = [[self class] convertDeviceTokenToString:tokenData];
+        _label = label;
     }
     return self;
 }
@@ -38,9 +40,9 @@
 }
 
 - (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    NSString *path = @"/push_notifications/apns/devices/";
-    NSDictionary *params = @{@"registration_id" : self.deviceToken};
-    [apiClient POSTWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    NSString *path = @"push_notifications/apns/devices/";
+    NSDictionary *params = @{@"registration_id" : self.deviceToken,@"label" : self.label};
+    [apiClient postTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (completion) {
             completion(error);
         }
