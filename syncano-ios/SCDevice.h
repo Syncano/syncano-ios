@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "SCConstants.h"
+#import "Mantle.h"
 
 @class Syncano;
 
-@interface SCDevice : NSObject
-@property (nonatomic,readonly) NSString *deviceToken;
+@interface SCDevice : MTLModel
+@property (nonatomic,readonly) NSString * deviceToken;
 @property (nonatomic,retain) NSString *label;
 @property (nonatomic,retain) NSNumber *userId;
 @property (nonatomic,retain) NSString *deviceId;
@@ -30,7 +31,7 @@
  *  @param completion completion block
  *
  */
-- (void)saveWithCompletionBlock:(SCCompletionBlock)completion;
+- (void)saveWithCompletionBlock:(_Nullable SCCompletionBlock)completion;
 
 /**
  *  Saves object to API in background for chosen Syncano instance
@@ -39,6 +40,6 @@
  *  @param completion completion block
  *
  */
-- (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+- (void)saveToSyncano:(Syncano *)syncano withCompletion:(_Nullable SCCompletionBlock)completion;
 
 @end

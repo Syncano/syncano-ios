@@ -17,7 +17,7 @@ static NSString * const kDeviceMetadata = @"metadata";
 
 @implementation SCDevice {
     NSString *_deviceToken;
-    NSDictionary *_metadata;
+    NSMutableDictionary *_metadata;
 }
 
 + (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData {
@@ -36,17 +36,15 @@ static NSString * const kDeviceMetadata = @"metadata";
     return _deviceToken;
 }
 
-- (NSDictionary *)metadata {
+- (NSMutableDictionary *)metadata {
     if (!_metadata) {
-        _metadata = [NSDictionary new];
+        _metadata = [NSMutableDictionary new];
     }
     return _metadata;
 }
 
 - (void)setMetadataObject:(id)object forKey:(nonnull NSString *)key {
-    NSMutableDictionary *metadata = [[self metadata] mutableCopy];
-    [metadata setObject:object forKey:key];
-    _metadata = [NSDictionary dictionaryWithDictionary:metadata];
+    [_metadata setObject:object forKey:key];
 }
 
 - (void)saveWithCompletionBlock:(SCCompletionBlock)completion {
