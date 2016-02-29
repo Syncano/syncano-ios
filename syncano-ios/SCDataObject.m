@@ -158,6 +158,7 @@
                 completion(error);
             }
         } else {
+            
             NSMutableDictionary *params = [[[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error] mutableCopy];
             if (error) {
                 if (completion) {
@@ -167,7 +168,7 @@
                     revisionMismatchBlock(NO,nil);
                 }
             } else {
-                if (self.objectId && self.revision) {
+                if (self.objectId && self.revision && revisionMismatchBlock) {
                     params[kExpectedRevisionRequestParam] = self.revision;
                 }
                 [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
