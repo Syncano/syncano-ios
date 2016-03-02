@@ -10,4 +10,5 @@
 
 @interface SCDataObject (Properties)
 + (NSArray *)propertiesNamesOfFileClass;
++ (NSDictionary *)classesOfProperties;
 @end
