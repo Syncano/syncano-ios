@@ -61,6 +61,10 @@ extern NSString * const kExpectedRevisionRequestParam;
 extern NSString * const kRevisionMismatchResponseError;
 extern NSString * const kDatabaseName;
 
+extern NSString *const kSCDataObjectPropertyTypeKey;
+extern NSString *const kSCDataObjectPropertyTypeValue;
+extern NSString *const kSCDataObjectPropertyTypeDateTime;
+
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,
