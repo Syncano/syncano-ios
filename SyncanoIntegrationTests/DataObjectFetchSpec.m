@@ -32,8 +32,6 @@ describe(@"DataObjectFetchSpec", ^{
 
             SCPlease *bookPlease = [Book please];
             [bookPlease giveMeDataObjectsWithParameters:@{SCPleaseParameterIncludeCount : @(YES)} completion:^(NSArray *objects, NSError *error) {
-                NSLog(@"%@",bookPlease.objectsCount);
-                NSLog(@"%@",error);
                 _blockFinished = YES;
                 _fetchError = error;
                 _objectCount = bookPlease.objectsCount;
@@ -49,8 +47,6 @@ describe(@"DataObjectFetchSpec", ^{
             
             SCPlease *bookPlease = [Book please];
             [bookPlease giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
-                NSLog(@"%@",bookPlease.objectsCount);
-                NSLog(@"%@",error);
                 _blockFinished = YES;
                 _fetchError = error;
                 _objectCount = bookPlease.objectsCount;
