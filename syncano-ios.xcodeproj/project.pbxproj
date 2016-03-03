@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		11013A951C86DE20009D0962 /* DataObjectFetchSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11013A941C86DE20009D0962 /* DataObjectFetchSpec.m */; };
 		1104DAA51AEA5A8F0088F45E /* SCPredicateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1104DAA41AEA5A8F0088F45E /* SCPredicateSpec.m */; };
 		1106CE511B5CEB7700CEA452 /* SCUserProfileSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1106CE501B5CEB7700CEA452 /* SCUserProfileSpec.m */; };
 		1106CE861B5DFF5D00CEA452 /* Book.json in Resources */ = {isa = PBXBuildFile; fileRef = 1106CE851B5DFF5D00CEA452 /* Book.json */; };
@@ -218,6 +219,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		11013A941C86DE20009D0962 /* DataObjectFetchSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectFetchSpec.m; sourceTree = "<group>"; };
 		1104DAA41AEA5A8F0088F45E /* SCPredicateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicateSpec.m; sourceTree = "<group>"; };
 		11055B9C1B25C393004BB629 /* SCChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChannel.h; sourceTree = "<group>"; };
 		11055B9D1B25C393004BB629 /* SCChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChannel.m; sourceTree = "<group>"; };
@@ -765,6 +767,7 @@
 				A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */,
 				A697A63B1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m */,
 				1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */,
+				11013A941C86DE20009D0962 /* DataObjectFetchSpec.m */,
 				11E35B0E1C4F82740092E0A9 /* Info.plist */,
 			);
 			path = SyncanoIntegrationTests;
@@ -815,8 +818,8 @@
 		A6BCC8E91C563700008A0B0A /* Please */ = {
 			isa = PBXGroup;
 			children = (
-				11BE43E61AC57AC600FE96C5 /* SCPlease.h */,
 				A6BCC8F41C565264008A0B0A /* SCPleaseProtected.h */,
+				11BE43E61AC57AC600FE96C5 /* SCPlease.h */,
 				11BE43E71AC57AC600FE96C5 /* SCPlease.m */,
 				A6BCC8EA1C56372E008A0B0A /* SCPleaseForView.h */,
 				A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */,
@@ -1297,6 +1300,7 @@
 				1182D3531C6A21970020307F /* DataObjectRevisionMismatchSpec.m in Sources */,
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
 				A697A62D1C5F61DE00D245F3 /* (null) in Sources */,
+				11013A951C86DE20009D0962 /* DataObjectFetchSpec.m in Sources */,
 				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
 				A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */,
 				A697A63D1C61F7A700D245F3 /* Author.m in Sources */,

@@ -14,6 +14,7 @@
 #import "SCDataObject.h"
 #import "SCUser.h"
 #import "SCPleaseProtected.h"
+#import "NSObject+SCParseHelper.h"
 
 NSString *const SCPleaseParameterFields = @"fields";
 NSString *const SCPleaseParameterExcludedFields = @"excluded_fields";
@@ -188,6 +189,9 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
     }
     if (responseObject[@"next"] && responseObject[@"next"]!=[NSNull null]) {
         self.nextUrlString = responseObject[@"next"];
+    }
+    if (responseObject[@"objects_count"]) {
+        self.objectsCount = [responseObject[@"objects_count"] sc_numberOrNil];
     }
     if (responseObject[@"objects"]) {
         NSArray *parsedObjects = [[SCParseManager sharedSCParseManager] parsedObjectsOfClass:self.dataObjectClass fromJSONObject:responseObject[@"objects"]];

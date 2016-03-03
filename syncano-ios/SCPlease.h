@@ -38,6 +38,11 @@ extern NSString *const SCPleaseParameterIncludeCount;
 @property (nonatomic,assign) Class dataObjectClass;
 
 /**
+ * You can also get the Data Objects count estimation when getting the Data Objects list. Syncano shows estimate count for Classes that have more than 1000 Data Objects. This is because we can't provide a precise count without affecting the performance of the platform.
+ */
+@property (nonatomic,retain) NSNumber *objectsCount;
+
+/**
  *  Initializes new empty SCPlease object for provided SCDataObject class
  *
  *  @param dataObjectClass SCDataObject scope class
