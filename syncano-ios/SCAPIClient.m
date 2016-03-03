@@ -93,10 +93,14 @@
 
 #pragma mark  - Enqueue -
 
-
 - (void)GETWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self.requestQueue enqueueGETRequestWithPath:path params:params callback:completion];
     [self runQueue];
+}
+
+- (void)GETWithPathWithoutQueue:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+    SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodGET params:params callback:completion save:NO];
+    [self runRequest:request];
 }
 
 - (void)POSTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
