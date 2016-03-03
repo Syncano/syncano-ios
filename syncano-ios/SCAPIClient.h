@@ -38,6 +38,20 @@
 - (void)GETWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
+ *  "Abstract" method to GET method call
+ *  This version doesn't put requests into queue, and launched them immediately
+ *  Used for channels, which are making requests lasting up to 5 minutes
+ *  And we don't want them blocking other requests from being sent
+ *
+ *  @param path       path to request endpoint
+ *  @param params     NSDictionary with params for request
+ *  @param completion SCAPICompletionBlock completion callback block
+ *
+ *  @return void
+ */
+- (void)GETWithPathWithoutQueue:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+
+/**
  *  "Abstract" method to POST method call
  *
  *  @param path       path to request endpoint
