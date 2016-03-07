@@ -9,6 +9,9 @@
 #import "SCMacros.h"
 #import "SCConstants.h"
 #import "Mantle/NSError+MTLModelException.h"
+#import "SCReferencesStore.h"
+
+static SCReferencesStore  * referencesStore;
 
 /**
  *  Validates a value for an object and sets it if necessary. Method copied from Mantle

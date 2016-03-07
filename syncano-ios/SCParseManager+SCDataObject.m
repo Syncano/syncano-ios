@@ -37,6 +37,11 @@
         //we have only id
         id relatedObject = [[objectClass alloc] init];
         [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+        if ([referencesStore containsObject:relatedObject]) {
+            return [referencesStore member:relatedObject];
+        } else {
+            [referencesStore addDataObject:relatedObject];
+        }
         return relatedObject;
     }
     
