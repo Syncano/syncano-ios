@@ -44,13 +44,13 @@
     id user = [UserClass new];
     if ([user respondsToSelector:@selector(fillWithJSONObject:)]) {
         [user fillWithJSONObject:JSONObject];
-        NSDictionary *JSONProfile = [JSONObject[@"profile"] sc_dictionaryOrNil];
-        if (JSONProfile && [user respondsToSelector:NSSelectorFromString(@"profile")]) {
+        NSDictionary *JSONProfile = [JSONObject[kSCUserJSONKeyUserProfile] sc_dictionaryOrNil];
+        if (JSONProfile && [user respondsToSelector:NSSelectorFromString(kSCUserJSONKeyUserProfile)]) {
             Class UserProfileClass = ([self userProfileClass]) ? [self userProfileClass] : [SCUserProfile class];
             id profile = [self parsedObjectOfClass:(self.userProfileClass) ? self.userProfileClass : UserProfileClass fromJSONObject:JSONProfile];
-            SCValidateAndSetValue(user, @"profile", profile, YES, nil);
+            SCValidateAndSetValue(user, kSCUserJSONKeyUserProfile, profile, YES, nil);
         }
-        NSString *userKey = [JSONObject[@"user_key"] sc_stringOrEmpty];
+        NSString *userKey = [JSONObject[kSCUserJSONKeyUserKey] sc_stringOrEmpty];
         UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.syncano"];
         keychain[kUserKeyKeychainKey] = userKey;
         return user;
