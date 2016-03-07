@@ -13,6 +13,8 @@
 + (id)JSONUserDataFromDefaults;
 + (void)saveJSONUserData:(id)JSONUserData;
 + (void)removeUserFromDefaults;
++ (void)updateUsernameStoredInDefaults:(NSString *)username;
++ (void)updateUserProfileStoredInDefaults:(SCUserProfile *)profile;
 
 + (NSString *)userKeyFromDefaults;
 

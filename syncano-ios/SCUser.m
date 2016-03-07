@@ -17,12 +17,19 @@
 
 static id _currentUser;
 
+NSString *const kSCUserJSONKeyId = @"id";
+NSString *const kSCUserJSONKeyLinks = @"links";
+NSString *const kSCUserJSONKeyUsername = @"username";
+NSString *const kSCUserJSONKeyPassword = @"password";
+NSString *const kSCUserJSONKeyUserKey = @"user_key";
+NSString *const kSCUserJSONKeyUserProfile = @"profile";
+
 @implementation SCUser
 
 - (void)fillWithJSONObject:(id)JSONObject {
-    self.userId = [JSONObject[@"id"] sc_numberOrNil];
-    self.username = [JSONObject[@"username"] sc_stringOrEmpty];
-    self.links = [JSONObject[@"links"] sc_dictionaryOrNil];
+    self.userId = [JSONObject[kSCUserJSONKeyId] sc_numberOrNil];
+    self.username = [JSONObject[kSCUserJSONKeyUsername] sc_stringOrEmpty];
+    self.links = [JSONObject[kSCUserJSONKeyLinks] sc_dictionaryOrNil];
 }
 
 - (NSString *)userKey {
@@ -72,7 +79,7 @@ static id _currentUser;
 }
 
 + (void)loginWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
-    NSDictionary *params = @{@"username" : username , @"password" : password};
+    NSDictionary *params = @{kSCUserJSONKeyUsername : username , kSCUserJSONKeyPassword : password};
     [apiClient POSTWithPath:@"user/auth/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             completion(error);
@@ -93,7 +100,7 @@ static id _currentUser;
 
 + (void)registerWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
     //TODO: validate if username and password are not empty or maybe leave it to API :)
-    NSDictionary *params = @{@"username" : username , @"password" : password};
+    NSDictionary *params = @{kSCUserJSONKeyUsername : username , kSCUserJSONKeyPassword : password};
     [apiClient POSTWithPath:@"users/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             completion(error);
@@ -154,20 +161,21 @@ static id _currentUser;
     [self updateUsername:nil password:password usingAPIClient:syncano.apiClient withCompletion:completion];
 }
 
-
 - (void)updateUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
     NSMutableDictionary *params = [NSMutableDictionary new];
     if (username.length > 0) {
         self.username = username;
-        [params setObject:username forKey:@"username"];
+        [params setObject:username forKey:kSCUserJSONKeyUsername];
     }
     if (password.length > 0) {
-        [params setObject:password forKey:@"password"];
+        [params setObject:password forKey:kSCUserJSONKeyPassword];
     }
     NSString *path = @"user/";
     [apiClient PATCHWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        NSString *username = [responseObject[kSCUserJSONKeyUsername] sc_stringOrEmpty];
+        [[self class] updateUsernameStoredInDefaults:username];
         completion(error);
     }];
-
 }
+
 @end
