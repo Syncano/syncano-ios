@@ -32,6 +32,10 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.0.15** - 2016-03-02
+    * Fixed bug when polling a channel wouldn't allow making any other requests 
+* **4.0.14** - 2016-03-02
+    * Fixed saving NSDate properties 
 * **4.0.12** - 2016-02-18
     * Fixed bug with social backends login 
 * **4.0.11** - 2016-02-17

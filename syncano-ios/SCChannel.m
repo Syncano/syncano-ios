@@ -71,7 +71,7 @@
     if (self.lastId) {
         [params setObject:self.lastId forKey:@"last_id"];
     }
-    [apiClient GETWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient GETWithPathWithoutQueue:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (!error) {
             SCChannelNotificationMessage *message = [[SCChannelNotificationMessage alloc] initWithJSONObject:responseObject];
             self.lastId = message.identifier;

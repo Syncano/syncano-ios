@@ -36,6 +36,10 @@ NSString * const kSyncanoResponseErrorKey = @"com.Syncano.response.error";
 
 NSString * const kSCCertificateFileName = @"certfile.der";
 
+NSString *const kSCDataObjectPropertyTypeKey = @"type";
+NSString *const kSCDataObjectPropertyTypeValue = @"value";
+NSString *const kSCDataObjectPropertyTypeDateTime = @"datetime";
+
 @implementation SCConstants
 
 + (NSDateFormatter *)dateFormatter {
@@ -112,8 +116,25 @@ NSString * const kSCCertificateFileName = @"certfile.der";
     }];
 }
 
+/**
+ * Syncano datetime object can be either a string - for created_at and updated_at
+ * or a dictionary - for user define datetime properties
+ */
++ (NSString *)dateStringFromSyncanoDate:(id)syncanoDate {
+    NSString *dateString = nil;
+    if ([syncanoDate isKindOfClass:[NSDictionary class]] &&
+        [[syncanoDate objectForKey:kSCDataObjectPropertyTypeKey] isEqualToString:kSCDataObjectPropertyTypeDateTime] &&
+        [syncanoDate objectForKey:kSCDataObjectPropertyTypeValue]) {
+        dateString = [syncanoDate objectForKey:kSCDataObjectPropertyTypeValue];
+    } else if ([syncanoDate isKindOfClass:[NSString class]]) {
+        dateString = syncanoDate;
+    }
+    return dateString;
+}
+
 + (NSValueTransformer *)SCDataObjectDatesTransformer {
-    return [MTLValueTransformer transformerUsingForwardBlock:^id(NSString *dateString, BOOL *success, NSError *__autoreleasing *error) {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(id date, BOOL *success, NSError *__autoreleasing *error) {
+        NSString *dateString = [self dateStringFromSyncanoDate:date];
         return [[self dateFormatter] dateFromString:dateString];
     } reverseBlock:^id(NSDate *date, BOOL *success, NSError *__autoreleasing *error) {
         return [[self dateFormatter] stringFromDate:date];

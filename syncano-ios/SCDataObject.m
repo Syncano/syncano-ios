@@ -44,6 +44,29 @@
     return @{};
 }
 
++ (NSDictionary *)cachedClassesOfProperties {
+    static NSMutableDictionary *__cachePerClass = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __cachePerClass = [NSMutableDictionary dictionary];
+    });
+    
+    NSString *className = NSStringFromClass(self);
+    NSDictionary *__classesOfProperties = __cachePerClass[className];
+    if (__classesOfProperties == nil) {
+        __classesOfProperties = [self classesOfProperties];
+        __cachePerClass[className] = __classesOfProperties;
+    }
+    
+    return __classesOfProperties;
+}
+
++ (Class)classForKey:(NSString *)key {
+    NSString *className = [self cachedClassesOfProperties][key];
+    Class aClass = NSClassFromString(className);
+    return aClass;
+}
+
 + (NSValueTransformer *)JSONTransformerForKey:(NSString *)key {
     if ([key isEqualToString:@"owner_permissions"] ||
         [key isEqualToString:@"group_permissions"] ||
@@ -52,6 +75,11 @@
     }
     if ([key isEqualToString:@"created_at"] ||
         [key isEqualToString:@"updated_at"]) {
+        return [SCConstants SCDataObjectDatesTransformer];
+    }
+    
+    Class aClass = [self classForKey:key];
+    if ([aClass isSubclassOfClass:[NSDate class]]) {
         return [SCConstants SCDataObjectDatesTransformer];
     }
     return nil;
@@ -140,8 +168,6 @@
 - (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
     [self saveUsingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
 }
-
-
 
 - (void)saveWithCompletionBlock:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
     [self saveUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
@@ -255,11 +281,11 @@
 }
 
 - (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock
- {
+{
     [self updateValue:value forKey:key usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
 }
 - (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock
- {
+{
     [self updateValue:value forKey:key usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
 }
 
