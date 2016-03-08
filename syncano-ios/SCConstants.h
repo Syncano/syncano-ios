@@ -35,7 +35,7 @@ typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError *error,
 
 extern NSString * const SCDataObjectErrorDomain;
 
-extern NSString * const kBaseURL;
+extern NSString * const kBaseURLFormatString;
 extern NSString * const kUserKeyKeychainKey;
 
 extern NSString * const kSCPermissionTypeNone;
@@ -66,7 +66,6 @@ extern NSString * const kDatabaseName;
 extern NSString *const kSCDataObjectPropertyTypeKey;
 extern NSString *const kSCDataObjectPropertyTypeValue;
 extern NSString *const kSCDataObjectPropertyTypeDateTime;
-
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,
@@ -106,6 +105,12 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
     SCErrorCodeDataObjectNonExistingPropertyName = 2,
 };
 
+typedef NS_ENUM(NSUInteger, SCAPIVersion) {
+    SCAPIVersion_1_0 = 1,
+    SCAPIVersion_1_1 = 2
+};
+
+extern SCAPIVersion const kDefaultAPIVersion;
 
 @interface SCConstants : NSObject
 + (SCDataObjectPermissionType)dataObjectPermissiontypeByString:(NSString *)typeString;
@@ -115,6 +120,7 @@ typedef NS_ENUM(NSUInteger, SCErrorCode) {
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
 + (NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
++ (NSURL *)baseURLForAPIVersion:(SCAPIVersion)apiVersion;
 
 + (NSString *)createTableSQLStatement;
 @end

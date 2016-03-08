@@ -25,11 +25,30 @@
 @property (nonatomic,retain) NSMutableArray *requestsBeingProcessed;
 @property (nonatomic) NSInteger maxConcurentRequestsInQueue;
 @property (nonatomic,retain) AFNetworkReachabilityManager *networkReachabilityManager;
+@property (nonatomic, assign) SCAPIVersion apiVersion;
 @end
 
 @implementation SCAPIClient
 
-- (instancetype)initWithBaseURL:(NSURL *)url apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName {
+- (instancetype)initWithApiVersion:(SCAPIVersion)apiVersion apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName {
+    NSURL *baseURL = [SCConstants baseURLForAPIVersion:apiVersion];
+    baseURL = [NSURL URLWithString:instanceName relativeToURL:baseURL];
+    self = [self initWithBaseURL:baseURL];
+    if (self) {
+        self.apiKey = apiKey;
+        self.instanceName = instanceName;
+        self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier] delegate:self];
+        self.maxConcurentRequestsInQueue = 2;
+        self.requestsBeingProcessed = [NSMutableArray new];
+        self.apiVersion = apiVersion;
+    }
+    return self;
+}
+
+/**
+ @deprecated This method is deprecated. Please use initWithApiVersion:apiKey:instanceName: instead when initializing API Client to use it with Syncano
+ */
+- (instancetype)initWithBaseURL:(NSURL *)url apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName __deprecated {
     self = [self initWithBaseURL:url];
     if (self) {
         self.apiKey = apiKey;
@@ -37,6 +56,7 @@
         self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier] delegate:self];
         self.maxConcurentRequestsInQueue = 2;
         self.requestsBeingProcessed = [NSMutableArray new];
+        self.apiVersion = kDefaultAPIVersion;
     }
     return self;
 }
@@ -77,8 +97,7 @@
 }
 
 + (SCAPIClient *)apiClientForSyncano:(Syncano *)syncano {
-    NSURL *instanceURL = [NSURL URLWithString:syncano.instanceName relativeToURL:[NSURL URLWithString:kBaseURL]];
-    SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:instanceURL apiKey:syncano.apiKey instanceName:syncano.instanceName];
+    SCAPIClient *apiClient = [[self alloc] initWithApiVersion:kDefaultAPIVersion apiKey:syncano.apiKey instanceName:syncano.instanceName];
     return apiClient;
 }
 
@@ -298,7 +317,7 @@
 @implementation SCAPIClient (Reachability)
 
 - (void)initializeReachabilityManager {
-    self.networkReachabilityManager = [AFNetworkReachabilityManager managerForDomain:kBaseURL];
+    self.networkReachabilityManager = [AFNetworkReachabilityManager managerForDomain:[[SCConstants baseURLForAPIVersion:kDefaultAPIVersion] absoluteString]];
     [self.networkReachabilityManager startMonitoring];
 }
 
