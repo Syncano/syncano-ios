@@ -12,6 +12,7 @@
 #import "OHPathHelpers.h"
 #import "SCAPIClient+SCFile.h"
 #import "SCAPIClient+SCDataObject.h"
+#import "SCConstants.h"
 
 SPEC_BEGIN(SCAPIClientSpec)
 
@@ -27,7 +28,7 @@ describe(@"SCAPIClient", ^{
         it(@"should properly create new API client for Syncano instance", ^{
             SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
 
-            NSURL *instanceURL = [NSURL URLWithString:@"INSTANCE-NAME/" relativeToURL:[NSURL URLWithString:kBaseURL]];
+            NSURL *instanceURL = [NSURL URLWithString:@"INSTANCE-NAME/" relativeToURL:[SCConstants baseURLForAPIVersion:kDefaultAPIVersion]];
             [[apiClient.baseURL should] equal:instanceURL];
         });
         
@@ -44,7 +45,7 @@ describe(@"SCAPIClient", ^{
             
             it(@"should create, authorize and call GET task", ^{
                 SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH?param=value",kBaseURL]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH?param=value",[[SCConstants baseURLForAPIVersion:kDefaultAPIVersion] absoluteString]]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
                 __block NSURLSessionDataTask *_task;
@@ -63,7 +64,7 @@ describe(@"SCAPIClient", ^{
             });
             it(@"should create, authorize and call POST task", ^{
                 SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",kBaseURL]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",[[SCConstants baseURLForAPIVersion:kDefaultAPIVersion] absoluteString]]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
                 __block NSURLSessionDataTask *_task;
@@ -85,7 +86,7 @@ describe(@"SCAPIClient", ^{
             
             it(@"should create, authorize and call PUT task", ^{
                 SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",kBaseURL]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",[[SCConstants baseURLForAPIVersion:kDefaultAPIVersion] absoluteString]]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
                 __block NSURLSessionDataTask *_task;
@@ -107,7 +108,7 @@ describe(@"SCAPIClient", ^{
             
             it(@"should create, authorize and call PATCH task", ^{
                 SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",kBaseURL]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH",[[SCConstants baseURLForAPIVersion:kDefaultAPIVersion] absoluteString]]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
                 __block NSURLSessionDataTask *_task;
@@ -129,7 +130,7 @@ describe(@"SCAPIClient", ^{
             
             it(@"should create, authorize and call DELETE task", ^{
                 SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH?param=value",kBaseURL]];
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/PATH?param=value",[[SCConstants baseURLForAPIVersion:kDefaultAPIVersion] absoluteString]]];
                 __block NSError *_error;
                 __block BOOL _blockFinished;
                 __block NSURLSessionDataTask *_task;
@@ -191,7 +192,7 @@ describe(@"SCAPIClient", ^{
             __block NSURLSessionDataTask *_task;
 
             SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/classes/book/objects/",kBaseURL]];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/classes/book/objects/",[[SCConstants baseURLForAPIVersion:kDefaultAPIVersion] absoluteString]]];
             [apiClient getDataObjectsFromClassName:@"book" params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                 _error = error;
                 _responseobject = responseObject;
@@ -218,7 +219,7 @@ describe(@"SCAPIClient", ^{
             __block id _responseobject;
             __block NSURLSessionDataTask *_task;
             SCAPIClient *apiClient = [SCAPIClient apiClientForSyncano:syncano];
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/classes/book/objects/2/",kBaseURL]];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@INSTANCE-NAME/classes/book/objects/2/",[[SCConstants baseURLForAPIVersion:kDefaultAPIVersion] absoluteString]]];
             [apiClient getDataObjectsFromClassName:@"book" withId:@2 completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                 _error = error;
                 _responseobject = responseObject;
