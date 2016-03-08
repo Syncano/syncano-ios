@@ -32,6 +32,8 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.0.16** - 2016-03-07
+    * Fixed bug when updating username or user profile wouldn't update cached values 
 * **4.0.15** - 2016-03-02
     * Fixed bug when polling a channel wouldn't allow making any other requests 
 * **4.0.14** - 2016-03-02

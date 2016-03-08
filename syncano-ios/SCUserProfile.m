@@ -7,9 +7,26 @@
 //
 
 #import "SCUserProfile.h"
+#import "SCUser+UserDefaults.h"
+
+@interface SCDataObject (APIClient)
+- (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+@end
 
 @implementation SCUserProfile
 + (NSString *)classNameForAPI {
     return @"user_profile";
 }
+
+- (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    if ([super respondsToSelector:@selector(saveUsingAPIClient:withCompletion:revisionMismatchValidationBlock:)]) {
+        [super saveUsingAPIClient:apiClient withCompletion:^(NSError *error) {
+            [SCUser updateUserProfileStoredInDefaults:self];
+            if (completion) {
+                completion(error);
+            }
+        } revisionMismatchValidationBlock:revisionMismatchBlock];
+    }
+}
+
 @end

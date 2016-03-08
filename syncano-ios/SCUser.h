@@ -11,6 +11,13 @@
 
 @class SCPlease;
 
+extern NSString *const kSCUserJSONKeyId;
+extern NSString *const kSCUserJSONKeyLinks;
+extern NSString *const kSCUserJSONKeyUsername;
+extern NSString *const kSCUserJSONKeyPassword;
+extern NSString *const kSCUserJSONKeyUserKey;
+extern NSString *const kSCUserJSONKeyUserProfile;
+
 @interface SCUser : NSObject
 @property (nonatomic,retain) NSNumber *userId;
 @property (nonatomic,retain) NSString *username;

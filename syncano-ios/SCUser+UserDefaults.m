@@ -8,6 +8,7 @@
 
 #import "SCUser+UserDefaults.h"
 #import "NSObject+SCParseHelper.h"
+#import "SCParseManager+SCDataObject.h"
 
 NSString *const kCurrentUser = @"com.syncano.kCurrentUser";
 
@@ -37,9 +38,27 @@ NSString *const kCurrentUser = @"com.syncano.kCurrentUser";
     NSString *userKey = nil;
     id jsonUserData = [self JSONUserDataFromDefaults];
     if ([jsonUserData respondsToSelector:@selector(objectForKey:)]) {
-        userKey = [jsonUserData[@"user_key"] sc_stringOrEmpty];
+        userKey = [jsonUserData[kSCUserJSONKeyUserKey] sc_stringOrEmpty];
     }
     return userKey;
+}
+
++ (void)updateUsernameStoredInDefaults:(NSString *)username {
+    if (username) {
+        id userAsJSON = [[SCUser JSONUserDataFromDefaults] mutableCopy];
+        [userAsJSON setObject:username forKey:kSCUserJSONKeyUsername];
+        [self saveJSONUserData:userAsJSON];
+    }
+}
+
++ (id)userProfileAsJSON:(SCUserProfile *)profile {
+    return [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:profile error:nil];
+}
+
++ (void)updateUserProfileStoredInDefaults:(SCUserProfile *)profile {
+    id userAsJSON = [[self JSONUserDataFromDefaults] mutableCopy];
+    [userAsJSON setObject:[self userProfileAsJSON:profile] forKey:kSCUserJSONKeyUserProfile];
+    [SCUser saveJSONUserData:userAsJSON];
 }
 
 @end
