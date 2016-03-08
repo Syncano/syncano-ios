@@ -145,6 +145,8 @@
 		11F9AEE01B62128200B51341 /* SCTraceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F9AEDF1B62128200B51341 /* SCTraceSpec.m */; };
 		15094F3A1C6E9156007CD77D /* SCUser+UserDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = 15094F381C6E9156007CD77D /* SCUser+UserDefaults.h */; };
 		15094F3B1C6E9156007CD77D /* SCUser+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 15094F391C6E9156007CD77D /* SCUser+UserDefaults.m */; };
+		156CF1E31C8F556C0053A580 /* SCScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 156CF1E11C8F556C0053A580 /* SCScript.h */; };
+		156CF1E41C8F556C0053A580 /* SCScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CF1E21C8F556C0053A580 /* SCScript.m */; };
 		159E69E41C76F6000032D0CB /* UserRegistrationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */; };
 		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
 		3A822952B9060FB5C5A84B79 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
@@ -350,6 +352,8 @@
 		11F9AEDF1B62128200B51341 /* SCTraceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTraceSpec.m; sourceTree = "<group>"; };
 		15094F381C6E9156007CD77D /* SCUser+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCUser+UserDefaults.h"; sourceTree = "<group>"; };
 		15094F391C6E9156007CD77D /* SCUser+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCUser+UserDefaults.m"; sourceTree = "<group>"; };
+		156CF1E11C8F556C0053A580 /* SCScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCScript.h; sourceTree = "<group>"; };
+		156CF1E21C8F556C0053A580 /* SCScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCScript.m; sourceTree = "<group>"; };
 		159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRegistrationSpec.m; sourceTree = "<group>"; };
 		347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46752C1A7D469AA33BF9E983 /* Pods-syncano-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -449,15 +453,17 @@
 			name = User;
 			sourceTree = "<group>";
 		};
-		11055BA41B25CF0B004BB629 /* Codebox */ = {
+		11055BA41B25CF0B004BB629 /* Script */ = {
 			isa = PBXGroup;
 			children = (
 				11CDC1731B13553F00EFA5CB /* SCCodeBox.h */,
 				11CDC1741B13553F00EFA5CB /* SCCodeBox.m */,
+				156CF1E11C8F556C0053A580 /* SCScript.h */,
+				156CF1E21C8F556C0053A580 /* SCScript.m */,
 				11CDC1761B13570C00EFA5CB /* SCTrace.h */,
 				11CDC1771B13570C00EFA5CB /* SCTrace.m */,
 			);
-			name = Codebox;
+			name = Script;
 			sourceTree = "<group>";
 		};
 		11055BA51B25CF16004BB629 /* Webhook */ = {
@@ -673,7 +679,7 @@
 				119991651AC446E4007B994C /* Syncano.m */,
 				11055BA61B25CF2E004BB629 /* DataObject */,
 				11055BA31B25CEE6004BB629 /* User */,
-				11055BA41B25CF0B004BB629 /* Codebox */,
+				11055BA41B25CF0B004BB629 /* Script */,
 				11055BA51B25CF16004BB629 /* Webhook */,
 				11055BA21B25CED8004BB629 /* Realtime */,
 				1142F6581B332A8900A38A97 /* Categories */,
@@ -849,6 +855,7 @@
 				11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */,
 				116B6C7E1C1AEF5100D602D1 /* SCUploadRequest.h in Headers */,
 				11CE3CBC1BCFDC3000DE3163 /* SCChannel.h in Headers */,
+				156CF1E31C8F556C0053A580 /* SCScript.h in Headers */,
 				11CE3CD31BCFDC3000DE3163 /* NSData+MimeType.h in Headers */,
 				11CE3CCA1BCFDC3000DE3163 /* SCAPIClient.h in Headers */,
 				11CE3CC81BCFDC3000DE3163 /* SCAPIClient+SCFile.h in Headers */,
@@ -1260,6 +1267,7 @@
 				11CE3CCB1BCFDC3000DE3163 /* SCAPIClient.m in Sources */,
 				118895561C7EEC0500F683C8 /* SCDevice.m in Sources */,
 				11CE3CBA1BCFDC3000DE3163 /* SCWebhookResponseObject.m in Sources */,
+				156CF1E41C8F556C0053A580 /* SCScript.m in Sources */,
 				11CE3CCF1BCFDC3000DE3163 /* SCJSONResponseSerializer.m in Sources */,
 				11CB51821C1871B2007978A7 /* SCRequest.m in Sources */,
 				11CE3CB61BCFDC3000DE3163 /* SCTrace.m in Sources */,
