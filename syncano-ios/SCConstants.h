@@ -19,6 +19,7 @@ typedef void (^SCParseObjectCompletionBlock)(id parsedObject, NSError *error);
 typedef void (^SCCompletionBlock)(NSError *error);
 typedef void (^SCCompletionBlockWithUser)(SCUser *user, NSError *error);
 typedef void (^SCCodeBoxCompletionBlock)(SCTrace *trace,NSError *error);
+typedef void (^SCScriptCompletionBlock)(SCTrace *trace,NSError *error);
 typedef void (^SCTraceCompletionBlock)(SCTrace *trace, NSError *error);
 typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject *responseObject, NSError *error);
 typedef void (^SCCustomResponseCompletionBlock)(id responseObject, NSError *error);
