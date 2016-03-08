@@ -10,6 +10,7 @@
 
 @class SCDataObject;
 
-@interface SCReferencesStore : NSHashTable
+@interface SCReferencesStore : NSMapTable
 - (void)addDataObject:(SCDataObject *)dataObject;
+- (SCDataObject *)getObjectById:(NSNumber *)objectId;
 @end

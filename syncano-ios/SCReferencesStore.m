@@ -7,12 +7,16 @@
 //
 
 #import "SCReferencesStore.h"
-
+#import "SCDataObject.h"
 
 @implementation SCReferencesStore
 
 - (void)addDataObject:(SCDataObject *)dataObject {
-    [self addObject:dataObject];
+    [self setObject:dataObject forKey:dataObject.objectId];
+}
+
+- (SCDataObject *)getObjectById:(NSNumber *)objectId {
+    return [self objectForKey:objectId];
 }
 
 @end

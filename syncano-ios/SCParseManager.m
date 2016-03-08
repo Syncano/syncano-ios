@@ -23,7 +23,7 @@ SINGLETON_IMPL_FOR_CLASS(SCParseManager)
 - (instancetype)init {
     self = [super init];
     if (self) {
-        referencesStore = [[SCReferencesStore alloc] initWithOptions:NSHashTableWeakMemory|NSHashTableObjectPointerPersonality capacity:0];
+        referencesStore = [[SCReferencesStore alloc] initWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableWeakMemory capacity:0];
     }
     return self;
 }
