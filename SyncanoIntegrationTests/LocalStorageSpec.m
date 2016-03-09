@@ -39,6 +39,7 @@ describe(@"LocalStorageSpec", ^{
             
             //Getting books from API
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
+                NSLog(@"FetchError: %@",error);
                 _book = [objects firstObject];
                 _bookId = _book.objectId;
                 _bookTitle = _book.title;
