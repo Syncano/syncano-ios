@@ -1,0 +1,1 @@
+ALTER TABLE SyncanoDataObjects ADD COLUMN localObjectId TEXT;
