@@ -9,14 +9,26 @@
 #import "SCReferencesStore.h"
 #import "SCDataObject.h"
 
+@interface SCReferencesStore ()
+@property (nonatomic,retain) NSMapTable *store;
+@end
+
 @implementation SCReferencesStore
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.store = [[NSMapTable alloc] initWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableWeakMemory capacity:0];
+    }
+    return self;
+}
+
 - (void)addDataObject:(SCDataObject *)dataObject {
-    [self setObject:dataObject forKey:dataObject.objectId];
+    [self.store setObject:dataObject forKey:dataObject.objectId];
 }
 
 - (SCDataObject *)getObjectById:(NSNumber *)objectId {
-    return [self objectForKey:objectId];
+    return [self.store objectForKey:objectId];
 }
 
 @end
