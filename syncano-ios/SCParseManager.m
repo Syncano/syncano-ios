@@ -10,7 +10,7 @@
 #import "Mantle/Mantle.h"
 #import <objc/runtime.h>
 #import "SCDataObject.h"
-
+#import "SCReferencesStore.h"
 
 @interface SCParseManager ()
 
@@ -19,6 +19,14 @@
 @implementation SCParseManager
 
 SINGLETON_IMPL_FOR_CLASS(SCParseManager)
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.referencesStore = [SCReferencesStore new];
+    }
+    return self;
+}
 
 /**
  Pass mangled class name from Swift and extract demangled one - in format of Namespace.Classname

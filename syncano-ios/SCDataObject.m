@@ -127,6 +127,22 @@
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[SCDataObject class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToDataObject:(SCDataObject *)object];
+}
+
+- (BOOL)isEqualToDataObject:(SCDataObject *)object {
+    return self.objectId == object.objectId;
+}
+
 - (NSString *)path {
     if (self.links[@"self"]) {
         return self.links[@"self"];

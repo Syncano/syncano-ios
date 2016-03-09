@@ -36,6 +36,8 @@
 		113B2E4D1C48DA5400057F00 /* NSError+RevisionMismatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 113B2E4B1C48DA5400057F00 /* NSError+RevisionMismatch.m */; };
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
+		114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 114958941C8D6F9B0051F575 /* SCReferencesStore.h */; };
+		114958971C8D6F9B0051F575 /* SCReferencesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 114958951C8D6F9B0051F575 /* SCReferencesStore.m */; };
 		1150CF9C1B5789DF0080D5E3 /* SCUserRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */; };
 		1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */; };
 		1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */; };
@@ -252,6 +254,8 @@
 		1143A5C31B60D83100A720D6 /* SCJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONHelper.m; sourceTree = "<group>"; };
 		11487E451ADE94D200627EFD /* SCPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicate.h; sourceTree = "<group>"; };
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
+		114958941C8D6F9B0051F575 /* SCReferencesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCReferencesStore.h; sourceTree = "<group>"; };
+		114958951C8D6F9B0051F575 /* SCReferencesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCReferencesStore.m; sourceTree = "<group>"; };
 		1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUserRegister.json; sourceTree = "<group>"; };
 		1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCPredicate+LocalStorage.h"; sourceTree = "<group>"; };
 		1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCPredicate+LocalStorage.m"; sourceTree = "<group>"; };
@@ -596,6 +600,8 @@
 				11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */,
 				115E32081BF33FEA000130DE /* SCRegisterManager.h */,
 				115E32071BF33FEA000130DE /* SCRegisterManager.m */,
+				114958941C8D6F9B0051F575 /* SCReferencesStore.h */,
+				114958951C8D6F9B0051F575 /* SCReferencesStore.m */,
 			);
 			name = ParseManager;
 			sourceTree = "<group>";
@@ -883,6 +889,7 @@
 				11CE3CBB1BCFDC3000DE3163 /* SCChannelDelegate.h in Headers */,
 				15094F3A1C6E9156007CD77D /* SCUser+UserDefaults.h in Headers */,
 				A6BCC8F51C56526B008A0B0A /* SCPleaseProtected.h in Headers */,
+				114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */,
 				11CE3CA41BCFDC3000DE3163 /* SCDataObject.h in Headers */,
 				115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */,
 				11CE3CB91BCFDC3000DE3163 /* SCWebhookResponseObject.h in Headers */,
@@ -1277,6 +1284,7 @@
 				11CE3CB81BCFDC3000DE3163 /* SCWebhook.m in Sources */,
 				113B2E4D1C48DA5400057F00 /* NSError+RevisionMismatch.m in Sources */,
 				11CE3CB41BCFDC3000DE3163 /* SCCodeBox.m in Sources */,
+				114958971C8D6F9B0051F575 /* SCReferencesStore.m in Sources */,
 				11E47B011C3BD63400DB644A /* SCFileManager.m in Sources */,
 				1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */,
 				115E32091BF33FEA000130DE /* SCRegisterManager.m in Sources */,

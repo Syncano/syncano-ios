@@ -20,7 +20,7 @@
     if(parsedobject == nil) {
         return parsedobject;//possible error in parsing
     }
-    
+    [self.referencesStore addDataObject:parsedobject];
     [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
     [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
     return parsedobject;
@@ -35,8 +35,14 @@
     NSNumber *relatedObjectId = JSONObject[@"value"];
     if (relatedObjectId) {
         //we have only id
-        id relatedObject = [[objectClass alloc] init];
-        [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+        id relatedObject = [self.referencesStore getObjectById:relatedObjectId];
+        if (relatedObject) {
+            return relatedObject;
+        } else {
+            relatedObject = [[objectClass alloc] init];
+            [relatedObject setValue:relatedObjectId forKey:@"objectId"];
+            [self.referencesStore addDataObject:relatedObject];
+        }
         return relatedObject;
     }
     

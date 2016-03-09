@@ -9,6 +9,7 @@
 #import "SCMacros.h"
 #import "SCConstants.h"
 #import "Mantle/NSError+MTLModelException.h"
+#import "SCReferencesStore.h"
 
 /**
  *  Validates a value for an object and sets it if necessary. Method copied from Mantle
@@ -55,6 +56,8 @@ static inline BOOL SCValidateAndSetValue(id obj, NSString *key, id value, BOOL f
  *  Singleton class for SCDataObject parsing
  */
 @interface SCParseManager : NSObject
+
+@property (nonatomic,retain) SCReferencesStore  * referencesStore;
 
 /**
  *  Initializes singleton
