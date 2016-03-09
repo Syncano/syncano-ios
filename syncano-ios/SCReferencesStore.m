@@ -24,6 +24,9 @@
 }
 
 - (void)addDataObject:(SCDataObject *)dataObject {
+    if (dataObject.objectId == nil) {
+        return;
+    }
     [self.store setObject:dataObject forKey:dataObject.objectId];
 }
 
