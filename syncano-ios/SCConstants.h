@@ -7,21 +7,25 @@
 //
 #import <Foundation/Foundation.h>
 
+// API v1.0-1.1
 @class SCTrace;
-@class SCWebhookResponseObject;
+@class SCScriptEndpointResponse;
 @class SCChannelNotificationMessage;
 @class SCUser;
 
+// API v1.0
+@class SCWebhookResponseObject;
+
+// API v1.0-1.1
 typedef void (^SCAPICompletionBlock)(NSURLSessionDataTask *task, id responseObject, NSError *error);
 typedef void (^SCAPIFileDownloadCompletionBlock)(id responseObject, NSError *error);
 typedef void (^SCDataObjectsCompletionBlock)(NSArray *objects, NSError *error);
 typedef void (^SCParseObjectCompletionBlock)(id parsedObject, NSError *error);
 typedef void (^SCCompletionBlock)(NSError *error);
 typedef void (^SCCompletionBlockWithUser)(SCUser *user, NSError *error);
-typedef void (^SCCodeBoxCompletionBlock)(SCTrace *trace,NSError *error);
 typedef void (^SCScriptCompletionBlock)(SCTrace *trace,NSError *error);
 typedef void (^SCTraceCompletionBlock)(SCTrace *trace, NSError *error);
-typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject *responseObject, NSError *error);
+typedef void (^SCScriptEndpointCompletionBlock)(SCScriptEndpointResponse *response, NSError *error);
 typedef void (^SCCustomResponseCompletionBlock)(id responseObject, NSError *error);
 typedef void (^SCPleaseResolveQueryParametersCompletionBlock)(NSDictionary *queryParameters);
 typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *notificationMessage, NSError *error);
@@ -32,6 +36,10 @@ typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *er
 typedef void (^SCFindRequestsCompletionBlock)(NSArray *objects, NSError *error);
 typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString *description);
 typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError *error, NSString* query);
+
+// API v1.0
+typedef void (^SCCodeBoxCompletionBlock)(SCTrace *trace,NSError *error);
+typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject *responseObject, NSError *error);
 
 
 extern NSString * const SCDataObjectErrorDomain;
