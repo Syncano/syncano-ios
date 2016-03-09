@@ -173,13 +173,4 @@ SCAPIVersion const kDefaultAPIVersion = SCAPIVersion_1_0;
     NSURL *baseURL = [NSURL URLWithString:stringURL];
     return baseURL;
 }
-
-+ (NSString *)createTableSQLStatement {
-    NSString *objectsTableSchema = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ("
-    @"className TEXT, "
-    @"objectId INTEGER, "
-    @"json TEXT, "
-    @"UNIQUE(className, objectId));",kDatabaseName];
-    return objectsTableSchema;
-}
 @end

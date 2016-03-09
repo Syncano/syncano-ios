@@ -121,6 +121,4 @@ extern SCAPIVersion const kDefaultAPIVersion;
 + (NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
 + (NSURL *)baseURLForAPIVersion:(SCAPIVersion)apiVersion;
-
-+ (NSString *)createTableSQLStatement;
 @end
