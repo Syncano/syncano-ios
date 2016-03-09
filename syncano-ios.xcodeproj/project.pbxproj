@@ -147,6 +147,10 @@
 		15094F3B1C6E9156007CD77D /* SCUser+UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 15094F391C6E9156007CD77D /* SCUser+UserDefaults.m */; };
 		156CF1E31C8F556C0053A580 /* SCScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 156CF1E11C8F556C0053A580 /* SCScript.h */; };
 		156CF1E41C8F556C0053A580 /* SCScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CF1E21C8F556C0053A580 /* SCScript.m */; };
+		156CF1E71C8F651F0053A580 /* SCScriptEndpoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 156CF1E51C8F651F0053A580 /* SCScriptEndpoint.h */; };
+		156CF1E81C8F651F0053A580 /* SCScriptEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CF1E61C8F651F0053A580 /* SCScriptEndpoint.m */; };
+		156CF1EB1C8F65880053A580 /* SCScriptEndpointResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 156CF1E91C8F65880053A580 /* SCScriptEndpointResponse.h */; };
+		156CF1EC1C8F65880053A580 /* SCScriptEndpointResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CF1EA1C8F65880053A580 /* SCScriptEndpointResponse.m */; };
 		159E69E41C76F6000032D0CB /* UserRegistrationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */; };
 		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
 		3A822952B9060FB5C5A84B79 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
@@ -354,6 +358,10 @@
 		15094F391C6E9156007CD77D /* SCUser+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCUser+UserDefaults.m"; sourceTree = "<group>"; };
 		156CF1E11C8F556C0053A580 /* SCScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCScript.h; sourceTree = "<group>"; };
 		156CF1E21C8F556C0053A580 /* SCScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCScript.m; sourceTree = "<group>"; };
+		156CF1E51C8F651F0053A580 /* SCScriptEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCScriptEndpoint.h; sourceTree = "<group>"; };
+		156CF1E61C8F651F0053A580 /* SCScriptEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCScriptEndpoint.m; sourceTree = "<group>"; };
+		156CF1E91C8F65880053A580 /* SCScriptEndpointResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCScriptEndpointResponse.h; sourceTree = "<group>"; };
+		156CF1EA1C8F65880053A580 /* SCScriptEndpointResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCScriptEndpointResponse.m; sourceTree = "<group>"; };
 		159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRegistrationSpec.m; sourceTree = "<group>"; };
 		347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46752C1A7D469AA33BF9E983 /* Pods-syncano-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -466,15 +474,19 @@
 			name = Script;
 			sourceTree = "<group>";
 		};
-		11055BA51B25CF16004BB629 /* Webhook */ = {
+		11055BA51B25CF16004BB629 /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
 				11A0E7A61B1756EB009CC2E1 /* SCWebhook.h */,
 				11A0E7A71B1756EB009CC2E1 /* SCWebhook.m */,
 				11A0E7A91B175840009CC2E1 /* SCWebhookResponseObject.h */,
 				11A0E7AA1B175840009CC2E1 /* SCWebhookResponseObject.m */,
+				156CF1E51C8F651F0053A580 /* SCScriptEndpoint.h */,
+				156CF1E61C8F651F0053A580 /* SCScriptEndpoint.m */,
+				156CF1E91C8F65880053A580 /* SCScriptEndpointResponse.h */,
+				156CF1EA1C8F65880053A580 /* SCScriptEndpointResponse.m */,
 			);
-			name = Webhook;
+			name = Endpoints;
 			sourceTree = "<group>";
 		};
 		11055BA61B25CF2E004BB629 /* DataObject */ = {
@@ -680,7 +692,7 @@
 				11055BA61B25CF2E004BB629 /* DataObject */,
 				11055BA31B25CEE6004BB629 /* User */,
 				11055BA41B25CF0B004BB629 /* Script */,
-				11055BA51B25CF16004BB629 /* Webhook */,
+				11055BA51B25CF16004BB629 /* Endpoints */,
 				11055BA21B25CED8004BB629 /* Realtime */,
 				1142F6581B332A8900A38A97 /* Categories */,
 				1184268E1AC986C6001035A7 /* ParseManager */,
@@ -869,6 +881,7 @@
 				11CE3CA61BCFDC3000DE3163 /* SCPlease.h in Headers */,
 				11CE3CD11BCFDC3000DE3163 /* SCConstants.h in Headers */,
 				11CE3CA81BCFDC3000DE3163 /* SCPredicateProtocol.h in Headers */,
+				156CF1EB1C8F65880053A580 /* SCScriptEndpointResponse.h in Headers */,
 				11CB51811C1871B2007978A7 /* SCRequest.h in Headers */,
 				11B0E6681BFCC4F700E36713 /* NSDictionary+JSONString.h in Headers */,
 				11CE3CD01BCFDC3000DE3163 /* SCMacros.h in Headers */,
@@ -893,6 +906,7 @@
 				11F8BF7F1BE0F4A500091F58 /* SCLocalStore.h in Headers */,
 				1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */,
 				11CB513B1C1829EB007978A7 /* SCRequestQueue.h in Headers */,
+				156CF1E71C8F651F0053A580 /* SCScriptEndpoint.h in Headers */,
 				11CE3CC41BCFDC3000DE3163 /* SCParseManager+SCDataObject.h in Headers */,
 				118895551C7EEC0500F683C8 /* SCDevice.h in Headers */,
 				11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */,
@@ -1265,11 +1279,13 @@
 				11F8BF801BE0F4A800091F58 /* SCLocalStore.m in Sources */,
 				11CE3CCD1BCFDC3000DE3163 /* SCAPIClient+SCDataObject.m in Sources */,
 				11CE3CCB1BCFDC3000DE3163 /* SCAPIClient.m in Sources */,
+				156CF1EC1C8F65880053A580 /* SCScriptEndpointResponse.m in Sources */,
 				118895561C7EEC0500F683C8 /* SCDevice.m in Sources */,
 				11CE3CBA1BCFDC3000DE3163 /* SCWebhookResponseObject.m in Sources */,
 				156CF1E41C8F556C0053A580 /* SCScript.m in Sources */,
 				11CE3CCF1BCFDC3000DE3163 /* SCJSONResponseSerializer.m in Sources */,
 				11CB51821C1871B2007978A7 /* SCRequest.m in Sources */,
+				156CF1E81C8F651F0053A580 /* SCScriptEndpoint.m in Sources */,
 				11CE3CB61BCFDC3000DE3163 /* SCTrace.m in Sources */,
 				11CE3CC31BCFDC3000DE3163 /* SCParseManager.m in Sources */,
 				11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */,
