@@ -1,4 +1,4 @@
-***Local Storage***
+**Local Storage**
 
 Using this feature you can easily store your object locally for future use. iOS Library is making all the magic to create proper database and store your objects inside.
 
@@ -14,17 +14,16 @@ First you have to enable local storage. It is very important to run this method 
 
 Now after you fetch your objects from syncano you can easily store them locally using special designed method
 
-``` objective-c
+```objective-c
 [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
-        for (Book *book in objects) {
-            [book saveToLocalStorageWithCompletion:^(NSError *error) {
+    for (Book *book in objects) {
+        [book saveToLocalStorageWithCompletion:^(NSError *error) {
+        }];
+    }
+}];
+```
 
-            }];
-        }
-    }];```
-
-
-That’s it. All your objects are stored ocally on your device.
+That’s it. All your objects are stored locally on your device.
 
 
 **Fetching objects from local storage**
