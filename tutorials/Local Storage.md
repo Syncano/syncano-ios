@@ -1,8 +1,8 @@
-**Local Storage**
+# Local Storage
 
 Using this feature you can easily store your object locally for future use. iOS Library is making all the magic to create proper database and store your objects inside.
 
-**Saving Objects locally after fetch from syncano**
+## Saving Objects locally after fetch from syncano
 
 Most common use of this functionality is storing fetched objects from syncano. It is very easy to perform this.
 
@@ -26,6 +26,6 @@ Now after you fetch your objects from syncano you can easily store them locally 
 That’s it. All your objects are stored locally on your device.
 
 
-**Fetching objects from local storage**
+## Fetching objects from local storage
 
 It is that simple as fetching objects from syncano
