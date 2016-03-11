@@ -7,6 +7,7 @@
 //
 
 #import "SCPredicate.h"
+#import "SCConstants.h"
 
 NSString *const SCPredicateGreaterThanOperator = @"_gt";
 NSString *const SCPredicateGreaterThanOrEqualOperator = @"_gte";
@@ -61,13 +62,8 @@ static NSDateFormatter *dateFormatter;
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 }
 
-+ (NSDateFormatter *)dateFormatter {
-    if (!dateFormatter) {
-        dateFormatter = [NSDateFormatter new];
-        [dateFormatter setDateStyle:NSDateFormatterFullStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
-    }
-    return dateFormatter;
++ (NSString *)formattedStringFromDate:(NSDate *)date {
+    return [[SCConstants SCDataObjectDatesTransformer] reverseTransformedValue:date];
 }
 
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanString:(NSString *)string {
@@ -77,7 +73,7 @@ static NSDateFormatter *dateFormatter;
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateGreaterThanOperator rightHand:number];
 }
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanDate:(NSDate *)date {
-    NSString *dateString = [[self dateFormatter] stringFromDate:date];
+    NSString *dateString = [self formattedStringFromDate:date];
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateGreaterThanOperator rightHand:dateString];
 }
 
@@ -88,7 +84,7 @@ static NSDateFormatter *dateFormatter;
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateGreaterThanOrEqualOperator rightHand:number];
 }
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToDate:(NSDate *)date {
-    NSString *dateString = [[self dateFormatter] stringFromDate:date];
+    NSString *dateString = [self formattedStringFromDate:date];
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateGreaterThanOrEqualOperator rightHand:dateString];
 }
 
@@ -99,7 +95,7 @@ static NSDateFormatter *dateFormatter;
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateLessThanOperator rightHand:number];
 }
 + (SCPredicate *)whereKey:(NSString *)key isLessThanDate:(NSDate *)date {
-    NSString *dateString = [[self dateFormatter] stringFromDate:date];
+    NSString *dateString = [self formattedStringFromDate:date];
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateLessThanOperator rightHand:dateString];
 }
 
@@ -110,7 +106,7 @@ static NSDateFormatter *dateFormatter;
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateLessThanOrEqualOperator rightHand:number];
 }
 + (SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToDate:(NSDate *)date {
-    NSString *dateString = [[self dateFormatter] stringFromDate:date];
+    NSString *dateString = [self formattedStringFromDate:date];
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateLessThanOrEqualOperator rightHand:dateString];
 }
 
@@ -124,7 +120,7 @@ static NSDateFormatter *dateFormatter;
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateEqualOperator rightHand:@(boolValue)];
 }
 + (SCPredicate *)whereKey:(NSString *)key isEqualToDate:(NSDate *)date {
-    NSString *dateString = [[self dateFormatter] stringFromDate:date];
+    NSString *dateString = [self formattedStringFromDate:date];
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateEqualOperator rightHand:dateString];
 }
 
@@ -138,7 +134,7 @@ static NSDateFormatter *dateFormatter;
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateNotEqualOperator rightHand:@(boolValue)];
 }
 + (SCPredicate *)whereKey:(NSString *)key notEqualToDate:(NSDate *)date {
-    NSString *dateString = [[self dateFormatter] stringFromDate:date];
+    NSString *dateString = [self formattedStringFromDate:date];
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateNotEqualOperator rightHand:dateString];
 }
 

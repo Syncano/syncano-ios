@@ -45,8 +45,8 @@
     return relationsForClass;
 }
 
-+ (NSDictionary *)relationsForClass:(__unsafe_unretained Class)class {
-    NSString *className = [self normalizedClassNameFromClass:class];
++ (NSDictionary *)relationsForClass:(__unsafe_unretained Class)aClass {
+    NSString *className = [self normalizedClassNameFromClass:aClass];
     NSDictionary *relations = [self relationsForClass][className];
     if(relations == nil) {
         relations = [self relationsForClassItem:[self registerItemForClassName:className]];
