@@ -9,5 +9,6 @@
 #import "SCPlease.h"
 
 @interface SCPlease (LocalStorage)
+- (void)giveMeDataObjectsFromLocalStorageWithCompletion:(SCDataObjectsCompletionBlock)completion;
 - (void)giveMeDataObjectsFromLocalStorageWithPredicate:(id<SCPredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion;
 @end
