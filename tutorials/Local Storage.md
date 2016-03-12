@@ -29,3 +29,15 @@ That’s it. All your objects are stored locally on your device.
 ## Fetching objects from local storage
 
 It is that simple as fetching objects from Syncano
+
+```objective-c
+[[Book please] giveMeDataObjectsFromLocalStorageCompletion:^(NSArray *objects, NSError *error) {
+}];
+```
+You can also use predicate to query specified objects like this:
+```objective-c
+SCPredicate *predicate = [SCPredicate whereKey:@"title" isEqualToString:@"Monte Cristo"];
+[[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
+    _storedBook = [objects firstObject];
+}];
+```
