@@ -20,8 +20,9 @@ describe(@"SCpredicate", ^{
     
     beforeAll(^{
         dateFormatter = [NSDateFormatter new];
-        [dateFormatter setDateStyle:NSDateFormatterFullStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterFullStyle];
+        dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+        dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSSSSX";
         date = [NSDate date];
     });
     
