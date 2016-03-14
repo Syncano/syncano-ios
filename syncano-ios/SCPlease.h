@@ -114,10 +114,27 @@ extern NSString *const SCPleaseParameterIncludeCount;
  */
 - (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
 
+/**
+ *  Create and run API request for next page of results
+ *
+ *  @param completion completion block
+ */
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
+
+/**
+ *  Create and run API request for previous page of results
+ *
+ *  @param completion completion block
+ */
 - (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
 
-
+/**
+ *  Enumerates pages of results with predicate for query and with parameters
+ *
+ *  @param predicate  SCPredicate to build query
+ *  @param parameters NSDictionary with query params
+ *  @param block      completion block
+ */
 - (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
 
 @end
