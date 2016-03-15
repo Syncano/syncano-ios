@@ -145,15 +145,80 @@
  */
 - (void)fetchFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
 
+/**
+ *  Deletes object in API using singleton Syncano instance
+ *
+ *  @param completion completion block
+ */
 - (void)deleteWithCompletion:(SCCompletionBlock)completion;
+
+/**
+ *  Deletes object in API using provided Syncano instance
+ *
+ *  @param syncano    provided Syncano instance
+ *  @param completion completion block
+ */
 - (void)deleteFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
 
+/**
+ *  Updates value for provided key in API using singleton Syncano instance
+ *
+ *  @param value      value
+ *  @param key        key to update
+ *  @param completion completion block
+ */
 - (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion;
+
+/**
+ *  Updates value for provided key in API using provided Syncano instance
+ *
+ *  @param value      value
+ *  @param key        key to update
+ *  @param syncano    Syncano instance
+ *  @param completion completion block
+ */
 - (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+
+/**
+ *  Updates value for provided key in API using provided SCAPI client
+ *
+ *  @param value      value
+ *  @param key        key to update
+ *  @param apiClient  SCAPIClient
+ *  @param completion completion block
+ */
 - (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion;
 
+/**
+ *  Updates value for provided key in API using singleton Syncano instance and checking if there is no revision mismatch
+ *
+ *  @param value                 value
+ *  @param key                   key to update
+ *  @param completion            comletion block
+ *  @param revisionMismatchBlock result of revision mismatch verification block
+ */
 - (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+/**
+ *  Updates value for provided key in API using provided Syncano instance and checking if there is no revision mismatch
+ *
+ *  @param value                 value
+ *  @param key                   key to pdate
+ *  @param syncano               Syncano instance
+ *  @param completion            completion block
+ *  @param revisionMismatchBlock result of revision mismatch verification block
+ */
 - (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+
+/**
+ *  Updates value for provided key in API using provided SCAPI client and checking if there is no revision mismatch
+ *
+ *  @param value                 value
+ *  @param key                   key to update
+ *  @param apiClient             SCAPI client
+ *  @param completion            completion block
+ *  @param revisionMismatchBlock result of revision mismatch verification block
+ */
 - (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 /**
