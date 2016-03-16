@@ -32,3 +32,7 @@ Podfile.lock
 
 # Others
 .uispec.app
+
+*.gcda
+
+*.gcno
