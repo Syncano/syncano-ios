@@ -7,11 +7,11 @@
 //
 
 #import "SCAPIClient.h"
+#import "SCAPIClient_SCAPIClient.h"
 #import "Syncano.h"
 #import "SCJSONResponseSerializer.h"
 #import "NSData+MimeType.h"
 #import "SCRequest.h"
-#import "SCRequestQueue.h"
 #import "NSString+MD5.h"
 #import "SCRequest.h"
 #import "SCUploadRequest.h"
@@ -19,13 +19,6 @@
 #import "SCUser+UserDefaults.h"
 
 @interface SCAPIClient () <SCRequestQueueDelegate>
-@property (nonatomic,copy) NSString *apiKey;
-@property (nonatomic,copy) NSString *instanceName;
-@property (nonatomic,retain) SCRequestQueue *requestQueue;
-@property (nonatomic,retain) NSMutableArray *requestsBeingProcessed;
-@property (nonatomic) NSInteger maxConcurentRequestsInQueue;
-@property (nonatomic,retain) AFNetworkReachabilityManager *networkReachabilityManager;
-@property (nonatomic, assign) SCAPIVersion apiVersion;
 @end
 
 @implementation SCAPIClient
@@ -48,7 +41,7 @@
 /**
  @deprecated This method is deprecated. Please use initWithApiVersion:apiKey:instanceName: instead when initializing API Client to use it with Syncano
  */
-- (instancetype)initWithBaseURL:(NSURL *)url apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName __deprecated {
+- (instancetype)initWithBaseURL:(NSURL *)url apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName DEPRECATED_MSG_ATTRIBUTE("Use initWithApiVersion:apiKey:instanceName: method instead.") {
     self = [self initWithBaseURL:url];
     if (self) {
         self.apiKey = apiKey;

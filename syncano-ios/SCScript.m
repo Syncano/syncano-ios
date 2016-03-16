@@ -30,7 +30,7 @@
             }
         } else {
             if (completion) {
-                SCTrace *trace = [[SCTrace alloc] initWithJSONObject:responseObject andCodeboxIdentifier:scriptId];
+                SCTrace *trace = [[SCTrace alloc] initWithJSONObject:responseObject andScriptIdentifier:scriptId];
                 completion(trace,error);
             }
         }

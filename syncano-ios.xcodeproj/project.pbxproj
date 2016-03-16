@@ -151,6 +151,8 @@
 		156CF1E81C8F651F0053A580 /* SCScriptEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CF1E61C8F651F0053A580 /* SCScriptEndpoint.m */; };
 		156CF1EB1C8F65880053A580 /* SCScriptEndpointResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 156CF1E91C8F65880053A580 /* SCScriptEndpointResponse.h */; };
 		156CF1EC1C8F65880053A580 /* SCScriptEndpointResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 156CF1EA1C8F65880053A580 /* SCScriptEndpointResponse.m */; };
+		157D5F7E1C99372E00B8CDED /* SCAPIClient_SCAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 157D5F7D1C99372E00B8CDED /* SCAPIClient_SCAPIClient.h */; };
+		157D5F801C9938E700B8CDED /* Trace-Script.json in Resources */ = {isa = PBXBuildFile; fileRef = 157D5F7F1C9938E700B8CDED /* Trace-Script.json */; };
 		159E69E41C76F6000032D0CB /* UserRegistrationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */; };
 		1A0C9F9AB10B04BEF302047E /* libPods-syncano-IntegrationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C906C57A3E6F58B7391840 /* libPods-syncano-IntegrationTests.a */; };
 		3A822952B9060FB5C5A84B79 /* libPods-syncano-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */; };
@@ -362,6 +364,8 @@
 		156CF1E61C8F651F0053A580 /* SCScriptEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCScriptEndpoint.m; sourceTree = "<group>"; };
 		156CF1E91C8F65880053A580 /* SCScriptEndpointResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCScriptEndpointResponse.h; sourceTree = "<group>"; };
 		156CF1EA1C8F65880053A580 /* SCScriptEndpointResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCScriptEndpointResponse.m; sourceTree = "<group>"; };
+		157D5F7D1C99372E00B8CDED /* SCAPIClient_SCAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAPIClient_SCAPIClient.h; sourceTree = "<group>"; };
+		157D5F7F1C9938E700B8CDED /* Trace-Script.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Trace-Script.json"; sourceTree = "<group>"; };
 		159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRegistrationSpec.m; sourceTree = "<group>"; };
 		347C0A9448448E4AA515720F /* libPods-syncano-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-syncano-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46752C1A7D469AA33BF9E983 /* Pods-syncano-IntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-syncano-IntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-syncano-IntegrationTests/Pods-syncano-IntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -560,6 +564,7 @@
 				1193D73A1B553140000D665B /* SCUserLogin.json */,
 				1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */,
 				11F9AEDD1B62113D00B51341 /* Trace.json */,
+				157D5F7F1C9938E700B8CDED /* Trace-Script.json */,
 				11D7D1B31B660CD700466E66 /* Webhook.json */,
 				11A7C65B1B67C00D00EDC3CE /* ChannelNotificationMessage.json */,
 				A6BCC8F61C56570F008A0B0A /* ViewResponse.json */,
@@ -763,6 +768,7 @@
 			children = (
 				11F9AED71B61FD4100B51341 /* SCAPIClient+SCFile.h */,
 				11F9AED61B61FD4100B51341 /* SCAPIClient+SCFile.m */,
+				157D5F7D1C99372E00B8CDED /* SCAPIClient_SCAPIClient.h */,
 				11BE43D91AC5532200FE96C5 /* SCAPIClient.h */,
 				11BE43DA1AC5532200FE96C5 /* SCAPIClient.m */,
 				1109EF5B1ACD257300BD18A6 /* SCAPIClient+SCDataObject.h */,
@@ -914,6 +920,7 @@
 				A6BCC8EC1C56372E008A0B0A /* SCPleaseForView.h in Headers */,
 				11CE3CB11BCFDC3000DE3163 /* SCUserProfile.h in Headers */,
 				A66984901C63B54F0056A228 /* SCDataObject+Increment.h in Headers */,
+				157D5F7E1C99372E00B8CDED /* SCAPIClient_SCAPIClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1059,6 +1066,7 @@
 				11F9AED21B61F98200B51341 /* syncano-white.png in Resources */,
 				11D7D1B41B660CD700466E66 /* Webhook.json in Resources */,
 				11A7C65C1B67C00D00EDC3CE /* ChannelNotificationMessage.json in Resources */,
+				157D5F801C9938E700B8CDED /* Trace-Script.json in Resources */,
 				A6BCC8F71C56570F008A0B0A /* ViewResponse.json in Resources */,
 				1106CE881B5DFF9500CEA452 /* Books.json in Resources */,
 				1106CE861B5DFF5D00CEA452 /* Book.json in Resources */,

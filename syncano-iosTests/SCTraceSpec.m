@@ -18,7 +18,7 @@ SPEC_BEGIN(SCTraceSpec)
 describe(@"SCTrace", ^{
     
     
-    it(@"should init with JSON object and codebox identifier", ^{
+    it(@"CodeBox Trace should init with JSON object and codebox identifier", ^{
         id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace"];
         SCTrace *trace = [[SCTrace alloc] initWithJSONObject:JSONObject andCodeboxIdentifier:@123];
         [[trace should] beNonNil];
@@ -26,12 +26,19 @@ describe(@"SCTrace", ^{
         [[trace.codeboxIdentifier should] equal:@123];
     });
     
+    it(@"Script Trace should init with JSON object and script identifier", ^{
+        id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace-Script"];
+        SCTrace *trace = [[SCTrace alloc] initWithJSONObject:JSONObject andScriptIdentifier:@123];
+        [[trace should] beNonNil];
+        [[trace.identifier  should] equal:@45];
+        [[trace.scriptIdentifier should] equal:@123];
+    });
     
-    it(@"should fetch from singleton Syncano instance", ^{
+    it(@"should fetch CodeBox race from singleton Syncano instance", ^{
         [Syncano sharedInstanceWithApiKey:@"API-KEY" instanceName:@"INSTANCE-NAME"];
         
         id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace"];
-        SCTrace *trace = [[SCTrace alloc] initWithJSONObject:JSONObject andCodeboxIdentifier:@123];
+        SCTrace *codeboxTrace = [[SCTrace alloc] initWithJSONObject:JSONObject andCodeboxIdentifier:@123];
         
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;
@@ -43,7 +50,7 @@ describe(@"SCTrace", ^{
         __block SCTrace *_trace;
         __block NSError *_error;
         __block BOOL _blockFinished;
-        [trace fetchWithCompletion:^(SCTrace *trace, NSError *error) {
+        [codeboxTrace fetchWithCompletion:^(SCTrace *trace, NSError *error) {
             _trace = trace;
             _error = error;
             _blockFinished = YES;
@@ -54,11 +61,38 @@ describe(@"SCTrace", ^{
         [[_trace shouldEventually] beNonNil];
     });
     
-    it(@"should fetch from provided Syncano instance", ^{
+    it(@"should fetch Script Trace from singleton Syncano instance", ^{
+        [Syncano sharedInstanceWithApiKey:@"API-KEY" instanceName:@"INSTANCE-NAME"];
+        
+        id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace"];
+        SCTrace *scriptTrace = [[SCTrace alloc] initWithJSONObject:JSONObject andScriptIdentifier:@123];
+        
+        [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+            return YES;
+        } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+            return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"Trace-Script.json",self.class)
+                                                    statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+        }];
+        
+        __block SCTrace *_trace;
+        __block NSError *_error;
+        __block BOOL _blockFinished;
+        [scriptTrace fetchWithCompletion:^(SCTrace *trace, NSError *error) {
+            _trace = trace;
+            _error = error;
+            _blockFinished = YES;
+        }];
+        
+        [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+        [[_error shouldEventually] beNil];
+        [[_trace shouldEventually] beNonNil];
+    });
+    
+    it(@"should fetch CodeBox Trace from provided Syncano instance", ^{
        Syncano *syncano =  [Syncano newSyncanoWithApiKey:@"API-KEY" instanceName:@"INSTANCE-NAME"];
         
         id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace"];
-        SCTrace *trace = [[SCTrace alloc] initWithJSONObject:JSONObject andCodeboxIdentifier:@123];
+        SCTrace *codeboxTrace = [[SCTrace alloc] initWithJSONObject:JSONObject andCodeboxIdentifier:@123];
         
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;
@@ -70,7 +104,34 @@ describe(@"SCTrace", ^{
         __block SCTrace *_trace;
         __block NSError *_error;
         __block BOOL _blockFinished;
-        [trace fetchFromSyncano:syncano withCompletion:^(SCTrace *trace, NSError *error) {
+        [codeboxTrace fetchFromSyncano:syncano withCompletion:^(SCTrace *trace, NSError *error) {
+            _trace = trace;
+            _error = error;
+            _blockFinished = YES;
+        }];
+        
+        [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+        [[_error shouldEventually] beNil];
+        [[_trace shouldEventually] beNonNil];
+    });
+    
+    it(@"should fetch Script Trace from provided Syncano instance", ^{
+        Syncano *syncano =  [Syncano newSyncanoWithApiKey:@"API-KEY" instanceName:@"INSTANCE-NAME"];
+        
+        id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace"];
+        SCTrace *scriptTrace = [[SCTrace alloc] initWithJSONObject:JSONObject andScriptIdentifier:@123];
+        
+        [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+            return YES;
+        } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+            return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"Trace-Script.json",self.class)
+                                                    statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+        }];
+        
+        __block SCTrace *_trace;
+        __block NSError *_error;
+        __block BOOL _blockFinished;
+        [scriptTrace fetchFromSyncano:syncano withCompletion:^(SCTrace *trace, NSError *error) {
             _trace = trace;
             _error = error;
             _blockFinished = YES;
