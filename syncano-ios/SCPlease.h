@@ -91,14 +91,14 @@ extern NSString *const SCPleaseParameterIncludeCount;
 
 
 /**
- *  Create and run simple request without any query parameters or statements
+ *  Creates and runs a simple request without any query parameters or statements
  *
  *  @param completion completion block
  */
 - (void)giveMeDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
 
 /**
- *  Create and run API request for object with query parameters
+ *  Creates and runs an API request for oan bject with a query parameters
  *
  *  @param parameters NSDictionary with query params
  *  @param completion completion block
@@ -106,7 +106,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
 - (void)giveMeDataObjectsWithParameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
 
 /**
- *  Create and run API request for object with predicate for query and with parameters
+ *  Creates and runs API request for an object with a predicate, query and with parameters
  *
  *  @param predicate  SCPredicate to build query
  *  @param parameters NSDictionary with query params
@@ -115,14 +115,14 @@ extern NSString *const SCPleaseParameterIncludeCount;
 - (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
 
 /**
- *  Create and run API request for next page of results
+ *  Creates and runs an API request for next page of results
  *
  *  @param completion completion block
  */
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
 
 /**
- *  Create and run API request for previous page of results
+ *  Creates and runs an API request for previous page of results
  *
  *  @param completion completion block
  */
