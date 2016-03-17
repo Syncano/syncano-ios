@@ -18,11 +18,11 @@
 @property (nonatomic,copy) NSDate *executedAt;
 @property (nonatomic,copy) id result;
 @property (nonatomic,copy) NSNumber *duration;
+@property (nonatomic,copy) NSNumber *scriptIdentifier;
 
-@property (nonatomic,copy) NSNumber *codeboxIdentifier;
+@property (nonatomic) NSNumber *codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use scriptIdentifier instead.");
 
-- (instancetype)initWithJSONObject:(id)JSONObject andCodeboxIdentifier:(NSNumber *)codeboxIdentifier;
-
+- (instancetype)initWithJSONObject:(id)JSONObject andScriptIdentifier:(NSNumber *)scriptIdentifier;
 
 /**
  *  Call trace
@@ -34,8 +34,12 @@
 /**
  *  Call trace on provided Synano instance
  *
- *  @param syncano    syncano instance
- *  @param completion completion block
+ *  @param syncano    Syncano instance
+ *  @param completion Completion block
  */
 - (void)fetchFromSyncano:(Syncano *)syncano withCompletion:(SCTraceCompletionBlock)completion;
+@end
+
+@interface SCTrace (Deprecated)
+- (instancetype)initWithJSONObject:(id)JSONObject andCodeboxIdentifier:(NSNumber *)codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use initWithJSONObject:andScriptIdentifier method instead.");
 @end
