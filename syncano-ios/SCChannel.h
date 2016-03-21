@@ -38,4 +38,7 @@
 - (void)publishToChannelWithPayload:(NSDictionary *)payload completion:(SCChannelPublishCompletionBlock)completion;
 - (void)publishToChannelInSyncano:(Syncano *)syncano withPayload:(NSDictionary *)payload completion:(SCChannelPublishCompletionBlock)completion;
 
+
+- (void)getChannelHistoryWithCompletion:(SCChannelHistoryCompletionBlock)completion;
+- (void)getChannelHistoryFromSyncano:(Syncano *)syncano completion:(SCChannelHistoryCompletionBlock)completion;
 @end
