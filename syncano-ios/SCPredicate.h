@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "SCPredicateProtocol.h"
 
-
+/**
+ *  Operators definitions
+ */
 extern NSString *const SCPredicateGreaterThanOperator;
 extern NSString *const SCPredicateGreaterThanOrEqualOperator;
 extern NSString *const SCPredicateLessThanOperator;
@@ -32,48 +34,316 @@ extern NSString *const SCPredicateIsOperator;
  */
 @interface SCPredicate : NSObject <SCPredicateProtocol>
 
+/**
+ *  Key
+ */
 @property (nonatomic,retain) NSString *leftHand;
+/**
+ *  Compare operator
+ */
 @property (nonatomic,retain) NSString *operator;
+/**
+ *  Value
+ */
 @property (nonatomic,retain) id rightHand;
 
+/**
+ *  Returns predicate where key is greater than provided string
+ *
+ *  @param key    key
+ *  @param string provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanString:(NSString *)string;
+
+/**
+ *  Returns predicate where key is greater than provided number
+ *
+ *  @param key    key
+ *  @param number provided NSNumber
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanNumber:(NSNumber *)number;
+
+/**
+ *  Returns predicate where key is greater than provided date
+ *
+ *  @param key  key
+ *  @param date provided NSDate
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanDate:(NSDate *)date;
 
+/**
+ *  Returns predicate where key is greater than or equal to provided string
+ *
+ *  @param key    key
+ *  @param string provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToString:(NSString *)string;
+
+/**
+ *  Returns predicate where key is greater than or equal to provided number
+ *
+ *  @param key    key
+ *  @param number provided NSNumber
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToNumber:(NSNumber *)number;
+
+/**
+ *  Returns predicate where key is greater than or equal to provided date
+ *
+ *  @param key  key
+ *  @param date provided NSDate
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToDate:(NSDate *)date;
 
+/**
+ *  Returns predicate where key is less than provided string
+ *
+ *  @param key    key
+ *  @param string provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isLessThanString:(NSString *)string;
+
+/**
+ *  Returns predicate where key is less than provided number
+ *
+ *  @param key    key
+ *  @param number provided NSNumber
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isLessThanNumber:(NSNumber *)number;
+
+/**
+ *  Returns predicate where key is less than provided date
+ *
+ *  @param key  key
+ *  @param date provided NSDate
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isLessThanDate:(NSDate *)date;
 
+/**
+ *  Returns predicate where key is less than or equal to provided string
+ *
+ *  @param key    key
+ *  @param string provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToString:(NSString *)string;
+
+/**
+ *  Returns predicate where key is less than or equal to provided number
+ *
+ *  @param key    key
+ *  @param number provided NSNumber
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToNumber:(NSNumber *)number;
+
+/**
+ *  Returns predicate where key is less than or equal to provided date
+ *
+ *  @param key  key
+ *  @param date provided NSDate
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToDate:(NSDate *)date;
 
+/**
+ *  Returns predicate where key is equal to provided string
+ *
+ *  @param key    key
+ *  @param string provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isEqualToString:(NSString *)string;
+
+/**
+ *  Returns predicate where key is equal to provided number
+ *
+ *  @param key    key
+ *  @param number provided NSNumber
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isEqualToNumber:(NSNumber *)number;
+
+/**
+ *  Returns predicate where key is equal to provided boolean
+ *
+ *  @param key    key
+ *  @param number provided BOOL
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isEqualToBool:(BOOL)boolValue;
+
+/**
+ *  Returns predicate where key is equal to provided date
+ *
+ *  @param key  key
+ *  @param date provided NSDate
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key isEqualToDate:(NSDate *)date;
 
+/**
+ *  Returns predicate where key is not equal to provided string
+ *
+ *  @param key    key
+ *  @param string provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key notEqualToString:(NSString *)string;
+
+/**
+ *  Returns predicate where key is not equal to provided number
+ *
+ *  @param key    key
+ *  @param number provided NSNumber
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key notEqualToNumber:(NSNumber *)number;
+
+/**
+ *  Returns predicate where key is not equal to provided boolean
+ *
+ *  @param key    key
+ *  @param number provided BOOL
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key notEqualToBool:(BOOL)boolValue;
+
+/**
+ *  Returns predicate where key is not equal to provided date
+ *
+ *  @param key  key
+ *  @param date provided NSDate
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key notEqualToDate:(NSDate *)date;
 
+/**
+ *  Returns predicate where key exists
+ *
+ *  @param key key
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKeyExists:(NSString *)key;
 
+/**
+ *  Returns predicate where key is conatined in provided array
+ *
+ *  @param key   key
+ *  @param array provided NSArray
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
 
+/**
+ *  Returns predicate where key satisfies another predicate
+ *
+ *  @param key       key
+ *  @param predicate provided SCPredicate
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key satisfiesPredicate:(id<SCPredicateProtocol>)predicate;
 
+/**
+ *  Returns predicate where key has provided prefix
+ *
+ *  @param key    key
+ *  @param prefix provided NSString prefix
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key hasPrefix:(NSString *)prefix;
+
+/**
+ *  Returns predicate where key has provided case insensitive prefix
+ *
+ *  @param key    key
+ *  @param prefix provided NSString prefix
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasPrefix:(NSString *)prefix;
+
+/**
+ *  Returns predicate where key has provided sufix
+ *
+ *  @param key    key
+ *  @param prefix provided NSString sufix
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix;
+
+/**
+ *  Returns predicate where key has provided case insensitive sufix
+ *
+ *  @param key    key
+ *  @param prefix provided NSString sufix
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasSuffix:(NSString *)suffix;
+
+/**
+ *  Returns predicate where key contains provided string
+ *
+ *  @param key    key
+ *  @param prefix provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key containsString:(NSString *)string;
+
+/**
+ *  Returns predicate where key contains provided case insensitive string
+ *
+ *  @param key    key
+ *  @param prefix provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key caseInsensitiveContainsString:(NSString *)string;
+
+/**
+ *  Returns predicate where key is equalt to provided case insensitive string
+ *
+ *  @param key    key
+ *  @param prefix provided NSString
+ *
+ *  @return SCPredicate
+ */
 + (SCPredicate *)whereKey:(NSString *)key caseInsensitiveIsEqualToString:(NSString *)string;
 
 @end
