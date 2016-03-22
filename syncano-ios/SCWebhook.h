@@ -14,15 +14,60 @@
 
 @interface SCWebhook : NSObject
 
-
+/**
+ *  Runs webhook using singleton Syncano instance
+ *
+ *  @param name       webhook name
+ *  @param completion completion block
+ */
 + (void)runWebhookWithName:(NSString *)name completion:(SCWebhookCompletionBlock)completion;
+
+/**
+ *  Runs webhook using provided Syncano instance
+ *
+ *  @param name       webhook name
+ *  @param syncano    provided Syncano instance
+ *  @param completion completion block
+ */
 + (void)runWebhookWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCWebhookCompletionBlock)completion;
 
+/**
+ *  Runs webhook with payload using singleton Syncano instance
+ *
+ *  @param name       webhook name
+ *  @param payload    payload
+ *  @param completion completion block
+ */
 + (void)runWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCWebhookCompletionBlock)completion;
+
+/**
+ *  Runs webhook with payload using provided Syncano instance
+ *
+ *  @param name       webhook name
+ *  @param payload    payload
+ *  @param syncano    provided Syncano instance
+ *  @param completion completion block
+ */
 + (void)runWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCWebhookCompletionBlock)completion;
 
-
+/**
+ *  Runs public webhook.
+ *
+ *  @param hashTag      Webhook's hash tag
+ *  @param name         Webhook name
+ *  @param params       Params for query to webhook
+ *  @param instanceName Syncano instance name
+ *  @param completion   Completion block
+ */
 + (void)runPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name params:(NSDictionary *)params forInstanceName:(NSString *)instanceName completion:(SCWebhookCompletionBlock)completion;
+
+/**
+ *  Runs public webhook.
+ *
+ *  @param urlString  URL to webhook
+ *  @param params     Params for query to webhook
+ *  @param completion Completion block
+ */
 + (void)runPublicWebhookWithURLString:(NSString *)urlString params:(NSDictionary *)params completion:(SCWebhookCompletionBlock)completion;
 
 
