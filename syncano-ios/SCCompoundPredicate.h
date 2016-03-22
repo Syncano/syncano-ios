@@ -11,9 +11,33 @@
 
 @interface SCCompoundPredicate : NSObject <SCPredicateProtocol>
 
+/**
+ *  List of contained predicates
+ */
 @property (nonatomic,readonly) NSArray * predicates;
 
+/**
+ *  Returnes new compound predicate with provided array of predicates
+ *
+ *  @param predicates NSArray of SCPredicates
+ *
+ *  @return SCCompoundPredicate
+ */
 + (instancetype)compoundPredicateWithPredicates:(NSArray *)predicates;
+
+/**
+ *  Initialize new compound predicate with provided array of predicates
+ *
+ *  @param predicates NSArray of SCPredicates
+ *
+ *  @return SCCompoundPredicate
+ */
 - (instancetype)initWithPredicates:(NSArray *)predicates;
+
+/**
+ *  Adds predicate to existing compound predicate
+ *
+ *  @param predicate SCPredicate to add
+ */
 - (void)addPredicate:(id<SCPredicateProtocol>)predicate;
 @end
