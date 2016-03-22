@@ -9,6 +9,18 @@
 #import "SCDataObject.h"
 
 @interface SCDataObject (Properties)
+
+/**
+ *  Returns all property names of SCFile class
+ *
+ *  @return NSArray of strings
+ */
 + (NSArray *)propertiesNamesOfFileClass;
+
+/**
+ *  Returns classes of all properties inside a SCDataObject
+ *
+ *  @return NSDictionary with property name as a key and property class name as a value
+ */
 + (NSDictionary *)classesOfProperties;
 @end
