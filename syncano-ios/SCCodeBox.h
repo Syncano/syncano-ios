@@ -24,12 +24,22 @@
 @property (nonatomic,copy) NSDictionary *links;
 
 /**
- *  Runs code box on server
+ *  Runs code box on server using singleton Syncano instance
  *
+ *  @param codeBoxId  codebox identifier
+ *  @param params     params
  *  @param completion completion block
  */
 + (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params completion:(SCCodeBoxCompletionBlock)completion;
 
+/**
+ *  Runs code box on server using provided Syncano instance
+ *
+ *  @param codeBoxId  codebox identifier
+ *  @param params     params
+ *  @param syncano    provided Syncano instance
+ *  @param completion completion block
+ */
 + (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params onSyncano:(Syncano *)syncano completion:(SCCodeBoxCompletionBlock)completion;
 
 @end
