@@ -11,6 +11,7 @@
 @class SCTrace;
 @class SCScriptEndpointResponse;
 @class SCChannelNotificationMessage;
+@class SCChannelHistoryResponse;
 @class SCUser;
 
 // API v1.0
@@ -29,6 +30,7 @@ typedef void (^SCScriptEndpointCompletionBlock)(SCScriptEndpointResponse *respon
 typedef void (^SCCustomResponseCompletionBlock)(id responseObject, NSError *error);
 typedef void (^SCPleaseResolveQueryParametersCompletionBlock)(NSDictionary *queryParameters);
 typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *notificationMessage, NSError *error);
+typedef void (^SCChannelHistoryCompletionBlock)(SCChannelHistoryResponse *historyResponse, NSError *error);
 typedef void (^SCFileFetchCompletionBlock)(NSData *data, NSError *error);
 typedef void (^SCFileFetchToDiskCompletionBlock)(NSURLResponse *response, NSURL *filePath, NSError *error);
 typedef void (^SCFileDownloadProgressCompletionBlock)(NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
