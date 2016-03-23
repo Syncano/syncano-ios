@@ -124,7 +124,7 @@
 }
 - (void)getChannelHistoryUsingAPIClient:(SCAPIClient *)apiClient completion:(SCChannelHistoryCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"channels/%@/history/",self.name];
-    [apiClient POSTWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient GETWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (!error) {
             SCChannelHistoryResponse *response = [[SCChannelHistoryResponse alloc] initWithJSONObject:responseObject];
             if (completion) {
