@@ -35,15 +35,15 @@ extern NSString *const SCPredicateIsOperator;
 @interface SCPredicate : NSObject <SCPredicateProtocol>
 
 /**
- *  Key
+ *  Key, e.g. "id"
  */
 @property (nonatomic,retain) NSString *leftHand;
 /**
- *  Compare operator
+ *  Compare operator, e.g. "SCPredicateEqualOperator"
  */
 @property (nonatomic,retain) NSString *operator;
 /**
- *  Value
+ *  Value, e.g. "23"
  */
 @property (nonatomic,retain) id rightHand;
 
@@ -257,7 +257,7 @@ extern NSString *const SCPredicateIsOperator;
 + (SCPredicate *)whereKeyExists:(NSString *)key;
 
 /**
- *  Returns predicate where key is conatined in provided array
+ *  Returns predicate where key is contained in provided array
  *
  *  @param key   key
  *  @param array provided NSArray
@@ -300,14 +300,14 @@ extern NSString *const SCPredicateIsOperator;
  *  Returns predicate where key has provided sufix
  *
  *  @param key    key
- *  @param prefix provided NSString sufix
+ *  @param prefix provided NSString suffix
  *
  *  @return SCPredicate
  */
 + (SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix;
 
 /**
- *  Returns predicate where key has provided case insensitive sufix
+ *  Returns predicate where key has provided case insensitive suffix
  *
  *  @param key    key
  *  @param prefix provided NSString sufix
