@@ -12,6 +12,7 @@
 #import "SCUser.h"
 #import "NSObject+SCParseHelper.h"
 #import "UICKeyChainStore/UICKeyChainStore.h"
+#import "SCRegisterManager.h"
 
 @implementation SCParseManager (SCUser)
 
@@ -33,10 +34,12 @@
 
 - (void)registerUserClass:(__unsafe_unretained Class)classToRegister {
     [self setUserClass:classToRegister];
+    [SCRegisterManager registerClass:classToRegister];
 }
 
 - (void)registerUserProfileClass:(__unsafe_unretained Class)classToRegister {
     [self setUserProfileClass:classToRegister];
+    [SCRegisterManager registerClass:classToRegister];
 }
 
 - (id)parsedUserObjectFromJSONObject:(id)JSONObject {
