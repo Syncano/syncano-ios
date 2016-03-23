@@ -32,9 +32,9 @@ After you fetch your objects from Syncano, you can easily store them locally usi
 ```
 **Swift**
 ```swift
-Book.please().giveMeDataObjectsWithCompletion { (objects, error) -> Void in
+Book.please().giveMeDataObjectsWithCompletion { objects, error in
     for book:Book in objects as! [Book] {
-        book.saveToLocalStorageWithCompletion({ (error) -> Void in
+        book.saveToLocalStorageWithCompletion({ error in
 
         })
     }
@@ -55,7 +55,7 @@ Fetching objects from local storage is as simple as saving them in there
 
 **Swift:**
 ```swift
-Book.please().giveMeDataObjectsFromLocalStorage { (objects, error) -> Void in        
+Book.please().giveMeDataObjectsFromLocalStorage { objects, error in        
 }
 ```
 
@@ -71,6 +71,6 @@ SCPredicate *predicate = [SCPredicate whereKey:@"title" isEqualToString:@"Monte 
 **Swift:**
 ```swift
 let predicate:SCPredicate = SCPredicate.whereKey("title", isEqualToString: "Monte Cristo")
-Book.please().giveMeDataObjectsFromLocalStorageWithPredicate(predicate) { (objects, error) -> Void in    
+Book.please().giveMeDataObjectsFromLocalStorageWithPredicate(predicate) { objects, error in    
 }
 ```
