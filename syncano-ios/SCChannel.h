@@ -115,7 +115,18 @@
  */
 - (void)publishToChannelInSyncano:(Syncano *)syncano withPayload:(NSDictionary *)payload completion:(SCChannelPublishCompletionBlock)completion;
 
-
+/**
+ *  Gets channel history using singleton Syncano instance
+ *
+ *  @param completion completion blog
+ */
 - (void)getChannelHistoryWithCompletion:(SCChannelHistoryCompletionBlock)completion;
+
+/**
+ *  Gets channel history using provided Syncano instance
+ *
+ *  @param syncano    Syncano instance
+ *  @param completion completion block
+ */
 - (void)getChannelHistoryFromSyncano:(Syncano *)syncano completion:(SCChannelHistoryCompletionBlock)completion;
 @end
