@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.source_files = 'syncano-ios/*.{h,m}'
   s.resources = 'syncano-ios/certfile.der'
 
-  s.dependency 'AFNetworking', ~> '3.0.0'
+  s.dependency 'AFNetworking', '~> 3.0.0'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'UICKeyChainStore', '~> 2.0'
   s.dependency 'FMDB', '2.6'
