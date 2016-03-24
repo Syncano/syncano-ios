@@ -18,7 +18,7 @@
  *
  *  @return AFHTTPRequestOperation
  */
-+ (AFHTTPRequestOperation *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
++ (NSURLSessionDataTask *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
 
 /**
  *  Downloads file with progres and saves it to local disk
