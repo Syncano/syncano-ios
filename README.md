@@ -32,6 +32,8 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.0.18** - 2016-03-29
+    * Fixed bug when using transactions in local storage
 * **4.0.17** - 2016-03-11
     * Fixed bug when using predicate with NSDate 
 * **4.0.16** - 2016-03-07
