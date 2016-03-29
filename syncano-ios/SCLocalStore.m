@@ -83,7 +83,7 @@
    
     __block NSError *error;
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [self.queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [self.queue inDeferredTransaction:^(FMDatabase *db, BOOL *rollback) {
             [db executeUpdate:query];
             if ([db hadError]) {
                 error = [db lastError];
@@ -100,7 +100,7 @@
     __block NSError *error;
     __block FMResultSet *result;
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
-        [self.queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        [self.queue inDeferredTransaction:^(FMDatabase *db, BOOL *rollback) {
             result = [db executeQuery:query];
             if ([db hadError]) {
                 error = [db lastError];
