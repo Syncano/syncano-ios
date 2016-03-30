@@ -18,11 +18,30 @@
 @property (nonatomic,retain) NSNumber *userId;
 @property (nonatomic,retain) NSString *deviceId;
 
-
+/**
+ *  Creates SCDevice instance with provided token data
+ *
+ *  @param tokenData NSData token from APNS
+ *
+ *  @return SCDevice instance
+ */
 + (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData;
 
+/**
+ *  Initializes SCDevice instance with provided token data
+ *
+ *  @param tokenData NSData token from APNS
+ *
+ *  @return SCDevice instance
+ */
 - (instancetype)initWithTokenFromData:(NSData *)tokenData;
 
+/**
+ *  Sets metadata object for porvided key
+ *
+ *  @param object metadata object
+ *  @param key    key
+ */
 - (void)setMetadataObject:(id)object forKey:(nonnull NSString *)key;
 
 /**
