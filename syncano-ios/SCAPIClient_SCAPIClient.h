@@ -18,6 +18,15 @@
 @property (nonatomic,retain) AFNetworkReachabilityManager *networkReachabilityManager;
 @property (nonatomic, assign) SCAPIVersion apiVersion;
 
+/**
+ *  Initializes SCApiClient with provided version, api key and instance name
+ *
+ *  @param apiVersion   API version to use with this API client
+ *  @param apiKey       API KE
+ *  @param instanceName syncano instance name
+ *
+ *  @return SCAPIClient
+ */
 - (instancetype)initWithApiVersion:(SCAPIVersion)apiVersion apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
 
 /**

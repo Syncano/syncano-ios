@@ -26,7 +26,7 @@
 + (SCAPIClient *)apiClientForSyncano:(Syncano *)syncano;
 
 /**
- *  "Abstract" method to GET method call
+ *  "Abstract" method to GET method call added to queue
  *
  *  @param path       path to request endpoint
  *  @param params     NSDictionary with params for request
@@ -51,7 +51,7 @@
 - (void)GETWithPathWithoutQueue:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
- *  "Abstract" method to POST method call
+ *  "Abstract" method to POST method call added to queue
  *
  *  @param path       path to request endpoint
  *  @param params     NSDictionary with params for request
@@ -62,7 +62,7 @@
 - (void)POSTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
- *  "Abstract" method to PUT method call
+ *  "Abstract" method to PUT method call added to queue
  *
  *  @param path       path to request endpoint
  *  @param params     NSDictionary with params for request
@@ -73,7 +73,7 @@
 - (void)PUTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
- *  "Abstract" method to PATCH method call
+ *  "Abstract" method to PATCH method call added to queue
  *
  *  @param path       path to request endpoint
  *  @param params     NSDictionary with params for request
@@ -84,7 +84,7 @@
 - (void)PATCHWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
- *  "Abstract" method to DELETE method call
+ *  "Abstract" method to DELETE method call added to queue
  *
  *  @param path       path to request endpoint
  *  @param params     NSDictionary with params for request
@@ -94,18 +94,69 @@
  */
 - (void)DELETEWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
-
+/**
+ *  "Abstract" method to upload file method call added to queue
+ *
+ *  @param path         path to request endpoint
+ *  @param propertyName name of a file variable name inside a class
+ *  @param fileData     NSData file representation
+ *  @param completion   completion block
+ */
 - (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion;
 
-
+/**
+ *  "Abstract" method to GET method call without queue
+ *
+ *  @param path       path to request endpoint
+ *  @param params     NSDictionary with params for request
+ *  @param completion SCAPICompletionBlock completion callback block
+ *
+ *  @return void
+ */
 - (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
+/**
+ *  "Abstract" method to POST method call without queue
+ *
+ *  @param path       path to request endpoint
+ *  @param params     NSDictionary with params for request
+ *  @param completion SCAPICompletionBlock completion callback block
+ *
+ *  @return void
+ */
 - (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
+/**
+ *  "Abstract" method to PUT method call without queue
+ *
+ *  @param path       path to request endpoint
+ *  @param params     NSDictionary with params for request
+ *  @param completion SCAPICompletionBlock completion callback block
+ *
+ *  @return void
+ */
 - (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
+/**
+ *  "Abstract" method to PATCH method call without queue
+ *
+ *  @param path       path to request endpoint
+ *  @param params     NSDictionary with params for request
+ *  @param completion SCAPICompletionBlock completion callback block
+ *
+ *  @return void
+ */
 - (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
+/**
+ *  "Abstract" method to DELETE method call without queue
+ *
+ *  @param path       path to request endpoint
+ *  @param params     NSDictionary with params for request
+ *  @param completion SCAPICompletionBlock completion callback block
+ *
+ *  @return NSURLSessionDataTask object
+ */
 - (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 
