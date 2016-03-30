@@ -9,6 +9,18 @@
 #import "SCPlease.h"
 
 @interface SCPlease (LocalStorage)
+/**
+ *  Fetches SCDataObjects from local database
+ *
+ *  @param completion completion block
+ */
 - (void)giveMeDataObjectsFromLocalStorageWithCompletion:(SCDataObjectsCompletionBlock)completion;
+
+/**
+ *  Fetches SCDataObjects from local database with SCPredicate
+ *
+ *  @param predicate  predicate object that conforms to SCPredicateProtocol
+ *  @param completion completion block
+ */
 - (void)giveMeDataObjectsFromLocalStorageWithPredicate:(id<SCPredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion;
 @end
