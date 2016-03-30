@@ -10,7 +10,7 @@
 #import "AFNetworking/AFNetworking.h"
 
 @interface SCAPIClient (SCFile)
-+ (AFHTTPRequestOperation *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
++ (NSURLSessionDataTask *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
 + (NSURLSessionDownloadTask *)downloadFileFromURL:(NSURL *)fileURL
                                     andSaveToPath:(NSURL *)storePath
                                      withProgress:(SCFileDownloadProgressCompletionBlock)progress
