@@ -30,5 +30,12 @@
  */
 - (void)registerUserProfileClass:(__unsafe_unretained Class)classToRegister;
 
+/**
+ *  Attempts to parse JSON to SCUserObject
+ *
+ *  @param JSONObject serialized JSON object from API response
+ *
+ *  @return SCUser or subclass object
+ */
 - (id)parsedUserObjectFromJSONObject:(id)JSONObject;
 @end
