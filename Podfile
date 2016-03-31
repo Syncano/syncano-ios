@@ -7,6 +7,7 @@ target "Syncano" do
     pod 'Mantle', '~> 2.0'
     pod 'UICKeyChainStore', '~> 2.0'
     pod 'FMDB' , '2.6'
+    pod 'FMDBMigrationManager' , '1.4.1'
 end
 
 target "syncano-iosTests" do

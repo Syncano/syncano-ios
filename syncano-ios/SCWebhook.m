@@ -30,8 +30,7 @@
 
 + (void)runPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name params:(NSDictionary *)params forInstanceName:(NSString *)instanceName completion:(SCWebhookCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"%@/webhooks/p/%@/%@/",instanceName,hashTag,name];
-    SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
-
+    SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[SCConstants baseURLForAPIVersion:kDefaultAPIVersion]];
     [self runPublicWebhookWithPath:path params:params usingAPIClient:apiClient completion:completion];
 }
 
@@ -67,7 +66,7 @@
                  forInstanceName:(NSString *)instanceName
                 completion:(SCCustomResponseCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"%@/webhooks/p/%@/%@/",instanceName,hashTag,name];
-    SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[NSURL URLWithString:kBaseURL]];
+    SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[SCConstants baseURLForAPIVersion:kDefaultAPIVersion]];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     [self runCustomPublicWebhookWithPath:path params:params usingAPIClient:apiClient completion:completion];

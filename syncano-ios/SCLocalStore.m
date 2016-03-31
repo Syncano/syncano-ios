@@ -8,6 +8,7 @@
 
 #import "SCLocalStore.h"
 #import "FMDB.h"
+#import "FMDBMigrationManager.h"
 #import "SCConstants.h"
 #import "SCFileManager.h"
 #import "SCDataObject+LocalStorage.h"
@@ -21,10 +22,31 @@
 @implementation SCLocalStore
 
 - (void)initializeDBWithCompletionBlock:(SCCompletionBlock)completionBlock  {
-    self.queue = [FMDatabaseQueue databaseQueueWithPath:[SCFileManager syncanoDBFilePath]];
-    [self executeUpdateWithQuery:[SCConstants createTableSQLStatement] withCompletionBlock:^(NSError *error) {
-        [self handleError:error forCompletionBlock:completionBlock];
+    NSLog(@"%@",[SCFileManager syncanoDBFilePath]);
+    [self migrateWithCompletion:^(NSError *error) {
+        self.queue = [FMDatabaseQueue databaseQueueWithPath:[SCFileManager syncanoDBFilePath]];
     }];
+}
+
+static NSBundle *SCDBMigrationsBundle()
+{
+    NSBundle *parentBundle = [NSBundle bundleForClass:[SCLocalStore class]];
+    return [NSBundle bundleWithPath:[parentBundle pathForResource:@"SCDBMigrationsBundle" ofType:@"bundle"]];
+}
+
+- (void)migrateWithCompletion:(SCCompletionBlock)completion {
+    FMDatabase *db = [FMDatabase databaseWithPath:[SCFileManager syncanoDBFilePath]];
+    FMDBMigrationManager *migrationManager = [FMDBMigrationManager managerWithDatabase:db migrationsBundle:SCDBMigrationsBundle()];
+    
+    if (!migrationManager.hasMigrationsTable) {
+        [migrationManager createMigrationsTable:nil];
+    }
+    
+    NSError *migrationError;
+    
+    [migrationManager migrateDatabaseToVersion:UINT64_MAX progress:nil error:&migrationError];
+    
+    [self handleError:migrationError forCompletionBlock:completion];
 }
 
 - (void)saveDataObject:(SCDataObject *)dataObject withCompletionBlock:(SCCompletionBlock)completionBlock {

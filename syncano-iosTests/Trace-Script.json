@@ -1,0 +1,10 @@
+{
+    "duration": null,
+    "executed_at": null,
+    "id": 45,
+    "links": {
+        "self": "/v1/instances/rivia/snippets/scripts//2/traces/45/"
+    },
+    "result": "",
+    "status": "pending"
+}

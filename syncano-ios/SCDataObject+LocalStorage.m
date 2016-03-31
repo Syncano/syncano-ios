@@ -31,10 +31,14 @@
 
 #pragma mark - Helpers -
 - (void)generateInsertQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion {
-    NSString *insertQuery = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (className, objectId,json) VALUES ('%@',%@,'%@');",kDatabaseName,NSStringFromClass([self class]),self.objectId,[self stringRepresentation]];
+    NSString *insertQuery = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (className, objectId,json,localObjectId) VALUES ('%@',%@,'%@','%@');",kDatabaseName,NSStringFromClass([self class]),self.objectId,[self stringRepresentation],[self generateLocalObjectId]];
     if (completion) {
         completion(nil,insertQuery);
     }
+}
+
+- (NSString *)generateLocalObjectId {
+    return [[NSProcessInfo processInfo] globallyUniqueString];
 }
 
 - (void)generateDeleteQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion {

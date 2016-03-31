@@ -5,7 +5,7 @@
 
 NSString * const SCDataObjectErrorDomain = @"com.syncano.DataObjectErrorDomain";
 
-NSString * const kBaseURL = @"https://api.syncano.io/v1/instances/";
+NSString * const kBaseURLFormatString = @"https://api.syncano.io/%@/instances/";
 NSString * const kUserKeyKeychainKey = @"com.syncano.kUserKeyKeychain";
 
 NSString * const kSCPermissionTypeNone = @"none";
@@ -39,6 +39,8 @@ NSString * const kSCCertificateFileName = @"certfile.der";
 NSString *const kSCDataObjectPropertyTypeKey = @"type";
 NSString *const kSCDataObjectPropertyTypeValue = @"value";
 NSString *const kSCDataObjectPropertyTypeDateTime = @"datetime";
+
+SCAPIVersion const kDefaultAPIVersion = SCAPIVersion_1_0;
 
 @implementation SCConstants
 
@@ -153,12 +155,22 @@ NSString *const kSCDataObjectPropertyTypeDateTime = @"datetime";
     return SCChannelNotificationMessageActionNone;
 }
 
-+ (NSString *)createTableSQLStatement {
-    NSString *objectsTableSchema = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ("
-    @"className TEXT, "
-    @"objectId INTEGER, "
-    @"json TEXT, "
-    @"UNIQUE(className, objectId));",kDatabaseName];
-    return objectsTableSchema;
++ (NSString *)versionStringForAPIVersion:(SCAPIVersion)apiVersion {
+    NSString *versionString = nil;
+    switch (apiVersion) {
+        case SCAPIVersion_1_0:
+            versionString = @"v1";
+            break;
+        case SCAPIVersion_1_1:
+            versionString = @"v1.1";
+            break;
+    }
+    return versionString;
+}
+
++ (NSURL *)baseURLForAPIVersion:(SCAPIVersion)apiVersion {
+    NSString *stringURL = [NSString stringWithFormat:kBaseURLFormatString,[self versionStringForAPIVersion:apiVersion]];
+    NSURL *baseURL = [NSURL URLWithString:stringURL];
+    return baseURL;
 }
 @end

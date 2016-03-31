@@ -127,6 +127,22 @@
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
+    
+    if (![object isKindOfClass:[SCDataObject class]]) {
+        return NO;
+    }
+    
+    return [self isEqualToDataObject:(SCDataObject *)object];
+}
+
+- (BOOL)isEqualToDataObject:(SCDataObject *)object {
+    return self.objectId == object.objectId;
+}
+
 - (NSString *)path {
     if (self.links[@"self"]) {
         return self.links[@"self"];
@@ -184,6 +200,7 @@
                 completion(error);
             }
         } else {
+            
             NSMutableDictionary *params = [[[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:self error:&error] mutableCopy];
             if (error) {
                 if (completion) {
@@ -193,7 +210,7 @@
                     revisionMismatchBlock(NO,nil);
                 }
             } else {
-                if (self.objectId && self.revision) {
+                if (self.objectId && self.revision && revisionMismatchBlock) {
                     params[kExpectedRevisionRequestParam] = self.revision;
                 }
                 [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {

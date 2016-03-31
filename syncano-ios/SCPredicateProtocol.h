@@ -11,8 +11,25 @@
 @protocol SCPredicateProtocol <NSObject>
 
 @required
+/**
+ *  Returns string representation of a query for use with API
+ *
+ *  @return string query representation
+ */
 - (NSString *)queryRepresentation;
+
+/**
+ *  Returns raw preduicate
+ *
+ *  @return NSDictionary with raw predicate
+ */
 - (NSDictionary<NSString*,NSDictionary*> *)rawPredicate;
 @optional
+
+/**
+ *  Returns NSPredicate for local storage search
+ *
+ *  @return NSPredicate representation of a query
+ */
 - (NSPredicate *)nspredicateRepresentation;
 @end

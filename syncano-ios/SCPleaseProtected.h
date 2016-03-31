@@ -13,7 +13,20 @@
  */
 @property (nonatomic,retain) NSString *classNameForAPICalls;
 
+/**
+ *  [Abstract] API Client used by SCPlease to get data from syncano instance
+ *
+ *  @return SCAPIClient instance
+ */
 - (SCAPIClient *)apiClient;
+
+/**
+ *  [Abstract] Method to handle repsonse
+ *
+ *  @param responseObject repsonse object to handle
+ *  @param error          response error to handle
+ *  @param completion     completion block
+ */
 - (void)handleResponse:(id)responseObject error:(NSError *)error completion:(SCDataObjectsCompletionBlock)completion;
 
 @end

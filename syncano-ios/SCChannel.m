@@ -10,6 +10,7 @@
 #import "Syncano.h"
 #import "SCAPIClient.h"
 #import "SCChannelNotificationMessage.h"
+#import "SCChannelHistoryResponse.h"
 
 @interface SCChannel ()
 @property (nonatomic)           SCChannelType type;
@@ -106,6 +107,28 @@
             SCChannelNotificationMessage *message = [[SCChannelNotificationMessage alloc] initWithJSONObject:responseObject];
             if (completion) {
                 completion(message,nil);
+            }
+        } else {
+            if (completion) {
+                completion(nil,error);
+            }
+        }
+    }];
+}
+
+- (void)getChannelHistoryWithCompletion:(SCChannelHistoryCompletionBlock)completion {
+    [self getChannelHistoryUsingAPIClient:[Syncano sharedAPIClient] completion:completion];
+}
+- (void)getChannelHistoryFromSyncano:(Syncano *)syncano completion:(SCChannelHistoryCompletionBlock)completion {
+    [self getChannelHistoryUsingAPIClient:syncano.apiClient completion:completion];
+}
+- (void)getChannelHistoryUsingAPIClient:(SCAPIClient *)apiClient completion:(SCChannelHistoryCompletionBlock)completion {
+    NSString *path = [NSString stringWithFormat:@"channels/%@/history/",self.name];
+    [apiClient GETWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (!error) {
+            SCChannelHistoryResponse *response = [[SCChannelHistoryResponse alloc] initWithJSONObject:responseObject];
+            if (completion) {
+                completion(response,nil);
             }
         } else {
             if (completion) {

@@ -39,6 +39,7 @@ describe(@"LocalStorageSpec", ^{
             
             //Getting books from API
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
+                NSLog(@"FetchError: %@",error);
                 _book = [objects firstObject];
                 _bookId = _book.objectId;
                 _bookTitle = _book.title;
@@ -136,6 +137,18 @@ describe(@"LocalStorageSpec", ^{
             }
         };
         
+        void (^testNilPredicate)() = ^() {
+            __block NSError *_error;
+            __block BOOL _blockFinished;
+            
+            [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:nil completion:^(NSArray *objects, NSError *error) {
+                _blockFinished = YES;
+                _error = error;
+            }];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+            [[_error should] beNil];
+        };
+        
         beforeAll(^{
             __block NSError* _error;
             __block BOOL _blockFinished;
@@ -159,6 +172,10 @@ describe(@"LocalStorageSpec", ^{
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
             [[_error should] beNil];
+        });
+        
+        it(@"should not throw exception for nil predicate", ^{
+            [[theBlock(testNilPredicate) shouldNot] raise];
         });
         
         it(@"should work for hasPrefix", ^{

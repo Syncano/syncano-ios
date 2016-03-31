@@ -13,25 +13,35 @@
 #import "SCCompoundPredicate+LocalStorage.h"
 
 @implementation SCPlease (LocalStorage)
+
+- (void)giveMeDataObjectsFromLocalStorageWithCompletion:(SCDataObjectsCompletionBlock)completion {
+    [self giveMeDataObjectsFromLocalStorageWithPredicate:nil completion:completion];
+}
+
 - (void)giveMeDataObjectsFromLocalStorageWithPredicate:(id<SCPredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion {
-    if (![predicate respondsToSelector:@selector(nspredicateRepresentation)]) {
+    if (predicate && ![predicate respondsToSelector:@selector(nspredicateRepresentation)]) {
         if (completion) {
             NSError *error = [NSError errorWithDomain:@"SCPleaseErrorDomain" code:1 userInfo:@{@"SyncanoError":@"Predicate has to respond to 'nspredicateRepresentation' method"}];
             completion(nil,error);
         }
-    } else {
-        __block NSPredicate *_predicate = [predicate nspredicateRepresentation];
-        [[Syncano localStore] fetchAllObjectsOfClass:self.dataObjectClass withCompletionBlock:^(NSArray *objects, NSError *error) {
-            if (error) {
-                if (completion) {
-                    completion(nil,error);
-                }
-            } else {
-                if (completion) {
-                    completion([objects filteredArrayUsingPredicate:_predicate],nil);
-                }
-            }
-        }];
+        return;
     }
+    
+    [[Syncano localStore] fetchAllObjectsOfClass:self.dataObjectClass withCompletionBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            if (completion) {
+                completion(nil,error);
+            }
+        } else {
+            if (completion) {
+                if (predicate) {
+                    NSPredicate *_predicate = [predicate nspredicateRepresentation];
+                    objects = [objects filteredArrayUsingPredicate:_predicate];
+                }
+                completion(objects,nil);
+            }
+        }
+    }];
+    
 }
 @end
