@@ -32,38 +32,43 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.1.0** - 2016-03-31
+    * Added a new static method in SCUser to allow registering users without login him automatically
+    * Added script and endpoint classes
+    * Added methods to get channel history
+    * Some minor fixes
 * **4.0.18** - 2016-03-29
     * Fixed bug when using transactions in local storage
 * **4.0.17** - 2016-03-11
-    * Fixed bug when using predicate with NSDate 
+    * Fixed bug when using predicate with NSDate
 * **4.0.16** - 2016-03-07
-    * Fixed bug when updating username or user profile wouldn't update cached values 
+    * Fixed bug when updating username or user profile wouldn't update cached values
 * **4.0.15** - 2016-03-02
-    * Fixed bug when polling a channel wouldn't allow making any other requests 
+    * Fixed bug when polling a channel wouldn't allow making any other requests
 * **4.0.14** - 2016-03-02
-    * Fixed saving NSDate properties 
+    * Fixed saving NSDate properties
 * **4.0.12** - 2016-02-18
-    * Fixed bug with social backends login 
+    * Fixed bug with social backends login
 * **4.0.11** - 2016-02-17
     * Fixed saving objects with empty relations
     * Fixed saving files to disks memory management issue
     * Added missing predicates for working with local storage
 * **4.0.10** - 2016-02-12
-    * Fixed using custom class for User and User Profile 
+    * Fixed using custom class for User and User Profile
 * **4.0.9** - 2016-02-11
     * Offline storage (save results to offline and query local storage)
     * Added string filtering on objects (contains, startsWith, endsWith - both case sensitive and insensitivie)
     * Handling custom responses in CodeBoxes and Webhooks
     * Fix for default permissions (now by default permissions are .NotSet - taking defaults from the server)
-    * Fix for properly transforming `updated_at` and `created_at` fields from string to `NSDate` 
+    * Fix for properly transforming `updated_at` and `created_at` fields from string to `NSDate`
     * Added ability to save files (`SCFile`) to disk
     * Added SSL certificate  
     * Implemented Data Views
     * Added Twitter/LinkedIn login
     * More powerful filtering (filter by properties of classes, that one class has reference to)
-    * Added ability to incerement fields (helps with concurrency when updating objects) 
+    * Added ability to incerement fields (helps with concurrency when updating objects)
 * **4.0.8** - 2016-02-10
-    * Fixed issue with fetching SCFile content 
+    * Fixed issue with fetching SCFile content
 * **4.0.7** - 2016-01-29
     * Fixed default owner permissions when creating a new object
 * **4.0.6** - 2015-12-01

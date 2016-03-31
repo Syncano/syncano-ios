@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "syncano-ios"
-  s.version      = "4.0.18”
+  s.version      = "4.1.0"
   s.summary      = "Library for http://syncano.com API"
 
   s.homepage     = "http://www.syncano.com"
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source = { :git => 'https://github.com/Syncano/syncano-ios.git', :tag => s.version}
-  
+
   s.public_header_files = 'syncano-ios/*.h'
   s.source_files = 'syncano-ios/*.{h,m}'
   s.resources = 'syncano-ios/certfile.der'
