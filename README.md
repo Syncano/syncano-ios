@@ -32,6 +32,9 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.1.1** - 2016-04-03
+    * Fixed Mantle include for swift
+    * Added SCDBMigrationsBundle.bundle to podspec
 * **4.1.0** - 2016-03-31
     * Added a new static method in SCUser to allow registering users without login him automatically
     * Added script and endpoint classes
