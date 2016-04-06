@@ -41,10 +41,11 @@ describe(@"SCPleaseForView", ^{
     
     it(@"should fetch objects from API", ^{
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-            return [[request.URL absoluteString] isEqualToString:@"https://api.syncano.io/v1/instances/INSTANCE-NAME/api/objects/messages_last_week/get/?"];
+            return YES;
         } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-            return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"ViewResponse.json",self.class)
-                                                    statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+            OHHTTPStubsResponse *response = [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"ViewResponse.json",self.class)
+                                                                             statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+            return response;
         }];
         __block NSArray *messages;
         __block NSError *_error;
