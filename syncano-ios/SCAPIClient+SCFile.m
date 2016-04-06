@@ -19,7 +19,7 @@
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         if (completion) {
-            completion(response,error);
+            completion(data,error);
         }
     }];
 
