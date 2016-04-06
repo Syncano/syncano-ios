@@ -16,7 +16,7 @@
  *  @param fileURL    NSURL of a file
  *  @param completion completion block
  *
- *  @return AFHTTPRequestOperation
+ *  @return NSURLSessionDataTask
  */
 + (NSURLSessionDataTask *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
 
