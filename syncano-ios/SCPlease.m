@@ -149,7 +149,7 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     if (self.nextUrlString.length > 0) {
-        [[self apiClient] GET:self.nextUrlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[self apiClient] GET:self.nextUrlString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self handleResponse:responseObject error:nil completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (completion) {
@@ -166,7 +166,7 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 
 - (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     if (self.previousUrlString) {
-        [[self apiClient] GET:self.previousUrlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[self apiClient] GET:self.previousUrlString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self handleResponse:responseObject error:nil completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (completion) {
