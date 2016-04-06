@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'AFNetworking', '2.6.3'
   s.dependency 'Mantle', '~> 2.0'
-  s.dependency 'UICKeyChainStore', '~> 2.0'
+  s.dependency 'UICKeyChainStore', '2.1.0'
   s.dependency 'FMDB', '2.6'
   s.dependency 'FMDBMigrationManager', '1.4.1'
 
