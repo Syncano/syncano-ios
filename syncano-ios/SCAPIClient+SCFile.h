@@ -16,9 +16,9 @@
  *  @param fileURL    NSURL of a file
  *  @param completion completion block
  *
- *  @return AFHTTPRequestOperation
+ *  @return NSURLSessionDataTask
  */
-+ (AFHTTPRequestOperation *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
++ (NSURLSessionDataTask *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
 
 /**
  *  Downloads file with progres and saves it to local disk
