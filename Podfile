@@ -3,7 +3,7 @@ platform :ios, '7.0'
 source 'https://github.com/CocoaPods/Specs'
 
 target "Syncano" do
-    pod 'AFNetworking', '2.6.3'
+    pod 'AFNetworking', '3.1.0'
     pod 'Mantle', '~> 2.0'
     pod 'UICKeyChainStore', '2.1.0'
     pod 'FMDB' , '2.6'

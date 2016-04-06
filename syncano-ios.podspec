@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.resources = ['syncano-ios/certfile.der','syncano-ios/SCDBMigrationsBundle.bundle']
 
 
-  s.dependency 'AFNetworking', '2.6.3'
+  s.dependency 'AFNetworking', '3.1.0'
   s.dependency 'Mantle', '~> 2.0'
   s.dependency 'UICKeyChainStore', '2.1.0'
   s.dependency 'FMDB', '2.6'
