@@ -20,10 +20,10 @@ describe(@"SCTrace", ^{
     
     it(@"CodeBox Trace should init with JSON object and codebox identifier", ^{
         id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace"];
-        SCTrace *trace = [[SCTrace alloc] initWithJSONObject:JSONObject andCodeboxIdentifier:@123];
+        SCTrace *trace = [[SCTrace alloc] initWithJSONObject:JSONObject andScriptIdentifier:@123];
         [[trace should] beNonNil];
         [[trace.identifier  should] equal:@45];
-        [[trace.codeboxIdentifier should] equal:@123];
+        [[trace.scriptIdentifier should] equal:@123];
     });
     
     it(@"Script Trace should init with JSON object and script identifier", ^{
@@ -38,7 +38,7 @@ describe(@"SCTrace", ^{
         [Syncano sharedInstanceWithApiKey:@"API-KEY" instanceName:@"INSTANCE-NAME"];
         
         id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace"];
-        SCTrace *codeboxTrace = [[SCTrace alloc] initWithJSONObject:JSONObject andCodeboxIdentifier:@123];
+        SCTrace *codeboxTrace = [[SCTrace alloc] initWithJSONObject:JSONObject andScriptIdentifier:@123];
         
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;
@@ -92,7 +92,7 @@ describe(@"SCTrace", ^{
        Syncano *syncano =  [Syncano newSyncanoWithApiKey:@"API-KEY" instanceName:@"INSTANCE-NAME"];
         
         id JSONObject = [SCJSONHelper JSONObjectFromFileWithName:@"Trace"];
-        SCTrace *codeboxTrace = [[SCTrace alloc] initWithJSONObject:JSONObject andCodeboxIdentifier:@123];
+        SCTrace *codeboxTrace = [[SCTrace alloc] initWithJSONObject:JSONObject andScriptIdentifier:@123];
         
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;

@@ -71,7 +71,7 @@
     policy.validatesDomainName = NO;
     NSString *cerPath = [[NSBundle bundleForClass:[self class]] pathForResource:kSCCertificateFileName ofType:nil];
     NSData *certData = [NSData dataWithContentsOfFile:cerPath];
-    policy.pinnedCertificates = @[certData];
+    policy.pinnedCertificates = [NSSet setWithObject:certData];
     return policy;
 }
 
