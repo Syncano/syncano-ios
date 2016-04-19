@@ -4,6 +4,3 @@ machine:
   environment:
     XCODE_WORKSPACE: syncano-ios.xcworkspace
     XCODE_SCHEME: "Syncano"
-dependencies:
-  pre:
-    - brew uninstall xctool && brew install --HEAD xctool
