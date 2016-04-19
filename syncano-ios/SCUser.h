@@ -11,6 +11,8 @@
 
 @class SCPlease;
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSString *const kSCUserJSONKeyId;
 extern NSString *const kSCUserJSONKeyLinks;
 extern NSString *const kSCUserJSONKeyUsername;
@@ -19,11 +21,11 @@ extern NSString *const kSCUserJSONKeyUserKey;
 extern NSString *const kSCUserJSONKeyUserProfile;
 
 @interface SCUser : NSObject
-@property (nonatomic,retain) NSNumber *userId;
-@property (nonatomic,retain) NSString *username;
-@property (nonatomic,readonly) NSString *userKey;
-@property (nonatomic,retain) SCUserProfile *profile;
-@property (nonatomic,retain) NSDictionary *links;
+@property (nullable,nonatomic,retain) NSNumber *userId;
+@property (nullable,nonatomic,retain) NSString *username;
+@property (nullable,nonatomic,readonly) NSString *userKey;
+@property (nullable,nonatomic,retain) SCUserProfile *profile;
+@property (nullable,nonatomic,retain) NSDictionary *links;
 
 /**
  *  Fills SCUser object with data from API
@@ -37,7 +39,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *
  *  @return SCUser instance of currently logged in user or nil
  */
-+ (instancetype)currentUser;
++ (nullable instancetype)currentUser;
 
 /**
  *  Registers user class for subclassing uses
@@ -59,7 +61,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param password   password for login
  *  @param completion completion block
  */
-+ (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion;
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Attempts to login user into provided Syncano instance
@@ -69,7 +71,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param syncano    syncano instance for login in to
  *  @param completion completion block
  */
-+ (void)loginWithUsername:(NSString *)username password:(NSString *)password toSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password toSyncano:(Syncano *)syncano completion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Attempts to login user using social authentication into singleton Syncano
@@ -78,7 +80,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param authToken  authToken from social provider
  *  @param completion completion block
  */
-+ (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken completion:(SCCompletionBlock)completion;
++ (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken completion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Attempts to login user using social authentication into singleton Syncano
@@ -88,7 +90,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param syncano    syncano instance for login in to
  *  @param completion completion block
  */
-+ (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken toSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
++ (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken toSyncano:(Syncano *)syncano completion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Attempts to register user into singleton Syncano
@@ -97,7 +99,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param password   password for login
  *  @param completion completion block
  */
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion;
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Attempts to register user into provided Syncano instance
@@ -107,7 +109,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param syncano    syncano instance for login in to
  *  @param completion completion block
  */
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Attempts to register user into singleton Syncano,
@@ -117,7 +119,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param password   password for login
  *  @param completion completion block
  */
-+ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password completionBlock:(SCCompletionBlockWithUser)completion;
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password completionBlock:(nullable SCCompletionBlockWithUser)completion;
 
 /**
  *  Attempts to register user into provided Syncano instance,
@@ -128,14 +130,14 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param syncano    syncano instance for login in to
  *  @param completion completion block
  */
-+ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completionBlock:(SCCompletionBlockWithUser)completion;
++ (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completionBlock:(nullable SCCompletionBlockWithUser)completion;
     
 /**
  *  Returns SCPlease instance for singleton Syncano
  *
  *  @return SCPlease instance
  */
-+ (SCPlease *)please;
++ (nullable SCPlease *)please;
 
 /**
  *  Returns SCPlease instance for provided Syncano instance
@@ -144,7 +146,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *
  *  @return SCPlease instance
  */
-+ (SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
++ (nullable SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
 
 /**
  *  Logs out current user
@@ -157,7 +159,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param username   new username
  *  @param completion completion block
  */
-- (void)updateUsername:(NSString *)username withCompletion:(SCCompletionBlock)completion;
+- (void)updateUsername:(NSString *)username withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Updates username in singleton Syncano instance
@@ -166,7 +168,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param syncano    provided Syncano instance
  *  @param completion completion block
  */
-- (void)updateUsername:(NSString *)username inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+- (void)updateUsername:(NSString *)username inSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Updates user password in singleton Syncano instance
@@ -174,7 +176,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param password   new password
  *  @param completion completion block
  */
-- (void)updatePassword:(NSString *)username withCompletion:(SCCompletionBlock)completion;
+- (void)updatePassword:(NSString *)username withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Updates user password in singleton Syncano instance
@@ -183,5 +185,6 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param syncano    provided Syncano instance
  *  @param completion completion block
  */
-- (void)updatePassword:(NSString *)username inSyncno:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+- (void)updatePassword:(NSString *)username inSyncno:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 @end
+NS_ASSUME_NONNULL_END

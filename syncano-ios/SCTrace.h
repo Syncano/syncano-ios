@@ -11,25 +11,27 @@
 
 @class Syncano;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCTrace : NSObject
-@property (nonatomic,copy) NSNumber *identifier;
-@property (nonatomic,copy) NSString *status; //TODO: use enum
-@property (nonatomic,copy) NSDictionary *links;
-@property (nonatomic,copy) NSDate *executedAt;
-@property (nonatomic,copy) id result;
-@property (nonatomic,copy) NSNumber *duration;
-@property (nonatomic,copy) NSNumber *scriptIdentifier;
+@property (nullable,nonatomic,copy) NSNumber *identifier;
+@property (nullable,nonatomic,copy) NSString *status; //TODO: use enum
+@property (nullable,nonatomic,copy) NSDictionary *links;
+@property (nullable,nonatomic,copy) NSDate *executedAt;
+@property (nullable,nonatomic,copy) id result;
+@property (nullable,nonatomic,copy) NSNumber *duration;
+@property (nullable,nonatomic,copy) NSNumber *scriptIdentifier;
 
-@property (nonatomic) NSNumber *codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use scriptIdentifier instead.");
+@property (nullable,nonatomic) NSNumber *codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use scriptIdentifier instead.");
 
-- (instancetype)initWithJSONObject:(id)JSONObject andScriptIdentifier:(NSNumber *)scriptIdentifier;
+- (nullable instancetype)initWithJSONObject:(id)JSONObject andScriptIdentifier:(NSNumber *)scriptIdentifier;
 
 /**
  *  Call trace
  *
  *  @param completion completion block
  */
-- (void)fetchWithCompletion:(SCTraceCompletionBlock)completion;
+- (void)fetchWithCompletion:(nullable SCTraceCompletionBlock)completion;
 
 /**
  *  Call trace on provided Synano instance
@@ -37,9 +39,10 @@
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-- (void)fetchFromSyncano:(Syncano *)syncano withCompletion:(SCTraceCompletionBlock)completion;
+- (void)fetchFromSyncano:(Syncano *)syncano withCompletion:(nullable SCTraceCompletionBlock)completion;
 @end
 
 @interface SCTrace (Deprecated)
-- (instancetype)initWithJSONObject:(id)JSONObject andCodeboxIdentifier:(NSNumber *)codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use initWithJSONObject:andScriptIdentifier method instead.");
+- (nullable instancetype)initWithJSONObject:(id)JSONObject andCodeboxIdentifier:(NSNumber *)codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use initWithJSONObject:andScriptIdentifier method instead.");
 @end
+NS_ASSUME_NONNULL_END
