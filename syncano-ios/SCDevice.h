@@ -12,11 +12,13 @@
 
 @class Syncano;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCDevice : MTLModel
-@property (nonatomic,readonly) NSString * deviceToken;
-@property (nonatomic,retain) NSString *label;
-@property (nonatomic,retain) NSNumber *userId;
-@property (nonatomic,retain) NSString *deviceId;
+@property (nullable,nonatomic,readonly) NSString * deviceToken;
+@property (nullable,nonatomic,retain) NSString *label;
+@property (nullable,nonatomic,retain) NSNumber *userId;
+@property (nullable,nonatomic,retain) NSString *deviceId;
 
 /**
  *  Creates SCDevice instance with provided token data
@@ -25,7 +27,7 @@
  *
  *  @return SCDevice instance
  */
-+ (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData;
++ (nullable SCDevice *)deviceWithTokenFromData:(NSData *)tokenData;
 
 /**
  *  Initializes SCDevice instance with provided token data
@@ -34,7 +36,7 @@
  *
  *  @return SCDevice instance
  */
-- (instancetype)initWithTokenFromData:(NSData *)tokenData;
+- (nullable instancetype)initWithTokenFromData:(NSData *)tokenData;
 
 /**
  *  Sets metadata object for porvided key
@@ -42,7 +44,7 @@
  *  @param object metadata object
  *  @param key    key
  */
-- (void)setMetadataObject:(id)object forKey:(nonnull NSString *)key;
+- (void)setMetadataObject:(id)object forKey:(NSString *)key;
 
 /**
  *  Saves object to API in background for singleton default Syncano instance
@@ -50,7 +52,7 @@
  *  @param completion completion block
  *
  */
-- (void)saveWithCompletionBlock:(_Nullable SCCompletionBlock)completion;
+- (void)saveWithCompletionBlock:(nullable SCCompletionBlock)completion;
 
 /**
  *  Saves object to API in background for chosen Syncano instance
@@ -59,6 +61,7 @@
  *  @param completion completion block
  *
  */
-- (void)saveToSyncano:(Syncano *)syncano withCompletion:(_Nullable SCCompletionBlock)completion;
+- (void)saveToSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 
 @end
+NS_ASSUME_NONNULL_END

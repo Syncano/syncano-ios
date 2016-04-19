@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "SCPredicateProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCCompoundPredicate : NSObject <SCPredicateProtocol>
 
 /**
  *  List of contained predicates
  */
-@property (nonatomic,readonly) NSArray * predicates;
+@property (nullable,nonatomic,readonly) NSArray * predicates;
 
 /**
  *  Returnes new compound predicate with provided array of predicates
@@ -23,7 +25,7 @@
  *
  *  @return SCCompoundPredicate
  */
-+ (instancetype)compoundPredicateWithPredicates:(NSArray *)predicates;
++ (nullable instancetype)compoundPredicateWithPredicates:(NSArray *)predicates;
 
 /**
  *  Initialize new compound predicate with provided array of predicates
@@ -32,7 +34,7 @@
  *
  *  @return SCCompoundPredicate
  */
-- (instancetype)initWithPredicates:(NSArray *)predicates;
+- (nullable instancetype)initWithPredicates:(NSArray *)predicates;
 
 /**
  *  Adds predicate to existing compound predicate
@@ -41,3 +43,4 @@
  */
 - (void)addPredicate:(id<SCPredicateProtocol>)predicate;
 @end
+NS_ASSUME_NONNULL_END

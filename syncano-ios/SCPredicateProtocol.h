@@ -16,14 +16,14 @@
  *
  *  @return string query representation
  */
-- (NSString *)queryRepresentation;
+- (nullable NSString *)queryRepresentation;
 
 /**
  *  Returns raw preduicate
  *
  *  @return NSDictionary with raw predicate
  */
-- (NSDictionary<NSString*,NSDictionary*> *)rawPredicate;
+- (nullable NSDictionary<NSString*,NSDictionary*> *)rawPredicate;
 @optional
 
 /**
@@ -31,5 +31,5 @@
  *
  *  @return NSPredicate representation of a query
  */
-- (NSPredicate *)nspredicateRepresentation;
+- (nullable NSPredicate *)nspredicateRepresentation;
 @end

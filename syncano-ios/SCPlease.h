@@ -12,6 +12,8 @@
 @class Syncano;
 @protocol SCPredicateProtocol;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Parameter keys for constructing query TODO:Comments for all keys
  */
@@ -20,6 +22,7 @@ extern NSString *const SCPleaseParameterExcludedFields;
 extern NSString *const SCPleaseParameterPageSize;
 extern NSString *const SCPleaseParameterOrderBy;
 extern NSString *const SCPleaseParameterIncludeCount;
+
 
 
 /**
@@ -40,7 +43,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
 /**
  * You can also get the Data Objects count estimation when getting the Data Objects list. Syncano shows estimate count for Classes that have more than 1000 Data Objects. This is because we can't provide a precise count without affecting the performance of the platform.
  */
-@property (nonatomic,retain) NSNumber *objectsCount;
+@property (nullable,nonatomic,retain) NSNumber *objectsCount;
 
 /**
  *  Initializes new empty SCPlease object for provided SCDataObject class
@@ -49,7 +52,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-- (instancetype)initWithDataObjectClass:(Class)dataObjectClass;
+- (nullable instancetype)initWithDataObjectClass:(Class)dataObjectClass;
 
 /**
  *  Creates a new SCPlease object for provided class for singleton Syncano instance.
@@ -58,7 +61,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass;
++ (nullable SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass;
 
 /**
  *  Creates a new SCPlease object for provided class for provided Syncano instance
@@ -68,7 +71,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forSyncano:(Syncano *)syncano;
++ (nullable SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forSyncano:(Syncano *)syncano;
 
 /**
  *  Creates a new SCPlease object for User class.
@@ -77,7 +80,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForUserClass;
++ (nullable SCPlease *)pleaseInstanceForUserClass;
 
 /**
  *  Creates a new SCPlease object for User class for provided Syncano instance
@@ -87,7 +90,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForUserClassForSyncano:(Syncano *)syncano;
++ (nullable SCPlease *)pleaseInstanceForUserClassForSyncano:(Syncano *)syncano;
 
 
 /**
@@ -95,7 +98,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @param completion completion block
  */
-- (void)giveMeDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsWithCompletion:(nullable SCDataObjectsCompletionBlock)completion;
 
 /**
  *  Creates and runs an API request for oan bject with a query parameters
@@ -103,7 +106,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *  @param parameters NSDictionary with query params
  *  @param completion completion block
  */
-- (void)giveMeDataObjectsWithParameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsWithParameters:(NSDictionary *)parameters completion:(nullable SCDataObjectsCompletionBlock)completion;
 
 /**
  *  Creates and runs API request for an object with a predicate, query and with parameters
@@ -112,21 +115,21 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *  @param parameters NSDictionary with query params
  *  @param completion completion block
  */
-- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters completion:(nullable SCDataObjectsCompletionBlock)completion;
 
 /**
  *  Creates and runs an API request for next page of results
  *
  *  @param completion completion block
  */
-- (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeNextPageOfDataObjectsWithCompletion:(nullable SCDataObjectsCompletionBlock)completion;
 
 /**
  *  Creates and runs an API request for previous page of results
  *
  *  @param completion completion block
  */
-- (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMePreviousPageOfDataObjectsWithCompletion:(nullable SCDataObjectsCompletionBlock)completion;
 
 /**
  *  Enumerates pages of results with predicate for query and with parameters
@@ -135,6 +138,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *  @param parameters NSDictionary with query params
  *  @param block      completion block
  */
-- (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
+- (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(nullable SCPleaseEnumerateBlock)block;
 
 @end
+NS_ASSUME_NONNULL_END

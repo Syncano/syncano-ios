@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "SCPredicateProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Operators definitions
  */
@@ -37,15 +39,15 @@ extern NSString *const SCPredicateIsOperator;
 /**
  *  Key, e.g. "id"
  */
-@property (nonatomic,retain) NSString *leftHand;
+@property (nullable,nonatomic,retain) NSString *leftHand;
 /**
  *  Compare operator, e.g. "SCPredicateEqualOperator"
  */
-@property (nonatomic,retain) NSString *operator;
+@property (nullable,nonatomic,retain) NSString *operator;
 /**
  *  Value, e.g. "23"
  */
-@property (nonatomic,retain) id rightHand;
+@property (nullable,nonatomic,retain) id rightHand;
 
 /**
  *  Returns predicate where key is greater than provided string
@@ -55,7 +57,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isGreaterThanString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key isGreaterThanString:(NSString *)string;
 
 /**
  *  Returns predicate where key is greater than provided number
@@ -65,7 +67,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isGreaterThanNumber:(NSNumber *)number;
++ (nullable SCPredicate *)whereKey:(NSString *)key isGreaterThanNumber:(NSNumber *)number;
 
 /**
  *  Returns predicate where key is greater than provided date
@@ -75,7 +77,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isGreaterThanDate:(NSDate *)date;
++ (nullable SCPredicate *)whereKey:(NSString *)key isGreaterThanDate:(NSDate *)date;
 
 /**
  *  Returns predicate where key is greater than or equal to provided string
@@ -85,7 +87,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToString:(NSString *)string;
 
 /**
  *  Returns predicate where key is greater than or equal to provided number
@@ -95,7 +97,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToNumber:(NSNumber *)number;
++ (nullable SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToNumber:(NSNumber *)number;
 
 /**
  *  Returns predicate where key is greater than or equal to provided date
@@ -105,7 +107,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToDate:(NSDate *)date;
++ (nullable SCPredicate *)whereKey:(NSString *)key isGreaterThanOrEqualToDate:(NSDate *)date;
 
 /**
  *  Returns predicate where key is less than provided string
@@ -115,7 +117,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isLessThanString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key isLessThanString:(NSString *)string;
 
 /**
  *  Returns predicate where key is less than provided number
@@ -125,7 +127,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isLessThanNumber:(NSNumber *)number;
++ (nullable SCPredicate *)whereKey:(NSString *)key isLessThanNumber:(NSNumber *)number;
 
 /**
  *  Returns predicate where key is less than provided date
@@ -135,7 +137,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isLessThanDate:(NSDate *)date;
++ (nullable SCPredicate *)whereKey:(NSString *)key isLessThanDate:(NSDate *)date;
 
 /**
  *  Returns predicate where key is less than or equal to provided string
@@ -145,7 +147,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToString:(NSString *)string;
 
 /**
  *  Returns predicate where key is less than or equal to provided number
@@ -155,7 +157,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToNumber:(NSNumber *)number;
++ (nullable SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToNumber:(NSNumber *)number;
 
 /**
  *  Returns predicate where key is less than or equal to provided date
@@ -165,7 +167,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToDate:(NSDate *)date;
++ (nullable SCPredicate *)whereKey:(NSString *)key isLessThanOrEqualToDate:(NSDate *)date;
 
 /**
  *  Returns predicate where key is equal to provided string
@@ -175,7 +177,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isEqualToString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key isEqualToString:(NSString *)string;
 
 /**
  *  Returns predicate where key is equal to provided number
@@ -185,7 +187,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isEqualToNumber:(NSNumber *)number;
++ (nullable SCPredicate *)whereKey:(NSString *)key isEqualToNumber:(NSNumber *)number;
 
 /**
  *  Returns predicate where key is equal to provided boolean
@@ -195,7 +197,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isEqualToBool:(BOOL)boolValue;
++ (nullable SCPredicate *)whereKey:(NSString *)key isEqualToBool:(BOOL)boolValue;
 
 /**
  *  Returns predicate where key is equal to provided date
@@ -205,7 +207,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key isEqualToDate:(NSDate *)date;
++ (nullable SCPredicate *)whereKey:(NSString *)key isEqualToDate:(NSDate *)date;
 
 /**
  *  Returns predicate where key is not equal to provided string
@@ -215,7 +217,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key notEqualToString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key notEqualToString:(NSString *)string;
 
 /**
  *  Returns predicate where key is not equal to provided number
@@ -225,7 +227,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key notEqualToNumber:(NSNumber *)number;
++ (nullable SCPredicate *)whereKey:(NSString *)key notEqualToNumber:(NSNumber *)number;
 
 /**
  *  Returns predicate where key is not equal to provided boolean
@@ -235,7 +237,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key notEqualToBool:(BOOL)boolValue;
++ (nullable SCPredicate *)whereKey:(NSString *)key notEqualToBool:(BOOL)boolValue;
 
 /**
  *  Returns predicate where key is not equal to provided date
@@ -245,7 +247,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key notEqualToDate:(NSDate *)date;
++ (nullable SCPredicate *)whereKey:(NSString *)key notEqualToDate:(NSDate *)date;
 
 /**
  *  Returns predicate where key exists
@@ -254,7 +256,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKeyExists:(NSString *)key;
++ (nullable SCPredicate *)whereKeyExists:(NSString *)key;
 
 /**
  *  Returns predicate where key is contained in provided array
@@ -264,7 +266,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
++ (nullable SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
 
 /**
  *  Returns predicate where key satisfies another predicate
@@ -274,7 +276,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key satisfiesPredicate:(id<SCPredicateProtocol>)predicate;
++ (nullable SCPredicate *)whereKey:(NSString *)key satisfiesPredicate:(id<SCPredicateProtocol>)predicate;
 
 /**
  *  Returns predicate where key has provided prefix
@@ -284,7 +286,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key hasPrefix:(NSString *)prefix;
++ (nullable SCPredicate *)whereKey:(NSString *)key hasPrefix:(NSString *)prefix;
 
 /**
  *  Returns predicate where key has provided case insensitive prefix
@@ -294,7 +296,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasPrefix:(NSString *)prefix;
++ (nullable SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasPrefix:(NSString *)prefix;
 
 /**
  *  Returns predicate where key has provided sufix
@@ -304,7 +306,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix;
++ (nullable SCPredicate *)whereKey:(NSString *)key hasSuffix:(NSString *)suffix;
 
 /**
  *  Returns predicate where key has provided case insensitive suffix
@@ -314,7 +316,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasSuffix:(NSString *)suffix;
++ (nullable SCPredicate *)whereKey:(NSString *)key caseInsensitiveHasSuffix:(NSString *)suffix;
 
 /**
  *  Returns predicate where key contains provided string
@@ -324,7 +326,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key containsString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key containsString:(NSString *)string;
 
 /**
  *  Returns predicate where key contains provided case insensitive string
@@ -334,7 +336,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveContainsString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key caseInsensitiveContainsString:(NSString *)string;
 
 /**
  *  Returns predicate where key is equalt to provided case insensitive string
@@ -344,6 +346,7 @@ extern NSString *const SCPredicateIsOperator;
  *
  *  @return SCPredicate
  */
-+ (SCPredicate *)whereKey:(NSString *)key caseInsensitiveIsEqualToString:(NSString *)string;
++ (nullable SCPredicate *)whereKey:(NSString *)key caseInsensitiveIsEqualToString:(NSString *)string;
 
 @end
+NS_ASSUME_NONNULL_END

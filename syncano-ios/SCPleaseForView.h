@@ -8,6 +8,8 @@
 
 #import "SCPlease.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCPleaseForView : SCPlease
 
 /**
@@ -18,7 +20,7 @@
  *
  *  @return SCPlease object
  */
-- (instancetype)initWithDataObjectClass:(Class)dataObjectClass forView:(NSString*)viewName;
+- (nullable instancetype)initWithDataObjectClass:(Class)dataObjectClass forView:(NSString*)viewName;
 
 /**
  *  Creates a new SCPlease object for provided class for singleton Syncano instance.
@@ -28,7 +30,7 @@
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName;
++ (nullable SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName;
 
 /**
  *  Creates a new SCPlease object for provided class for provided Syncano instance
@@ -39,6 +41,7 @@
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName forSyncano:(Syncano *)syncano;
++ (nullable SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName forSyncano:(Syncano *)syncano;
 
 @end
+NS_ASSUME_NONNULL_END

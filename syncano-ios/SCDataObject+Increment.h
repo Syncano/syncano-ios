@@ -17,6 +17,6 @@
  *  @param completion            Completion block
  *  @param revisionMismatchBlock Revision mismatch verification block
  */
-- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)incrementKeys:(nonnull NSDictionary<NSString*,NSNumber*>*)keys usingAPIClient:(nonnull SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 @end

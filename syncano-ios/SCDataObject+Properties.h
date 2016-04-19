@@ -15,12 +15,12 @@
  *
  *  @return NSArray of strings
  */
-+ (NSArray *)propertiesNamesOfFileClass;
++ (nonnull NSArray *)propertiesNamesOfFileClass;
 
 /**
  *  Returns classes of all properties inside a SCDataObject
  *
  *  @return NSDictionary with property name as a key and property class name as a value
  */
-+ (NSDictionary *)classesOfProperties;
++ (nonnull NSDictionary *)classesOfProperties;
 @end
