@@ -17,4 +17,4 @@ test:
       -sdk iphonesimulator
       -workspace syncano-ios.xcworkspace
       -scheme "Syncano"
-      build build-tests run-tests
+     run-tests
