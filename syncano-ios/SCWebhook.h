@@ -120,7 +120,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param instanceName Syncano instance name
  *  @param completion   Completion block
  */
-+ (void)runCustomPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name params:(nullable NSDictionary *)params forInstanceName:(NSString *)instanceName completion:(nullable CCustomResponseCompletionBlock)completion;
++ (void)runCustomPublicWebhookWithHash:(NSString *)hashTag name:(NSString *)name params:(nullable NSDictionary *)params forInstanceName:(NSString *)instanceName completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs public webhook. Returned data will be an instance of NSData.
