@@ -60,6 +60,9 @@
         self.requestSerializer = [AFJSONRequestSerializer serializer];
         self.securityPolicy = [self syncanoSecurityPolicy];
         self.responseSerializer = [SCJSONResponseSerializer serializer];
+        [self setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession * _Nonnull session, NSURLAuthenticationChallenge * _Nonnull challenge, NSURLCredential *__autoreleasing  _Nullable * _Nullable credential) {
+            return NSURLSessionAuthChallengePerformDefaultHandling;
+        }];
         [self initializeReachabilityManager];
     }
     return self;
