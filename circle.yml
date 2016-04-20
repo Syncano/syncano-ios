@@ -4,3 +4,6 @@ machine:
   environment:
     XCODE_WORKSPACE: syncano-ios.xcworkspace
     XCODE_SCHEME: "Syncano"
+test:
+  override:
+    - xctool
