@@ -27,7 +27,7 @@ describe(@"Syncano", ^{
     context(@"syncno instance with validation", ^{
         it(@"should create singletone instance and validate it with server", ^{
             __block NSError *_error;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             [Syncano sharedInstanceWithApiKey:apiKey instanceName:instanceName andValidateWithCompletion:^(NSError *error) {
                 _error = error;
                 _blockFinished = YES;

@@ -30,7 +30,7 @@ describe(@"LocalStorageSpec", ^{
         __block Book *_book;
         it(@"should save data object locally", ^{
             __block NSError *_error;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
            
             __block Book *_storedBook;
             __block NSNumber *_bookId;
@@ -74,7 +74,7 @@ describe(@"LocalStorageSpec", ^{
             __block NSError *_saveError;
             __block NSError *_deleteError;
             
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block Book *_book;
             __block Book *_storedBook;
             __block NSNumber *_bookId;
@@ -119,7 +119,7 @@ describe(@"LocalStorageSpec", ^{
         
         void (^testBook)(SCPredicate*,BOOL) = ^(SCPredicate* predicate, BOOL shouldFindBook) {
             __block NSError *_error;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block Book *_storedBook;
             
             [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
@@ -139,7 +139,7 @@ describe(@"LocalStorageSpec", ^{
         
         void (^testNilPredicate)() = ^() {
             __block NSError *_error;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             
             [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:nil completion:^(NSArray *objects, NSError *error) {
                 _blockFinished = YES;
@@ -151,7 +151,7 @@ describe(@"LocalStorageSpec", ^{
         
         beforeAll(^{
             __block NSError* _error;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             newBook = [[Book alloc] init];
             newBook.title = [bookTitle copy];
             newBook.numOfPages = @(23);
@@ -165,7 +165,7 @@ describe(@"LocalStorageSpec", ^{
         
         afterAll(^{
             __block NSError* _error;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             [newBook deleteFromLocalStorageWithCompletion:^(NSError *error) {
                 _blockFinished = YES;
                 _error = error;

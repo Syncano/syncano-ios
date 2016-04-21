@@ -33,7 +33,7 @@ describe(@"User login", ^{
         NSLog(@"token: %@",token);
         if(token != nil) {//enable test
             __block NSError *_error;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             
             [[[SCUser currentUser] should] beNil];
             [SCUser loginWithSocialBackend:backend authToken:token completion:^(NSError *error) {
