@@ -10,11 +10,11 @@
 
 @interface SCScriptEndpointResponse : NSObject
 
-@property (nonatomic,copy) NSString *status; //TODO: use enum
-@property (nonatomic,copy) NSNumber *duration;
-@property (nonatomic,copy) id result;
-@property (nonatomic,copy) NSDate *executedAt;
+@property (nullable,nonatomic,copy) NSString *status; //TODO: use enum
+@property (nullable,nonatomic,copy) NSNumber *duration;
+@property (nullable,nonatomic,copy) id result;
+@property (nullable,nonatomic,copy) NSDate *executedAt;
 
-- (instancetype)initWithJSONObject:(id)JSONObject;
+- (nullable instancetype)initWithJSONObject:(nonnull id)JSONObject;
 
 @end

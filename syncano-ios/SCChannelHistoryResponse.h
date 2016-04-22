@@ -10,10 +10,10 @@
 #import "SCChannelNotificationMessage.h"
 
 @interface SCChannelHistoryResponse : NSObject
-@property (nonatomic,copy) NSString *next;
-@property (nonatomic,copy) NSString *prev;
-@property (nonatomic,copy) NSArray<SCChannelNotificationMessage*> *objects;
+@property (nullable,nonatomic,copy) NSString *next;
+@property (nullable,nonatomic,copy) NSString *prev;
+@property (nullable,nonatomic,copy) NSArray<SCChannelNotificationMessage*> *objects;
 
-- (instancetype)initWithJSONObject:(id)JSONObject;
+- (nullable instancetype)initWithJSONObject:(nonnull id)JSONObject;
 
 @end

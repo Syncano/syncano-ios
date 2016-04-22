@@ -12,27 +12,29 @@
 
 @class Syncano;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCChannel : NSObject
 
 /**
  *  Channel name
  */
-@property (nonatomic,retain) NSString *name;
+@property (nullable,nonatomic,retain) NSString *name;
 
 /**
  *  Last message identifier
  */
-@property (nonatomic,retain) NSNumber *lastId;
+@property (nullable,nonatomic,retain) NSNumber *lastId;
 
 /**
  *  Room name
  */
-@property (nonatomic,retain) NSString *room;
+@property (nullable,nonatomic,retain) NSString *room;
 
 /**
  *  Channel delegate
  */
-@property (nonatomic,assign) id<SCChannelDelegate> delegate;
+@property (nullable,nonatomic,assign) id<SCChannelDelegate> delegate;
 
 /**
  *  Initializes channel
@@ -41,7 +43,7 @@
  *
  *  @return SCChannel instance
  */
-- (instancetype)initWithName:(NSString *)channelName;
+- (nullable instancetype)initWithName:(NSString *)channelName;
 
 /**
  *  Initializes channel
@@ -51,7 +53,7 @@
  *
  *  @return SCChannel instance
  */
-- (instancetype)initWithName:(NSString *)channelName andDelegate:(id<SCChannelDelegate>)delegate;
+- (nullable instancetype)initWithName:(NSString *)channelName andDelegate:(nullable id<SCChannelDelegate>)delegate;
 /**
  *  Initializes channel
  *
@@ -61,7 +63,7 @@
  *
  *  @return SCChannel instance
  */
-- (instancetype)initWithName:(NSString *)channelName lastId:(NSNumber *)lastId andDelegate:(id<SCChannelDelegate>)delegate;
+- (nullable instancetype)initWithName:(NSString *)channelName lastId:(NSNumber *)lastId andDelegate:(nullable id<SCChannelDelegate>)delegate;
 
 /**
  *  Initializes channel
@@ -72,7 +74,7 @@
  *
  *  @return SCChannel instance
  */
-- (instancetype)initWithName:(NSString *)channelName room:(NSString *)room andDelegate:(id<SCChannelDelegate>)delegate;
+- (nullable instancetype)initWithName:(NSString *)channelName room:(NSString *)room andDelegate:(nullable id<SCChannelDelegate>)delegate;
 
 /**
  *  Initializes channel
@@ -84,7 +86,7 @@
  *
  *  @return SCChannel instance
  */
-- (instancetype)initWithName:(NSString *)channelName lastId:(NSNumber *)lastId room:(NSString *)room andDelegate:(id<SCChannelDelegate>)delegate;
+- (nullable instancetype)initWithName:(NSString *)channelName lastId:(NSNumber *)lastId room:(NSString *)room andDelegate:(nullable id<SCChannelDelegate>)delegate;
 
 /**
  *  Subscribes to channel using singletone Syncano instance
@@ -104,7 +106,7 @@
  *  @param payload    NSDictionary payload
  *  @param completion completion block
  */
-- (void)publishToChannelWithPayload:(NSDictionary *)payload completion:(SCChannelPublishCompletionBlock)completion;
+- (void)publishToChannelWithPayload:(nullable NSDictionary *)payload completion:(nullable SCChannelPublishCompletionBlock)completion;
 
 /**
  *  Publishes payload to channel using provided Syncano instance
@@ -113,14 +115,14 @@
  *  @param payload    NSDictionary payload
  *  @param completion completion block
  */
-- (void)publishToChannelInSyncano:(Syncano *)syncano withPayload:(NSDictionary *)payload completion:(SCChannelPublishCompletionBlock)completion;
+- (void)publishToChannelInSyncano:(Syncano *)syncano withPayload:(nullable NSDictionary *)payload completion:(nullable SCChannelPublishCompletionBlock)completion;
 
 /**
  *  Gets channel history using singleton Syncano instance
  *
  *  @param completion completion blog
  */
-- (void)getChannelHistoryWithCompletion:(SCChannelHistoryCompletionBlock)completion;
+- (void)getChannelHistoryWithCompletion:(nullable SCChannelHistoryCompletionBlock)completion;
 
 /**
  *  Gets channel history using provided Syncano instance
@@ -128,5 +130,6 @@
  *  @param syncano    Syncano instance
  *  @param completion completion block
  */
-- (void)getChannelHistoryFromSyncano:(Syncano *)syncano completion:(SCChannelHistoryCompletionBlock)completion;
+- (void)getChannelHistoryFromSyncano:(Syncano *)syncano completion:(nullable SCChannelHistoryCompletionBlock)completion;
 @end
+NS_ASSUME_NONNULL_END

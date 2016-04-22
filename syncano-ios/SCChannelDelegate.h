@@ -11,6 +11,6 @@
 
 @protocol SCChannelDelegate <NSObject>
 
-- (void)chanellDidReceivedNotificationMessage:(SCChannelNotificationMessage *)notificationMessage;
+- (void)chanellDidReceivedNotificationMessage:(nonnull SCChannelNotificationMessage *)notificationMessage;
 
 @end
