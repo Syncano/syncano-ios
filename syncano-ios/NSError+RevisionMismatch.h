@@ -10,5 +10,5 @@
 #import "SCConstants.h"
 
 @interface NSError (RevisionMismatch)
-- (void)checkIfMismatchOccuredWithCompletion:(SCDataObjectRevisionMismatchCompletionBlock)completionBlock;
+- (void)checkIfMismatchOccuredWithCompletion:(nullable SCDataObjectRevisionMismatchCompletionBlock)completionBlock;
 @end

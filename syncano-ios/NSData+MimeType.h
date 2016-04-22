@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSData (MimeType)
-- (NSString *)mimeTypeByGuessing;
+- (nullable NSString *)mimeTypeByGuessing;
 @end
