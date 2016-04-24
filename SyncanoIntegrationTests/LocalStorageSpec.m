@@ -50,8 +50,8 @@ describe(@"LocalStorageSpec", ^{
                    // Getting this book from local storage
                     [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
                         _storedBook = [objects firstObject];
+                        _blockFinished = YES;
                     }];
-                    _blockFinished = YES;
                     _error = error;
                     if(error){
                         NSLog(@"error: %@",error);
