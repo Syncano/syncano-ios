@@ -29,13 +29,13 @@ describe(@"LocalStorageSpec", ^{
     context(@"data object", ^{
         __block Book *_book;
         it(@"should save data object locally", ^{
-            __block NSError *_error;
+            __block NSError *_error = nil;
             __block BOOL _blockFinished = NO;
            
-            __block Book *_storedBook;
-            __block NSNumber *_bookId;
-            __block NSString *_bookTitle;
-            __block NSNumber *_bookNumOfPages;
+            __block Book *_storedBook = nil;
+            __block NSNumber *_bookId = nil;
+            __block NSString *_bookTitle = nil;
+            __block NSNumber *_bookNumOfPages = nil;
             
             //Getting books from API
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
@@ -70,14 +70,14 @@ describe(@"LocalStorageSpec", ^{
         });
         
         it(@"should delete that object", ^{
-            __block NSError *_fetchError;
-            __block NSError *_saveError;
-            __block NSError *_deleteError;
+            __block NSError *_fetchError = nil;
+            __block NSError *_saveError = nil;
+            __block NSError *_deleteError = nil;
             
             __block BOOL _blockFinished = NO;
-            __block Book *_book;
-            __block Book *_storedBook;
-            __block NSNumber *_bookId;
+            __block Book *_book = nil;
+            __block Book *_storedBook = nil;
+            __block NSNumber *_bookId = nil;
 
             
             //Getting books from API
@@ -118,9 +118,9 @@ describe(@"LocalStorageSpec", ^{
         __block Book* newBook = [[Book alloc] init];
         
         void (^testBook)(SCPredicate*,BOOL) = ^(SCPredicate* predicate, BOOL shouldFindBook) {
-            __block NSError *_error;
+            __block NSError *_error = nil;
             __block BOOL _blockFinished = NO;
-            __block Book *_storedBook;
+            __block Book *_storedBook = nil;
             
             [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
                 _storedBook = [objects firstObject];
@@ -138,7 +138,7 @@ describe(@"LocalStorageSpec", ^{
         };
         
         void (^testNilPredicate)() = ^() {
-            __block NSError *_error;
+            __block NSError *_error = nil;
             __block BOOL _blockFinished = NO;
             
             [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:nil completion:^(NSArray *objects, NSError *error) {
@@ -150,7 +150,7 @@ describe(@"LocalStorageSpec", ^{
         };
         
         beforeAll(^{
-            __block NSError* _error;
+            __block NSError* _error = nil;
             __block BOOL _blockFinished = NO;
             newBook = [[Book alloc] init];
             newBook.title = [bookTitle copy];
@@ -164,7 +164,7 @@ describe(@"LocalStorageSpec", ^{
         });
         
         afterAll(^{
-            __block NSError* _error;
+            __block NSError* _error = nil;
             __block BOOL _blockFinished = NO;
             [newBook deleteFromLocalStorageWithCompletion:^(NSError *error) {
                 _blockFinished = YES;
