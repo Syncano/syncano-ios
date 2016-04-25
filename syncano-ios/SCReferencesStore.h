@@ -11,6 +11,8 @@
 
 @class SCDataObject;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCReferencesStore : NSObject
 /**
  *  Adds SCDataObject weak reference to SCRefrencesStore
@@ -26,5 +28,6 @@
  *
  *  @return SCDataObject found or nil
  */
-- (SCDataObject *)getObjectById:(NSNumber *)objectId;
+- (nullable SCDataObject *)getObjectById:(NSNumber *)objectId;
 @end
+NS_ASSUME_NONNULL_END

@@ -52,12 +52,14 @@ static inline BOOL SCValidateAndSetValue(id obj, NSString *key, id value, BOOL f
     }
 }
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Singleton class for SCDataObject parsing
  */
 @interface SCParseManager : NSObject
 
-@property (nonatomic,retain) SCReferencesStore  * referencesStore;
+@property (nullable,nonatomic,retain) SCReferencesStore  * referencesStore;
 
 /**
  *  Initializes singleton
@@ -72,7 +74,7 @@ SINGLETON_FOR_CLASS(SCParseManager);
  *
  *  @return property type string or NULL
  */
-+ (NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class;
++ (nullable NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class;
 
 @end
-
+NS_ASSUME_NONNULL_END

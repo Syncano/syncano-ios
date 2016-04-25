@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+NS_ASSUME_NONNULL_BEGIN
 /**
  *  Class contains info about registered class for subclassing
  */
@@ -15,20 +15,20 @@
 /**
  *  Name of class using in Syncano
  */
-@property (nonatomic,copy) NSString *classNameForAPI;
+@property (nullable,nonatomic,copy) NSString *classNameForAPI;
 
 /**
  *  Local reference of subslassed class
  */
-@property (nonatomic, copy) Class classReference;
+@property (nullable,nonatomic, copy) Class classReference;
 /**
  *  Local name of subslassed class
  */
-@property (nonatomic,copy) NSString *className;
+@property (nullable,nonatomic,copy) NSString *className;
 /**
  *  Dictionary stores property names as keys and type names as values
  */
-@property (nonatomic,copy) NSDictionary *properties;
+@property (nullable,nonatomic,copy) NSDictionary *properties;
 @end
 
 
@@ -49,7 +49,7 @@
  *
  *  @return SCClassRegisterItem for provided class or nil
  */
-+ (SCClassRegisterItem *)registeredItemForClass:(__unsafe_unretained Class)registeredClass;
++ (nullable SCClassRegisterItem *)registeredItemForClass:(__unsafe_unretained Class)registeredClass;
 
 /**
  *  Returns relations for provided class
@@ -58,6 +58,7 @@
  *
  *  @return NSDictionary with property name as 'key' and SCClassRegisterItem as 'value' or empty NSDictionary if there are no relations
  */
-+ (NSDictionary *)relationsForClass:(__unsafe_unretained Class)class;
++ (nullable NSDictionary *)relationsForClass:(__unsafe_unretained Class)class;
 
 @end
+NS_ASSUME_NONNULL_END

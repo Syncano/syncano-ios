@@ -9,6 +9,8 @@
 #import "SCParseManager.h"
 #import "SCDataObject.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCParseManager (SCDataObject)
 
 /**
@@ -19,7 +21,7 @@
  *
  *  @return parsed SCDataObject
  */
-- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass
+- (nullable id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass
            fromJSONObject:(id)JSONObject;
 
 /**
@@ -29,7 +31,7 @@
  *  @param responseObject JSON object with array of serialized JSON objects from API response
  *  @return NSArray with parsed SCDataObjects
  */
-- (NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)objectClass
+- (nullable NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)objectClass
                    fromJSONObject:(id)responseObject;
 
 
@@ -48,7 +50,8 @@
  *
  *  @return JSON representation of SCDataObject
  */
-- (NSDictionary *)JSONSerializedDictionaryFromDataObject:(SCDataObject *)dataObject error:(NSError **)error;
+- (nullable NSDictionary *)JSONSerializedDictionaryFromDataObject:(SCDataObject *)dataObject error:(NSError *  __autoreleasing _Nullable * _Nullable)error;
 
 
 @end
+NS_ASSUME_NONNULL_END
