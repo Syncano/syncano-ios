@@ -16,7 +16,7 @@
  *
  *  @param completionBlock completion block
  */
-- (void)saveToLocalStorageWithCompletion:(SCCompletionBlock)completion;
+- (void)saveToLocalStorageWithCompletion:(nullable SCCompletionBlock)completion;
 
 #pragma mark - Fetch -
 /**
@@ -24,7 +24,7 @@
  *
  *  @param completionBlock completion block
  */
-+ (void)fetchAllObjectsFromLocalStorageWithCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock;
++ (void)fetchAllObjectsFromLocalStorageWithCompletionBlock:(nullable SCDataObjectsCompletionBlock)completionBlock;
 
 #pragma mark - Delete -
 /**
@@ -32,7 +32,7 @@
  *
  *  @param completionBlock completion block
  */
-- (void)deleteFromLocalStorageWithCompletion:(SCCompletionBlock)completion;
+- (void)deleteFromLocalStorageWithCompletion:(nullable SCCompletionBlock)completion;
 
 #pragma mark - Helpers -
 
@@ -41,12 +41,12 @@
  *
  *  @param completion completion block
  */
-- (void)generateInsertQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion;
+- (void)generateInsertQueryWithCompletion:(nullable SCLocalStorageGenerateQueryStringCompletionBlock)completion;
 
 /**
  *  Generates DELETE query for current SCDataObject
  *
  *  @param completion completion block
  */
-- (void)generateDeleteQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion;
+- (void)generateDeleteQueryWithCompletion:(nullable SCLocalStorageGenerateQueryStringCompletionBlock)completion;
 @end

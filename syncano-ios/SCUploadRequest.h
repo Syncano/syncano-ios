@@ -9,8 +9,8 @@
 #import "SCRequest.h"
 
 @interface SCUploadRequest : SCRequest
-@property (nonatomic,retain) NSString *propertyName;
-@property (nonatomic,retain) NSData *fileData;
+@property (nullable,nonatomic,retain) NSString *propertyName;
+@property (nullable,nonatomic,retain) NSData *fileData;
 
 /**
  *  Creates upload request
@@ -23,7 +23,7 @@
  *
  *  @return SCUploadRequest instance
  */
-+ (SCUploadRequest *)uploadRequestWithPath:(NSString *)path propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save;
++ (nullable SCUploadRequest *)uploadRequestWithPath:(nonnull NSString *)path propertName:(nonnull NSString *)propertyName fileData:(nonnull NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 
 @end

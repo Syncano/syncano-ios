@@ -123,13 +123,16 @@ typedef NS_ENUM(NSUInteger, SCAPIVersion) {
 
 extern SCAPIVersion const kDefaultAPIVersion;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCConstants : NSObject
 + (SCDataObjectPermissionType)dataObjectPermissiontypeByString:(NSString *)typeString;
 + (SCChannelPermisionType)channelPermissionTypeByString:(NSString *)typeString;
 + (SCChannelType)channelTypeByString:(NSString *)typeString;
-+ (NSString *)socialAuthenticationBackendToString:(SCSocialAuthenticationBackend)backend;
-+ (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
-+ (NSValueTransformer *)SCDataObjectDatesTransformer;
++ (nullable NSString *)socialAuthenticationBackendToString:(SCSocialAuthenticationBackend)backend;
++ (nullable NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
++ (nullable NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
-+ (NSURL *)baseURLForAPIVersion:(SCAPIVersion)apiVersion;
++ (nullable NSURL *)baseURLForAPIVersion:(SCAPIVersion)apiVersion;
 @end
+NS_ASSUME_NONNULL_END
