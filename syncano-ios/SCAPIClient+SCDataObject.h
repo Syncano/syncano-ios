@@ -8,6 +8,8 @@
 
 #import "SCAPIClient.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCAPIClient (SCDataObject)
 
 /**
@@ -17,7 +19,7 @@
  *  @param params     fetch parameters
  *  @param completion completion block
  */
-- (void)getDataObjectsFromClassName:(NSString *)className params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)getDataObjectsFromClassName:(NSString *)className params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  Attempts do fetch object of provided class name with provided id
@@ -26,7 +28,7 @@
  *  @param identifier object id
  *  @param completion completion block
  */
-- (void)getDataObjectsFromClassName:(NSString *)className withId:(NSNumber *)identifier completion:(SCAPICompletionBlock)completion;
+- (void)getDataObjectsFromClassName:(NSString *)className withId:(NSNumber *)identifier completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  Attempts to fetch data object from view
@@ -35,5 +37,6 @@
  *  @param params     parameters
  *  @param completion completion block
  */
-- (void)getDataObjectsFromViewName:(NSString *)viewName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)getDataObjectsFromViewName:(NSString *)viewName params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 @end
+NS_ASSUME_NONNULL_END
