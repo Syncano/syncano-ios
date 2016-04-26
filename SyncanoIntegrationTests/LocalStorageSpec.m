@@ -30,7 +30,7 @@ describe(@"LocalStorageSpec", ^{
         it(@"should save data object locally", ^{
             __block NSError *_error = nil;
             __block BOOL _blockFinished = NO;
-            __block Book *_book;
+            __block Book *_fetchedBook = nil;
             __block Book *_storedBook = nil;
             __block NSNumber *_bookId = nil;
             __block NSString *_bookTitle = nil;
@@ -39,12 +39,12 @@ describe(@"LocalStorageSpec", ^{
             //Getting books from API
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
                 NSLog(@"FetchError: %@",error);
-                _book = [objects firstObject];
-                _bookId = _book.objectId;
-                _bookTitle = _book.title;
-                _bookNumOfPages = _book.numOfPages;
+                _fetchedBook = [objects firstObject];
+                _bookId = _fetchedBook.objectId;
+                _bookTitle = _fetchedBook.title;
+                _bookNumOfPages = _fetchedBook.numOfPages;
                 // Savig first of them
-                [_book saveToLocalStorageWithCompletion:^(NSError *error) {
+                [_fetchedBook saveToLocalStorageWithCompletion:^(NSError *error) {
                     SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
                    // Getting this book from local storage
                     [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
@@ -59,7 +59,7 @@ describe(@"LocalStorageSpec", ^{
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
             [[_error should] beNil];
-            [[_book should] beNonNil];
+            [[_fetchedBook should] beNonNil];
             [[_storedBook should] beNonNil];
             [[_bookId should] equal:_storedBook.objectId];
             [[_bookTitle should] equal:_storedBook.title];
