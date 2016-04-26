@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCAPIClient instance
  */
-- (nullable SCAPIClient *)apiClient;
+- (SCAPIClient *)apiClient;
 
 /**
  *  [Abstract] Method to handle repsonse
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param error          response error to handle
  *  @param completion     completion block
  */
-- (void)handleResponse:(id)responseObject error:(NSError *)error completion:(nullable SCDataObjectsCompletionBlock)completion;
+- (void)handleResponse:(id)responseObject error:(nullable NSError *)error completion:(nullable SCDataObjectsCompletionBlock)completion;
 
 @end
 NS_ASSUME_NONNULL_END

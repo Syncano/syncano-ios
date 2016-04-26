@@ -52,7 +52,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-- (nullable instancetype)initWithDataObjectClass:(Class)dataObjectClass;
+- (instancetype)initWithDataObjectClass:(Class)dataObjectClass;
 
 /**
  *  Creates a new SCPlease object for provided class for singleton Syncano instance.
@@ -61,7 +61,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-+ (nullable SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass;
++ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass;
 
 /**
  *  Creates a new SCPlease object for provided class for provided Syncano instance
@@ -71,7 +71,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-+ (nullable SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forSyncano:(nullable Syncano *)syncano;
 
 /**
  *  Creates a new SCPlease object for User class.
@@ -80,7 +80,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-+ (nullable SCPlease *)pleaseInstanceForUserClass;
++ (SCPlease *)pleaseInstanceForUserClass;
 
 /**
  *  Creates a new SCPlease object for User class for provided Syncano instance
@@ -90,7 +90,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *
  *  @return SCPlease object
  */
-+ (nullable SCPlease *)pleaseInstanceForUserClassForSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseInstanceForUserClassForSyncano:(nullable Syncano *)syncano;
 
 
 /**

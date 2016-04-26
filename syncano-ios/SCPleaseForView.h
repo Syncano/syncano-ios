@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease object
  */
-- (nullable instancetype)initWithDataObjectClass:(Class)dataObjectClass forView:(NSString*)viewName;
+- (instancetype)initWithDataObjectClass:(Class)dataObjectClass forView:(NSString*)viewName;
 
 /**
  *  Creates a new SCPlease object for provided class for singleton Syncano instance.
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease object
  */
-+ (nullable SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName;
++ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName;
 
 /**
  *  Creates a new SCPlease object for provided class for provided Syncano instance
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease object
  */
-+ (nullable SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName forSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName forSyncano:(Syncano *)syncano;
 
 @end
 NS_ASSUME_NONNULL_END
