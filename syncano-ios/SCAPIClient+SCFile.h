@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return NSURLSessionDataTask
  */
-+ (nullable NSURLSessionDataTask *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(nullable SCAPIFileDownloadCompletionBlock)completion;
++ (NSURLSessionDataTask *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(nullable SCAPIFileDownloadCompletionBlock)completion;
 
 /**
  *  Downloads file with progres and saves it to local disk
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return NSURLSessionDownloadTask
  */
-+ (nullable NSURLSessionDownloadTask *)downloadFileFromURL:(NSURL *)fileURL
++ (NSURLSessionDownloadTask *)downloadFileFromURL:(NSURL *)fileURL
                                     andSaveToPath:(NSURL *)storePath
                                      withProgress:(nullable SCFileDownloadProgressCompletionBlock)progress
                                    withCompletion:(nullable SCAPIFileDownloadCompletionBlock)completion;

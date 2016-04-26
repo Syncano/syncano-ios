@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+NS_ASSUME_NONNULL_BEGIN
 @interface NSString (JSONDictionary)
-- (nullable NSDictionary *) sc_jsonDictionary:(NSError *  __autoreleasing _Nullable * _Nullable)error;
+- (nullable NSDictionary *) sc_jsonDictionary:(NSError **)error;
 @end
+NS_ASSUME_NONNULL_END
