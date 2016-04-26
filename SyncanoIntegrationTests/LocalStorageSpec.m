@@ -41,7 +41,7 @@ describe(@"LocalStorageSpec", ^{
                 NSLog(@"FetchError: %@",error);
                 _fetchedBook = [objects firstObject];
                 _bookId = [_fetchedBook.objectId copy];
-                _bookTitle = [_fetchedBook.title copy];
+                _bookTitle = [_fetchedBook.title copy]; 
                 _bookNumOfPages = [_fetchedBook.numOfPages copy];
                 // Savig first of them
                 [_fetchedBook saveToLocalStorageWithCompletion:^(NSError *error) {
