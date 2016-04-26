@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Syncano singleton instance
  */
-+ (nullable Syncano *)sharedInstanceWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
++ (Syncano *)sharedInstanceWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
 
 
 /**
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Syncano singleton instance
  */
-+ (nullable Syncano *)sharedInstanceWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
++ (Syncano *)sharedInstanceWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Returns API Key from Syncano singleton instance
@@ -89,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCAPIClient object
  */
-+ (nullable SCAPIClient *)sharedAPIClient;
++ (SCAPIClient *)sharedAPIClient;
 
 
 
@@ -102,7 +102,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Syncano instance
  */
-- (nullable instancetype)initWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
+- (instancetype)initWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
 
 
 /**
@@ -114,7 +114,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Syncano instance
  */
-- (nullable instancetype)initWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
+- (instancetype)initWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Initiates and returns instance of Syncano Class
@@ -124,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Syncano instance
  */
-+ (nullable Syncano *)newSyncanoWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
++ (Syncano *)newSyncanoWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
 
 
 /**
@@ -136,7 +136,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Syncano instance
  */
-+ (nullable Syncano *)newSyncanoWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
++ (Syncano *)newSyncanoWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
 
 
 /**

@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
+NS_ASSUME_NONNULL_BEGIN
 @interface NSData (MimeType)
-- (nullable NSString *)mimeTypeByGuessing;
+- (NSString *)mimeTypeByGuessing;
 @end
+NS_ASSUME_NONNULL_END
