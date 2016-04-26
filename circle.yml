@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: "7.2"
+    version: 7.2.1
   environment:
     XCODE_WORKSPACE: syncano-ios.xcworkspace
-    XCODE_SCHEME: "Syncano"
+    XCODE_SCHEME: 'Syncano'
