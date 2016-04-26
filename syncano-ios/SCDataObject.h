@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease instance
  */
-+ (nullable SCPlease *)please;
++ (SCPlease *)please;
 
 /**
  *  Returns SCPlease instance for provided Syncano instance
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease instance
  */
-+ (nullable SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
 
 /**
  *  Returns SCPlease instance for Syncano singleton
@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease instance
  */
-+ (nullable SCPlease *)pleaseForView:(NSString*)viewName;
++ (SCPlease *)pleaseForView:(NSString*)viewName;
 
 /**
  *  Returns SCPlease instance for provided Syncano instance
@@ -92,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease instance
  */
-+ (nullable SCPlease *)pleaseForView:(NSString*)viewName fromSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseForView:(NSString*)viewName fromSyncano:(Syncano *)syncano;
 
 /**
  *  Registers class in SCParseManager for proper model parsing.
@@ -106,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCDataObject (or a subclass) created from provided dictionary
  */
-+ (instancetype)objectFromDictionary:(NSDictionary *)dictionary;
++ (nullable instancetype)objectFromDictionary:(NSDictionary *)dictionary;
 
 /**
  *  Saves an object using Syncano API in background, using Syncano Instance defined in default Syncano singleton

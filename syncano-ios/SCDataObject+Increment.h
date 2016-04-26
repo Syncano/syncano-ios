@@ -7,7 +7,7 @@
 //
 
 #import "SCDataObject.h"
-
+NS_ASSUME_NONNULL_BEGIN
 @interface SCDataObject (Increment)
 /**
  *  Increment key's value by provided number
@@ -17,6 +17,7 @@
  *  @param completion            Completion block
  *  @param revisionMismatchBlock Revision mismatch verification block
  */
-- (void)incrementKeys:(nonnull NSDictionary<NSString*,NSNumber*>*)keys usingAPIClient:(nonnull SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 @end
+NS_ASSUME_NONNULL_END

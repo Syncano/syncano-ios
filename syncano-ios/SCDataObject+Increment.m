@@ -20,7 +20,7 @@
     return [NSError errorWithDomain:SCDataObjectErrorDomain  code:SCErrorCodeDataObjectNonExistingPropertyName userInfo:userInfo];
 }
 
-- (NSDictionary*)buildParametersForIncrementQueryForKeys:(NSDictionary<NSString*,NSNumber*>*)keys withError:(NSError *__autoreleasing *)error {
+- (NSDictionary*)buildParametersForIncrementQueryForKeys:(NSDictionary<NSString*,NSNumber*>*)keys withError:(NSError **)error {
     
     __block NSError* internalError;
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:(keys.count+1)];

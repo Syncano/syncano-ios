@@ -7,7 +7,7 @@
 //
 
 #import "SCDataObject.h"
-
+NS_ASSUME_NONNULL_BEGIN
 @interface SCDataObject (Properties)
 
 /**
@@ -15,12 +15,13 @@
  *
  *  @return NSArray of strings
  */
-+ (nonnull NSArray *)propertiesNamesOfFileClass;
++ (NSArray *)propertiesNamesOfFileClass;
 
 /**
  *  Returns classes of all properties inside a SCDataObject
  *
  *  @return NSDictionary with property name as a key and property class name as a value
  */
-+ (nonnull NSDictionary *)classesOfProperties;
++ (NSDictionary *)classesOfProperties;
 @end
+NS_ASSUME_NONNULL_END
