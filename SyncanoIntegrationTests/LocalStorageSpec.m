@@ -27,11 +27,10 @@ describe(@"LocalStorageSpec", ^{
     });
     
     context(@"data object", ^{
-        __block Book *_book;
         it(@"should save data object locally", ^{
             __block NSError *_error = nil;
             __block BOOL _blockFinished = NO;
-           
+            __block Book *_book;
             __block Book *_storedBook = nil;
             __block NSNumber *_bookId = nil;
             __block NSString *_bookTitle = nil;
