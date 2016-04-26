@@ -40,9 +40,9 @@ describe(@"LocalStorageSpec", ^{
             [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
                 NSLog(@"FetchError: %@",error);
                 _fetchedBook = [objects firstObject];
-                _bookId = _fetchedBook.objectId;
-                _bookTitle = _fetchedBook.title;
-                _bookNumOfPages = _fetchedBook.numOfPages;
+                _bookId = [_fetchedBook.objectId copy];
+                _bookTitle = [_fetchedBook.title copy]; 
+                _bookNumOfPages = [_fetchedBook.numOfPages copy];
                 // Savig first of them
                 [_fetchedBook saveToLocalStorageWithCompletion:^(NSError *error) {
                     SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
