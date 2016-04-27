@@ -21,4 +21,5 @@
 @property (nonatomic,copy) NSNumber *lovers;
 @property (nonatomic,copy) NSNumber *readers;
 
++ (Book *)mock;
 @end
