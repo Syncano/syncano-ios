@@ -60,44 +60,35 @@ describe(@"LocalStorageSpec", ^{
         });
         
         it(@"should delete that object", ^{
-            __block NSError *_fetchError = nil;
             __block NSError *_saveError = nil;
             __block NSError *_deleteError = nil;
             
             __block BOOL _blockFinished = NO;
-            __block Book *_book = nil;
             __block Book *_storedBook = nil;
-            __block NSNumber *_bookId = nil;
+            __block NSNumber *_bookId = mockBook.objectId;
 
             
-            //Getting books from API
-            [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
-                _fetchError = error;
-                _book = [objects firstObject];
-                _bookId = _book.objectId;
-                // Savig first of them
-                [_book saveToLocalStorageWithCompletion:^(NSError *error) {
-                    _saveError = error;
-                    if(error){
-                        NSLog(@"error: %@",error);
-                    }
-                    
-                    [_book deleteFromLocalStorageWithCompletion:^(NSError *error) {
-                        _deleteError = error;
-                        // Getting this book from local storage
-                        SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
-                        [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
-                            _storedBook = [objects firstObject];
-                            _blockFinished = YES;
-                        }];
+            // Savig first of them
+            [mockBook saveToLocalStorageWithCompletion:^(NSError *error) {
+                _saveError = error;
+                if(error){
+                    NSLog(@"error: %@",error);
+                }
+                
+                [mockBook deleteFromLocalStorageWithCompletion:^(NSError *error) {
+                    _deleteError = error;
+                    // Getting this book from local storage
+                    SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
+                    [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
+                        _storedBook = [objects firstObject];
+                        _blockFinished = YES;
                     }];
                 }];
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
-            [[_fetchError should] beNil];
             [[_saveError should] beNil];
             [[_deleteError should] beNil];
-            [[_book should] beNonNil];
+            [[mockBook should] beNonNil];
             [[_storedBook should] beNil];
         });
     });
