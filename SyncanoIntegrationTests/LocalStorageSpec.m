@@ -18,49 +18,39 @@ describe(@"LocalStorageSpec", ^{
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
     NSString *apikey = environment[@"API_KEY"];
     NSString *instanceName = environment[@"INSTANCE_NAME"];
+    Book *mockBook = [Book mock];
     
     beforeAll(^{
         [SCFileManager cleanUpLocalStorage];
         [Syncano enableOfflineStorage];
         [Syncano sharedInstanceWithApiKey:apikey instanceName:instanceName];
-        
     });
-    
     
     context(@"data object", ^{
         it(@"should save data object locally", ^{
             __block NSError *_error = nil;
             __block BOOL _blockFinished = NO;
-            __block Book *_fetchedBook = [Book mock];
             __block Book *_storedBook = nil;
-            __block NSNumber *_bookId = nil;
-            __block NSString *_bookTitle = nil;
-            __block NSNumber *_bookNumOfPages = nil;
+            __block NSNumber *_bookId = mockBook.objectId;
+            __block NSString *_bookTitle = mockBook.title;
+            __block NSNumber *_bookNumOfPages = mockBook.numOfPages;
             
-            //Getting books from API
-            //[[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
-                //NSLog(@"FetchError: %@",error);
-                //_fetchedBook = [objects firstObject];
-                _bookId = [_fetchedBook.objectId copy];
-                _bookTitle = [_fetchedBook.title copy]; 
-                _bookNumOfPages = [_fetchedBook.numOfPages copy];
-                // Savig first of them
-                [_fetchedBook saveToLocalStorageWithCompletion:^(NSError *error) {
-                    SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
-                   // Getting this book from local storage
-                    [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
-                        _storedBook = [objects firstObject];
-                        _blockFinished = YES;
-                    }];
-                    _error = error;
-                    if(error){
-                        NSLog(@"error: %@",error);
-                    }
+            // Savig first of them
+            [mockBook saveToLocalStorageWithCompletion:^(NSError *error) {
+                SCPredicate *predicate = [SCPredicate whereKey:@"objectId" isEqualToNumber:_bookId];
+               // Getting this book from local storage
+                [[Book please] giveMeDataObjectsFromLocalStorageWithPredicate:predicate completion:^(NSArray *objects, NSError *error) {
+                    _storedBook = [objects firstObject];
+                    _blockFinished = YES;
                 }];
-            //}];
+                _error = error;
+                if(error){
+                    NSLog(@"error: %@",error);
+                }
+            }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
             [[_error should] beNil];
-            [[_fetchedBook should] beNonNil];
+            [[mockBook should] beNonNil];
             [[_storedBook should] beNonNil];
             [[_bookId should] equal:_storedBook.objectId];
             [[_bookTitle should] equal:_storedBook.title];
