@@ -125,7 +125,7 @@ SCAPIVersion const kScriptEndpointDefaultAPIVersion = SCAPIVersion_1_1;
 }
 
 + (void)runPublicScriptEndpointWithPath:(NSString *)path payload:(NSDictionary *)payload usingAPIClient:(SCAPIClient*)apiClient completion:(SCScriptEndpointCompletionBlock)completion {
-    [apiClient POST:path parameters:payload success:^(NSURLSessionDataTask *task, id responseObject) {
+    [apiClient POST:path parameters:payload progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (completion) {
             SCScriptEndpointResponse *response = [[SCScriptEndpointResponse alloc] initWithJSONObject:responseObject];
             completion(response,nil);
@@ -138,7 +138,7 @@ SCAPIVersion const kScriptEndpointDefaultAPIVersion = SCAPIVersion_1_1;
 }
 
 + (void)runCustomPublicScriptEndpointWithPath:(NSString *)path payload:(NSDictionary *)payload usingAPIClient:(SCAPIClient*)apiClient completion:(SCCustomResponseCompletionBlock)completion {
-    [apiClient POST:path parameters:payload success:^(NSURLSessionDataTask *task, id responseObject) {
+    [apiClient POST:path parameters:payload progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (completion) {
             completion(responseObject,nil);
         }

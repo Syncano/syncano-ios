@@ -60,6 +60,9 @@
         self.requestSerializer = [AFJSONRequestSerializer serializer];
         self.securityPolicy = [self syncanoSecurityPolicy];
         self.responseSerializer = [SCJSONResponseSerializer serializer];
+        [self setSessionDidReceiveAuthenticationChallengeBlock:^NSURLSessionAuthChallengeDisposition(NSURLSession * _Nonnull session, NSURLAuthenticationChallenge * _Nonnull challenge, NSURLCredential *__autoreleasing  _Nullable * _Nullable credential) {
+            return NSURLSessionAuthChallengePerformDefaultHandling;
+        }];
         [self initializeReachabilityManager];
     }
     return self;
@@ -71,7 +74,7 @@
     policy.validatesDomainName = NO;
     NSString *cerPath = [[NSBundle bundleForClass:[self class]] pathForResource:kSCCertificateFileName ofType:nil];
     NSData *certData = [NSData dataWithContentsOfFile:cerPath];
-    policy.pinnedCertificates = @[certData];
+    policy.pinnedCertificates = [NSSet setWithObject:certData];
     return policy;
 }
 
@@ -228,6 +231,7 @@
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self GET:path
                                 parameters:params
+                                  progress:nil
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
                                        completion(task,responseObject, nil);
                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -241,6 +245,7 @@
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self POST:path
                                 parameters:params
+                                   progress:nil
                                    success:^(NSURLSessionDataTask *task, id responseObject) {
                                        completion(task,responseObject, nil);
                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -297,7 +302,7 @@
     NSURLSessionDataTask *task = [self POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];
         [formData appendPartWithFormData:fileData name:propertyName];
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
+    } progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(task,responseObject, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         completion(task,nil, error);

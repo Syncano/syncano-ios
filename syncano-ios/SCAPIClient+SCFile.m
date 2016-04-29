@@ -10,21 +10,22 @@
 
 @implementation SCAPIClient (SCFile)
 
-+ (AFHTTPRequestOperation *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion {
++ (NSURLSessionDataTask *)downloadFileFromURL:(NSURL *)fileURL withCompletion:(SCAPIFileDownloadCompletionBlock)completion {
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-    AFHTTPRequestOperation *downloadRequestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    [downloadRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
         if (completion) {
-            completion(responseObject,nil);
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (completion) {
-            completion(nil,error);
+            completion(data,error);
         }
     }];
+
+    [dataTask resume];
     
-    [downloadRequestOperation start];
-    return downloadRequestOperation;
+    return dataTask;
 }
 
 + (NSURLSessionDownloadTask *)downloadFileFromURL:(NSURL *)fileURL

@@ -22,7 +22,7 @@ describe(@"Data object manipulations", ^{
     beforeAll(^{
         [Syncano sharedInstanceWithApiKey:apiKey instanceName:instanceName];
         
-        __block BOOL _blockFinished;
+        __block BOOL _blockFinished = NO;
         __block NSError *_error;
         [[Book please] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
             _blockFinished = YES;
@@ -37,7 +37,7 @@ describe(@"Data object manipulations", ^{
     context(@"Changing values", ^{
         
         it(@"should increment one value", ^{
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block NSError *_error;
             NSNumber* expectedLoversNb = @(book.lovers.integerValue + 1);
             [book incrementKey:@"lovers" by:@(1) withCompletion:^(NSError *error) {
@@ -51,7 +51,7 @@ describe(@"Data object manipulations", ^{
         });
         
         it(@"should increment many values", ^{
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block NSError *_error;
             NSNumber* loversChange = @(-1);
             NSNumber* readersChange = @(12);
@@ -70,7 +70,7 @@ describe(@"Data object manipulations", ^{
     
     context(@"Errors", ^{
         it(@"should error on unknown property", ^{
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block NSError *_error;
             [book incrementKey:@"haters" by:@(1) withCompletion:^(NSError *error) {
                 _blockFinished = YES;
@@ -84,7 +84,7 @@ describe(@"Data object manipulations", ^{
         });
         
         it(@"should behave nicely when called on nonsaved object", ^{
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block NSError *_error;
             Book* newBook = [[Book alloc] init];
             [newBook incrementKey:@"lovers" by:@1 withCompletion:^(NSError *error) {

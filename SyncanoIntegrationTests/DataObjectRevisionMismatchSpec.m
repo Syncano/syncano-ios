@@ -29,7 +29,7 @@ describe(@"DataObjectRevisionMismatch", ^{
             __block Book *_book;
             __block NSError *_fetchError;
             __block NSError *_saveError;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block BOOL _mismatched;
             __block NSString *_mismatchDescription;
 
@@ -62,7 +62,7 @@ describe(@"DataObjectRevisionMismatch", ^{
             __block Book *_book;
             __block NSError *_fetchError;
             __block NSError *_saveError;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block BOOL _mismatched;
             __block NSString *_mismatchDescription;
             

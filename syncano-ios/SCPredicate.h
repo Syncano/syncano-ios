@@ -257,6 +257,15 @@ extern NSString *const SCPredicateIsOperator;
 + (SCPredicate *)whereKeyExists:(NSString *)key;
 
 /**
+ *  Returns predicate where key does not exist
+ *
+ *  @param key key
+ *
+ *  @return SCPredicate
+ */
++ (SCPredicate *)whereKeyDoesNotExist:(NSString *)key;
+
+/**
  *  Returns predicate where key is contained in provided array
  *
  *  @param key   key
