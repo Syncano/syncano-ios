@@ -32,7 +32,7 @@ describe(@"User registration", ^{
         NSString *password = @"password";
         if(username != nil && password != nil) {//enable test
             __block NSError *_error;
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block SCUser *_registeredUser = nil;
             
             [[[SCUser currentUser] should] beNil];

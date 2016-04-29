@@ -26,7 +26,7 @@ describe(@"Data views", ^{
     context(@"Fetch data from view", ^{
         
         __block NSError *_error;
-        __block BOOL _blockFinished;
+        __block BOOL _blockFinished = NO;
         __block NSArray* _books;
         [[Book pleaseForView:@"books_with_authors"] giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
             _blockFinished = YES;
@@ -56,7 +56,7 @@ describe(@"Data views", ^{
     context(@"Fetch data from view with query", ^{
         
         __block NSError *_error;
-        __block BOOL _blockFinished;
+        __block BOOL _blockFinished = NO;
         __block NSArray* _books;
         [[Book pleaseForView:@"books_with_authors"] giveMeDataObjectsWithPredicate:[SCPredicate whereKey:@"numofpages" isEqualToNumber:@(288)] parameters:nil completion:^(NSArray *objects, NSError *error) {
             _blockFinished = YES;
@@ -82,7 +82,7 @@ describe(@"Data views", ^{
     context(@"Fetch data from view with join query", ^{
         
         __block NSError *_error;
-        __block BOOL _blockFinished;
+        __block BOOL _blockFinished = NO;
         __block NSArray* _books;
         [[Book pleaseForView:@"books_with_authors"] giveMeDataObjectsWithPredicate:
          [SCPredicate whereKey:@"author" satisfiesPredicate:
@@ -114,7 +114,7 @@ describe(@"Data views", ^{
         SCPlease* please = [Book pleaseForView:@"books_with_authors"];
         
         __block NSError *_error;
-        __block BOOL _blockFinished;
+        __block BOOL _blockFinished = NO;
         __block NSArray* _books;
         __block NSArray* _booksNextPage;
         __block NSArray* _booksPrevPage;
