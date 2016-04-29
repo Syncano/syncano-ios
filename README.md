@@ -32,6 +32,8 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.1.2** - 2016-04-20
+    * Added SCPredicate for key does not exist
 * **4.1.1** - 2016-04-03
     * Fixed Mantle include for swift
     * Added SCDBMigrationsBundle.bundle to podspec
