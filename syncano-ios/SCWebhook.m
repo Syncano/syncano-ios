@@ -115,7 +115,7 @@
 }
 
 + (void)runPublicWebhookWithPath:(NSString *)path params:(NSDictionary *)params usingAPIClient:(SCAPIClient*)apiClient completion:(SCWebhookCompletionBlock)completion {
-    [apiClient POST:path parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [apiClient POST:path parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (completion) {
             SCWebhookResponseObject *webhookResponseObject = [[SCWebhookResponseObject alloc] initWithJSONObject:responseObject];
             completion(webhookResponseObject,nil);
@@ -128,7 +128,7 @@
 }
 
 + (void)runCustomPublicWebhookWithPath:(NSString *)path params:(NSDictionary *)params usingAPIClient:(SCAPIClient*)apiClient completion:(SCCustomResponseCompletionBlock)completion {
-    [apiClient POST:path parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+    [apiClient POST:path parameters:params progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (completion) {
             completion(responseObject,nil);
         }

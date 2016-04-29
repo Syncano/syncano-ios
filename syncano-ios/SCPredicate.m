@@ -142,6 +142,10 @@ static NSDateFormatter *dateFormatter;
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateExistsOperator rightHand:@(YES)];
 }
 
++ (SCPredicate *)whereKeyDoesNotExist:(NSString *)key {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateExistsOperator rightHand:@(NO)];
+}
+
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array {
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateInOperator rightHand:array];
 }

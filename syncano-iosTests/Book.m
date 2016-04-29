@@ -12,4 +12,12 @@
 + (NSDictionary *)extendedPropertiesMapping {
     return @{@"numOfPages" : @"numofpages"};
 }
+
++ (Book *)mock {
+    Book *book = [Book new];
+    book.objectId = @111;
+    book.numOfPages = @1233;
+    book.title = @"Mock is good";
+    return book;
+}
 @end

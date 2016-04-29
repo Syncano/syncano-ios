@@ -26,7 +26,7 @@ describe(@"DataObjectFetchSpec", ^{
     context(@"data object please", ^{
         
         it(@"should return object count", ^{
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block NSError *_fetchError;
             __block NSNumber *_objectCount;
 
@@ -41,7 +41,7 @@ describe(@"DataObjectFetchSpec", ^{
             [[_objectCount shouldNot] beNil];
         });
         it(@"should not return object count", ^{
-            __block BOOL _blockFinished;
+            __block BOOL _blockFinished = NO;
             __block NSError *_fetchError;
             __block NSNumber *_objectCount;
             
