@@ -79,6 +79,7 @@ NSString *const kSCUserJSONKeyUserProfile = @"profile";
 }
 
 + (void)loginWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
+    [self sweepLoggedInUserData];
     NSDictionary *params = @{kSCUserJSONKeyUsername : username , kSCUserJSONKeyPassword : password};
     [apiClient POSTWithPath:@"user/auth/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
@@ -140,6 +141,7 @@ NSString *const kSCUserJSONKeyUserProfile = @"profile";
 }
 
 + (void)loginWithSocialBackend:(SCSocialAuthenticationBackend)backend authToken:(NSString *)authToken usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
+    [self sweepLoggedInUserData];
     NSString *path = [NSString stringWithFormat:@"user/auth/%@/", [SCConstants socialAuthenticationBackendToString:backend]];
     [apiClient POSTWithPath:path params:[self paramsForAuthToken:authToken] completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
@@ -153,7 +155,11 @@ NSString *const kSCUserJSONKeyUserProfile = @"profile";
 }
 
 - (void)logout {
-    [[self class] removeUserFromDefaults];
+    [[self class] sweepLoggedInUserData];
+}
+
++ (void)sweepLoggedInUserData {
+    [self removeUserFromDefaults];
     UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.syncano"];
     [keychain removeItemForKey:kUserKeyKeychainKey];
     _currentUser = nil;
