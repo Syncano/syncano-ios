@@ -176,7 +176,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param password   new password
  *  @param completion completion block
  */
-- (void)updatePassword:(NSString *)username withCompletion:(nullable SCCompletionBlock)completion;
+- (void)updatePassword:(NSString *)password withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Updates user password in singleton Syncano instance
@@ -185,6 +185,6 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *  @param syncano    provided Syncano instance
  *  @param completion completion block
  */
-- (void)updatePassword:(NSString *)username inSyncno:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
+- (void)updatePassword:(NSString *)password inSyncno:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 @end
 NS_ASSUME_NONNULL_END

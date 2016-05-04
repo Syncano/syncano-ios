@@ -45,7 +45,7 @@ describe(@"File fetch", ^{
     __block Book* _book;
     
     it(@"Needs object",^{
-        __block BOOL _blockFinished;
+        __block BOOL _blockFinished = NO;
         __block NSError* _error;
         [[Book please] giveMeDataObjectsWithPredicate:[SCPredicate whereKey:@"id" isEqualToNumber:@(8)] parameters:nil completion:^(NSArray *objects, NSError *error) {
             _blockFinished = YES;
@@ -59,7 +59,7 @@ describe(@"File fetch", ^{
     });
     
     it(@"downloads a file to temporary location", ^{
-        __block BOOL _blockFinished;
+        __block BOOL _blockFinished = NO;
         __block NSError* _error;
         __block int64_t _bytesWritten = 0;
         __block NSURL* _filePath;
@@ -85,7 +85,7 @@ describe(@"File fetch", ^{
         NSURL *storePathDocuments = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
         NSURL *storePath = [storePathDocuments URLByAppendingPathComponent:@"saabManual.pdf"];
         
-        __block BOOL _blockFinished;
+        __block BOOL _blockFinished = NO;
         __block NSError* _error;
         __block int64_t _bytesWritten = 0;
         __block NSURL* _filePath;
