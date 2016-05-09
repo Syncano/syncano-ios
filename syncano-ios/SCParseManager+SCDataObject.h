@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param responseObject JSON object with array of serialized JSON objects from API response
  *  @return NSArray with parsed SCDataObjects
  */
-- (nullable NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)objectClass
+- (NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)objectClass
                    fromJSONObject:(id)responseObject;
 
 
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return JSON representation of SCDataObject
  */
-- (nullable NSDictionary *)JSONSerializedDictionaryFromDataObject:(SCDataObject *)dataObject error:(NSError **)error;
+- (NSDictionary *)JSONSerializedDictionaryFromDataObject:(SCDataObject *)dataObject error:(NSError **)error;
 
 
 @end

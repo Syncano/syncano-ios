@@ -24,14 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable,nonatomic) NSNumber *codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use scriptIdentifier instead.");
 
-- (nullable instancetype)initWithJSONObject:(id)JSONObject andScriptIdentifier:(NSNumber *)scriptIdentifier;
+- (instancetype)initWithJSONObject:(id)JSONObject andScriptIdentifier:(NSNumber *)scriptIdentifier;
 
 /**
  *  Call trace
  *
  *  @param completion completion block
  */
-- (void)fetchWithCompletion:(nullable SCTraceCompletionBlock)completion;
+- (void)fetchWithCompletion:(SCTraceCompletionBlock)completion;
 
 /**
  *  Call trace on provided Synano instance
@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-- (void)fetchFromSyncano:(Syncano *)syncano withCompletion:(nullable SCTraceCompletionBlock)completion;
+- (void)fetchFromSyncano:(Syncano *)syncano withCompletion:(SCTraceCompletionBlock)completion;
 @end
 
 @interface SCTrace (Deprecated)

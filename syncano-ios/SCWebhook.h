@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param payload    payload
  *  @param completion completion block
  */
-+ (void)runWebhookWithName:(NSString *)name withPayload:(nullable NSDictionary *)payload completion:(nullable SCWebhookCompletionBlock)completion;
++ (void)runWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCWebhookCompletionBlock)completion;
 
 /**
  *  Runs webhook with payload using provided Syncano instance
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param syncano    provided Syncano instance
  *  @param completion completion block
  */
-+ (void)runWebhookWithName:(NSString *)name withPayload:(nullable NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCWebhookCompletionBlock)completion;
++ (void)runWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCWebhookCompletionBlock)completion;
 
 /**
  *  Runs public webhook.
@@ -98,7 +98,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param payload    Payload for webhook
  *  @param completion Completion block
  */
-+ (void)runCustomWebhookWithName:(NSString *)name withPayload:(nullable NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
++ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs webhook with payload and custom reponse format.
@@ -109,7 +109,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-+ (void)runCustomWebhookWithName:(NSString *)name withPayload:(nullable NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion;
++ (void)runCustomWebhookWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs public webhook. Returned data will be an instance of NSData.

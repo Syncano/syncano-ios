@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param params     fetch parameters
  *  @param completion completion block
  */
-- (void)getDataObjectsFromClassName:(NSString *)className params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
+- (void)getDataObjectsFromClassName:(NSString *)className params:(nullable NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 
 /**
  *  Attempts do fetch object of provided class name with provided id
@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param identifier object id
  *  @param completion completion block
  */
-- (void)getDataObjectsFromClassName:(NSString *)className withId:(NSNumber *)identifier completion:(nullable SCAPICompletionBlock)completion;
+- (void)getDataObjectsFromClassName:(NSString *)className withId:(NSNumber *)identifier completion:(SCAPICompletionBlock)completion;
 
 /**
  *  Attempts to fetch data object from view
@@ -37,6 +37,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param params     parameters
  *  @param completion completion block
  */
-- (void)getDataObjectsFromViewName:(NSString *)viewName params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
+- (void)getDataObjectsFromViewName:(NSString *)viewName params:(nullable NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 @end
 NS_ASSUME_NONNULL_END

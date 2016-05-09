@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+NS_ASSUME_NONNULL_BEGIN
 @interface NSObject (SCParseHelper)
 - (nullable NSString *)sc_stringOrEmpty;
 - (nullable NSNumber *)sc_numberOrNil;
@@ -16,3 +16,4 @@
 - (nullable NSDate *)sc_dateOrNil;
 - (nullable id)sc_objectOrNil;
 @end
+NS_ASSUME_NONNULL_END

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCAPIClient object
  */
-+ (nullable SCAPIClient *)apiClientForSyncano:(Syncano *)syncano;
++ (SCAPIClient *)apiClientForSyncano:(Syncano *)syncano;
 
 /**
  *  "Abstract" method to GET method call added to queue

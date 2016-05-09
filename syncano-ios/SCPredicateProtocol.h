@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol SCPredicateProtocol <NSObject>
 
 @required
@@ -33,3 +35,4 @@
  */
 - (nullable NSPredicate *)nspredicateRepresentation;
 @end
+NS_ASSUME_NONNULL_END

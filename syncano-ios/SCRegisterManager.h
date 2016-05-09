@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return NSDictionary with property name as 'key' and SCClassRegisterItem as 'value' or empty NSDictionary if there are no relations
  */
-+ (nullable NSDictionary *)relationsForClass:(__unsafe_unretained Class)class;
++ (NSDictionary *)relationsForClass:(__unsafe_unretained Class)class;
 
 @end
 NS_ASSUME_NONNULL_END

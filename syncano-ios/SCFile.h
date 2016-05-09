@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCFile instance
  */
-+ (nullable instancetype)fileWithaData:(NSData *)data;
++ (instancetype)fileWithaData:(NSData *)data;
 
 /**
  *  Attempts to save file to server, 'data' proeprty cannot be nil
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param completion completion block
  */
-- (void)fetchInBackgroundWithCompletion:(nullable SCFileFetchCompletionBlock)completion;
+- (void)fetchInBackgroundWithCompletion:(SCFileFetchCompletionBlock)completion;
 
 /**
  *  Attempts to fetch file from server and store it under given location.
@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Download task. You can use it f.e. to suspend or resume download.
  */
-- (nullable NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL* )storePath withProgress:(nullable SCFileDownloadProgressCompletionBlock)progress completion:(nullable SCFileFetchToDiskCompletionBlock)completion;
+- (NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL* )storePath withProgress:(nullable SCFileDownloadProgressCompletionBlock)progress completion:(nullable SCFileFetchToDiskCompletionBlock)completion;
 
 /**
  *  Attempts to fetch file from server and store it under self.storeURL location.
@@ -85,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return Download task. You can use it f.e. to suspend or resume download.
  */
-- (nullable NSURLSessionDownloadTask *)fetchToFileInBackgroundWithProgress:(nullable SCFileDownloadProgressCompletionBlock)progress completion:(nullable SCFileFetchToDiskCompletionBlock)completion;
+- (NSURLSessionDownloadTask *)fetchToFileInBackgroundWithProgress:(nullable SCFileDownloadProgressCompletionBlock)progress completion:(nullable SCFileFetchToDiskCompletionBlock)completion;
 
 @end
 NS_ASSUME_NONNULL_END

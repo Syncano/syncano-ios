@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "SCChannelNotificationMessage.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCChannelHistoryResponse : NSObject
 @property (nullable,nonatomic,copy) NSString *next;
 @property (nullable,nonatomic,copy) NSString *prev;
 @property (nullable,nonatomic,copy) NSArray<SCChannelNotificationMessage*> *objects;
 
-- (nullable instancetype)initWithJSONObject:(nonnull id)JSONObject;
+- (instancetype)initWithJSONObject:(id)JSONObject;
 
 @end
+NS_ASSUME_NONNULL_END

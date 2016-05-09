@@ -8,6 +8,8 @@
 
 #import "SCRequest.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCUploadRequest : SCRequest
 @property (nullable,nonatomic,retain) NSString *propertyName;
 @property (nullable,nonatomic,retain) NSData *fileData;
@@ -23,7 +25,8 @@
  *
  *  @return SCUploadRequest instance
  */
-+ (nullable SCUploadRequest *)uploadRequestWithPath:(nonnull NSString *)path propertName:(nonnull NSString *)propertyName fileData:(nonnull NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
++ (SCUploadRequest *)uploadRequestWithPath:(NSString *)path propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 
 @end
+NS_ASSUME_NONNULL_END

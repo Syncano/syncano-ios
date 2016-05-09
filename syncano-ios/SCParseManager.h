@@ -11,6 +11,9 @@
 #import "Mantle/NSError+MTLModelException.h"
 #import "SCReferencesStore.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 /**
  *  Validates a value for an object and sets it if necessary. Method copied from Mantle
  *
@@ -52,7 +55,6 @@ static inline BOOL SCValidateAndSetValue(id obj, NSString *key, id value, BOOL f
     }
 }
 
-NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  Singleton class for SCDataObject parsing
@@ -74,7 +76,7 @@ SINGLETON_FOR_CLASS(SCParseManager);
  *
  *  @return property type string or NULL
  */
-+ (nullable NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class;
++ (NSString *) typeOfPropertyNamed: (NSString *) name fromClass:(__unsafe_unretained Class)class;
 
 @end
 NS_ASSUME_NONNULL_END

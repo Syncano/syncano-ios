@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param params     params
  *  @param completion completion block
  */
-+ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params completion:(nullable SCCodeBoxCompletionBlock)completion;
++ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(nullable NSDictionary *)params completion:(nullable SCCodeBoxCompletionBlock)completion;
 
 /**
  *  Runs code box on server using provided Syncano instance
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param syncano    provided Syncano instance
  *  @param completion completion block
  */
-+ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params onSyncano:(Syncano *)syncano completion:(nullable SCCodeBoxCompletionBlock)completion;
++ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(nullable NSDictionary *)params onSyncano:(Syncano *)syncano completion:(nullable SCCodeBoxCompletionBlock)completion;
 
 @end
 NS_ASSUME_NONNULL_END

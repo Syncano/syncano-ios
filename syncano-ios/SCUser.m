@@ -58,10 +58,14 @@ NSString *const kSCUserJSONKeyUserProfile = @"profile";
 }
 
 + (void)registerClass {
-    [self registerClassWithProfileClass:nil];
+    [self _registerClassWithProfileClass:nil];
 }
 
 +(void)registerClassWithProfileClass:(__unsafe_unretained Class)profileClass {
+    [self _registerClassWithProfileClass:profileClass];
+}
+
++(void)_registerClassWithProfileClass:(__unsafe_unretained Class)profileClass {
     [[SCParseManager sharedSCParseManager] registerUserClass:[self class]];
     if (profileClass) {
         [[SCParseManager sharedSCParseManager] registerUserProfileClass:profileClass];

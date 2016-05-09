@@ -137,7 +137,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *
  *  @return SCPlease instance
  */
-+ (nullable SCPlease *)please;
++ (SCPlease *)please;
 
 /**
  *  Returns SCPlease instance for provided Syncano instance
@@ -146,7 +146,7 @@ extern NSString *const kSCUserJSONKeyUserProfile;
  *
  *  @return SCPlease instance
  */
-+ (nullable SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
 
 /**
  *  Logs out current user

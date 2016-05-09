@@ -10,6 +10,6 @@
 #import "SCConstants.h"
 NS_ASSUME_NONNULL_BEGIN
 @interface NSError (RevisionMismatch)
-- (void)checkIfMismatchOccuredWithCompletion:(nullable SCDataObjectRevisionMismatchCompletionBlock)completionBlock;
+- (void)checkIfMismatchOccuredWithCompletion:(SCDataObjectRevisionMismatchCompletionBlock)completionBlock;
 @end
 NS_ASSUME_NONNULL_END

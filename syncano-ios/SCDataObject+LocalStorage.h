@@ -8,6 +8,8 @@
 
 #import "SCDataObject.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCDataObject (LocalStorage)
 
 #pragma mark - Saving -
@@ -24,7 +26,7 @@
  *
  *  @param completionBlock completion block
  */
-+ (void)fetchAllObjectsFromLocalStorageWithCompletionBlock:(nullable SCDataObjectsCompletionBlock)completionBlock;
++ (void)fetchAllObjectsFromLocalStorageWithCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock;
 
 #pragma mark - Delete -
 /**
@@ -41,12 +43,13 @@
  *
  *  @param completion completion block
  */
-- (void)generateInsertQueryWithCompletion:(nullable SCLocalStorageGenerateQueryStringCompletionBlock)completion;
+- (void)generateInsertQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion;
 
 /**
  *  Generates DELETE query for current SCDataObject
  *
  *  @param completion completion block
  */
-- (void)generateDeleteQueryWithCompletion:(nullable SCLocalStorageGenerateQueryStringCompletionBlock)completion;
+- (void)generateDeleteQueryWithCompletion:(SCLocalStorageGenerateQueryStringCompletionBlock)completion;
 @end
+NS_ASSUME_NONNULL_END

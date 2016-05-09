@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+NS_ASSUME_NONNULL_BEGIN
 @interface SCWebhookResponseObject : NSObject
 @property (nullable,nonatomic,copy) NSString *status; //TODO: use enum
 @property (nullable,nonatomic,copy) NSNumber *duration;
 @property (nullable,nonatomic,copy) id result;
 @property (nullable,nonatomic,copy) NSDate *executedAt;
 
-- (nullable instancetype)initWithJSONObject:(nonnull id)JSONObject;
+- (instancetype)initWithJSONObject:(id)JSONObject;
 @end
+NS_ASSUME_NONNULL_END

@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
  
  See https://developer.apple.com/library/ios/#qa/qa1699/_index.html
  */
-+ (nullable NSString *)syncanoDocumentsDirectoryPath;
-+ (nullable NSString *)syncanoDBFilePath;
++ (NSString *)syncanoDocumentsDirectoryPath;
++ (NSString *)syncanoDBFilePath;
 @end
 
 @class SCRequest;
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SCFileManager (Request)
 + (void)writeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(nullable SCCompletionBlock)completionBlock;
 + (void)removeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(nullable SCCompletionBlock)completionBlock;
-+ (void)findAllRequestArchivesForQueueWithIdentifier:(NSString *)queueIdentifier completionBlock:(nullable SCFindRequestsCompletionBlock)completionBlock;
++ (void)findAllRequestArchivesForQueueWithIdentifier:(NSString *)queueIdentifier completionBlock:(SCFindRequestsCompletionBlock)completionBlock;
 @end
 
 @interface SCFileManager (LocalStorage)

@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param payload    Paylod to pass into Script Endpoint
  *  @param completion Completion block
  */
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(nullable NSDictionary *)payload completion:(nullable SCScriptEndpointCompletionBlock)completion;
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs script endpoint with payload on chosen Syncano Instance. Returned data will be an instance of SCScriptEndpointResponse.
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(nullable NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCScriptEndpointCompletionBlock)completion;
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint with given hash and name. Returned data will be an instance of SCScriptEndpointResponse.
@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param instanceName  Name of Syncano Instance
  *  @param completion    Completion block
  */
-+ (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(nullable NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(nullable SCScriptEndpointCompletionBlock)completion;
++ (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint with given url. Returned data will be an instance of SCScriptEndpointResponse.
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param payload       Paylod to pass into Script Endpoint
  *  @param completion    Completion block
  */
-+ (void)runPublicScriptEndpointWithURLString:(NSString *)urlString payload:(nullable NSDictionary *)payload completion:(SCScriptEndpointCompletionBlock)completion;
++ (void)runPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload completion:(SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs script endpoint with custom response format. Returned data will be an instance of NSData.
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param payload    Payload for Script Endpoint
  *  @param completion Completion block
  */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(nullable NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs script endpoint with payload and custom reponse format.
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(nullable NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion;
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint. Returned data will be an instance of NSData.
@@ -119,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param instanceName Syncano instance name
  *  @param completion   Completion block
  */
-+ (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(nullable NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(nullable SCCustomResponseCompletionBlock)completion;
++ (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint. Returned data will be an instance of NSData.
@@ -128,7 +128,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param payload    Payload for query to Script Endpoint
  *  @param completion Completion block
  */
-+ (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(nullable NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
++ (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 
 @end

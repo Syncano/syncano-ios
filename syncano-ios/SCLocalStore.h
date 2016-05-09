@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param objectClass     Class
  *  @param completionBlock completion block
  */
-- (void)fetchAllObjectsOfClass:(Class)objectClass withCompletionBlock:(nullable SCDataObjectsCompletionBlock)completionBlock;
+- (void)fetchAllObjectsOfClass:(Class)objectClass withCompletionBlock:(SCDataObjectsCompletionBlock)completionBlock;
 
 /**
  *  Deletes data object from local database

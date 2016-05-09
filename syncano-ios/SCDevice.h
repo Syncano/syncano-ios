@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCDevice instance
  */
-+ (nullable SCDevice *)deviceWithTokenFromData:(NSData *)tokenData;
++ (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData;
 
 /**
  *  Initializes SCDevice instance with provided token data
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCDevice instance
  */
-- (nullable instancetype)initWithTokenFromData:(NSData *)tokenData;
+- (instancetype)initWithTokenFromData:(NSData *)tokenData;
 
 /**
  *  Sets metadata object for porvided key

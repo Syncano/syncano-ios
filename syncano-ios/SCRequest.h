@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCRequest instance
  */
-- (nullable instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
+- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(nullable NSDictionary *)params callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 /**
  *  Initializes SCRequest
@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCRequest instance
  */
-- (nullable instancetype)initFromDictionaryRepresentation:(NSDictionary *)dictionaryRepresentation;
+- (instancetype)initFromDictionaryRepresentation:(NSDictionary *)dictionaryRepresentation;
 
 /**
  *  Creates SCRequest
@@ -61,13 +61,13 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCRequest instance
  */
-+ (nullable SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
++ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(nullable NSDictionary *)params callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 /**
  *  Dictionary representation of a request for saving on disk use
  *
  *  @return NSDictionary
  */
-- (nullable NSDictionary *)dictionaryRepresentation;
+- (NSDictionary *)dictionaryRepresentation;
 @end
 NS_ASSUME_NONNULL_END

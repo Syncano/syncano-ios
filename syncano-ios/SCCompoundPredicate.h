@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCCompoundPredicate
  */
-+ (nullable instancetype)compoundPredicateWithPredicates:(NSArray *)predicates;
++ (instancetype)compoundPredicateWithPredicates:(NSArray *)predicates;
 
 /**
  *  Initialize new compound predicate with provided array of predicates
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCCompoundPredicate
  */
-- (nullable instancetype)initWithPredicates:(NSArray *)predicates;
+- (instancetype)initWithPredicates:(NSArray *)predicates;
 
 /**
  *  Adds predicate to existing compound predicate

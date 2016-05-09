@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return NSDictionary as a JSON represenation of provided SCObject
  */
-- (nullable NSDictionary *)JSONRepresentationOfDataObject:(SCDataObject *)dataObject error:(NSError **)error;
+- (NSDictionary *)JSONRepresentationOfDataObject:(SCDataObject *)dataObject error:(NSError **)error;
 
 /**
  *  Attempts to parse JSON representation to SCDataObject of provided class name

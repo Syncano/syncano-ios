@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SCConstants.h"
-
+NS_ASSUME_NONNULL_BEGIN
 @interface SCChannelNotificationMessage : NSObject
 
 @property (nullable,nonatomic,copy) NSNumber *identifier;
@@ -18,5 +18,6 @@
 @property (nullable,nonatomic,copy) NSDictionary *payload;
 @property (nullable,nonatomic,copy) NSDictionary *metadata;
 
-- (nullable instancetype)initWithJSONObject:(nonnull id)JSONObject;
+- (instancetype)initWithJSONObject:(id)JSONObject;
 @end
+NS_ASSUME_NONNULL_END

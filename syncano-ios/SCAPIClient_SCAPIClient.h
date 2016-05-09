@@ -29,11 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCAPIClient
  */
-- (nullable instancetype)initWithApiVersion:(SCAPIVersion)apiVersion apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
+- (instancetype)initWithApiVersion:(SCAPIVersion)apiVersion apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName;
 
 /**
  @deprecated This method is deprecated. Please use initWithApiVersion:apiKey:instanceName: instead when initializing API Client to use it with Syncano
  */
-- (nullable instancetype)initWithBaseURL:(NSURL *)url apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName DEPRECATED_MSG_ATTRIBUTE("Use initWithApiVersion:apiKey:instanceName: method instead.");
+- (instancetype)initWithBaseURL:(NSURL *)url apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName DEPRECATED_MSG_ATTRIBUTE("Use initWithApiVersion:apiKey:instanceName: method instead.");
 @end
 NS_ASSUME_NONNULL_END

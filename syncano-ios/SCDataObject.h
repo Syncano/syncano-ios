@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return NSDictionary with 'key' of iOS class property name and 'value' with coresponding API class name
  */
-+ (nullable NSDictionary *)extendedPropertiesMapping;
++ (NSDictionary *)extendedPropertiesMapping;
 
 /**
  *  Returns SCPlease instance for singleton Syncano
