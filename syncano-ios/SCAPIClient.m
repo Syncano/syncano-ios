@@ -17,6 +17,7 @@
 #import "SCUploadRequest.h"
 #import "AFNetworkReachabilityManager.h"
 #import "SCUser+UserDefaults.h"
+#import "SCConstants.h"
 
 @interface SCAPIClient () <SCRequestQueueDelegate>
 @end
@@ -104,6 +105,7 @@
         NSString *userKey = [SCUser currentUser].userKey;
         [self.requestSerializer setValue:userKey forHTTPHeaderField:@"X-USER-KEY"];
     }
+    self.responseSerializer = [SCJSONResponseSerializer serializer];
 }
 
 #pragma mark  - Enqueue -
@@ -229,6 +231,9 @@
 
 - (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
+    if ([[params allKeys] containsObject:SCPleaseParameterTemplateResponse]) {
+        self.responseSerializer = [AFHTTPResponseSerializer serializer];
+    }
     NSURLSessionDataTask *task = [self GET:path
                                 parameters:params
                                   progress:nil

@@ -78,6 +78,13 @@ extern NSString *const kSCDataObjectPropertyTypeKey;
 extern NSString *const kSCDataObjectPropertyTypeValue;
 extern NSString *const kSCDataObjectPropertyTypeDateTime;
 
+extern NSString *const SCPleaseParameterFields;
+extern NSString *const SCPleaseParameterExcludedFields;
+extern NSString *const SCPleaseParameterPageSize;
+extern NSString *const SCPleaseParameterOrderBy;
+extern NSString *const SCPleaseParameterIncludeCount;
+extern NSString *const SCPleaseParameterTemplateResponse;
+
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,
     SCDataObjectPermissionTypeRead,
