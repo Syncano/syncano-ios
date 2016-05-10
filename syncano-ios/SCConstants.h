@@ -83,7 +83,6 @@ extern NSString *const SCPleaseParameterExcludedFields;
 extern NSString *const SCPleaseParameterPageSize;
 extern NSString *const SCPleaseParameterOrderBy;
 extern NSString *const SCPleaseParameterIncludeCount;
-extern NSString *const SCPleaseParameterTemplateResponse;
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,

@@ -230,9 +230,6 @@
 
 - (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
-    if ([[params allKeys] containsObject:SCPleaseParameterTemplateResponse]) {
-        self.responseSerializer = [AFHTTPResponseSerializer serializer];
-    }
     NSURLSessionDataTask *task = [self GET:path
                                 parameters:params
                                   progress:nil
@@ -241,7 +238,6 @@
                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                        completion(task,nil, error);
                                    }];
-    self.responseSerializer = [SCJSONResponseSerializer serializer];
     return task;
 }
 
