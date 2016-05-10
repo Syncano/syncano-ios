@@ -105,7 +105,7 @@
         NSString *userKey = [SCUser currentUser].userKey;
         [self.requestSerializer setValue:userKey forHTTPHeaderField:@"X-USER-KEY"];
     }
-    self.responseSerializer = [SCJSONResponseSerializer serializer];
+    //self.responseSerializer = [SCJSONResponseSerializer serializer];
 }
 
 #pragma mark  - Enqueue -
