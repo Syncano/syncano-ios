@@ -43,5 +43,5 @@
 + (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString*)templateName forSyncano:(Syncano *)syncano;
 
 
-- (void)getDataFromAPIWithParams:(NSDictionary*)queryParameters completion:(SCCustomResponseCompletionBlock)completion;
+- (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCCustomResponseCompletionBlock)completion;
 @end

@@ -35,16 +35,20 @@
     return instance;
 }
 
-- (void)getDataFromAPIWithParams:(NSDictionary*)queryParameters completion:(SCCustomResponseCompletionBlock)completion {
+- (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCCustomResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[self apiClient] copy];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString *path = [NSString stringWithFormat:@"classes/%@/objects/",self.classNameForAPICalls];
     
-    NSMutableDictionary *mutableParams = [queryParameters mutableCopy];
-    mutableParams[@"template_response"] = self.templateName;
-    queryParameters = [NSDictionary dictionaryWithDictionary:mutableParams];
+    if (parameters != nil) {
+        NSMutableDictionary *mutableParams = [parameters mutableCopy];
+        mutableParams[@"template_response"] = self.templateName;
+        parameters = [NSDictionary dictionaryWithDictionary:mutableParams];
+    } else {
+        parameters = @{@"template_response" : self.templateName};
+    }
     
-    [apiClient GETWithPath:path params:queryParameters completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient GETWithPath:path params:parameters completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if(completion){
             completion(responseObject,error);
         }
