@@ -13,6 +13,7 @@
 #import "SCParseManager.h"
 #import "SCPlease.h"
 #import "SCPleaseForView.h"
+#import "SCPleaseForTemplate.h"
 #import "SCDataObject+Properties.h"
 #import "SCDataObject+Increment.h"
 #import "SCRegisterManager.h"
@@ -110,6 +111,14 @@
 
 + (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano {
     return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano];
+}
+
++ (SCPlease *)pleaseForTemplate:(NSString*)templateName {
+    return [SCPleaseForTemplate pleaseInstanceForDataObjectWithClass:[self class] forTemplate:templateName];
+}
+
++ (SCPlease *)pleaseForTemplate:(NSString*)templateName fromSyncano:(Syncano *)syncano {
+    return [SCPleaseForTemplate pleaseInstanceForDataObjectWithClass:[self class] forTemplate:templateName forSyncano:syncano];
 }
 
 
