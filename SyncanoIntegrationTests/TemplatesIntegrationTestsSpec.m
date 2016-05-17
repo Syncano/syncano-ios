@@ -29,9 +29,6 @@ describe(@"Templates", ^{
         __block NSError *_error;
         __block BOOL _blockFinished = NO;
         __block id _responseObject;
-        
-
-        
         it(@"should text", ^{
             
             [[Book pleaseForTemplate:@"itworks"] giveMeDataWithParameters:nil completion:^(id responseObject, NSError *error) {
@@ -42,6 +39,8 @@ describe(@"Templates", ^{
             
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
             [[_error should] beNil];
+            NSString *responseString = [[NSString alloc] initWithData:(NSData *)_responseObject encoding:NSUTF8StringEncoding];
+            [[responseString should] equal:@"It Works!"];
         });
     });
     
