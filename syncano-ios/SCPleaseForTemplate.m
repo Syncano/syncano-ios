@@ -23,13 +23,13 @@
     return self;
 }
 
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString *)templateName {
++ (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString *)templateName {
     SCPleaseForTemplate* instance = (SCPleaseForTemplate*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass];
     instance.templateName = templateName;
     return instance;
 }
 
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString *)templateName forSyncano:(Syncano *)syncano {
++ (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString *)templateName forSyncano:(Syncano *)syncano {
     SCPleaseForTemplate* instance = (SCPleaseForTemplate*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass forSyncano:syncano];
     instance.templateName = templateName;
     return instance;
