@@ -69,6 +69,11 @@
     return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    SCAPIClient *apiClient = [[[self class] allocWithZone:zone] initWithApiVersion:self.apiVersion apiKey:self.apiKey instanceName:self.instanceName];
+    return apiClient;
+}
+
 - (AFSecurityPolicy*)syncanoSecurityPolicy {
     AFSecurityPolicy* policy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     policy.allowInvalidCertificates = NO;

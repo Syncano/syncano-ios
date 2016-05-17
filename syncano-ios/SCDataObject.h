@@ -13,6 +13,7 @@
 @class Syncano;
 @class SCPlease;
 @class SCAPIClient;
+@class SCPleaseForTemplate;
 
 /**
  *  Main class for data object from Syncano API.
@@ -99,7 +100,7 @@
  *
  *  @return SCPlease instance
  */
-+ (SCPlease *)pleaseForTemplate:(NSString*)templateName;
++ (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName;
 
 /**
  *  Returns SCPlease instance for provided Syncano instance
@@ -109,7 +110,7 @@
  *
  *  @return SCPlease instance
  */
-+ (SCPlease *)pleaseForTemplate:(NSString*)templateName fromSyncano:(Syncano *)syncano;
++ (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName fromSyncano:(Syncano *)syncano;
 
 /**
  *  Registers class in SCParseManager for proper model parsing.
