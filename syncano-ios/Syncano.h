@@ -11,6 +11,7 @@
 #import "SCConstants.h"
 #import "SCPlease.h"
 #import "SCPlease+LocalStorage.h"
+#import "SCPleaseForTemplate.h"
 #import "SCDataObject.h"
 #import "SCDataObject+LocalStorage.h"
 #import "SCPredicate.h"
