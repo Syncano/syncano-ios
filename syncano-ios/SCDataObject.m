@@ -113,11 +113,11 @@
     return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano];
 }
 
-+ (SCPlease *)pleaseForTemplate:(NSString*)templateName {
++ (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName {
     return [SCPleaseForTemplate pleaseInstanceForDataObjectWithClass:[self class] forTemplate:templateName];
 }
 
-+ (SCPlease *)pleaseForTemplate:(NSString*)templateName fromSyncano:(Syncano *)syncano {
++ (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName fromSyncano:(Syncano *)syncano {
     return [SCPleaseForTemplate pleaseInstanceForDataObjectWithClass:[self class] forTemplate:templateName forSyncano:syncano];
 }
 
