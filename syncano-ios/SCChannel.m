@@ -76,6 +76,10 @@
         if (!error) {
             SCChannelNotificationMessage *message = [[SCChannelNotificationMessage alloc] initWithJSONObject:responseObject];
             self.lastId = message.identifier;
+            if ([self.delegate respondsToSelector:@selector(channelDidReceiveNotificationMessage:)]) {
+                [self.delegate channelDidReceiveNotificationMessage:message];
+            }
+            /*DEPRECATED from 4.1.3 */
             if ([self.delegate respondsToSelector:@selector(chanellDidReceivedNotificationMessage:)]) {
                 [self.delegate chanellDidReceivedNotificationMessage:message];
             }
