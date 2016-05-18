@@ -7,6 +7,8 @@
 //
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 // API v1.0-1.1
 @class SCTrace;
 @class SCScriptEndpointResponse;
@@ -18,30 +20,30 @@
 @class SCWebhookResponseObject;
 
 // API v1.0-1.1
-typedef void (^SCAPICompletionBlock)(NSURLSessionDataTask *task, id responseObject, NSError *error);
-typedef void (^SCAPIFileDownloadCompletionBlock)(id responseObject, NSError *error);
-typedef void (^SCDataObjectsCompletionBlock)(NSArray *objects, NSError *error);
-typedef void (^SCParseObjectCompletionBlock)(id parsedObject, NSError *error);
-typedef void (^SCCompletionBlock)(NSError *error);
-typedef void (^SCCompletionBlockWithUser)(SCUser *user, NSError *error);
-typedef void (^SCScriptCompletionBlock)(SCTrace *trace,NSError *error);
-typedef void (^SCTraceCompletionBlock)(SCTrace *trace, NSError *error);
-typedef void (^SCScriptEndpointCompletionBlock)(SCScriptEndpointResponse *response, NSError *error);
-typedef void (^SCCustomResponseCompletionBlock)(id responseObject, NSError *error);
+typedef void (^SCAPICompletionBlock)(NSURLSessionDataTask *task, id _Nullable responseObject, NSError * _Nullable error);
+typedef void (^SCAPIFileDownloadCompletionBlock)(id _Nullable responseObject, NSError * _Nullable error);
+typedef void (^SCDataObjectsCompletionBlock)(NSArray * _Nullable objects, NSError * _Nullable error);
+typedef void (^SCParseObjectCompletionBlock)(id parsedObject, NSError * _Nullable error);
+typedef void (^SCCompletionBlock)(NSError * _Nullable error);
+typedef void (^SCCompletionBlockWithUser)(SCUser * _Nullable user, NSError * _Nullable error);
+typedef void (^SCScriptCompletionBlock)(SCTrace * _Nullable trace,NSError * _Nullable error);
+typedef void (^SCTraceCompletionBlock)(SCTrace * _Nullable trace, NSError * _Nullable error);
+typedef void (^SCScriptEndpointCompletionBlock)(SCScriptEndpointResponse * _Nullable esponse, NSError * _Nullable error);
+typedef void (^SCCustomResponseCompletionBlock)(id _Nullable responseObject, NSError * _Nullable error);
 typedef void (^SCPleaseResolveQueryParametersCompletionBlock)(NSDictionary *queryParameters);
-typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage *notificationMessage, NSError *error);
-typedef void (^SCChannelHistoryCompletionBlock)(SCChannelHistoryResponse *historyResponse, NSError *error);
-typedef void (^SCFileFetchCompletionBlock)(NSData *data, NSError *error);
-typedef void (^SCFileFetchToDiskCompletionBlock)(NSURLResponse *response, NSURL *filePath, NSError *error);
+typedef void (^SCChannelPublishCompletionBlock)(SCChannelNotificationMessage * _Nullable notificationMessage, NSError * _Nullable error);
+typedef void (^SCChannelHistoryCompletionBlock)(SCChannelHistoryResponse * _Nullable historyResponse, NSError * _Nullable error);
+typedef void (^SCFileFetchCompletionBlock)(NSData * _Nullable data, NSError *_Nullable error);
+typedef void (^SCFileFetchToDiskCompletionBlock)(NSURLResponse *response, NSURL *filePath, NSError * _Nullable error);
 typedef void (^SCFileDownloadProgressCompletionBlock)(NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
-typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *error);
-typedef void (^SCFindRequestsCompletionBlock)(NSArray *objects, NSError *error);
-typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString *description);
-typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError *error, NSString* query);
+typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray * _Nullable objects, NSError * _Nullable error);
+typedef void (^SCFindRequestsCompletionBlock)(NSArray * _Nullable objects, NSError * _Nullable error);
+typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString * _Nullable description);
+typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError * _Nullable error, NSString* query);
 
 // API v1.0
-typedef void (^SCCodeBoxCompletionBlock)(SCTrace *trace,NSError *error);
-typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject *responseObject, NSError *error);
+typedef void (^SCCodeBoxCompletionBlock)(SCTrace * _Nullable trace, NSError * _Nullable error);
+typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject * _Nullable responseObject, NSError * _Nullable error);
 
 
 extern NSString * const SCDataObjectErrorDomain;
@@ -133,3 +135,4 @@ extern SCAPIVersion const kDefaultAPIVersion;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
 + (NSURL *)baseURLForAPIVersion:(SCAPIVersion)apiVersion;
 @end
+NS_ASSUME_NONNULL_END

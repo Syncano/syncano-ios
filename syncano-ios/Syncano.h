@@ -28,6 +28,8 @@
 
 @class SCAPIClient,SCLocalStore;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Main Syncano Class
  */
@@ -35,18 +37,18 @@
 /**
  *  API Key
  */
-@property (nonatomic,copy) NSString *apiKey;
+@property (nullable, nonatomic,copy) NSString *apiKey;
 /**
  *  Syncano Instance name
  */
-@property (nonatomic,copy) NSString *instanceName;
+@property (nullable, nonatomic,copy) NSString *instanceName;
 /**
  *  Session CLient to comunicate with API
  */
-@property (nonatomic,retain) SCAPIClient *apiClient;
+@property (nullable, nonatomic,retain) SCAPIClient *apiClient;
 
 
-+ (SCLocalStore *)localStore;
++ (nullable SCLocalStore *)localStore;
 
 /**
  *  Initiates Singleton instance of Syncano Class
@@ -68,20 +70,20 @@
  *
  *  @return Syncano singleton instance
  */
-+ (Syncano *)sharedInstanceWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(SCCompletionBlock)completion;
++ (Syncano *)sharedInstanceWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Returns API Key from Syncano singleton instance
  *
  *  @return API Key string
  */
-+ (NSString *)getApiKey;
++ (nullable NSString *)getApiKey;
 /**
  *  Returns API instance name form Syncano singleton instance
  *
  *  @return instance name string
  */
-+ (NSString *)getInstanceName;
++ (nullable NSString *)getInstanceName;
 /**
  *  Returns API client from Syncano singleton instance
  *
@@ -112,7 +114,7 @@
  *
  *  @return Syncano instance
  */
-- (instancetype)initWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(SCCompletionBlock)completion;
+- (instancetype)initWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Initiates and returns instance of Syncano Class
@@ -134,7 +136,7 @@
  *
  *  @return Syncano instance
  */
-+ (Syncano *)newSyncanoWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(SCCompletionBlock)completion;
++ (Syncano *)newSyncanoWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName andValidateWithCompletion:(nullable SCCompletionBlock)completion;
 
 
 /**
@@ -142,20 +144,11 @@
  *
  *  @param completion       completion block
  */
-- (void)validateInstanceOnServerWithCompletion:(SCCompletionBlock)completion;
+- (void)validateInstanceOnServerWithCompletion:(nullable SCCompletionBlock)completion;
 
 + (void)enableOfflineStorage;
 
-+ (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock;
-
-/**
- *  Initiates Test instance of Syncano Class
- *
- *  @param apiKey       API Key to authorize syncano
- *  @param instanceName name of the Syncano instance
- *
- *  @return Syncano singleton instance
- */
-+ (Syncano *)testInstance;
++ (void)enableOfflineStorageWithCompletionBlock:(nullable SCCompletionBlock)completionBlock;
 
 @end
+NS_ASSUME_NONNULL_END

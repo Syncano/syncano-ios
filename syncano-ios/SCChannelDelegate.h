@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SCChannelNotificationMessage.h"
 
+NS_ASSUME_NONNULL_BEGIN
 @protocol SCChannelDelegate <NSObject>
 
 - (void)chanellDidReceivedNotificationMessage:(SCChannelNotificationMessage *)notificationMessage;
 
 @end
+NS_ASSUME_NONNULL_END

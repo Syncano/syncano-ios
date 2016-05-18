@@ -12,17 +12,19 @@
 
 @class Syncano;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCScript : NSObject
 
-@property (nonatomic,copy) NSNumber *identifier;
-@property (nonatomic,copy) NSDictionary *config;
-@property (nonatomic,copy) NSString *runtimeName;
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic,copy) NSString *desc;
-@property (nonatomic,copy) NSString *source;
-@property (nonatomic,copy) NSDate *createdAt;
-@property (nonatomic,copy) NSDate *updatedAt;
-@property (nonatomic,copy) NSDictionary *links;
+@property (nullable,nonatomic,copy) NSNumber *identifier;
+@property (nullable,nonatomic,copy) NSDictionary *config;
+@property (nullable,nonatomic,copy) NSString *runtimeName;
+@property (nullable,nonatomic,copy) NSString *name;
+@property (nullable,nonatomic,copy) NSString *desc;
+@property (nullable,nonatomic,copy) NSString *source;
+@property (nullable,nonatomic,copy) NSDate *createdAt;
+@property (nullable,nonatomic,copy) NSDate *updatedAt;
+@property (nullable,nonatomic,copy) NSDictionary *links;
 
 /**
  *  Runs code box on shared Syncano Instance
@@ -32,7 +34,7 @@
  *  @param completion Completion block.
  *  @code [trace fetchWithCompletion:^(SCTrace* trace, NSError* error){}];
  */
-+ (void)runScriptWithId:(NSNumber *)scriptId params:(NSDictionary *)params completion:(SCScriptCompletionBlock)completion;
++ (void)runScriptWithId:(NSNumber *)scriptId params:(NSDictionary *)params completion:(nullable SCScriptCompletionBlock)completion;
 
 /**
  *  Runs code box on a chosen Syncano Instance
@@ -43,6 +45,7 @@
  *  @param syncano Chosen Syncano Instance
  *  @code [trace fetchWithCompletion:^(SCTrace* trace, NSError* error){}];
  */
-+ (void)runScriptWithId:(NSNumber *)scriptId params:(NSDictionary *)params onSyncano:(Syncano *)syncano completion:(SCScriptCompletionBlock)completion;
++ (void)runScriptWithId:(NSNumber *)scriptId params:(NSDictionary *)params onSyncano:(Syncano *)syncano completion:(nullable SCScriptCompletionBlock)completion;
 
 @end
+NS_ASSUME_NONNULL_END

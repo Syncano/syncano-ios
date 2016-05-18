@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SCConstants.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface SCFileManager : NSObject
 /**
@@ -24,11 +25,13 @@
 @class SCRequest;
 
 @interface SCFileManager (Request)
-+ (void)writeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock;
-+ (void)removeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(SCCompletionBlock)completionBlock;
++ (void)writeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(nullable SCCompletionBlock)completionBlock;
++ (void)removeAsyncRequest:(SCRequest *)request queueIdentifier:(NSString *)queueIdentifier completionBlock:(nullable SCCompletionBlock)completionBlock;
 + (void)findAllRequestArchivesForQueueWithIdentifier:(NSString *)queueIdentifier completionBlock:(SCFindRequestsCompletionBlock)completionBlock;
 @end
 
 @interface SCFileManager (LocalStorage)
 + (void)cleanUpLocalStorage;
 @end
+
+NS_ASSUME_NONNULL_END

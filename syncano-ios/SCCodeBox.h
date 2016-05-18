@@ -12,16 +12,18 @@
 
 @class Syncano;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCCodeBox : NSObject
-@property (nonatomic,copy) NSNumber *identifier;
-@property (nonatomic,copy) NSDictionary *config;
-@property (nonatomic,copy) NSString *runtimeName;
-@property (nonatomic,copy) NSString *name;
-@property (nonatomic,copy) NSString *desc;
-@property (nonatomic,copy) NSString *source;
-@property (nonatomic,copy) NSDate *createdAt;
-@property (nonatomic,copy) NSDate *updatedAt;
-@property (nonatomic,copy) NSDictionary *links;
+@property (nullable,nonatomic,copy) NSNumber *identifier;
+@property (nullable,nonatomic,copy) NSDictionary *config;
+@property (nullable,nonatomic,copy) NSString *runtimeName;
+@property (nullable,nonatomic,copy) NSString *name;
+@property (nullable,nonatomic,copy) NSString *desc;
+@property (nullable,nonatomic,copy) NSString *source;
+@property (nullable,nonatomic,copy) NSDate *createdAt;
+@property (nullable,nonatomic,copy) NSDate *updatedAt;
+@property (nullable,nonatomic,copy) NSDictionary *links;
 
 /**
  *  Runs code box on server using singleton Syncano instance
@@ -30,7 +32,7 @@
  *  @param params     params
  *  @param completion completion block
  */
-+ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params completion:(SCCodeBoxCompletionBlock)completion;
++ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(nullable NSDictionary *)params completion:(nullable SCCodeBoxCompletionBlock)completion;
 
 /**
  *  Runs code box on server using provided Syncano instance
@@ -40,6 +42,7 @@
  *  @param syncano    provided Syncano instance
  *  @param completion completion block
  */
-+ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(NSDictionary *)params onSyncano:(Syncano *)syncano completion:(SCCodeBoxCompletionBlock)completion;
++ (void)runCodeBoxWithId:(NSNumber *)codeBoxId params:(nullable NSDictionary *)params onSyncano:(Syncano *)syncano completion:(nullable SCCodeBoxCompletionBlock)completion;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -11,16 +11,18 @@
 
 @class Syncano;
 
-@interface SCTrace : NSObject
-@property (nonatomic,copy) NSNumber *identifier;
-@property (nonatomic,copy) NSString *status; //TODO: use enum
-@property (nonatomic,copy) NSDictionary *links;
-@property (nonatomic,copy) NSDate *executedAt;
-@property (nonatomic,copy) id result;
-@property (nonatomic,copy) NSNumber *duration;
-@property (nonatomic,copy) NSNumber *scriptIdentifier;
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic) NSNumber *codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use scriptIdentifier instead.");
+@interface SCTrace : NSObject
+@property (nullable,nonatomic,copy) NSNumber *identifier;
+@property (nullable,nonatomic,copy) NSString *status; //TODO: use enum
+@property (nullable,nonatomic,copy) NSDictionary *links;
+@property (nullable,nonatomic,copy) NSDate *executedAt;
+@property (nullable,nonatomic,copy) id result;
+@property (nullable,nonatomic,copy) NSNumber *duration;
+@property (nullable,nonatomic,copy) NSNumber *scriptIdentifier;
+
+@property (nullable,nonatomic) NSNumber *codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use scriptIdentifier instead.");
 
 - (instancetype)initWithJSONObject:(id)JSONObject andScriptIdentifier:(NSNumber *)scriptIdentifier;
 
@@ -41,5 +43,6 @@
 @end
 
 @interface SCTrace (Deprecated)
-- (instancetype)initWithJSONObject:(id)JSONObject andCodeboxIdentifier:(NSNumber *)codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use initWithJSONObject:andScriptIdentifier method instead.");
+- (nullable instancetype)initWithJSONObject:(id)JSONObject andCodeboxIdentifier:(NSNumber *)codeboxIdentifier DEPRECATED_MSG_ATTRIBUTE("Use initWithJSONObject:andScriptIdentifier method instead.");
 @end
+NS_ASSUME_NONNULL_END

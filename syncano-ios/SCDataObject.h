@@ -14,24 +14,26 @@
 @class SCPlease;
 @class SCAPIClient;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Main class for data object from Syncano API.
  */
 @interface SCDataObject : MTLModel<MTLJSONSerializing>
-@property (nonatomic,copy) NSNumber *objectId;
-@property (nonatomic,copy) NSDate *created_at;
-@property (nonatomic,copy) NSDate *updated_at;
-@property (nonatomic,copy) NSNumber *revision;
-@property (nonatomic,copy) NSDictionary *links;
-@property (nonatomic,copy) NSString *channel_room;
-@property (nonatomic,copy) NSString *channel;
-@property (nonatomic,copy) NSNumber *group;
-@property (nonatomic,copy) NSNumber *owner;
+@property (nullable,nonatomic,copy) NSNumber *objectId;
+@property (nullable,nonatomic,copy) NSDate *created_at;
+@property (nullable,nonatomic,copy) NSDate *updated_at;
+@property (nullable,nonatomic,copy) NSNumber *revision;
+@property (nullable,nonatomic,copy) NSDictionary *links;
+@property (nullable,nonatomic,copy) NSString *channel_room;
+@property (nullable,nonatomic,copy) NSString *channel;
+@property (nullable,nonatomic,copy) NSNumber *group;
+@property (nullable,nonatomic,copy) NSNumber *owner;
 @property (nonatomic) SCDataObjectPermissionType owner_permissions;
 @property (nonatomic) SCDataObjectPermissionType group_permissions;
 @property (nonatomic) SCDataObjectPermissionType other_permissions;
 
-@property (nonatomic,readonly,getter=path) NSString *path;
+@property (nullable,nonatomic,readonly,getter=path) NSString *path;
 
 
 /**
@@ -48,7 +50,7 @@
  *
  *  @return String with API class name
  */
-+ (NSString *)viewNameForAPI;
++ (nullable NSString *)viewNameForAPI;
 
 /**
  *  Return custom property mapping between iOS class an API class
@@ -104,7 +106,7 @@
  *
  *  @return SCDataObject (or a subclass) created from provided dictionary
  */
-+ (instancetype)objectFromDictionary:(NSDictionary *)dictionary;
++ (nullable instancetype)objectFromDictionary:(NSDictionary *)dictionary;
 
 /**
  *  Saves an object using Syncano API in background, using Syncano Instance defined in default Syncano singleton
@@ -112,7 +114,7 @@
  *  @param completion Completion block
  *
  */
-- (void)saveWithCompletionBlock:(SCCompletionBlock)completion;
+- (void)saveWithCompletionBlock:(nullable SCCompletionBlock)completion;
 
 /**
  *  Saves an object using Syncano API in background, using chosen Syncano instance
@@ -121,18 +123,18 @@
  *  @param completion completion block
  *
  */
-- (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+- (void)saveToSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 
-- (void)saveWithCompletionBlock:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)saveWithCompletionBlock:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
-- (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)saveToSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 /**
  *  Fetches an object from API using singleton Syncano instance
  *
  *  @param completion Completion block
  */
-- (void)fetchWithCompletion:(SCCompletionBlock)completion;
+- (void)fetchWithCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Fetches an object from API using provided Syncano instance
@@ -140,14 +142,14 @@
  *  @param syncano    Provided Syncano instance
  *  @param completion Completion block
  */
-- (void)fetchFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
+- (void)fetchFromSyncano:(Syncano *)syncano completion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Deletes an object in API using singleton Syncano instance
  *
  *  @param completion completion block
  */
-- (void)deleteWithCompletion:(SCCompletionBlock)completion;
+- (void)deleteWithCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Deletes object in API using provided Syncano instance
@@ -155,7 +157,7 @@
  *  @param syncano    provided Syncano instance
  *  @param completion completion block
  */
-- (void)deleteFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
+- (void)deleteFromSyncano:(Syncano *)syncano completion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Updates a value for provided key in API using singleton Syncano instance
@@ -164,7 +166,7 @@
  *  @param key        Key to update
  *  @param completion Completion block
  */
-- (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion;
+- (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Updates a value for provided key in API using provided Syncano instance
@@ -174,7 +176,7 @@
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-- (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+- (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Updates value for a provided key in API using provided SCAPI client
@@ -184,7 +186,7 @@
  *  @param apiClient  SCAPIClient
  *  @param completion Completion block
  */
-- (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion;
+- (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Updatesa  value for provided key in API, using singleton Syncano instance and checking if there is no revision mismatch
@@ -194,7 +196,7 @@
  *  @param completion            Comletion block
  *  @param revisionMismatchBlock Revision mismatch verification block
  */
-- (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)updateValue:(id)value forKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 /**
  *  Updates a value for provided key in API using provided Syncano instance and checking if there is no revision mismatch
@@ -205,7 +207,7 @@
  *  @param completion            Completion block
  *  @param revisionMismatchBlock Revision mismatch verification block
  */
-- (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)updateValue:(id)value forKey:(NSString *)key inSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 /**
  *  Updates a value for provided key in API using provided SCAPIClient and checking if there is no revision mismatch
@@ -216,7 +218,7 @@
  *  @param completion            Completion block
  *  @param revisionMismatchBlock Revision mismatch verification block
  */
-- (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)updateValue:(id)value forKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 /**
  *  Increments NSNumber* property of given key by given value.
@@ -225,7 +227,7 @@
  *  @param value      Can be a positive value (increment) or a negative value (decrement)
  *  @param completion Completion block
  */
-- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(SCCompletionBlock)completion;
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Increments NSNumber* property of given key by given value.
@@ -235,7 +237,7 @@
  *  @param syncano    Provided Syncano instance
  *  @param completion Completion block
  */
-- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Increments NSNumber* property of given key by given value.
@@ -245,7 +247,7 @@
  *  @param completion            Completion block
  *  @param revisionMismatchBlock Revision mismatch block
  */
-- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 /**
  *  Increments NSNumber* property of given key by given value.
@@ -256,7 +258,7 @@
  *  @param completion            Completion block
  *  @param revisionMismatchBlock Revision mismatch block
  */
-- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)incrementKey:(NSString*)key by:(NSNumber*)value inSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 /**
  *  Increments properties of given keys by given values.
@@ -264,7 +266,7 @@
  *  @param keys       Dictionary of properties which values should be incremeneted. Key of the dictionary is a property name. Example: @{@"downloads":@(1),@"items":@(-1)}
  *  @param completion Completion block
  */
-- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys withCompletion:(SCCompletionBlock)completion;
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Increments properties of given keys by given values.
@@ -273,7 +275,7 @@
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys inSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Increments properties of given keys by given values.
@@ -282,7 +284,7 @@
  *  @param completion             Completion block
  *  @param revisionMismatchBlock  Revision mismatch block
  */
-- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 /**
  *  Increments properties of given keys by given values.
@@ -292,5 +294,6 @@
  *  @param completion            Completion block
  *  @param revisionMismatchBlock Revision mismatch block
  */
-- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys inSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
+- (void)incrementKeys:(NSDictionary<NSString*,NSNumber*>*)keys inSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 @end
+NS_ASSUME_NONNULL_END
