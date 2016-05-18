@@ -115,7 +115,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *  @param parameters NSDictionary with query params
  *  @param completion completion block
  */
-- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(nullable NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
 
 /**
  *  Creates and runs an API request for next page of results
@@ -138,7 +138,7 @@ extern NSString *const SCPleaseParameterIncludeCount;
  *  @param parameters NSDictionary with query params
  *  @param block      completion block
  */
-- (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
+- (void)enumaratePagesWithPredicate:(nullable id<SCPredicateProtocol>)predicate parameters:(nullable NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
 
 @end
 NS_ASSUME_NONNULL_END
