@@ -1,6 +1,6 @@
 //
-//  syncano4_ios.h
-//  syncano4-ios
+//  Syncano.h
+//  syncano-ios
 //
 //  Created by Jan Lipmann on 26/03/15.
 //  Copyright (c) 2015 Syncano. All rights reserved.
@@ -24,6 +24,7 @@
 #import "SCWebhook.h"
 #import "SCChannel.h"
 #import "SCFile.h"
+#import "SCDevice.h"
 #import "SCRegisterManager.h"
 
 @class SCAPIClient,SCLocalStore;
