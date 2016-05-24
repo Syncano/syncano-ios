@@ -38,6 +38,7 @@ typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError *er
 typedef void (^SCFindRequestsCompletionBlock)(NSArray *objects, NSError *error);
 typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString *description);
 typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError *error, NSString* query);
+typedef void (^SCTemplateResponseCompletionBlock)(NSData* data, NSError *error);
 
 // API v1.0
 typedef void (^SCCodeBoxCompletionBlock)(SCTrace *trace,NSError *error);

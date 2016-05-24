@@ -35,7 +35,7 @@
     return instance;
 }
 
-- (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCCustomResponseCompletionBlock)completion {
+- (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCTemplateResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[self apiClient] copy];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSString *path = [NSString stringWithFormat:@"classes/%@/objects/",self.classNameForAPICalls];
@@ -50,7 +50,7 @@
     
     [apiClient GETWithPath:path params:parameters completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if(completion){
-            completion(responseObject,error);
+            completion((NSData *)responseObject,error);
         }
     }];
 }
