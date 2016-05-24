@@ -71,7 +71,34 @@ describe(@"SCPlease", ^{
         [[books shouldNotEventually] beNil];
         [[[books firstObject] shouldEventually] beKindOfClass:[Book class]];
     });
-        
+    
+//    it(@"should fetch with template response", ^{
+//        [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+//            return YES;
+//        } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+//            return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFile(@"CustomResponse",self.class)
+//                                                    statusCode:200 headers:@{@"Content-Type":@"application/json"}];
+//        }];
+//        
+//        id responseSerializer = [Syncano sharedAPIClient].responseSerializer;
+//        __block NSData *_responseObject;
+//        __block NSError *_error;
+//        __block BOOL _blockFinished;
+//        NSDictionary *parameters = @{SCPleaseParameterPageSize : @12 , SCPleaseParameterIncludeCount : @YES};
+//        [[Book please] giveMeDataObjectsWithParameters:parameters completion:^(NSArray *objects, NSError *error) {
+//            _responseObject = (NSData*)responseObject;
+//            _error = error;
+//            _blockFinished = YES;
+//        }];
+//        [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
+//        [[_error shouldEventually] beNil];
+//        [[_responseObject shouldEventually] beNonNil];
+//        NSString* responseString = [[NSString alloc] initWithData:_responseObject encoding:NSUTF8StringEncoding];
+//        [[responseString should] equal:@"It works!"];
+//        [[[Syncano sharedAPIClient].responseSerializer should] beIdenticalTo:responseSerializer];
+//        
+//    });
+    
     it(@"should fetch objects from API with parameters", ^{
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;

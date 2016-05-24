@@ -36,10 +36,12 @@ typedef void (^SCChannelHistoryCompletionBlock)(SCChannelHistoryResponse * _Null
 typedef void (^SCFileFetchCompletionBlock)(NSData * _Nullable data, NSError *_Nullable error);
 typedef void (^SCFileFetchToDiskCompletionBlock)(NSURLResponse *response, NSURL *filePath, NSError * _Nullable error);
 typedef void (^SCFileDownloadProgressCompletionBlock)(NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite);
-typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray * _Nullable objects, NSError * _Nullable error);
+typedef void (^SCPleaseEnumerateBlock)(BOOL *stop, NSArray *objects, NSError * _Nullable error);
 typedef void (^SCFindRequestsCompletionBlock)(NSArray * _Nullable objects, NSError * _Nullable error);
 typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString * _Nullable description);
 typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError * _Nullable error, NSString* query);
+typedef void (^SCTemplateResponseCompletionBlock)(NSData* data, NSError * _Nullable error);
+
 
 // API v1.0
 typedef void (^SCCodeBoxCompletionBlock)(SCTrace * _Nullable trace, NSError * _Nullable error);
@@ -79,6 +81,12 @@ extern NSString * const kDatabaseName;
 extern NSString *const kSCDataObjectPropertyTypeKey;
 extern NSString *const kSCDataObjectPropertyTypeValue;
 extern NSString *const kSCDataObjectPropertyTypeDateTime;
+
+extern NSString *const SCPleaseParameterFields;
+extern NSString *const SCPleaseParameterExcludedFields;
+extern NSString *const SCPleaseParameterPageSize;
+extern NSString *const SCPleaseParameterOrderBy;
+extern NSString *const SCPleaseParameterIncludeCount;
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,

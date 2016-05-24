@@ -62,6 +62,8 @@
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
 		119DFB461C903FA6001F41FC /* SCDBMigrationsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */; };
+		119E48771CE2685C006EA250 /* SCPleaseForTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */; };
+		119E48781CE2685C006EA250 /* SCPleaseForTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */; };
 		11A717AD1C44D4150029095B /* Syncano.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11A7C6571B67B62C00EDC3CE /* SCChannelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A7C6561B67B62C00EDC3CE /* SCChannelSpec.m */; };
 		11A7C65C1B67C00D00EDC3CE /* ChannelNotificationMessage.json in Resources */ = {isa = PBXBuildFile; fileRef = 11A7C65B1B67C00D00EDC3CE /* ChannelNotificationMessage.json */; };
@@ -313,6 +315,8 @@
 		119A93641AFB911E001ADA7C /* SCParseManager+SCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCParseManager+SCUser.h"; sourceTree = "<group>"; };
 		119A93651AFB911E001ADA7C /* SCParseManager+SCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCUser.m"; sourceTree = "<group>"; };
 		119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SCDBMigrationsBundle.bundle; sourceTree = "<group>"; };
+		119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForTemplate.h; sourceTree = "<group>"; };
+		119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForTemplate.m; sourceTree = "<group>"; };
 		11A0E7A61B1756EB009CC2E1 /* SCWebhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWebhook.h; sourceTree = "<group>"; };
 		11A0E7A71B1756EB009CC2E1 /* SCWebhook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCWebhook.m; sourceTree = "<group>"; };
 		11A0E7A91B175840009CC2E1 /* SCWebhookResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWebhookResponseObject.h; sourceTree = "<group>"; };
@@ -862,6 +866,8 @@
 				11BE43E71AC57AC600FE96C5 /* SCPlease.m */,
 				A6BCC8EA1C56372E008A0B0A /* SCPleaseForView.h */,
 				A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */,
+				119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */,
+				119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */,
 			);
 			name = Please;
 			sourceTree = "<group>";
@@ -921,6 +927,7 @@
 				11F8BF831BE1083F00091F58 /* SCDataObject+LocalStorage.h in Headers */,
 				11CE3CBB1BCFDC3000DE3163 /* SCChannelDelegate.h in Headers */,
 				15094F3A1C6E9156007CD77D /* SCUser+UserDefaults.h in Headers */,
+				119E48771CE2685C006EA250 /* SCPleaseForTemplate.h in Headers */,
 				A6BCC8F51C56526B008A0B0A /* SCPleaseProtected.h in Headers */,
 				114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */,
 				11CE3CA41BCFDC3000DE3163 /* SCDataObject.h in Headers */,
@@ -1290,6 +1297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11B0E6691BFCC4F700E36713 /* NSDictionary+JSONString.m in Sources */,
+				119E48781CE2685C006EA250 /* SCPleaseForTemplate.m in Sources */,
 				11CE3CBF1BCFDC3000DE3163 /* SCChannelNotificationMessage.m in Sources */,
 				11CE3CB21BCFDC3000DE3163 /* SCUserProfile.m in Sources */,
 				11CE3CA51BCFDC3000DE3163 /* SCDataObject.m in Sources */,

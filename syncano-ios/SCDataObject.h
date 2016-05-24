@@ -13,6 +13,7 @@
 @class Syncano;
 @class SCPlease;
 @class SCAPIClient;
+@class SCPleaseForTemplate;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -93,6 +94,25 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return SCPlease instance
  */
 + (SCPlease *)pleaseForView:(NSString*)viewName fromSyncano:(Syncano *)syncano;
+
+/**
+ *  Returns SCPlease instance for Syncano singleton
+ *
+ *  @param templateName Name of a template
+ *
+ *  @return SCPlease instance
+ */
++ (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName;
+
+/**
+ *  Returns SCPlease instance for provided Syncano instance
+ *
+ *  @param templateName Name of a template
+ *  @param syncano Syncano instance, which SCPlease will use to query objects from
+ *
+ *  @return SCPlease instance
+ */
++ (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName fromSyncano:(Syncano *)syncano;
 
 /**
  *  Registers class in SCParseManager for proper model parsing.

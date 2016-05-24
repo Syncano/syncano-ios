@@ -12,18 +12,8 @@
 @class Syncano;
 @protocol SCPredicateProtocol;
 
+
 NS_ASSUME_NONNULL_BEGIN
-
-/**
- *  Parameter keys for constructing query TODO:Comments for all keys
- */
-extern NSString *const SCPleaseParameterFields;
-extern NSString *const SCPleaseParameterExcludedFields;
-extern NSString *const SCPleaseParameterPageSize;
-extern NSString *const SCPleaseParameterOrderBy;
-extern NSString *const SCPleaseParameterIncludeCount;
-
-
 
 /**
  *  Class to make queries on Syncano API

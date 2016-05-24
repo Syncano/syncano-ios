@@ -17,6 +17,7 @@
 #import "SCUploadRequest.h"
 #import "AFNetworkReachabilityManager.h"
 #import "SCUser+UserDefaults.h"
+#import "SCConstants.h"
 
 @interface SCAPIClient () <SCRequestQueueDelegate>
 @end
@@ -66,6 +67,11 @@
         [self initializeReachabilityManager];
     }
     return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    SCAPIClient *apiClient = [[[self class] allocWithZone:zone] initWithApiVersion:self.apiVersion apiKey:self.apiKey instanceName:self.instanceName];
+    return apiClient;
 }
 
 - (AFSecurityPolicy*)syncanoSecurityPolicy {
@@ -237,7 +243,6 @@
                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                        completion(task,nil, error);
                                    }];
-    
     return task;
 }
 
