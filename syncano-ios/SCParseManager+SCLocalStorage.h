@@ -10,6 +10,8 @@
 
 @class SCDataObject;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCParseManager (SCLocalStorage)
 /**
  *  Converts to JSON reresentation of SCObject for saving in local storage purposes
@@ -19,7 +21,7 @@
  *
  *  @return NSDictionary as a JSON represenation of provided SCObject
  */
-- (NSDictionary *)JSONRepresentationOfDataObject:(SCDataObject *)dataObject error:(NSError *__autoreleasing *)error;
+- (NSDictionary *)JSONRepresentationOfDataObject:(SCDataObject *)dataObject error:(NSError **)error;
 
 /**
  *  Attempts to parse JSON representation to SCDataObject of provided class name
@@ -30,5 +32,6 @@
  *
  *  @return parsed SCDataObject or nil
  */
-- (SCDataObject *)parsedObjectOfClassWithName:(NSString *)className fromJSON:(NSDictionary *)JSONDictionary error:(NSError *__autoreleasing *)error;
+- (nullable SCDataObject *)parsedObjectOfClassWithName:(NSString *)className fromJSON:(NSDictionary *)JSONDictionary error:( NSError **)error;
 @end
+NS_ASSUME_NONNULL_END

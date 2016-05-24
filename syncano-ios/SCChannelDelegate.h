@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SCChannelNotificationMessage.h"
 
+NS_ASSUME_NONNULL_BEGIN
 @protocol SCChannelDelegate <NSObject>
-
-- (void)chanellDidReceivedNotificationMessage:(SCChannelNotificationMessage *)notificationMessage;
-
+- (void)channelDidReceiveNotificationMessage:(SCChannelNotificationMessage *)notificationMessage;
+@optional
+- (void)chanellDidReceivedNotificationMessage:(SCChannelNotificationMessage *)notificationMessage DEPRECATED_MSG_ATTRIBUTE("Use channelDidReceiveNotificationMessage: method instead.");
 @end
+NS_ASSUME_NONNULL_END

@@ -8,6 +8,8 @@
 
 #import "SCPlease.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCPlease (LocalStorage)
 /**
  *  Fetches SCDataObjects from local database
@@ -22,5 +24,6 @@
  *  @param predicate  predicate object that conforms to SCPredicateProtocol
  *  @param completion completion block
  */
-- (void)giveMeDataObjectsFromLocalStorageWithPredicate:(id<SCPredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsFromLocalStorageWithPredicate:(nullable id<SCPredicateProtocol>)predicate completion:(SCDataObjectsCompletionBlock)completion;
 @end
+NS_ASSUME_NONNULL_END
