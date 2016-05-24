@@ -43,5 +43,5 @@
 + (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString*)templateName forSyncano:(Syncano *)syncano;
 
 
-- (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCCustomResponseCompletionBlock)completion;
+- (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCTemplateResponseCompletionBlock)completion;
 @end
