@@ -40,6 +40,7 @@
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
 		114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 114958941C8D6F9B0051F575 /* SCReferencesStore.h */; };
 		114958971C8D6F9B0051F575 /* SCReferencesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 114958951C8D6F9B0051F575 /* SCReferencesStore.m */; };
+		114DF9871CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */; };
 		1150CF9C1B5789DF0080D5E3 /* SCUserRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */; };
 		1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */; };
 		1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */; };
@@ -64,6 +65,7 @@
 		119DFB461C903FA6001F41FC /* SCDBMigrationsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */; };
 		119E48771CE2685C006EA250 /* SCPleaseForTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */; };
 		119E48781CE2685C006EA250 /* SCPleaseForTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */; };
+		119E48D91CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 119E48D81CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m */; };
 		11A717AD1C44D4150029095B /* Syncano.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11A7C6571B67B62C00EDC3CE /* SCChannelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A7C6561B67B62C00EDC3CE /* SCChannelSpec.m */; };
 		11A7C65C1B67C00D00EDC3CE /* ChannelNotificationMessage.json in Resources */ = {isa = PBXBuildFile; fileRef = 11A7C65B1B67C00D00EDC3CE /* ChannelNotificationMessage.json */; };
@@ -270,6 +272,7 @@
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
 		114958941C8D6F9B0051F575 /* SCReferencesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCReferencesStore.h; sourceTree = "<group>"; };
 		114958951C8D6F9B0051F575 /* SCReferencesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCReferencesStore.m; sourceTree = "<group>"; };
+		114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplatesIntegrationTestsSpec.m; sourceTree = "<group>"; };
 		1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUserRegister.json; sourceTree = "<group>"; };
 		1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCPredicate+LocalStorage.h"; sourceTree = "<group>"; };
 		1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCPredicate+LocalStorage.m"; sourceTree = "<group>"; };
@@ -317,6 +320,7 @@
 		119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SCDBMigrationsBundle.bundle; sourceTree = "<group>"; };
 		119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForTemplate.h; sourceTree = "<group>"; };
 		119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForTemplate.m; sourceTree = "<group>"; };
+		119E48D81CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForTemplateSpec.m; sourceTree = "<group>"; };
 		11A0E7A61B1756EB009CC2E1 /* SCWebhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWebhook.h; sourceTree = "<group>"; };
 		11A0E7A71B1756EB009CC2E1 /* SCWebhook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCWebhook.m; sourceTree = "<group>"; };
 		11A0E7A91B175840009CC2E1 /* SCWebhookResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWebhookResponseObject.h; sourceTree = "<group>"; };
@@ -529,6 +533,7 @@
 		1106CE841B5DFF3700CEA452 /* SCDataObject */ = {
 			isa = PBXGroup;
 			children = (
+				119E48D81CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m */,
 				1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */,
 				1104DAA41AEA5A8F0088F45E /* SCPredicateSpec.m */,
 				A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */,
@@ -809,6 +814,7 @@
 				159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */,
 				A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */,
 				A697A63B1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m */,
+				114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */,
 				1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */,
 				11013A941C86DE20009D0962 /* DataObjectFetchSpec.m */,
 				11E35B0E1C4F82740092E0A9 /* Info.plist */,
@@ -1284,6 +1290,7 @@
 				1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */,
 				1106CE8A1B5E005800CEA452 /* SCPleaseSpec.m in Sources */,
 				A6BCC8FD1C56B4BB008A0B0A /* MessageView.m in Sources */,
+				119E48D91CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m in Sources */,
 				11F9AED01B61F92700B51341 /* SCFileSpec.m in Sources */,
 				11AFBC891AC58B5F002B1F2F /* SCAPIClientSpec.m in Sources */,
 				A6BCC8FA1C565792008A0B0A /* Message.m in Sources */,
@@ -1354,6 +1361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114DF9871CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m in Sources */,
 				A697A63E1C61F7AA00D245F3 /* Book.m in Sources */,
 				1183F7191C573BE90053673F /* LocalStorageSpec.m in Sources */,
 				159E69E41C76F6000032D0CB /* UserRegistrationSpec.m in Sources */,
