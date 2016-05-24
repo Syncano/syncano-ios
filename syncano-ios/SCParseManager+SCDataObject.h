@@ -9,6 +9,8 @@
 #import "SCParseManager.h"
 #import "SCDataObject.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCParseManager (SCDataObject)
 
 /**
@@ -19,7 +21,7 @@
  *
  *  @return parsed SCDataObject
  */
-- (id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass
+- (nullable id)parsedObjectOfClass:(__unsafe_unretained Class)objectClass
            fromJSONObject:(id)JSONObject;
 
 /**
@@ -52,3 +54,4 @@
 
 
 @end
+NS_ASSUME_NONNULL_END

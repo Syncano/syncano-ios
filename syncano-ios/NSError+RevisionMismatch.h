@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "SCConstants.h"
-
+NS_ASSUME_NONNULL_BEGIN
 @interface NSError (RevisionMismatch)
 - (void)checkIfMismatchOccuredWithCompletion:(SCDataObjectRevisionMismatchCompletionBlock)completionBlock;
 @end
+NS_ASSUME_NONNULL_END

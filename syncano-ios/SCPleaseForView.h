@@ -8,6 +8,8 @@
 
 #import "SCPlease.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCPleaseForView : SCPlease
 
 /**
@@ -42,3 +44,4 @@
 + (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName forSyncano:(Syncano *)syncano;
 
 @end
+NS_ASSUME_NONNULL_END

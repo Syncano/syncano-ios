@@ -16,7 +16,7 @@
 @property (nonatomic,retain) SCChannelNotificationMessage *notificationMessage;
 @end
 @implementation ChannelDelegateObject
-- (void)chanellDidReceivedNotificationMessage:(SCChannelNotificationMessage *)notificationMessage {
+- (void)channelDidReceiveNotificationMessage:(SCChannelNotificationMessage *)notificationMessage {
     self.notificationMessage = notificationMessage;
 }
 @end

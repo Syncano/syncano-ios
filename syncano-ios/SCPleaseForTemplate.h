@@ -29,7 +29,7 @@
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString*)templateName;
++ (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString*)templateName;
 
 /**
  *  Creates a new SCPlease object for provided class for provided Syncano instance
@@ -40,7 +40,7 @@
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString*)templateName forSyncano:(Syncano *)syncano;
++ (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString*)templateName forSyncano:(Syncano *)syncano;
 
 
 - (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCTemplateResponseCompletionBlock)completion;

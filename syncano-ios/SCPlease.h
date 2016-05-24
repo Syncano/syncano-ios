@@ -13,6 +13,8 @@
 @protocol SCPredicateProtocol;
 
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Class to make queries on Syncano API
  */
@@ -31,7 +33,7 @@
 /**
  * You can also get the Data Objects count estimation when getting the Data Objects list. Syncano shows estimate count for Classes that have more than 1000 Data Objects. This is because we can't provide a precise count without affecting the performance of the platform.
  */
-@property (nonatomic,retain) NSNumber *objectsCount;
+@property (nullable,nonatomic,retain) NSNumber *objectsCount;
 
 /**
  *  Initializes new empty SCPlease object for provided SCDataObject class
@@ -59,7 +61,7 @@
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forSyncano:(nullable Syncano *)syncano;
 
 /**
  *  Creates a new SCPlease object for User class.
@@ -78,7 +80,7 @@
  *
  *  @return SCPlease object
  */
-+ (SCPlease *)pleaseInstanceForUserClassForSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseInstanceForUserClassForSyncano:(nullable Syncano *)syncano;
 
 
 /**
@@ -103,7 +105,7 @@
  *  @param parameters NSDictionary with query params
  *  @param completion completion block
  */
-- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(nullable NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion;
 
 /**
  *  Creates and runs an API request for next page of results
@@ -126,6 +128,7 @@
  *  @param parameters NSDictionary with query params
  *  @param block      completion block
  */
-- (void)enumaratePagesWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
+- (void)enumaratePagesWithPredicate:(nullable id<SCPredicateProtocol>)predicate parameters:(nullable NSDictionary *)parameters withBlock:(SCPleaseEnumerateBlock)block;
 
 @end
+NS_ASSUME_NONNULL_END

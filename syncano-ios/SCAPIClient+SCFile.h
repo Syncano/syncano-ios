@@ -9,6 +9,8 @@
 #import "SCAPIClient.h"
 #import "AFNetworking/AFNetworking.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCAPIClient (SCFile)
 /**
  *  Downloads file from provided URL
@@ -32,6 +34,7 @@
  */
 + (NSURLSessionDownloadTask *)downloadFileFromURL:(NSURL *)fileURL
                                     andSaveToPath:(NSURL *)storePath
-                                     withProgress:(SCFileDownloadProgressCompletionBlock)progress
-                                   withCompletion:(SCAPIFileDownloadCompletionBlock)completion;
+                                     withProgress:(nullable SCFileDownloadProgressCompletionBlock)progress
+                                   withCompletion:(nullable SCAPIFileDownloadCompletionBlock)completion;
 @end
+NS_ASSUME_NONNULL_END
