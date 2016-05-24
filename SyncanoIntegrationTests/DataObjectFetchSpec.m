@@ -56,6 +56,27 @@ describe(@"DataObjectFetchSpec", ^{
             [[_objectCount should] beNil];
         });
     });
+    
+    context(@"data object", ^{
+        it(@"should render object data type to NSDictionary", ^{
+            
+            __block BOOL _blockFinished = NO;
+            __block NSError *_fetchError;
+            __block Book *_book;
+            
+            SCPredicate *predicate = [SCPredicate whereKey:@"id" isEqualToNumber:@272];
+            [[Book please] giveMeDataObjectsWithPredicate:predicate parameters:@{SCPleaseParameterPageSize : @1} completion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                _blockFinished = YES;
+                _fetchError = error;
+                _book = (Book *)[objects firstObject];
+            }];
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
+            [[_fetchError should] beNil];
+            [[_book shouldNot] beNil];
+            [[_book.metadata should] beKindOfClass:[NSDictionary class]];
+            [[[_book.metadata objectForKey:@"name"] should] equal:@"test"];
+        });
+    });
 });
 
 SPEC_END
