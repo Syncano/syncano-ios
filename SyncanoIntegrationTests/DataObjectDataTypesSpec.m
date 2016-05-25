@@ -24,7 +24,7 @@ describe(@"DataObjectDataTypesSpec", ^{
     });
 
     context(@"data object", ^{
-        it(@"should render object data type to NSDictionary", ^{
+        it(@"should serialize object data type into NSDictionary", ^{
             
             __block BOOL _blockFinished = NO;
             __block NSError *_fetchError;
