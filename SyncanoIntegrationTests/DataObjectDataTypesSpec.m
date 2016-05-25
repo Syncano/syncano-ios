@@ -44,7 +44,7 @@ describe(@"DataObjectDataTypesSpec", ^{
             [[[_book.metadata objectForKey:@"name"] should] equal:@"test"];
         });
         
-        it(@"should render array data type to NSArray", ^{
+        it(@"should serialize array data type to NSArray", ^{
             SCPredicate *predicate = [SCPredicate whereKey:@"id" isEqualToNumber:@272];
             [[Book please] giveMeDataObjectsWithPredicate:predicate parameters:@{SCPleaseParameterPageSize : @1} completion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                 _blockFinished = YES;
