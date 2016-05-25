@@ -25,11 +25,12 @@ describe(@"DataObjectDataTypesSpec", ^{
 
     context(@"data object", ^{
         
-        __block BOOL _blockFinished = NO;
-        __block NSError *_fetchError;
-        __block Book *_book;
-        
         it(@"should serialize object data type to NSDictionary", ^{
+
+            __block BOOL _blockFinished = NO;
+            __block NSError *_fetchError;
+            __block Book *_book;
+            
             SCPredicate *predicate = [SCPredicate whereKey:@"id" isEqualToNumber:@272];
             [[Book please] giveMeDataObjectsWithPredicate:predicate parameters:@{SCPleaseParameterPageSize : @1} completion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                 _blockFinished = YES;
@@ -44,6 +45,10 @@ describe(@"DataObjectDataTypesSpec", ^{
         });
         
         it(@"should serialize array data type to NSArray", ^{
+            __block BOOL _blockFinished = NO;
+            __block NSError *_fetchError;
+            __block Book *_book;
+            
             SCPredicate *predicate = [SCPredicate whereKey:@"id" isEqualToNumber:@272];
             [[Book please] giveMeDataObjectsWithPredicate:predicate parameters:@{SCPleaseParameterPageSize : @1} completion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                 _blockFinished = YES;
@@ -51,8 +56,29 @@ describe(@"DataObjectDataTypesSpec", ^{
                 _book = (Book *)[objects firstObject];
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
+            [[_fetchError should] beNil];
             [[_book shouldNot] beNil];
             [[_book.pages should] beKindOfClass:[NSArray class]];
+        });
+        
+        it(@"should rise an error while adding not supported data type into array", ^{
+            
+            __block BOOL _blockFinished = NO;
+            __block NSError *_saveError;
+            __block Book *_book;
+            
+            NSDictionary *pageOne = @{@"name" : @"page one"};
+            
+            _book = [Book new];
+            _book.title = @"World in an array";
+            _book.pages = @[pageOne];
+            [_book saveWithCompletionBlock:^(NSError * _Nullable error) {
+                _blockFinished = YES;
+                _saveError = error;
+            }];
+            
+            [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
+            [[_saveError shouldNot] beNil]; //Array can only contain strings, booleans, integers and floats.
         });
 
     });
