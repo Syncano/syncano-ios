@@ -13,7 +13,7 @@
 
 SPEC_BEGIN(DataObjectDataTypesSpec)
 
-describe(@"DataObjectFetchSpec", ^{
+describe(@"DataObjectDataTypesSpec", ^{
     
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
     NSString *apiKey = environment[@"API_KEY"];
