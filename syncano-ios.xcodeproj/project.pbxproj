@@ -38,6 +38,7 @@
 		1142F0861C9FEEAD0047FB6C /* SCChannelHistoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1142F0841C9FEEAD0047FB6C /* SCChannelHistoryResponse.m */; };
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
+		1143F8BD1CF579AE0023AA2A /* DataObjectDataTypesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143F8BC1CF579AE0023AA2A /* DataObjectDataTypesSpec.m */; };
 		114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 114958941C8D6F9B0051F575 /* SCReferencesStore.h */; };
 		114958971C8D6F9B0051F575 /* SCReferencesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 114958951C8D6F9B0051F575 /* SCReferencesStore.m */; };
 		114DF9871CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */; };
@@ -268,6 +269,7 @@
 		1143A5BF1B60D5C800A720D6 /* SCUser.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUser.json; sourceTree = "<group>"; };
 		1143A5C21B60D83100A720D6 /* SCJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONHelper.h; sourceTree = "<group>"; };
 		1143A5C31B60D83100A720D6 /* SCJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONHelper.m; sourceTree = "<group>"; };
+		1143F8BC1CF579AE0023AA2A /* DataObjectDataTypesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectDataTypesSpec.m; sourceTree = "<group>"; };
 		11487E451ADE94D200627EFD /* SCPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicate.h; sourceTree = "<group>"; };
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
 		114958941C8D6F9B0051F575 /* SCReferencesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCReferencesStore.h; sourceTree = "<group>"; };
@@ -817,6 +819,7 @@
 				114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */,
 				1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */,
 				11013A941C86DE20009D0962 /* DataObjectFetchSpec.m */,
+				1143F8BC1CF579AE0023AA2A /* DataObjectDataTypesSpec.m */,
 				11E35B0E1C4F82740092E0A9 /* Info.plist */,
 			);
 			path = SyncanoIntegrationTests;
@@ -1372,6 +1375,7 @@
 				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
 				A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */,
 				A697A63D1C61F7A700D245F3 /* Author.m in Sources */,
+				1143F8BD1CF579AE0023AA2A /* DataObjectDataTypesSpec.m in Sources */,
 				A697A63C1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m in Sources */,
 				A6FE12061C68BE3D00DAB682 /* FileFetchSpec.m in Sources */,
 			);
