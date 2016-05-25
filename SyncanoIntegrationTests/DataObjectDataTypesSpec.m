@@ -29,8 +29,7 @@ describe(@"DataObjectDataTypesSpec", ^{
         __block NSError *_fetchError;
         __block Book *_book;
         
-        it(@"should render object data type to NSDictionary", ^{
-           
+        it(@"should serialize object data type to NSDictionary", ^{
             SCPredicate *predicate = [SCPredicate whereKey:@"id" isEqualToNumber:@272];
             [[Book please] giveMeDataObjectsWithPredicate:predicate parameters:@{SCPleaseParameterPageSize : @1} completion:^(NSArray * _Nullable objects, NSError * _Nullable error) {
                 _blockFinished = YES;
