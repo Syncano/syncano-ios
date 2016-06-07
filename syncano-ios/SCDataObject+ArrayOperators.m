@@ -7,6 +7,7 @@
 //
 
 #import "SCDataObject+ArrayOperators.h"
+#import "Syncano.h"
 #import "SCAPIClient.h"
 #import "NSError+RevisionMismatch.h"
 #import "SCConstants.h"
@@ -19,6 +20,67 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
 };
 
 @implementation SCDataObject (ArrayOperators)
+
+- (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self addArrayOfObjects:array forArrayWithKey:key usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+- (void)addUniqueArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self addUniqueArrayOfObjects:array forArrayWithKey:key usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+- (void)removeArrayOfObjects:(NSArray *)array fromArrayWithKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self removeArrayOfObjects:array fromArrayWithKey:key usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key forSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self addArrayOfObjects:array forArrayWithKey:key usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+- (void)addUniqueArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key forSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self addUniqueArrayOfObjects:array forArrayWithKey:key usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+- (void)removeArrayOfObjects:(NSArray *)array fromArrayWithKey:(NSString *)key forSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    [self removeArrayOfObjects:array fromArrayWithKey:key usingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+
+- (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    NSError *error = nil;
+    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorAdd withArrayOfObjects:array forKey:key withError:&error];
+    
+    if(error) {
+        if(completion) {
+            completion(error);
+        }
+        return;
+    }
+    
+    [self saveArrayForKey:key params:params apiClient:apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+
+}
+- (void)addUniqueArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock{
+    NSError *error = nil;
+    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorAddUnique withArrayOfObjects:array forKey:key withError:&error];
+    
+    if(error) {
+        if(completion) {
+            completion(error);
+        }
+        return;
+    }
+    
+    [self saveArrayForKey:key params:params apiClient:apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
+- (void)removeArrayOfObjects:(NSArray *)array fromArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+    NSError *error = nil;
+    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorRemove withArrayOfObjects:array forKey:key withError:&error];
+    
+    if(error) {
+        if(completion) {
+            completion(error);
+        }
+        return;
+    }
+    
+    [self saveArrayForKey:key params:params apiClient:apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+}
 
 - (NSDictionary *)buildParametersForOperator:(SCDataObjectArrayOperator)operator withArrayOfObjects:(NSArray *)array forKey:(NSString *)key withError:(NSError **)error {
     __block NSError* internalError;
@@ -84,46 +146,5 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
             revisionMismatchBlock(NO,nil);
         }
     }];
-}
-
-- (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
-    NSError *error = nil;
-    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorAdd withArrayOfObjects:array forKey:key withError:&error];
-    
-    if(error) {
-        if(completion) {
-            completion(error);
-        }
-        return;
-    }
-    
-    [self saveArrayForKey:key params:params apiClient:apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
-
-}
-- (void)addUniqueArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock{
-    NSError *error = nil;
-    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorAddUnique withArrayOfObjects:array forKey:key withError:&error];
-    
-    if(error) {
-        if(completion) {
-            completion(error);
-        }
-        return;
-    }
-    
-    [self saveArrayForKey:key params:params apiClient:apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
-}
-- (void)removeArrayOfObjects:(NSArray *)array fromArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
-    NSError *error = nil;
-    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorRemove withArrayOfObjects:array forKey:key withError:&error];
-    
-    if(error) {
-        if(completion) {
-            completion(error);
-        }
-        return;
-    }
-    
-    [self saveArrayForKey:key params:params apiClient:apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
 }
 @end
