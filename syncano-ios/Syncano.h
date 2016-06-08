@@ -27,6 +27,7 @@
 #import "SCFile.h"
 #import "SCDevice.h"
 #import "SCRegisterManager.h"
+#import "SCGeoPoint.h"
 
 @class SCAPIClient,SCLocalStore;
 

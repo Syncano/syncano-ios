@@ -10,6 +10,7 @@
 #import "SCDataObject.h"
 #import <objc/runtime.h>
 #import "SCFile.h"
+#import "SCGeoPoint.h"
 #import "SCDataObject+Properties.h"
 #import "SCRegisterManager.h"
 
@@ -22,7 +23,7 @@
     }
     [self.referencesStore addDataObject:parsedobject];
     [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
-    [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
+    [self resolveCustomObjectsForObject:parsedobject withJSONObject:JSONObject];
     return parsedobject;
 }
 
@@ -63,7 +64,12 @@
     }
 }
 
-- (void)resolveFilesForObject:(id)parsedObject withJSONObject:(id)JSONObject {
+/*DEPRECATED from 4.1.3 */
+- (void)resolveFilesForObject:(id)parsedObject withJSONObject:(id)JSONObject DEPRECATED_MSG_ATTRIBUTE("Use resolveCustomObjectsForObject:withJSONObject: method instead.") {
+    [self resolveCustomObjectsForObject:parsedObject withJSONObject:JSONObject];
+}
+
+- (void)resolveCustomObjectsForObject:(id)parsedObject withJSONObject:(id)JSONObject {
     for (NSString *key in [JSONObject allKeys]) {
         if ([parsedObject respondsToSelector:NSSelectorFromString(key)]) {
             id object = JSONObject[key];
@@ -73,9 +79,17 @@
                 SCFile *file = [[SCFile alloc] initWithDictionary:object error:&error];
                 SCValidateAndSetValue(parsedObject, key, file, YES, nil);
             }
+            if ([object isKindOfClass:[NSDictionary class]] && object[@"type"] && [object[@"type"] isEqualToString:@"geopoint"]) {
+                //TODO change to send error
+                NSError *error = nil;
+                SCGeoPoint *geoPoint = [[SCGeoPoint alloc] initWithDictionary:object error:&error];
+                SCValidateAndSetValue(parsedObject, key, geoPoint, YES, nil);
+            }
+            
         }
     }
 }
+
 
 - (NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)responseObject {
     NSArray *responseObjects = responseObject;
