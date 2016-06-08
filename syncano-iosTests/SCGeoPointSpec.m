@@ -31,6 +31,20 @@ describe(@"SCGeoPoint", ^{
         [[theValue(geopoint.latitude) should] equal:theValue(latitude)];
         [[theValue(geopoint.longitude) should] equal:theValue(longitude)];
     });
+    
+    it(@"should be created with latitude and longitude", ^{
+        SCGeoPoint *geopoint = [SCGeoPoint geoPointWithLatitude:latitude longitude:longitude];
+        [[geopoint shouldNot] beNil];
+        [[theValue(geopoint.latitude) should] equal:theValue(latitude)];
+        [[theValue(geopoint.longitude) should] equal:theValue(longitude)];
+    });
+    
+    it(@"should be created with CLLocation", ^{
+        SCGeoPoint *geopoint = [SCGeoPoint geoPointWithLocation:location];
+        [[geopoint shouldNot] beNil];
+        [[theValue(geopoint.latitude) should] equal:theValue(latitude)];
+        [[theValue(geopoint.longitude) should] equal:theValue(longitude)];
+    });
 
 });
 
