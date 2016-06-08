@@ -65,6 +65,9 @@
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
+		119BF8BC1D07F7EB00A834B3 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8BB1D07F7EB00A834B3 /* BookStore.m */; };
+		119BF8C11D08062B00A834B3 /* SCGeoPointSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */; };
+		119BF8C41D080DED00A834B3 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8BB1D07F7EB00A834B3 /* BookStore.m */; };
 		119DFB461C903FA6001F41FC /* SCDBMigrationsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */; };
 		119E48771CE2685C006EA250 /* SCPleaseForTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */; };
 		119E48781CE2685C006EA250 /* SCPleaseForTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */; };
@@ -323,6 +326,9 @@
 		119A93621AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCDataObject.m"; sourceTree = "<group>"; };
 		119A93641AFB911E001ADA7C /* SCParseManager+SCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCParseManager+SCUser.h"; sourceTree = "<group>"; };
 		119A93651AFB911E001ADA7C /* SCParseManager+SCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCUser.m"; sourceTree = "<group>"; };
+		119BF8BA1D07F7EB00A834B3 /* BookStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookStore.h; sourceTree = "<group>"; };
+		119BF8BB1D07F7EB00A834B3 /* BookStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookStore.m; sourceTree = "<group>"; };
+		119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGeoPointSpec.m; sourceTree = "<group>"; };
 		119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SCDBMigrationsBundle.bundle; sourceTree = "<group>"; };
 		119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForTemplate.h; sourceTree = "<group>"; };
 		119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForTemplate.m; sourceTree = "<group>"; };
@@ -548,6 +554,7 @@
 				1106CE891B5E005800CEA452 /* SCPleaseSpec.m */,
 				A6BCC8EE1C563D14008A0B0A /* SCPleaseForViewSpec.m */,
 				11F9AECF1B61F92700B51341 /* SCFileSpec.m */,
+				119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */,
 			);
 			name = SCDataObject;
 			sourceTree = "<group>";
@@ -791,6 +798,8 @@
 				A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */,
 				A6750F3A1C57A14D004956C3 /* Device.h */,
 				A6750F3B1C57A14D004956C3 /* Device.m */,
+				119BF8BA1D07F7EB00A834B3 /* BookStore.h */,
+				119BF8BB1D07F7EB00A834B3 /* BookStore.m */,
 			);
 			name = MockClasses;
 			sourceTree = "<group>";
@@ -1291,6 +1300,7 @@
 				1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */,
 				11F9AEDC1B62105C00B51341 /* SCCodeBoxSpec.m in Sources */,
 				A6750F3C1C57A14D004956C3 /* Device.m in Sources */,
+				119BF8C11D08062B00A834B3 /* SCGeoPointSpec.m in Sources */,
 				11BE43D41AC458EC00FE96C5 /* SyncanoSpec.m in Sources */,
 				11D7D1B21B660C4A00466E66 /* SCWebhookSpec.m in Sources */,
 				11B1DAEB1B58B866000D8488 /* CustomUserProfile.m in Sources */,
@@ -1304,6 +1314,7 @@
 				11F9AED01B61F92700B51341 /* SCFileSpec.m in Sources */,
 				11AFBC891AC58B5F002B1F2F /* SCAPIClientSpec.m in Sources */,
 				A6BCC8FA1C565792008A0B0A /* Message.m in Sources */,
+				119BF8BC1D07F7EB00A834B3 /* BookStore.m in Sources */,
 				1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */,
 				1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */,
 			);
@@ -1379,6 +1390,7 @@
 				1182D3531C6A21970020307F /* DataObjectRevisionMismatchSpec.m in Sources */,
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
 				A697A62D1C5F61DE00D245F3 /* (null) in Sources */,
+				119BF8C41D080DED00A834B3 /* BookStore.m in Sources */,
 				11013A951C86DE20009D0962 /* DataObjectFetchSpec.m in Sources */,
 				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
 				A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */,
