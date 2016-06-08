@@ -9,16 +9,9 @@
 #import "SCDataObject+Increment.h"
 #import "SCAPIClient.h"
 #import "NSError+RevisionMismatch.h"
+#import "NSError+SCDataObject.h"
 
 @implementation SCDataObject (Increment)
-
-- (NSError*)errorForUnknownProperty:(NSString*)propertyName {
-    NSDictionary *userInfo = @{
-                               NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Property %@ does not exist", @""),propertyName],
-                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"You change value of non-existing property.",@""),
-                               };
-    return [NSError errorWithDomain:SCDataObjectErrorDomain  code:SCErrorCodeDataObjectNonExistingPropertyName userInfo:userInfo];
-}
 
 - (NSDictionary*)buildParametersForIncrementQueryForKeys:(NSDictionary<NSString*,NSNumber*>*)keys withError:(NSError **)error {
     
@@ -29,7 +22,7 @@
             params[propertyName] = @{@"_increment":value};
         } else {
             *stop = YES;
-            internalError = [self errorForUnknownProperty:propertyName];
+            internalError = [NSError errorForUnknownProperty:propertyName];
         }
     }];
     if (self.revision) {

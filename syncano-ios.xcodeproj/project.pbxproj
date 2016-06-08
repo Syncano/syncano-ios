@@ -65,6 +65,10 @@
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
+		119BF8911D060E3700A834B3 /* SCDataObject+ArrayOperators.h in Headers */ = {isa = PBXBuildFile; fileRef = 119BF88F1D060E3700A834B3 /* SCDataObject+ArrayOperators.h */; };
+		119BF8921D060E3700A834B3 /* SCDataObject+ArrayOperators.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */; };
+		119BF8951D06DFC900A834B3 /* NSError+SCDataObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */; };
+		119BF8961D06DFC900A834B3 /* NSError+SCDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8941D06DFC900A834B3 /* NSError+SCDataObject.m */; };
 		119BF8BC1D07F7EB00A834B3 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8BB1D07F7EB00A834B3 /* BookStore.m */; };
 		119BF8C11D08062B00A834B3 /* SCGeoPointSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */; };
 		119BF8C41D080DED00A834B3 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8BB1D07F7EB00A834B3 /* BookStore.m */; };
@@ -326,6 +330,10 @@
 		119A93621AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCDataObject.m"; sourceTree = "<group>"; };
 		119A93641AFB911E001ADA7C /* SCParseManager+SCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCParseManager+SCUser.h"; sourceTree = "<group>"; };
 		119A93651AFB911E001ADA7C /* SCParseManager+SCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCUser.m"; sourceTree = "<group>"; };
+		119BF88F1D060E3700A834B3 /* SCDataObject+ArrayOperators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+ArrayOperators.h"; sourceTree = "<group>"; };
+		119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+ArrayOperators.m"; sourceTree = "<group>"; };
+		119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SCDataObject.h"; sourceTree = "<group>"; };
+		119BF8941D06DFC900A834B3 /* NSError+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SCDataObject.m"; sourceTree = "<group>"; };
 		119BF8BA1D07F7EB00A834B3 /* BookStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookStore.h; sourceTree = "<group>"; };
 		119BF8BB1D07F7EB00A834B3 /* BookStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookStore.m; sourceTree = "<group>"; };
 		119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGeoPointSpec.m; sourceTree = "<group>"; };
@@ -533,6 +541,8 @@
 				11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */,
 				A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */,
 				A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */,
+				119BF88F1D060E3700A834B3 /* SCDataObject+ArrayOperators.h */,
+				119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */,
 				11BE43DE1AC55BCA00FE96C5 /* SCDataObject.h */,
 				11BE43DF1AC55BCA00FE96C5 /* SCDataObject.m */,
 				112B2AB71BAD2AB300CC2FB6 /* Predicate */,
@@ -586,6 +596,8 @@
 				116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */,
 				113B2E4A1C48DA5400057F00 /* NSError+RevisionMismatch.h */,
 				113B2E4B1C48DA5400057F00 /* NSError+RevisionMismatch.m */,
+				119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */,
+				119BF8941D06DFC900A834B3 /* NSError+SCDataObject.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -955,6 +967,7 @@
 				119E48771CE2685C006EA250 /* SCPleaseForTemplate.h in Headers */,
 				A6BCC8F51C56526B008A0B0A /* SCPleaseProtected.h in Headers */,
 				114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */,
+				119BF8951D06DFC900A834B3 /* NSError+SCDataObject.h in Headers */,
 				11CE3CA41BCFDC3000DE3163 /* SCDataObject.h in Headers */,
 				115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */,
 				11CE3CB91BCFDC3000DE3163 /* SCWebhookResponseObject.h in Headers */,
@@ -964,6 +977,7 @@
 				156CF1E71C8F651F0053A580 /* SCScriptEndpoint.h in Headers */,
 				11CE3CC41BCFDC3000DE3163 /* SCParseManager+SCDataObject.h in Headers */,
 				118895551C7EEC0500F683C8 /* SCDevice.h in Headers */,
+				119BF8911D060E3700A834B3 /* SCDataObject+ArrayOperators.h in Headers */,
 				11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */,
 				11CE3CC01BCFDC3000DE3163 /* NSObject+SCParseHelper.h in Headers */,
 				A6BCC8EC1C56372E008A0B0A /* SCPleaseForView.h in Headers */,
@@ -1329,6 +1343,7 @@
 				11CE3CBF1BCFDC3000DE3163 /* SCChannelNotificationMessage.m in Sources */,
 				11CE3CB21BCFDC3000DE3163 /* SCUserProfile.m in Sources */,
 				11CE3CA51BCFDC3000DE3163 /* SCDataObject.m in Sources */,
+				119BF8961D06DFC900A834B3 /* NSError+SCDataObject.m in Sources */,
 				11CE3CBD1BCFDC3000DE3163 /* SCChannel.m in Sources */,
 				A6BCC8ED1C56372E008A0B0A /* SCPleaseForView.m in Sources */,
 				11F8BF841BE1083F00091F58 /* SCDataObject+LocalStorage.m in Sources */,
@@ -1373,6 +1388,7 @@
 				11CB513C1C1829EB007978A7 /* SCRequestQueue.m in Sources */,
 				116B6C7F1C1AEF5100D602D1 /* SCUploadRequest.m in Sources */,
 				11CE3CAC1BCFDC3000DE3163 /* SCCompoundPredicate.m in Sources */,
+				119BF8921D060E3700A834B3 /* SCDataObject+ArrayOperators.m in Sources */,
 				1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */,
 				11CE3CC11BCFDC3000DE3163 /* NSObject+SCParseHelper.m in Sources */,
 				15094F3B1C6E9156007CD77D /* SCUser+UserDefaults.m in Sources */,
