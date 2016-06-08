@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
 
 - (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
     NSError *error = nil;
-    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorAdd withArrayOfObjects:array forKey:key withError:&error];
+    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorAdd withArrayOfObjects:array forKey:key withRevisionMismatchCheck:(revisionMismatchBlock != nil) withError:&error];
     
     if(error) {
         if(completion) {
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
 }
 - (void)addUniqueArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock{
     NSError *error = nil;
-    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorAddUnique withArrayOfObjects:array forKey:key withError:&error];
+    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorAddUnique withArrayOfObjects:array forKey:key withRevisionMismatchCheck:(revisionMismatchBlock != nil) withError:&error];
     
     if(error) {
         if(completion) {
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
 }
 - (void)removeArrayOfObjects:(NSArray *)array fromArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
     NSError *error = nil;
-    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorRemove withArrayOfObjects:array forKey:key withError:&error];
+    NSDictionary* params = [self buildParametersForOperator:SCDataObjectArrayOperatorRemove withArrayOfObjects:array forKey:key withRevisionMismatchCheck:(revisionMismatchBlock != nil) withError:&error];
     
     if(error) {
         if(completion) {
@@ -82,7 +82,7 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
     [self saveArrayForKey:key params:params apiClient:apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
 }
 
-- (NSDictionary *)buildParametersForOperator:(SCDataObjectArrayOperator)operator withArrayOfObjects:(NSArray *)array forKey:(NSString *)key withError:(NSError **)error {
+- (NSDictionary *)buildParametersForOperator:(SCDataObjectArrayOperator)operator withArrayOfObjects:(NSArray *)array forKey:(NSString *)key withRevisionMismatchCheck:(BOOL)revisionMismatchCheck withError:(NSError **)error {
     __block NSError* internalError;
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:1];
     if ([[[self class] propertyKeys] containsObject:key]) {
@@ -90,7 +90,7 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
     } else {
         internalError = [NSError errorForUnknownProperty:key];
     }
-    if (self.revision) {
+    if (revisionMismatchCheck && self.revision) {
         params[kExpectedRevisionRequestParam] = self.revision;
     }
     
