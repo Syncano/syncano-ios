@@ -185,3 +185,23 @@ static NSDateFormatter *dateFormatter;
 }
 
 @end
+
+#import "SCGeoPoint.h"
+
+NSString *const SCPredicateNearOpeartor = @"_near";
+
+@implementation SCPredicate(GeoPoint)
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint {
+    NSDictionary *rightHand = @{@"longitude" : @(geopoint.longitude) , @"latitude" : @(geopoint.latitude)};
+   return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateNearOpeartor rightHand:rightHand];
+}
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint withinMiles:(double)maxDistance {
+    NSDictionary *rightHand = @{@"longitude" : @(geopoint.longitude) , @"latitude" : @(geopoint.latitude) , @"distance_in_miles" : @(maxDistance)};
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateNearOpeartor rightHand:rightHand];
+}
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint withinKilometers:(double)maxDistance {
+    NSDictionary *rightHand = @{@"longitude" : @(geopoint.longitude) , @"latitude" : @(geopoint.latitude) , @"distance_in_kilometers" : @(maxDistance)};
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateNearOpeartor rightHand:rightHand];
+}
+
+@end
