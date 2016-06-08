@@ -67,6 +67,7 @@
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
 		119BF8BC1D07F7EB00A834B3 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8BB1D07F7EB00A834B3 /* BookStore.m */; };
 		119BF8C11D08062B00A834B3 /* SCGeoPointSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */; };
+		119BF8C41D080DED00A834B3 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8BB1D07F7EB00A834B3 /* BookStore.m */; };
 		119DFB461C903FA6001F41FC /* SCDBMigrationsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */; };
 		119E48771CE2685C006EA250 /* SCPleaseForTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */; };
 		119E48781CE2685C006EA250 /* SCPleaseForTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */; };
@@ -1389,6 +1390,7 @@
 				1182D3531C6A21970020307F /* DataObjectRevisionMismatchSpec.m in Sources */,
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
 				A697A62D1C5F61DE00D245F3 /* (null) in Sources */,
+				119BF8C41D080DED00A834B3 /* BookStore.m in Sources */,
 				11013A951C86DE20009D0962 /* DataObjectFetchSpec.m in Sources */,
 				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
 				A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */,
