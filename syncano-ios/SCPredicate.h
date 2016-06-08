@@ -364,8 +364,8 @@ extern NSString *const SCPredicateIsOperator;
 extern NSString *const SCPredicateNearOpeartor;
 
 @interface SCPredicate (GeoPoint)
-+ (SCPredicate *)whereKey:(NSString *)key nearGeoPoint:(SCGeoPoint *)geopoint;
-+ (SCPredicate *)whereKey:(NSString *)key nearGeoPoint:(SCGeoPoint *)geopoint withinMiles:(double)maxDistance;
-+ (SCPredicate *)whereKey:(NSString *)key nearGeoPoint:(SCGeoPoint *)geopoint withinKilometers:(double)maxDistance;
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint;
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint withinMiles:(double)maxDistance;
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint withinKilometers:(double)maxDistance;
 @end
 NS_ASSUME_NONNULL_END
