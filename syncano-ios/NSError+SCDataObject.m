@@ -13,7 +13,7 @@
 + (NSError*)errorForUnknownProperty:(NSString*)propertyName {
     NSDictionary *userInfo = @{
                                NSLocalizedDescriptionKey: [NSString stringWithFormat:NSLocalizedString(@"Property %@ does not exist", @""),propertyName],
-                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"You change value of non-existing property.",@""),
+                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"You tried to change value of non-existing property.",@""),
                                };
     return [NSError errorWithDomain:SCDataObjectErrorDomain  code:SCErrorCodeDataObjectNonExistingPropertyName userInfo:userInfo];
 }
