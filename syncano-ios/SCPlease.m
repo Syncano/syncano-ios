@@ -20,11 +20,6 @@
 @interface SCPlease ()
 
 /**
- *  SCPredicate to use with API call
- */
-@property (nonatomic,retain) id<SCPredicateProtocol> predicate;
-
-/**
  *  Params of API call
  */
 @property (nonatomic,retain) NSDictionary *parameters;

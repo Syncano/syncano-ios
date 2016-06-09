@@ -59,6 +59,8 @@
 		116B6C841C1AFDEF00D602D1 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */; };
 		117FADAC1D097F5E008C533D /* SCRelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 117FADAA1D097F5E008C533D /* SCRelation.h */; };
 		117FADAD1D097F5E008C533D /* SCRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = 117FADAB1D097F5E008C533D /* SCRelation.m */; };
+		117FADB21D09956B008C533D /* SCPleaseForRelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 117FADB01D09956B008C533D /* SCPleaseForRelation.h */; };
+		117FADB31D09956B008C533D /* SCPleaseForRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = 117FADB11D09956B008C533D /* SCPleaseForRelation.m */; };
 		1182D3531C6A21970020307F /* DataObjectRevisionMismatchSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */; };
 		1183F7191C573BE90053673F /* LocalStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1183F7181C573BE90053673F /* LocalStorageSpec.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
@@ -306,6 +308,8 @@
 		116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		117FADAA1D097F5E008C533D /* SCRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRelation.h; sourceTree = "<group>"; };
 		117FADAB1D097F5E008C533D /* SCRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRelation.m; sourceTree = "<group>"; };
+		117FADB01D09956B008C533D /* SCPleaseForRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForRelation.h; sourceTree = "<group>"; };
+		117FADB11D09956B008C533D /* SCPleaseForRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForRelation.m; sourceTree = "<group>"; };
 		1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectRevisionMismatchSpec.m; sourceTree = "<group>"; };
 		1183F7181C573BE90053673F /* LocalStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalStorageSpec.m; sourceTree = "<group>"; };
 		118426891AC983A1001035A7 /* SCParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCParseManager.h; sourceTree = "<group>"; };
@@ -910,6 +914,8 @@
 				A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */,
 				119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */,
 				119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */,
+				117FADB01D09956B008C533D /* SCPleaseForRelation.h */,
+				117FADB11D09956B008C533D /* SCPleaseForRelation.m */,
 			);
 			name = Please;
 			sourceTree = "<group>";
@@ -956,6 +962,7 @@
 				11B0E6681BFCC4F700E36713 /* NSDictionary+JSONString.h in Headers */,
 				11CE3CD01BCFDC3000DE3163 /* SCMacros.h in Headers */,
 				1142F0851C9FEEAD0047FB6C /* SCChannelHistoryResponse.h in Headers */,
+				117FADB21D09956B008C533D /* SCPleaseForRelation.h in Headers */,
 				1143F8C21CFC47890023AA2A /* SCGeoPoint.h in Headers */,
 				11CE3CB71BCFDC3000DE3163 /* SCWebhook.h in Headers */,
 				11CE3CC21BCFDC3000DE3163 /* SCParseManager.h in Headers */,
@@ -1358,6 +1365,7 @@
 				11B0E66D1BFCCB0100E36713 /* NSString+JSONDictionary.m in Sources */,
 				11CE3CA31BCFDC3000DE3163 /* Syncano.m in Sources */,
 				11CE3CD61BCFDC3000DE3163 /* (null) in Sources */,
+				117FADB31D09956B008C533D /* SCPleaseForRelation.m in Sources */,
 				11CE3CC71BCFDC3000DE3163 /* SCParseManager+SCUser.m in Sources */,
 				11CE3CD21BCFDC3000DE3163 /* SCConstants.m in Sources */,
 				11F8BF801BE0F4A800091F58 /* SCLocalStore.m in Sources */,

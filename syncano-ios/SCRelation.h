@@ -10,7 +10,8 @@
 #import "Mantle/Mantle.h"
 #import "SCConstants.h"
 
-@class SCDataObject;
+
+@class SCDataObject,Syncano,SCPlease;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,9 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSString *targetClassName;
 
+- (SCPlease *)please;
+
+- (SCPlease *)pleaseForSyncano:(Syncano *)syncano;
+
 - (void)addDataObject:(SCDataObject *)object;
 
 - (void)removeDataObject:(SCDataObject *)object;
+
 @end
 
 NS_ASSUME_NONNULL_END
