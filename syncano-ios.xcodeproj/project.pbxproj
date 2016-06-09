@@ -57,6 +57,8 @@
 		116B6C7F1C1AEF5100D602D1 /* SCUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */; };
 		116B6C831C1AFDEF00D602D1 /* NSString+MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = 116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */; };
 		116B6C841C1AFDEF00D602D1 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */; };
+		117FADAC1D097F5E008C533D /* SCRelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 117FADAA1D097F5E008C533D /* SCRelation.h */; };
+		117FADAD1D097F5E008C533D /* SCRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = 117FADAB1D097F5E008C533D /* SCRelation.m */; };
 		1182D3531C6A21970020307F /* DataObjectRevisionMismatchSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */; };
 		1183F7191C573BE90053673F /* LocalStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1183F7181C573BE90053673F /* LocalStorageSpec.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
@@ -302,6 +304,8 @@
 		116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUploadRequest.m; sourceTree = "<group>"; };
 		116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		117FADAA1D097F5E008C533D /* SCRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRelation.h; sourceTree = "<group>"; };
+		117FADAB1D097F5E008C533D /* SCRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRelation.m; sourceTree = "<group>"; };
 		1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectRevisionMismatchSpec.m; sourceTree = "<group>"; };
 		1183F7181C573BE90053673F /* LocalStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalStorageSpec.m; sourceTree = "<group>"; };
 		118426891AC983A1001035A7 /* SCParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCParseManager.h; sourceTree = "<group>"; };
@@ -550,6 +554,8 @@
 				11961AC51B3D73A000874C31 /* SCFile.m */,
 				1143F8C01CFC47890023AA2A /* SCGeoPoint.h */,
 				1143F8C11CFC47890023AA2A /* SCGeoPoint.m */,
+				117FADAA1D097F5E008C533D /* SCRelation.h */,
+				117FADAB1D097F5E008C533D /* SCRelation.m */,
 			);
 			name = DataObject;
 			sourceTree = "<group>";
@@ -931,6 +937,7 @@
 				116B6C7E1C1AEF5100D602D1 /* SCUploadRequest.h in Headers */,
 				11CE3CBC1BCFDC3000DE3163 /* SCChannel.h in Headers */,
 				156CF1E31C8F556C0053A580 /* SCScript.h in Headers */,
+				117FADAC1D097F5E008C533D /* SCRelation.h in Headers */,
 				11CE3CD31BCFDC3000DE3163 /* NSData+MimeType.h in Headers */,
 				11CE3CCA1BCFDC3000DE3163 /* SCAPIClient.h in Headers */,
 				11CE3CC81BCFDC3000DE3163 /* SCAPIClient+SCFile.h in Headers */,
@@ -1354,6 +1361,7 @@
 				11CE3CC71BCFDC3000DE3163 /* SCParseManager+SCUser.m in Sources */,
 				11CE3CD21BCFDC3000DE3163 /* SCConstants.m in Sources */,
 				11F8BF801BE0F4A800091F58 /* SCLocalStore.m in Sources */,
+				117FADAD1D097F5E008C533D /* SCRelation.m in Sources */,
 				11CE3CCD1BCFDC3000DE3163 /* SCAPIClient+SCDataObject.m in Sources */,
 				11CE3CCB1BCFDC3000DE3163 /* SCAPIClient.m in Sources */,
 				156CF1EC1C8F65880053A580 /* SCScriptEndpointResponse.m in Sources */,
