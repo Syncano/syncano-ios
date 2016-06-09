@@ -11,6 +11,7 @@
 #import "SCPlease.h"
 #import "SCPredicate.h"
 #import "SCPleaseForRelation.h"
+#import "NSObject+SCParseHelper.h"
 
 
 @interface SCRelation ()
@@ -18,6 +19,15 @@
 @end
 
 @implementation SCRelation
+
+-(instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error targetClassName:(NSString *)targetClassName {
+    self = [super initWithDictionary:dictionaryValue error:error];
+    if (self) {
+        self.membersIds = [[dictionaryValue[@"value"] sc_arrayOrNil] mutableCopy];
+        self.targetClassName = targetClassName;
+    }
+    return self;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -63,4 +73,10 @@
     [self.membersIds removeObject:objectId];
 }
 
+@end
+
+@implementation SCRelation (Representations)
+- (NSArray *)arrayRepresentation {
+    return [NSArray arrayWithArray:self.membersIds];
+}
 @end

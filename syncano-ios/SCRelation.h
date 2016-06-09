@@ -15,9 +15,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SCRelation : MTLModel
+@interface SCRelation : MTLModel<MTLJSONSerializing>
 
 @property (nullable, nonatomic, copy) NSString *targetClassName;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error targetClassName:(NSString *)targetClassName;
 
 - (SCPlease *)please;
 
@@ -27,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)removeDataObject:(SCDataObject *)object;
 
+@end
+
+@interface SCRelation (Representations)
+- (NSArray *)arrayRepresentation;
 @end
 
 NS_ASSUME_NONNULL_END

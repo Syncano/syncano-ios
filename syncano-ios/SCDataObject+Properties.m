@@ -23,6 +23,18 @@
     return result;
 }
 
++ (NSArray *)propertiesNamesOfSCRelationClass {
+    NSMutableArray *result = [NSMutableArray new];
+    NSDictionary *classesOfProperties = [self classesOfProperties];
+    for (NSString *property in classesOfProperties.allKeys) {
+        NSString *className = classesOfProperties[property];
+        if ([className isEqualToString:@"SCRelation"]) {
+            [result addObject:property];
+        }
+    }
+    return result;
+}
+
 + (NSDictionary *)classesOfProperties {
     NSMutableDictionary *results = [NSMutableDictionary new];
     unsigned int outCount, i;

@@ -18,6 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)propertiesNamesOfFileClass;
 
 /**
+ *  Returns all property names of SCRelation class
+ *
+ *  @return NSArray of strings
+ */
++ (NSArray *)propertiesNamesOfSCRelationClass;
+
+/**
  *  Returns classes of all properties inside a SCDataObject
  *
  *  @return NSDictionary with property name as a key and property class name as a value
