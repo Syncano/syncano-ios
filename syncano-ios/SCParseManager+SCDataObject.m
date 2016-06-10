@@ -88,7 +88,7 @@
                     SCValidateAndSetValue(parsedObject, key, geoPoint, YES, nil);
                 }
                 if ([object[@"type"] isEqualToString:@"relation"]) {
-                    NSString *targetValue = JSONObject[@"target"];
+                    NSString *targetValue = object[@"target"];
                     NSString *targetClassName;
                     if (targetValue.length > 0) {
                         if ([targetValue isEqualToString:@"self"]) {
@@ -98,7 +98,7 @@
                         }
                     }
                     NSError *error = nil;
-                    SCRelation *relation = [[SCRelation alloc] initWithDictionary:JSONObject error:&error targetClassName:targetClassName];
+                    SCRelation *relation = [[SCRelation alloc] initWithDictionary:object error:&error targetClassName:targetClassName];
                     SCValidateAndSetValue(parsedObject, key, relation, YES, nil);
                 }
             }
