@@ -20,8 +20,21 @@
 
 @implementation SCRelation
 
++ (SCRelation *)relationWithTargetClassName:(NSString *)targetClassName {
+    SCRelation *relation = [[[self class] alloc] initWithTargetClassName:targetClassName];
+    return relation;
+}
+
+- (instancetype)initWithTargetClassName:(NSString *)targetClassName {
+    self = [super init];
+    if (self) {
+        self.targetClassName = targetClassName;
+    }
+    return self;
+}
+
 -(instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error targetClassName:(NSString *)targetClassName {
-    self = [super initWithDictionary:dictionaryValue error:error];
+    self = [super init];
     if (self) {
         self.membersIds = [[dictionaryValue[@"value"] sc_arrayOrNil] mutableCopy];
         self.targetClassName = targetClassName;
@@ -37,8 +50,12 @@
     return self;
 }
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return [NSDictionary mtl_identityPropertyMapWithModel:[self class]];
+}
+
 - (BOOL)isKindOfTargetClass:(SCDataObject *)member {
-    return [NSStringFromClass([member class]) isEqualToString:self.targetClassName];
+    return [[NSStringFromClass([member class]) lowercaseString] isEqualToString:self.targetClassName];
 }
 
 - (SCPlease *)please {

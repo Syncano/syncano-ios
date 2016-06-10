@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSString *targetClassName;
 
++ (SCRelation *)relationWithTargetClassName:(NSString *)targetClassName;
+
+- (instancetype)initWithTargetClassName:(NSString *)targetClassName;
+
 -(instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error targetClassName:(NSString *)targetClassName;
 
 - (SCPlease *)please;
