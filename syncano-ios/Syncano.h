@@ -14,6 +14,7 @@
 #import "SCPleaseForTemplate.h"
 #import "SCDataObject.h"
 #import "SCDataObject+LocalStorage.h"
+#import "SCDataObject+ArrayOperators.h"
 #import "SCPredicate.h"
 #import "SCCompoundPredicate.h"
 #import "SCParseManager.h"
