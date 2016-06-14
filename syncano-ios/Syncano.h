@@ -29,6 +29,7 @@
 #import "SCRegisterManager.h"
 #import "SCGeoPoint.h"
 #import "SCRelation.h"
+#import "SCDataObject+RelationOperators.h"
 
 @class SCAPIClient,SCLocalStore;
 
