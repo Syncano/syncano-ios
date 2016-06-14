@@ -15,7 +15,7 @@
 
 
 @interface SCRelation ()
-@property (nonatomic,retain) NSMutableArray *membersIds;
+@property (nonatomic,retain) NSArray *membersIds;
 @end
 
 @implementation SCRelation
@@ -68,28 +68,15 @@
     return please;
 }
 
-- (void)addDataObject:(SCDataObject *)object {
-    if (![self isKindOfTargetClass:object]) {
-        return;
+- (void)setMembers:(NSArray<SCDataObject *>*)members {
+    NSMutableArray *_members = [NSMutableArray new];
+    for (SCDataObject* dataObject in members) {
+        if (dataObject.objectId != nil) {
+            [_members addObject:dataObject.objectId];
+        }
     }
-    NSNumber *objectId = object.objectId;
-    if ([self.membersIds containsObject:objectId]) {
-        return;
-    }
-    [self.membersIds addObject:objectId];
+    _membersIds = [NSArray arrayWithArray:_members];
 }
-
-- (void)removeDataObject:(SCDataObject *)object {
-    if (![self isKindOfTargetClass:object]) {
-        return;
-    }
-    NSNumber *objectId = object.objectId;
-    if (![self.membersIds containsObject:objectId]) {
-        return;
-    }
-    [self.membersIds removeObject:objectId];
-}
-
 @end
 
 @implementation SCRelation (Representations)

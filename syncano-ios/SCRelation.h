@@ -29,9 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (SCPlease *)pleaseForSyncano:(Syncano *)syncano;
 
-- (void)addDataObject:(SCDataObject *)object;
-
-- (void)removeDataObject:(SCDataObject *)object;
+- (void)setMembers:(NSArray<SCDataObject *>*)members;
 
 @end
 
