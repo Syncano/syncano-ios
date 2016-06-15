@@ -150,6 +150,7 @@
 		11E35B0F1C4F82740092E0A9 /* Syncano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; };
 		11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 11E47AFE1C3BD63400DB644A /* SCFileManager.h */; };
 		11E47B011C3BD63400DB644A /* SCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E47AFF1C3BD63400DB644A /* SCFileManager.m */; };
+		11E9F1BF1D105CC3007A74E0 /* DataObjectArrayOperatorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F211AC1D105885009D6FF4 /* DataObjectArrayOperatorsSpec.m */; };
 		11F80C3E1ACEDF3600134A39 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C3D1ACEDF3600134A39 /* Author.m */; };
 		11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */; };
 		11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */; };
@@ -179,7 +180,7 @@
 		A6274DD01C69FB3600730460 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6274DCF1C69FB3600730460 /* main.m */; };
 		A6274DD31C69FB3600730460 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6274DD21C69FB3600730460 /* AppDelegate.m */; };
 		A6274DD91C69FB3600730460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6274DD71C69FB3600730460 /* Main.storyboard */; };
-		A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */; };
+		A669848D1C6343670056A228 /* DataObjectIncrementSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A669848C1C6343670056A228 /* DataObjectIncrementSpec.m */; };
 		A66984901C63B54F0056A228 /* SCDataObject+Increment.h in Headers */ = {isa = PBXBuildFile; fileRef = A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */; };
 		A66984911C63B54F0056A228 /* SCDataObject+Increment.m in Sources */ = {isa = PBXBuildFile; fileRef = A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */; };
 		A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */; };
@@ -381,6 +382,7 @@
 		11E35B0E1C4F82740092E0A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11E47AFE1C3BD63400DB644A /* SCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFileManager.h; sourceTree = "<group>"; };
 		11E47AFF1C3BD63400DB644A /* SCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFileManager.m; sourceTree = "<group>"; };
+		11F211AC1D105885009D6FF4 /* DataObjectArrayOperatorsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectArrayOperatorsSpec.m; sourceTree = "<group>"; };
 		11F80C3C1ACEDF3600134A39 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
 		11F80C3D1ACEDF3600134A39 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
 		11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Properties.h"; sourceTree = "<group>"; };
@@ -417,7 +419,7 @@
 		A6274DD21C69FB3600730460 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A6274DD81C69FB3600730460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6274DDF1C69FB3600730460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectManipulationsSpec.m; sourceTree = "<group>"; };
+		A669848C1C6343670056A228 /* DataObjectIncrementSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectIncrementSpec.m; sourceTree = "<group>"; };
 		A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Increment.h"; sourceTree = "<group>"; };
 		A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+Increment.m"; sourceTree = "<group>"; };
 		A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginSpec.m; sourceTree = "<group>"; };
@@ -841,7 +843,8 @@
 				1183F7181C573BE90053673F /* LocalStorageSpec.m */,
 				A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */,
 				159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */,
-				A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */,
+				A669848C1C6343670056A228 /* DataObjectIncrementSpec.m */,
+				11F211AC1D105885009D6FF4 /* DataObjectArrayOperatorsSpec.m */,
 				A697A63B1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m */,
 				114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */,
 				1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */,
@@ -1402,6 +1405,7 @@
 				114DF9871CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m in Sources */,
 				A697A63E1C61F7AA00D245F3 /* Book.m in Sources */,
 				1183F7191C573BE90053673F /* LocalStorageSpec.m in Sources */,
+				11E9F1BF1D105CC3007A74E0 /* DataObjectArrayOperatorsSpec.m in Sources */,
 				159E69E41C76F6000032D0CB /* UserRegistrationSpec.m in Sources */,
 				1182D3531C6A21970020307F /* DataObjectRevisionMismatchSpec.m in Sources */,
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
@@ -1409,7 +1413,7 @@
 				119BF8C41D080DED00A834B3 /* BookStore.m in Sources */,
 				11013A951C86DE20009D0962 /* DataObjectFetchSpec.m in Sources */,
 				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
-				A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */,
+				A669848D1C6343670056A228 /* DataObjectIncrementSpec.m in Sources */,
 				A697A63D1C61F7A700D245F3 /* Author.m in Sources */,
 				1143F8BD1CF579AE0023AA2A /* DataObjectDataTypesSpec.m in Sources */,
 				A697A63C1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m in Sources */,

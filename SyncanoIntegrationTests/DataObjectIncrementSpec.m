@@ -10,9 +10,9 @@
 #import "Syncano.h"
 #import "Book.h"
 
-SPEC_BEGIN(DataObjectManipulationsSpec)
+SPEC_BEGIN(DataObjectIncrementSpec)
 
-describe(@"Data object manipulations", ^{
+describe(@"Data object increment", ^{
     
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
     NSString *apiKey = environment[@"API_KEY"];
