@@ -7,7 +7,14 @@
 //
 NS_ASSUME_NONNULL_BEGIN
 
+@class SCPredicateProtocol;
+
 @interface SCPlease ()
+
+/**
+ *  SCPredicate to use with API call
+ */
+@property (nonatomic,retain) id<SCPredicateProtocol> predicate;
 
 /**
  *  API class name representation of connected SCDataObject Class
