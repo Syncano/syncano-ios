@@ -11,6 +11,7 @@
 #import "NSError+SCDataObject.h"
 #import "SCAPIClient+SCDataObject.h"
 #import "NSError+RevisionMismatch.h"
+#import "SCRegisterManager.h"
 
 typedef NS_ENUM(NSUInteger, SCDataObjectRelationOperator) {
     SCDataObjectRelationOperatorAdd,
@@ -112,7 +113,10 @@ typedef NS_ENUM(NSUInteger, SCDataObjectRelationOperator) {
 }
 
 - (void)fillKey:(NSString *)key fromResponseObject:(id)responseObject {
-    SCRelation *relation = [[SCRelation alloc] initWithDictionary:[responseObject valueForKey:key] error:nil targetClass:[self class]];
+    NSDictionary *relationObject = [responseObject valueForKey:key];
+    NSString *relationTarget = relationObject[@"target"];
+    Class relationTargetClass = [SCRegisterManager classForAPIClassName:relationTarget];
+    SCRelation *relation = [[SCRelation alloc] initWithDictionary:[responseObject valueForKey:key] error:nil targetClass:relationTargetClass];
     [self setValue:relation forKey:key];
     self.updated_at = [[SCConstants SCDataObjectDatesTransformer] transformedValue:responseObject[@"updated_at"]];
     self.revision = responseObject[@"revision"];
