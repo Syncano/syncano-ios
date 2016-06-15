@@ -20,24 +20,24 @@
 
 @implementation SCRelation
 
-+ (SCRelation *)relationWithTargetClassName:(NSString *)targetClassName {
-    SCRelation *relation = [[[self class] alloc] initWithTargetClassName:targetClassName];
++ (SCRelation *)relationWithTargetClass:(Class)targetClass {
+    SCRelation *relation = [[[self class] alloc] initWithTargetClass:targetClass];
     return relation;
 }
 
-- (instancetype)initWithTargetClassName:(NSString *)targetClassName {
+- (instancetype)initWithTargetClass:(Class)targetClass {
     self = [super init];
     if (self) {
-        self.targetClassName = targetClassName;
+        self.targetClass = targetClass;
     }
     return self;
 }
 
--(instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error targetClassName:(NSString *)targetClassName {
+-(instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError *__autoreleasing *)error targetClass:(Class)targetClass {
     self = [super init];
     if (self) {
         self.membersIds = [[dictionaryValue[@"value"] sc_arrayOrNil] mutableCopy];
-        self.targetClassName = targetClassName;
+        self.targetClass = targetClass;
     }
     return self;
 }
@@ -55,16 +55,16 @@
 }
 
 - (BOOL)isKindOfTargetClass:(SCDataObject *)member {
-    return [[NSStringFromClass([member class]) lowercaseString] isEqualToString:self.targetClassName];
+    return [member class] == self.targetClass;
 }
 
 - (SCPlease *)please {
-    SCPleaseForRelation *please = [SCPleaseForRelation pleaseInstanceForDataObjectWithClass:NSClassFromString(self.targetClassName) withRelationWithMembers:self.membersIds];
+    SCPleaseForRelation *please = [SCPleaseForRelation pleaseInstanceForDataObjectWithClass:self.targetClass withRelationWithMembers:self.membersIds];
     return please;
 }
 
 - (SCPlease *)pleaseForSyncano:(Syncano *)syncano {
-    SCPleaseForRelation *please = [SCPleaseForRelation pleaseInstanceForDataObjectWithClass:NSClassFromString(self.targetClassName) forSyncano:syncano withRelationWithMembers:self.membersIds];
+    SCPleaseForRelation *please = [SCPleaseForRelation pleaseInstanceForDataObjectWithClass:self.targetClass forSyncano:syncano withRelationWithMembers:self.membersIds];
     return please;
 }
 

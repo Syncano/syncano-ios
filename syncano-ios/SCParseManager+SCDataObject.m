@@ -89,16 +89,16 @@
                 }
                 if ([object[@"type"] isEqualToString:@"relation"]) {
                     NSString *targetValue = object[@"target"];
-                    NSString *targetClassName;
+                    Class targetClass;
                     if (targetValue.length > 0) {
                         if ([targetValue isEqualToString:@"self"]) {
-                            targetClassName  = [[(SCDataObject *)parsedObject class] classNameForAPI];
+                            targetClass  = [parsedObject class];
                         } else {
-                            targetClassName = targetValue;
+                            targetClass = [SCRegisterManager classForAPIClassName:targetValue];
                         }
                     }
                     NSError *error = nil;
-                    SCRelation *relation = [[SCRelation alloc] initWithDictionary:object error:&error targetClassName:targetClassName];
+                    SCRelation *relation = [[SCRelation alloc] initWithDictionary:object error:&error targetClass:targetClass];
                     SCValidateAndSetValue(parsedObject, key, relation, YES, nil);
                 }
             }

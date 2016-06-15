@@ -67,6 +67,11 @@
     return relations;
 }
 
++ (Class)classForAPIClassName:(NSString *)className {
+    SCClassRegisterItem *item = [self registerItemForClassName:className];
+    return [item classReference];
+}
+
 + (void)refreshRelationsForRegisteredClasses {
     [[self relationsForClass] enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary * _Nonnull obj, BOOL * _Nonnull stop) {
         [self relationsForClass][key] = [self relationsForClassItem:[self registerItemForClassName:key]];
@@ -114,7 +119,7 @@
  *  @return SCClassRegisterItem or nil
  */
 + (SCClassRegisterItem *)registerItemForClassName:(NSString *)className {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"className == %@",className];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"className LIKE[C] %@",className];
     SCClassRegisterItem *item = [[self.registeredClasses filteredArrayUsingPredicate:predicate] lastObject];
     return item;
 }

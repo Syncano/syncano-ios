@@ -60,5 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSDictionary *)relationsForClass:(__unsafe_unretained Class)class;
 
++ (Class)classForAPIClassName:(NSString *)className;
+
 @end
 NS_ASSUME_NONNULL_END
