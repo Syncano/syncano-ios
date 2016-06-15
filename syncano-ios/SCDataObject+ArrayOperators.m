@@ -21,6 +21,42 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
 
 @implementation SCDataObject (ArrayOperators)
 
+- (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion {
+    [self addArrayOfObjects:array forArrayWithKey:key withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)addUniqueArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion {
+    [self addUniqueArrayOfObjects:array forArrayWithKey:key withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)removeArrayOfObjects:(NSArray *)array fromArrayWithKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion {
+    [self removeArrayOfObjects:array fromArrayWithKey:key withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key forSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion {
+    [self addArrayOfObjects:array forArrayWithKey:key forSyncano:syncano withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)addUniqueArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key forSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion {
+    [self addUniqueArrayOfObjects:array forArrayWithKey:key forSyncano:syncano withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)removeArrayOfObjects:(NSArray *)array fromArrayWithKey:(NSString *)key forSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion {
+    [self removeArrayOfObjects:array fromArrayWithKey:key forSyncano:syncano withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion {
+    [self addArrayOfObjects:array forArrayWithKey:key usingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)addUniqueArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion {
+    [self addUniqueArrayOfObjects:array forArrayWithKey:key usingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
+- (void)removeArrayOfObjects:(NSArray *)array fromArrayWithKey:(NSString *)key usingAPIClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion {
+    [self removeArrayOfObjects:array fromArrayWithKey:key usingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+}
+
 - (void)addArrayOfObjects:(NSArray*)array forArrayWithKey:(NSString *)key withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
     [self addArrayOfObjects:array forArrayWithKey:key usingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
 }

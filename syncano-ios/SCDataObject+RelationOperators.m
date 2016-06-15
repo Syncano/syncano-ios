@@ -112,7 +112,7 @@ typedef NS_ENUM(NSUInteger, SCDataObjectRelationOperator) {
 }
 
 - (void)fillKey:(NSString *)key fromResponseObject:(id)responseObject {
-    SCRelation *relation = [[SCRelation alloc] initWithDictionary:[responseObject valueForKey:key] error:nil targetClassName:[[self class] classNameForAPI]];
+    SCRelation *relation = [[SCRelation alloc] initWithDictionary:[responseObject valueForKey:key] error:nil targetClass:[self class]];
     [self setValue:relation forKey:key];
     self.updated_at = [[SCConstants SCDataObjectDatesTransformer] transformedValue:responseObject[@"updated_at"]];
     self.revision = responseObject[@"revision"];

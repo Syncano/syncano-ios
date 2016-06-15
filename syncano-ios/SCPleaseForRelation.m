@@ -40,13 +40,17 @@
 - (void)setPredicate:(id<SCPredicateProtocol>)predicate {
     SCPredicate *membersPredicate = [SCPredicate whereKey:@"id" inArray:_relationMembers];
     SCCompoundPredicate *compoundPredicate;
-    if ([predicate isKindOfClass:[SCCompoundPredicate class]]) {
-        compoundPredicate = (SCCompoundPredicate *)predicate;
-        [compoundPredicate addPredicate:membersPredicate];
+    if (predicate) {
+        if ([predicate isKindOfClass:[SCCompoundPredicate class]]) {
+            compoundPredicate = (SCCompoundPredicate *)predicate;
+            [compoundPredicate addPredicate:membersPredicate];
+        } else {
+            compoundPredicate = [SCCompoundPredicate compoundPredicateWithPredicates:@[predicate,membersPredicate]];
+        }
+        [super setPredicate:compoundPredicate];
     } else {
-        compoundPredicate = [SCCompoundPredicate compoundPredicateWithPredicates:@[predicate,membersPredicate]];
+        [super setPredicate:membersPredicate];
     }
-    [super setPredicate:compoundPredicate];
 }
 
 @end
