@@ -40,7 +40,6 @@ describe(@"Data object array operators", ^{
         it(@"should add array objects", ^{
             __block BOOL _blockFinished = NO;
             __block NSError *_error;
-            //NSNumber* expectedLoversNb = @(book.lovers.integerValue + 1);
             [book addArrayOfObjects:@[@"nextPage"] forArrayWithKey:@"pages" withCompletion:^(NSError * _Nullable error) {
                 _blockFinished = YES;
                 _error = error;
@@ -54,9 +53,9 @@ describe(@"Data object array operators", ^{
         it(@"should remove array objects", ^{
             __block BOOL _blockFinished = NO;
             __block NSError *_error;
-            //NSNumber* expectedLoversNb = @(book.lovers.integerValue + 1);
-            [book addArrayOfObjects:@[@"pageToRemove"] forArrayWithKey:@"pages" withCompletion:^(NSError * _Nullable error) {
-                [book removeArrayOfObjects:@[@"pageToRemove"] fromArrayWithKey:@"pages" withCompletion:^(NSError * _Nullable error) {
+            __weak typeof(book) weakBook = book;
+            [weakBook addArrayOfObjects:@[@"pageToRemove"] forArrayWithKey:@"pages" withCompletion:^(NSError * _Nullable error) {
+                [weakBook removeArrayOfObjects:@[@"pageToRemove"] fromArrayWithKey:@"pages" withCompletion:^(NSError * _Nullable error) {
                     _blockFinished = YES;
                     _error = error;
                 }];
