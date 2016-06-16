@@ -368,4 +368,9 @@ extern NSString *const SCPredicateNearOpeartor;
 + (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint withinMiles:(double)maxDistance;
 + (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint withinKilometers:(double)maxDistance;
 @end
+
+@interface SCPredicate (Relation)
++ (SCPredicate *)whereRelationWithKey:(NSString *)relationKey contains:(NSArray<NSNumber *>*)objectIds;
++ (SCPredicate *)whereRelationWithKey:(NSString *)relationKey conformsToPredicate:(SCPredicate *)predicate;
+@end
 NS_ASSUME_NONNULL_END
