@@ -17,6 +17,7 @@ NSString *const SCPredicateEqualOperator = @"_eq";
 NSString *const SCPredicateNotEqualOperator = @"_neq";
 NSString *const SCPredicateExistsOperator = @"_exists";
 NSString *const SCPredicateInOperator = @"_in";
+NSString *const SCPredicateContainsOperator = @"_contains";
 NSString *const SCPredicateStringStartsWithOperator = @"_startswith";
 NSString *const SCPredicateStringiStartsWithOperator = @"_istartswith";
 NSString *const SCPredicateStringEndsWithOperator = @"_endswith";
@@ -204,4 +205,19 @@ NSString *const SCPredicateNearOpeartor = @"_near";
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateNearOpeartor rightHand:rightHand];
 }
 
+@end
+
+@implementation SCPredicate (Reference)
++ (SCPredicate *)whereReferenceKey:(NSString *)referenceKey satisfiesPredicate:(id<SCPredicateProtocol>)predicate {
+    return [SCPredicate whereKey:referenceKey satisfiesPredicate:predicate];
+}
+@end
+
+@implementation SCPredicate (Relation)
++ (SCPredicate *)whereRelationWithKey:(NSString *)relationKey contains:(NSArray<NSNumber *>*)objectIds {
+    return [[SCPredicate alloc] initWithLeftHand:relationKey operator:SCPredicateContainsOperator rightHand:objectIds];
+}
++ (SCPredicate *)whereRelationWithKey:(NSString *)relationKey satisfiesPredicate:(id<SCPredicateProtocol>)predicate {
+    return [SCPredicate whereKey:relationKey satisfiesPredicate:predicate];
+}
 @end
