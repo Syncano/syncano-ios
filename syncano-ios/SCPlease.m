@@ -139,12 +139,14 @@
 
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     if (self.nextUrlString.length > 0) {
-        [[self apiClient] GET:self.nextUrlString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [self handleResponse:responseObject error:nil completion:completion];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (completion) {
-                completion(nil,error);
-            }
+        [self resolveQueryParameters:self.parameters withPredicate:self.predicate completion:^(NSDictionary * _Nonnull queryParameters) {
+            [[self apiClient] GET:self.nextUrlString parameters:queryParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                [self handleResponse:responseObject error:nil completion:completion];
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                if (completion) {
+                    completion(nil,error);
+                }
+            }];
         }];
     } else {
         //TODO: handle with error
@@ -155,13 +157,15 @@
 }
 
 - (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
-    if (self.previousUrlString) {
-        [[self apiClient] GET:self.previousUrlString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [self handleResponse:responseObject error:nil completion:completion];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            if (completion) {
-                completion(nil,error);
-            }
+    if (self.previousUrlString.length > 0) {
+        [self resolveQueryParameters:self.parameters withPredicate:self.predicate completion:^(NSDictionary * _Nonnull queryParameters) {
+            [[self apiClient] GET:self.previousUrlString parameters:queryParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                [self handleResponse:responseObject error:nil completion:completion];
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                if (completion) {
+                    completion(nil,error);
+                }
+            }];
         }];
     } else {
         //TODO: handle with error
