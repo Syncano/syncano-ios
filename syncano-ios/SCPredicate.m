@@ -207,11 +207,17 @@ NSString *const SCPredicateNearOpeartor = @"_near";
 
 @end
 
+@implementation SCPredicate (Reference)
++ (SCPredicate *)whereReferenceKey:(NSString *)referenceKey satisfiesPredicate:(id<SCPredicateProtocol>)predicate {
+    return [SCPredicate whereKey:referenceKey satisfiesPredicate:predicate];
+}
+@end
+
 @implementation SCPredicate (Relation)
 + (SCPredicate *)whereRelationWithKey:(NSString *)relationKey contains:(NSArray<NSNumber *>*)objectIds {
     return [[SCPredicate alloc] initWithLeftHand:relationKey operator:SCPredicateContainsOperator rightHand:objectIds];
 }
-+ (SCPredicate *)whereRelationWithKey:(NSString *)relationKey conformsToPredicate:(SCPredicate *)predicate {
-    return [[SCPredicate alloc] initWithLeftHand:relationKey operator:SCPredicateIsOperator rightHand:[predicate rawPredicate]];
++ (SCPredicate *)whereRelationWithKey:(NSString *)relationKey satisfiesPredicate:(id<SCPredicateProtocol>)predicate {
+    return [SCPredicate whereKey:relationKey satisfiesPredicate:predicate];
 }
 @end
