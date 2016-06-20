@@ -87,6 +87,8 @@ extern NSString *const SCPleaseParameterExcludedFields;
 extern NSString *const SCPleaseParameterPageSize;
 extern NSString *const SCPleaseParameterOrderBy;
 extern NSString *const SCPleaseParameterIncludeCount;
+extern NSString *const SCPleaseParameterCacheKey;
+
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,
