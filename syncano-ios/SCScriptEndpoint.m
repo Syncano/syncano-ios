@@ -92,10 +92,11 @@ SCAPIVersion const kScriptEndpointDefaultAPIVersion = SCAPIVersion_1_1;
 }
 
 #pragma mark - Private
-
 + (void)runScriptEndpointOnAPIClientWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCAPICompletionBlock)completion {
     NSString *path = [self pathForRunningScriptEndpointWithName:name];
-    [apiClient postTaskWithPath:path params:payload completion:completion];
+    [apiClient checkAndResolveCacheKeyExistanceInPayload:payload forPath:path completion:^(NSString * _Nonnull _path, NSDictionary * _Nonnull _payload) {
+        [apiClient postTaskWithPath:_path params:_payload completion:completion];
+    }];
 }
 
 + (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCScriptEndpointCompletionBlock)completion {
@@ -125,27 +126,31 @@ SCAPIVersion const kScriptEndpointDefaultAPIVersion = SCAPIVersion_1_1;
 }
 
 + (void)runPublicScriptEndpointWithPath:(NSString *)path payload:(NSDictionary *)payload usingAPIClient:(SCAPIClient*)apiClient completion:(SCScriptEndpointCompletionBlock)completion {
-    [apiClient POST:path parameters:payload progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        if (completion) {
-            SCScriptEndpointResponse *response = [[SCScriptEndpointResponse alloc] initWithJSONObject:responseObject];
-            completion(response,nil);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (completion) {
-            completion(nil,error);
-        }
+    [apiClient checkAndResolveCacheKeyExistanceInPayload:payload forPath:path completion:^(NSString * _Nonnull _path, NSDictionary * _Nonnull _payload) {
+        [apiClient POST:_path parameters:_payload progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (completion) {
+                SCScriptEndpointResponse *response = [[SCScriptEndpointResponse alloc] initWithJSONObject:responseObject];
+                completion(response,nil);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (completion) {
+                completion(nil,error);
+            }
+        }];
     }];
 }
 
 + (void)runCustomPublicScriptEndpointWithPath:(NSString *)path payload:(NSDictionary *)payload usingAPIClient:(SCAPIClient*)apiClient completion:(SCCustomResponseCompletionBlock)completion {
-    [apiClient POST:path parameters:payload progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        if (completion) {
-            completion(responseObject,nil);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        if (completion) {
-            completion(nil,error);
-        }
+    [apiClient checkAndResolveCacheKeyExistanceInPayload:payload forPath:path completion:^(NSString * _Nonnull _path, NSDictionary * _Nonnull _payload) {
+        [apiClient POST:_path parameters:_payload progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (completion) {
+                completion(responseObject,nil);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (completion) {
+                completion(nil,error);
+            }
+        }];
     }];
 }
 

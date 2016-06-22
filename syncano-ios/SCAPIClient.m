@@ -18,6 +18,7 @@
 #import "AFNetworkReachabilityManager.h"
 #import "SCUser+UserDefaults.h"
 #import "SCConstants.h"
+#import "NSString+PathManipulations.h"
 
 @interface SCAPIClient () <SCRequestQueueDelegate>
 @end
@@ -326,6 +327,27 @@
 
 - (BOOL)reachable {
     return self.networkReachabilityManager.reachable;
+}
+
+@end
+
+@implementation SCAPIClient (CacheKey)
+
+- (void)checkAndResolveCacheKeyExistanceInPayload:(NSDictionary *)payload forPath:(NSString *)path completion:(void(^)(NSString *path, NSDictionary *payload))completion {
+    if ([[payload allKeys] containsObject:SCPleaseParameterCacheKey]) {
+        NSString *cacheKey = payload[SCPleaseParameterCacheKey];
+        NSMutableDictionary *mutablePayload = [payload mutableCopy];
+        [mutablePayload removeObjectForKey:SCPleaseParameterCacheKey];
+        NSString *cacheKeyQueryString = [NSString stringWithFormat:@"%@=%@",SCPleaseParameterCacheKey,cacheKey];
+        NSString *pathWithCacheKey = [path pathStringByAppendingQueryString:cacheKeyQueryString];
+        if (completion) {
+            completion(pathWithCacheKey,[NSDictionary dictionaryWithDictionary:mutablePayload]);
+        }
+    } else {
+        if (completion) {
+            completion(path,payload);
+        }
+    }
 }
 
 @end
