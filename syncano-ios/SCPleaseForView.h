@@ -43,28 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName forSyncano:(Syncano *)syncano;
 
-/**
- *  Creates a new SCPlease object for provided class for singleton Syncano instance.
- *
- *  @param dataObjectClass SCDataObject scope class
- *  @param viewName Name of Data Object View
- *  @param cacheKey        Cache key
- *
- *  @return SCPlease object
- */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName withCacheKey:(NSString *)cacheKey;
+@end
 
-/**
- *  Creates a new SCPlease object for provided class for provided Syncano instance
- *
- *  @param dataObjectClass SCDataObject scope class
- *  @param viewName Name of Data Object View
- *  @param syncano         Syncano instance
- *  @param cacheKey        cache key
- *
- *  @return SCPlease object
- */
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forView:(NSString*)viewName forSyncano:(Syncano *)syncano withCacheKey:(NSString *)cacheKey;
-
+@interface SCPleaseForView (Cache)
+- (void)giveMeDataObjectsfromCacheWithKey:(NSString *)cacheKey withCompletion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsWithParameters:(NSDictionary *)parameters fromCacheWithKey:(NSString *)cacheKey completion:(SCDataObjectsCompletionBlock)completion;
+- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters fromCacheWithKey:(NSString *)cacheKey completion:(SCDataObjectsCompletionBlock)completion;
 @end
 NS_ASSUME_NONNULL_END
