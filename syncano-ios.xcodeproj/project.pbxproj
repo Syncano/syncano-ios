@@ -614,8 +614,12 @@
 				113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */,
 				11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */,
 				11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */,
+				114855981D1A7CF9008A3D2B /* NSDictionary+CacheKey.h */,
+				114855991D1A7CF9008A3D2B /* NSDictionary+CacheKey.m */,
 				11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */,
 				11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */,
+				114855941D1A7856008A3D2B /* NSString+PathManipulations.h */,
+				114855951D1A7856008A3D2B /* NSString+PathManipulations.m */,
 				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
 				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
 				116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */,
@@ -624,10 +628,6 @@
 				113B2E4B1C48DA5400057F00 /* NSError+RevisionMismatch.m */,
 				119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */,
 				119BF8941D06DFC900A834B3 /* NSError+SCDataObject.m */,
-				114855941D1A7856008A3D2B /* NSString+PathManipulations.h */,
-				114855951D1A7856008A3D2B /* NSString+PathManipulations.m */,
-				114855981D1A7CF9008A3D2B /* NSDictionary+CacheKey.h */,
-				114855991D1A7CF9008A3D2B /* NSDictionary+CacheKey.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";

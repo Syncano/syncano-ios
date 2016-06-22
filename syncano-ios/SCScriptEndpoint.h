@@ -132,4 +132,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @end
+
+@interface SCScriptEndpoint (Cache)
++ (void)runScriptEndpointWithName:(NSString *)name fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(SCScriptEndpointCompletionBlock)completion;
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name  fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+@end
 NS_ASSUME_NONNULL_END

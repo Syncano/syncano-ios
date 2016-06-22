@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDictionary (CacheKey)
++ (NSDictionary *)dictionaryWithCacheKey:(NSString *)cacheKey;
 - (NSDictionary *)dictionaryByAddingCacheKey:(NSString *)cacheKey;
 @end
