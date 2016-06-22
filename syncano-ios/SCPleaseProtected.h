@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  SCPredicate to use with API call
  */
-@property (nonatomic,retain) id<SCPredicateProtocol> predicate;
+@property (nonatomic,retain) _Nullable id<SCPredicateProtocol> predicate;
 
 /**
  *  API class name representation of connected SCDataObject Class

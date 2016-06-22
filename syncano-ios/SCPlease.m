@@ -36,7 +36,7 @@
 
 @property (nonatomic) BOOL fromLocalStorage;
 
-@property (nonatomic,retain) NSDictionary *queryParameters;
+@property (nonatomic,retain) NSDictionary *parsedQueryParameters;
 
 @end
 
@@ -107,14 +107,14 @@
 - (void)giveMeDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     self.parameters = nil;
     self.predicate = nil;
-    self.queryParameters = nil;
+    self.parsedQueryParameters = nil;
     [self getDataObjectFromAPIWithCompletion:completion];
 }
 
 - (void)giveMeDataObjectsWithParameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion {
     self.parameters = parameters;
     self.predicate = nil;
-    self.queryParameters = nil;
+    self.parsedQueryParameters = nil;
     [self getDataObjectFromAPIWithCompletion:completion];
 }
 
@@ -123,7 +123,7 @@
                             completion:(SCDataObjectsCompletionBlock)completion {
     self.parameters = parameters;
     self.predicate = predicate;
-    self.queryParameters = nil;
+    self.parsedQueryParameters = nil;
     [self getDataObjectFromAPIWithCompletion:completion];
 }
 
@@ -136,9 +136,9 @@
 - (void)getDataObjectFromAPIWithCompletion:(SCDataObjectsCompletionBlock)completion {
     self.previousUrlString = nil;
     self.nextUrlString = nil;
-    self.queryParameters = nil;
+    self.parsedQueryParameters = nil;
     [self resolveQueryParameters:self.parameters withPredicate:self.predicate completion:^(NSDictionary *queryParameters) {
-        self.queryParameters = queryParameters;
+        self.parsedQueryParameters = queryParameters;
         [self getDataObjectFromAPIWithParams:queryParameters completion:completion];
     }];
 
@@ -146,7 +146,7 @@
 
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     if (self.nextUrlString.length > 0) {
-        [[self apiClient] GET:self.nextUrlString parameters:self.queryParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[self apiClient] GET:self.nextUrlString parameters:self.parsedQueryParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self handleResponse:responseObject error:nil completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (completion) {
@@ -163,7 +163,7 @@
 
 - (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     if (self.previousUrlString.length > 0) {
-        [[self apiClient] GET:self.previousUrlString parameters:self.queryParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[self apiClient] GET:self.previousUrlString parameters:self.parsedQueryParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self handleResponse:responseObject error:nil completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (completion) {
