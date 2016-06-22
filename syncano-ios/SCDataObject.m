@@ -113,14 +113,6 @@
     return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano];
 }
 
-+ (SCPlease *)pleaseForView:(NSString *)viewName withCacheKey:(NSString *)cacheKey {
-    return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName withCacheKey:cacheKey];
-}
-
-+ (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano withCacheKey:(NSString *)cacheKey {
-    return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano withCacheKey:cacheKey];
-}
-
 + (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName {
     return [SCPleaseForTemplate pleaseInstanceForDataObjectWithClass:[self class] forTemplate:templateName];
 }
