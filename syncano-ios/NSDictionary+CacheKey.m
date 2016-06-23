@@ -11,6 +11,9 @@
 
 @implementation NSDictionary (CacheKey)
 + (NSDictionary *)dictionaryWithCacheKey:(NSString *)cacheKey {
+    if (!cacheKey) {
+        return @{};
+    }
     return @{SCPleaseParameterCacheKey : cacheKey};
 }
 
@@ -18,7 +21,7 @@
     if (self) {
         NSMutableDictionary *mutable = [self mutableCopy];
         mutable[SCPleaseParameterCacheKey] = cacheKey;
-        return [NSDictionary dictionaryWithDictionary:mutable];
+        return [mutable copy];
     } else {
         return [[self class] dictionaryWithCacheKey:cacheKey];
     }

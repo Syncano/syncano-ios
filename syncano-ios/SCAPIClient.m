@@ -334,19 +334,18 @@
 @implementation SCAPIClient (CacheKey)
 
 - (void)checkAndResolveCacheKeyExistanceInPayload:(NSDictionary *)payload forPath:(NSString *)path completion:(void(^)(NSString *path, NSDictionary *payload))completion {
-    if ([[payload allKeys] containsObject:SCPleaseParameterCacheKey]) {
+    if (completion == nil) {
+        return;
+    }
+    if ([payload objectForKey:SCPleaseParameterCacheKey] != nil) {
         NSString *cacheKey = payload[SCPleaseParameterCacheKey];
         NSMutableDictionary *mutablePayload = [payload mutableCopy];
         [mutablePayload removeObjectForKey:SCPleaseParameterCacheKey];
         NSString *cacheKeyQueryString = [NSString stringWithFormat:@"%@=%@",SCPleaseParameterCacheKey,cacheKey];
         NSString *pathWithCacheKey = [path pathStringByAppendingQueryString:cacheKeyQueryString];
-        if (completion) {
-            completion(pathWithCacheKey,[NSDictionary dictionaryWithDictionary:mutablePayload]);
-        }
+        completion(pathWithCacheKey,[mutablePayload copy]);
     } else {
-        if (completion) {
             completion(path,payload);
-        }
     }
 }
 

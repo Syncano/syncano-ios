@@ -52,7 +52,7 @@
 @end
 
 @implementation SCPleaseForView (Cache)
-- (void)giveMeDataObjectsfromCacheWithKey:(NSString *)cacheKey withCompletion:(SCDataObjectsCompletionBlock)completion {
+- (void)giveMeDataObjectsFromCacheWithKey:(NSString *)cacheKey withCompletion:(SCDataObjectsCompletionBlock)completion {
     [self giveMeDataObjectsWithParameters:[NSDictionary dictionaryWithCacheKey:cacheKey] completion:completion];
 }
 - (void)giveMeDataObjectsWithParameters:(NSDictionary *)parameters fromCacheWithKey:(NSString *)cacheKey completion:(SCDataObjectsCompletionBlock)completion {
