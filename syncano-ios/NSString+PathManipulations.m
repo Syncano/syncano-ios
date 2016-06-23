@@ -14,6 +14,6 @@
         return self;
     }
     return [NSString stringWithFormat:@"%@%@%@", self,
-            [self rangeOfString:@"?"].length > 0 ? @"&" : @"?", queryString];
+            [self rangeOfString:@"?"].location != NSNotFound ? @"&" : @"?", queryString];
 }
 @end
