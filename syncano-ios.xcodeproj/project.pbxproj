@@ -41,6 +41,10 @@
 		1143F8BD1CF579AE0023AA2A /* DataObjectDataTypesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143F8BC1CF579AE0023AA2A /* DataObjectDataTypesSpec.m */; };
 		1143F8C21CFC47890023AA2A /* SCGeoPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 1143F8C01CFC47890023AA2A /* SCGeoPoint.h */; };
 		1143F8C31CFC47890023AA2A /* SCGeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143F8C11CFC47890023AA2A /* SCGeoPoint.m */; };
+		114855961D1A7856008A3D2B /* NSString+PathManipulations.h in Headers */ = {isa = PBXBuildFile; fileRef = 114855941D1A7856008A3D2B /* NSString+PathManipulations.h */; };
+		114855971D1A7856008A3D2B /* NSString+PathManipulations.m in Sources */ = {isa = PBXBuildFile; fileRef = 114855951D1A7856008A3D2B /* NSString+PathManipulations.m */; };
+		1148559A1D1A7CF9008A3D2B /* NSDictionary+CacheKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 114855981D1A7CF9008A3D2B /* NSDictionary+CacheKey.h */; };
+		1148559B1D1A7CF9008A3D2B /* NSDictionary+CacheKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 114855991D1A7CF9008A3D2B /* NSDictionary+CacheKey.m */; };
 		114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 114958941C8D6F9B0051F575 /* SCReferencesStore.h */; };
 		114958971C8D6F9B0051F575 /* SCReferencesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 114958951C8D6F9B0051F575 /* SCReferencesStore.m */; };
 		114DF9871CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */; };
@@ -154,9 +158,9 @@
 		11E35B0F1C4F82740092E0A9 /* Syncano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; };
 		11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 11E47AFE1C3BD63400DB644A /* SCFileManager.h */; };
 		11E47B011C3BD63400DB644A /* SCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E47AFF1C3BD63400DB644A /* SCFileManager.m */; };
+		11E9F1BF1D105CC3007A74E0 /* DataObjectArrayOperatorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F211AC1D105885009D6FF4 /* DataObjectArrayOperatorsSpec.m */; };
 		11F211791D101F00009D6FF4 /* SCDataObject+RelationOperators.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F211771D101F00009D6FF4 /* SCDataObject+RelationOperators.h */; };
 		11F2117A1D101F00009D6FF4 /* SCDataObject+RelationOperators.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F211781D101F00009D6FF4 /* SCDataObject+RelationOperators.m */; };
-		11E9F1BF1D105CC3007A74E0 /* DataObjectArrayOperatorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F211AC1D105885009D6FF4 /* DataObjectArrayOperatorsSpec.m */; };
 		11F80C3E1ACEDF3600134A39 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C3D1ACEDF3600134A39 /* Author.m */; };
 		11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */; };
 		11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */; };
@@ -288,6 +292,10 @@
 		1143F8BC1CF579AE0023AA2A /* DataObjectDataTypesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectDataTypesSpec.m; sourceTree = "<group>"; };
 		1143F8C01CFC47890023AA2A /* SCGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGeoPoint.h; sourceTree = "<group>"; };
 		1143F8C11CFC47890023AA2A /* SCGeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGeoPoint.m; sourceTree = "<group>"; };
+		114855941D1A7856008A3D2B /* NSString+PathManipulations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PathManipulations.h"; sourceTree = "<group>"; };
+		114855951D1A7856008A3D2B /* NSString+PathManipulations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PathManipulations.m"; sourceTree = "<group>"; };
+		114855981D1A7CF9008A3D2B /* NSDictionary+CacheKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CacheKey.h"; sourceTree = "<group>"; };
+		114855991D1A7CF9008A3D2B /* NSDictionary+CacheKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CacheKey.m"; sourceTree = "<group>"; };
 		11487E451ADE94D200627EFD /* SCPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicate.h; sourceTree = "<group>"; };
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
 		114958941C8D6F9B0051F575 /* SCReferencesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCReferencesStore.h; sourceTree = "<group>"; };
@@ -606,8 +614,12 @@
 				113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */,
 				11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */,
 				11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */,
+				114855981D1A7CF9008A3D2B /* NSDictionary+CacheKey.h */,
+				114855991D1A7CF9008A3D2B /* NSDictionary+CacheKey.m */,
 				11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */,
 				11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */,
+				114855941D1A7856008A3D2B /* NSString+PathManipulations.h */,
+				114855951D1A7856008A3D2B /* NSString+PathManipulations.m */,
 				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
 				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
 				116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */,
@@ -978,6 +990,7 @@
 				1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */,
 				116B6C831C1AFDEF00D602D1 /* NSString+MD5.h in Headers */,
 				11CE3CAD1BCFDC3000DE3163 /* SCFile.h in Headers */,
+				1148559A1D1A7CF9008A3D2B /* NSDictionary+CacheKey.h in Headers */,
 				11CE3CA21BCFDC3000DE3163 /* Syncano.h in Headers */,
 				11B0E66C1BFCCB0100E36713 /* NSString+JSONDictionary.h in Headers */,
 				11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */,
@@ -1002,6 +1015,7 @@
 				11CE3CC41BCFDC3000DE3163 /* SCParseManager+SCDataObject.h in Headers */,
 				118895551C7EEC0500F683C8 /* SCDevice.h in Headers */,
 				119BF8911D060E3700A834B3 /* SCDataObject+ArrayOperators.h in Headers */,
+				114855961D1A7856008A3D2B /* NSString+PathManipulations.h in Headers */,
 				11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */,
 				11CE3CC01BCFDC3000DE3163 /* NSObject+SCParseHelper.h in Headers */,
 				A6BCC8EC1C56372E008A0B0A /* SCPleaseForView.h in Headers */,
@@ -1381,6 +1395,7 @@
 				11F8BF801BE0F4A800091F58 /* SCLocalStore.m in Sources */,
 				117FADAD1D097F5E008C533D /* SCRelation.m in Sources */,
 				11CE3CCD1BCFDC3000DE3163 /* SCAPIClient+SCDataObject.m in Sources */,
+				1148559B1D1A7CF9008A3D2B /* NSDictionary+CacheKey.m in Sources */,
 				11CE3CCB1BCFDC3000DE3163 /* SCAPIClient.m in Sources */,
 				156CF1EC1C8F65880053A580 /* SCScriptEndpointResponse.m in Sources */,
 				1143F8C31CFC47890023AA2A /* SCGeoPoint.m in Sources */,
@@ -1391,6 +1406,7 @@
 				11CB51821C1871B2007978A7 /* SCRequest.m in Sources */,
 				156CF1E81C8F651F0053A580 /* SCScriptEndpoint.m in Sources */,
 				11CE3CB61BCFDC3000DE3163 /* SCTrace.m in Sources */,
+				114855971D1A7856008A3D2B /* NSString+PathManipulations.m in Sources */,
 				11CE3CC31BCFDC3000DE3163 /* SCParseManager.m in Sources */,
 				11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */,
 				11CE3CA71BCFDC3000DE3163 /* SCPlease.m in Sources */,

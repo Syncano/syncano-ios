@@ -168,4 +168,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)initializeReachabilityManager;
 - (BOOL)reachable;
 @end
+
+@interface SCAPIClient (CacheKey)
+- (void)checkAndResolveCacheKeyExistanceInPayload:(NSDictionary *)payload forPath:(NSString *)path completion:(void(^)(NSString *path, NSDictionary *payload))completion;
+@end
 NS_ASSUME_NONNULL_END
