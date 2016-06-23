@@ -71,7 +71,7 @@ describe(@"SCPlease", ^{
         [[books shouldNotEventually] beNil];
         [[[books firstObject] shouldEventually] beKindOfClass:[Book class]];
     });
-        
+    
     it(@"should fetch objects from API with parameters", ^{
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;
@@ -117,7 +117,7 @@ describe(@"SCPlease", ^{
         [[[books firstObject] shouldEventually] beKindOfClass:[Book class]];
     });
     
-    it(@"should fetch next page of objects from API", ^{
+    it(@"should have next page of objects from API", ^{
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;
         } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
@@ -126,19 +126,24 @@ describe(@"SCPlease", ^{
         }];
         __block NSArray *books;
         __block NSError *_error;
-        __block BOOL _blockFinished;
-        [[Book please] giveMeNextPageOfDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
+        __block BOOL _blockFinished = NO;
+         SCPlease *please = [Book please];
+        __block NSString *nextString;
+        [please giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
             _error = error;
             _blockFinished = YES;
             books = objects;
+            nextString = [please valueForKey:@"nextUrlString"];
         }];
         [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
         [[_error shouldEventually] beNil];
         [[books shouldNotEventually] beNil];
         [[[books firstObject] shouldEventually] beKindOfClass:[Book class]];
+        [[nextString shouldNot] beNil];
+        [[nextString should] equal:@"/v1.1/instances/mytestinstance/classes/book/objects/?direction=1"];
     });
     
-    it(@"should fetch previous page of objects from API", ^{
+    it(@"should have previous page of objects from API", ^{
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
             return YES;
         } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
@@ -148,15 +153,20 @@ describe(@"SCPlease", ^{
         __block NSArray *books;
         __block NSError *_error;
         __block BOOL _blockFinished;
-        [[Book please] giveMePreviousPageOfDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
+        SCPlease *please = [Book please];
+        __block NSString *prevString;
+        [please giveMeDataObjectsWithCompletion:^(NSArray *objects, NSError *error) {
             _error = error;
             _blockFinished = YES;
             books = objects;
+            prevString = [please valueForKey:@"previousUrlString"];
         }];
         [[expectFutureValue(theValue(_blockFinished)) shouldEventually] beYes];
         [[_error shouldEventually] beNil];
         [[books shouldNotEventually] beNil];
         [[[books firstObject] shouldEventually] beKindOfClass:[Book class]];
+        [[prevString shouldNot] beNil];
+        [[prevString should] equal:@"/v1.1/instances/mytestinstance/classes/book/objects/?direction=0"];
     });
     
 });

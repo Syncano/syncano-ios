@@ -12,6 +12,8 @@
 
 @class Syncano;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCScriptEndpoint : NSObject
 
 /**
@@ -20,7 +22,7 @@
  *  @param name       Script Endpoint name
  *  @param completion Completion block
  */
-+ (void)runScriptEndpointWithName:(NSString *)name completion:(SCScriptEndpointCompletionBlock)completion;
++ (void)runScriptEndpointWithName:(NSString *)name completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs script endpoint on chosen Syncano Instance. Returned data will be an instance of SCScriptEndpointResponse.
@@ -29,7 +31,7 @@
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-+ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCScriptEndpointCompletionBlock)completion;
++ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs script endpoint with payload. Returned data will be an instance of SCScriptEndpointResponse.
@@ -38,7 +40,7 @@
  *  @param payload    Paylod to pass into Script Endpoint
  *  @param completion Completion block
  */
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCScriptEndpointCompletionBlock)completion;
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs script endpoint with payload on chosen Syncano Instance. Returned data will be an instance of SCScriptEndpointResponse.
@@ -48,7 +50,7 @@
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCScriptEndpointCompletionBlock)completion;
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint with given hash and name. Returned data will be an instance of SCScriptEndpointResponse.
@@ -59,7 +61,7 @@
  *  @param instanceName  Name of Syncano Instance
  *  @param completion    Completion block
  */
-+ (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(SCScriptEndpointCompletionBlock)completion;
++ (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint with given url. Returned data will be an instance of SCScriptEndpointResponse.
@@ -76,7 +78,7 @@
  *  @param name       Script Endpoint name
  *  @param completion Completion block
  */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name completion:(SCCustomResponseCompletionBlock)completion;
++ (void)runCustomScriptEndpointWithName:(NSString *)name completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs script endpoint with custom reponse format.
@@ -86,7 +88,7 @@
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion;
++ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs script endpoint with payload and custom reponse format. Returned data will be an instance of NSData.
@@ -95,7 +97,7 @@
  *  @param payload    Payload for Script Endpoint
  *  @param completion Completion block
  */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCCustomResponseCompletionBlock)completion;
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs script endpoint with payload and custom reponse format.
@@ -106,7 +108,7 @@
  *  @param syncano    Syncano instance
  *  @param completion Completion block
  */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion;
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint. Returned data will be an instance of NSData.
@@ -117,7 +119,7 @@
  *  @param instanceName Syncano instance name
  *  @param completion   Completion block
  */
-+ (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(SCCustomResponseCompletionBlock)completion;
++ (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint. Returned data will be an instance of NSData.
@@ -126,7 +128,34 @@
  *  @param payload    Payload for query to Script Endpoint
  *  @param completion Completion block
  */
-+ (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload completion:(SCCustomResponseCompletionBlock)completion;
++ (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 
 @end
+
+@interface SCScriptEndpoint (Cache)
++ (void)runScriptEndpointWithName:(NSString *)name fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
+
++ (void)runPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(SCScriptEndpointCompletionBlock)completion;
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name  fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
++ (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+@end
+NS_ASSUME_NONNULL_END

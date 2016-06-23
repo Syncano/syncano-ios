@@ -5,13 +5,21 @@
 //  Created by Jakub Machoń on 25.01.2016.
 //  Copyright © 2016 Syncano. All rights reserved.
 //
+NS_ASSUME_NONNULL_BEGIN
+
+@class SCPredicateProtocol;
 
 @interface SCPlease ()
 
 /**
+ *  SCPredicate to use with API call
+ */
+@property (nonatomic,retain) _Nullable id<SCPredicateProtocol> predicate;
+
+/**
  *  API class name representation of connected SCDataObject Class
  */
-@property (nonatomic,retain) NSString *classNameForAPICalls;
+@property (nullable, nonatomic,retain) NSString *classNameForAPICalls;
 
 /**
  *  [Abstract] API Client used by SCPlease to get data from syncano instance
@@ -27,6 +35,7 @@
  *  @param error          response error to handle
  *  @param completion     completion block
  */
-- (void)handleResponse:(id)responseObject error:(NSError *)error completion:(SCDataObjectsCompletionBlock)completion;
+- (void)handleResponse:(id)responseObject error:(nullable NSError *)error completion:(SCDataObjectsCompletionBlock)completion;
 
 @end
+NS_ASSUME_NONNULL_END

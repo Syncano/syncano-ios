@@ -7,15 +7,16 @@
 //
 
 #import "SCUser.h"
-
+NS_ASSUME_NONNULL_BEGIN
 @interface SCUser (UserDefaults)
 
-+ (id)JSONUserDataFromDefaults;
++ (nullable id)JSONUserDataFromDefaults;
 + (void)saveJSONUserData:(id)JSONUserData;
 + (void)removeUserFromDefaults;
 + (void)updateUsernameStoredInDefaults:(NSString *)username;
 + (void)updateUserProfileStoredInDefaults:(SCUserProfile *)profile;
 
-+ (NSString *)userKeyFromDefaults;
++ (nullable NSString *)userKeyFromDefaults;
 
 @end
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "SCPredicateProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Operators definitions
  */
@@ -37,15 +39,15 @@ extern NSString *const SCPredicateIsOperator;
 /**
  *  Key, e.g. "id"
  */
-@property (nonatomic,retain) NSString *leftHand;
+@property (nullable,nonatomic,retain) NSString *leftHand;
 /**
  *  Compare operator, e.g. "SCPredicateEqualOperator"
  */
-@property (nonatomic,retain) NSString *operator;
+@property (nullable,nonatomic,retain) NSString *operator;
 /**
  *  Value, e.g. "23"
  */
-@property (nonatomic,retain) id rightHand;
+@property (nullable,nonatomic,retain) id rightHand;
 
 /**
  *  Returns predicate where key is greater than provided string
@@ -356,3 +358,23 @@ extern NSString *const SCPredicateIsOperator;
 + (SCPredicate *)whereKey:(NSString *)key caseInsensitiveIsEqualToString:(NSString *)string;
 
 @end
+
+@class SCGeoPoint;
+
+extern NSString *const SCPredicateNearOpeartor;
+
+@interface SCPredicate (GeoPoint)
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint;
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint withinMiles:(double)maxDistance;
++ (SCPredicate *)whereKey:(NSString *)key isNearGeoPoint:(SCGeoPoint *)geopoint withinKilometers:(double)maxDistance;
+@end
+
+@interface SCPredicate (Reference)
++ (SCPredicate *)whereReferenceKey:(NSString *)referenceKey satisfiesPredicate:(id<SCPredicateProtocol>)predicate;
+@end
+
+@interface SCPredicate (Relation)
++ (SCPredicate *)whereRelationWithKey:(NSString *)relationKey contains:(NSArray<NSNumber *>*)objectIds;
++ (SCPredicate *)whereRelationWithKey:(NSString *)relationKey satisfiesPredicate:(id<SCPredicateProtocol>)predicate;
+@end
+NS_ASSUME_NONNULL_END

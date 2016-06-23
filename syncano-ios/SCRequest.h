@@ -18,12 +18,14 @@ typedef NS_ENUM(NSUInteger, SCRequestMethod) {
     SCRequestMethodPUT
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCRequest : NSObject
-@property (nonatomic,retain) NSString *identifier;
-@property (nonatomic,retain) NSString *path;
+@property (nullable,nonatomic,retain) NSString *identifier;
+@property (nullable,nonatomic,retain) NSString *path;
 @property (nonatomic) SCRequestMethod method;
-@property (nonatomic,retain) NSDictionary *params;
-@property (nonatomic,strong) SCAPICompletionBlock callback;
+@property (nullable,nonatomic,retain) NSDictionary *params;
+@property (nullable,nonatomic,strong) SCAPICompletionBlock callback;
 @property (nonatomic) BOOL save;
 
 /**
@@ -37,7 +39,7 @@ typedef NS_ENUM(NSUInteger, SCRequestMethod) {
  *
  *  @return SCRequest instance
  */
-- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback save:(BOOL)save;
+- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method params:(nullable NSDictionary *)params callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 /**
  *  Initializes SCRequest
@@ -59,7 +61,7 @@ typedef NS_ENUM(NSUInteger, SCRequestMethod) {
  *
  *  @return SCRequest instance
  */
-+ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback save:(BOOL)save;
++ (SCRequest *)requestWithPath:(NSString *)path method:(SCRequestMethod)method params:(nullable NSDictionary *)params callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 /**
  *  Dictionary representation of a request for saving on disk use
@@ -68,3 +70,4 @@ typedef NS_ENUM(NSUInteger, SCRequestMethod) {
  */
 - (NSDictionary *)dictionaryRepresentation;
 @end
+NS_ASSUME_NONNULL_END

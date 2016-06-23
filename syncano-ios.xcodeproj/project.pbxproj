@@ -38,8 +38,16 @@
 		1142F0861C9FEEAD0047FB6C /* SCChannelHistoryResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 1142F0841C9FEEAD0047FB6C /* SCChannelHistoryResponse.m */; };
 		1143A5C01B60D5C800A720D6 /* SCUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 1143A5BF1B60D5C800A720D6 /* SCUser.json */; };
 		1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143A5C31B60D83100A720D6 /* SCJSONHelper.m */; };
+		1143F8BD1CF579AE0023AA2A /* DataObjectDataTypesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143F8BC1CF579AE0023AA2A /* DataObjectDataTypesSpec.m */; };
+		1143F8C21CFC47890023AA2A /* SCGeoPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 1143F8C01CFC47890023AA2A /* SCGeoPoint.h */; };
+		1143F8C31CFC47890023AA2A /* SCGeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1143F8C11CFC47890023AA2A /* SCGeoPoint.m */; };
+		114855961D1A7856008A3D2B /* NSString+PathManipulations.h in Headers */ = {isa = PBXBuildFile; fileRef = 114855941D1A7856008A3D2B /* NSString+PathManipulations.h */; };
+		114855971D1A7856008A3D2B /* NSString+PathManipulations.m in Sources */ = {isa = PBXBuildFile; fileRef = 114855951D1A7856008A3D2B /* NSString+PathManipulations.m */; };
+		1148559A1D1A7CF9008A3D2B /* NSDictionary+CacheKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 114855981D1A7CF9008A3D2B /* NSDictionary+CacheKey.h */; };
+		1148559B1D1A7CF9008A3D2B /* NSDictionary+CacheKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 114855991D1A7CF9008A3D2B /* NSDictionary+CacheKey.m */; };
 		114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 114958941C8D6F9B0051F575 /* SCReferencesStore.h */; };
 		114958971C8D6F9B0051F575 /* SCReferencesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 114958951C8D6F9B0051F575 /* SCReferencesStore.m */; };
+		114DF9871CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */; };
 		1150CF9C1B5789DF0080D5E3 /* SCUserRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */; };
 		1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */; };
 		1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */; };
@@ -53,6 +61,10 @@
 		116B6C7F1C1AEF5100D602D1 /* SCUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */; };
 		116B6C831C1AFDEF00D602D1 /* NSString+MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = 116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */; };
 		116B6C841C1AFDEF00D602D1 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */; };
+		117FADAC1D097F5E008C533D /* SCRelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 117FADAA1D097F5E008C533D /* SCRelation.h */; };
+		117FADAD1D097F5E008C533D /* SCRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = 117FADAB1D097F5E008C533D /* SCRelation.m */; };
+		117FADB21D09956B008C533D /* SCPleaseForRelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 117FADB01D09956B008C533D /* SCPleaseForRelation.h */; };
+		117FADB31D09956B008C533D /* SCPleaseForRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = 117FADB11D09956B008C533D /* SCPleaseForRelation.m */; };
 		1182D3531C6A21970020307F /* DataObjectRevisionMismatchSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */; };
 		1183F7191C573BE90053673F /* LocalStorageSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1183F7181C573BE90053673F /* LocalStorageSpec.m */; };
 		1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */; };
@@ -61,7 +73,17 @@
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
+		119BF8911D060E3700A834B3 /* SCDataObject+ArrayOperators.h in Headers */ = {isa = PBXBuildFile; fileRef = 119BF88F1D060E3700A834B3 /* SCDataObject+ArrayOperators.h */; };
+		119BF8921D060E3700A834B3 /* SCDataObject+ArrayOperators.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */; };
+		119BF8951D06DFC900A834B3 /* NSError+SCDataObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */; };
+		119BF8961D06DFC900A834B3 /* NSError+SCDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8941D06DFC900A834B3 /* NSError+SCDataObject.m */; };
+		119BF8BC1D07F7EB00A834B3 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8BB1D07F7EB00A834B3 /* BookStore.m */; };
+		119BF8C11D08062B00A834B3 /* SCGeoPointSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */; };
+		119BF8C41D080DED00A834B3 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8BB1D07F7EB00A834B3 /* BookStore.m */; };
 		119DFB461C903FA6001F41FC /* SCDBMigrationsBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */; };
+		119E48771CE2685C006EA250 /* SCPleaseForTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */; };
+		119E48781CE2685C006EA250 /* SCPleaseForTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */; };
+		119E48D91CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 119E48D81CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m */; };
 		11A717AD1C44D4150029095B /* Syncano.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		11A7C6571B67B62C00EDC3CE /* SCChannelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A7C6561B67B62C00EDC3CE /* SCChannelSpec.m */; };
 		11A7C65C1B67C00D00EDC3CE /* ChannelNotificationMessage.json in Resources */ = {isa = PBXBuildFile; fileRef = 11A7C65B1B67C00D00EDC3CE /* ChannelNotificationMessage.json */; };
@@ -136,6 +158,9 @@
 		11E35B0F1C4F82740092E0A9 /* Syncano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; };
 		11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 11E47AFE1C3BD63400DB644A /* SCFileManager.h */; };
 		11E47B011C3BD63400DB644A /* SCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E47AFF1C3BD63400DB644A /* SCFileManager.m */; };
+		11E9F1BF1D105CC3007A74E0 /* DataObjectArrayOperatorsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F211AC1D105885009D6FF4 /* DataObjectArrayOperatorsSpec.m */; };
+		11F211791D101F00009D6FF4 /* SCDataObject+RelationOperators.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F211771D101F00009D6FF4 /* SCDataObject+RelationOperators.h */; };
+		11F2117A1D101F00009D6FF4 /* SCDataObject+RelationOperators.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F211781D101F00009D6FF4 /* SCDataObject+RelationOperators.m */; };
 		11F80C3E1ACEDF3600134A39 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F80C3D1ACEDF3600134A39 /* Author.m */; };
 		11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */ = {isa = PBXBuildFile; fileRef = 11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */; };
 		11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */; };
@@ -165,7 +190,7 @@
 		A6274DD01C69FB3600730460 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6274DCF1C69FB3600730460 /* main.m */; };
 		A6274DD31C69FB3600730460 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6274DD21C69FB3600730460 /* AppDelegate.m */; };
 		A6274DD91C69FB3600730460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6274DD71C69FB3600730460 /* Main.storyboard */; };
-		A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */; };
+		A669848D1C6343670056A228 /* DataObjectIncrementSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A669848C1C6343670056A228 /* DataObjectIncrementSpec.m */; };
 		A66984901C63B54F0056A228 /* SCDataObject+Increment.h in Headers */ = {isa = PBXBuildFile; fileRef = A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */; };
 		A66984911C63B54F0056A228 /* SCDataObject+Increment.m in Sources */ = {isa = PBXBuildFile; fileRef = A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */; };
 		A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */; };
@@ -264,10 +289,18 @@
 		1143A5BF1B60D5C800A720D6 /* SCUser.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUser.json; sourceTree = "<group>"; };
 		1143A5C21B60D83100A720D6 /* SCJSONHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONHelper.h; sourceTree = "<group>"; };
 		1143A5C31B60D83100A720D6 /* SCJSONHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONHelper.m; sourceTree = "<group>"; };
+		1143F8BC1CF579AE0023AA2A /* DataObjectDataTypesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectDataTypesSpec.m; sourceTree = "<group>"; };
+		1143F8C01CFC47890023AA2A /* SCGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGeoPoint.h; sourceTree = "<group>"; };
+		1143F8C11CFC47890023AA2A /* SCGeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGeoPoint.m; sourceTree = "<group>"; };
+		114855941D1A7856008A3D2B /* NSString+PathManipulations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PathManipulations.h"; sourceTree = "<group>"; };
+		114855951D1A7856008A3D2B /* NSString+PathManipulations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PathManipulations.m"; sourceTree = "<group>"; };
+		114855981D1A7CF9008A3D2B /* NSDictionary+CacheKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CacheKey.h"; sourceTree = "<group>"; };
+		114855991D1A7CF9008A3D2B /* NSDictionary+CacheKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CacheKey.m"; sourceTree = "<group>"; };
 		11487E451ADE94D200627EFD /* SCPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicate.h; sourceTree = "<group>"; };
 		11487E461ADE94D200627EFD /* SCPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPredicate.m; sourceTree = "<group>"; };
 		114958941C8D6F9B0051F575 /* SCReferencesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCReferencesStore.h; sourceTree = "<group>"; };
 		114958951C8D6F9B0051F575 /* SCReferencesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCReferencesStore.m; sourceTree = "<group>"; };
+		114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplatesIntegrationTestsSpec.m; sourceTree = "<group>"; };
 		1150CF9B1B5789DF0080D5E3 /* SCUserRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SCUserRegister.json; sourceTree = "<group>"; };
 		1152FF8E1C049FBD001D267C /* SCPredicate+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCPredicate+LocalStorage.h"; sourceTree = "<group>"; };
 		1152FF8F1C049FBD001D267C /* SCPredicate+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCPredicate+LocalStorage.m"; sourceTree = "<group>"; };
@@ -284,6 +317,10 @@
 		116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUploadRequest.m; sourceTree = "<group>"; };
 		116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		117FADAA1D097F5E008C533D /* SCRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRelation.h; sourceTree = "<group>"; };
+		117FADAB1D097F5E008C533D /* SCRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRelation.m; sourceTree = "<group>"; };
+		117FADB01D09956B008C533D /* SCPleaseForRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForRelation.h; sourceTree = "<group>"; };
+		117FADB11D09956B008C533D /* SCPleaseForRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForRelation.m; sourceTree = "<group>"; };
 		1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectRevisionMismatchSpec.m; sourceTree = "<group>"; };
 		1183F7181C573BE90053673F /* LocalStorageSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalStorageSpec.m; sourceTree = "<group>"; };
 		118426891AC983A1001035A7 /* SCParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCParseManager.h; sourceTree = "<group>"; };
@@ -312,7 +349,17 @@
 		119A93621AFB8D6E001ADA7C /* SCParseManager+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCDataObject.m"; sourceTree = "<group>"; };
 		119A93641AFB911E001ADA7C /* SCParseManager+SCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCParseManager+SCUser.h"; sourceTree = "<group>"; };
 		119A93651AFB911E001ADA7C /* SCParseManager+SCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCParseManager+SCUser.m"; sourceTree = "<group>"; };
+		119BF88F1D060E3700A834B3 /* SCDataObject+ArrayOperators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+ArrayOperators.h"; sourceTree = "<group>"; };
+		119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+ArrayOperators.m"; sourceTree = "<group>"; };
+		119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SCDataObject.h"; sourceTree = "<group>"; };
+		119BF8941D06DFC900A834B3 /* NSError+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SCDataObject.m"; sourceTree = "<group>"; };
+		119BF8BA1D07F7EB00A834B3 /* BookStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookStore.h; sourceTree = "<group>"; };
+		119BF8BB1D07F7EB00A834B3 /* BookStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookStore.m; sourceTree = "<group>"; };
+		119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGeoPointSpec.m; sourceTree = "<group>"; };
 		119DFB451C903FA6001F41FC /* SCDBMigrationsBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SCDBMigrationsBundle.bundle; sourceTree = "<group>"; };
+		119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForTemplate.h; sourceTree = "<group>"; };
+		119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForTemplate.m; sourceTree = "<group>"; };
+		119E48D81CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForTemplateSpec.m; sourceTree = "<group>"; };
 		11A0E7A61B1756EB009CC2E1 /* SCWebhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWebhook.h; sourceTree = "<group>"; };
 		11A0E7A71B1756EB009CC2E1 /* SCWebhook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCWebhook.m; sourceTree = "<group>"; };
 		11A0E7A91B175840009CC2E1 /* SCWebhookResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCWebhookResponseObject.h; sourceTree = "<group>"; };
@@ -353,6 +400,9 @@
 		11E35B0E1C4F82740092E0A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11E47AFE1C3BD63400DB644A /* SCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFileManager.h; sourceTree = "<group>"; };
 		11E47AFF1C3BD63400DB644A /* SCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFileManager.m; sourceTree = "<group>"; };
+		11F211771D101F00009D6FF4 /* SCDataObject+RelationOperators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+RelationOperators.h"; sourceTree = "<group>"; };
+		11F211781D101F00009D6FF4 /* SCDataObject+RelationOperators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+RelationOperators.m"; sourceTree = "<group>"; };
+		11F211AC1D105885009D6FF4 /* DataObjectArrayOperatorsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectArrayOperatorsSpec.m; sourceTree = "<group>"; };
 		11F80C3C1ACEDF3600134A39 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Author.h; sourceTree = "<group>"; };
 		11F80C3D1ACEDF3600134A39 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Author.m; sourceTree = "<group>"; };
 		11F8BF7B1BE0F47D00091F58 /* SCDataObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Properties.h"; sourceTree = "<group>"; };
@@ -389,7 +439,7 @@
 		A6274DD21C69FB3600730460 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A6274DD81C69FB3600730460 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6274DDF1C69FB3600730460 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectManipulationsSpec.m; sourceTree = "<group>"; };
+		A669848C1C6343670056A228 /* DataObjectIncrementSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataObjectIncrementSpec.m; sourceTree = "<group>"; };
 		A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+Increment.h"; sourceTree = "<group>"; };
 		A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+Increment.m"; sourceTree = "<group>"; };
 		A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginSpec.m; sourceTree = "<group>"; };
@@ -513,11 +563,19 @@
 				11F8BF7C1BE0F47D00091F58 /* SCDataObject+Properties.m */,
 				A669848E1C63B54F0056A228 /* SCDataObject+Increment.h */,
 				A669848F1C63B54F0056A228 /* SCDataObject+Increment.m */,
+				119BF88F1D060E3700A834B3 /* SCDataObject+ArrayOperators.h */,
+				119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */,
+				11F211771D101F00009D6FF4 /* SCDataObject+RelationOperators.h */,
+				11F211781D101F00009D6FF4 /* SCDataObject+RelationOperators.m */,
 				11BE43DE1AC55BCA00FE96C5 /* SCDataObject.h */,
 				11BE43DF1AC55BCA00FE96C5 /* SCDataObject.m */,
 				112B2AB71BAD2AB300CC2FB6 /* Predicate */,
 				11961AC41B3D73A000874C31 /* SCFile.h */,
 				11961AC51B3D73A000874C31 /* SCFile.m */,
+				1143F8C01CFC47890023AA2A /* SCGeoPoint.h */,
+				1143F8C11CFC47890023AA2A /* SCGeoPoint.m */,
+				117FADAA1D097F5E008C533D /* SCRelation.h */,
+				117FADAB1D097F5E008C533D /* SCRelation.m */,
 			);
 			name = DataObject;
 			sourceTree = "<group>";
@@ -525,12 +583,14 @@
 		1106CE841B5DFF3700CEA452 /* SCDataObject */ = {
 			isa = PBXGroup;
 			children = (
+				119E48D81CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m */,
 				1184268C1AC9851C001035A7 /* SCDataObjectSpec.m */,
 				1104DAA41AEA5A8F0088F45E /* SCPredicateSpec.m */,
 				A6CC63641C58B24E005E0132 /* SCCompoundPredicateSpec.m */,
 				1106CE891B5E005800CEA452 /* SCPleaseSpec.m */,
 				A6BCC8EE1C563D14008A0B0A /* SCPleaseForViewSpec.m */,
 				11F9AECF1B61F92700B51341 /* SCFileSpec.m */,
+				119BF8C01D08062B00A834B3 /* SCGeoPointSpec.m */,
 			);
 			name = SCDataObject;
 			sourceTree = "<group>";
@@ -554,14 +614,20 @@
 				113C36A41B0224EF008723EC /* NSObject+SCParseHelper.m */,
 				11B0E6661BFCC4F700E36713 /* NSDictionary+JSONString.h */,
 				11B0E6671BFCC4F700E36713 /* NSDictionary+JSONString.m */,
+				114855981D1A7CF9008A3D2B /* NSDictionary+CacheKey.h */,
+				114855991D1A7CF9008A3D2B /* NSDictionary+CacheKey.m */,
 				11B0E66A1BFCCB0100E36713 /* NSString+JSONDictionary.h */,
 				11B0E66B1BFCCB0100E36713 /* NSString+JSONDictionary.m */,
+				114855941D1A7856008A3D2B /* NSString+PathManipulations.h */,
+				114855951D1A7856008A3D2B /* NSString+PathManipulations.m */,
 				111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */,
 				111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */,
 				116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */,
 				116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */,
 				113B2E4A1C48DA5400057F00 /* NSError+RevisionMismatch.h */,
 				113B2E4B1C48DA5400057F00 /* NSError+RevisionMismatch.m */,
+				119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */,
+				119BF8941D06DFC900A834B3 /* NSError+SCDataObject.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -774,6 +840,8 @@
 				A6BCC8FC1C56B4BB008A0B0A /* MessageView.m */,
 				A6750F3A1C57A14D004956C3 /* Device.h */,
 				A6750F3B1C57A14D004956C3 /* Device.m */,
+				119BF8BA1D07F7EB00A834B3 /* BookStore.h */,
+				119BF8BB1D07F7EB00A834B3 /* BookStore.m */,
 			);
 			name = MockClasses;
 			sourceTree = "<group>";
@@ -803,10 +871,13 @@
 				1183F7181C573BE90053673F /* LocalStorageSpec.m */,
 				A66D17351C5A13E7009A4EA4 /* UserLoginSpec.m */,
 				159E69E31C76F6000032D0CB /* UserRegistrationSpec.m */,
-				A669848C1C6343670056A228 /* DataObjectManipulationsSpec.m */,
+				A669848C1C6343670056A228 /* DataObjectIncrementSpec.m */,
+				11F211AC1D105885009D6FF4 /* DataObjectArrayOperatorsSpec.m */,
 				A697A63B1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m */,
+				114DF9861CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m */,
 				1182D3521C6A21970020307F /* DataObjectRevisionMismatchSpec.m */,
 				11013A941C86DE20009D0962 /* DataObjectFetchSpec.m */,
+				1143F8BC1CF579AE0023AA2A /* DataObjectDataTypesSpec.m */,
 				11E35B0E1C4F82740092E0A9 /* Info.plist */,
 			);
 			path = SyncanoIntegrationTests;
@@ -862,6 +933,10 @@
 				11BE43E71AC57AC600FE96C5 /* SCPlease.m */,
 				A6BCC8EA1C56372E008A0B0A /* SCPleaseForView.h */,
 				A6BCC8EB1C56372E008A0B0A /* SCPleaseForView.m */,
+				119E48751CE2685C006EA250 /* SCPleaseForTemplate.h */,
+				119E48761CE2685C006EA250 /* SCPleaseForTemplate.m */,
+				117FADB01D09956B008C533D /* SCPleaseForRelation.h */,
+				117FADB11D09956B008C533D /* SCPleaseForRelation.m */,
 			);
 			name = Please;
 			sourceTree = "<group>";
@@ -889,6 +964,7 @@
 				116B6C7E1C1AEF5100D602D1 /* SCUploadRequest.h in Headers */,
 				11CE3CBC1BCFDC3000DE3163 /* SCChannel.h in Headers */,
 				156CF1E31C8F556C0053A580 /* SCScript.h in Headers */,
+				117FADAC1D097F5E008C533D /* SCRelation.h in Headers */,
 				11CE3CD31BCFDC3000DE3163 /* NSData+MimeType.h in Headers */,
 				11CE3CCA1BCFDC3000DE3163 /* SCAPIClient.h in Headers */,
 				11CE3CC81BCFDC3000DE3163 /* SCAPIClient+SCFile.h in Headers */,
@@ -907,11 +983,14 @@
 				11B0E6681BFCC4F700E36713 /* NSDictionary+JSONString.h in Headers */,
 				11CE3CD01BCFDC3000DE3163 /* SCMacros.h in Headers */,
 				1142F0851C9FEEAD0047FB6C /* SCChannelHistoryResponse.h in Headers */,
+				117FADB21D09956B008C533D /* SCPleaseForRelation.h in Headers */,
+				1143F8C21CFC47890023AA2A /* SCGeoPoint.h in Headers */,
 				11CE3CB71BCFDC3000DE3163 /* SCWebhook.h in Headers */,
 				11CE3CC21BCFDC3000DE3163 /* SCParseManager.h in Headers */,
 				1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */,
 				116B6C831C1AFDEF00D602D1 /* NSString+MD5.h in Headers */,
 				11CE3CAD1BCFDC3000DE3163 /* SCFile.h in Headers */,
+				1148559A1D1A7CF9008A3D2B /* NSDictionary+CacheKey.h in Headers */,
 				11CE3CA21BCFDC3000DE3163 /* Syncano.h in Headers */,
 				11B0E66C1BFCCB0100E36713 /* NSString+JSONDictionary.h in Headers */,
 				11F8BF7D1BE0F47D00091F58 /* SCDataObject+Properties.h in Headers */,
@@ -921,9 +1000,12 @@
 				11F8BF831BE1083F00091F58 /* SCDataObject+LocalStorage.h in Headers */,
 				11CE3CBB1BCFDC3000DE3163 /* SCChannelDelegate.h in Headers */,
 				15094F3A1C6E9156007CD77D /* SCUser+UserDefaults.h in Headers */,
+				119E48771CE2685C006EA250 /* SCPleaseForTemplate.h in Headers */,
 				A6BCC8F51C56526B008A0B0A /* SCPleaseProtected.h in Headers */,
 				114958961C8D6F9B0051F575 /* SCReferencesStore.h in Headers */,
+				119BF8951D06DFC900A834B3 /* NSError+SCDataObject.h in Headers */,
 				11CE3CA41BCFDC3000DE3163 /* SCDataObject.h in Headers */,
+				11F211791D101F00009D6FF4 /* SCDataObject+RelationOperators.h in Headers */,
 				115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */,
 				11CE3CB91BCFDC3000DE3163 /* SCWebhookResponseObject.h in Headers */,
 				11F8BF7F1BE0F4A500091F58 /* SCLocalStore.h in Headers */,
@@ -932,6 +1014,8 @@
 				156CF1E71C8F651F0053A580 /* SCScriptEndpoint.h in Headers */,
 				11CE3CC41BCFDC3000DE3163 /* SCParseManager+SCDataObject.h in Headers */,
 				118895551C7EEC0500F683C8 /* SCDevice.h in Headers */,
+				119BF8911D060E3700A834B3 /* SCDataObject+ArrayOperators.h in Headers */,
+				114855961D1A7856008A3D2B /* NSString+PathManipulations.h in Headers */,
 				11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */,
 				11CE3CC01BCFDC3000DE3163 /* NSObject+SCParseHelper.h in Headers */,
 				A6BCC8EC1C56372E008A0B0A /* SCPleaseForView.h in Headers */,
@@ -1268,6 +1352,7 @@
 				1143A5C41B60D83100A720D6 /* SCJSONHelper.m in Sources */,
 				11F9AEDC1B62105C00B51341 /* SCCodeBoxSpec.m in Sources */,
 				A6750F3C1C57A14D004956C3 /* Device.m in Sources */,
+				119BF8C11D08062B00A834B3 /* SCGeoPointSpec.m in Sources */,
 				11BE43D41AC458EC00FE96C5 /* SyncanoSpec.m in Sources */,
 				11D7D1B21B660C4A00466E66 /* SCWebhookSpec.m in Sources */,
 				11B1DAEB1B58B866000D8488 /* CustomUserProfile.m in Sources */,
@@ -1277,9 +1362,11 @@
 				1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */,
 				1106CE8A1B5E005800CEA452 /* SCPleaseSpec.m in Sources */,
 				A6BCC8FD1C56B4BB008A0B0A /* MessageView.m in Sources */,
+				119E48D91CE5FE1C006EA250 /* SCPleaseForTemplateSpec.m in Sources */,
 				11F9AED01B61F92700B51341 /* SCFileSpec.m in Sources */,
 				11AFBC891AC58B5F002B1F2F /* SCAPIClientSpec.m in Sources */,
 				A6BCC8FA1C565792008A0B0A /* Message.m in Sources */,
+				119BF8BC1D07F7EB00A834B3 /* BookStore.m in Sources */,
 				1184268D1AC9851C001035A7 /* SCDataObjectSpec.m in Sources */,
 				1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */,
 			);
@@ -1290,9 +1377,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				11B0E6691BFCC4F700E36713 /* NSDictionary+JSONString.m in Sources */,
+				119E48781CE2685C006EA250 /* SCPleaseForTemplate.m in Sources */,
 				11CE3CBF1BCFDC3000DE3163 /* SCChannelNotificationMessage.m in Sources */,
 				11CE3CB21BCFDC3000DE3163 /* SCUserProfile.m in Sources */,
 				11CE3CA51BCFDC3000DE3163 /* SCDataObject.m in Sources */,
+				119BF8961D06DFC900A834B3 /* NSError+SCDataObject.m in Sources */,
 				11CE3CBD1BCFDC3000DE3163 /* SCChannel.m in Sources */,
 				A6BCC8ED1C56372E008A0B0A /* SCPleaseForView.m in Sources */,
 				11F8BF841BE1083F00091F58 /* SCDataObject+LocalStorage.m in Sources */,
@@ -1300,12 +1389,16 @@
 				11B0E66D1BFCCB0100E36713 /* NSString+JSONDictionary.m in Sources */,
 				11CE3CA31BCFDC3000DE3163 /* Syncano.m in Sources */,
 				11CE3CD61BCFDC3000DE3163 /* (null) in Sources */,
+				117FADB31D09956B008C533D /* SCPleaseForRelation.m in Sources */,
 				11CE3CC71BCFDC3000DE3163 /* SCParseManager+SCUser.m in Sources */,
 				11CE3CD21BCFDC3000DE3163 /* SCConstants.m in Sources */,
 				11F8BF801BE0F4A800091F58 /* SCLocalStore.m in Sources */,
+				117FADAD1D097F5E008C533D /* SCRelation.m in Sources */,
 				11CE3CCD1BCFDC3000DE3163 /* SCAPIClient+SCDataObject.m in Sources */,
+				1148559B1D1A7CF9008A3D2B /* NSDictionary+CacheKey.m in Sources */,
 				11CE3CCB1BCFDC3000DE3163 /* SCAPIClient.m in Sources */,
 				156CF1EC1C8F65880053A580 /* SCScriptEndpointResponse.m in Sources */,
+				1143F8C31CFC47890023AA2A /* SCGeoPoint.m in Sources */,
 				118895561C7EEC0500F683C8 /* SCDevice.m in Sources */,
 				11CE3CBA1BCFDC3000DE3163 /* SCWebhookResponseObject.m in Sources */,
 				156CF1E41C8F556C0053A580 /* SCScript.m in Sources */,
@@ -1313,6 +1406,7 @@
 				11CB51821C1871B2007978A7 /* SCRequest.m in Sources */,
 				156CF1E81C8F651F0053A580 /* SCScriptEndpoint.m in Sources */,
 				11CE3CB61BCFDC3000DE3163 /* SCTrace.m in Sources */,
+				114855971D1A7856008A3D2B /* NSString+PathManipulations.m in Sources */,
 				11CE3CC31BCFDC3000DE3163 /* SCParseManager.m in Sources */,
 				11F8BF7E1BE0F47D00091F58 /* SCDataObject+Properties.m in Sources */,
 				11CE3CA71BCFDC3000DE3163 /* SCPlease.m in Sources */,
@@ -1326,6 +1420,7 @@
 				11CE3CB41BCFDC3000DE3163 /* SCCodeBox.m in Sources */,
 				114958971C8D6F9B0051F575 /* SCReferencesStore.m in Sources */,
 				11E47B011C3BD63400DB644A /* SCFileManager.m in Sources */,
+				11F2117A1D101F00009D6FF4 /* SCDataObject+RelationOperators.m in Sources */,
 				1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */,
 				115E32091BF33FEA000130DE /* SCRegisterManager.m in Sources */,
 				11CE3CC91BCFDC3000DE3163 /* SCAPIClient+SCFile.m in Sources */,
@@ -1336,6 +1431,7 @@
 				11CB513C1C1829EB007978A7 /* SCRequestQueue.m in Sources */,
 				116B6C7F1C1AEF5100D602D1 /* SCUploadRequest.m in Sources */,
 				11CE3CAC1BCFDC3000DE3163 /* SCCompoundPredicate.m in Sources */,
+				119BF8921D060E3700A834B3 /* SCDataObject+ArrayOperators.m in Sources */,
 				1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */,
 				11CE3CC11BCFDC3000DE3163 /* NSObject+SCParseHelper.m in Sources */,
 				15094F3B1C6E9156007CD77D /* SCUser+UserDefaults.m in Sources */,
@@ -1346,16 +1442,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114DF9871CEB1FC30001CA00 /* TemplatesIntegrationTestsSpec.m in Sources */,
 				A697A63E1C61F7AA00D245F3 /* Book.m in Sources */,
 				1183F7191C573BE90053673F /* LocalStorageSpec.m in Sources */,
+				11E9F1BF1D105CC3007A74E0 /* DataObjectArrayOperatorsSpec.m in Sources */,
 				159E69E41C76F6000032D0CB /* UserRegistrationSpec.m in Sources */,
 				1182D3531C6A21970020307F /* DataObjectRevisionMismatchSpec.m in Sources */,
 				11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */,
 				A697A62D1C5F61DE00D245F3 /* (null) in Sources */,
+				119BF8C41D080DED00A834B3 /* BookStore.m in Sources */,
 				11013A951C86DE20009D0962 /* DataObjectFetchSpec.m in Sources */,
 				A66D17371C5A13EF009A4EA4 /* UserLoginSpec.m in Sources */,
-				A669848D1C6343670056A228 /* DataObjectManipulationsSpec.m in Sources */,
+				A669848D1C6343670056A228 /* DataObjectIncrementSpec.m in Sources */,
 				A697A63D1C61F7A700D245F3 /* Author.m in Sources */,
+				1143F8BD1CF579AE0023AA2A /* DataObjectDataTypesSpec.m in Sources */,
 				A697A63C1C60FC6200D245F3 /* DataViewIntegrationTestsSpec.m in Sources */,
 				A6FE12061C68BE3D00DAB682 /* FileFetchSpec.m in Sources */,
 			);

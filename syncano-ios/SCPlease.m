@@ -16,18 +16,8 @@
 #import "SCPleaseProtected.h"
 #import "NSObject+SCParseHelper.h"
 
-NSString *const SCPleaseParameterFields = @"fields";
-NSString *const SCPleaseParameterExcludedFields = @"excluded_fields";
-NSString *const SCPleaseParameterPageSize = @"page_size";
-NSString *const SCPleaseParameterOrderBy = @"order_by";
-NSString *const SCPleaseParameterIncludeCount = @"include_count";
 
 @interface SCPlease ()
-
-/**
- *  SCPredicate to use with API call
- */
-@property (nonatomic,retain) id<SCPredicateProtocol> predicate;
 
 /**
  *  Params of API call
@@ -45,6 +35,8 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 @property (nonatomic,retain) NSString *previousUrlString;
 
 @property (nonatomic) BOOL fromLocalStorage;
+
+@property (nonatomic,retain) NSDictionary *parsedQueryParameters;
 
 @end
 
@@ -115,12 +107,14 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 - (void)giveMeDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     self.parameters = nil;
     self.predicate = nil;
+    self.parsedQueryParameters = nil;
     [self getDataObjectFromAPIWithCompletion:completion];
 }
 
 - (void)giveMeDataObjectsWithParameters:(NSDictionary *)parameters completion:(SCDataObjectsCompletionBlock)completion {
     self.parameters = parameters;
     self.predicate = nil;
+    self.parsedQueryParameters = nil;
     [self getDataObjectFromAPIWithCompletion:completion];
 }
 
@@ -129,6 +123,7 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
                             completion:(SCDataObjectsCompletionBlock)completion {
     self.parameters = parameters;
     self.predicate = predicate;
+    self.parsedQueryParameters = nil;
     [self getDataObjectFromAPIWithCompletion:completion];
 }
 
@@ -141,7 +136,9 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 - (void)getDataObjectFromAPIWithCompletion:(SCDataObjectsCompletionBlock)completion {
     self.previousUrlString = nil;
     self.nextUrlString = nil;
+    self.parsedQueryParameters = nil;
     [self resolveQueryParameters:self.parameters withPredicate:self.predicate completion:^(NSDictionary *queryParameters) {
+        self.parsedQueryParameters = queryParameters;
         [self getDataObjectFromAPIWithParams:queryParameters completion:completion];
     }];
 
@@ -149,7 +146,7 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 
 - (void)giveMeNextPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
     if (self.nextUrlString.length > 0) {
-        [[self apiClient] GET:self.nextUrlString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[self apiClient] GET:self.nextUrlString parameters:self.parsedQueryParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self handleResponse:responseObject error:nil completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (completion) {
@@ -165,8 +162,8 @@ NSString *const SCPleaseParameterIncludeCount = @"include_count";
 }
 
 - (void)giveMePreviousPageOfDataObjectsWithCompletion:(SCDataObjectsCompletionBlock)completion {
-    if (self.previousUrlString) {
-        [[self apiClient] GET:self.previousUrlString parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    if (self.previousUrlString.length > 0) {
+        [[self apiClient] GET:self.previousUrlString parameters:self.parsedQueryParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self handleResponse:responseObject error:nil completion:completion];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if (completion) {

@@ -21,5 +21,8 @@
 @property (nonatomic,copy) NSNumber *lovers;
 @property (nonatomic,copy) NSNumber *readers;
 
+@property (nonatomic,copy) NSDictionary *metadata;
+@property (nonatomic,copy) NSArray *pages;
+
 + (Book *)mock;
 @end

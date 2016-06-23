@@ -10,6 +10,8 @@
 #import "Mantle/Mantle.h"
 #import "SCConstants.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class SCDataObject;
 
 @interface SCFile : MTLModel<MTLJSONSerializing>
@@ -17,17 +19,17 @@
 /**
  *  Remote URL of a file
  */
-@property (nonatomic,copy) NSURL *fileURL;
+@property (nullable,nonatomic,copy) NSURL *fileURL;
 
 /**
  *  Local path to the file
  */
-@property (nonatomic,copy) NSURL *storeURL;
+@property (nullable,nonatomic,copy) NSURL *storeURL;
 
 /**
  *  NSData representation of a file
  */
-@property (nonatomic,readonly) NSData *data;
+@property (nullable,nonatomic,readonly) NSData *data;
 
 /**
  *  After set this property to YES fetched data will be stored and can be accessed via 'data' property
@@ -55,7 +57,7 @@
  *  @param dataObject data object which this file is part of
  *  @param completion completion block
  */
-- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject withCompletion:(SCCompletionBlock)completion;
+- (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject withCompletion:(nullable SCCompletionBlock)completion;
 
 /**
  *  Attempts to fetch file from server.
@@ -73,7 +75,7 @@
  *
  *  @return Download task. You can use it f.e. to suspend or resume download.
  */
-- (NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL* )storePath withProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion;
+- (NSURLSessionDownloadTask *)fetchToFileInBackground:(NSURL* )storePath withProgress:(nullable SCFileDownloadProgressCompletionBlock)progress completion:(nullable SCFileFetchToDiskCompletionBlock)completion;
 
 /**
  *  Attempts to fetch file from server and store it under self.storeURL location.
@@ -83,6 +85,7 @@
  *
  *  @return Download task. You can use it f.e. to suspend or resume download.
  */
-- (NSURLSessionDownloadTask *)fetchToFileInBackgroundWithProgress:(SCFileDownloadProgressCompletionBlock)progress completion:(SCFileFetchToDiskCompletionBlock)completion;
+- (NSURLSessionDownloadTask *)fetchToFileInBackgroundWithProgress:(nullable SCFileDownloadProgressCompletionBlock)progress completion:(nullable SCFileFetchToDiskCompletionBlock)completion;
 
 @end
+NS_ASSUME_NONNULL_END

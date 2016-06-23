@@ -10,8 +10,10 @@
 #import "SCDataObject.h"
 #import <objc/runtime.h>
 #import "SCFile.h"
+#import "SCGeoPoint.h"
 #import "SCDataObject+Properties.h"
 #import "SCRegisterManager.h"
+#import "SCRelation.h"
 
 @implementation SCParseManager (SCDataObject)
 
@@ -22,7 +24,7 @@
     }
     [self.referencesStore addDataObject:parsedobject];
     [self resolveRelationsToObject:parsedobject withJSONObject:JSONObject];
-    [self resolveFilesForObject:parsedobject withJSONObject:JSONObject];
+    [self resolveCustomObjectsForObject:parsedobject withJSONObject:JSONObject];
     return parsedobject;
 }
 
@@ -63,19 +65,47 @@
     }
 }
 
-- (void)resolveFilesForObject:(id)parsedObject withJSONObject:(id)JSONObject {
+/*DEPRECATED from 4.1.3 */
+- (void)resolveFilesForObject:(id)parsedObject withJSONObject:(id)JSONObject DEPRECATED_MSG_ATTRIBUTE("Use resolveCustomObjectsForObject:withJSONObject: method instead.") {
+    [self resolveCustomObjectsForObject:parsedObject withJSONObject:JSONObject];
+}
+
+- (void)resolveCustomObjectsForObject:(id)parsedObject withJSONObject:(id)JSONObject {
     for (NSString *key in [JSONObject allKeys]) {
         if ([parsedObject respondsToSelector:NSSelectorFromString(key)]) {
             id object = JSONObject[key];
-            if ([object isKindOfClass:[NSDictionary class]] && object[@"type"] && [object[@"type"] isEqualToString:@"file"]) {
-                //TODO change to send error
-                NSError *error = nil;
-                SCFile *file = [[SCFile alloc] initWithDictionary:object error:&error];
-                SCValidateAndSetValue(parsedObject, key, file, YES, nil);
+            if ([object isKindOfClass:[NSDictionary class]] && object[@"type"]) {
+                if ([object[@"type"] isEqualToString:@"file"]) {
+                    //TODO change to send error
+                    NSError *error = nil;
+                    SCFile *file = [[SCFile alloc] initWithDictionary:object error:&error];
+                    SCValidateAndSetValue(parsedObject, key, file, YES, nil);
+                }
+                if ([object[@"type"] isEqualToString:@"geopoint"]) {
+                    //TODO change to send error
+                    NSError *error = nil;
+                    SCGeoPoint *geoPoint = [[SCGeoPoint alloc] initWithDictionary:object error:&error];
+                    SCValidateAndSetValue(parsedObject, key, geoPoint, YES, nil);
+                }
+                if ([object[@"type"] isEqualToString:@"relation"]) {
+                    NSString *targetValue = object[@"target"];
+                    Class targetClass;
+                    if (targetValue.length > 0) {
+                        if ([targetValue isEqualToString:@"self"]) {
+                            targetClass  = [parsedObject class];
+                        } else {
+                            targetClass = [SCRegisterManager classForAPIClassName:targetValue];
+                        }
+                    }
+                    NSError *error = nil;
+                    SCRelation *relation = [[SCRelation alloc] initWithDictionary:object error:&error targetClass:targetClass];
+                    SCValidateAndSetValue(parsedObject, key, relation, YES, nil);
+                }
             }
         }
     }
 }
+
 
 - (NSArray *)parsedObjectsOfClass:(__unsafe_unretained Class)objectClass fromJSONObject:(id)responseObject {
     NSArray *responseObjects = responseObject;
@@ -124,6 +154,7 @@
         serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
     }
     
+    
     //Remove SCFileProperties
     NSArray *fileProperties = [[dataObject class] propertiesNamesOfFileClass];
     if (fileProperties.count > 0) {
@@ -133,6 +164,22 @@
         }
         serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
     }
+    
+    
+    //Add SCRelations
+    NSArray *scRelationsProperties = [[dataObject class] propertiesNamesOfSCRelationClass];
+    if (scRelationsProperties.count > 0) {
+        NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
+        for (NSString *scRelationProperty in scRelationsProperties) {
+            SCRelation *relation = (SCRelation *)[dataObject valueForKey:scRelationProperty];
+            if (relation) {
+                NSArray *arrayRepresentation = [relation arrayRepresentation];
+                mutableSerialized[scRelationProperty] = arrayRepresentation;
+            }
+        }
+        serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
+    }
+    
     return serialized;
 }
 @end

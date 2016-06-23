@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol SCPredicateProtocol <NSObject>
 
 @required
@@ -16,14 +18,14 @@
  *
  *  @return string query representation
  */
-- (NSString *)queryRepresentation;
+- (nullable NSString *)queryRepresentation;
 
 /**
  *  Returns raw preduicate
  *
  *  @return NSDictionary with raw predicate
  */
-- (NSDictionary<NSString*,NSDictionary*> *)rawPredicate;
+- (nullable NSDictionary<NSString*,NSDictionary*> *)rawPredicate;
 @optional
 
 /**
@@ -31,5 +33,6 @@
  *
  *  @return NSPredicate representation of a query
  */
-- (NSPredicate *)nspredicateRepresentation;
+- (nullable NSPredicate *)nspredicateRepresentation;
 @end
+NS_ASSUME_NONNULL_END

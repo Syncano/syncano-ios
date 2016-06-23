@@ -11,6 +11,8 @@
 
 @class Syncano, SCRequest;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Base class for API calls
  */
@@ -34,7 +36,7 @@
  *
  *  @return void
  */
-- (void)GETWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)GETWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to GET method call
@@ -48,7 +50,7 @@
  *
  *  @return void
  */
-- (void)GETWithPathWithoutQueue:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)GETWithPathWithoutQueue:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to POST method call added to queue
@@ -59,7 +61,7 @@
  *
  *  @return void
  */
-- (void)POSTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)POSTWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to PUT method call added to queue
@@ -70,7 +72,7 @@
  *
  *  @return void
  */
-- (void)PUTWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)PUTWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to PATCH method call added to queue
@@ -81,7 +83,7 @@
  *
  *  @return void
  */
-- (void)PATCHWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)PATCHWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to DELETE method call added to queue
@@ -92,7 +94,7 @@
  *
  *  @return NSURLSessionDataTask object
  */
-- (void)DELETEWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)DELETEWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to upload file method call added to queue
@@ -102,7 +104,7 @@
  *  @param fileData     NSData file representation
  *  @param completion   completion block
  */
-- (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion;
+- (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to GET method call without queue
@@ -113,7 +115,7 @@
  *
  *  @return void
  */
-- (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (NSURLSessionDataTask *)getTaskWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to POST method call without queue
@@ -124,7 +126,7 @@
  *
  *  @return void
  */
-- (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (NSURLSessionDataTask *)postTaskWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to PUT method call without queue
@@ -135,7 +137,7 @@
  *
  *  @return void
  */
-- (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (NSURLSessionDataTask *)putTaskWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to PATCH method call without queue
@@ -146,7 +148,7 @@
  *
  *  @return void
  */
-- (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (NSURLSessionDataTask *)patchTaskWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to DELETE method call without queue
@@ -157,7 +159,7 @@
  *
  *  @return NSURLSessionDataTask object
  */
-- (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 
 @end
@@ -166,3 +168,8 @@
 - (void)initializeReachabilityManager;
 - (BOOL)reachable;
 @end
+
+@interface SCAPIClient (CacheKey)
+- (void)checkAndResolveCacheKeyExistanceInPayload:(NSDictionary *)payload forPath:(NSString *)path completion:(void(^)(NSString *path, NSDictionary *payload))completion;
+@end
+NS_ASSUME_NONNULL_END

@@ -9,6 +9,7 @@
 #import "SCPleaseForView.h"
 #import "SCAPIClient+SCDataObject.h"
 #import "SCPleaseProtected.h"
+#import "NSDictionary+CacheKey.h"
 
 @interface SCPleaseForView ()
 
@@ -48,4 +49,16 @@
 }
 
 
+@end
+
+@implementation SCPleaseForView (Cache)
+- (void)giveMeDataObjectsFromCacheWithKey:(NSString *)cacheKey withCompletion:(SCDataObjectsCompletionBlock)completion {
+    [self giveMeDataObjectsWithParameters:[NSDictionary dictionaryWithCacheKey:cacheKey] completion:completion];
+}
+- (void)giveMeDataObjectsWithParameters:(NSDictionary *)parameters fromCacheWithKey:(NSString *)cacheKey completion:(SCDataObjectsCompletionBlock)completion {
+    [self giveMeDataObjectsWithParameters:[parameters dictionaryByAddingCacheKey:cacheKey] completion:completion];
+}
+- (void)giveMeDataObjectsWithPredicate:(id<SCPredicateProtocol>)predicate parameters:(NSDictionary *)parameters fromCacheWithKey:(NSString *)cacheKey completion:(SCDataObjectsCompletionBlock)completion {
+    [self giveMeDataObjectsWithPredicate:predicate parameters:[parameters dictionaryByAddingCacheKey:cacheKey] completion:completion];
+}
 @end

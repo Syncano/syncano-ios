@@ -32,6 +32,15 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.2.0** - 2016-06-23
+    * Added Nullability annotations
+    * Added automatic logout before login new user
+    * Added **template_response** handler class SCPleaseForTemplate
+    * Added **SCGeoPoint** class to handle **geopoint** data type
+    * Added **SCRelation** class to handle **relation** data type
+    * Added methods in SCDataObject to handle  `_add` , `_addunique` and `_remove` operators for **array** data type
+    * Added SCPredicate categories for relation, geopoint and reference data types
+    * Fixed some bugs and made some improvements
 * **4.1.2** - 2016-04-20
     * Updated AFNetworking version to 3.1.0
     * Updated UIKeyChainStore version to 2.1.0

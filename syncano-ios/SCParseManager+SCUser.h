@@ -9,11 +9,13 @@
 #import "SCParseManager.h"
 @class SCUser;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCParseManager (SCUser)
 
 
-@property (nonatomic,readonly) Class userClass;
-@property (nonatomic,readonly) Class userProfileClass;
+@property (nullable,nonatomic,readonly) Class userClass;
+@property (nullable,nonatomic,readonly) Class userProfileClass;
 
 
 /**
@@ -37,5 +39,6 @@
  *
  *  @return SCUser or subclass object
  */
-- (id)parsedUserObjectFromJSONObject:(id)JSONObject;
+- (nullable id)parsedUserObjectFromJSONObject:(id)JSONObject;
 @end
+NS_ASSUME_NONNULL_END
