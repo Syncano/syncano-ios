@@ -76,6 +76,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param syncano    provided Syncano instance
  *  @param completion completion block
  */
-- (void)deleteFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
+- (void)deleteFromSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion;
 @end
 NS_ASSUME_NONNULL_END

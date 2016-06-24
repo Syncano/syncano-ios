@@ -63,7 +63,7 @@ static NSString * const kDeviceMetadata = @"metadata";
     [self deleteUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
 }
 
-- (void)deleteFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion {
+- (void)deleteFromSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
     [self deleteUsingAPIClient:syncano.apiClient withCompletion:completion];
 }
 
