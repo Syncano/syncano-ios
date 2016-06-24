@@ -63,5 +63,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)saveToSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
 
+/**
+ *  Deletes device from API using singleton Syncano instance
+ *
+ *  @param completion completion block
+ */
+- (void)deleteWithCompletion:(SCCompletionBlock)completion;
+
+/**
+ *  Deletes device from API using provided Syncano instance
+ *
+ *  @param syncano    provided Syncano instance
+ *  @param completion completion block
+ */
+- (void)deleteFromSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion;
 @end
 NS_ASSUME_NONNULL_END
