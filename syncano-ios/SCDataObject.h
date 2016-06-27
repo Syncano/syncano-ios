@@ -51,7 +51,16 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return String with API class name
  */
-+ (nullable NSString *)viewNameForAPI;
++ (nullable NSString *)viewNameForAPI DEPRECATED_MSG_ATTRIBUTE("Use dataPointNameForAPI method instead");
+
+/**
+ *  Returns data point name used in Syncano API, by default this method returns nil.
+ *  Use it when you want to create a class which is always fetched using a data point.
+ *  When you set dataPointNameForAPI, [YourClass please] will target queries to the view instead of raw class.
+ *
+ *  @return String with API class name
+ */
++ (nullable NSString *)dataPointNameForAPI;
 
 /**
  *  Return custom property mapping between iOS class an API class
@@ -83,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease instance
  */
-+ (SCPlease *)pleaseForView:(NSString*)viewName;
++ (SCPlease *)pleaseForView:(NSString*)viewName DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataPoint: method instead");
 
 /**
  *  Returns SCPlease instance for provided Syncano instance
@@ -93,7 +102,26 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCPlease instance
  */
-+ (SCPlease *)pleaseForView:(NSString*)viewName fromSyncano:(Syncano *)syncano;
++ (SCPlease *)pleaseForView:(NSString*)viewName fromSyncano:(Syncano *)syncano DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataPoint:fromSyncano: method instead");
+
+/**
+ *  Returns SCPlease instance for Syncano singleton
+ *
+ *  @param dataPointName Name of the Data Point
+ *
+ *  @return SCPlease instance
+ */
++ (SCPlease *)pleaseForDataPoint:(NSString*)dataPointName;
+
+/**
+ *  Returns SCPlease instance for provided Syncano instance
+ *
+ *  @param dataPointName Name of the Data Point
+ *  @param syncano Syncano instance, which SCPlease will use to query objects from
+ *
+ *  @return SCPlease instance
+ */
++ (SCPlease *)pleaseForDataPoint:(NSString *)dataPointName fromSyncano:(Syncano *)syncano;
 
 /**
  *  Returns SCPlease instance for Syncano singleton
