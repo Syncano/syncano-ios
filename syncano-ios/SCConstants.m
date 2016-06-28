@@ -44,6 +44,7 @@ NSString *const SCPleaseParameterFields = @"fields";
 NSString *const SCPleaseParameterExcludedFields = @"excluded_fields";
 NSString *const SCPleaseParameterPageSize = @"page_size";
 NSString *const SCPleaseParameterOrderBy = @"order_by";
+NSString *const SCPleaseParameterOrderAscending = @"SCPleaseParameterOrderAscending";
 NSString *const SCPleaseParameterIncludeCount = @"include_count";
 NSString *const SCPleaseParameterCacheKey = @"cache_key";
 
