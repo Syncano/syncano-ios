@@ -13,7 +13,7 @@
 #import "SCParseManager.h"
 #import "SCPlease.h"
 #import "SCPleaseForView.h"
-#import "SCPleaseForDataPoint.h"
+#import "SCPleaseForDataEndpoint.h"
 #import "SCPleaseForTemplate.h"
 #import "SCDataObject+Properties.h"
 #import "SCDataObject+Increment.h"
@@ -30,11 +30,11 @@
     return className;
 }
 
-+ (NSString *)viewNameForAPI DEPRECATED_MSG_ATTRIBUTE("Use dataPointNameForAPI method instead") {
++ (NSString *)viewNameForAPI DEPRECATED_MSG_ATTRIBUTE("Use dataEndpointNameForAPI method instead") {
     return nil;
 }
 
-+ (NSString *)dataPointNameForAPI {
++ (NSString *)dataEndpointNameForAPI {
     return nil;
 }
 
@@ -97,8 +97,8 @@
 }
 
 + (SCPlease *)please {
-    if ([self dataPointNameForAPI] != nil) {
-        return [self pleaseForDataPoint:[self dataPointNameForAPI]];
+    if ([self dataEndpointNameForAPI] != nil) {
+        return [self pleaseForDataEndpoint:[self dataEndpointNameForAPI]];
     }
     if([self viewNameForAPI] != nil) {
         return [self pleaseForView:[self viewNameForAPI]];
@@ -106,17 +106,17 @@
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class]];
 }
 
-+ (SCPlease *)pleaseForView:(NSString *)viewName DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataPoint: method instead") {
++ (SCPlease *)pleaseForView:(NSString *)viewName DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataEndpoint: method instead") {
     return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName];
 }
 
-+ (SCPlease *)pleaseForDataPoint:(NSString *)dataPointName {
-    return [SCPleaseForDataPoint pleaseInstanceForDataObjectWithClass:[self class] forDataPoint:dataPointName];
++ (SCPlease *)pleaseForDataEndpoint:(NSString *)dataEndpointName {
+    return [SCPleaseForDataEndpoint pleaseInstanceForDataObjectWithClass:[self class] fordataEndpoint:dataEndpointName];
 }
 
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano {
-    if([self dataPointNameForAPI] != nil) {
-        return [self pleaseForDataPoint:[self dataPointNameForAPI] fromSyncano:syncano];
+    if([self dataEndpointNameForAPI] != nil) {
+        return [self pleaseForDataEndpoint:[self dataEndpointNameForAPI] fromSyncano:syncano];
     }
     if([self viewNameForAPI] != nil) {
         return [self pleaseForView:[self viewNameForAPI] fromSyncano:syncano];
@@ -124,12 +124,12 @@
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class] forSyncano:syncano];
 }
 
-+ (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataPoint:fromSyncano: method instead") {
++ (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataEndpoint:fromSyncano: method instead") {
     return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano];
 }
 
-+ (SCPlease *)pleaseForDataPoint:(NSString *)dataPointName fromSyncano:(Syncano *)syncano {
-    return [SCPleaseForDataPoint pleaseInstanceForDataObjectWithClass:[self class] forDataPoint:dataPointName forSyncano:syncano];
++ (SCPlease *)pleaseForDataEndpoint:(NSString *)dataEndpointName fromSyncano:(Syncano *)syncano {
+    return [SCPleaseForDataEndpoint pleaseInstanceForDataObjectWithClass:[self class] fordataEndpoint:dataEndpointName forSyncano:syncano];
 }
 
 + (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName {

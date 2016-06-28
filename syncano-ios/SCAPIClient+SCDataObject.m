@@ -19,13 +19,13 @@
     [self GETWithPath:path params:nil completion:completion];
 }
 
-- (void)getDataObjectsFromViewName:(NSString *)viewName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("Use getDataObjectsFromDataPointWithName:params:completion: method instead") {
+- (void)getDataObjectsFromViewName:(NSString *)viewName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("Use getDataObjectsFromdataEndpointWithName:params:completion: method instead") {
     NSString *path = [NSString stringWithFormat:@"api/objects/%@/get/",viewName];
     [self GETWithPath:path params:params completion:completion];
 }
 
-- (void)getDataObjectsFromDataPointWithName:(NSString *)dataPointName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
-    NSString *path = [NSString stringWithFormat:@"endpoints/data/%@/get/",dataPointName];
+- (void)getDataObjectsFromdataEndpointWithName:(NSString *)dataEndpointName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+    NSString *path = [NSString stringWithFormat:@"endpoints/data/%@/get/",dataEndpointName];
     [self GETWithPath:path params:params completion:completion];
 }
 

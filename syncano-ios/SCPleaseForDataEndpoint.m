@@ -1,49 +1,49 @@
 //
-//  SCPleaseForDataPoint.m
+//  SCPleaseForDataEndpoint.m
 //  syncano-ios
 //
 //  Created by Jan Lipmann on 27.06.2016.
 //  Copyright © 2016 Syncano. All rights reserved.
 //
 
-#import "SCPleaseForDataPoint.h"
+#import "SCPleaseForDataEndpoint.h"
 #import "SCAPIClient+SCDataObject.h"
 #import "SCPleaseProtected.h"
 #import "NSDictionary+CacheKey.h"
 
-@interface SCPleaseForDataPoint ()
+@interface SCPleaseForDataEndpoint ()
 
 /**
  *  API class name representation of connected SCDataObject Class
  */
-@property (nonatomic,retain) NSString *dataPointName;
+@property (nonatomic,retain) NSString *dataEndpointName;
 
 @end
 
-@implementation SCPleaseForDataPoint
+@implementation SCPleaseForDataEndpoint
 
-- (instancetype)initWithDataObjectClass:(Class)dataObjectClass forDataPoint:(nonnull NSString *)dataPointName {
+- (instancetype)initWithDataObjectClass:(Class)dataObjectClass fordataEndpoint:(nonnull NSString *)dataEndpointName {
     self = [super init];
     if (self) {
-        self.dataPointName = dataPointName;
+        self.dataEndpointName = dataEndpointName;
     }
     return self;
 }
 
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forDataPoint:(nonnull NSString *)dataPointName {
-    SCPleaseForDataPoint* instance = (SCPleaseForDataPoint*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass];
-    instance.dataPointName = dataPointName;
++ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass fordataEndpoint:(nonnull NSString *)dataEndpointName {
+    SCPleaseForDataEndpoint* instance = (SCPleaseForDataEndpoint*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass];
+    instance.dataEndpointName = dataEndpointName;
     return instance;
 }
 
-+ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forDataPoint:(nonnull NSString *)dataPointName forSyncano:(nonnull Syncano *)syncano {
-    SCPleaseForDataPoint* instance = (SCPleaseForDataPoint*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass forSyncano:syncano];
-    instance.dataPointName = dataPointName;
++ (SCPlease *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass fordataEndpoint:(nonnull NSString *)dataEndpointName forSyncano:(nonnull Syncano *)syncano {
+    SCPleaseForDataEndpoint* instance = (SCPleaseForDataEndpoint*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass forSyncano:syncano];
+    instance.dataEndpointName = dataEndpointName;
     return instance;
 }
 
 - (void)getDataObjectFromAPIWithParams:(NSDictionary*)queryParameters completion:(SCDataObjectsCompletionBlock)completion {
-    [[self apiClient] getDataObjectsFromDataPointWithName:self.dataPointName params:queryParameters completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
+    [[self apiClient] getDataObjectsFromdataEndpointWithName:self.dataEndpointName params:queryParameters completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
         [self handleResponse:responseObject error:error completion:completion];
     }];
 }
@@ -51,7 +51,7 @@
 
 @end
 
-@implementation SCPleaseForDataPoint (Cache)
+@implementation SCPleaseForDataEndpoint (Cache)
 - (void)giveMeDataObjectsFromCacheWithKey:(NSString *)cacheKey withCompletion:(SCDataObjectsCompletionBlock)completion {
     [self giveMeDataObjectsWithParameters:[NSDictionary dictionaryWithCacheKey:cacheKey] completion:completion];
 }

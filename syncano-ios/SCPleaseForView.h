@@ -9,7 +9,7 @@
 #import "SCPlease.h"
 
 NS_ASSUME_NONNULL_BEGIN
-DEPRECATED_MSG_ATTRIBUTE("Use SCPleaseForDataPoint instead")
+DEPRECATED_MSG_ATTRIBUTE("Use SCPleaseForDataEndpoint instead")
 @interface SCPleaseForView : SCPlease
 
 /**
