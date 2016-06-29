@@ -86,6 +86,7 @@ extern NSString *const SCPleaseParameterFields;
 extern NSString *const SCPleaseParameterExcludedFields;
 extern NSString *const SCPleaseParameterPageSize;
 extern NSString *const SCPleaseParameterOrderBy;
+extern NSString *const SCPleaseParameterOrderAscending;
 extern NSString *const SCPleaseParameterIncludeCount;
 extern NSString *const SCPleaseParameterCacheKey;
 
