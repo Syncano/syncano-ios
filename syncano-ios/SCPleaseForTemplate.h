@@ -15,7 +15,7 @@
  *  Initializes new empty SCPlease object for provided SCDataObject class
  *
  *  @param dataObjectClass SCDataObject scope class
- *  @param viewName Name of Data Object View
+ *  @param template Name of Template
  *
  *  @return SCPlease object
  */
@@ -25,7 +25,7 @@
  *  Creates a new SCPlease object for provided class for singleton Syncano instance.
  *
  *  @param dataObjectClass SCDataObject scope class
- *  @param viewName Name of Data Object View
+ *  @param template Name of Template
  *
  *  @return SCPlease object
  */
@@ -35,7 +35,7 @@
  *  Creates a new SCPlease object for provided class for provided Syncano instance
  *
  *  @param dataObjectClass SCDataObject scope class
- *  @param viewName Name of Data Object View
+ *  @param template Name of Template
  *  @param syncano         Syncano instance
  *
  *  @return SCPlease object
