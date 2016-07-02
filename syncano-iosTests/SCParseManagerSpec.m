@@ -99,8 +99,6 @@ describe(@"SCParseManager", ^{
         
         it(@"should register class", ^{
             
-            NSUInteger count = SCRegisterManager.registeredClasses.count;
-            
             [SCRegisterManager registerClass:[Book class]];
             
             SCClassRegisterItem *registeredItem = [SCRegisterManager registeredItemForClass:[Book class]];
@@ -109,7 +107,6 @@ describe(@"SCParseManager", ^{
             [[registeredItem.className should] equal:@"Book"];
             [[registeredItem.classNameForAPI should] equal:@"book"];
             [[registeredItem.properties[@"author"] should] equal:@"Author"];
-            [[theValue(SCRegisterManager.registeredClasses.count) should] equal:theValue(count+1)];
         });
         
         it(@"should return realtions for Book class", ^{

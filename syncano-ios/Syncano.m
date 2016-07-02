@@ -10,6 +10,7 @@
 #import "SCAPIClient.h"
 #import "SCParseManager.h"
 #import "SCLocalStore.h"
+#import "SCRegisterManager.h"
 
 static SCLocalStore *_localStore;
 
@@ -65,6 +66,14 @@ static SCLocalStore *_localStore;
 
 + (SCAPIClient *)sharedAPIClient {
     return [[Syncano instance] apiClient];
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [SCRegisterManager autoregisterDataObjectSubclasses];
+    }
+    return self;
 }
 
 - (instancetype)initWithApiKey:(NSString *)apiKey instanceName:(NSString *)instanceName {

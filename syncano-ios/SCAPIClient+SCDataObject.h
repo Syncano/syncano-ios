@@ -37,6 +37,15 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param params     parameters
  *  @param completion completion block
  */
-- (void)getDataObjectsFromViewName:(NSString *)viewName params:(nullable NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)getDataObjectsFromViewName:(NSString *)viewName params:(nullable NSDictionary *)params completion:(SCAPICompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("Use getDataObjectsFromdataEndpointWithName:params:completion: method instead");
+
+/**
+ *  Attempts to fetch data object from data point
+ *
+ *  @param viewName   name of a data point
+ *  @param params     parameters
+ *  @param completion completion block
+ */
+- (void)getDataObjectsFromdataEndpointWithName:(NSString *)dataEndpointName params:(nullable NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 @end
 NS_ASSUME_NONNULL_END
