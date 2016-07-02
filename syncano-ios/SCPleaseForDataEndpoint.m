@@ -10,6 +10,8 @@
 #import "SCAPIClient+SCDataObject.h"
 #import "SCPleaseProtected.h"
 #import "NSDictionary+CacheKey.h"
+#import "SCAPIClient_SCAPIClient.h"
+
 
 @interface SCPleaseForDataEndpoint ()
 
@@ -43,7 +45,9 @@
 }
 
 - (void)getDataObjectFromAPIWithParams:(NSDictionary*)queryParameters completion:(SCDataObjectsCompletionBlock)completion {
-    [[self apiClient] getDataObjectsFromdataEndpointWithName:self.dataEndpointName params:queryParameters completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
+    SCAPIClient *apiClient = [self.apiClient copy];
+    apiClient.apiVersion = SCAPIVersion_1_1;
+    [apiClient getDataObjectsFromdataEndpointWithName:self.dataEndpointName params:queryParameters completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
         [self handleResponse:responseObject error:error completion:completion];
     }];
 }
