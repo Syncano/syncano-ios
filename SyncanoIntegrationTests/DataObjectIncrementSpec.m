@@ -92,7 +92,7 @@ describe(@"Data object increment", ^{
                 _error = error;
             }];
             [[expectFutureValue(theValue(_blockFinished)) shouldEventuallyBeforeTimingOutAfter(10.0)] beYes];
-            [[_error should] beNonNil];
+            [[_error should] beNil];
             
         });
     });
