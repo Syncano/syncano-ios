@@ -11,6 +11,7 @@
 #import "SCAPIClient.h"
 #import "NSObject+SCParseHelper.h"
 #import "SCParseManager+SCUser.h"
+#import "UICKeyChainStore/UICKeyChainStore.h"
 #import "NSObject+SCParseHelper.h"
 #import "SCUser+UserDefaults.h"
 

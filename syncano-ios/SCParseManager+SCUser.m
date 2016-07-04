@@ -11,7 +11,9 @@
 #import "SCParseManager+SCDataObject.h"
 #import "SCUser.h"
 #import "NSObject+SCParseHelper.h"
+#import "UICKeyChainStore/UICKeyChainStore.h"
 #import "SCRegisterManager.h"
+
 
 @implementation SCParseManager (SCUser)
 
@@ -52,9 +54,9 @@
             id profile = [self parsedObjectOfClass:(self.userProfileClass) ? self.userProfileClass : UserProfileClass fromJSONObject:JSONProfile];
             SCValidateAndSetValue(user, kSCUserJSONKeyUserProfile, profile, YES, nil);
         }
-//        NSString *userKey = [JSONObject[kSCUserJSONKeyUserKey] sc_stringOrEmpty];
-//        UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.syncano"];
-//        keychain[kUserKeyKeychainKey] = userKey;
+        NSString *userKey = [JSONObject[kSCUserJSONKeyUserKey] sc_stringOrEmpty];
+        UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.syncano"];
+        keychain[kUserKeyKeychainKey] = userKey;
         return user;
     }
     return nil;
