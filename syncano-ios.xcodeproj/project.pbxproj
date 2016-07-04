@@ -402,6 +402,7 @@
 		11E35B0A1C4F82740092E0A9 /* syncano-IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "syncano-IntegrationTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncanoIntegrationTestsSpec.m; sourceTree = "<group>"; };
 		11E35B0E1C4F82740092E0A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11E437C81D2AA13A00B408D6 /* SCDataObjectProtected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCDataObjectProtected.h; sourceTree = "<group>"; };
 		11E47AFE1C3BD63400DB644A /* SCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFileManager.h; sourceTree = "<group>"; };
 		11E47AFF1C3BD63400DB644A /* SCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFileManager.m; sourceTree = "<group>"; };
 		11F211771D101F00009D6FF4 /* SCDataObject+RelationOperators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+RelationOperators.h"; sourceTree = "<group>"; };
@@ -571,6 +572,7 @@
 				119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */,
 				11F211771D101F00009D6FF4 /* SCDataObject+RelationOperators.h */,
 				11F211781D101F00009D6FF4 /* SCDataObject+RelationOperators.m */,
+				11E437C81D2AA13A00B408D6 /* SCDataObjectProtected.h */,
 				11BE43DE1AC55BCA00FE96C5 /* SCDataObject.h */,
 				11BE43DF1AC55BCA00FE96C5 /* SCDataObject.m */,
 				112B2AB71BAD2AB300CC2FB6 /* Predicate */,

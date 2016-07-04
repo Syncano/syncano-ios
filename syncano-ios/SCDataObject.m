@@ -267,6 +267,17 @@
     }];
 }
 
+- (void)saveMeIfNeededWithAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
+    if (self.objectId == nil) {
+        [self saveUsingAPIClient:apiClient withCompletion:completion];
+        
+    } else {
+        if (completion) {
+            completion(nil);
+        }
+    }
+}
+
 - (void)updateObjectAfterSaveWithDataFromJSONObject:(id)responseObject {
     self.objectId = responseObject[@"id"];
     self.links = responseObject[@"links"];

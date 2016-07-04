@@ -12,6 +12,7 @@
 #import "NSError+RevisionMismatch.h"
 #import "SCConstants.h"
 #import "NSError+SCDataObject.h"
+#import "SCDataObjectProtected.h"
 
 typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
     SCDataObjectArrayOperatorAdd,
@@ -161,26 +162,28 @@ typedef NS_ENUM(NSUInteger, SCDataObjectArrayOperator) {
 }
 
 - (void)saveArrayForKey:(NSString *)key params:(NSDictionary *)params apiClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
-    typeof(self) __weak selfWeak = self;
-    [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if(error) {
+    [self saveMeIfNeededWithAPIClient:apiClient completion:^(NSError * _Nullable error) {
+        typeof(self) __weak selfWeak = self;
+        [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            if(error) {
+                if(completion) {
+                    completion(error);
+                }
+                if(revisionMismatchBlock) {
+                    [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                }
+                return;
+            }
+            
+            [selfWeak fillKey:key fromResponseObject:responseObject];
+            
             if(completion) {
-                completion(error);
+                completion(nil);
             }
             if(revisionMismatchBlock) {
-                [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                revisionMismatchBlock(NO,nil);
             }
-            return;
-        }
-        
-        [selfWeak fillKey:key fromResponseObject:responseObject];
-        
-        if(completion) {
-            completion(nil);
-        }
-        if(revisionMismatchBlock) {
-            revisionMismatchBlock(NO,nil);
-        }
+        }];
     }];
 }
 @end
