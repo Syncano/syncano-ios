@@ -14,6 +14,7 @@
 #import "UICKeyChainStore/UICKeyChainStore.h"
 #import "SCRegisterManager.h"
 
+
 @implementation SCParseManager (SCUser)
 
 - (void)setUserClass:(__unsafe_unretained Class)userClass {

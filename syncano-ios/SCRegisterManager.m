@@ -11,6 +11,8 @@
 #import "SCParseManager.h"
 #import <objc/runtime.h>
 #import "SCUserProfile.h"
+#import "SCUser.h"
+#import "SCParseManager+SCUser.h"
 
 @implementation SCClassRegisterItem
 @end
@@ -58,6 +60,7 @@ NSArray *ClassGetSubclasses(Class parentClass)
     NSArray *classes = ClassGetSubclasses([SCDataObject class]);
     for (Class classToRegister in classes) {
         if ([classToRegister isSubclassOfClass:[SCUserProfile class]]) {
+            [[SCParseManager sharedSCParseManager] registerUserProfileClass:classToRegister];
             continue;
         }
         [self registerClass:classToRegister];
