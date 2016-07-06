@@ -11,7 +11,6 @@
 #import "SCAPIClient.h"
 #import "NSObject+SCParseHelper.h"
 #import "SCParseManager+SCUser.h"
-#import "UICKeyChainStore/UICKeyChainStore.h"
 #import "NSObject+SCParseHelper.h"
 #import "SCUser+UserDefaults.h"
 
@@ -33,9 +32,7 @@ NSString *const kSCUserJSONKeyUserProfile = @"profile";
 }
 
 - (NSString *)userKey {
-    UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.syncano"];
-    NSString *userKey = [keychain stringForKey:kUserKeyKeychainKey];
-    return userKey;
+    return [[self class] userKeyFromDefaults];
 }
 
 + (NSDictionary *)paramsForAuthToken:(NSString *)authToken {
@@ -164,8 +161,6 @@ NSString *const kSCUserJSONKeyUserProfile = @"profile";
 
 + (void)sweepLoggedInUserData {
     [self removeUserFromDefaults];
-    UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.syncano"];
-    [keychain removeItemForKey:kUserKeyKeychainKey];
     _currentUser = nil;
 }
 
