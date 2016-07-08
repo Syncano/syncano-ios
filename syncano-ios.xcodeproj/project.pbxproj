@@ -32,6 +32,8 @@
 		1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */; };
 		1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */; };
 		1109EF631ACD2E2100BD18A6 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
+		1132DDE11D2FBB010024EF74 /* SCDataObject+KeyManipulation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1132DDDF1D2FBB010024EF74 /* SCDataObject+KeyManipulation.h */; };
+		1132DDE21D2FBB010024EF74 /* SCDataObject+KeyManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1132DDE01D2FBB010024EF74 /* SCDataObject+KeyManipulation.m */; };
 		113B2E4C1C48DA5400057F00 /* NSError+RevisionMismatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 113B2E4A1C48DA5400057F00 /* NSError+RevisionMismatch.h */; };
 		113B2E4D1C48DA5400057F00 /* NSError+RevisionMismatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 113B2E4B1C48DA5400057F00 /* NSError+RevisionMismatch.m */; };
 		1142F0851C9FEEAD0047FB6C /* SCChannelHistoryResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 1142F0831C9FEEAD0047FB6C /* SCChannelHistoryResponse.h */; };
@@ -282,6 +284,8 @@
 		112B2AB41BAD2A1D00CC2FB6 /* SCCompoundPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCompoundPredicate.h; sourceTree = "<group>"; };
 		112B2AB51BAD2A1D00CC2FB6 /* SCCompoundPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCompoundPredicate.m; sourceTree = "<group>"; };
 		112B2AB81BAD2B9B00CC2FB6 /* SCPredicateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPredicateProtocol.h; sourceTree = "<group>"; };
+		1132DDDF1D2FBB010024EF74 /* SCDataObject+KeyManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+KeyManipulation.h"; sourceTree = "<group>"; };
+		1132DDE01D2FBB010024EF74 /* SCDataObject+KeyManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCDataObject+KeyManipulation.m"; sourceTree = "<group>"; };
 		113B2E4A1C48DA5400057F00 /* NSError+RevisionMismatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+RevisionMismatch.h"; sourceTree = "<group>"; };
 		113B2E4B1C48DA5400057F00 /* NSError+RevisionMismatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+RevisionMismatch.m"; sourceTree = "<group>"; };
 		113C36A31B0224EF008723EC /* NSObject+SCParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SCParseHelper.h"; sourceTree = "<group>"; };
@@ -402,6 +406,7 @@
 		11E35B0A1C4F82740092E0A9 /* syncano-IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "syncano-IntegrationTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncanoIntegrationTestsSpec.m; sourceTree = "<group>"; };
 		11E35B0E1C4F82740092E0A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11E437C81D2AA13A00B408D6 /* SCDataObjectProtected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCDataObjectProtected.h; sourceTree = "<group>"; };
 		11E47AFE1C3BD63400DB644A /* SCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFileManager.h; sourceTree = "<group>"; };
 		11E47AFF1C3BD63400DB644A /* SCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCFileManager.m; sourceTree = "<group>"; };
 		11F211771D101F00009D6FF4 /* SCDataObject+RelationOperators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCDataObject+RelationOperators.h"; sourceTree = "<group>"; };
@@ -571,6 +576,7 @@
 				119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */,
 				11F211771D101F00009D6FF4 /* SCDataObject+RelationOperators.h */,
 				11F211781D101F00009D6FF4 /* SCDataObject+RelationOperators.m */,
+				11E437C81D2AA13A00B408D6 /* SCDataObjectProtected.h */,
 				11BE43DE1AC55BCA00FE96C5 /* SCDataObject.h */,
 				11BE43DF1AC55BCA00FE96C5 /* SCDataObject.m */,
 				112B2AB71BAD2AB300CC2FB6 /* Predicate */,
@@ -580,6 +586,8 @@
 				1143F8C11CFC47890023AA2A /* SCGeoPoint.m */,
 				117FADAA1D097F5E008C533D /* SCRelation.h */,
 				117FADAB1D097F5E008C533D /* SCRelation.m */,
+				1132DDDF1D2FBB010024EF74 /* SCDataObject+KeyManipulation.h */,
+				1132DDE01D2FBB010024EF74 /* SCDataObject+KeyManipulation.m */,
 			);
 			name = DataObject;
 			sourceTree = "<group>";
@@ -988,6 +996,7 @@
 				156CF1EB1C8F65880053A580 /* SCScriptEndpointResponse.h in Headers */,
 				11CB51811C1871B2007978A7 /* SCRequest.h in Headers */,
 				11B0E6681BFCC4F700E36713 /* NSDictionary+JSONString.h in Headers */,
+				1132DDE11D2FBB010024EF74 /* SCDataObject+KeyManipulation.h in Headers */,
 				11CE3CD01BCFDC3000DE3163 /* SCMacros.h in Headers */,
 				1142F0851C9FEEAD0047FB6C /* SCChannelHistoryResponse.h in Headers */,
 				117FADB21D09956B008C533D /* SCPleaseForRelation.h in Headers */,
@@ -1411,6 +1420,7 @@
 				156CF1E41C8F556C0053A580 /* SCScript.m in Sources */,
 				11CE3CCF1BCFDC3000DE3163 /* SCJSONResponseSerializer.m in Sources */,
 				11CB51821C1871B2007978A7 /* SCRequest.m in Sources */,
+				1132DDE21D2FBB010024EF74 /* SCDataObject+KeyManipulation.m in Sources */,
 				156CF1E81C8F651F0053A580 /* SCScriptEndpoint.m in Sources */,
 				11CE3CB61BCFDC3000DE3163 /* SCTrace.m in Sources */,
 				114855971D1A7856008A3D2B /* NSString+PathManipulations.m in Sources */,

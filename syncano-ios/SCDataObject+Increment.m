@@ -10,6 +10,7 @@
 #import "SCAPIClient.h"
 #import "NSError+RevisionMismatch.h"
 #import "NSError+SCDataObject.h"
+#import "SCDataObjectProtected.h"
 
 @implementation SCDataObject (Increment)
 
@@ -56,28 +57,29 @@
         return;
     }
     
-    typeof(self) __weak selfWeak = self;
-    [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if(error) {
+    [self saveMeIfNeededWithAPIClient:apiClient completion:^(NSError * _Nullable error) {
+        typeof(self) __weak selfWeak = self;
+        [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+            if(error) {
+                if(completion) {
+                    completion(error);
+                }
+                if(revisionMismatchBlock) {
+                    [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                }
+                return;
+            }
+            
+            [selfWeak fillKeys:keys fromResponseObject:responseObject];
+            
             if(completion) {
-                completion(error);
+                completion(nil);
             }
             if(revisionMismatchBlock) {
-                [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                revisionMismatchBlock(NO,nil);
             }
-            return;
-        }
-        
-        [selfWeak fillKeys:keys fromResponseObject:responseObject];
-        
-        if(completion) {
-            completion(nil);
-        }
-        if(revisionMismatchBlock) {
-            revisionMismatchBlock(NO,nil);
-        }
+        }];
     }];
-    
 }
 
 
