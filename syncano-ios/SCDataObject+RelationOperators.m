@@ -12,7 +12,7 @@
 #import "SCAPIClient+SCDataObject.h"
 #import "NSError+RevisionMismatch.h"
 #import "SCRegisterManager.h"
-#import "SCDataObjectProtected.h"
+#import "SCDataObject+KeyManipulation.h"
 
 typedef NS_ENUM(NSUInteger, SCDataObjectRelationOperator) {
     SCDataObjectRelationOperatorAdd,
@@ -124,29 +124,13 @@ typedef NS_ENUM(NSUInteger, SCDataObjectRelationOperator) {
 }
 
 - (void)saveRelationForKey:(NSString *)key params:(NSDictionary *)params apiClient:(SCAPIClient *)apiClient withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
-    [self saveMeIfNeededWithAPIClient:apiClient completion:^(NSError * _Nullable error) {
-        typeof(self) __weak selfWeak = self;
-        [apiClient PATCHWithPath:[self path] params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-            if(error) {
-                if(completion) {
-                    completion(error);
-                }
-                if(revisionMismatchBlock) {
-                    [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
-                }
-                return;
-            }
-            
-            [selfWeak fillKey:key fromResponseObject:responseObject];
-            
-            if(completion) {
-                completion(nil);
-            }
-            if(revisionMismatchBlock) {
-                revisionMismatchBlock(NO,nil);
-            }
-        }];
-    }];
+    typeof(self) __weak selfWeak = self;
+    [self saveObjectAfterManipulationOfKey:key params:params apiClient:apiClient withCompletion:^(NSString * _Nonnull key, id  _Nullable responseObject, NSError * _Nullable error) {
+        [selfWeak fillKey:key fromResponseObject:responseObject];
+        if (completion) {
+            completion(error);
+        }
+    } revisionMismatchValidationBlock:revisionMismatchBlock];
 }
 
 

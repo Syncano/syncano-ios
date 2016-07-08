@@ -41,6 +41,8 @@ typedef void (^SCFindRequestsCompletionBlock)(NSArray * _Nullable objects, NSErr
 typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString * _Nullable description);
 typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError * _Nullable error, NSString* query);
 typedef void (^SCTemplateResponseCompletionBlock)(NSData* data, NSError * _Nullable error);
+typedef void (^SCKeyManipulationCompletionBlock)(NSString *key, _Nullable id responseObject, NSError * _Nullable error);
+
 
 
 // API v1.0
