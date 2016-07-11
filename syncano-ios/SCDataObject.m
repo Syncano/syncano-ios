@@ -18,6 +18,7 @@
 #import "SCDataObject+Properties.h"
 #import "SCDataObject+Increment.h"
 #import "SCRegisterManager.h"
+#import "SCFileProtected.h"
 #import "NSError+RevisionMismatch.h"
 
 @implementation SCDataObject
@@ -294,7 +295,7 @@
             SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
             if (file) {
                 dispatch_group_enter(filesSaveGroup);
-                [file saveAsPropertyWithName:filePropertyName ofDataObject:self withCompletion:^(NSError *error) {
+                [file saveAsPropertyWithName:filePropertyName ofDataObject:self usingAPIClient:apiClient withCompletion:^(NSError *error) {
                     dispatch_group_leave(filesSaveGroup);
                 }];
             }
