@@ -12,10 +12,11 @@
 
 
 @implementation SCPushPlease
-+ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment {
++ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment devices:(NSArray<SCDevice*>*)devices {
     SCPushPlease *please = [SCPushPlease new];
     please.syncano = syncano;
     please.environment = environment;
+    please.devices = devices;
     return please;
 }
 
