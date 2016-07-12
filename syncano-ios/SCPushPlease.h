@@ -18,10 +18,10 @@ typedef NS_ENUM(NSUInteger, SCPushPleaseEnvironment) {
 
 @interface SCPushPlease : NSObject
 @property (nonatomic,retain) Syncano *syncano;
-@property (nonatomic,retain) NSArray<SCDevice*>* devices;
+@property (nonatomic,retain) SCDevice* device;
 @property (nonatomic) SCPushPleaseEnvironment environment;
 
-+ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment devices:(NSArray<SCDevice*>*)devices;
++ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment device:(SCDevice*)device;
 
 - (void)sendMessage:(NSString *)message completion:(SCCompletionBlock)completion;
 @end
