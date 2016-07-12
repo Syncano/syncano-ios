@@ -425,6 +425,7 @@
 		11F9AEDB1B62105C00B51341 /* SCCodeBoxSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCodeBoxSpec.m; sourceTree = "<group>"; };
 		11F9AEDD1B62113D00B51341 /* Trace.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Trace.json; sourceTree = "<group>"; };
 		11F9AEDF1B62128200B51341 /* SCTraceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTraceSpec.m; sourceTree = "<group>"; };
+		15039F141D342A5F0083B3FB /* SCFileProtected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCFileProtected.h; sourceTree = "<group>"; };
 		15094F381C6E9156007CD77D /* SCUser+UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCUser+UserDefaults.h"; sourceTree = "<group>"; };
 		15094F391C6E9156007CD77D /* SCUser+UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SCUser+UserDefaults.m"; sourceTree = "<group>"; };
 		156CF1E11C8F556C0053A580 /* SCScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCScript.h; sourceTree = "<group>"; };
@@ -582,6 +583,7 @@
 				112B2AB71BAD2AB300CC2FB6 /* Predicate */,
 				11961AC41B3D73A000874C31 /* SCFile.h */,
 				11961AC51B3D73A000874C31 /* SCFile.m */,
+				15039F141D342A5F0083B3FB /* SCFileProtected.h */,
 				1143F8C01CFC47890023AA2A /* SCGeoPoint.h */,
 				1143F8C11CFC47890023AA2A /* SCGeoPoint.m */,
 				117FADAA1D097F5E008C533D /* SCRelation.h */,
