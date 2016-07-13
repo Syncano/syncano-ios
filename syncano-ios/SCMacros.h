@@ -29,3 +29,15 @@ dispatch_once( &pred, ^{                            \
 shared##classname = [[self alloc] init]; });    \
 return shared##classname;                           \
 }
+
+/**
+ Raises an `NSInvalidArgumentException` if the `condition` does not pass.
+ Use `description` to supply the way to fix the exception.
+ */
+#define SCParameterAssert(condition, description, ...) \
+do {\
+if (!(condition)) { \
+[NSException raise:NSInvalidArgumentException \
+format:description, ##__VA_ARGS__]; \
+} \
+} while(0)
