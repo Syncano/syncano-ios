@@ -16,6 +16,9 @@ typedef NS_ENUM(NSUInteger, SCPushPleaseEnvironment) {
 
 @class Syncano,SCDevice;
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @interface SCPushPlease : NSObject
 @property (nonatomic,retain) Syncano *syncano;
 @property (nonatomic,retain) SCDevice* device;
@@ -25,3 +28,5 @@ typedef NS_ENUM(NSUInteger, SCPushPleaseEnvironment) {
 
 - (void)sendMessage:(NSString *)message completion:(SCCompletionBlock)completion;
 @end
+
+NS_ASSUME_NONNULL_END
