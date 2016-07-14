@@ -19,7 +19,6 @@
 #import "SCUser+UserDefaults.h"
 #import "SCConstants.h"
 #import "NSString+PathManipulations.h"
-#import "AFHTTPSessionManager+Syncano.h"
 
 @interface SCAPIClient () <SCRequestQueueDelegate>
 @end
@@ -205,7 +204,7 @@
         SCUploadRequest *uploadRequest = (SCUploadRequest *)request;
         NSString *propertyName = uploadRequest.propertyName;
         NSData *fileData = uploadRequest.fileData;
-        [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
+        [self patchUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
     } else {
         switch (method) {
             case SCRequestMethodGET:
@@ -304,7 +303,7 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+- (NSURLSessionDataTask *)patchUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self PATCH:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];

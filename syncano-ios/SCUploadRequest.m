@@ -11,7 +11,7 @@
 @implementation SCUploadRequest
 
 - (instancetype)initWithPath:(NSString *)path propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save {
-    self = [super initWithPath:path method:SCRequestMethodPOST params:nil callback:callback save:save];
+    self = [super initWithPath:path method:SCRequestMethodPATCH params:nil callback:callback save:save];
     if (self) {
         self.propertyName = propertyName;
         self.fileData = fileData;
