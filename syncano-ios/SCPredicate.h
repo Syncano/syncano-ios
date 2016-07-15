@@ -22,6 +22,7 @@ extern NSString *const SCPredicateEqualOperator;
 extern NSString *const SCPredicateNotEqualOperator;
 extern NSString *const SCPredicateExistsOperator;
 extern NSString *const SCPredicateInOperator;
+extern NSString *const SCPredicateNotInOperator;
 extern NSString *const SCPredicateStringStartsWithOperator;
 extern NSString *const SCPredicateStringiStartsWithOperator;
 extern NSString *const SCPredicateStringEndsWithOperator;
@@ -276,6 +277,16 @@ extern NSString *const SCPredicateIsOperator;
  *  @return SCPredicate
  */
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array;
+
+/**
+ *  Returns predicate where key is not contained in provided array
+ *
+ *  @param key   key
+ *  @param array provided NSArray
+ *
+ *  @return SCPredicate
+ */
++ (SCPredicate *)whereKey:(NSString *)key notInArray:(NSArray *)array;
 
 /**
  *  Returns predicate where key satisfies another predicate

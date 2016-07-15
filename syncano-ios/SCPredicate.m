@@ -17,6 +17,7 @@ NSString *const SCPredicateEqualOperator = @"_eq";
 NSString *const SCPredicateNotEqualOperator = @"_neq";
 NSString *const SCPredicateExistsOperator = @"_exists";
 NSString *const SCPredicateInOperator = @"_in";
+NSString *const SCPredicateNotInOperator = @"_nin";
 NSString *const SCPredicateContainsOperator = @"_contains";
 NSString *const SCPredicateStringStartsWithOperator = @"_startswith";
 NSString *const SCPredicateStringiStartsWithOperator = @"_istartswith";
@@ -149,6 +150,10 @@ static NSDateFormatter *dateFormatter;
 
 + (SCPredicate *)whereKey:(NSString *)key inArray:(NSArray *)array {
     return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateInOperator rightHand:array];
+}
+
++ (SCPredicate *)whereKey:(NSString *)key notInArray:(NSArray *)array {
+    return [[SCPredicate alloc] initWithLeftHand:key operator:SCPredicateNotInOperator rightHand:array];
 }
 
 + (SCPredicate *)whereKey:(NSString *)key satisfiesPredicate:(id<SCPredicateProtocol>)predicate {
