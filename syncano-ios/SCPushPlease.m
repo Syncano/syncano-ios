@@ -13,17 +13,24 @@
 
 
 @implementation SCPushPlease
-+ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment device:(SCDevice *)device {
++ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment devices:(NSArray<SCDevice*>*)devices; {
     SCPushPlease *please = [SCPushPlease new];
     please.syncano = syncano;
     please.environment = environment;
-    please.device = device;
+    please.devices = devices;
     return please;
 }
 
 - (NSDictionary *)resolvedParamsForRequestWithMessage:(NSString *)message {
-    //'{"content": {"environment": "development","aps": {"alert": "hello"}}'
-    return @{@"content" : @{@"environment" : [self environmentStringRepresentation] , @"aps" : @{@"alert" : message}}};
+    NSMutableDictionary *content = [NSMutableDictionary new];
+    
+    content[@"environment"] = [self environmentStringRepresentation];
+    if (message != nil) {
+        content[@"aps"] = @{@"alert" : message};
+    }
+    content[@"registration_ids"] = [self.devices valueForKeyPath:@"deviceId"];
+    
+    return @{@"content" : content};
 }
 
 - (NSString *)environmentStringRepresentation {
@@ -32,8 +39,8 @@
 
 - (void)sendMessage:(NSString *)message completion:(SCCompletionBlock)completion {
     SCParameterAssert(self.syncano != nil, @"You should provide syncano object");
-    SCParameterAssert(self.device != nil, @"You should provide device object");
-    NSString *path = [NSString stringWithFormat:@"push_notifications/apns/devices/%@/send_message/",self.device.deviceId];
+    SCParameterAssert(self.devices != nil, @"You should provide at least one device object");
+    NSString *path = @"push_notifications/apns/messages/";
     NSDictionary *params = [self resolvedParamsForRequestWithMessage:message];
     [self.syncano.apiClient POSTWithPath:path params:params completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
         if (completion) {

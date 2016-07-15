@@ -21,10 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SCPushPlease : NSObject
 @property (nonatomic,retain) Syncano *syncano;
-@property (nonatomic,retain) SCDevice* device;
+@property (nonatomic,retain) NSArray<SCDevice*>* devices;
 @property (nonatomic) SCPushPleaseEnvironment environment;
 
-+ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment device:(SCDevice*)device;
++ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment devices:(NSArray<SCDevice*>*)devices;
 
 - (void)sendMessage:(NSString *)message completion:(SCCompletionBlock)completion;
 @end
