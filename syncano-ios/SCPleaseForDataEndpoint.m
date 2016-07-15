@@ -45,9 +45,8 @@
 }
 
 - (void)getDataObjectFromAPIWithParams:(NSDictionary*)queryParameters completion:(SCDataObjectsCompletionBlock)completion {
-    SCAPIClient *apiClient = [self.apiClient copy];
-    apiClient.apiVersion = SCAPIVersion_1_1;
-    [apiClient getDataObjectsFromdataEndpointWithName:self.dataEndpointName params:queryParameters completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
+    SCAPIClient *apiClient_v1_1 = [[SCAPIClient alloc] initWithApiVersion:SCAPIVersion_1_1 apiKey:self.apiClient.apiKey instanceName:self.apiClient.instanceName];
+    [apiClient_v1_1 getDataObjectsFromDataEndpointWithName:self.dataEndpointName params:queryParameters completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
         [self handleResponse:responseObject error:error completion:completion];
     }];
 }

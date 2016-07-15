@@ -46,6 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param params     parameters
  *  @param completion completion block
  */
-- (void)getDataObjectsFromdataEndpointWithName:(NSString *)dataEndpointName params:(nullable NSDictionary *)params completion:(SCAPICompletionBlock)completion;
+- (void)getDataObjectsFromDataEndpointWithName:(NSString *)dataEndpointName params:(nullable NSDictionary *)params completion:(SCAPICompletionBlock)completion;
 @end
 NS_ASSUME_NONNULL_END
