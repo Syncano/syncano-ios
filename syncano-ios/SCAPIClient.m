@@ -204,7 +204,21 @@
         SCUploadRequest *uploadRequest = (SCUploadRequest *)request;
         NSString *propertyName = uploadRequest.propertyName;
         NSData *fileData = uploadRequest.fileData;
-        [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
+        switch (method) {
+            case SCRequestMethodPOST:
+                [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
+                break;
+            case SCRequestMethodPATCH:
+                [self patchUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
+            default: {
+                NSError *error = [NSError errorWithDomain:SCRequestErrorDomain code:1001 userInfo:@{NSLocalizedFailureReasonErrorKey : @"Wrong request method used for file upload. Use PATCH or POST"}];
+                if (requestFinishedBlock) {
+                    requestFinishedBlock(nil,nil,error);
+                }
+                break;
+            }
+        }
+        [self patchUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
     } else {
         switch (method) {
             case SCRequestMethodGET:
@@ -303,6 +317,19 @@
     return task;
 }
 
+- (NSURLSessionDataTask *)patchUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+    [self authorizeRequest];
+    NSURLSessionDataTask *task = [self PATCH:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];
+        [formData appendPartWithFormData:fileData name:propertyName];
+    } progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(task,responseObject, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(task,nil, error);
+    }];
+    return task;
+}
+
 - (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -313,6 +340,45 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         completion(task,nil, error);
     }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)PATCH:(NSString *)URLString
+                     parameters:(id)parameters
+      constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
+                       progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
+                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    NSError *serializationError = nil;
+    NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"PATCH" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:&serializationError];
+    if (serializationError) {
+        if (failure) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
+            dispatch_async(self.completionQueue ?: dispatch_get_main_queue(), ^{
+                failure(nil, serializationError);
+            });
+#pragma clang diagnostic pop
+        }
+        
+        return nil;
+    }
+    
+    __block NSURLSessionDataTask *task = [self uploadTaskWithStreamedRequest:request progress:uploadProgress completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
+        if (error) {
+            if (failure) {
+                failure(task, error);
+            }
+        } else {
+            if (success) {
+                success(task, responseObject);
+            }
+        }
+    }];
+    
+    [task resume];
+    
     return task;
 }
 
