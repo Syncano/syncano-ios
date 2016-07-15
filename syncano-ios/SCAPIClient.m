@@ -204,6 +204,20 @@
         SCUploadRequest *uploadRequest = (SCUploadRequest *)request;
         NSString *propertyName = uploadRequest.propertyName;
         NSData *fileData = uploadRequest.fileData;
+        switch (method) {
+            case SCRequestMethodPOST:
+                [self postUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
+                break;
+            case SCRequestMethodPATCH:
+                [self patchUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
+            default: {
+                NSError *error = [NSError errorWithDomain:SCRequestErrorDomain code:1001 userInfo:@{NSLocalizedFailureReasonErrorKey : @"Wrong request method used for file upload. Use PATCH or POST"}];
+                if (requestFinishedBlock) {
+                    requestFinishedBlock(nil,nil,error);
+                }
+                break;
+            }
+        }
         [self patchUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
     } else {
         switch (method) {
@@ -306,6 +320,19 @@
 - (NSURLSessionDataTask *)patchUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
     NSURLSessionDataTask *task = [self PATCH:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];
+        [formData appendPartWithFormData:fileData name:propertyName];
+    } progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        completion(task,responseObject, nil);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        completion(task,nil, error);
+    }];
+    return task;
+}
+
+- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+    [self authorizeRequest];
+    NSURLSessionDataTask *task = [self POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];
         [formData appendPartWithFormData:fileData name:propertyName];
     } progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {

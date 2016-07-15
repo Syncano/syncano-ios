@@ -51,6 +51,7 @@ typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject * _Nullable res
 
 
 extern NSString * const SCDataObjectErrorDomain;
+extern NSString * const SCRequestErrorDomain;
 
 extern NSString * const kBaseURLFormatString;
 extern NSString * const kUserKeyKeychainKey;

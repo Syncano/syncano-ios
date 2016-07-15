@@ -4,6 +4,7 @@
 #import "Mantle/Mantle.h"
 
 NSString * const SCDataObjectErrorDomain = @"com.syncano.DataObjectErrorDomain";
+NSString * const SCRequestErrorDomain = @"com.syncano.RequestErrorDomain";
 
 NSString * const kBaseURLFormatString = @"https://api.syncano.io/%@/instances/";
 NSString * const kUserKeyKeychainKey = @"com.syncano.kUserKeyKeychain";
