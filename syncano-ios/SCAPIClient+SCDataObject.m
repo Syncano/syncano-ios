@@ -24,7 +24,7 @@
     [self GETWithPath:path params:params completion:completion];
 }
 
-- (void)getDataObjectsFromdataEndpointWithName:(NSString *)dataEndpointName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
+- (void)getDataObjectsFromDataEndpointWithName:(NSString *)dataEndpointName params:(NSDictionary *)params completion:(SCAPICompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"endpoints/data/%@/get/",dataEndpointName];
     [self GETWithPath:path params:params completion:completion];
 }
