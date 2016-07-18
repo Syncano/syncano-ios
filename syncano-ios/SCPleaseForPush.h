@@ -1,5 +1,5 @@
 //
-//  SCPushPlease.h
+//  SCPleaseForPush.h
 //  syncano-ios
 //
 //  Created by Jan Lipmann on 8/07/16.
@@ -19,12 +19,12 @@ typedef NS_ENUM(NSUInteger, SCPushPleaseEnvironment) {
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface SCPushPlease : NSObject
+@interface SCPleaseForPush : NSObject
 @property (nonatomic,retain) Syncano *syncano;
 @property (nonatomic,retain) NSArray<SCDevice*>* devices;
 @property (nonatomic) SCPushPleaseEnvironment environment;
 
-+ (SCPushPlease *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment devices:(NSArray<SCDevice*>*)devices;
++ (SCPleaseForPush *)pleaseForSyncano:(Syncano *)syncano environment:(SCPushPleaseEnvironment)environment devices:(NSArray<SCDevice*>*)devices;
 
 - (void)sendMessage:(NSString *)message completion:(SCCompletionBlock)completion;
 @end
