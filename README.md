@@ -32,6 +32,8 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.2.2** - 2016-07-18
+    * Fix for saving files 
 * **4.2.1** - 2016-07-18
     * Added autoregister all SCDataObject subclasses while creating Syncano object
     * Added SCDevice delete methods

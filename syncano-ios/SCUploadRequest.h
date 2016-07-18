@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return SCUploadRequest instance
  */
-+ (SCUploadRequest *)uploadRequestWithPath:(NSString *)path propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
++ (SCUploadRequest *)uploadRequestWithPath:(NSString *)path method:(SCRequestMethod)method propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 
 @end
