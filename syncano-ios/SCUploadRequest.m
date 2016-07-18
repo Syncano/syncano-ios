@@ -10,8 +10,8 @@
 
 @implementation SCUploadRequest
 
-- (instancetype)initWithPath:(NSString *)path propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save {
-    self = [super initWithPath:path method:SCRequestMethodPATCH params:nil callback:callback save:save];
+- (instancetype)initWithPath:(NSString *)path method:(SCRequestMethod)method propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save {
+    self = [super initWithPath:path method:method params:nil callback:callback save:save];
     if (self) {
         self.propertyName = propertyName;
         self.fileData = fileData;
@@ -19,8 +19,8 @@
     return self;
 }
 
-+ (SCUploadRequest *)uploadRequestWithPath:(NSString *)path propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save {
-    SCUploadRequest *request = [[SCUploadRequest alloc] initWithPath:path propertName:propertyName fileData:fileData callback:callback save:save];
++ (SCUploadRequest *)uploadRequestWithPath:(NSString *)path method:(SCRequestMethod)method propertName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save {
+    SCUploadRequest *request = [[SCUploadRequest alloc] initWithPath:path method:method propertName:propertyName fileData:fileData callback:callback save:save];
     return request;
 }
 
