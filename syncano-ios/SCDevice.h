@@ -14,11 +14,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SCDevice : MTLModel
+@interface SCDevice : MTLModel <MTLJSONSerializing>
 @property (nullable,nonatomic,readonly) NSString * deviceToken;
 @property (nullable,nonatomic,retain) NSString *label;
 @property (nullable,nonatomic,retain) NSNumber *userId;
 @property (nullable,nonatomic,retain) NSString *deviceId;
+@property (nullable,nonatomic,retain) NSString *registrationId;
+@property (nullable,nonatomic,retain) NSDictionary *metadata;
+@property (nonatomic) BOOL isActive;
+
+
 
 /**
  *  Creates SCDevice instance with provided token data

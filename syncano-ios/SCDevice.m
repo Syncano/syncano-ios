@@ -11,13 +11,13 @@
 
 static NSString * const kDeviceRegistrationId = @"registration_id";
 static NSString * const kDeviceLabel = @"label";
-static NSString * const kDeviceUserId = @"user_id";
+static NSString * const kDeviceUserId = @"user";
 static NSString * const kDeviceDeviceId = @"device_id";
 static NSString * const kDeviceMetadata = @"metadata";
+static NSString * const kDeviceIsActive = @"is_active";
 
 @implementation SCDevice {
-    NSString *_deviceToken;
-    NSMutableDictionary *_metadata;
+
 }
 
 + (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData {
@@ -27,28 +27,36 @@ static NSString * const kDeviceMetadata = @"metadata";
 - (instancetype)initWithTokenFromData:(NSData *)tokenData {
     self = [super init];
     if(self) {
-        _deviceToken = [[self class] convertDeviceTokenToString:tokenData];
+        self.registrationId = [[self class] convertDeviceTokenToString:tokenData];
     }
     return self;
 }
 
-- (NSString *)deviceToken {
-    return _deviceToken;
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{@"label" : kDeviceLabel,
+             @"userId" : kDeviceUserId,
+             @"deviceId" : kDeviceDeviceId,
+             @"registrationId" : kDeviceRegistrationId,
+             @"metadata" : kDeviceMetadata,
+             @"isActive" : kDeviceIsActive};
 }
 
-- (NSMutableDictionary *)metadata {
-    if (!_metadata) {
-        _metadata = [NSMutableDictionary new];
-    }
-    return _metadata;
+
+- (NSString *)deviceToken {
+    return _registrationId;
 }
 
 - (NSString *)path {
-    return [NSString stringWithFormat:@"push_notifications/apns/devices/%@",self.deviceToken];
+    return [NSString stringWithFormat:@"push_notifications/apns/devices/%@",self.registrationId];
 }
 
 - (void)setMetadataObject:(id)object forKey:(nonnull NSString *)key {
-    [_metadata setObject:object forKey:key];
+    if (!self.metadata) {
+        self.metadata = [NSDictionary new];
+    }
+    NSMutableDictionary *mutableMetadata = [self.metadata mutableCopy];
+    [mutableMetadata setObject:object forKey:key];
+    self.metadata = [mutableMetadata copy];
 }
 
 - (void)saveWithCompletionBlock:(SCCompletionBlock)completion {
@@ -75,33 +83,21 @@ static NSString * const kDeviceMetadata = @"metadata";
     }];
 }
 
-- (NSDictionary *)params {
-    NSMutableDictionary *params = [NSMutableDictionary new];
-    if (self.deviceToken.length > 0) {
-        params[kDeviceRegistrationId] = self.deviceToken;
-    }
-    if (self.deviceId.length > 0) {
-        params[kDeviceDeviceId] = self.deviceId;
-    }
-    if (_metadata) {
-        params[kDeviceMetadata] = _metadata;
-    }
-    if (self.label.length > 0) {
-        params[kDeviceLabel] = self.label;
-    }
-    /* Below is temporary workaround while label is required field */
-    else {
-        params[kDeviceLabel] = @"tempLabel";
-    }
-    if (self.userId) {
-        params[kDeviceUserId] = self.userId;
-    }
-    return [NSDictionary dictionaryWithDictionary:params];
+- (NSDictionary *)paramsWithError:(NSError **)error  {
+    return [MTLJSONAdapter JSONDictionaryFromModel:self error:error];
 }
 
 - (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
     NSString *path = @"push_notifications/apns/devices/";
-    [apiClient postTaskWithPath:path params:[self params] completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    NSError *paramsParseError = nil;
+    NSDictionary *params = [self paramsWithError:&paramsParseError];
+    if (paramsParseError != nil) {
+        if (completion) {
+            completion(paramsParseError);
+        }
+        return;
+    }
+    [apiClient postTaskWithPath:path params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (completion) {
             completion(error);
         }
