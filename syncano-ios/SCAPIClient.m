@@ -210,6 +210,7 @@
                 break;
             case SCRequestMethodPATCH:
                 [self patchUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
+                break;
             default: {
                 NSError *error = [NSError errorWithDomain:SCRequestErrorDomain code:1001 userInfo:@{NSLocalizedFailureReasonErrorKey : @"Wrong request method used for file upload. Use PATCH or POST"}];
                 if (requestFinishedBlock) {
@@ -218,7 +219,6 @@
                 break;
             }
         }
-        [self patchUploadTaskWithPath:path propertyName:propertyName fileData:fileData completion:requestFinishedBlock];
     } else {
         switch (method) {
             case SCRequestMethodGET:
