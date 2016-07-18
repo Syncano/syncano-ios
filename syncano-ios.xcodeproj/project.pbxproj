@@ -57,6 +57,8 @@
 		1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1152FF931C04A036001D267C /* SCCompoundPredicate+LocalStorage.m */; };
 		11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 11537F991BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h */; };
 		11537F9C1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 11537F9A1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m */; };
+		1159F03A1D3CD3DD00807668 /* SCPleaseForDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 1159F0381D3CD3DD00807668 /* SCPleaseForDevice.h */; };
+		1159F03B1D3CD3DD00807668 /* SCPleaseForDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1159F0391D3CD3DD00807668 /* SCPleaseForDevice.m */; };
 		115E32091BF33FEA000130DE /* SCRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 115E32071BF33FEA000130DE /* SCRegisterManager.m */; };
 		115E320A1BF33FEA000130DE /* SCRegisterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 115E32081BF33FEA000130DE /* SCRegisterManager.h */; };
 		116B6C7E1C1AEF5100D602D1 /* SCUploadRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 116B6C7C1C1AEF5100D602D1 /* SCUploadRequest.h */; };
@@ -317,6 +319,8 @@
 		115759301B2FF69500DDCC06 /* SCJSONResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCJSONResponseSerializer.h; sourceTree = "<group>"; };
 		115759311B2FF69500DDCC06 /* SCJSONResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCJSONResponseSerializer.m; sourceTree = "<group>"; };
 		115759331B300BCF00DDCC06 /* SCConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCConstants.m; sourceTree = "<group>"; };
+		1159F0381D3CD3DD00807668 /* SCPleaseForDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForDevice.h; sourceTree = "<group>"; };
+		1159F0391D3CD3DD00807668 /* SCPleaseForDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPleaseForDevice.m; sourceTree = "<group>"; };
 		115E32071BF33FEA000130DE /* SCRegisterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRegisterManager.m; sourceTree = "<group>"; };
 		115E32081BF33FEA000130DE /* SCRegisterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRegisterManager.h; sourceTree = "<group>"; };
 		116B6C7C1C1AEF5100D602D1 /* SCUploadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCUploadRequest.h; sourceTree = "<group>"; };
@@ -735,6 +739,8 @@
 			children = (
 				118895531C7EEC0500F683C8 /* SCDevice.h */,
 				118895541C7EEC0500F683C8 /* SCDevice.m */,
+				1159F0381D3CD3DD00807668 /* SCPleaseForDevice.h */,
+				1159F0391D3CD3DD00807668 /* SCPleaseForDevice.m */,
 			);
 			name = Push;
 			sourceTree = "<group>";
@@ -1036,6 +1042,7 @@
 				114855961D1A7856008A3D2B /* NSString+PathManipulations.h in Headers */,
 				11E47B001C3BD63400DB644A /* SCFileManager.h in Headers */,
 				11CE3CC01BCFDC3000DE3163 /* NSObject+SCParseHelper.h in Headers */,
+				1159F03A1D3CD3DD00807668 /* SCPleaseForDevice.h in Headers */,
 				A6BCC8EC1C56372E008A0B0A /* SCPleaseForView.h in Headers */,
 				11CE3CB11BCFDC3000DE3163 /* SCUserProfile.h in Headers */,
 				A66984901C63B54F0056A228 /* SCDataObject+Increment.h in Headers */,
@@ -1433,6 +1440,7 @@
 				11537F9C1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.m in Sources */,
 				11B4E4CE1D211D10007A3B2A /* SCPleaseForDataEndpoint.m in Sources */,
 				A66984911C63B54F0056A228 /* SCDataObject+Increment.m in Sources */,
+				1159F03B1D3CD3DD00807668 /* SCPleaseForDevice.m in Sources */,
 				11CE3CB01BCFDC3000DE3163 /* SCUser.m in Sources */,
 				11CE3CB81BCFDC3000DE3163 /* SCWebhook.m in Sources */,
 				113B2E4D1C48DA5400057F00 /* NSError+RevisionMismatch.m in Sources */,
