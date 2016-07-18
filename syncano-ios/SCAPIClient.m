@@ -147,7 +147,12 @@
 }
 
 - (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
-    [self.requestQueue enqueueUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:completion];
+    [self.requestQueue enqueuePOSTUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:completion];
+    [self runQueue];
+}
+
+- (void)PATCHUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+    [self.requestQueue enqueuePATCHUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:completion];
     [self runQueue];
 }
 

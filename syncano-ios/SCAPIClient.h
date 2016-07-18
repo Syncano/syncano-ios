@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)DELETEWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
 /**
- *  "Abstract" method to upload file method call added to queue
+ *  "Abstract" method to upload file method call added to queue with POST method
  *
  *  @param path         path to request endpoint
  *  @param propertyName name of a file variable name inside a class
@@ -105,6 +105,16 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param completion   completion block
  */
 - (void)POSTUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(nullable SCAPICompletionBlock)completion;
+
+/**
+ *  "Abstract" method to upload file method call added to queue with PATCH method
+ *
+ *  @param path         path to request endpoint
+ *  @param propertyName name of a file variable name inside a class
+ *  @param fileData     NSData file representation
+ *  @param completion   completion block
+ */
+- (void)PATCHUploadWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(nullable SCAPICompletionBlock)completion;
 
 /**
  *  "Abstract" method to GET method call without queue

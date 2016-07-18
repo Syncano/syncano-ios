@@ -59,8 +59,11 @@
 - (void)enqueuePUTRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback {
     [self enqueuePUTRequestWithPath:path params:params callback:callback save:NO];
 }
-- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback {
-    [self enqueueUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:callback save:NO];
+- (void)enqueuePOSTUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback {
+    [self enqueuePOSTUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:callback save:NO];
+}
+- (void)enqueuePATCHUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback {
+    [self enqueuePATCHUploadRequestWithPath:path propertyName:propertyName fileData:fileData callback:callback save:NO];
 }
 
 - (void)enqueueGETRequestWithPath:(NSString *)path params:(NSDictionary *)params callback:(SCAPICompletionBlock)callback save:(BOOL)save {
@@ -83,9 +86,12 @@
     SCRequest *request = [SCRequest requestWithPath:path method:SCRequestMethodPUT params:params callback:callback save:save];
     [self enqueueRequest:request];
 }
-
-- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save {
-    SCUploadRequest *request = [SCUploadRequest uploadRequestWithPath:path propertName:propertyName fileData:fileData callback:callback save:save];
+- (void)enqueuePOSTUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save {
+    SCUploadRequest *request = [SCUploadRequest uploadRequestWithPath:path method:SCRequestMethodPOST propertName:propertyName fileData:fileData callback:callback save:save];
+    [self enqueueRequest:request];
+}
+- (void)enqueuePATCHUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(SCAPICompletionBlock)callback save:(BOOL)save {
+    SCUploadRequest *request = [SCUploadRequest uploadRequestWithPath:path method:SCRequestMethodPATCH propertName:propertyName fileData:fileData callback:callback save:save];
     [self enqueueRequest:request];
 }
 
