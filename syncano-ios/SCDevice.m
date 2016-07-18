@@ -43,6 +43,10 @@ static NSString * const kDeviceMetadata = @"metadata";
     return _metadata;
 }
 
+- (NSString *)path {
+    return [NSString stringWithFormat:@"push_notifications/apns/devices/%@",self.deviceToken];
+}
+
 - (void)setMetadataObject:(id)object forKey:(nonnull NSString *)key {
     [_metadata setObject:object forKey:key];
 }
@@ -53,6 +57,22 @@ static NSString * const kDeviceMetadata = @"metadata";
 
 - (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
     [self saveUsingAPIClient:syncano.apiClient withCompletion:completion];
+}
+
+- (void)deleteWithCompletion:(SCCompletionBlock)completion {
+    [self deleteUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion];
+}
+
+- (void)deleteFromSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion {
+    [self deleteUsingAPIClient:syncano.apiClient withCompletion:completion];
+}
+
+- (void)deleteUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
+    [apiClient DELETEWithPath:[self path] params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (completion) {
+            completion(error);
+        }
+    }];
 }
 
 - (NSDictionary *)params {

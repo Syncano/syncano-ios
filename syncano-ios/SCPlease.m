@@ -1,4 +1,4 @@
-//
+    //
 //  SCQuery.m
 //  syncano4-ios
 //
@@ -92,6 +92,19 @@
         NSArray *fieldsArray = parameters[SCPleaseParameterFields];
         NSString *fields = [fieldsArray componentsJoinedByString:@","];
         [queryParameters setObject:fields forKey:SCPleaseParameterFields];
+    }
+    if (parameters[SCPleaseParameterOrderAscending] != nil) {
+        if (parameters[SCPleaseParameterOrderBy] != nil) {
+            BOOL ascending = [parameters[SCPleaseParameterOrderAscending] boolValue];
+            NSString *rawOrderBy = parameters[SCPleaseParameterOrderBy];
+            if ([rawOrderBy hasPrefix:@"-"]) {
+                rawOrderBy = [rawOrderBy substringFromIndex:0];
+            }
+            NSString *prefix = (ascending) ? @"" : @"-";
+            NSString *orderByString = [prefix stringByAppendingString:rawOrderBy];
+            queryParameters[SCPleaseParameterOrderBy] = orderByString;
+        }
+        [queryParameters removeObjectForKey:SCPleaseParameterOrderAscending];
     }
     if ([parameters[SCPleaseParameterIncludeCount] isEqualToNumber:@YES]) {
         [queryParameters setObject:@"true" forKey:SCPleaseParameterIncludeCount];

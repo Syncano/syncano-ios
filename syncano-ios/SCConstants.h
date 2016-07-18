@@ -41,6 +41,8 @@ typedef void (^SCFindRequestsCompletionBlock)(NSArray * _Nullable objects, NSErr
 typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSString * _Nullable description);
 typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError * _Nullable error, NSString* query);
 typedef void (^SCTemplateResponseCompletionBlock)(NSData* data, NSError * _Nullable error);
+typedef void (^SCKeyManipulationCompletionBlock)(NSString *key, _Nullable id responseObject, NSError * _Nullable error);
+
 
 
 // API v1.0
@@ -49,6 +51,7 @@ typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject * _Nullable res
 
 
 extern NSString * const SCDataObjectErrorDomain;
+extern NSString * const SCRequestErrorDomain;
 
 extern NSString * const kBaseURLFormatString;
 extern NSString * const kUserKeyKeychainKey;
@@ -86,6 +89,7 @@ extern NSString *const SCPleaseParameterFields;
 extern NSString *const SCPleaseParameterExcludedFields;
 extern NSString *const SCPleaseParameterPageSize;
 extern NSString *const SCPleaseParameterOrderBy;
+extern NSString *const SCPleaseParameterOrderAscending;
 extern NSString *const SCPleaseParameterIncludeCount;
 extern NSString *const SCPleaseParameterCacheKey;
 

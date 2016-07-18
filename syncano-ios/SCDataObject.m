@@ -13,10 +13,12 @@
 #import "SCParseManager.h"
 #import "SCPlease.h"
 #import "SCPleaseForView.h"
+#import "SCPleaseForDataEndpoint.h"
 #import "SCPleaseForTemplate.h"
 #import "SCDataObject+Properties.h"
 #import "SCDataObject+Increment.h"
 #import "SCRegisterManager.h"
+#import "SCFileProtected.h"
 #import "NSError+RevisionMismatch.h"
 
 @implementation SCDataObject
@@ -29,7 +31,11 @@
     return className;
 }
 
-+ (NSString *)viewNameForAPI {
++ (NSString *)viewNameForAPI DEPRECATED_MSG_ATTRIBUTE("Use dataEndpointNameForAPI method instead") {
+    return nil;
+}
+
++ (NSString *)dataEndpointNameForAPI {
     return nil;
 }
 
@@ -92,25 +98,39 @@
 }
 
 + (SCPlease *)please {
+    if ([self dataEndpointNameForAPI] != nil) {
+        return [self pleaseForDataEndpoint:[self dataEndpointNameForAPI]];
+    }
     if([self viewNameForAPI] != nil) {
         return [self pleaseForView:[self viewNameForAPI]];
     }
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class]];
 }
 
-+ (SCPlease *)pleaseForView:(NSString *)viewName {
++ (SCPlease *)pleaseForView:(NSString *)viewName DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataEndpoint: method instead") {
     return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName];
 }
 
++ (SCPlease *)pleaseForDataEndpoint:(NSString *)dataEndpointName {
+    return [SCPleaseForDataEndpoint pleaseInstanceForDataObjectWithClass:[self class] fordataEndpoint:dataEndpointName];
+}
+
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano {
+    if([self dataEndpointNameForAPI] != nil) {
+        return [self pleaseForDataEndpoint:[self dataEndpointNameForAPI] fromSyncano:syncano];
+    }
     if([self viewNameForAPI] != nil) {
         return [self pleaseForView:[self viewNameForAPI] fromSyncano:syncano];
     }
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class] forSyncano:syncano];
 }
 
-+ (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano {
++ (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataEndpoint:fromSyncano: method instead") {
     return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano];
+}
+
++ (SCPlease *)pleaseForDataEndpoint:(NSString *)dataEndpointName fromSyncano:(Syncano *)syncano {
+    return [SCPleaseForDataEndpoint pleaseInstanceForDataObjectWithClass:[self class] fordataEndpoint:dataEndpointName forSyncano:syncano];
 }
 
 + (SCPleaseForTemplate *)pleaseForTemplate:(NSString*)templateName {
@@ -248,6 +268,17 @@
     }];
 }
 
+- (void)saveMeIfNeededWithAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
+    if (self.objectId == nil) {
+        [self saveUsingAPIClient:apiClient withCompletion:completion];
+        
+    } else {
+        if (completion) {
+            completion(nil);
+        }
+    }
+}
+
 - (void)updateObjectAfterSaveWithDataFromJSONObject:(id)responseObject {
     self.objectId = responseObject[@"id"];
     self.links = responseObject[@"links"];
@@ -264,7 +295,7 @@
             SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
             if (file) {
                 dispatch_group_enter(filesSaveGroup);
-                [file saveAsPropertyWithName:filePropertyName ofDataObject:self withCompletion:^(NSError *error) {
+                [file saveAsPropertyWithName:filePropertyName ofDataObject:self usingAPIClient:apiClient withCompletion:^(NSError *error) {
                     dispatch_group_leave(filesSaveGroup);
                 }];
             }

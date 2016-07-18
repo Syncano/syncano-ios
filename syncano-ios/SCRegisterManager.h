@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SCRegisterManager : NSObject
 
++ (void)autoregisterDataObjectSubclasses;
 
 /**
  *  Registers class for subclassing
