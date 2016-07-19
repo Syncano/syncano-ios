@@ -8,6 +8,7 @@
 
 #import "SCDevice.h"
 #import "Syncano.h"
+#import "SCPleaseForDevice.h"
 
 static NSString * const kDeviceRegistrationId = @"registration_id";
 static NSString * const kDeviceLabel = @"label";
@@ -30,6 +31,14 @@ static NSString * const kDeviceIsActive = @"is_active";
         self.registrationId = [[self class] convertDeviceTokenToString:tokenData];
     }
     return self;
+}
+
++ (SCPleaseForDevice *)please {
+    return [SCPleaseForDevice pleaseInstance];
+}
+
++ (SCPleaseForDevice *)pleaseForSyncano:(Syncano *)syncano {
+    return [SCPleaseForDevice pleaseInstanceForSyncano:syncano];
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {

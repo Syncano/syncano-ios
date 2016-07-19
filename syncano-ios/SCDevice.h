@@ -10,7 +10,7 @@
 #import "SCConstants.h"
 #import "Mantle/Mantle.h"
 
-@class Syncano;
+@class Syncano,SCPleaseForDevice;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -33,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return SCDevice instance
  */
 + (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData;
+
+
++ (SCPleaseForDevice *)please;
+
++ (SCPleaseForDevice *)pleaseForSyncano:(Syncano *)syncano;
 
 /**
  *  Initializes SCDevice instance with provided token data
