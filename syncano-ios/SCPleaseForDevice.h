@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SCPleaseForDevice : NSObject
+@class Syncano;
 
+@interface SCPleaseForDevice : NSObject
++ (SCPleaseForDevice *)pleaseInstance;
++ (SCPleaseForDevice *)pleaseInstanceForSyncano:(Syncano *)syncano;
 @end
