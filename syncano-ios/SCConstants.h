@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SCChannelNotificationMessage;
 @class SCChannelHistoryResponse;
 @class SCUser;
+@class SCDevice;
 
 // API v1.0
 @class SCWebhookResponseObject;
@@ -42,6 +43,7 @@ typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSS
 typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError * _Nullable error, NSString* query);
 typedef void (^SCTemplateResponseCompletionBlock)(NSData* data, NSError * _Nullable error);
 typedef void (^SCKeyManipulationCompletionBlock)(NSString *key, _Nullable id responseObject, NSError * _Nullable error);
+typedef void (^SCDeviceObjectsCompletionBlock)(NSArray<SCDevice *>* _Nullable objects, NSError * _Nullable error);
 
 
 

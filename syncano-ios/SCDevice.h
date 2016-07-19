@@ -15,7 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SCDevice : MTLModel <MTLJSONSerializing>
-@property (nullable,nonatomic,readonly) NSString * deviceToken;
+@property (nullable,nonatomic,readonly) NSString * deviceToken DEPRECATED_MSG_ATTRIBUTE("Use registrationId instead"); 
 @property (nullable,nonatomic,retain) NSString *label;
 @property (nullable,nonatomic,retain) NSNumber *userId;
 @property (nullable,nonatomic,retain) NSString *deviceId;
