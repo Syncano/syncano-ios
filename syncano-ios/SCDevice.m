@@ -26,9 +26,19 @@ static NSString * const kDeviceIsActive = @"is_active";
 }
 
 - (instancetype)initWithTokenFromData:(NSData *)tokenData {
-    self = [super init];
+    self = [self init];
     if(self) {
         self.registrationId = [[self class] convertDeviceTokenToString:tokenData];
+    }
+    return self;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.metadata = @{};
+        self.label = @"";
     }
     return self;
 }
