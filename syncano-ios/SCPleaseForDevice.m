@@ -48,7 +48,7 @@
             return;
         }
         NSError *parseError = nil;
-        NSArray<SCDevice*>* devices = [[SCParseManager sharedSCParseManager] parsedDevicesFromJSONObject:responseObject error:&parseError];
+        NSArray<SCDevice*>* devices = [[SCParseManager sharedSCParseManager] parsedDevicesFromJSONObject:responseObject[@"objects"] error:&parseError];
         completion(devices,parseError);
     }];
 }
