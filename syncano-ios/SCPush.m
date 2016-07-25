@@ -41,7 +41,7 @@
     if (message != nil) {
         content[@"aps"] = @{@"alert" : message};
     }
-    content[@"registration_ids"] = [self.devices valueForKeyPath:@"deviceId"];
+    content[@"registration_ids"] = [self.devices valueForKeyPath:@"registrationId"];
     
     return @{@"content" : content};
 }

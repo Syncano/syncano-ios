@@ -10,12 +10,12 @@
 #import "SCConstants.h"
 #import "Mantle/Mantle.h"
 
-@class Syncano;
+@class Syncano,SCPleaseForDevice;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SCDevice : MTLModel <MTLJSONSerializing>
-@property (nullable,nonatomic,readonly) NSString * deviceToken;
+@property (nullable,nonatomic,readonly) NSString * deviceToken DEPRECATED_MSG_ATTRIBUTE("Use registrationId instead"); 
 @property (nullable,nonatomic,retain) NSString *label;
 @property (nullable,nonatomic,retain) NSNumber *userId;
 @property (nullable,nonatomic,retain) NSString *deviceId;
@@ -33,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return SCDevice instance
  */
 + (SCDevice *)deviceWithTokenFromData:(NSData *)tokenData;
+
+
++ (SCPleaseForDevice *)please;
+
++ (SCPleaseForDevice *)pleaseForSyncano:(Syncano *)syncano;
 
 /**
  *  Initializes SCDevice instance with provided token data

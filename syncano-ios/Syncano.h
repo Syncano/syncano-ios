@@ -27,6 +27,7 @@
 #import "SCChannel.h"
 #import "SCFile.h"
 #import "SCDevice.h"
+#import "SCPleaseForDevice.h"
 #import "SCPush.h"
 #import "SCRegisterManager.h"
 #import "SCGeoPoint.h"
