@@ -32,6 +32,18 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.2.2** - 2016-07-18
+    * Fix for saving files 
+* **4.2.1** - 2016-07-18
+    * Added autoregister all SCDataObject subclasses while creating Syncano object
+    * Added SCDevice delete methods
+    * Added methods to handle Data Point fetch
+    * Added **not in** operator to SCPredicate
+    * Added register profile class 
+    * Changed API version for Data Endpoint requests
+    * Removed unused UICKeychainStore lib from project
+    * Fixed saving files with custom Syncano object
+    * Fixed uploading file does not change parent object permissions
 * **4.2.0** - 2016-06-23
     * Added Nullability annotations
     * Added automatic logout before login new user

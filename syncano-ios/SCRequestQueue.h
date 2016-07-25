@@ -81,14 +81,24 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)enqueuePUTRequestWithPath:(NSString *)path params:(nullable NSDictionary *)params callback:(nullable SCAPICompletionBlock)callback;
 
 /**
- *  Enqueues upload request
+ *  Enqueues POST upload request
  *
  *  @param path         URI of the request
  *  @param propertyName property (variable) name of a file
  *  @param fileData     NSData representation of a file
  *  @param callback     callback block
  */
-- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback;
+- (void)enqueuePOSTUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback;
+
+/**
+ *  Enqueues PATCH upload request
+ *
+ *  @param path         URI of the request
+ *  @param propertyName property (variable) name of a file
+ *  @param fileData     NSData representation of a file
+ *  @param callback     callback block
+ */
+- (void)enqueuePATCHUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback;
 
 /**
  *  Enqueues GET request and store it on disk
@@ -141,7 +151,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)enqueuePUTRequestWithPath:(NSString *)path params:(nullable NSDictionary *)params callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 /**
- *  Enqueues upload request and store it on disk
+ *  Enqueues POST upload request and store it on disk
  *
  *  @param path         URI of the request
  *  @param propertyName property (variable) name of a file
@@ -149,7 +159,18 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param callback     callback block
  *  @param save         boolean which determines if this request should be stored on disk
  */
-- (void)enqueueUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
+- (void)enqueuePOSTUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
+
+/**
+ *  Enqueues PATCH upload request and store it on disk
+ *
+ *  @param path         URI of the request
+ *  @param propertyName property (variable) name of a file
+ *  @param fileData     NSData representation of a file
+ *  @param callback     callback block
+ *  @param save         boolean which determines if this request should be stored on disk
+ */
+- (void)enqueuePATCHUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
 /**
  *  Dequeues request from queue
