@@ -113,6 +113,35 @@ NSString *const kSCUserJSONKeyUserProfile = @"profile";
     }];
 }
 
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password userProfile:(SCUserProfile *)userProfile completion:(SCCompletionBlock)completion {
+    [self registerWithUsername:username password:password userProfile:userProfile usingAPIClient:[Syncano sharedAPIClient] completion:completion];
+}
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password userProfile:(SCUserProfile *)userProfile inSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion {
+    [self registerWithUsername:username password:password userProfile:userProfile usingAPIClient:syncano.apiClient completion:completion];
+}
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password userProfile:(SCUserProfile *)userProfile usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
+    NSError *serializeError;
+    NSDictionary *userProfileJSONSerialized = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:userProfile error:&serializeError];
+    if (serializeError != nil) {
+        if (completion) {
+            completion(serializeError);
+        }
+        return;
+    }
+    NSDictionary *params = @{kSCUserJSONKeyUsername : username , kSCUserJSONKeyPassword : password , kSCUserJSONKeyUserProfile : userProfileJSONSerialized};
+    [apiClient POSTWithPath:@"users/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (error) {
+            completion(error);
+        } else {
+            [self saveJSONUserData:responseObject];
+            completion(nil);
+        }
+    }];
+}
+
 + (void)addNewUserWithUsername:(NSString *)username password:(NSString *)password completionBlock:(SCCompletionBlockWithUser)completion {
     [self addNewUserWithUsername:username password:password usingAPIClient:[Syncano sharedAPIClient] completionBlock:completion];
 }

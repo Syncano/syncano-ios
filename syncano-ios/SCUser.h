@@ -112,6 +112,27 @@ extern NSString *const kSCUserJSONKeyUserProfile;
 + (void)registerWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completion:(nullable SCCompletionBlock)completion;
 
 /**
+ *  Attempts to register user into singleton Syncano
+ *
+ *  @param username   username for login
+ *  @param password   password for login
+ *  @param userProfile
+ *  @param completion completion block
+ */
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password userProfile:(SCUserProfile *)userProfile completion:(nullable SCCompletionBlock)completion;
+
+/**
+ *  Attempts to register user into provided Syncano instance
+ *
+ *  @param username   username for login
+ *  @param password   password for login
+ *  @param userProfile
+ *  @param syncano    syncano instance for login in to
+ *  @param completion completion block
+ */
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password userProfile:(SCUserProfile *)userProfile inSyncano:(Syncano *)syncano completion:(nullable SCCompletionBlock)completion;
+
+/**
  *  Attempts to register user into singleton Syncano,
  *  but does not automatically login that user. It returns the newly created user in the completion block
  *
