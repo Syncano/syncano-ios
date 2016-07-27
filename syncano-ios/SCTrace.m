@@ -14,18 +14,6 @@
 
 @implementation SCTrace
 
-- (void)setCodeboxIdentifier:(NSNumber *)codeboxIdentifier {
-    self.scriptIdentifier = codeboxIdentifier;
-}
-
-- (NSNumber *)codeboxIdentifier {
-    return self.scriptIdentifier;
-}
-
-- (instancetype)initWithJSONObject:(id)JSONObject andCodeboxIdentifier:(NSNumber *)codeboxIdentifier {
-    return [self initWithJSONObject:JSONObject andScriptIdentifier:codeboxIdentifier];
-}
-
 - (instancetype)initWithJSONObject:(id)JSONObject andScriptIdentifier:(NSNumber *)scriptIdentifier {
     self = [super init];
     if (self) {

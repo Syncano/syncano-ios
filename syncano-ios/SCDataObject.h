@@ -45,15 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)classNameForAPI;
 
 /**
- *  Returns view name used in Syncano API, by default this method returns nil.
- *  Use it when you want to create a class which is always fetched using a view.
- *  When you set viewNameForAPI, [YourClass please] will target queries to the view instead of raw class.
- *
- *  @return String with API class name
- */
-+ (nullable NSString *)viewNameForAPI DEPRECATED_MSG_ATTRIBUTE("Use dataEndpointNameForAPI method instead");
-
-/**
  *  Returns data point name used in Syncano API, by default this method returns nil.
  *  Use it when you want to create a class which is always fetched using a data point.
  *  When you set dataEndpointNameForAPI, [YourClass please] will target queries to the view instead of raw class.
@@ -84,25 +75,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return SCPlease instance
  */
 + (SCPlease *)pleaseFromSyncano:(Syncano *)syncano;
-
-/**
- *  Returns SCPlease instance for Syncano singleton
- *
- *  @param viewName Name of the Data Object View
- *
- *  @return SCPlease instance
- */
-+ (SCPlease *)pleaseForView:(NSString*)viewName DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataEndpoint: method instead");
-
-/**
- *  Returns SCPlease instance for provided Syncano instance
- *
- *  @param viewName Name of the Data Object View
- *  @param syncano Syncano instance, which SCPlease will use to query objects from
- *
- *  @return SCPlease instance
- */
-+ (SCPlease *)pleaseForView:(NSString*)viewName fromSyncano:(Syncano *)syncano DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataEndpoint:fromSyncano: method instead");
 
 /**
  *  Returns SCPlease instance for Syncano singleton

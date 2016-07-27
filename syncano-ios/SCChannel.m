@@ -79,10 +79,6 @@
             if ([self.delegate respondsToSelector:@selector(channelDidReceiveNotificationMessage:)]) {
                 [self.delegate channelDidReceiveNotificationMessage:message];
             }
-            /*DEPRECATED from 4.1.3 */
-            if ([self.delegate respondsToSelector:@selector(chanellDidReceivedNotificationMessage:)]) {
-                [self.delegate chanellDidReceivedNotificationMessage:message];
-            }
         }
         //TODO: QUESTION: How does it handle the error (what we should do when error occured) ?
         [self pollToChannelUsingAPIClient:apiClient];

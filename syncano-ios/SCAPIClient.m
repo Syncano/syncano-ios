@@ -40,22 +40,6 @@
     return self;
 }
 
-/**
- @deprecated This method is deprecated. Please use initWithApiVersion:apiKey:instanceName: instead when initializing API Client to use it with Syncano
- */
-- (instancetype)initWithBaseURL:(NSURL *)url apiKey:(NSString *)apiKey instanceName:(NSString *)instanceName DEPRECATED_MSG_ATTRIBUTE("Use initWithApiVersion:apiKey:instanceName: method instead.") {
-    self = [self initWithBaseURL:url];
-    if (self) {
-        self.apiKey = apiKey;
-        self.instanceName = instanceName;
-        self.requestQueue = [[SCRequestQueue alloc] initWithIdentifier:[self identifier] delegate:self];
-        self.maxConcurentRequestsInQueue = 2;
-        self.requestsBeingProcessed = [NSMutableArray new];
-        self.apiVersion = kDefaultAPIVersion;
-    }
-    return self;
-}
-
 - (instancetype)initWithBaseURL:(NSURL *)url {
     self = [super initWithBaseURL:url];
     if (self) {
