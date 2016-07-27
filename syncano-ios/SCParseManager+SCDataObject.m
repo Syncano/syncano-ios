@@ -65,11 +65,6 @@
     }
 }
 
-/*DEPRECATED from 4.1.3 */
-- (void)resolveFilesForObject:(id)parsedObject withJSONObject:(id)JSONObject DEPRECATED_MSG_ATTRIBUTE("Use resolveCustomObjectsForObject:withJSONObject: method instead.") {
-    [self resolveCustomObjectsForObject:parsedObject withJSONObject:JSONObject];
-}
-
 - (void)resolveCustomObjectsForObject:(id)parsedObject withJSONObject:(id)JSONObject {
     for (NSString *key in [JSONObject allKeys]) {
         if ([parsedObject respondsToSelector:NSSelectorFromString(key)]) {
