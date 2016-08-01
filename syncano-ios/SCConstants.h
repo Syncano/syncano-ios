@@ -139,6 +139,15 @@ typedef NS_ENUM(NSUInteger, SCAPIVersion) {
     SCAPIVersion_1_1 = 2
 };
 
+typedef NS_ENUM(NSUInteger, SCRequestMethod) {
+    SCRequestMethodUndefined,
+    SCRequestMethodGET,
+    SCRequestMethodPOST,
+    SCRequestMethodPATCH,
+    SCRequestMethodDELETE,
+    SCRequestMethodPUT
+};
+
 extern SCAPIVersion const kDefaultAPIVersion;
 
 @interface SCConstants : NSObject

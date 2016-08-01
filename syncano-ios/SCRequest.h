@@ -9,15 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SCConstants.h"
 
-typedef NS_ENUM(NSUInteger, SCRequestMethod) {
-    SCRequestMethodUndefined,
-    SCRequestMethodGET,
-    SCRequestMethodPOST,
-    SCRequestMethodPATCH,
-    SCRequestMethodDELETE,
-    SCRequestMethodPUT
-};
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SCRequest : NSObject
