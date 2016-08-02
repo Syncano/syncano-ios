@@ -48,10 +48,14 @@
 }
 
 - (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion {
-    
+    [self.apiClient POSTWithPath:@"batch/" params:[self encodedRequests] completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
+        if(completion) {
+            completion(responseObject,error);
+        }
+    }];
 }
 
-- (NSDictionary *)encodedRequestParams {
+- (NSDictionary *)encodedRequests {
     NSMutableArray *encodedRequests = [NSMutableArray new];
     for (SCBatchRequest *request in self.requests) {
         [encodedRequests addObject:[request encodedRequestForAPIClient:self.apiClient]];
