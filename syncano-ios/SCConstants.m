@@ -51,6 +51,14 @@ NSString *const SCPleaseParameterCacheKey = @"cache_key";
 
 SCAPIVersion const kDefaultAPIVersion = SCAPIVersion_1_0;
 
+
+static NSString * const kRequestMethodGET = @"GET";
+static NSString * const kRequestMethodPOST = @"POST";
+static NSString * const kRequestMethodPATCH = @"PATCH";
+static NSString * const kRequestMethodDELETE = @"DELETE";
+static NSString * const kRequestMethodPUT = @"PUT";
+static NSString * const kRequestMethodUndefined = @"UNDEFINED";
+
 @implementation SCConstants
 
 + (NSDateFormatter *)dateFormatter {
@@ -162,6 +170,48 @@ SCAPIVersion const kDefaultAPIVersion = SCAPIVersion_1_0;
         return SCChannelNotificationMessageActionDelete;
     }
     return SCChannelNotificationMessageActionNone;
+}
+
++ (SCRequestMethod)requestMethodFromString:(NSString *)methodString {
+    if ([methodString isEqualToString:kRequestMethodGET]) {
+        return SCRequestMethodGET;
+    }
+    if ([methodString isEqualToString:kRequestMethodPOST]) {
+        return SCRequestMethodPOST;
+    }
+    if ([methodString isEqualToString:kRequestMethodPATCH]) {
+        return SCRequestMethodPATCH;
+    }
+    if ([methodString isEqualToString:kRequestMethodDELETE]) {
+        return SCRequestMethodDELETE;
+    }
+    if ([methodString isEqualToString:kRequestMethodPUT]) {
+        return SCRequestMethodPUT;
+    }
+    return SCRequestMethodUndefined;
+}
+
++ (NSString *)requestMethodToString:(SCRequestMethod)method {
+    switch (method) {
+        case SCRequestMethodGET:
+            return kRequestMethodGET;
+            break;
+        case SCRequestMethodPOST:
+            return kRequestMethodPOST;
+            break;
+        case SCRequestMethodPATCH:
+            return kRequestMethodPATCH;
+            break;
+        case SCRequestMethodDELETE:
+            return kRequestMethodDELETE;
+            break;
+        case SCRequestMethodPUT:
+            return kRequestMethodPUT;
+            break;
+        default:
+            return kRequestMethodUndefined;
+            break;
+    }
 }
 
 + (NSString *)versionStringForAPIVersion:(SCAPIVersion)apiVersion {

@@ -43,11 +43,19 @@
     NSError *parseError;
     NSDictionary *objectJSONRepresentation = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:dataObject error:&parseError];
     *error = parseError;
-    SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST payload:objectJSONRepresentation];
+    SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST path:dataObject.path payload:objectJSONRepresentation];
     [self.requests addObject:request];
 }
 
 - (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion {
     
+}
+
+- (NSDictionary *)encodedRequestParams {
+    NSMutableArray *encodedRequests = [NSMutableArray new];
+    for (SCBatchRequest *request in self.requests) {
+        [encodedRequests addObject:[request encodedRequestForAPIClient:self.apiClient]];
+    }
+    return @{@"requests" : [encodedRequests copy]};
 }
 @end

@@ -9,13 +9,6 @@
 #import "SCRequest.h"
 #import "NSObject+SCParseHelper.h"
 
-static NSString * const kRequestMethodGET = @"GET";
-static NSString * const kRequestMethodPOST = @"POST";
-static NSString * const kRequestMethodPATCH = @"PATCH";
-static NSString * const kRequestMethodDELETE = @"DELETE";
-static NSString * const kRequestMethodPUT = @"PUT";
-static NSString * const kRequestMethodUndefined = @"UNDEFINED";
-
 static NSString * const SCRequestPathKey = @"path";
 static NSString * const SCRequestMethodKey = @"method";
 static NSString * const SCRequestParamsKey = @"params";
@@ -41,7 +34,7 @@ static NSString * const SCRequestIdentifierKey = @"identifier";
     if (self) {
         self.identifier = [dictionaryRepresentation[SCRequestIdentifierKey] sc_stringOrEmpty];
         self.path = [dictionaryRepresentation[SCRequestPathKey] sc_stringOrEmpty];
-        self.method = [self methodFromString:[dictionaryRepresentation[SCRequestMethodKey] sc_stringOrEmpty]];
+        self.method = [SCConstants requestMethodFromString:[dictionaryRepresentation[SCRequestMethodKey] sc_stringOrEmpty]];
         self.params = [dictionaryRepresentation[SCRequestParamsKey] sc_dictionaryOrNil];
     }
     return self;
@@ -55,53 +48,11 @@ static NSString * const SCRequestIdentifierKey = @"identifier";
     NSMutableDictionary *dict = [NSMutableDictionary new];
     dict[SCRequestIdentifierKey] = self.identifier;
     dict[SCRequestPathKey] = self.path;
-    dict[SCRequestMethodKey] = [self methodToString];
+    dict[SCRequestMethodKey] = [SCConstants requestMethodToString:self.method];
     if (self.params) {
         dict[SCRequestParamsKey] = self.params;
     }
     return [NSDictionary dictionaryWithDictionary:dict];
-}
-
-- (SCRequestMethod)methodFromString:(NSString *)methodString {
-    if ([methodString isEqualToString:kRequestMethodGET]) {
-        return SCRequestMethodGET;
-    }
-    if ([methodString isEqualToString:kRequestMethodPOST]) {
-        return SCRequestMethodPOST;
-    }
-    if ([methodString isEqualToString:kRequestMethodPATCH]) {
-        return SCRequestMethodPATCH;
-    }
-    if ([methodString isEqualToString:kRequestMethodDELETE]) {
-        return SCRequestMethodDELETE;
-    }
-    if ([methodString isEqualToString:kRequestMethodPUT]) {
-        return SCRequestMethodPUT;
-    }
-    return SCRequestMethodUndefined;
-}
-
-- (NSString *)methodToString {
-    switch (self.method) {
-        case SCRequestMethodGET:
-            return kRequestMethodGET;
-            break;
-        case SCRequestMethodPOST:
-            return kRequestMethodPOST;
-            break;
-        case SCRequestMethodPATCH:
-            return kRequestMethodPATCH;
-            break;
-        case SCRequestMethodDELETE:
-            return kRequestMethodDELETE;
-            break;
-        case SCRequestMethodPUT:
-            return kRequestMethodPUT;
-            break;
-        default:
-            return kRequestMethodUndefined;
-            break;
-    }
 }
 
 - (NSString *)generateIdentifier {

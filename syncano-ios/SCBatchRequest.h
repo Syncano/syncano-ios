@@ -9,10 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "SCConstants.h"
 
+@class SCAPIClient;
+
 @interface SCBatchRequest : NSObject
 @property (nonatomic) SCRequestMethod method;
+@property (nonatomic,retain) NSString *path;
 @property (nonatomic,retain) NSDictionary *payload;
 
-+ (SCBatchRequest *)requestWithMethod:(SCRequestMethod)method payload:(NSDictionary *)payload;
++ (SCBatchRequest *)requestWithMethod:(SCRequestMethod)method path:(NSString *)path payload:(NSDictionary *)payload;
+
+- (NSDictionary *)encodedRequestForAPIClient:(SCAPIClient *)apiClient;
 
 @end

@@ -158,6 +158,9 @@ extern SCAPIVersion const kDefaultAPIVersion;
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
 + (NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
++ (SCRequestMethod)requestMethodFromString:(NSString *)methodString;
++ (NSString *)requestMethodToString:(SCRequestMethod)method;
++ (NSString *)versionStringForAPIVersion:(SCAPIVersion)apiVersion;
 + (NSURL *)baseURLForAPIVersion:(SCAPIVersion)apiVersion;
 @end
 NS_ASSUME_NONNULL_END
