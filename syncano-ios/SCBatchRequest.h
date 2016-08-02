@@ -10,8 +10,9 @@
 #import "SCConstants.h"
 
 @interface SCBatchRequest : NSObject
-@property (nonatomic,retain) NSString *identifier;
 @property (nonatomic) SCRequestMethod method;
 @property (nonatomic,retain) NSDictionary *payload;
-@property (nonatomic) id callback;
+
++ (SCBatchRequest *)requestWithMethod:(SCRequestMethod)method payload:(NSDictionary *)payload;
+
 @end

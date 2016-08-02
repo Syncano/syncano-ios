@@ -10,17 +10,12 @@
 
 @implementation SCBatchRequest
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.identifier = [self generateIdentifier];
-    }
-    return self;
+
++ (SCBatchRequest *)requestWithMethod:(SCRequestMethod)method payload:(NSDictionary *)payload {
+    SCBatchRequest *request = [SCBatchRequest new];
+    request.method = method;
+    request.payload = payload;
+    return request;
 }
 
-- (NSString *)generateIdentifier {
-    NSString *uuidString = [[NSProcessInfo processInfo] globallyUniqueString];
-    return uuidString;
-}
 @end

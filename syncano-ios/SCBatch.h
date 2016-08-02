@@ -9,12 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "SCConstants.h"
 
-@class SCDataObject;
+@class Syncano,SCDataObject;
 
 @interface SCBatch : NSObject
 
-- (void)send;
++ (SCBatch *)batch;
++ (SCBatch *)batchForSyncano:(Syncano *)syncano;
 
-- (void)addSaveRequestForDataObject:(SCDataObject *)dataObject withCompletion:(SCCompletionBlock)completion;
+- (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion;
+
+- (void)addSaveRequestForDataObject:(SCDataObject *)dataObject error:(NSError **)error;
 
 @end

@@ -9,12 +9,26 @@
 #import "SCBatch.h"
 #import "SCBatchRequest.h"
 #import "SCParseManager+SCDataObject.h"
+#import "SCAPIClient.h"
+#import "Syncano.h"
 
 @interface SCBatch ()
+@property (nonatomic,assign) SCAPIClient *apiClient;
 @property (nonatomic,retain) NSMutableArray *requests;
 @end
 
 @implementation SCBatch
+
++ (SCBatch *)batch {
+    SCBatch *batch = [SCBatch new];
+    batch.apiClient = [Syncano sharedAPIClient];
+    return batch;
+}
++ (SCBatch *)batchForSyncano:(Syncano *)syncano {
+    SCBatch *batch = [SCBatch new];
+    batch.apiClient = syncano.apiClient;
+    return batch;
+}
 
 - (instancetype)init
 {
@@ -25,22 +39,15 @@
     return self;
 }
 
-- (void)addSaveRequestForDataObject:(SCDataObject *)dataObject withCompletion:(SCCompletionBlock)completion {
+- (void)addSaveRequestForDataObject:(SCDataObject *)dataObject error:(NSError *__autoreleasing *)error {
     NSError *parseError;
     NSDictionary *objectJSONRepresentation = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:dataObject error:&parseError];
-    if (parseError != nil) {
-        if (completion) {
-            completion(parseError);
-        }
-    }
-    SCBatchRequest *request = [SCBatchRequest new];
-    request.payload = objectJSONRepresentation;
-    request.method = (dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST;
-    request.callback = completion;
+    *error = parseError;
+    SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST payload:objectJSONRepresentation];
     [self.requests addObject:request];
 }
 
-- (void)send {
+- (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion {
     
 }
 @end
