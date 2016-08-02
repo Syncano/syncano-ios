@@ -18,6 +18,8 @@
 
 - (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion;
 
-- (void)addSaveRequestForDataObject:(SCDataObject *)dataObject error:(NSError **)error;
+@end
 
+@interface SCBatch (SCDataObject)
+- (void)addSaveRequestForDataObject:(SCDataObject *)dataObject error:(NSError *__autoreleasing *)error;
 @end

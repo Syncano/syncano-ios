@@ -39,14 +39,6 @@
     return self;
 }
 
-- (void)addSaveRequestForDataObject:(SCDataObject *)dataObject error:(NSError *__autoreleasing *)error {
-    NSError *parseError;
-    NSDictionary *objectJSONRepresentation = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:dataObject error:&parseError];
-    *error = parseError;
-    SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST path:dataObject.path payload:objectJSONRepresentation];
-    [self.requests addObject:request];
-}
-
 - (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion {
     [self.apiClient POSTWithPath:@"batch/" params:[self encodedRequests] completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
         if(completion) {
@@ -63,3 +55,16 @@
     return @{@"requests" : [encodedRequests copy]};
 }
 @end
+
+@implementation SCBatch (SCDataObject)
+
+- (void)addSaveRequestForDataObject:(SCDataObject *)dataObject error:(NSError *__autoreleasing *)error {
+    NSError *parseError;
+    NSDictionary *objectJSONRepresentation = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:dataObject error:&parseError];
+    *error = parseError;
+    SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST path:dataObject.path payload:objectJSONRepresentation];
+    [self.requests addObject:request];
+}
+
+@end
+
