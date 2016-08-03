@@ -12,6 +12,7 @@
 #import "SCAPIClient.h"
 #import "Syncano.h"
 #import "NSError+SCBatch.h"
+#import "SCBatchResponseItem.h"
 
 static NSInteger maxRequestsCount = 50;
 
@@ -44,8 +45,16 @@ static NSInteger maxRequestsCount = 50;
 
 - (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion {
     [self.apiClient POSTWithPath:@"batch/" params:[self encodedRequests] completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
+        
+        NSMutableArray<SCBatchResponseItem *> *decodedItems = [NSMutableArray new];
+        
+        for (NSDictionary *item in responseObject) {
+            SCBatchResponseItem *decodedItem = [SCBatchResponseItem itemWithJSONDictionary:item];
+            [decodedItems addObject:decodedItem];
+        }
+        
         if(completion) {
-            completion(responseObject,error);
+            completion([decodedItems copy],error);
         }
     }];
 }

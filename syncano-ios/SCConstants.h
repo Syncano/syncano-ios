@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class SCChannelHistoryResponse;
 @class SCUser;
 @class SCDevice;
+@class SCBatchResponseItem;
 
 // API v1.0
 @class SCWebhookResponseObject;
@@ -44,7 +45,7 @@ typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError * _Null
 typedef void (^SCTemplateResponseCompletionBlock)(NSData* data, NSError * _Nullable error);
 typedef void (^SCKeyManipulationCompletionBlock)(NSString *key, _Nullable id responseObject, NSError * _Nullable error);
 typedef void (^SCDeviceObjectsCompletionBlock)(NSArray<SCDevice *>* _Nullable objects, NSError * _Nullable error);
-typedef void (^SCBatchRequestCompletionBlock)(NSArray* _Nullable data, NSError * _Nullable error);
+typedef void (^SCBatchRequestCompletionBlock)(NSArray<SCBatchResponseItem *>* _Nullable items, NSError * _Nullable error);
 
 
 // API v1.0

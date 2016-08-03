@@ -32,6 +32,8 @@
 		1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */; };
 		1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */; };
 		1109EF631ACD2E2100BD18A6 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
+		1118C81B1D5212C70075493F /* SCBatchResponseItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1118C8191D5212C70075493F /* SCBatchResponseItem.h */; };
+		1118C81C1D5212C70075493F /* SCBatchResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1118C81A1D5212C70075493F /* SCBatchResponseItem.m */; };
 		111C21211D4F7FB60098E798 /* SCBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 111C211F1D4F7FB60098E798 /* SCBatch.h */; };
 		111C21221D4F7FB60098E798 /* SCBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 111C21201D4F7FB60098E798 /* SCBatch.m */; };
 		1132DDE11D2FBB010024EF74 /* SCDataObject+KeyManipulation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1132DDDF1D2FBB010024EF74 /* SCDataObject+KeyManipulation.h */; };
@@ -284,6 +286,8 @@
 		1109EF5C1ACD257300BD18A6 /* SCAPIClient+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "SCAPIClient+SCDataObject.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1109EF611ACD2E2100BD18A6 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		1109EF621ACD2E2100BD18A6 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		1118C8191D5212C70075493F /* SCBatchResponseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBatchResponseItem.h; sourceTree = "<group>"; };
+		1118C81A1D5212C70075493F /* SCBatchResponseItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBatchResponseItem.m; sourceTree = "<group>"; };
 		111C211F1D4F7FB60098E798 /* SCBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBatch.h; sourceTree = "<group>"; };
 		111C21201D4F7FB60098E798 /* SCBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBatch.m; sourceTree = "<group>"; };
 		111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MimeType.h"; sourceTree = "<group>"; };
@@ -705,6 +709,8 @@
 				111C21201D4F7FB60098E798 /* SCBatch.m */,
 				117803D51D4F84330033B19E /* SCBatchRequest.h */,
 				117803D61D4F84330033B19E /* SCBatchRequest.m */,
+				1118C8191D5212C70075493F /* SCBatchResponseItem.h */,
+				1118C81A1D5212C70075493F /* SCBatchResponseItem.m */,
 			);
 			name = Batch;
 			sourceTree = "<group>";
@@ -991,6 +997,7 @@
 			files = (
 				11CE3CC61BCFDC3000DE3163 /* SCParseManager+SCUser.h in Headers */,
 				11CE3CCE1BCFDC3000DE3163 /* SCJSONResponseSerializer.h in Headers */,
+				1118C81B1D5212C70075493F /* SCBatchResponseItem.h in Headers */,
 				11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */,
 				111C21211D4F7FB60098E798 /* SCBatch.h in Headers */,
 				116B6C7E1C1AEF5100D602D1 /* SCUploadRequest.h in Headers */,
@@ -1465,6 +1472,7 @@
 				11CE3CC91BCFDC3000DE3163 /* SCAPIClient+SCFile.m in Sources */,
 				11CE3CD41BCFDC3000DE3163 /* NSData+MimeType.m in Sources */,
 				11CE3CAA1BCFDC3000DE3163 /* SCPredicate.m in Sources */,
+				1118C81C1D5212C70075493F /* SCBatchResponseItem.m in Sources */,
 				1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */,
 				116B6C841C1AFDEF00D602D1 /* NSString+MD5.m in Sources */,
 				11CB513C1C1829EB007978A7 /* SCRequestQueue.m in Sources */,
