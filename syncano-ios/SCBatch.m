@@ -11,6 +11,9 @@
 #import "SCParseManager+SCDataObject.h"
 #import "SCAPIClient.h"
 #import "Syncano.h"
+#import "NSError+SCBatch.h"
+
+static NSInteger maxRequestsCount = 50;
 
 @interface SCBatch ()
 @property (nonatomic,assign) SCAPIClient *apiClient;
@@ -54,16 +57,29 @@
     }
     return @{@"requests" : [encodedRequests copy]};
 }
+
+- (void)addRequest:(SCBatchRequest *)request error:(NSError **)error {
+    if (self.requests.count == maxRequestsCount) {
+        *error = [NSError maxRequestExceededErrorForMaxRequestNumber:maxRequestsCount];
+        return;
+    }
+    [self.requests addObject:request];
+}
 @end
 
 @implementation SCBatch (SCDataObject)
 
 - (void)addSaveRequestForDataObject:(SCDataObject *)dataObject error:(NSError *__autoreleasing *)error {
-    NSError *parseError;
+    NSError *parseError = nil;
     NSDictionary *objectJSONRepresentation = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:dataObject error:&parseError];
-    *error = parseError;
+    if (parseError != nil) {
+        *error = parseError;
+        return;
+    }
     SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST path:dataObject.path payload:objectJSONRepresentation];
-    [self.requests addObject:request];
+    NSError *addingError = nil;
+    [self addRequest:request error:&addingError];
+    *error = addingError;
 }
 
 @end

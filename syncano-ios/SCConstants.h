@@ -54,6 +54,7 @@ typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject * _Nullable res
 
 extern NSString * const SCDataObjectErrorDomain;
 extern NSString * const SCRequestErrorDomain;
+extern NSString * const SCBatchErrorDomain;
 
 extern NSString * const kBaseURLFormatString;
 extern NSString * const kUserKeyKeychainKey;
@@ -132,6 +133,7 @@ typedef NS_ENUM(NSUInteger, SCChannelNotificationMessageAction) {
 typedef NS_ENUM(NSUInteger, SCErrorCode) {
     SCErrorCodeDataObjectWrongParentClass = 1,
     SCErrorCodeDataObjectNonExistingPropertyName = 2,
+    SCErrorCodeBatchNumberOfRequestsExceeded = 3
 };
 
 typedef NS_ENUM(NSUInteger, SCAPIVersion) {
