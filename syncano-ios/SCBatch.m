@@ -45,18 +45,24 @@ static NSInteger maxRequestsCount = 50;
 
 - (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion {
     [self.apiClient POSTWithPath:@"batch/" params:[self encodedRequests] completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
-        
-        NSMutableArray<SCBatchResponseItem *> *decodedItems = [NSMutableArray new];
-        
-        for (NSDictionary *item in responseObject) {
-            SCBatchResponseItem *decodedItem = [SCBatchResponseItem itemWithJSONDictionary:item];
-            [decodedItems addObject:decodedItem];
-        }
-        
         if(completion) {
-            completion([decodedItems copy],error);
+            completion([self handelResponse:responseObject],error);
         }
     }];
+}
+
+- (NSArray<SCBatchResponseItem *>*)handelResponse:(id)responseObject {
+    NSMutableArray<SCBatchResponseItem *> *decodedItems = [NSMutableArray new];
+    
+    NSInteger index = 0;
+    
+    for (NSDictionary *item in responseObject) {
+        SCBatchResponseItem *decodedItem = [SCBatchResponseItem itemWithJSONDictionary:item classToParse:[self responseObjectClassForRequestWithIndex:index]];
+        [decodedItems addObject:decodedItem];
+        index ++;
+    }
+
+    return [decodedItems copy];
 }
 
 - (NSDictionary *)encodedRequests {
@@ -74,6 +80,16 @@ static NSInteger maxRequestsCount = 50;
     }
     [self.requests addObject:request];
 }
+
+- (Class)responseObjectClassForRequestWithIndex:(NSInteger)index {
+    NSArray<Class> *classes = [self.requests valueForKeyPath:@"responseObjectClass"];
+    if (index < classes.count) {
+        return classes[index];
+    } else {
+        return nil;
+    }
+}
+
 @end
 
 @implementation SCBatch (SCDataObject)
@@ -85,7 +101,7 @@ static NSInteger maxRequestsCount = 50;
         *error = parseError;
         return;
     }
-    SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST path:dataObject.path payload:objectJSONRepresentation];
+    SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST path:dataObject.path payload:objectJSONRepresentation responseObjectClass:[dataObject class]];
     NSError *addingError = nil;
     [self addRequest:request error:&addingError];
     *error = addingError;

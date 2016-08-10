@@ -7,22 +7,34 @@
 //
 
 #import "SCBatchResponseItem.h"
+#import "SCParseManager+SCDataObject.h"
 
 @implementation SCBatchResponseItem
 
-+ (SCBatchResponseItem *)itemWithJSONDictionary:(NSDictionary *)JSONDictionary {
-    SCBatchResponseItem *item = [[SCBatchResponseItem alloc] initWithJSONDictionary:JSONDictionary];
++ (SCBatchResponseItem *)itemWithJSONDictionary:(NSDictionary *)JSONDictionary classToParse:(Class)classToParse {
+    SCBatchResponseItem *item = [[SCBatchResponseItem alloc] initWithJSONDictionary:JSONDictionary classToParse:classToParse];
     return item;
 }
 
-- (instancetype)initWithJSONDictionary:(NSDictionary *)JSONDictionary
+- (instancetype)initWithJSONDictionary:(NSDictionary *)JSONDictionary classToParse:(Class)classToParse
 {
     self = [super init];
     if (self) {
-        self.code = [JSONDictionary[@"code"] integerValue];
-        self.content = JSONDictionary[@"content"];
+        self.classToParse = classToParse;
+        self.code = JSONDictionary[@"code"];
+        self.content = [self tryToParseContent:JSONDictionary[@"content"]];
     }
     return self;
 }
 
+- (id)tryToParseContent:(id)content {
+    if (!self.classToParse) {
+        return content;
+    }
+    if ([content isKindOfClass:[NSArray class]]) {
+        return [[SCParseManager sharedSCParseManager] parsedObjectsOfClass:self.classToParse fromJSONObject:content];
+    } else {
+        return [[SCParseManager sharedSCParseManager] parsedObjectOfClass:self.classToParse fromJSONObject:content];
+    }
+}
 @end

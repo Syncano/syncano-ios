@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface SCBatchResponseItem : NSObject
-@property (nonatomic) NSInteger code;
+@property (nonatomic,retain) NSNumber *code;
 @property (nonatomic,retain) id content;
+@property (nonatomic,retain) Class classToParse;
 
-+ (SCBatchResponseItem *)itemWithJSONDictionary:(id)JSONDictionary;
++ (SCBatchResponseItem *)itemWithJSONDictionary:(NSDictionary *)JSONDictionary classToParse:(Class)classToParse;
 
 @end
