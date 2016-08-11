@@ -44,12 +44,12 @@
 - (void)sendWithCompletion:(SCBatchRequestCompletionBlock)completion {
     [self.apiClient POSTWithPath:@"batch/" params:[self encodedRequests] completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
         if(completion) {
-            completion([self handelResponse:responseObject],error);
+            completion([self handleResponse:responseObject],error);
         }
     }];
 }
 
-- (NSArray<SCBatchResponseItem *>*)handelResponse:(id)responseObject {
+- (NSArray<SCBatchResponseItem *>*)handleResponse:(id)responseObject {
     NSMutableArray<SCBatchResponseItem *> *decodedItems = [NSMutableArray new];
     
     NSInteger index = 0;
@@ -57,7 +57,7 @@
     for (NSDictionary *item in responseObject) {
         SCBatchResponseItem *decodedItem = [SCBatchResponseItem itemWithJSONDictionary:item classToParse:[self responseObjectClassForRequestWithIndex:index]];
         [decodedItems addObject:decodedItem];
-        index ++;
+        index++;
     }
 
     return [decodedItems copy];

@@ -15,15 +15,14 @@
 
 
 + (SCBatchRequest *)requestWithMethod:(SCRequestMethod)method path:(NSString *)path payload:(NSDictionary *)payload {
+    return [self requestWithMethod:method path:path payload:payload responseObjectClass:nil];
+}
+
++ (SCBatchRequest *)requestWithMethod:(SCRequestMethod)method path:(NSString *)path payload:(NSDictionary *)payload responseObjectClass:(Class)responseObjectClass {
     SCBatchRequest *request = [SCBatchRequest new];
     request.method = method;
     request.path = path;
     request.payload = payload;
-    return request;
-}
-
-+ (SCBatchRequest *)requestWithMethod:(SCRequestMethod)method path:(NSString *)path payload:(NSDictionary *)payload responseObjectClass:(Class)responseObjectClass {
-    SCBatchRequest *request = [self requestWithMethod:method path:path payload:payload];
     request.responseObjectClass = responseObjectClass;
     return request;
 }
