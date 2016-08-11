@@ -97,6 +97,8 @@ extern NSString *const SCPleaseParameterOrderAscending;
 extern NSString *const SCPleaseParameterIncludeCount;
 extern NSString *const SCPleaseParameterCacheKey;
 
+extern NSInteger const maxBatchRequestsCount;
+
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,

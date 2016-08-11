@@ -50,8 +50,9 @@ NSString *const SCPleaseParameterOrderAscending = @"SCPleaseParameterOrderAscend
 NSString *const SCPleaseParameterIncludeCount = @"include_count";
 NSString *const SCPleaseParameterCacheKey = @"cache_key";
 
-SCAPIVersion const kDefaultAPIVersion = SCAPIVersion_1_0;
+NSInteger const maxBatchRequestsCount = 50;
 
+SCAPIVersion const kDefaultAPIVersion = SCAPIVersion_1_0;
 
 static NSString * const kRequestMethodGET = @"GET";
 static NSString * const kRequestMethodPOST = @"POST";

@@ -14,8 +14,6 @@
 #import "NSError+SCBatch.h"
 #import "SCBatchResponseItem.h"
 
-static NSInteger maxRequestsCount = 50;
-
 @interface SCBatch ()
 @property (nonatomic,assign) SCAPIClient *apiClient;
 @property (nonatomic,retain) NSMutableArray *requests;
@@ -74,8 +72,8 @@ static NSInteger maxRequestsCount = 50;
 }
 
 - (void)addRequest:(SCBatchRequest *)request error:(NSError **)error {
-    if (self.requests.count == maxRequestsCount) {
-        *error = [NSError maxRequestExceededErrorForMaxRequestNumber:maxRequestsCount];
+    if (self.requests.count == maxBatchRequestsCount) {
+        *error = [NSError maxRequestExceededError];
         return;
     }
     [self.requests addObject:request];

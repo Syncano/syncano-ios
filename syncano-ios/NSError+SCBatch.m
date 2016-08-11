@@ -10,10 +10,10 @@
 #import "SCConstants.h"
 
 @implementation NSError (SCBatch)
-+ (NSError*)maxRequestExceededErrorForMaxRequestNumber:(NSInteger)max {
++ (NSError*)maxRequestExceededError {
     NSDictionary *userInfo = @{
                                NSLocalizedDescriptionKey:  NSLocalizedString(@"Number of requests in batch exceeded",@""),
-                               NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:NSLocalizedString(@"You cannot add more than %@ requests to batch.",@""),@(max)],
+                               NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:NSLocalizedString(@"You cannot add more than %@ requests to batch.",@""),@(maxBatchRequestsCount)],
                                };
     return [NSError errorWithDomain:SCBatchErrorDomain  code:SCErrorCodeBatchNumberOfRequestsExceeded userInfo:userInfo];
 }

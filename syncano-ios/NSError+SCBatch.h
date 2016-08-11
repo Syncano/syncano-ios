@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSError (SCBatch)
-+ (NSError*)maxRequestExceededErrorForMaxRequestNumber:(NSInteger)max;
++ (NSError*)maxRequestExceededError;
 @end
