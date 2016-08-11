@@ -104,7 +104,9 @@ static NSInteger maxRequestsCount = 50;
     SCBatchRequest *request = [SCBatchRequest requestWithMethod:(dataObject.objectId != nil) ? SCRequestMethodPATCH : SCRequestMethodPOST path:dataObject.path payload:objectJSONRepresentation responseObjectClass:[dataObject class]];
     NSError *addingError = nil;
     [self addRequest:request error:&addingError];
-    *error = addingError;
+    if (error) {
+        *error = addingError;
+    }
 }
 
 @end
