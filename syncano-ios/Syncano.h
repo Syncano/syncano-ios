@@ -32,6 +32,8 @@
 #import "SCGeoPoint.h"
 #import "SCRelation.h"
 #import "SCDataObject+RelationOperators.h"
+#import "SCBatch.h"
+#import "SCBatchResponseItem.h"
 
 @class SCAPIClient,SCLocalStore;
 

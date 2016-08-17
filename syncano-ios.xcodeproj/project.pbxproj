@@ -32,6 +32,10 @@
 		1107E8551BFF3E330041D1B6 /* SCPlease+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1107E8531BFF3E330041D1B6 /* SCPlease+LocalStorage.h */; };
 		1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107E8541BFF3E330041D1B6 /* SCPlease+LocalStorage.m */; };
 		1109EF631ACD2E2100BD18A6 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 1109EF611ACD2E2100BD18A6 /* Book.m */; };
+		1118C81B1D5212C70075493F /* SCBatchResponseItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1118C8191D5212C70075493F /* SCBatchResponseItem.h */; };
+		1118C81C1D5212C70075493F /* SCBatchResponseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1118C81A1D5212C70075493F /* SCBatchResponseItem.m */; };
+		111C21211D4F7FB60098E798 /* SCBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 111C211F1D4F7FB60098E798 /* SCBatch.h */; };
+		111C21221D4F7FB60098E798 /* SCBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 111C21201D4F7FB60098E798 /* SCBatch.m */; };
 		1132DDE11D2FBB010024EF74 /* SCDataObject+KeyManipulation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1132DDDF1D2FBB010024EF74 /* SCDataObject+KeyManipulation.h */; };
 		1132DDE21D2FBB010024EF74 /* SCDataObject+KeyManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1132DDE01D2FBB010024EF74 /* SCDataObject+KeyManipulation.m */; };
 		113B2E4C1C48DA5400057F00 /* NSError+RevisionMismatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 113B2E4A1C48DA5400057F00 /* NSError+RevisionMismatch.h */; };
@@ -67,6 +71,10 @@
 		116B6C7F1C1AEF5100D602D1 /* SCUploadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */; };
 		116B6C831C1AFDEF00D602D1 /* NSString+MD5.h in Headers */ = {isa = PBXBuildFile; fileRef = 116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */; };
 		116B6C841C1AFDEF00D602D1 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */; };
+		117803D71D4F84330033B19E /* SCBatchRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 117803D51D4F84330033B19E /* SCBatchRequest.h */; };
+		117803D81D4F84330033B19E /* SCBatchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 117803D61D4F84330033B19E /* SCBatchRequest.m */; };
+		117803DB1D51FFB00033B19E /* NSError+SCBatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 117803D91D51FFB00033B19E /* NSError+SCBatch.h */; };
+		117803DC1D51FFB00033B19E /* NSError+SCBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 117803DA1D51FFB00033B19E /* NSError+SCBatch.m */; };
 		117FADAC1D097F5E008C533D /* SCRelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 117FADAA1D097F5E008C533D /* SCRelation.h */; };
 		117FADAD1D097F5E008C533D /* SCRelation.m in Sources */ = {isa = PBXBuildFile; fileRef = 117FADAB1D097F5E008C533D /* SCRelation.m */; };
 		117FADB21D09956B008C533D /* SCPleaseForRelation.h in Headers */ = {isa = PBXBuildFile; fileRef = 117FADB01D09956B008C533D /* SCPleaseForRelation.h */; };
@@ -278,6 +286,10 @@
 		1109EF5C1ACD257300BD18A6 /* SCAPIClient+SCDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "SCAPIClient+SCDataObject.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1109EF611ACD2E2100BD18A6 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		1109EF621ACD2E2100BD18A6 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		1118C8191D5212C70075493F /* SCBatchResponseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBatchResponseItem.h; sourceTree = "<group>"; };
+		1118C81A1D5212C70075493F /* SCBatchResponseItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBatchResponseItem.m; sourceTree = "<group>"; };
+		111C211F1D4F7FB60098E798 /* SCBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBatch.h; sourceTree = "<group>"; };
+		111C21201D4F7FB60098E798 /* SCBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBatch.m; sourceTree = "<group>"; };
 		111EEAF11BA1BD2100F2EB90 /* NSData+MimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MimeType.h"; sourceTree = "<group>"; };
 		111EEAF21BA1BD2100F2EB90 /* NSData+MimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MimeType.m"; sourceTree = "<group>"; };
 		112B2AB41BAD2A1D00CC2FB6 /* SCCompoundPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCompoundPredicate.h; sourceTree = "<group>"; };
@@ -326,6 +338,10 @@
 		116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUploadRequest.m; sourceTree = "<group>"; };
 		116B6C811C1AFDEF00D602D1 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		116B6C821C1AFDEF00D602D1 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		117803D51D4F84330033B19E /* SCBatchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBatchRequest.h; sourceTree = "<group>"; };
+		117803D61D4F84330033B19E /* SCBatchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBatchRequest.m; sourceTree = "<group>"; };
+		117803D91D51FFB00033B19E /* NSError+SCBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+SCBatch.h"; sourceTree = "<group>"; };
+		117803DA1D51FFB00033B19E /* NSError+SCBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+SCBatch.m"; sourceTree = "<group>"; };
 		117FADAA1D097F5E008C533D /* SCRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRelation.h; sourceTree = "<group>"; };
 		117FADAB1D097F5E008C533D /* SCRelation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRelation.m; sourceTree = "<group>"; };
 		117FADB01D09956B008C533D /* SCPleaseForRelation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPleaseForRelation.h; sourceTree = "<group>"; };
@@ -637,6 +653,8 @@
 				113B2E4B1C48DA5400057F00 /* NSError+RevisionMismatch.m */,
 				119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */,
 				119BF8941D06DFC900A834B3 /* NSError+SCDataObject.m */,
+				117803D91D51FFB00033B19E /* NSError+SCBatch.h */,
+				117803DA1D51FFB00033B19E /* NSError+SCBatch.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -682,6 +700,19 @@
 				116B6C7D1C1AEF5100D602D1 /* SCUploadRequest.m */,
 			);
 			name = Queue;
+			sourceTree = "<group>";
+		};
+		117803D41D4F841E0033B19E /* Batch */ = {
+			isa = PBXGroup;
+			children = (
+				111C211F1D4F7FB60098E798 /* SCBatch.h */,
+				111C21201D4F7FB60098E798 /* SCBatch.m */,
+				117803D51D4F84330033B19E /* SCBatchRequest.h */,
+				117803D61D4F84330033B19E /* SCBatchRequest.m */,
+				1118C8191D5212C70075493F /* SCBatchResponseItem.h */,
+				1118C81A1D5212C70075493F /* SCBatchResponseItem.m */,
+			);
+			name = Batch;
 			sourceTree = "<group>";
 		};
 		1183F71A1C573EF50053673F /* Recovered References */ = {
@@ -807,6 +838,7 @@
 				11CE3CDD1BCFE79100DE3163 /* Info.plist */,
 				11E47AFE1C3BD63400DB644A /* SCFileManager.h */,
 				11E47AFF1C3BD63400DB644A /* SCFileManager.m */,
+				117803D41D4F841E0033B19E /* Batch */,
 			);
 			name = Syncano;
 			path = "syncano-ios";
@@ -965,8 +997,11 @@
 			files = (
 				11CE3CC61BCFDC3000DE3163 /* SCParseManager+SCUser.h in Headers */,
 				11CE3CCE1BCFDC3000DE3163 /* SCJSONResponseSerializer.h in Headers */,
+				1118C81B1D5212C70075493F /* SCBatchResponseItem.h in Headers */,
 				11537F9B1BEB71D000B6FEB1 /* SCParseManager+SCLocalStorage.h in Headers */,
+				111C21211D4F7FB60098E798 /* SCBatch.h in Headers */,
 				116B6C7E1C1AEF5100D602D1 /* SCUploadRequest.h in Headers */,
+				117803D71D4F84330033B19E /* SCBatchRequest.h in Headers */,
 				11CE3CBC1BCFDC3000DE3163 /* SCChannel.h in Headers */,
 				156CF1E31C8F556C0053A580 /* SCScript.h in Headers */,
 				117FADAC1D097F5E008C533D /* SCRelation.h in Headers */,
@@ -996,6 +1031,7 @@
 				11CE3CC21BCFDC3000DE3163 /* SCParseManager.h in Headers */,
 				1152FF901C049FBE001D267C /* SCPredicate+LocalStorage.h in Headers */,
 				116B6C831C1AFDEF00D602D1 /* NSString+MD5.h in Headers */,
+				117803DB1D51FFB00033B19E /* NSError+SCBatch.h in Headers */,
 				11CE3CAD1BCFDC3000DE3163 /* SCFile.h in Headers */,
 				1148559A1D1A7CF9008A3D2B /* NSDictionary+CacheKey.h in Headers */,
 				11CE3CA21BCFDC3000DE3163 /* Syncano.h in Headers */,
@@ -1394,6 +1430,7 @@
 				11B0E66D1BFCCB0100E36713 /* NSString+JSONDictionary.m in Sources */,
 				11CE3CA31BCFDC3000DE3163 /* Syncano.m in Sources */,
 				11CE3CD61BCFDC3000DE3163 /* (null) in Sources */,
+				117803D81D4F84330033B19E /* SCBatchRequest.m in Sources */,
 				117FADB31D09956B008C533D /* SCPleaseForRelation.m in Sources */,
 				11CE3CC71BCFDC3000DE3163 /* SCParseManager+SCUser.m in Sources */,
 				11CE3CD21BCFDC3000DE3163 /* SCConstants.m in Sources */,
@@ -1431,15 +1468,18 @@
 				11F2117A1D101F00009D6FF4 /* SCDataObject+RelationOperators.m in Sources */,
 				1107E8561BFF3E330041D1B6 /* SCPlease+LocalStorage.m in Sources */,
 				115E32091BF33FEA000130DE /* SCRegisterManager.m in Sources */,
+				117803DC1D51FFB00033B19E /* NSError+SCBatch.m in Sources */,
 				11CE3CC91BCFDC3000DE3163 /* SCAPIClient+SCFile.m in Sources */,
 				11CE3CD41BCFDC3000DE3163 /* NSData+MimeType.m in Sources */,
 				11CE3CAA1BCFDC3000DE3163 /* SCPredicate.m in Sources */,
+				1118C81C1D5212C70075493F /* SCBatchResponseItem.m in Sources */,
 				1152FF911C049FBE001D267C /* SCPredicate+LocalStorage.m in Sources */,
 				116B6C841C1AFDEF00D602D1 /* NSString+MD5.m in Sources */,
 				11CB513C1C1829EB007978A7 /* SCRequestQueue.m in Sources */,
 				116B6C7F1C1AEF5100D602D1 /* SCUploadRequest.m in Sources */,
 				11CE3CAC1BCFDC3000DE3163 /* SCCompoundPredicate.m in Sources */,
 				115BA5E31D34D9AC00CC9E75 /* SCPush.m in Sources */,
+				111C21221D4F7FB60098E798 /* SCBatch.m in Sources */,
 				119BF8921D060E3700A834B3 /* SCDataObject+ArrayOperators.m in Sources */,
 				1152FF951C04A036001D267C /* SCCompoundPredicate+LocalStorage.m in Sources */,
 				11CE3CC11BCFDC3000DE3163 /* NSObject+SCParseHelper.m in Sources */,
