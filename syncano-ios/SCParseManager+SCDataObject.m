@@ -173,9 +173,11 @@
         NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
         for (NSString *scRelationProperty in scRelationsProperties) {
             SCRelation *relation = (SCRelation *)[dataObject valueForKey:scRelationProperty];
-            if (relation) {
+            if (relation != nil) {
                 NSArray *arrayRepresentation = [relation arrayRepresentation];
                 mutableSerialized[scRelationProperty] = arrayRepresentation;
+            } else {
+                mutableSerialized[scRelationProperty] = [NSNull null];
             }
         }
         serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
