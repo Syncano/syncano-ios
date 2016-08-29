@@ -95,7 +95,7 @@
     [self enqueueRequest:request];
 }
 
-- (void)enqueueRequest:(SCRequest *)request{
+- (void)enqueueRequest:(SCRequest *)request onTop:(BOOL)onTop {
     if (request.save) {
         [SCFileManager writeAsyncRequest:request queueIdentifier:self.identifier completionBlock:^(NSError *error) {
             [self.requestsStore addObject:request];
@@ -104,10 +104,16 @@
             }
         }];
     } else {
-        [self.requestsStore addObject:request];
+        if (onTop) {
+            [self.requestsStore insertObject:request atIndex:0];
+        } else {
+            [self.requestsStore addObject:request];
+        }
     }
-    
-    
+}
+
+- (void)enqueueRequest:(SCRequest *)request{
+    [self enqueueRequest:request onTop:NO];
 }
 
 - (void)removeRequest:(SCRequest *)request {

@@ -173,20 +173,48 @@
     
     void (^requestFinishedBlock)(NSURLSessionDataTask *task, id responseObject, NSError *error) = ^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
-            BOOL reachable = [self reachable];
-            if (!reachable && request.save) {
-                //TODO: we have to discuss if we want to make this request again and maybe here we should stop the queue until we reach internet connection?
-            } else {
-                if (completion) {
-                    completion(task,responseObject,error);
+            if (error.code == 429) {
+                NSNumber *retryAfter = nil;
+                if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
+                    NSHTTPURLResponse *response =  (NSHTTPURLResponse *)task.response;
+                    if ([response respondsToSelector:@selector(allHeaderFields)]) {
+                        NSDictionary *allHeaderFields = response.allHeaderFields;
+                        retryAfter = allHeaderFields[@"retry_after"];
+                    }
                 }
+                if (retryAfter != nil) {
+                    [self.requestQueue enqueueRequest:request onTop:YES];
+                    [self.requestsBeingProcessed removeObject:request];
+                    double delayInSeconds = retryAfter.doubleValue;
+                    dispatch_queue_t backgroundQ = dispatch_queue_create("com.Syncano.backgroundDelay", NULL);
+                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                    dispatch_after(popTime, backgroundQ, ^(void){
+                        [self runQueue];
+                    });
+                } else {
+                    if (completion) {
+                        completion(task,responseObject,error);
+                    }
+                    [self requestHasFinishedProcessing:request];
+                }
+
+            } else {
+                BOOL reachable = [self reachable];
+                if (!reachable && request.save) {
+                    //TODO: we have to discuss if we want to make this request again and maybe here we should stop the queue until we reach internet connection?
+                } else {
+                    if (completion) {
+                        completion(task,responseObject,error);
+                    }
+                }
+                [self requestHasFinishedProcessing:request];
             }
         } else {
             if (completion) {
                 completion(task,responseObject,error);
             }
+            [self requestHasFinishedProcessing:request];
         }
-        [self requestHasFinishedProcessing:request];
     };
     
     if ([request isKindOfClass:[SCUploadRequest class]]) {
