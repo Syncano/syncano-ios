@@ -135,6 +135,7 @@
             // relatedObject == nil means no relation was set at all
             // and we want to handle only ones that were set but were not saved
             if (relatedObject == nil) {
+                [mutableSerialized setObject:[NSNull null] forKey:relationProperty];
                 continue;
             }
             NSNumber *objectId = [relatedObject valueForKey:@"objectId"];
@@ -172,9 +173,11 @@
         NSMutableDictionary *mutableSerialized = serialized.mutableCopy;
         for (NSString *scRelationProperty in scRelationsProperties) {
             SCRelation *relation = (SCRelation *)[dataObject valueForKey:scRelationProperty];
-            if (relation) {
+            if (relation != nil) {
                 NSArray *arrayRepresentation = [relation arrayRepresentation];
                 mutableSerialized[scRelationProperty] = arrayRepresentation;
+            } else {
+                mutableSerialized[scRelationProperty] = [NSNull null];
             }
         }
         serialized = [NSDictionary dictionaryWithDictionary:mutableSerialized];
