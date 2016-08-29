@@ -135,6 +135,7 @@
             // relatedObject == nil means no relation was set at all
             // and we want to handle only ones that were set but were not saved
             if (relatedObject == nil) {
+                [mutableSerialized setObject:[NSNull null] forKey:relationProperty];
                 continue;
             }
             NSNumber *objectId = [relatedObject valueForKey:@"objectId"];
