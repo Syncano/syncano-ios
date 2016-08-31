@@ -172,6 +172,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)enqueuePATCHUploadRequestWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData callback:(nullable SCAPICompletionBlock)callback save:(BOOL)save;
 
+
+- (void)enqueueRequest:(SCRequest *)request onTop:(BOOL)onTop;
+
 /**
  *  Dequeues request from queue
  *
