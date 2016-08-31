@@ -166,6 +166,13 @@
     return path;
 }
 
+- (NSString *)endpointPathForObjectSave {
+    if ([[self class] dataEndpointNameForAPI] != nil) {
+        return [NSString stringWithFormat:@"endpoints/data/%@/post/",[[self class] dataEndpointNameForAPI]];
+    }
+    return nil;
+}
+
 - (void)fetchWithCompletion:(SCCompletionBlock)completion {
     [self fetchUsingAPIClient:[Syncano sharedAPIClient] completion:completion];
 }
@@ -223,7 +230,8 @@
                 if (self.objectId && self.revision && revisionMismatchBlock) {
                     params[kExpectedRevisionRequestParam] = self.revision;
                 }
-                [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                NSString *path = ([self endpointPathForObjectSave]) ? [self endpointPathForObjectSave] : [self path];
+                [apiClient POSTWithPath:path params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     if (error) {
                         if (completion) {
                             completion(error);
