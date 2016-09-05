@@ -163,6 +163,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface Syncano (UserManagement)
+
++ (SCUser *)currenUser;
+
 + (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback;
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback;
 
