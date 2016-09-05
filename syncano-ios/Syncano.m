@@ -11,6 +11,7 @@
 #import "SCParseManager.h"
 #import "SCLocalStore.h"
 #import "SCRegisterManager.h"
+#import "SCUser+UserDefaults.h"
 
 static SCLocalStore *_localStore;
 
@@ -136,6 +137,19 @@ static SCLocalStore *_localStore;
 }
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback {
     [SCUser loginWithUsername:username password:password toSyncano:self completion:callback];
+}
+
++ (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback {
+    [SCUser saveUserKey:userKey];
+    if (callback) {
+        callback(nil);
+    }
+}
+- (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback {
+    [SCUser saveUserKey:userKey];
+    if (callback) {
+        callback(nil);
+    }
 }
 
 @end
