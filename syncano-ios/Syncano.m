@@ -127,3 +127,15 @@ static SCLocalStore *_localStore;
 }
 
 @end
+
+
+@implementation Syncano (UserManagement)
+
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback {
+    [SCUser loginWithUsername:username password:password completion:callback];
+}
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback {
+    [SCUser loginWithUsername:username password:password toSyncano:self completion:callback];
+}
+
+@end

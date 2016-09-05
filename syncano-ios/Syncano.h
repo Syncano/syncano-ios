@@ -160,4 +160,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)enableOfflineStorageWithCompletionBlock:(nullable SCCompletionBlock)completionBlock;
 
 @end
+
+
+@interface Syncano (UserManagement)
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback;
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback;
+@end
+
 NS_ASSUME_NONNULL_END
