@@ -132,6 +132,11 @@ static SCLocalStore *_localStore;
 
 @implementation Syncano (UserManagement)
 
++ (SCUser *)currenUser {
+    return [SCUser currentUser];
+}
+
+
 + (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback {
     [SCUser loginWithUsername:username password:password completion:callback];
 }
