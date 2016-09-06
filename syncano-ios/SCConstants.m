@@ -52,7 +52,7 @@ NSString *const SCPleaseParameterCacheKey = @"cache_key";
 
 NSInteger const maxBatchRequestsCount = 50;
 
-SCAPIVersion const kDefaultAPIVersion = SCAPIVersion_1_0;
+SCAPIVersion const kDefaultAPIVersion = SCAPIVersion_1_1;
 
 static NSString * const kRequestMethodGET = @"GET";
 static NSString * const kRequestMethodPOST = @"POST";
