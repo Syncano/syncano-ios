@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeUserFromDefaults;
 + (void)updateUsernameStoredInDefaults:(NSString *)username;
 + (void)updateUserProfileStoredInDefaults:(SCUserProfile *)profile;
++ (void)saveUserKey:(NSString *)userKey;
 
 + (nullable NSString *)userKeyFromDefaults;
 

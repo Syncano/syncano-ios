@@ -11,6 +11,7 @@
 #import "SCParseManager.h"
 #import "SCLocalStore.h"
 #import "SCRegisterManager.h"
+#import "SCUser+UserDefaults.h"
 
 static SCLocalStore *_localStore;
 
@@ -124,6 +125,31 @@ static SCLocalStore *_localStore;
 + (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock {
     _localStore = [SCLocalStore new];
     [_localStore initializeDBWithCompletionBlock:completionBlock];
+}
+
+@end
+
+
+@implementation Syncano (UserManagement)
+
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback {
+    [SCUser loginWithUsername:username password:password completion:callback];
+}
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback {
+    [SCUser loginWithUsername:username password:password toSyncano:self completion:callback];
+}
+
++ (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback {
+    [SCUser saveUserKey:userKey];
+    if (callback) {
+        callback(nil);
+    }
+}
+- (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback {
+    [SCUser saveUserKey:userKey];
+    if (callback) {
+        callback(nil);
+    }
 }
 
 @end

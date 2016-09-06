@@ -29,6 +29,19 @@ NSString *const kCurrentUser = @"com.syncano.kCurrentUser";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (void)saveUserKey:(NSString *)userKey {
+    id user = [self JSONUserDataFromDefaults];
+    if (user) {
+        id userMutable = [user mutableCopy];
+        if ([userMutable respondsToSelector:@selector(setObject:forKey:)]) {
+            [userMutable setObject:userKey forKey:kSCUserJSONKeyUserKey];
+        }
+        [self saveJSONUserData:userMutable];
+    } else {
+        [self saveJSONUserData:@{kSCUserJSONKeyUserKey : userKey}];
+    }
+}
+
 + (void)removeUserFromDefaults {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCurrentUser];
     [[NSUserDefaults standardUserDefaults] synchronize];
