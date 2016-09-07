@@ -164,4 +164,20 @@ static SCLocalStore *_localStore;
     [SCUser registerWithUsername:username password:password inSyncano:self completion:completion];
 }
 
++ (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion {
+    [[self currenUser] updatePassword:password withCompletion:completion];
+}
+
+- (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion {
+    [[SCUser currentUser] updatePassword:password inSyncno:self withCompletion:completion];
+}
+
++ (void)updatePasswordUser:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
+    [user updatePassword:password withCompletion:completion];
+    
+}
+- (void)updatePasswordUser:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
+    [user updatePassword:password inSyncno:self withCompletion:completion];
+}
+
 @end
