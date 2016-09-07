@@ -172,11 +172,11 @@ static SCLocalStore *_localStore;
     [[SCUser currentUser] updatePassword:password inSyncno:self withCompletion:completion];
 }
 
-+ (void)updatePasswordUser:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
++ (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
     [user updatePassword:password withCompletion:completion];
     
 }
-- (void)updatePasswordUser:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
+- (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
     [user updatePassword:password inSyncno:self withCompletion:completion];
 }
 

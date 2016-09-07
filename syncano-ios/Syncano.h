@@ -177,8 +177,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion;
 - (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion;
 
-+ (void)updatePasswordUser:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion;
-- (void)updatePasswordUser:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion;
++ (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion;
+- (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion;
 
 @end
 
