@@ -157,4 +157,27 @@ static SCLocalStore *_localStore;
     }
 }
 
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion {
+    [SCUser registerWithUsername:username password:password completion:completion];
+}
+- (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion {
+    [SCUser registerWithUsername:username password:password inSyncano:self completion:completion];
+}
+
++ (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion {
+    [[self currenUser] updatePassword:password withCompletion:completion];
+}
+
+- (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion {
+    [[SCUser currentUser] updatePassword:password inSyncno:self withCompletion:completion];
+}
+
++ (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
+    [user updatePassword:password withCompletion:completion];
+    
+}
+- (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
+    [user updatePassword:password inSyncno:self withCompletion:completion];
+}
+
 @end
