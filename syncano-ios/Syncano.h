@@ -171,6 +171,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback;
 - (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback;
 
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion;
+- (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

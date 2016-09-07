@@ -157,4 +157,11 @@ static SCLocalStore *_localStore;
     }
 }
 
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion {
+    [SCUser registerWithUsername:username password:password completion:completion];
+}
+- (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion {
+    [SCUser registerWithUsername:username password:password inSyncano:self completion:completion];
+}
+
 @end
