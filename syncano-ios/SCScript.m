@@ -21,11 +21,10 @@
     [self runScriptWithId:scriptId params:params usingAPIClient:syncano.apiClient completion:completion];
 }
 
-+ (void)runScriptWithId:(NSNumber *)scriptId params:(NSDictionary *)params usingAPIClient:(SCAPIClient *)apiClient completion:(SCCodeBoxCompletionBlock)completion {
++ (void)runScriptWithId:(NSNumber *)scriptId params:(NSDictionary *)params usingAPIClient:(SCAPIClient *)apiClient completion:(SCScriptCompletionBlock)completion {
     NSString *path = [NSString stringWithFormat:@"snippets/scripts/%@/run/",scriptId];
     NSDictionary *payload = (params) ? @{@"payload" : params} : nil;
-    SCAPIClient *apiClient_v1_1 = [[SCAPIClient alloc] initWithApiVersion:SCAPIVersion_1_1 apiKey:apiClient.apiKey instanceName:apiClient.instanceName];
-    [apiClient_v1_1 POSTWithPath:path params:payload completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient POSTWithPath:path params:payload completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             if (completion) {
                 completion(nil,error);

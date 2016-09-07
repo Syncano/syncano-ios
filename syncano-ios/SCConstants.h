@@ -18,9 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class SCDevice;
 @class SCBatchResponseItem;
 
-// API v1.0
-@class SCWebhookResponseObject;
-
 // API v1.0-1.1
 typedef void (^SCAPICompletionBlock)(NSURLSessionDataTask *task, id _Nullable responseObject, NSError * _Nullable error);
 typedef void (^SCAPIFileDownloadCompletionBlock)(id _Nullable responseObject, NSError * _Nullable error);
@@ -46,12 +43,7 @@ typedef void (^SCTemplateResponseCompletionBlock)(NSData* data, NSError * _Nulla
 typedef void (^SCKeyManipulationCompletionBlock)(NSString *key, _Nullable id responseObject, NSError * _Nullable error);
 typedef void (^SCDeviceObjectsCompletionBlock)(NSArray<SCDevice *>* _Nullable objects, NSError * _Nullable error);
 typedef void (^SCBatchRequestCompletionBlock)(NSArray<SCBatchResponseItem *>* _Nullable items, NSError * _Nullable error);
-
-
-// API v1.0
-typedef void (^SCCodeBoxCompletionBlock)(SCTrace * _Nullable trace, NSError * _Nullable error);
-typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject * _Nullable responseObject, NSError * _Nullable error);
-
+typedef void (^SCScriptCompletionBlock)(SCTrace * _Nullable trace, NSError * _Nullable error);
 
 extern NSString * const SCDataObjectErrorDomain;
 extern NSString * const SCRequestErrorDomain;
