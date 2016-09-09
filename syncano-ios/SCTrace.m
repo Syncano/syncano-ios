@@ -14,18 +14,6 @@
 
 @implementation SCTrace
 
-- (void)setCodeboxIdentifier:(NSNumber *)codeboxIdentifier {
-    self.scriptIdentifier = codeboxIdentifier;
-}
-
-- (NSNumber *)codeboxIdentifier {
-    return self.scriptIdentifier;
-}
-
-- (instancetype)initWithJSONObject:(id)JSONObject andCodeboxIdentifier:(NSNumber *)codeboxIdentifier {
-    return [self initWithJSONObject:JSONObject andScriptIdentifier:codeboxIdentifier];
-}
-
 - (instancetype)initWithJSONObject:(id)JSONObject andScriptIdentifier:(NSNumber *)scriptIdentifier {
     self = [super init];
     if (self) {
@@ -54,9 +42,8 @@
 
 - (void)fetchUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCTraceCompletionBlock)completion {
     //TODO: rise an error if there is no identifier or codebox identifier;
-    SCAPIClient *properAPIClient = [[SCAPIClient alloc] initWithApiVersion:SCAPIVersion_1_1 apiKey:apiClient.apiKey instanceName:apiClient.instanceName];
     NSString *path = [NSString stringWithFormat:@"snippets/scripts/%@/traces/%@/",self.scriptIdentifier,self.identifier];
-    [properAPIClient GETWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+    [apiClient GETWithPath:path params:nil completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             if (completion) {
                 completion(nil,error);

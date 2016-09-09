@@ -93,16 +93,38 @@ NSString *const kSCUserJSONKeyUserProfile = @"profile";
 }
 
 + (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion {
-    [self registerWithUsername:username password:password usingAPIClient:[Syncano sharedAPIClient] completion:completion];
+    [self registerWithUsername:username password:password userProfile:nil usingAPIClient:[Syncano sharedAPIClient] completion:completion];
 }
 
 + (void)registerWithUsername:(NSString *)username password:(NSString *)password inSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion {
-    [self registerWithUsername:username password:password usingAPIClient:syncano.apiClient completion:completion];
+    [self registerWithUsername:username password:password userProfile:nil usingAPIClient:syncano.apiClient completion:completion];
 }
 
-+ (void)registerWithUsername:(NSString *)username password:(NSString *)password usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
-    //TODO: validate if username and password are not empty or maybe leave it to API :)
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password userProfile:(SCUserProfile *)userProfile completion:(SCCompletionBlock)completion {
+    [self registerWithUsername:username password:password userProfile:userProfile usingAPIClient:[Syncano sharedAPIClient] completion:completion];
+}
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password userProfile:(SCUserProfile *)userProfile inSyncano:(Syncano *)syncano completion:(SCCompletionBlock)completion {
+    [self registerWithUsername:username password:password userProfile:userProfile usingAPIClient:syncano.apiClient completion:completion];
+}
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password userProfile:(SCUserProfile *)userProfile usingAPIClient:(SCAPIClient *)apiClient completion:(SCCompletionBlock)completion {
     NSDictionary *params = @{kSCUserJSONKeyUsername : username , kSCUserJSONKeyPassword : password};
+
+    if (userProfile != nil) {
+        NSError *serializeError;
+        NSDictionary *userProfileJSONSerialized = [[SCParseManager sharedSCParseManager] JSONSerializedDictionaryFromDataObject:userProfile error:&serializeError];
+        if (serializeError != nil) {
+            if (completion) {
+                completion(serializeError);
+            }
+            return;
+        }
+        NSMutableDictionary *mutableParams = [params mutableCopy];
+        mutableParams[kSCUserJSONKeyUserProfile] = userProfileJSONSerialized;
+        params = [mutableParams copy];
+    }
+
     [apiClient POSTWithPath:@"users/" params:params completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
         if (error) {
             completion(error);

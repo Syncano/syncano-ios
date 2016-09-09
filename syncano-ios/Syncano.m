@@ -11,6 +11,7 @@
 #import "SCParseManager.h"
 #import "SCLocalStore.h"
 #import "SCRegisterManager.h"
+#import "SCUser+UserDefaults.h"
 
 static SCLocalStore *_localStore;
 
@@ -124,6 +125,59 @@ static SCLocalStore *_localStore;
 + (void)enableOfflineStorageWithCompletionBlock:(SCCompletionBlock)completionBlock {
     _localStore = [SCLocalStore new];
     [_localStore initializeDBWithCompletionBlock:completionBlock];
+}
+
+@end
+
+
+@implementation Syncano (UserManagement)
+
++ (SCUser *)currenUser {
+    return [SCUser currentUser];
+}
+
+
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback {
+    [SCUser loginWithUsername:username password:password completion:callback];
+}
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback {
+    [SCUser loginWithUsername:username password:password toSyncano:self completion:callback];
+}
+
++ (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback {
+    [SCUser saveUserKey:userKey];
+    if (callback) {
+        callback(nil);
+    }
+}
+- (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback {
+    [SCUser saveUserKey:userKey];
+    if (callback) {
+        callback(nil);
+    }
+}
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion {
+    [SCUser registerWithUsername:username password:password completion:completion];
+}
+- (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion {
+    [SCUser registerWithUsername:username password:password inSyncano:self completion:completion];
+}
+
++ (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion {
+    [[self currenUser] updatePassword:password withCompletion:completion];
+}
+
+- (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion {
+    [[SCUser currentUser] updatePassword:password inSyncno:self withCompletion:completion];
+}
+
++ (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
+    [user updatePassword:password withCompletion:completion];
+    
+}
+- (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion {
+    [user updatePassword:password inSyncno:self withCompletion:completion];
 }
 
 @end

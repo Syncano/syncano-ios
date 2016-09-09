@@ -12,7 +12,6 @@
 #import "Syncano.h"
 #import "SCParseManager.h"
 #import "SCPlease.h"
-#import "SCPleaseForView.h"
 #import "SCPleaseForDataEndpoint.h"
 #import "SCPleaseForTemplate.h"
 #import "SCDataObject+Properties.h"
@@ -29,10 +28,6 @@
         className = [className componentsSeparatedByString:@"."].lastObject;
     }
     return className;
-}
-
-+ (NSString *)viewNameForAPI DEPRECATED_MSG_ATTRIBUTE("Use dataEndpointNameForAPI method instead") {
-    return nil;
 }
 
 + (NSString *)dataEndpointNameForAPI {
@@ -101,14 +96,7 @@
     if ([self dataEndpointNameForAPI] != nil) {
         return [self pleaseForDataEndpoint:[self dataEndpointNameForAPI]];
     }
-    if([self viewNameForAPI] != nil) {
-        return [self pleaseForView:[self viewNameForAPI]];
-    }
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class]];
-}
-
-+ (SCPlease *)pleaseForView:(NSString *)viewName DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataEndpoint: method instead") {
-    return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName];
 }
 
 + (SCPlease *)pleaseForDataEndpoint:(NSString *)dataEndpointName {
@@ -119,14 +107,7 @@
     if([self dataEndpointNameForAPI] != nil) {
         return [self pleaseForDataEndpoint:[self dataEndpointNameForAPI] fromSyncano:syncano];
     }
-    if([self viewNameForAPI] != nil) {
-        return [self pleaseForView:[self viewNameForAPI] fromSyncano:syncano];
-    }
     return [SCPlease pleaseInstanceForDataObjectWithClass:[self class] forSyncano:syncano];
-}
-
-+ (SCPlease*)pleaseForView:(NSString *)viewName fromSyncano:(Syncano *)syncano DEPRECATED_MSG_ATTRIBUTE("Use pleaseForDataEndpoint:fromSyncano: method instead") {
-    return [SCPleaseForView pleaseInstanceForDataObjectWithClass:[self class] forView:viewName forSyncano:syncano];
 }
 
 + (SCPlease *)pleaseForDataEndpoint:(NSString *)dataEndpointName fromSyncano:(Syncano *)syncano {
@@ -183,6 +164,13 @@
         path = [NSString stringWithFormat:@"classes/%@/objects/",[[self class] classNameForAPI]];
     }
     return path;
+}
+
+- (NSString *)endpointPathForObjectSave {
+    if ([[self class] dataEndpointNameForAPI] != nil) {
+        return [NSString stringWithFormat:@"endpoints/data/%@/post/",[[self class] dataEndpointNameForAPI]];
+    }
+    return nil;
 }
 
 - (void)fetchWithCompletion:(SCCompletionBlock)completion {
@@ -242,7 +230,8 @@
                 if (self.objectId && self.revision && revisionMismatchBlock) {
                     params[kExpectedRevisionRequestParam] = self.revision;
                 }
-                [apiClient POSTWithPath:[self path] params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                NSString *path = ([self endpointPathForObjectSave]) ? [self endpointPathForObjectSave] : [self path];
+                [apiClient POSTWithPath:path params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     if (error) {
                         if (completion) {
                             completion(error);

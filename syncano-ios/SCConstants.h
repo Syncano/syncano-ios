@@ -15,9 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class SCChannelNotificationMessage;
 @class SCChannelHistoryResponse;
 @class SCUser;
-
-// API v1.0
-@class SCWebhookResponseObject;
+@class SCDevice;
+@class SCBatchResponseItem;
 
 // API v1.0-1.1
 typedef void (^SCAPICompletionBlock)(NSURLSessionDataTask *task, id _Nullable responseObject, NSError * _Nullable error);
@@ -42,16 +41,13 @@ typedef void (^SCDataObjectRevisionMismatchCompletionBlock)(BOOL mismatched, NSS
 typedef void (^SCLocalStorageGenerateQueryStringCompletionBlock)(NSError * _Nullable error, NSString* query);
 typedef void (^SCTemplateResponseCompletionBlock)(NSData* data, NSError * _Nullable error);
 typedef void (^SCKeyManipulationCompletionBlock)(NSString *key, _Nullable id responseObject, NSError * _Nullable error);
-
-
-
-// API v1.0
-typedef void (^SCCodeBoxCompletionBlock)(SCTrace * _Nullable trace, NSError * _Nullable error);
-typedef void (^SCWebhookCompletionBlock)(SCWebhookResponseObject * _Nullable responseObject, NSError * _Nullable error);
-
+typedef void (^SCDeviceObjectsCompletionBlock)(NSArray<SCDevice *>* _Nullable objects, NSError * _Nullable error);
+typedef void (^SCBatchRequestCompletionBlock)(NSArray<SCBatchResponseItem *>* _Nullable items, NSError * _Nullable error);
+typedef void (^SCScriptCompletionBlock)(SCTrace * _Nullable trace, NSError * _Nullable error);
 
 extern NSString * const SCDataObjectErrorDomain;
 extern NSString * const SCRequestErrorDomain;
+extern NSString * const SCBatchErrorDomain;
 
 extern NSString * const kBaseURLFormatString;
 extern NSString * const kUserKeyKeychainKey;
@@ -93,6 +89,8 @@ extern NSString *const SCPleaseParameterOrderAscending;
 extern NSString *const SCPleaseParameterIncludeCount;
 extern NSString *const SCPleaseParameterCacheKey;
 
+extern NSInteger const maxBatchRequestsCount;
+
 
 typedef NS_ENUM(NSUInteger, SCDataObjectPermissionType) {
     SCDataObjectPermissionTypeNone,
@@ -130,11 +128,21 @@ typedef NS_ENUM(NSUInteger, SCChannelNotificationMessageAction) {
 typedef NS_ENUM(NSUInteger, SCErrorCode) {
     SCErrorCodeDataObjectWrongParentClass = 1,
     SCErrorCodeDataObjectNonExistingPropertyName = 2,
+    SCErrorCodeBatchNumberOfRequestsExceeded = 3
 };
 
 typedef NS_ENUM(NSUInteger, SCAPIVersion) {
     SCAPIVersion_1_0 = 1,
     SCAPIVersion_1_1 = 2
+};
+
+typedef NS_ENUM(NSUInteger, SCRequestMethod) {
+    SCRequestMethodUndefined,
+    SCRequestMethodGET,
+    SCRequestMethodPOST,
+    SCRequestMethodPATCH,
+    SCRequestMethodDELETE,
+    SCRequestMethodPUT
 };
 
 extern SCAPIVersion const kDefaultAPIVersion;
@@ -147,6 +155,9 @@ extern SCAPIVersion const kDefaultAPIVersion;
 + (NSValueTransformer *)SCDataObjectPermissionsValueTransformer;
 + (NSValueTransformer *)SCDataObjectDatesTransformer;
 + (SCChannelNotificationMessageAction)channelNotificationMessageActionByString:(NSString *)actionString;
++ (SCRequestMethod)requestMethodFromString:(NSString *)methodString;
++ (NSString *)requestMethodToString:(SCRequestMethod)method;
++ (NSString *)versionStringForAPIVersion:(SCAPIVersion)apiVersion;
 + (NSURL *)baseURLForAPIVersion:(SCAPIVersion)apiVersion;
 @end
 NS_ASSUME_NONNULL_END

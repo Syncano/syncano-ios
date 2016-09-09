@@ -22,15 +22,17 @@
 #import "SCParseManager+SCUser.h"
 #import "SCAPIClient.h"
 #import "SCUser.h" 
-#import "SCCodeBox.h"
-#import "SCWebhook.h"
 #import "SCChannel.h"
 #import "SCFile.h"
 #import "SCDevice.h"
+#import "SCPleaseForDevice.h"
+#import "SCPush.h"
 #import "SCRegisterManager.h"
 #import "SCGeoPoint.h"
 #import "SCRelation.h"
 #import "SCDataObject+RelationOperators.h"
+#import "SCBatch.h"
+#import "SCBatchResponseItem.h"
 
 @class SCAPIClient,SCLocalStore;
 
@@ -157,4 +159,27 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)enableOfflineStorageWithCompletionBlock:(nullable SCCompletionBlock)completionBlock;
 
 @end
+
+
+@interface Syncano (UserManagement)
+
++ (SCUser *)currenUser;
+
++ (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback;
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password callback:(SCCompletionBlock)callback;
+
++ (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback;
+- (void)loginWithUserKey:(NSString *)userKey callback:(SCCompletionBlock)callback;
+
++ (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion;
+- (void)registerWithUsername:(NSString *)username password:(NSString *)password completion:(SCCompletionBlock)completion;
+
++ (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion;
+- (void)updatePasswordForCurrentUser:(NSString *)password withCompletion:(SCCompletionBlock)completion;
+
++ (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion;
+- (void)updatePassword:(NSString *)password forUser:(SCUser *)user withCompletion:(SCCompletionBlock)completion;
+
+@end
+
 NS_ASSUME_NONNULL_END
