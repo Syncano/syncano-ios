@@ -32,8 +32,15 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.3.0** - 2016-09-09
+    * Send pushes
+    * List and filter devices
+    * Ability to send user profile while register new user
+    * Removed deprecated methods
+    * Batch
+    * Creating data objects using Data Endpoints
 * **4.2.3** - 2016-07-18
-    * Fix saving null references 
+    * Fix saving null references
 * **4.2.2** - 2016-07-18
     * Fix for saving files
 * **4.2.1** - 2016-07-18
