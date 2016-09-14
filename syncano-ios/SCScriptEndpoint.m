@@ -163,7 +163,7 @@ NSString *const kSyncanoScriptEndpointPath = @"endpoints/scripts";
 }
 
 + (NSString *)pathForPublicScriptEndpointWithHash:(NSString *)hash name:(NSString *)name instanceName:(NSString *)instanceName {
-    NSString *path = [NSString stringWithFormat:@"%@/%@/p/%@/%@/",kSyncanoScriptEndpointPath,instanceName,hash,name];
+    NSString *path = [NSString stringWithFormat:@"%@/%@/p/%@/%@/",instanceName,kSyncanoScriptEndpointPath,hash,name];
     return path;
 }
 
