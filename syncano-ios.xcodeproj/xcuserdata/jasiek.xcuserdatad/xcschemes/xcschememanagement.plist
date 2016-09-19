@@ -17,7 +17,17 @@
 		<key>SyncanoIntegrationTests.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>3</integer>
+		</dict>
+		<key>SyncanoSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>SyncanoTestApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
 		</dict>
 		<key>syncano-iosTests.xcscheme</key>
 		<dict>
@@ -28,6 +38,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>1199916A1AC446E4007B994C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>119A1C361D8FD52B0086F9E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>119A1C3E1D8FD52B0086F9E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -87,6 +87,11 @@
 		1193D72D1B53FDCE000D665B /* SCUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D72C1B53FDCE000D665B /* SCUserSpec.m */; };
 		1193D7331B54E7AF000D665B /* KWSpec+WaitFor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1193D7321B54E7AF000D665B /* KWSpec+WaitFor.m */; };
 		1193D73B1B553140000D665B /* SCUserLogin.json in Resources */ = {isa = PBXBuildFile; fileRef = 1193D73A1B553140000D665B /* SCUserLogin.json */; };
+		119A1C401D8FD52B0086F9E9 /* SyncanoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119A1C371D8FD52B0086F9E9 /* SyncanoSwift.framework */; };
+		119A1C471D8FD52B0086F9E9 /* SyncanoSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119A1C461D8FD52B0086F9E9 /* SyncanoSwiftTests.swift */; };
+		119A1C491D8FD52B0086F9E9 /* SyncanoSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 119A1C391D8FD52B0086F9E9 /* SyncanoSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		119A1C4C1D8FD52B0086F9E9 /* SyncanoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119A1C371D8FD52B0086F9E9 /* SyncanoSwift.framework */; };
+		119A1C4D1D8FD52B0086F9E9 /* SyncanoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 119A1C371D8FD52B0086F9E9 /* SyncanoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		119BF8911D060E3700A834B3 /* SCDataObject+ArrayOperators.h in Headers */ = {isa = PBXBuildFile; fileRef = 119BF88F1D060E3700A834B3 /* SCDataObject+ArrayOperators.h */; };
 		119BF8921D060E3700A834B3 /* SCDataObject+ArrayOperators.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BF8901D060E3700A834B3 /* SCDataObject+ArrayOperators.m */; };
 		119BF8951D06DFC900A834B3 /* NSError+SCDataObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 119BF8931D06DFC900A834B3 /* NSError+SCDataObject.h */; };
@@ -219,6 +224,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		119A1C411D8FD52B0086F9E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 119991581AC446E4007B994C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 119A1C361D8FD52B0086F9E9;
+			remoteInfo = SyncanoSwift;
+		};
+		119A1C431D8FD52B0086F9E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 119991581AC446E4007B994C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6274DCB1C69FB3600730460;
+			remoteInfo = SyncanoTestApp;
+		};
+		119A1C4A1D8FD52B0086F9E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 119991581AC446E4007B994C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 119A1C361D8FD52B0086F9E9;
+			remoteInfo = SyncanoSwift;
+		};
 		11A074DA1BC254E900351014 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 119991581AC446E4007B994C /* Project object */;
@@ -250,6 +276,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		119A1C531D8FD52B0086F9E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				119A1C4D1D8FD52B0086F9E9 /* SyncanoSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11A717AC1C44D3FF0029095B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -361,6 +398,12 @@
 		119991651AC446E4007B994C /* Syncano.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Syncano.m; sourceTree = "<group>"; };
 		1199916B1AC446E4007B994C /* syncano-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "syncano-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		119991711AC446E4007B994C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		119A1C371D8FD52B0086F9E9 /* SyncanoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SyncanoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		119A1C391D8FD52B0086F9E9 /* SyncanoSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyncanoSwift.h; sourceTree = "<group>"; };
+		119A1C3A1D8FD52B0086F9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		119A1C3F1D8FD52B0086F9E9 /* SyncanoSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SyncanoSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		119A1C461D8FD52B0086F9E9 /* SyncanoSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncanoSwiftTests.swift; sourceTree = "<group>"; };
+		119A1C481D8FD52B0086F9E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		119A93551AFA4238001ADA7C /* SCUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCUser.h; sourceTree = "<group>"; };
 		119A93561AFA4238001ADA7C /* SCUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCUser.m; sourceTree = "<group>"; };
 		119A935B1AFB88A5001ADA7C /* SCUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCUserProfile.h; sourceTree = "<group>"; };
@@ -487,6 +530,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		119A1C331D8FD52B0086F9E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		119A1C3C1D8FD52B0086F9E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119A1C401D8FD52B0086F9E9 /* SyncanoSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11CE3C851BCFD44900DE3163 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -508,6 +566,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				119A1C4C1D8FD52B0086F9E9 /* SyncanoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,6 +843,8 @@
 				1199916F1AC446E4007B994C /* syncano-iosTests */,
 				11E35B0B1C4F82740092E0A9 /* SyncanoIntegrationTests */,
 				A6274DCD1C69FB3600730460 /* SyncanoTestApp */,
+				119A1C381D8FD52B0086F9E9 /* SyncanoSwift */,
+				119A1C451D8FD52B0086F9E9 /* SyncanoSwiftTests */,
 				119991611AC446E4007B994C /* Products */,
 				80F3652329F3460F1878B890 /* Pods */,
 				C222ECDE61B8F54B6E7E6478 /* Frameworks */,
@@ -798,6 +859,8 @@
 				11CE3C891BCFD44900DE3163 /* Syncano.framework */,
 				11E35B0A1C4F82740092E0A9 /* syncano-IntegrationTests.xctest */,
 				A6274DCC1C69FB3600730460 /* SyncanoTestApp.app */,
+				119A1C371D8FD52B0086F9E9 /* SyncanoSwift.framework */,
+				119A1C3F1D8FD52B0086F9E9 /* SyncanoSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -855,6 +918,24 @@
 				11BE43E11AC5732200FE96C5 /* circle.yml */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		119A1C381D8FD52B0086F9E9 /* SyncanoSwift */ = {
+			isa = PBXGroup;
+			children = (
+				119A1C391D8FD52B0086F9E9 /* SyncanoSwift.h */,
+				119A1C3A1D8FD52B0086F9E9 /* Info.plist */,
+			);
+			path = SyncanoSwift;
+			sourceTree = "<group>";
+		};
+		119A1C451D8FD52B0086F9E9 /* SyncanoSwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				119A1C461D8FD52B0086F9E9 /* SyncanoSwiftTests.swift */,
+				119A1C481D8FD52B0086F9E9 /* Info.plist */,
+			);
+			path = SyncanoSwiftTests;
 			sourceTree = "<group>";
 		};
 		11B1DAE81B58B838000D8488 /* MockClasses */ = {
@@ -976,6 +1057,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		119A1C341D8FD52B0086F9E9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119A1C491D8FD52B0086F9E9 /* SyncanoSwift.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11CE3C861BCFD44900DE3163 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -1077,6 +1166,43 @@
 			productReference = 1199916B1AC446E4007B994C /* syncano-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		119A1C361D8FD52B0086F9E9 /* SyncanoSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119A1C521D8FD52B0086F9E9 /* Build configuration list for PBXNativeTarget "SyncanoSwift" */;
+			buildPhases = (
+				119A1C321D8FD52B0086F9E9 /* Sources */,
+				119A1C331D8FD52B0086F9E9 /* Frameworks */,
+				119A1C341D8FD52B0086F9E9 /* Headers */,
+				119A1C351D8FD52B0086F9E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SyncanoSwift;
+			productName = SyncanoSwift;
+			productReference = 119A1C371D8FD52B0086F9E9 /* SyncanoSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		119A1C3E1D8FD52B0086F9E9 /* SyncanoSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 119A1C541D8FD52B0086F9E9 /* Build configuration list for PBXNativeTarget "SyncanoSwiftTests" */;
+			buildPhases = (
+				119A1C3B1D8FD52B0086F9E9 /* Sources */,
+				119A1C3C1D8FD52B0086F9E9 /* Frameworks */,
+				119A1C3D1D8FD52B0086F9E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				119A1C421D8FD52B0086F9E9 /* PBXTargetDependency */,
+				119A1C441D8FD52B0086F9E9 /* PBXTargetDependency */,
+			);
+			name = SyncanoSwiftTests;
+			productName = SyncanoSwiftTests;
+			productReference = 119A1C3F1D8FD52B0086F9E9 /* SyncanoSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		11CE3C881BCFD44900DE3163 /* Syncano */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 11CE3CA01BCFD44900DE3163 /* Build configuration list for PBXNativeTarget "Syncano" */;
@@ -1126,10 +1252,12 @@
 				A6274DC81C69FB3600730460 /* Sources */,
 				A6274DC91C69FB3600730460 /* Frameworks */,
 				A6274DCA1C69FB3600730460 /* Resources */,
+				119A1C531D8FD52B0086F9E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				119A1C4B1D8FD52B0086F9E9 /* PBXTargetDependency */,
 			);
 			name = SyncanoTestApp;
 			productName = SyncanoTestApp;
@@ -1143,11 +1271,22 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SC;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Syncano;
 				TargetAttributes = {
 					1199916A1AC446E4007B994C = {
 						CreatedOnToolsVersion = 6.2;
+					};
+					119A1C361D8FD52B0086F9E9 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					119A1C3E1D8FD52B0086F9E9 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 9F62B3BJJQ;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A6274DCB1C69FB3600730460;
 					};
 					11A074D51BC254DB00351014 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -1179,6 +1318,8 @@
 				11E35B091C4F82740092E0A9 /* syncano-IntegrationTests */,
 				11A074D51BC254DB00351014 /* Documentation */,
 				A6274DCB1C69FB3600730460 /* SyncanoTestApp */,
+				119A1C361D8FD52B0086F9E9 /* SyncanoSwift */,
+				119A1C3E1D8FD52B0086F9E9 /* SyncanoSwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1200,6 +1341,20 @@
 				1106CE861B5DFF5D00CEA452 /* Book.json in Resources */,
 				1150CF9C1B5789DF0080D5E3 /* SCUserRegister.json in Resources */,
 				1193D73B1B553140000D665B /* SCUserLogin.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		119A1C351D8FD52B0086F9E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		119A1C3D1D8FD52B0086F9E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1396,6 +1551,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		119A1C321D8FD52B0086F9E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		119A1C3B1D8FD52B0086F9E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				119A1C471D8FD52B0086F9E9 /* SyncanoSwiftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		11CE3C841BCFD44900DE3163 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1501,6 +1671,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		119A1C421D8FD52B0086F9E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 119A1C361D8FD52B0086F9E9 /* SyncanoSwift */;
+			targetProxy = 119A1C411D8FD52B0086F9E9 /* PBXContainerItemProxy */;
+		};
+		119A1C441D8FD52B0086F9E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6274DCB1C69FB3600730460 /* SyncanoTestApp */;
+			targetProxy = 119A1C431D8FD52B0086F9E9 /* PBXContainerItemProxy */;
+		};
+		119A1C4B1D8FD52B0086F9E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 119A1C361D8FD52B0086F9E9 /* SyncanoSwift */;
+			targetProxy = 119A1C4A1D8FD52B0086F9E9 /* PBXContainerItemProxy */;
+		};
 		11A074DB1BC254E900351014 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			targetProxy = 11A074DA1BC254E900351014 /* PBXContainerItemProxy */;
@@ -1678,6 +1863,114 @@
 			};
 			name = Release;
 		};
+		119A1C4E1D8FD52B0086F9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SyncanoSwift/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.syncano.SyncanoSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		119A1C4F1D8FD52B0086F9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SyncanoSwift/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.syncano.SyncanoSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		119A1C501D8FD52B0086F9E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9F62B3BJJQ;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SyncanoSwiftTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.syncano.SyncanoSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyncanoTestApp.app/SyncanoTestApp";
+			};
+			name = Debug;
+		};
+		119A1C511D8FD52B0086F9E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9F62B3BJJQ;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = SyncanoSwiftTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.syncano.SyncanoSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SyncanoTestApp.app/SyncanoTestApp";
+			};
+			name = Release;
+		};
 		11CE3C9C1BCFD44900DE3163 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4774A8459614E32C080156A1 /* Pods-Syncano.debug.xcconfig */;
@@ -1820,6 +2113,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		119A1C521D8FD52B0086F9E9 /* Build configuration list for PBXNativeTarget "SyncanoSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119A1C4E1D8FD52B0086F9E9 /* Debug */,
+				119A1C4F1D8FD52B0086F9E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		119A1C541D8FD52B0086F9E9 /* Build configuration list for PBXNativeTarget "SyncanoSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				119A1C501D8FD52B0086F9E9 /* Debug */,
+				119A1C511D8FD52B0086F9E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		11A074D81BC254DB00351014 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;
