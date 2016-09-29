@@ -17,42 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SCScriptEndpoint : NSObject
 
 /**
- *  Runs script endpoint. Returned data will be an instance of SCScriptEndpointResponse.
- *
- *  @param name       Script Endpoint name
- *  @param completion Completion block
- */
-+ (void)runScriptEndpointWithName:(NSString *)name completion:(nullable SCScriptEndpointCompletionBlock)completion;
-
-/**
- *  Runs script endpoint on chosen Syncano Instance. Returned data will be an instance of SCScriptEndpointResponse.
- *
- *  @param name       Script Endpoint name
- *  @param syncano    Syncano instance
- *  @param completion Completion block
- */
-+ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(nullable SCScriptEndpointCompletionBlock)completion;
-
-/**
- *  Runs script endpoint with payload. Returned data will be an instance of SCScriptEndpointResponse.
- *
- *  @param name       Script Endpoint name
- *  @param payload    Paylod to pass into Script Endpoint
- *  @param completion Completion block
- */
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCScriptEndpointCompletionBlock)completion;
-
-/**
- *  Runs script endpoint with payload on chosen Syncano Instance. Returned data will be an instance of SCScriptEndpointResponse.
- *
- *  @param name       Script Endpoint name
- *  @param payload    Payload to pass into Script Endpoint
- *  @param syncano    Syncano instance
- *  @param completion Completion block
- */
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCScriptEndpointCompletionBlock)completion;
-
-/**
  *  Runs public script endpoint with given hash and name. Returned data will be an instance of SCScriptEndpointResponse.
  *
  *  @param hashTag       Script Endpoint hash
@@ -71,44 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param completion    Completion block
  */
 + (void)runPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload completion:(SCScriptEndpointCompletionBlock)completion;
-
-/**
- *  Runs script endpoint with custom response format. Returned data will be an instance of NSData.
- *
- *  @param name       Script Endpoint name
- *  @param completion Completion block
- */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name completion:(nullable SCCustomResponseCompletionBlock)completion;
-
-/**
- *  Runs script endpoint with custom reponse format.
- *  CAUTION: By default expected output format for every call to Syncano is JSON. You must modify syncano.apiClient.responseSerializer to fit you needs. f.e. syncano.apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
- *
- *  @param name       Script Endpoint name
- *  @param syncano    Syncano instance
- *  @param completion Completion block
- */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion;
-
-/**
- *  Runs script endpoint with payload and custom reponse format. Returned data will be an instance of NSData.
- *
- *  @param name       Script Endpoint name
- *  @param payload    Payload for Script Endpoint
- *  @param completion Completion block
- */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
-
-/**
- *  Runs script endpoint with payload and custom reponse format.
- *  CAUTION: By default expected output format for every call to Syncano is JSON. You must modify syncano.apiClient.responseSerializer to fit you needs. f.e. syncano.apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
- *
- *  @param name       Script Endpoint name
- *  @param payload    Payload for Script Endpoint
- *  @param syncano    Syncano instance
- *  @param completion Completion block
- */
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 /**
  *  Runs public script endpoint. Returned data will be an instance of NSData.
@@ -131,31 +57,113 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 
+#pragma mark Deprecated methods
+
+/**
+ *  Runs script endpoint. Returned data will be an instance of SCScriptEndpointResponse.
+ *
+ *  @param name       Script Endpoint name
+ *  @param completion Completion block
+ */
++ (void)runScriptEndpointWithName:(NSString *)name completion:(nullable SCScriptEndpointCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
+/**
+ *  Runs script endpoint on chosen Syncano Instance. Returned data will be an instance of SCScriptEndpointResponse.
+ *
+ *  @param name       Script Endpoint name
+ *  @param syncano    Syncano instance
+ *  @param completion Completion block
+ */
++ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(nullable SCScriptEndpointCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
+/**
+ *  Runs script endpoint with payload. Returned data will be an instance of SCScriptEndpointResponse.
+ *
+ *  @param name       Script Endpoint name
+ *  @param payload    Paylod to pass into Script Endpoint
+ *  @param completion Completion block
+ */
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCScriptEndpointCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
+/**
+ *  Runs script endpoint with payload on chosen Syncano Instance. Returned data will be an instance of SCScriptEndpointResponse.
+ *
+ *  @param name       Script Endpoint name
+ *  @param payload    Payload to pass into Script Endpoint
+ *  @param syncano    Syncano instance
+ *  @param completion Completion block
+ */
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCScriptEndpointCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
+/**
+ *  Runs script endpoint with custom response format. Returned data will be an instance of NSData.
+ *
+ *  @param name       Script Endpoint name
+ *  @param completion Completion block
+ */
++ (void)runCustomScriptEndpointWithName:(NSString *)name completion:(nullable SCCustomResponseCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
+/**
+ *  Runs script endpoint with custom reponse format.
+ *  CAUTION: By default expected output format for every call to Syncano is JSON. You must modify syncano.apiClient.responseSerializer to fit you needs. f.e. syncano.apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+ *
+ *  @param name       Script Endpoint name
+ *  @param syncano    Syncano instance
+ *  @param completion Completion block
+ */
++ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
+/**
+ *  Runs script endpoint with payload and custom reponse format. Returned data will be an instance of NSData.
+ *
+ *  @param name       Script Endpoint name
+ *  @param payload    Payload for Script Endpoint
+ *  @param completion Completion block
+ */
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(nullable SCCustomResponseCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
+/**
+ *  Runs script endpoint with payload and custom reponse format.
+ *  CAUTION: By default expected output format for every call to Syncano is JSON. You must modify syncano.apiClient.responseSerializer to fit you needs. f.e. syncano.apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+ *
+ *  @param name       Script Endpoint name
+ *  @param payload    Payload for Script Endpoint
+ *  @param syncano    Syncano instance
+ *  @param completion Completion block
+ */
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(nullable SCCustomResponseCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
+
 @end
 
 @interface SCScriptEndpoint (Cache)
-+ (void)runScriptEndpointWithName:(NSString *)name fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
-+ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
-
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
-
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 + (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion;
 
 + (void)runPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(SCScriptEndpointCompletionBlock)completion;
 
-+ (void)runCustomScriptEndpointWithName:(NSString *)name  fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
-
-+ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
-
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
-
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
++ (void)runCustomScriptEndpointWithName:(NSString *)name  fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
 
 + (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
 
 + (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion;
+
+
+#pragma mark Deprecated methods
+
++ (void)runScriptEndpointWithName:(NSString *)name fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
++ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
++ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion DEPRECATED_MSG_ATTRIBUTE("This method require Account Key");
+
 @end
 NS_ASSUME_NONNULL_END

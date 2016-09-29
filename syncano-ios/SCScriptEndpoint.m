@@ -30,22 +30,6 @@ SCAPIVersion const kScriptEndpointDefaultAPIVersion = SCAPIVersion_1_1;
 
 #pragma mark - Public
 
-+ (void)runScriptEndpointWithName:(NSString *)name completion:(SCScriptEndpointCompletionBlock)completion {
-    [self runScriptEndpointWithName:name withPayload:nil usingAPIClient:[Syncano sharedAPIClient] completion:completion];
-}
-
-+ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCScriptEndpointCompletionBlock)completion {
-    [self runScriptEndpointWithName:name withPayload:nil usingAPIClient:syncano.apiClient completion:completion];
-}
-
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCScriptEndpointCompletionBlock)completion {
-    [self runScriptEndpointWithName:name withPayload:payload usingAPIClient:[Syncano sharedAPIClient] completion:completion];
-}
-
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCScriptEndpointCompletionBlock)completion {
-    [self runScriptEndpointWithName:name withPayload:payload usingAPIClient:syncano.apiClient completion:completion];
-}
-
 + (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(SCScriptEndpointCompletionBlock)completion {
     NSString *path = [self pathForPublicScriptEndpointWithHash:hashTag name:name instanceName:instanceName];
     SCAPIClient *apiClient = [[SCAPIClient alloc] initWithBaseURL:[SCConstants baseURLForAPIVersion:kScriptEndpointDefaultAPIVersion]];
@@ -57,27 +41,8 @@ SCAPIVersion const kScriptEndpointDefaultAPIVersion = SCAPIVersion_1_1;
     [self runPublicScriptEndpointWithPath:@"" payload:payload usingAPIClient:apiClient completion:completion];
 }
 
-#pragma mark - Custom webhooks
+#pragma mark - Custom
 
-+ (void)runCustomScriptEndpointWithName:(NSString *)name completion:(SCCustomResponseCompletionBlock)completion {
-    SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
-    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [self runCustomScriptEndpointWithName:name withPayload:nil usingAPIClient:apiClient completion:completion];
-}
-
-+ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
-    [self runCustomScriptEndpointWithName:name withPayload:nil usingAPIClient:syncano.apiClient completion:completion];
-}
-
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCCustomResponseCompletionBlock)completion {
-    SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
-    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [self runCustomScriptEndpointWithName:name withPayload:payload usingAPIClient:apiClient completion:completion];
-}
-
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
-    [self runCustomScriptEndpointWithName:name withPayload:payload usingAPIClient:syncano.apiClient completion:completion];
-}
 
 + (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName completion:(SCCustomResponseCompletionBlock)completion {
     NSString *path = [self pathForPublicScriptEndpointWithHash:hashTag name:name instanceName:instanceName];
@@ -92,39 +57,11 @@ SCAPIVersion const kScriptEndpointDefaultAPIVersion = SCAPIVersion_1_1;
     [self runCustomPublicScriptEndpointWithPath:@"" payload:payload usingAPIClient:apiClient completion:completion];
 }
 
+
+
+
 #pragma mark - Private
-+ (void)runScriptEndpointOnAPIClientWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCAPICompletionBlock)completion {
-    NSString *path = [self pathForRunningScriptEndpointWithName:name];
-    [apiClient checkAndResolveCacheKeyExistanceInPayload:payload forPath:path completion:^(NSString * _Nonnull _path, NSDictionary * _Nonnull _payload) {
-        [apiClient postTaskWithPath:_path params:_payload completion:completion];
-    }];
-}
 
-+ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCScriptEndpointCompletionBlock)completion {
-    [self runScriptEndpointOnAPIClientWithName:name withPayload:payload usingAPIClient:apiClient completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if (completion) {
-            if(error) {
-                completion(nil,error);
-                return;
-            }
-            
-            SCScriptEndpointResponse *response = [[SCScriptEndpointResponse alloc] initWithJSONObject:responseObject];
-            completion(response,nil);
-        }
-    }];
-}
-
-+ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCCustomResponseCompletionBlock)completion {
-    [self runScriptEndpointOnAPIClientWithName:name withPayload:payload usingAPIClient:apiClient completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-        if (completion) {
-            if(error) {
-                completion(nil,error);
-                return;
-            }
-            completion(responseObject,nil);
-        }
-    }];
-}
 
 + (void)runPublicScriptEndpointWithPath:(NSString *)path payload:(NSDictionary *)payload usingAPIClient:(SCAPIClient*)apiClient completion:(SCScriptEndpointCompletionBlock)completion {
     [apiClient checkAndResolveCacheKeyExistanceInPayload:payload forPath:path completion:^(NSString * _Nonnull _path, NSDictionary * _Nonnull _payload) {
@@ -167,9 +104,100 @@ NSString *const kSyncanoScriptEndpointPath = @"endpoints/scripts";
     return path;
 }
 
+
+#pragma mark - Deprecated methods
+
++ (void)runScriptEndpointWithName:(NSString *)name completion:(SCScriptEndpointCompletionBlock)completion {
+    [self runScriptEndpointWithName:name withPayload:nil usingAPIClient:[Syncano sharedAPIClient] completion:completion];
+}
+
++ (void)runScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCScriptEndpointCompletionBlock)completion {
+    [self runScriptEndpointWithName:name withPayload:nil usingAPIClient:syncano.apiClient completion:completion];
+}
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCScriptEndpointCompletionBlock)completion {
+    [self runScriptEndpointWithName:name withPayload:payload usingAPIClient:[Syncano sharedAPIClient] completion:completion];
+}
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCScriptEndpointCompletionBlock)completion {
+    [self runScriptEndpointWithName:name withPayload:payload usingAPIClient:syncano.apiClient completion:completion];
+}
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name completion:(SCCustomResponseCompletionBlock)completion {
+    SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
+    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [self runCustomScriptEndpointWithName:name withPayload:nil usingAPIClient:apiClient completion:completion];
+}
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
+    [self runCustomScriptEndpointWithName:name withPayload:nil usingAPIClient:syncano.apiClient completion:completion];
+}
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload completion:(SCCustomResponseCompletionBlock)completion {
+    SCAPIClient *apiClient = [[Syncano sharedAPIClient] copy];
+    apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [self runCustomScriptEndpointWithName:name withPayload:payload usingAPIClient:apiClient completion:completion];
+}
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
+    [self runCustomScriptEndpointWithName:name withPayload:payload usingAPIClient:syncano.apiClient completion:completion];
+}
+
++ (void)runScriptEndpointOnAPIClientWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCAPICompletionBlock)completion {
+    NSString *path = [self pathForRunningScriptEndpointWithName:name];
+    [apiClient checkAndResolveCacheKeyExistanceInPayload:payload forPath:path completion:^(NSString * _Nonnull _path, NSDictionary * _Nonnull _payload) {
+        [apiClient postTaskWithPath:_path params:_payload completion:completion];
+    }];
+}
+
++ (void)runScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCScriptEndpointCompletionBlock)completion {
+    [self runScriptEndpointOnAPIClientWithName:name withPayload:payload usingAPIClient:apiClient completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (completion) {
+            if(error) {
+                completion(nil,error);
+                return;
+            }
+            
+            SCScriptEndpointResponse *response = [[SCScriptEndpointResponse alloc] initWithJSONObject:responseObject];
+            completion(response,nil);
+        }
+    }];
+}
+
++ (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload usingAPIClient:(SCAPIClient *)apiClient completion:(SCCustomResponseCompletionBlock)completion {
+    [self runScriptEndpointOnAPIClientWithName:name withPayload:payload usingAPIClient:apiClient completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        if (completion) {
+            if(error) {
+                completion(nil,error);
+                return;
+            }
+            completion(responseObject,nil);
+        }
+    }];
+}
+
 @end
 
 @implementation SCScriptEndpoint (Cache)
+
+
++ (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion {
+    [self runPublicScriptEndpointWithHash:hashTag name:name payload:[payload dictionaryByAddingCacheKey:cacheKey] forInstanceName:instanceName completion:completion];
+}
+
++ (void)runPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(SCScriptEndpointCompletionBlock)completion {
+    [self runPublicScriptEndpointWithURLString:urlString payload:[payload dictionaryByAddingCacheKey:cacheKey] completion:completion];
+}
+
++ (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion {
+    [self runCustomPublicScriptEndpointWithHash:hashTag name:name payload:[payload dictionaryByAddingCacheKey:cacheKey] forInstanceName:instanceName completion:completion];
+}
+
++ (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion {
+    [self runCustomPublicScriptEndpointWithURLString:urlString payload:[payload dictionaryByAddingCacheKey:cacheKey] completion:completion];
+}
+
+#pragma mark Deprecated methods
 
 + (void)runScriptEndpointWithName:(NSString *)name fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion {
     [self runScriptEndpointWithName:name withPayload:[NSDictionary dictionaryWithCacheKey:cacheKey] completion:completion];
@@ -187,14 +215,6 @@ NSString *const kSyncanoScriptEndpointPath = @"endpoints/scripts";
     [self runScriptEndpointWithName:name withPayload:[payload dictionaryByAddingCacheKey:cacheKey] onSyncano:syncano completion:completion];
 }
 
-+ (void)runPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCScriptEndpointCompletionBlock)completion {
-    [self runPublicScriptEndpointWithHash:hashTag name:name payload:[payload dictionaryByAddingCacheKey:cacheKey] forInstanceName:instanceName completion:completion];
-}
-
-+ (void)runPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(SCScriptEndpointCompletionBlock)completion {
-    [self runPublicScriptEndpointWithURLString:urlString payload:[payload dictionaryByAddingCacheKey:cacheKey] completion:completion];
-}
-
 + (void)runCustomScriptEndpointWithName:(NSString *)name  fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion {
     [self runCustomScriptEndpointWithName:name withPayload:[NSDictionary dictionaryWithCacheKey:cacheKey] completion:completion];
 }
@@ -209,14 +229,6 @@ NSString *const kSyncanoScriptEndpointPath = @"endpoints/scripts";
 
 + (void)runCustomScriptEndpointWithName:(NSString *)name withPayload:(NSDictionary *)payload onSyncano:(Syncano *)syncano fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion {
     [self runCustomScriptEndpointWithName:name withPayload:[payload dictionaryByAddingCacheKey:cacheKey] onSyncano:syncano completion:completion];
-}
-
-+ (void)runCustomPublicScriptEndpointWithHash:(NSString *)hashTag name:(NSString *)name payload:(NSDictionary *)payload forInstanceName:(NSString *)instanceName fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion {
-    [self runCustomPublicScriptEndpointWithHash:hashTag name:name payload:[payload dictionaryByAddingCacheKey:cacheKey] forInstanceName:instanceName completion:completion];
-}
-
-+ (void)runCustomPublicScriptEndpointWithURLString:(NSString *)urlString payload:(NSDictionary *)payload fromCacheWithKey:(NSString *)cacheKey completion:(nullable SCCustomResponseCompletionBlock)completion {
-    [self runCustomPublicScriptEndpointWithURLString:urlString payload:[payload dictionaryByAddingCacheKey:cacheKey] completion:completion];
 }
 
 @end
