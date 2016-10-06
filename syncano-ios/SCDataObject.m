@@ -168,9 +168,13 @@
 
 - (NSString *)endpointPathForObjectSave {
     if ([[self class] dataEndpointNameForAPI] != nil) {
-        return [NSString stringWithFormat:@"endpoints/data/%@/post/",[[self class] dataEndpointNameForAPI]];
+        return [self constructEndpointPathForObjectSaveWithEndpointName:[[self class] dataEndpointNameForAPI]];
     }
     return nil;
+}
+    
+- (NSString *)constructEndpointPathForObjectSaveWithEndpointName:(NSString *)endpointName {
+    return [NSString stringWithFormat:@"endpoints/data/%@/post/",endpointName];
 }
 
 - (void)fetchWithCompletion:(SCCompletionBlock)completion {
@@ -199,18 +203,25 @@
 }
 
 - (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
-    [self saveUsingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil];
+    [self saveUsingAPIClient:apiClient withCompletion:completion revisionMismatchValidationBlock:nil endpointName:nil];
 }
 
 - (void)saveWithCompletionBlock:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
-    [self saveUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+    [self saveUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock endpointName:nil];
 }
 
 - (void)saveToSyncano:(Syncano *)syncano withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
-    [self saveUsingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock];
+    [self saveUsingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:revisionMismatchBlock endpointName:nil];
+}
+    
+- (void)saveUsingDataEndpointWithName:(NSString *)dataEndpointName withCompletionBlock:(nullable SCCompletionBlock)completion {
+    [self saveUsingAPIClient:[Syncano sharedAPIClient] withCompletion:completion revisionMismatchValidationBlock:nil endpointName:dataEndpointName];
+}
+- (void)saveUsingDataEndpointWithName:(NSString *)dataEndpointName toSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion {
+    [self saveUsingAPIClient:syncano.apiClient withCompletion:completion revisionMismatchValidationBlock:nil endpointName:dataEndpointName];
 }
 
-- (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock {
+- (void)saveUsingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion revisionMismatchValidationBlock:(SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock endpointName:(NSString *)endpoint {
     [self handleRelationsSaveUsingAPIClient:apiClient withCompletion:^(NSError *error) {
         if (error) {
             if (completion) {
@@ -230,7 +241,13 @@
                 if (self.objectId && self.revision && revisionMismatchBlock) {
                     params[kExpectedRevisionRequestParam] = self.revision;
                 }
-                NSString *path = ([self endpointPathForObjectSave]) ? [self endpointPathForObjectSave] : [self path];
+                NSString *path;
+                if (endpoint != nil) {
+                    path = [self constructEndpointPathForObjectSaveWithEndpointName:endpoint];
+                } else {
+                    path = ([self endpointPathForObjectSave]) ? [self endpointPathForObjectSave] : [self path];
+                }
+                
                 [apiClient POSTWithPath:path params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
                     if (error) {
                         if (completion) {

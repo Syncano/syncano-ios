@@ -135,7 +135,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  */
 - (void)saveWithCompletionBlock:(nullable SCCompletionBlock)completion;
-
+    
 /**
  *  Saves an object using Syncano API in background, using chosen Syncano instance
  *
@@ -144,11 +144,17 @@ NS_ASSUME_NONNULL_BEGIN
  *
  */
 - (void)saveToSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
+    
 
 - (void)saveWithCompletionBlock:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
 - (void)saveToSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion revisionMismatchValidationBlock:(nullable SCDataObjectRevisionMismatchCompletionBlock)revisionMismatchBlock;
 
+    
+    
+- (void)saveUsingDataEndpointWithName:(NSString *)dataEndpointName withCompletionBlock:(nullable SCCompletionBlock)completion;
+- (void)saveUsingDataEndpointWithName:(NSString *)dataEndpointName toSyncano:(Syncano *)syncano withCompletion:(nullable SCCompletionBlock)completion;
+    
 /**
  *  Fetches an object from API using singleton Syncano instance
  *
