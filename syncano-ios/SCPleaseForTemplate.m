@@ -40,7 +40,7 @@
 - (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCTemplateResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[self apiClient] copy];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSString *path = (self.dataEndpointName != nil) ? NSString *path = [NSString stringWithFormat:@"endpoints/data/%@/get/",self.dataEndpointName] : [NSString stringWithFormat:@"classes/%@/objects/",self.classNameForAPICalls];
+    NSString *path = (self.dataEndpointName != nil) ? [NSString stringWithFormat:@"endpoints/data/%@/get/",self.dataEndpointName] : [NSString stringWithFormat:@"classes/%@/objects/",self.classNameForAPICalls];
     
     if (parameters != nil) {
         NSMutableDictionary *mutableParams = [parameters mutableCopy];
@@ -63,7 +63,7 @@
 @implementation SCPleaseForTemplate (DataEndpoint)
 
 + (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forDataEndpoint:(NSString *)dataEndpointName forTemplate:(NSString *)templateName {
-    SCPleaseForTemplate* instance = [[SCPleaseForTemplate alloc] initWithDataObjectClass:dataObjectClass forDataEndpoint:dataEndpointName forTemplate:templateName]
+    SCPleaseForTemplate* instance = (SCPleaseForTemplate*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass];
     instance.templateName = templateName;
     instance.dataEndpointName = dataEndpointName;
     return instance;
