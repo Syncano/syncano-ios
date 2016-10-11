@@ -186,21 +186,21 @@ static SCLocalStore *_localStore;
 @implementation Syncano (DataEndpoint)
 
 + (void)getData:(NSString *)dataEndpointName forClass:(Class)class callback:(SCDataObjectsCompletionBlock)callback {
-    [self getData:dataEndpointName forClass:class parameters:nil predicate:nil callback:callback];
+    [[self class] getData:dataEndpointName forClass:class parameters:nil predicate:nil callback:callback];
 }
 - (void)getData:(NSString *)dataEndpointName forClass:(Class)class callback:(SCDataObjectsCompletionBlock)callback {
     [self getData:dataEndpointName forClass:class parameters:nil predicate:nil callback:callback];
 }
 
 + (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters callback:(SCDataObjectsCompletionBlock)callback {
-    [self getData:dataEndpointName forClass:class parameters:parameters predicate:nil callback:callback];
+    [[self class] getData:dataEndpointName forClass:class parameters:parameters predicate:nil callback:callback];
 }
 - (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters callback:(SCDataObjectsCompletionBlock)callback {
     [self getData:dataEndpointName forClass:class parameters:parameters predicate:nil callback:callback];
 }
 
 + (void)getData:(NSString *)dataEndpointName forClass:(Class)class predicate:(nullable id<SCPredicateProtocol>)predicate callback:(SCDataObjectsCompletionBlock)callback {
-    [self getData:dataEndpointName forClass:class parameters:nil predicate:predicate callback:callback];
+    [[self class] getData:dataEndpointName forClass:class parameters:nil predicate:predicate callback:callback];
 }
 - (void)getData:(NSString *)dataEndpointName forClass:(Class)class predicate:(nullable id<SCPredicateProtocol>)predicate callback:(SCDataObjectsCompletionBlock)callback {
     [self getData:dataEndpointName forClass:class parameters:nil predicate:predicate callback:callback];
@@ -213,6 +213,24 @@ static SCLocalStore *_localStore;
 - (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(NSDictionary *)parameters predicate:(id<SCPredicateProtocol>)predicate callback:(SCDataObjectsCompletionBlock)callback {
     SCPlease *please = [SCPleaseForDataEndpoint pleaseInstanceForDataObjectWithClass:class fordataEndpoint:dataEndpointName forSyncano:self];
     [please giveMeDataObjectsWithPredicate:predicate parameters:parameters completion:callback];
+}
+
+#pragma mark -Template
+
++ (void)getData:(NSString *)dataEndpointName forClass:(Class)class forTemplateWithName:(NSString *)templateName callback:(SCTemplateResponseCompletionBlock)callback {
+    [[self class] getData:dataEndpointName forClass:class parameters:nil forTemplateWithName:templateName callback:callback];
+}
+- (void)getData:(NSString *)dataEndpointName forClass:(Class)class forTemplateWithName:(NSString *)templateName callback:(SCTemplateResponseCompletionBlock)callback {
+    [self getData:dataEndpointName forClass:class parameters:nil forTemplateWithName:templateName callback:callback];
+}
+
++ (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters forTemplateWithName:(NSString *)templateName callback:(SCTemplateResponseCompletionBlock)callback {
+    SCPleaseForTemplate *please = [SCPleaseForTemplate pleaseInstanceForDataObjectWithClass:class forDataEndpoint:dataEndpointName forTemplate:templateName];
+    [please giveMeDataWithParameters:parameters completion:callback];
+}
+- (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters forTemplateWithName:(NSString *)templateName callback:(SCTemplateResponseCompletionBlock)callback {
+    SCPleaseForTemplate *please = [SCPleaseForTemplate pleaseInstanceForDataObjectWithClass:class forDataEndpoint:dataEndpointName forTemplate:templateName forSyncano:self];
+    [please giveMeDataWithParameters:parameters completion:callback];
 }
 
 @end
