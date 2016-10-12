@@ -32,8 +32,10 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.3.2** - 2016-10-12
+    * Data Endpoint helper methods in Syncano class.
 * **4.3.1** - 2016-09-14
-    * Fixed ability to run script endpoints using hash and name 
+    * Fixed ability to run script endpoints using hash and name
 * **4.3.0** - 2016-09-09
     * Send pushes
     * List and filter devices
