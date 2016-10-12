@@ -66,6 +66,16 @@
                ReferencedContainer = "container:syncano-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "119A1C3E1D8FD52B0086F9E9"
+               BuildableName = "SyncanoSwiftTests.xctest"
+               BlueprintName = "SyncanoSwiftTests"
+               ReferencedContainer = "container:syncano-ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

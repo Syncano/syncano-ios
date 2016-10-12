@@ -182,4 +182,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface Syncano (DataEndpoint)
+
++ (void)getData:(NSString *)dataEndpointName forClass:(Class)class callback:(SCDataObjectsCompletionBlock)callback;
+- (void)getData:(NSString *)dataEndpointName forClass:(Class)class callback:(SCDataObjectsCompletionBlock)callback;
+
++ (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters callback:(SCDataObjectsCompletionBlock)callback;
+- (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters callback:(SCDataObjectsCompletionBlock)callback;
+
++ (void)getData:(NSString *)dataEndpointName forClass:(Class)class predicate:(nullable id<SCPredicateProtocol>)predicate callback:(SCDataObjectsCompletionBlock)callback;
+- (void)getData:(NSString *)dataEndpointName forClass:(Class)class predicate:(nullable id<SCPredicateProtocol>)predicate callback:(SCDataObjectsCompletionBlock)callback;
+
++ (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters predicate:(nullable id<SCPredicateProtocol>)predicate callback:(SCDataObjectsCompletionBlock)callback;
+- (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters predicate:(nullable id<SCPredicateProtocol>)predicate callback:(SCDataObjectsCompletionBlock)callback;
+
+#pragma mark -Template
+
++ (void)getData:(NSString *)dataEndpointName forClass:(Class)class forTemplateWithName:(NSString *)templateName callback:(SCTemplateResponseCompletionBlock)callback;
+- (void)getData:(NSString *)dataEndpointName forClass:(Class)class forTemplateWithName:(NSString *)templateName callback:(SCTemplateResponseCompletionBlock)callback;
+
++ (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters forTemplateWithName:(NSString *)templateName callback:(SCTemplateResponseCompletionBlock)callback;
+- (void)getData:(NSString *)dataEndpointName forClass:(Class)class parameters:(nullable NSDictionary *)parameters forTemplateWithName:(NSString *)templateName callback:(SCTemplateResponseCompletionBlock)callback;
+
+@end
+
+
+
+
 NS_ASSUME_NONNULL_END

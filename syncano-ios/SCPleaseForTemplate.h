@@ -45,3 +45,13 @@
 
 - (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCTemplateResponseCompletionBlock)completion;
 @end
+
+
+
+@interface SCPleaseForTemplate (DataEndpoint)
+
++ (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forDataEndpoint:(NSString *)dataEndpointName forTemplate:(NSString *)templateName;
+
++ (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forDataEndpoint:(NSString *)dataEndpointName forTemplate:(NSString *)templateName forSyncano:(Syncano *)syncano;
+
+@end

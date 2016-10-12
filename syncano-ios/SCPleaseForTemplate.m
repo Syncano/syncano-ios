@@ -12,16 +12,18 @@
 
 @interface SCPleaseForTemplate()
 @property (nonatomic,retain) NSString *templateName;
+@property (nonatomic,retain) NSString *dataEndpointName;
 @end
 
 @implementation SCPleaseForTemplate
 - (instancetype)initWithDataObjectClass:(Class)dataObjectClass forTemplate:(NSString *)templateName {
-    self = [super init];
+    self = [super initWithDataObjectClass:dataObjectClass];
     if (self) {
         self.templateName = templateName;
     }
     return self;
 }
+
 
 + (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forTemplate:(NSString *)templateName {
     SCPleaseForTemplate* instance = (SCPleaseForTemplate*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass];
@@ -38,7 +40,7 @@
 - (void)giveMeDataWithParameters:(NSDictionary*)parameters completion:(SCTemplateResponseCompletionBlock)completion {
     SCAPIClient *apiClient = [[self apiClient] copy];
     apiClient.responseSerializer = [AFHTTPResponseSerializer serializer];
-    NSString *path = [NSString stringWithFormat:@"classes/%@/objects/",self.classNameForAPICalls];
+    NSString *path = (self.dataEndpointName != nil) ? [NSString stringWithFormat:@"endpoints/data/%@/get/",self.dataEndpointName] : [NSString stringWithFormat:@"classes/%@/objects/",self.classNameForAPICalls];
     
     if (parameters != nil) {
         NSMutableDictionary *mutableParams = [parameters mutableCopy];
@@ -53,6 +55,25 @@
             completion((NSData *)responseObject,error);
         }
     }];
+}
+
+@end
+
+
+@implementation SCPleaseForTemplate (DataEndpoint)
+
++ (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forDataEndpoint:(NSString *)dataEndpointName forTemplate:(NSString *)templateName {
+    SCPleaseForTemplate* instance = (SCPleaseForTemplate*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass];
+    instance.templateName = templateName;
+    instance.dataEndpointName = dataEndpointName;
+    return instance;
+}
+
++ (SCPleaseForTemplate *)pleaseInstanceForDataObjectWithClass:(Class)dataObjectClass forDataEndpoint:(NSString *)dataEndpointName forTemplate:(NSString *)templateName forSyncano:(Syncano *)syncano {
+    SCPleaseForTemplate* instance = (SCPleaseForTemplate*)[self pleaseInstanceForDataObjectWithClass:dataObjectClass forSyncano:syncano];
+    instance.templateName = templateName;
+    instance.dataEndpointName = dataEndpointName;
+    return instance;
 }
 
 @end
