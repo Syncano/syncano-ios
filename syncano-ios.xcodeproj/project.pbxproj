@@ -169,6 +169,8 @@
 		11CE3CD51BCFDC3000DE3163 /* (null) in Headers */ = {isa = PBXBuildFile; };
 		11CE3CD61BCFDC3000DE3163 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		11CE3CF11BCFEAFF00DE3163 /* Syncano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; };
+		11D58B551DB66897003E84FF /* SCSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 11D58B531DB66897003E84FF /* SCSocket.h */; };
+		11D58B561DB66897003E84FF /* SCSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D58B541DB66897003E84FF /* SCSocket.m */; };
 		11D7D1B41B660CD700466E66 /* Webhook.json in Resources */ = {isa = PBXBuildFile; fileRef = 11D7D1B31B660CD700466E66 /* Webhook.json */; };
 		11E35B0D1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */; };
 		11E35B0F1C4F82740092E0A9 /* Syncano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CE3C891BCFD44900DE3163 /* Syncano.framework */; };
@@ -454,6 +456,8 @@
 		11CDC1771B13570C00EFA5CB /* SCTrace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTrace.m; sourceTree = "<group>"; };
 		11CE3C891BCFD44900DE3163 /* Syncano.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Syncano.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CE3CDD1BCFE79100DE3163 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11D58B531DB66897003E84FF /* SCSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSocket.h; sourceTree = "<group>"; };
+		11D58B541DB66897003E84FF /* SCSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSocket.m; sourceTree = "<group>"; };
 		11D7D1B31B660CD700466E66 /* Webhook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Webhook.json; sourceTree = "<group>"; };
 		11E35B0A1C4F82740092E0A9 /* syncano-IntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "syncano-IntegrationTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11E35B0C1C4F82740092E0A9 /* SyncanoIntegrationTestsSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyncanoIntegrationTestsSpec.m; sourceTree = "<group>"; };
@@ -873,6 +877,7 @@
 				11055BA61B25CF2E004BB629 /* DataObject */,
 				11055BA31B25CEE6004BB629 /* User */,
 				11055BA41B25CF0B004BB629 /* Script */,
+				11D58B521DB66876003E84FF /* Sockets */,
 				11055BA51B25CF16004BB629 /* Endpoints */,
 				11055BA21B25CED8004BB629 /* Realtime */,
 				1142F6581B332A8900A38A97 /* Categories */,
@@ -974,6 +979,15 @@
 				116B6C801C1AFCAE00D602D1 /* Queue */,
 			);
 			name = APIClient;
+			sourceTree = "<group>";
+		};
+		11D58B521DB66876003E84FF /* Sockets */ = {
+			isa = PBXGroup;
+			children = (
+				11D58B531DB66897003E84FF /* SCSocket.h */,
+				11D58B541DB66897003E84FF /* SCSocket.m */,
+			);
+			name = Sockets;
 			sourceTree = "<group>";
 		};
 		11E35B0B1C4F82740092E0A9 /* SyncanoIntegrationTests */ = {
@@ -1094,6 +1108,7 @@
 				11CE3CD11BCFDC3000DE3163 /* SCConstants.h in Headers */,
 				11CE3CA81BCFDC3000DE3163 /* SCPredicateProtocol.h in Headers */,
 				156CF1EB1C8F65880053A580 /* SCScriptEndpointResponse.h in Headers */,
+				11D58B551DB66897003E84FF /* SCSocket.h in Headers */,
 				11CB51811C1871B2007978A7 /* SCRequest.h in Headers */,
 				11B0E6681BFCC4F700E36713 /* NSDictionary+JSONString.h in Headers */,
 				1132DDE11D2FBB010024EF74 /* SCDataObject+KeyManipulation.h in Headers */,
@@ -1610,6 +1625,7 @@
 				11B4E4CE1D211D10007A3B2A /* SCPleaseForDataEndpoint.m in Sources */,
 				A66984911C63B54F0056A228 /* SCDataObject+Increment.m in Sources */,
 				1159F03B1D3CD3DD00807668 /* SCPleaseForDevice.m in Sources */,
+				11D58B561DB66897003E84FF /* SCSocket.m in Sources */,
 				11CE3CB01BCFDC3000DE3163 /* SCUser.m in Sources */,
 				113B2E4D1C48DA5400057F00 /* NSError+RevisionMismatch.m in Sources */,
 				1142F0861C9FEEAD0047FB6C /* SCChannelHistoryResponse.m in Sources */,
@@ -2121,6 +2137,7 @@
 				119A1C4F1D8FD52B0086F9E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		119A1C541D8FD52B0086F9E9 /* Build configuration list for PBXNativeTarget "SyncanoSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -2129,6 +2146,7 @@
 				119A1C511D8FD52B0086F9E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		11A074D81BC254DB00351014 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
 			isa = XCConfigurationList;
