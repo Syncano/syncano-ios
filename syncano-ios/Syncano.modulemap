@@ -1,0 +1,6 @@
+framework module Syncano {
+  umbrella header "Syncano-Umbrella-Header.h"
+
+  export *
+  module * { export * }
+}
