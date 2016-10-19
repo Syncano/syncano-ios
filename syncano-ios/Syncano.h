@@ -206,6 +206,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface Syncano (Device)
++ (SCDevice *)registerDeviceWithToken:(NSData *)data callback:(SCCompletionBlock)callback;
+- (SCDevice *)registerDeviceWithToken:(NSData *)data callback:(SCCompletionBlock)callback;
+@end
 
 
 
