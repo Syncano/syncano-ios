@@ -234,3 +234,16 @@ static SCLocalStore *_localStore;
 }
 
 @end
+
+@implementation Syncano (Device)
++ (SCDevice *)registerDeviceWithToken:(NSData *)data callback:(SCCompletionBlock)callback {
+    SCDevice *device = [SCDevice deviceWithTokenFromData:data];
+    [device saveWithCompletionBlock:callback];
+    return device;
+}
+- (SCDevice *)registerDeviceWithToken:(NSData *)data callback:(SCCompletionBlock)callback {
+    SCDevice *device = [SCDevice deviceWithTokenFromData:data];
+    [device saveToSyncano:self withCompletion:callback];
+    return device;
+}
+@end
