@@ -13,8 +13,11 @@
 @implementation SCSocket
 
 - (void)runWithMethod:(SocketRunMethod)method endpointName:(NSString *)endpointName parameters:(NSDictionary *)params completion:(SCCustomResponseCompletionBlock)completion {
-    SCAPIClient *apiClient = [Syncano sharedAPIClient];
-    [self runWithMethod:method endpointName:endpointName parameters:params apiClient:apiClient completion:completion];
+    [self runWithMethod:method endpointName:endpointName parameters:params apiClient:[Syncano sharedAPIClient] completion:completion];
+}
+
+- (void)runWithMethod:(SocketRunMethod)method endpointName:(NSString *)endpointName parameters:(NSDictionary *)params usingSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion {
+    [self runWithMethod:method endpointName:endpointName parameters:params apiClient:syncano.apiClient completion:completion];
 }
 
 

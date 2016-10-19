@@ -17,8 +17,12 @@ typedef NS_ENUM(NSUInteger, SocketRunMethod) {
     SocketRunMethodDELETE
 };
 
+@class Syncano;
+
 @interface SCSocket : NSObject
 
 - (void)runWithMethod:(SocketRunMethod)method endpointName:(NSString *)endpointName parameters:(NSDictionary *)params completion:(SCCustomResponseCompletionBlock)completion;
+
+- (void)runWithMethod:(SocketRunMethod)method endpointName:(NSString *)endpointName parameters:(NSDictionary *)params usingSyncano:(Syncano *)syncano completion:(SCCustomResponseCompletionBlock)completion;
 
 @end
