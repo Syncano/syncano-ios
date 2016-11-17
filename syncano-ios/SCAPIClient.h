@@ -171,6 +171,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSURLSessionDataTask *)deleteTaskWithPath:(NSString *)path params:(nullable NSDictionary *)params completion:(nullable SCAPICompletionBlock)completion;
 
+- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path params:(nullable NSDictionary *)params files:(NSDictionary *)files completion:(SCAPICompletionBlock)completion;
 
 @end
 
