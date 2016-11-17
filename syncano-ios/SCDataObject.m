@@ -152,6 +152,10 @@
 - (BOOL)isEqualToDataObject:(SCDataObject *)object {
     return self.objectId == object.objectId;
 }
+    
+- (BOOL)hasFilesProperties {
+    return  [[self class] propertiesNamesOfFileClass].count > 0;
+}
 
 - (NSString *)path {
     if (self.links[@"self"]) {
@@ -248,18 +252,45 @@
                     path = ([self endpointPathForObjectSave]) ? [self endpointPathForObjectSave] : [self path];
                 }
                 
-                [apiClient POSTWithPath:path params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
-                    if (error) {
+                if ([self hasFilesProperties]) {
+                    NSMutableDictionary *files = [NSMutableDictionary new];
+                    for (NSString *filePropertyName in [[self class] propertiesNamesOfFileClass]) {
+                        SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
+                        files[filePropertyName] = file.data;
+                    }
+                    
+                    [apiClient postUploadTaskWithPath:path params:params files:files completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
+                        if (error) {
+                            if (completion) {
+                                completion(error);
+                            }
+                            if (revisionMismatchBlock) {
+                                [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                            }
+                            return;
+                        }
+                        [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
+
                         if (completion) {
                             completion(error);
                         }
                         if (revisionMismatchBlock) {
-                            [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                            revisionMismatchBlock(NO,nil);
                         }
-                        return;
-                    }
-                    [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
-                    [self saveFilesUsingAPIClient:apiClient completion:^(NSError *error) {
+
+                    }];
+                } else {
+                    [apiClient POSTWithPath:path params:params  completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+                        if (error) {
+                            if (completion) {
+                                completion(error);
+                            }
+                            if (revisionMismatchBlock) {
+                                [error checkIfMismatchOccuredWithCompletion:revisionMismatchBlock];
+                            }
+                            return;
+                        }
+                        [self updateObjectAfterSaveWithDataFromJSONObject:responseObject];
                         if (completion) {
                             completion(error);
                         }
@@ -267,8 +298,9 @@
                             revisionMismatchBlock(NO,nil);
                         }
                     }];
-                    
-                }];
+  
+                }
+                
             }
         }
     }];
