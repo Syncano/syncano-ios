@@ -153,8 +153,15 @@
     return self.objectId == object.objectId;
 }
     
-- (BOOL)hasFilesProperties {
-    return  [[self class] propertiesNamesOfFileClass].count > 0;
+- (NSDictionary *)filesForSave {
+    NSMutableDictionary *files = [NSMutableDictionary new];
+    for (NSString *filePropertyName in [[self class] propertiesNamesOfFileClass]) {
+        SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
+        if (file.data != nil) {
+            files[filePropertyName] = file.data;
+        }
+    }
+    return files;
 }
 
 - (NSString *)path {
@@ -252,14 +259,9 @@
                     path = ([self endpointPathForObjectSave]) ? [self endpointPathForObjectSave] : [self path];
                 }
                 
-                if ([self hasFilesProperties]) {
-                    NSMutableDictionary *files = [NSMutableDictionary new];
-                    for (NSString *filePropertyName in [[self class] propertiesNamesOfFileClass]) {
-                        SCFile * file = (SCFile *)[self valueForKey:filePropertyName];
-                        files[filePropertyName] = file.data;
-                    }
+                if ([self filesForSave].count > 0) {
                     
-                    [apiClient postUploadTaskWithPath:path params:params files:files completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
+                    [apiClient postUploadTaskWithPath:path params:params files:[self filesForSave] completion:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject, NSError * _Nullable error) {
                         if (error) {
                             if (completion) {
                                 completion(error);
