@@ -61,7 +61,7 @@
 
 - (void)saveAsPropertyWithName:(NSString *)name ofDataObject:(SCDataObject *)dataObject usingAPIClient:(SCAPIClient *)apiClient withCompletion:(SCCompletionBlock)completion {
     if (self.needsToBeUploaded && self.data != nil) {
-        [apiClient PATCHUploadWithPath:dataObject.path propertyName:name fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
+        [apiClient POSTUploadWithPath:dataObject.path propertyName:name fileData:self.data completion:^(NSURLSessionDataTask *task, id responseObject, NSError *error) {
             if (!error) {
                 self.needsToBeUploaded = NO;
             }

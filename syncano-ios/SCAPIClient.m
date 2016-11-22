@@ -348,10 +348,18 @@
 }
 
 - (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path propertyName:(NSString *)propertyName fileData:(NSData *)fileData completion:(SCAPICompletionBlock)completion {
+    NSDictionary *files = @{propertyName : fileData};
+    return [self postUploadTaskWithPath:path params:nil files:files completion:completion];
+}
+    
+- (NSURLSessionDataTask *)postUploadTaskWithPath:(NSString *)path params:(NSDictionary *)params files:(NSDictionary *)files completion:(SCAPICompletionBlock)completion {
     [self authorizeRequest];
-    NSURLSessionDataTask *task = [self POST:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];
-        [formData appendPartWithFormData:fileData name:propertyName];
+    NSURLSessionDataTask *task = [self POST:path parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        for (NSString *propertyName in files.allKeys) {
+            NSData *fileData = files[propertyName];
+            [formData appendPartWithFileData:fileData name:propertyName fileName:propertyName mimeType:[fileData mimeTypeByGuessing]];
+            [formData appendPartWithFormData:fileData name:propertyName];
+        }
     } progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         completion(task,responseObject, nil);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
