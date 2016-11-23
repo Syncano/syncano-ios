@@ -32,6 +32,10 @@ Syncano's iOS Library (syncano-ios) is available under the MIT license. See the 
 
 ## Change Log
 --
+* **4.3.4** - 2016-11-23
+    * Added run method to run socket endpoints.
+    * Ability to register device using Syncano class
+    * Removed SyncanoSwift target
 * **4.3.3** - 2016-11-17
     * Now saving Data Object with file is handled with one request.
 * **4.3.2** - 2016-10-12
